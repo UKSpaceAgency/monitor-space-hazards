@@ -1,0 +1,14 @@
+{
+  "RootLayout": {
+    "home_link": "Home",
+    "about_link": "About",
+    "counter_link": "Counter",
+    "portfolio_link": "Portfolio",
+    "sign_in_link": "Sign in",
+    "sign_up_link": "Sign up"
+  },
+  "BaseTemplate": {
+    "description": "Starter code for your Nextjs Boilerplate with Tailwind CSS",
+    "made_with": "Made with"
+  }
+}
