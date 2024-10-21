@@ -1,31 +1,29 @@
 import clsx from 'clsx';
-import type { ForwardedRef, HTMLAttributes } from 'react';
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ForwardedRef, InputHTMLAttributes } from 'react';
 import { forwardRef } from 'react';
 
-export type ButtonProps<T> = {
+export type ButtonProps = {
   variant?: 'secondary' | 'warning';
   href?: string;
   isStartButton?: true;
-  element?: 'button' | 'link' | 'input';
   text?: string;
   disabled?: true;
-} & HTMLAttributes<T>;
+} & (
+  | (ButtonHTMLAttributes<HTMLButtonElement> & {
+    element: 'button';
+  })
+  | (AnchorHTMLAttributes<HTMLAnchorElement> & {
+    element: 'link';
+  })
+  | (InputHTMLAttributes<HTMLInputElement> & {
+    element: 'input';
+  })
+);
 
-export const Button = forwardRef<HTMLElement, ButtonProps<HTMLAnchorElement | HTMLButtonElement | HTMLInputElement>>((
-  props,
+export const Button = forwardRef<HTMLElement, ButtonProps>((
+  { isStartButton, variant, ...props },
   ref,
 ) => {
-  const {
-    element,
-    variant,
-    href,
-    isStartButton,
-    text,
-    disabled,
-    children,
-    ...rest
-  } = props;
-
   const startIcon = (
     <svg
       className="govuk-button__start-icon"
@@ -46,7 +44,14 @@ export const Button = forwardRef<HTMLElement, ButtonProps<HTMLAnchorElement | HT
     'govuk-button--warning': variant === 'warning',
   });
 
-  if (element === 'input' && ref instanceof HTMLInputElement) {
+  if (props.element === 'input') {
+    const {
+      href,
+      text,
+      disabled,
+      children,
+      ...rest
+    } = props;
     return (
       <input
         ref={ref as ForwardedRef<HTMLInputElement>}
@@ -60,7 +65,12 @@ export const Button = forwardRef<HTMLElement, ButtonProps<HTMLAnchorElement | HT
     );
   }
 
-  if (element === 'link') {
+  if (props.element === 'link') {
+    const {
+      href,
+      children,
+      ...rest
+    } = props;
     return (
       <a
         ref={ref as ForwardedRef<HTMLAnchorElement>}
@@ -75,6 +85,12 @@ export const Button = forwardRef<HTMLElement, ButtonProps<HTMLAnchorElement | HT
       </a>
     );
   }
+
+  const {
+    disabled,
+    children,
+    ...rest
+  } = props;
 
   return (
     <button

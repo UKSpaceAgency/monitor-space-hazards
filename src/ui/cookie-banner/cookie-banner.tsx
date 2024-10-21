@@ -7,7 +7,7 @@ import ButtonGroup from '../button-group/button-group';
 
 type CookieMessages = {
   heading?: string;
-  actions?: ButtonProps<HTMLButtonElement>[];
+  actions?: ButtonProps[];
   visible?: boolean;
 } & InputHTMLAttributes<HTMLDivElement>;
 

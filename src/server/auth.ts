@@ -21,4 +21,24 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   session: {
     maxAge: 60 * 60 * 24,
   },
+  callbacks: {
+    authorized: async ({ request, auth }) => {
+      if (request.nextUrl.pathname === '/' && auth) {
+        return Response.redirect(new URL('/dashboard', request.nextUrl.origin));
+      }
+      return !!auth;
+    },
+    async redirect(params: { url: string; baseUrl: string }) {
+      const { url, baseUrl } = params;
+      if (!url.startsWith('http')) {
+        return url;
+      }
+
+      const { pathname, search, hash } = new URL(url);
+
+      return Promise.resolve(
+        new URL(`${pathname}${search}${hash}`, baseUrl).href,
+      );
+    },
+  },
 });

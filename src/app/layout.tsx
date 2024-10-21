@@ -21,7 +21,7 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className="govuk-template">
+    <html lang={locale} className="govuk-template font-sans">
       <body className="govuk-template__body" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           {children}

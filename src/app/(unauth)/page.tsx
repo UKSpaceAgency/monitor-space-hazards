@@ -31,10 +31,12 @@ export default function IndexPage() {
       <form
         action={async () => {
           'use server';
-          await signIn('auth0');
+          await signIn('auth0', {
+            redirectTo: '/dashboard',
+          });
         }}
       >
-        <Button isStartButton>{t('existing_users.button')}</Button>
+        <Button element="button" type="submit" isStartButton>{t('existing_users.button')}</Button>
       </form>
       <h2 className="govuk-heading-m">{t('new_users.title')}</h2>
       { t.rich('new_users.markup', {

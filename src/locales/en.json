@@ -1,11 +1,14 @@
 {
-  "RootLayout": {
-    "home_link": "Home",
-    "about_link": "About",
-    "counter_link": "Counter",
-    "portfolio_link": "Portfolio",
-    "sign_in_link": "Sign in",
-    "sign_up_link": "Sign up"
+  "BaseTemplate": {
+    "skip_content": "Skip to main content",
+    "phase_banner": "This is a new service - your <feedback>feedback</feedback> will help us to improve it.",
+    "navigation": {
+      "dashboard": "Home",
+      "conjunctions": "Conjunctions",
+      "satellites": "Satellites",
+      "account": "Account"
+    },
+    "sign_out": "Sign out"
   },
   "IndexPage": {
     "nsoc": {

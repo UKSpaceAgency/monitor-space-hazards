@@ -4,7 +4,7 @@ export default async function AuthLayout({
   children,
 }: { children: React.ReactNode }) {
   return (
-    <BaseTemplate showNavigation>
+    <BaseTemplate>
       {children}
     </BaseTemplate>
 

@@ -18,9 +18,11 @@ export function PhaseBanner({
       className={clsx('govuk-phase-banner', className)}
       {...props}
     >
-      <div className="govuk-phase-banner__content">
-        <Tag className="govuk-phase-banner__content__tag">{tag}</Tag>
-        <span className="govuk-phase-banner__text">{children}</span>
+      <div className="govuk-width-container">
+        <div className="govuk-phase-banner__content">
+          <Tag className="govuk-phase-banner__content__tag">{tag}</Tag>
+          <span className="govuk-phase-banner__text">{children}</span>
+        </div>
       </div>
     </div>
   );
