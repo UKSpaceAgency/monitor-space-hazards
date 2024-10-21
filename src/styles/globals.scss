@@ -1,1 +1,10 @@
 @import 'node_modules/govuk-frontend/dist/govuk/all';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.govuk-notification-banner--error {
+  border-color: $govuk-error-colour !important;
+  background-color: $govuk-error-colour !important;
+}

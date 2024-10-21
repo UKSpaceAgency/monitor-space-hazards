@@ -1,0 +1,18 @@
+.root {
+  position: relative;
+  &:hover > .tooltip {
+    display: block;
+  }
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  left: 100%;
+  bottom: 100%;
+  white-space: nowrap;
+  color: white;
+  padding: 2px;
+  font-size: 14px;
+  background-color: black;
+}

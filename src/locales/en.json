@@ -7,8 +7,24 @@
     "sign_in_link": "Sign in",
     "sign_up_link": "Sign up"
   },
-  "BaseTemplate": {
-    "description": "Starter code for your Nextjs Boilerplate with Tailwind CSS",
-    "made_with": "Made with"
+  "IndexPage": {
+    "nsoc": {
+      "title": "National Space Operations Centre Warning and Protection Services",
+      "description": "National Space Operations Centre (NSpOC) Warning and Protection Services support UK and international partners to manage space risks and hazards.",
+      "list_title": "Use this service to:",
+      "list_items": {
+        "track_events": "Track conjunction events",
+        "satelite_history": "View and download satellite history",
+        "statistics": "Explore key statistics for UK space hazards"
+      }
+    },
+    "existing_users": {
+      "title": "Existing users",
+      "button": "Sign in"
+    },
+    "new_users": {
+      "title": "New users",
+      "markup": "<p>We provide monthly reports on space risks and hazards which are accessible to everyone (<nsoc>National Space Operations Centre</nsoc>) and regularly updated space weather information is available from our partner the <metoffice>Met Office</metoffice>.</p><p>At this time, access to the operational services provided by Monitor Space Hazards is available to UK licensed satellite operators and UK Government departments. If you meet these criteria and would like access, please contact <mailto>monitorspacehazards@ukspaceagency.gov.uk</mailto>.</p><p>Visit <nsoc>National Space Operations Centre</nsoc> for further information about our services.</p>"
+    }
   }
 }

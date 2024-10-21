@@ -1,0 +1,17 @@
+.button {
+  display: inline-flex;
+  padding: 0.1rem 0.4rem;
+  border: none;
+  border: 1px solid rgb(29, 112, 184);
+  outline: none;
+  cursor: pointer;
+  color: rgb(29, 112, 184);
+  background: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.active {
+  background: rgb(29, 112, 184);
+  color: rgb(243, 242, 241);
+}
