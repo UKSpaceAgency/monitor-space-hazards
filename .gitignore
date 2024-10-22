@@ -48,3 +48,5 @@ yarn-error.log*
 /playwright/.cache/
 node_modules/
 /blob-report/
+
+playwright/.auth

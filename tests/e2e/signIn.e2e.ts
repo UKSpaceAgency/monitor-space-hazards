@@ -1,7 +1,9 @@
 import { expect, test } from '@playwright/test';
 
-test.describe('Sign in page', () => {
-  test('should render page', async ({ page }) => {
+test.use({ storageState: { cookies: [], origins: [] } });
+
+test.describe('Index page', () => {
+  test('should render index', async ({ page }) => {
     await page.goto('/');
 
     await expect(
@@ -9,9 +11,17 @@ test.describe('Sign in page', () => {
     ).toBeVisible();
   });
 
-  test('should redirect to page if not logged in', async ({ page }) => {
+  test('should redirect to index if not logged in', async ({ page }) => {
     await page.goto('/dashboard');
 
     await expect(page.url()).toMatch(/(\?|&)([^=]+)=([^&]+dashboard)/g);
+  });
+
+  test('should redirect to dashboard if logged in', async ({ page }) => {
+    test.use({ storageState: 'playwright/.auth/user.json' });
+
+    await page.goto('/');
+
+    await expect(page.url()).toMatch(/dashboard/g);
   });
 });
