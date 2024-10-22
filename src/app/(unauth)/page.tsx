@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
+import nsocLogo from '@/public/nspoclogo2.png';
 import { signIn } from '@/server/auth';
 import Button from '@/ui/button/button';
 import { AppConfig } from '@/utils/AppConfig';
@@ -16,7 +17,7 @@ export default function IndexPage() {
           <h1 className="govuk-heading-xl mb-0">{AppConfig.name}</h1>
         </div>
         <div>
-          <Image src="/nspoclogo2.png" alt="National Space Operations Centre" width={180} height={81} priority />
+          <Image src={nsocLogo} alt="National Space Operations Centre" width={180} height={81} priority />
         </div>
       </div>
       <h2 className="govuk-heading-m">{t('nsoc.title')}</h2>
