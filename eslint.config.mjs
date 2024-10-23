@@ -55,6 +55,7 @@ export default antfu({
   ...playwright.configs['flat/recommended'],
 }, {
   rules: {
+    'eslint-comments/no-unlimited-disable': 'off',
     'import/order': 'off', // Avoid conflicts with `simple-import-sort` plugin
     'sort-imports': 'off', // Avoid conflicts with `simple-import-sort` plugin
     'style/brace-style': ['error', '1tbs'], // Use the default brace style

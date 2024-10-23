@@ -51,6 +51,7 @@
   ],
   "exclude": [
     "node_modules",
+    "generate-api",
     "**/*.spec.ts",
     "**/*.e2e.ts"
   ]

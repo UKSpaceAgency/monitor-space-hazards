@@ -1,6 +1,7 @@
 import '@/styles/globals.scss';
 
 import type { Metadata } from 'next';
+import { SessionProvider } from 'next-auth/react';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 
@@ -24,7 +25,9 @@ export default async function RootLayout({
     <html lang={locale} className="govuk-template font-sans">
       <body className="govuk-template__body" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <SessionProvider>
+            {children}
+          </SessionProvider>
         </NextIntlClientProvider>
       </body>
     </html>

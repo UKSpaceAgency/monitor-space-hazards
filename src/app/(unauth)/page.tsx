@@ -2,8 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
+import { signIn } from '@/auth';
 import nsocLogo from '@/public/nspoclogo2.png';
-import { signIn } from '@/server/auth';
 import Button from '@/ui/button/button';
 import { AppConfig } from '@/utils/AppConfig';
 

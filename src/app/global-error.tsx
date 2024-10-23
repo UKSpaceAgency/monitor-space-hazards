@@ -4,6 +4,8 @@ import * as Sentry from '@sentry/nextjs';
 import NextError from 'next/error';
 import { useEffect } from 'react';
 
+import { BaseTemplate } from '@/templates/BaseTemplate';
+
 export default function GlobalError({
   error,
 }: {
@@ -14,13 +16,11 @@ export default function GlobalError({
   }, [error]);
 
   return (
-    <html lang="en">
-      <body>
-        {/* `NextError` is the default Next.js error page component. Its type
-        definition requires a `statusCode` prop. However, since the App Router
-        does not expose status codes for errors, we simply pass 0 to render a
-        generic error message. */}
-        <NextError statusCode={0} />
+    <html lang="en" className="govuk-template font-sans">
+      <body className="govuk-template__body" suppressHydrationWarning>
+        <BaseTemplate>
+          <NextError statusCode={0} />
+        </BaseTemplate>
       </body>
     </html>
   );

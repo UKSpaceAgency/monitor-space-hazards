@@ -25,7 +25,7 @@ export const env = createEnv({
     NODE_ENV: z
       .enum(['development', 'test', 'production'])
       .default('development'),
-    API_URL: z.string(),
+    NEXT_PUBLIC_API_URL: z.string(),
   },
 
   client: {
@@ -44,7 +44,7 @@ export const env = createEnv({
     AUTH0_CLIENT_SECRET: process.env.AUTH0_CLIENT_SECRET,
     COSMIC_BUCKET_SLUG: process.env.COSMIC_BUCKET_SLUG,
     COSMIC_READ_KEY: process.env.COSMIC_READ_KEY,
-    API_URL: process.env.API_URL,
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
     NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
     NEXT_PUBLIC_PUBLIC_GA: process.env.NEXT_PUBLIC_PUBLIC_GA,
     NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN,
