@@ -17,11 +17,14 @@ test.describe('Index page', () => {
     await expect(page.url()).toMatch(/(\?|&)([^=]+)=([^&]+dashboard)/g);
   });
 
-  test('should redirect to dashboard if logged in', async ({ page }) => {
-    test.use({ storageState: 'playwright/.auth/user.json' });
+  test('should redirect to dashboard if logged in', async ({ browser }) => {
+    const userContext = await browser.newContext({ storageState: 'playwright/.auth/user.json' });
+    const page = await userContext.newPage();
 
     await page.goto('/');
 
     await expect(page.url()).toMatch(/dashboard/g);
+
+    await userContext.close();
   });
 });

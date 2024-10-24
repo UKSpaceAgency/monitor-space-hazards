@@ -29,5 +29,79 @@
       "title": "New users",
       "markup": "<p>We provide monthly reports on space risks and hazards which are accessible to everyone (<nsoc>National Space Operations Centre</nsoc>) and regularly updated space weather information is available from our partner the <metoffice>Met Office</metoffice>.</p><p>At this time, access to the operational services provided by Monitor Space Hazards is available to UK licensed satellite operators and UK Government departments. If you meet these criteria and would like access, please contact <mailto>monitorspacehazards@ukspaceagency.gov.uk</mailto>.</p><p>Visit <nsoc>National Space Operations Centre</nsoc> for further information about our services.</p>"
     }
+  },
+  "DashboardPage": {
+    "title": "National Space Operations Centre Warning and Protection Services",
+    "description": "National Space Operations Centre (NSpOC) Warning and Protection Services support UK and international partners to manage space risks and hazards.",
+    "services": {
+      "live": {
+        "title": "Live Services",
+        "items": {
+          "track_conjunctions": {
+            "title": "Track conjunction events (Monitor your satellites)",
+            "description": "In-space collision avoidance.",
+            "link": "/conjunctions"
+          },
+          "check_weather": {
+            "title": "Check space weather activity",
+            "description": "Space weather forecast and notifications.",
+            "link": "https://www.metoffice.gov.uk/weather/specialist-forecasts/space-weather"
+          }
+        }
+      },
+      "planned": {
+        "title": "Planned Services",
+        "items": {
+          "reentry_events": {
+            "title": "Track re-entry events",
+            "description": "In-space collision avoidance."
+          }
+        }
+      },
+      "satellite_directory_and_statistics": {
+        "title": "Satellite Directory and Statistics",
+        "items": {
+          "view_uk_satellites": {
+            "title": "View UK licensed satellites",
+            "description": "In-space collision avoidance.",
+            "link": "/satellites"
+          },
+          "explore_statistics": {
+            "title": "Explore key statistics",
+            "description": "Statistics and trends.",
+            "link": "/performance-monitoring"
+          }
+        }
+      },
+      "account_and_information": {
+        "title": "Account Management and Additional Information",
+        "items": {
+          "view_roadmap": {
+            "title": "View Monitor Space Hazards roadmap",
+            "description": "Roadmap for current and future service developments.",
+            "link": "/page/roadmap"
+          },
+          "support_and_guidance": {
+            "title": "Access support and guidance",
+            "description": "Support and guidance for all active services.",
+            "link": "/page/support-and-guidance"
+          },
+          "change_account_settings": {
+            "title": "Change account settings",
+            "description": "Change notification settings, view T&Cs and see account details.",
+            "link": "/account"
+          }
+        }
+      }
+    },
+    "upcoming_events": {
+      "title": "Upcoming events",
+      "upcoming_conjuntion": "Upcoming conjunction events",
+      "highest_poc": "Highest PoC in upcoming events",
+      "upcoming_reentry": "Upcoming re-entry events"
+    },
+    "objects_tracked": {
+      "title": "Objects tracked"
+    }
   }
 }
