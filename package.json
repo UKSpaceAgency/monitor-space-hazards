@@ -19,17 +19,21 @@
     "generate-api": "vite-node generateApi.ts"
   },
   "dependencies": {
+    "@cosmicjs/sdk": "1.2.0",
     "@sentry/nextjs": "^8",
     "@spotlightjs/spotlight": "2.5.0",
     "@t3-oss/env-nextjs": "^0.10.1",
     "clsx": "2.1.1",
     "govuk-frontend": "5.7.1",
+    "lodash": "4.17.21",
     "next": "^14.2.4",
     "next-auth": "beta",
     "next-intl": "3.20.0",
     "npm-run-all": "4.1.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-html-map": "0.1.1",
+    "react-markdown": "9.0.1",
     "zod": "^3.23.3"
   },
   "optionalDependencies": {
