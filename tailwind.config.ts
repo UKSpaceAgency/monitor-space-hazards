@@ -30,6 +30,11 @@ export default {
       turquoise: '#28a197',
       transparent: 'transparent',
     },
+    extend: {
+      fontSize: {
+        xxs: ['8px', '8px'],
+      },
+    },
   },
   plugins: [],
 } satisfies Config;
