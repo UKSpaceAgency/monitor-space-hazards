@@ -14,6 +14,7 @@ export function Breakcrumbs({ items }: BreakcrumbsProps) {
       <ol className="govuk-breadcrumbs__list">
         {items.map(({ text, href }, index) => (
           <li
+            // eslint-disable-next-line react/no-array-index-key
             key={index}
             className="govuk-breadcrumbs__list-item"
           >

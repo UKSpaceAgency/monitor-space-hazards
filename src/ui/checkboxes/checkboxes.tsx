@@ -39,6 +39,7 @@ export function Checkboxes({
           })}
         >
           {items.map((checkbox, index) => (
+            // eslint-disable-next-line react/no-array-index-key
             <Checkbox key={index} {...checkbox} />
           ))}
         </div>

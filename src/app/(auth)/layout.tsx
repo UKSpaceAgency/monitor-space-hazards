@@ -1,3 +1,4 @@
+import { QueryProvider } from '@/components/QueryProvider';
 import { BaseTemplate } from '@/templates/BaseTemplate';
 
 export default async function AuthLayout({
@@ -5,7 +6,9 @@ export default async function AuthLayout({
 }: { children: React.ReactNode }) {
   return (
     <BaseTemplate showNavigation>
-      {children}
+      <QueryProvider>
+        {children}
+      </QueryProvider>
     </BaseTemplate>
 
   );

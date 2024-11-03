@@ -103,5 +103,28 @@
     "objects_tracked": {
       "title": "Objects tracked"
     }
+  },
+  "SatellitesPage": {
+    "title": "UK-licensed satellites",
+    "search_bar": {
+      "label": "Find a satellite:",
+      "placeholder": "Search by common name or NORAD ID"
+    }
+  },
+  "Tables": {
+    "Satellites": {
+      "common_name": "Common name",
+      "norad_id": "NORAD ID",
+      "international_designator": "International designator",
+      "upcoming_known_conjunction_events": "Upcoming known conjunction events"
+    },
+    "Download": {
+      "text": "Download {type}",
+      "json": "JavaScript Object Notation",
+      "csv": "Comma Separated Variable",
+      "types": {
+        "satellites": "UK-licensed satellites"
+      }
+    }
   }
 }

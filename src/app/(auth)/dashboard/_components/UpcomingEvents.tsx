@@ -9,9 +9,9 @@ type UpcomingEventsProps = {
 };
 
 const UpcomingEvents = async ({ className, title, conjuntionTitle, highestPocTitle, reentryTitle }: UpcomingEventsProps) => {
-  const conjunction = await Api.countConjunctionEventsV1StatsCountConjunctionEventsGet();
-  const highestPOC = await Api.highestCollisionProbabilityV1StatsHighestCollisionProbabilityGet();
-  const reentry = await Api.countReentryEventReportsV1StatsCountReentryReportsGet();
+  const conjunction = await Api.countConjunctionEventsV1StatsCountConjunctionEventsGet({});
+  const highestPOC = await Api.highestCollisionProbabilityV1StatsHighestCollisionProbabilityGet({});
+  const reentry = await Api.countReentryEventReportsV1StatsCountReentryReportsGet({});
 
   const items = [
     {

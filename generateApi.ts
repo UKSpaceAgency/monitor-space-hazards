@@ -12,6 +12,8 @@ try {
     url: `${process.env.NEXT_PUBLIC_API_URL}/openapi.json`,
     modular: true,
     apiClassName: 'MshService',
+    extractRequestParams: true,
+    generateUnionEnums: true,
   });
 } catch (e) {
   console.error(e);

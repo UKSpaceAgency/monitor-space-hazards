@@ -32,6 +32,7 @@ export function CookieBanner(props: CookieBannerProps) {
           index,
         ) => (
           <div
+            // eslint-disable-next-line react/no-array-index-key
             key={index}
             className={clsx(
               'govuk-cookie-banner__message',
@@ -60,6 +61,7 @@ export function CookieBanner(props: CookieBannerProps) {
             {actions && (
               <ButtonGroup>
                 {actions.map(({ className, ...props }, index) => (
+                  // eslint-disable-next-line react/no-array-index-key
                   <Button key={index} {...props} />
                 ))}
               </ButtonGroup>

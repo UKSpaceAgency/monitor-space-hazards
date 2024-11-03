@@ -13,7 +13,6 @@ import {
   TypeAlertSettingsDistributionList,
   TypeAlertSettingsIn,
   TypeAlertSettingsOut,
-  TypeAnalysesSortBy,
   TypeAnalysis,
   TypeAnalysisOut,
   TypeBannerMessage,
@@ -21,11 +20,9 @@ import {
   TypeBannerMessageUpdate,
   TypeBannerMessagesBroadcastedOut,
   TypeBannerMessagesOut,
-  TypeBannerMessagesSortBy,
   TypeBannerSchedule,
   TypeBannerScheduleIn,
   TypeBannerSchedulesOut,
-  TypeBannerSchedulesSortBy,
   TypeBodyCreateAnalysisV1AnalysesPost,
   TypeBodyCreateEphemerisV1EphemerisPost,
   TypeBodyUploadConjunctionReportV1ConjunctionReportsPost,
@@ -36,48 +33,72 @@ import {
   TypeConjunctionEventCount,
   TypeConjunctionReportOut,
   TypeContactAnalystIn,
+  TypeCountConjunctionEventsV1StatsCountConjunctionEventsGetParams,
+  TypeCountMonitoredSatellitesOrganizationsV1SatellitesByOrganizationsGetParams,
+  TypeCountReentryEventReportsV1StatsCountReentryReportsGetParams,
+  TypeCountReentryEventsV1StatsCountReentryEventsGetParams,
   TypeDataSourcesOut,
   TypeEphemerisOut,
-  TypeEphemerisSortBy,
-  TypeEpoch,
   TypeEventCDMOut,
   TypeEventForAnalysisOut,
   TypeEventOut,
   TypeEventSatellitesOut,
   TypeEventSummaryOut,
-  TypeEventsByCDMExternalIDSortBy,
-  TypeEventsForAnalysisSortBy,
-  TypeEventsSortBy,
+  TypeEventsByOrganizationV1StatsEventsByOrganizationGetParams,
+  TypeEventsBySatelliteV1StatsEventsBySatelliteGetParams,
+  TypeEventsTypeV1StatsEventsTypeGetParams,
   TypeExternalDataPerformanceAggregateOut,
-  TypeExternalDataPerformanceItemsSortBy,
   TypeExternalDataPerformanceOut,
-  TypeExternalDataProvider,
-  TypeExternalDataType,
+  TypeGetAnalysesV1AnalysesGetParams,
+  TypeGetBannerMessagesV1BannersMessagesGetParams,
+  TypeGetBannerSchedulesV1BannersSchedulesGetParams,
+  TypeGetConjunctionEventsCountV1ConjunctionEventsStatsGetParams,
+  TypeGetConjunctionReportsByShortIdV1ConjunctionReportsConjunctionEventShortIdGetParams,
+  TypeGetCountOfMonthlyConjunctionEventsWithObjectTypeV1StatsMonthlyConjunctionEventsByObjectTypeGetParams,
+  TypeGetCountOfMonthlyConjunctionEventsWithProbabilityRangesV1StatsMonthlyConjunctionEventsGetParams,
+  TypeGetCurrentBannerMessagesWithSortingV1BannersMessagesCurrentGetParams,
+  TypeGetEphemerisListV1EphemerisGetParams,
+  TypeGetEventByCdmExternalIdV1ConjunctionEventsCdmExternalIdGetParams,
+  TypeGetEventDataSourcesV1ConjunctionEventsEventIdDataSourcesGetParams,
+  TypeGetEventListFromUniqueEventsTableV1ConjunctionEventsListGetParams,
+  TypeGetEventListV1ConjunctionEventsGetParams,
+  TypeGetEventSummaryV1ConjunctionEventsEventIdSummaryGetParams,
+  TypeGetEventsNeedingAnalysisFasterV1ConjunctionEventsFutureEventsForAnalysisGetParams,
+  TypeGetEventsNeedingAnalysisV1ConjunctionEventsForAnalysisGetParams,
+  TypeGetExternalDataPerformanceAggregatesV1ExternalDataPerformanceAggregatedGetParams,
+  TypeGetExternalDataPerformanceEntriesV1ExternalDataPerformanceGetParams,
+  TypeGetFutureEventListV1ConjunctionEventsFutureEventsGetParams,
+  TypeGetLatestTipV1TipsLatestGetParams,
+  TypeGetManoeuvrePlotsByEventIdV1ManoeuvrePlotsByEventEventShortIdGetParams,
+  TypeGetManoeuvrePlotsListV1ManoeuvrePlotsGetParams,
+  TypeGetMonthlyAnalysesCountV1StatsMonthlyAnalysesGetParams,
+  TypeGetMonthlyMtpsCountV1StatsMonthlyManoeuvrePlotsGetParams,
+  TypeGetMonthlyOrganizationsRunningSumCountV1StatsMonthlyOrganizationsGetParams,
+  TypeGetMonthlyUsersRunningSumCountV1StatsMonthlyUsersGetParams,
+  TypeGetReentryEventCountV1ReentryEventsStatsGetParams,
+  TypeGetReentryEventReportsByShortIdV1ReentryEventReportsReentryEventShortIdGetParams,
+  TypeGetReentryEventsV1ReentryEventsGetParams,
+  TypeGetTipsByNoradIdV1TipsNoradIdGetParams,
   TypeHTTPValidationError,
   TypeManoeuvrePlot,
   TypeManoeuvrePlotMetadataOut,
-  TypeManoeuvrePlotMetadataSortBy,
   TypeManoeuvrePlotOut,
   TypeManoeuvrePlotWithUserMetadataOut,
+  TypeMonitoredSatellitesOrganizationsV1SatellitesMonitoredGetParams,
+  TypeNotificationsSentV1StatsNotificationsSentGetParams,
   TypeOrganizationOut,
+  TypeReadSatellitesWithMetadataV1SatellitesWithMetadataGetParams,
   TypeReentryEventAlertIn,
   TypeReentryEventAlertOut,
   TypeReentryEventCount,
   TypeReentryEventOut,
   TypeReentryEventPatch,
   TypeReentryEventReportOut,
-  TypeReentryEventSortBy,
-  TypeReentryReportSortBy,
-  TypeReportFlagSettings,
   TypeSatelliteOrganizationOut,
   TypeSatelliteOut,
   TypeSatelliteUpdateIn,
   TypeSatelliteWithMetadataOut,
   TypeSatellitesCountByOrganizationOut,
-  TypeSatellitesInOrganizationsSortBy,
-  TypeSatellitesOrganizationsSortBy,
-  TypeSatellitesSortBy,
-  TypeSortOrder,
   TypeStatisticsConjunctionEventsByObjectTypeMonthlyCount,
   TypeStatisticsConjunctionEventsCount,
   TypeStatisticsConjunctionEventsMonthlyCount,
@@ -94,6 +115,9 @@ import {
   TypeTIPOut,
   TypeUniqueEventOut,
   TypeUniqueEventUpdateTextFieldsIn,
+  TypeUploadConjunctionReportV1ConjunctionReportsPostParams,
+  TypeUploadReentryEventReportV1ReentryEventReportsPostParams,
+  TypeUploadTrackingAndImpactPredictionFileV1TipsPostParams,
   TypeUser,
   TypeUserClientCredentialsOut,
   TypeUserIdOut,
@@ -113,31 +137,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @request GET:/v1/analyses/
    * @secure
    */
-  getAnalysesV1AnalysesGet = (
-    query: {
-      /**
-       * Sort By
-       * Sorting column
-       */
-      sort_by: TypeAnalysesSortBy;
-      /**
-       * Limit
-       * @default 100
-       */
-      limit?: number;
-      /**
-       * Offset
-       * @default 0
-       */
-      offset?: number;
-      /**
-       * Sort Order
-       * @default "asc"
-       */
-      sort_order?: TypeSortOrder;
-    },
-    params: RequestParams = {},
-  ) =>
+  getAnalysesV1AnalysesGet = (query: TypeGetAnalysesV1AnalysesGetParams, params: RequestParams = {}) =>
     this.request<TypeAnalysisOut[], void | TypeHTTPValidationError>({
       path: `/v1/analyses/`,
       method: "GET",
@@ -224,42 +224,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @request GET:/v1/ephemeris/
    * @secure
    */
-  getEphemerisListV1EphemerisGet = (
-    query: {
-      /**
-       * Norad Id
-       * Satellite NORAD ID
-       */
-      norad_id?: string | null;
-      /**
-       * Sort By
-       * Sorting column
-       */
-      sort_by: TypeEphemerisSortBy;
-      /**
-       * Show Inactive
-       * Show soft-deleted ephemeris
-       * @default false
-       */
-      show_inactive?: boolean;
-      /**
-       * Limit
-       * @default 100
-       */
-      limit?: number;
-      /**
-       * Offset
-       * @default 0
-       */
-      offset?: number;
-      /**
-       * Sort Order
-       * @default "asc"
-       */
-      sort_order?: TypeSortOrder;
-    },
-    params: RequestParams = {},
-  ) =>
+  getEphemerisListV1EphemerisGet = (query: TypeGetEphemerisListV1EphemerisGetParams, params: RequestParams = {}) =>
     this.request<TypeEphemerisOut[], void | TypeHTTPValidationError>({
       path: `/v1/ephemeris/`,
       method: "GET",
@@ -404,34 +369,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getManoeuvrePlotsListV1ManoeuvrePlotsGet = (
-    query?: {
-      /**
-       * Sort By
-       * Sorting column
-       * @default "cdm_external_id"
-       */
-      sort_by?: TypeManoeuvrePlotMetadataSortBy;
-      /**
-       * Show Only Active
-       * @default true
-       */
-      show_only_active?: boolean;
-      /**
-       * Limit
-       * @default 100
-       */
-      limit?: number;
-      /**
-       * Offset
-       * @default 0
-       */
-      offset?: number;
-      /**
-       * Sort Order
-       * @default "asc"
-       */
-      sort_order?: TypeSortOrder;
-    },
+    query: TypeGetManoeuvrePlotsListV1ManoeuvrePlotsGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeManoeuvrePlotWithUserMetadataOut[], void | TypeHTTPValidationError>({
@@ -452,35 +390,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getManoeuvrePlotsByEventIdV1ManoeuvrePlotsByEventEventShortIdGet = (
-    eventShortId: string,
-    query?: {
-      /**
-       * Sort By
-       * Sorting column
-       * @default "cdm_external_id"
-       */
-      sort_by?: TypeManoeuvrePlotMetadataSortBy;
-      /**
-       * Show Only Active
-       * @default true
-       */
-      show_only_active?: boolean;
-      /**
-       * Limit
-       * @default 100
-       */
-      limit?: number;
-      /**
-       * Offset
-       * @default 0
-       */
-      offset?: number;
-      /**
-       * Sort Order
-       * @default "asc"
-       */
-      sort_order?: TypeSortOrder;
-    },
+    { eventShortId, ...query }: TypeGetManoeuvrePlotsByEventIdV1ManoeuvrePlotsByEventEventShortIdGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeManoeuvrePlotMetadataOut[], void | TypeHTTPValidationError>({
@@ -534,14 +444,8 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   uploadConjunctionReportV1ConjunctionReportsPost = (
+    query: TypeUploadConjunctionReportV1ConjunctionReportsPostParams,
     data: TypeBodyUploadConjunctionReportV1ConjunctionReportsPost,
-    query?: {
-      /**
-       * Source
-       * @default "UKSA"
-       */
-      source?: TypeExternalDataProvider;
-    },
     params: RequestParams = {},
   ) =>
     this.request<TypeConjunctionReportOut, void | TypeHTTPValidationError>({
@@ -564,14 +468,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getConjunctionReportsByShortIdV1ConjunctionReportsConjunctionEventShortIdGet = (
-    shortId: string,
-    query?: {
-      /**
-       * Show Only Active
-       * @default true
-       */
-      show_only_active?: boolean;
-    },
+    { shortId, ...query }: TypeGetConjunctionReportsByShortIdV1ConjunctionReportsConjunctionEventShortIdGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeConjunctionReportOut[], void | TypeHTTPValidationError>({
@@ -631,45 +528,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getEventListV1ConjunctionEventsGet = (
-    query?: {
-      /**
-       * Sort By
-       * Sorting column
-       * @default "tca_time"
-       */
-      sort_by?: TypeEventsSortBy;
-      /**
-       * Norad Id
-       * Satellite NORAD ID
-       */
-      norad_id?: string | null;
-      /**
-       * Search Like
-       * Pattern search value, ie: 'ONE-'
-       */
-      search_like?: string | null;
-      /**
-       * Epoch
-       * Describes future or past Events
-       * @default "future"
-       */
-      epoch?: TypeEpoch;
-      /**
-       * Limit
-       * @default 100
-       */
-      limit?: number;
-      /**
-       * Offset
-       * @default 0
-       */
-      offset?: number;
-      /**
-       * Sort Order
-       * @default "asc"
-       */
-      sort_order?: TypeSortOrder;
-    },
+    query: TypeGetEventListV1ConjunctionEventsGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeEventOut[], TypeHTTPValidationError>({
@@ -690,39 +549,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getFutureEventListV1ConjunctionEventsFutureEventsGet = (
-    query?: {
-      /**
-       * Sort By
-       * Sorting column
-       * @default "tca_time"
-       */
-      sort_by?: TypeEventsSortBy;
-      /**
-       * Norad Id
-       * Satellite NORAD ID
-       */
-      norad_id?: string | null;
-      /**
-       * Search Like
-       * Pattern search value, ie: 'ONE-'
-       */
-      search_like?: string | null;
-      /**
-       * Limit
-       * @default 100
-       */
-      limit?: number;
-      /**
-       * Offset
-       * @default 0
-       */
-      offset?: number;
-      /**
-       * Sort Order
-       * @default "asc"
-       */
-      sort_order?: TypeSortOrder;
-    },
+    query: TypeGetFutureEventListV1ConjunctionEventsFutureEventsGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeEventOut[], TypeHTTPValidationError>({
@@ -743,40 +570,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getEventsNeedingAnalysisV1ConjunctionEventsForAnalysisGet = (
-    query: {
-      /**
-       * Threshold
-       * Collision probability threshold in decimal format
-       */
-      threshold: number;
-      /**
-       * Sort By
-       * Sorting column
-       * @default "tca_time"
-       */
-      sort_by?: TypeEventsForAnalysisSortBy;
-      /**
-       * Max Age Days
-       * Maximum age of Events (count from TCA)
-       * @default 7
-       */
-      max_age_days?: number;
-      /**
-       * Limit
-       * @default 100
-       */
-      limit?: number;
-      /**
-       * Offset
-       * @default 0
-       */
-      offset?: number;
-      /**
-       * Sort Order
-       * @default "asc"
-       */
-      sort_order?: TypeSortOrder;
-    },
+    query: TypeGetEventsNeedingAnalysisV1ConjunctionEventsForAnalysisGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeEventForAnalysisOut[], TypeHTTPValidationError>({
@@ -797,34 +591,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getEventsNeedingAnalysisFasterV1ConjunctionEventsFutureEventsForAnalysisGet = (
-    query: {
-      /**
-       * Threshold
-       * Collision probability threshold in decimal format. Events have to have probability of collision higher than 1e-5 (0.00001)
-       */
-      threshold: number;
-      /**
-       * Sort By
-       * Sorting column
-       * @default "tca_time"
-       */
-      sort_by?: TypeEventsForAnalysisSortBy;
-      /**
-       * Limit
-       * @default 100
-       */
-      limit?: number;
-      /**
-       * Offset
-       * @default 0
-       */
-      offset?: number;
-      /**
-       * Sort Order
-       * @default "asc"
-       */
-      sort_order?: TypeSortOrder;
-    },
+    query: TypeGetEventsNeedingAnalysisFasterV1ConjunctionEventsFutureEventsForAnalysisGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeEventForAnalysisOut[], TypeHTTPValidationError>({
@@ -845,50 +612,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getEventListFromUniqueEventsTableV1ConjunctionEventsListGet = (
-    query?: {
-      /**
-       * Sort By
-       * Sorting column
-       * @default "tca_time"
-       */
-      sort_by?: TypeEventsSortBy;
-      /**
-       * Norad Id
-       * Satellite NORAD ID
-       */
-      norad_id?: string | null;
-      /**
-       * Search Like
-       * Pattern search value, ie: 'ONE-'
-       */
-      search_like?: string | null;
-      /**
-       * Epoch
-       * Describes future or past Events
-       * @default "future"
-       */
-      epoch?: TypeEpoch;
-      /**
-       * Report
-       * @default "all"
-       */
-      report?: TypeReportFlagSettings;
-      /**
-       * Limit
-       * @default 100
-       */
-      limit?: number;
-      /**
-       * Offset
-       * @default 0
-       */
-      offset?: number;
-      /**
-       * Sort Order
-       * @default "asc"
-       */
-      sort_order?: TypeSortOrder;
-    },
+    query: TypeGetEventListFromUniqueEventsTableV1ConjunctionEventsListGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeEventOut[], TypeHTTPValidationError>({
@@ -909,13 +633,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getConjunctionEventsCountV1ConjunctionEventsStatsGet = (
-    query?: {
-      /**
-       * Epoch
-       * @default "future"
-       */
-      epoch?: TypeEpoch;
-    },
+    query: TypeGetConjunctionEventsCountV1ConjunctionEventsStatsGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeConjunctionEventCount, TypeHTTPValidationError>({
@@ -936,24 +654,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getEventSummaryV1ConjunctionEventsEventIdSummaryGet = (
-    eventId: string,
-    query?: {
-      /**
-       * Limit
-       * @default 100
-       */
-      limit?: number;
-      /**
-       * Offset
-       * @default 0
-       */
-      offset?: number;
-      /**
-       * Sort Order
-       * @default "asc"
-       */
-      sort_order?: TypeSortOrder;
-    },
+    { eventId, ...query }: TypeGetEventSummaryV1ConjunctionEventsEventIdSummaryGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeEventSummaryOut[], TypeHTTPValidationError>({
@@ -974,14 +675,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getEventDataSourcesV1ConjunctionEventsEventIdDataSourcesGet = (
-    eventId: string,
-    query?: {
-      /**
-       * Cdm External Id
-       * SpaceTrack CDM ID
-       */
-      cdm_external_id?: string | null;
-    },
+    { eventId, ...query }: TypeGetEventDataSourcesV1ConjunctionEventsEventIdDataSourcesGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeDataSourcesOut, TypeHTTPValidationError>({
@@ -1002,29 +696,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getEventByCdmExternalIdV1ConjunctionEventsCdmExternalIdGet = (
-    cdmExternalId: string,
-    query: {
-      /**
-       * Sort By
-       * Sorting column
-       */
-      sort_by: TypeEventsByCDMExternalIDSortBy;
-      /**
-       * Limit
-       * @default 100
-       */
-      limit?: number;
-      /**
-       * Offset
-       * @default 0
-       */
-      offset?: number;
-      /**
-       * Sort Order
-       * @default "asc"
-       */
-      sort_order?: TypeSortOrder;
-    },
+    { cdmExternalId, ...query }: TypeGetEventByCdmExternalIdV1ConjunctionEventsCdmExternalIdGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeEventCDMOut[], TypeHTTPValidationError>({
@@ -1105,29 +777,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   readSatellitesWithMetadataV1SatellitesWithMetadataGet = (
-    query?: {
-      /** Sort By */
-      sort_by?: TypeSatellitesSortBy | null;
-      /** Search Like */
-      search_like?: string | null;
-      /** Organization Id */
-      organization_id?: string | null;
-      /**
-       * Limit
-       * @default 100
-       */
-      limit?: number;
-      /**
-       * Offset
-       * @default 0
-       */
-      offset?: number;
-      /**
-       * Sort Order
-       * @default "asc"
-       */
-      sort_order?: TypeSortOrder;
-    },
+    query: TypeReadSatellitesWithMetadataV1SatellitesWithMetadataGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeSatelliteWithMetadataOut[], void | TypeHTTPValidationError>({
@@ -1148,25 +798,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   monitoredSatellitesOrganizationsV1SatellitesMonitoredGet = (
-    query?: {
-      /** Sort By */
-      sort_by?: TypeSatellitesOrganizationsSortBy | null;
-      /**
-       * Limit
-       * @default 100
-       */
-      limit?: number;
-      /**
-       * Offset
-       * @default 0
-       */
-      offset?: number;
-      /**
-       * Sort Order
-       * @default "asc"
-       */
-      sort_order?: TypeSortOrder;
-    },
+    query: TypeMonitoredSatellitesOrganizationsV1SatellitesMonitoredGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeSatelliteOrganizationOut[], void | TypeHTTPValidationError>({
@@ -1187,25 +819,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   countMonitoredSatellitesOrganizationsV1SatellitesByOrganizationsGet = (
-    query?: {
-      /** Sort By */
-      sort_by?: TypeSatellitesInOrganizationsSortBy | null;
-      /**
-       * Limit
-       * @default 100
-       */
-      limit?: number;
-      /**
-       * Offset
-       * @default 0
-       */
-      offset?: number;
-      /**
-       * Sort Order
-       * @default "asc"
-       */
-      sort_order?: TypeSortOrder;
-    },
+    query: TypeCountMonitoredSatellitesOrganizationsV1SatellitesByOrganizationsGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeSatellitesCountByOrganizationOut[], void | TypeHTTPValidationError>({
@@ -1282,43 +896,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getExternalDataPerformanceEntriesV1ExternalDataPerformanceGet = (
-    query?: {
-      /**
-       * Sort By
-       * @default "created_at"
-       */
-      sort_by?: TypeExternalDataPerformanceItemsSortBy | null;
-      /**
-       * Source Type
-       * Type of source
-       */
-      source_type?: TypeExternalDataType[];
-      /**
-       * Source Provider
-       * Source provider name
-       */
-      source_provider?: TypeExternalDataProvider | null;
-      /**
-       * Max Age Days
-       * Maximum age of entries, in days
-       */
-      max_age_days?: number | null;
-      /**
-       * Limit
-       * @default 100
-       */
-      limit?: number;
-      /**
-       * Offset
-       * @default 0
-       */
-      offset?: number;
-      /**
-       * Sort Order
-       * @default "asc"
-       */
-      sort_order?: TypeSortOrder;
-    },
+    query: TypeGetExternalDataPerformanceEntriesV1ExternalDataPerformanceGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeExternalDataPerformanceOut[], void | TypeHTTPValidationError>({
@@ -1339,28 +917,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getExternalDataPerformanceAggregatesV1ExternalDataPerformanceAggregatedGet = (
-    query?: {
-      /**
-       * Max Age Days
-       * Maximum age of entries, in days
-       */
-      max_age_days?: number | null;
-      /**
-       * Limit
-       * @default 100
-       */
-      limit?: number;
-      /**
-       * Offset
-       * @default 0
-       */
-      offset?: number;
-      /**
-       * Sort Order
-       * @default "asc"
-       */
-      sort_order?: TypeSortOrder;
-    },
+    query: TypeGetExternalDataPerformanceAggregatesV1ExternalDataPerformanceAggregatedGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeExternalDataPerformanceAggregateOut[], void | TypeHTTPValidationError>({
@@ -1539,33 +1096,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getBannerMessagesV1BannersMessagesGet = (
-    query?: {
-      /**
-       * Sort By
-       * @default "created_at"
-       */
-      sort_by?: TypeBannerMessagesSortBy | null;
-      /**
-       * Show Inactive
-       * @default false
-       */
-      show_inactive?: boolean;
-      /**
-       * Limit
-       * @default 100
-       */
-      limit?: number;
-      /**
-       * Offset
-       * @default 0
-       */
-      offset?: number;
-      /**
-       * Sort Order
-       * @default "asc"
-       */
-      sort_order?: TypeSortOrder;
-    },
+    query: TypeGetBannerMessagesV1BannersMessagesGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeBannerMessagesOut[], void | TypeHTTPValidationError>({
@@ -1624,28 +1155,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getCurrentBannerMessagesWithSortingV1BannersMessagesCurrentGet = (
-    query?: {
-      /**
-       * Sort By
-       * Sorting column
-       */
-      sort_by?: TypeBannerSchedulesSortBy | null;
-      /**
-       * Limit
-       * @default 100
-       */
-      limit?: number;
-      /**
-       * Offset
-       * @default 0
-       */
-      offset?: number;
-      /**
-       * Sort Order
-       * @default "asc"
-       */
-      sort_order?: TypeSortOrder;
-    },
+    query: TypeGetCurrentBannerMessagesWithSortingV1BannersMessagesCurrentGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeBannerMessagesBroadcastedOut[], void | TypeHTTPValidationError>({
@@ -1682,33 +1192,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getBannerSchedulesV1BannersSchedulesGet = (
-    query: {
-      /**
-       * Show Inactive
-       * @default false
-       */
-      show_inactive?: boolean;
-      /**
-       * Sort By
-       * Sorting column
-       */
-      sort_by: TypeBannerSchedulesSortBy;
-      /**
-       * Limit
-       * @default 100
-       */
-      limit?: number;
-      /**
-       * Offset
-       * @default 0
-       */
-      offset?: number;
-      /**
-       * Sort Order
-       * @default "asc"
-       */
-      sort_order?: TypeSortOrder;
-    },
+    query: TypeGetBannerSchedulesV1BannersSchedulesGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeBannerSchedulesOut[], void | TypeHTTPValidationError>({
@@ -1799,15 +1283,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @request GET:/v1/stats/events-type
    * @secure
    */
-  eventsTypeV1StatsEventsTypeGet = (
-    query?: {
-      /** Start Date */
-      start_date?: string | null;
-      /** End Date */
-      end_date?: string | null;
-    },
-    params: RequestParams = {},
-  ) =>
+  eventsTypeV1StatsEventsTypeGet = (query: TypeEventsTypeV1StatsEventsTypeGetParams, params: RequestParams = {}) =>
     this.request<TypeStatisticsEventsType[], void | TypeHTTPValidationError>({
       path: `/v1/stats/events-type`,
       method: "GET",
@@ -1826,12 +1302,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   eventsByOrganizationV1StatsEventsByOrganizationGet = (
-    query?: {
-      /** Start Date */
-      start_date?: string | null;
-      /** End Date */
-      end_date?: string | null;
-    },
+    query: TypeEventsByOrganizationV1StatsEventsByOrganizationGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeStatisticsEventsByOrganization[], void | TypeHTTPValidationError>({
@@ -1852,17 +1323,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   eventsBySatelliteV1StatsEventsBySatelliteGet = (
-    query?: {
-      /** Start Date */
-      start_date?: string | null;
-      /** End Date */
-      end_date?: string | null;
-      /**
-       * Organization Id
-       * @default "all"
-       */
-      organization_id?: string | "all";
-    },
+    query: TypeEventsBySatelliteV1StatsEventsBySatelliteGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeStatisticsEventsBySatellite[], void | TypeHTTPValidationError>({
@@ -1900,32 +1361,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   notificationsSentV1StatsNotificationsSentGet = (
-    query?: {
-      /** Start Date */
-      start_date?: string | null;
-      /** End Date */
-      end_date?: string | null;
-      /**
-       * Group By Month
-       * @default false
-       */
-      group_by_month?: boolean | null;
-      /**
-       * Limit
-       * @default 100
-       */
-      limit?: number;
-      /**
-       * Offset
-       * @default 0
-       */
-      offset?: number;
-      /**
-       * Sort Order
-       * @default "asc"
-       */
-      sort_order?: TypeSortOrder;
-    },
+    query: TypeNotificationsSentV1StatsNotificationsSentGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeStatisticsNotificationsSent[], void | TypeHTTPValidationError>({
@@ -1946,13 +1382,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   countConjunctionEventsV1StatsCountConjunctionEventsGet = (
-    query?: {
-      /**
-       * Epoch
-       * @default "future"
-       */
-      epoch?: TypeEpoch;
-    },
+    query: TypeCountConjunctionEventsV1StatsCountConjunctionEventsGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeStatisticsConjunctionEventsCount, void | TypeHTTPValidationError>({
@@ -1990,13 +1420,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   countReentryEventsV1StatsCountReentryEventsGet = (
-    query?: {
-      /**
-       * Epoch
-       * @default "future"
-       */
-      epoch?: TypeEpoch;
-    },
+    query: TypeCountReentryEventsV1StatsCountReentryEventsGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeStatisticsReentryEventsCount, void | TypeHTTPValidationError>({
@@ -2017,13 +1441,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   countReentryEventReportsV1StatsCountReentryReportsGet = (
-    query?: {
-      /**
-       * Epoch
-       * @default "future"
-       */
-      epoch?: TypeEpoch;
-    },
+    query: TypeCountReentryEventReportsV1StatsCountReentryReportsGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeStatisticsReentryEventReportsCount, void | TypeHTTPValidationError>({
@@ -2044,20 +1462,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getMonthlyAnalysesCountV1StatsMonthlyAnalysesGet = (
-    query?: {
-      /**
-       * Start Date
-       * @format date
-       * @default "2022-01-01"
-       */
-      start_date?: string;
-      /**
-       * End Date
-       * @format date
-       * @default "2024-11-01"
-       */
-      end_date?: string;
-    },
+    query: TypeGetMonthlyAnalysesCountV1StatsMonthlyAnalysesGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeStatisticsMonthlyCount[], void | TypeHTTPValidationError>({
@@ -2078,20 +1483,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getMonthlyUsersRunningSumCountV1StatsMonthlyUsersGet = (
-    query?: {
-      /**
-       * Start Date
-       * @format date
-       * @default "2022-01-01"
-       */
-      start_date?: string;
-      /**
-       * End Date
-       * @format date
-       * @default "2024-11-01"
-       */
-      end_date?: string;
-    },
+    query: TypeGetMonthlyUsersRunningSumCountV1StatsMonthlyUsersGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeStatisticsMonthlyRunningSum[], void | TypeHTTPValidationError>({
@@ -2112,20 +1504,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getMonthlyOrganizationsRunningSumCountV1StatsMonthlyOrganizationsGet = (
-    query?: {
-      /**
-       * Start Date
-       * @format date
-       * @default "2022-01-01"
-       */
-      start_date?: string;
-      /**
-       * End Date
-       * @format date
-       * @default "2024-11-01"
-       */
-      end_date?: string;
-    },
+    query: TypeGetMonthlyOrganizationsRunningSumCountV1StatsMonthlyOrganizationsGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeStatisticsMonthlyRunningSum[], void | TypeHTTPValidationError>({
@@ -2146,20 +1525,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getMonthlyMtpsCountV1StatsMonthlyManoeuvrePlotsGet = (
-    query?: {
-      /**
-       * Start Date
-       * @format date
-       * @default "2022-01-01"
-       */
-      start_date?: string;
-      /**
-       * End Date
-       * @format date
-       * @default "2024-11-01"
-       */
-      end_date?: string;
-    },
+    query: TypeGetMonthlyMtpsCountV1StatsMonthlyManoeuvrePlotsGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeStatisticsMonthlyCount[], void | TypeHTTPValidationError>({
@@ -2180,20 +1546,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getCountOfMonthlyConjunctionEventsWithProbabilityRangesV1StatsMonthlyConjunctionEventsGet = (
-    query?: {
-      /**
-       * Start Date
-       * @format date
-       * @default "2022-01-01"
-       */
-      start_date?: string;
-      /**
-       * End Date
-       * @format date
-       * @default "2024-12-01"
-       */
-      end_date?: string;
-    },
+    query: TypeGetCountOfMonthlyConjunctionEventsWithProbabilityRangesV1StatsMonthlyConjunctionEventsGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeStatisticsConjunctionEventsMonthlyCount[], void | TypeHTTPValidationError>({
@@ -2214,20 +1567,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getCountOfMonthlyConjunctionEventsWithObjectTypeV1StatsMonthlyConjunctionEventsByObjectTypeGet = (
-    query?: {
-      /**
-       * Start Date
-       * @format date
-       * @default "2022-01-01"
-       */
-      start_date?: string;
-      /**
-       * End Date
-       * @format date
-       * @default "2024-12-01"
-       */
-      end_date?: string;
-    },
+    query: TypeGetCountOfMonthlyConjunctionEventsWithObjectTypeV1StatsMonthlyConjunctionEventsByObjectTypeGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeStatisticsConjunctionEventsByObjectTypeMonthlyCount[], void | TypeHTTPValidationError>({
@@ -2248,13 +1588,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getReentryEventCountV1ReentryEventsStatsGet = (
-    query?: {
-      /**
-       * Epoch
-       * @default "future"
-       */
-      epoch?: TypeEpoch;
-    },
+    query: TypeGetReentryEventCountV1ReentryEventsStatsGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeReentryEventCount, void | TypeHTTPValidationError>({
@@ -2355,44 +1689,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getReentryEventsV1ReentryEventsGet = (
-    query?: {
-      /**
-       * Report
-       * @default "all"
-       */
-      report?: TypeReportFlagSettings;
-      /**
-       * Epoch
-       * @default "future"
-       */
-      epoch?: TypeEpoch;
-      /**
-       * Sort By
-       * Sorting column
-       * @default "time_window_start"
-       */
-      sort_by?: TypeReentryEventSortBy;
-      /**
-       * Search Like
-       * Pattern search value, ie: 'ONE-'
-       */
-      search_like?: string | null;
-      /**
-       * Limit
-       * @default 100
-       */
-      limit?: number;
-      /**
-       * Offset
-       * @default 0
-       */
-      offset?: number;
-      /**
-       * Sort Order
-       * @default "asc"
-       */
-      sort_order?: TypeSortOrder;
-    },
+    query: TypeGetReentryEventsV1ReentryEventsGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeReentryEventOut[], void | TypeHTTPValidationError>({
@@ -2430,14 +1727,8 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   uploadReentryEventReportV1ReentryEventReportsPost = (
+    query: TypeUploadReentryEventReportV1ReentryEventReportsPostParams,
     data: TypeBodyUploadReentryEventReportV1ReentryEventReportsPost,
-    query?: {
-      /**
-       * Source
-       * @default "UKSA"
-       */
-      source?: TypeExternalDataProvider;
-    },
     params: RequestParams = {},
   ) =>
     this.request<TypeReentryEventReportOut, void | TypeHTTPValidationError>({
@@ -2460,35 +1751,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getReentryEventReportsByShortIdV1ReentryEventReportsReentryEventShortIdGet = (
-    shortId: string,
-    query?: {
-      /**
-       * Show Only Active
-       * @default true
-       */
-      show_only_active?: boolean;
-      /**
-       * Sort By
-       * Sorting column
-       * @default "report_number"
-       */
-      sort_by?: TypeReentryReportSortBy;
-      /**
-       * Limit
-       * @default 100
-       */
-      limit?: number;
-      /**
-       * Offset
-       * @default 0
-       */
-      offset?: number;
-      /**
-       * Sort Order
-       * @default "asc"
-       */
-      sort_order?: TypeSortOrder;
-    },
+    { shortId, ...query }: TypeGetReentryEventReportsByShortIdV1ReentryEventReportsReentryEventShortIdGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeReentryEventReportOut[], void | TypeHTTPValidationError>({
@@ -2548,14 +1811,8 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   uploadTrackingAndImpactPredictionFileV1TipsPost = (
+    query: TypeUploadTrackingAndImpactPredictionFileV1TipsPostParams,
     data: TypeBodyUploadTrackingAndImpactPredictionFileV1TipsPost,
-    query?: {
-      /**
-       * Source
-       * @default "UKSA"
-       */
-      source?: TypeExternalDataProvider;
-    },
     params: RequestParams = {},
   ) =>
     this.request<TypeTIPOut, void | TypeHTTPValidationError>({
@@ -2577,16 +1834,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @request GET:/v1/tips/latest
    * @secure
    */
-  getLatestTipV1TipsLatestGet = (
-    query?: {
-      /**
-       * Show Only Active
-       * @default true
-       */
-      show_only_active?: boolean;
-    },
-    params: RequestParams = {},
-  ) =>
+  getLatestTipV1TipsLatestGet = (query: TypeGetLatestTipV1TipsLatestGetParams, params: RequestParams = {}) =>
     this.request<TypeTIPOut, void | TypeHTTPValidationError>({
       path: `/v1/tips/latest`,
       method: "GET",
@@ -2605,14 +1853,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getTipsByNoradIdV1TipsNoradIdGet = (
-    noradId: string,
-    query?: {
-      /**
-       * Show Only Active
-       * @default true
-       */
-      show_only_active?: boolean;
-    },
+    { noradId, ...query }: TypeGetTipsByNoradIdV1TipsNoradIdGetParams,
     params: RequestParams = {},
   ) =>
     this.request<TypeTIPOut[], void | TypeHTTPValidationError>({

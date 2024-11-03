@@ -5,7 +5,6 @@ import { forwardRef, useId } from 'react';
 import ErrorMessage from '../error-message/error-message';
 import Hint from '../hint/hint';
 import Label from '../label/label';
-import styles from './input.module.scss';
 
 export type InputProps = {
   label?: ReactNode;
@@ -29,12 +28,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((
         className,
       )}
     >
-      {label && <Label htmlFor={id}>{label}</Label>}
+      {label && <Label htmlFor={props.id ?? id}>{label}</Label>}
       {hint && <Hint>{hint}</Hint>}
       {error && <ErrorMessage>{error}</ErrorMessage>}
-      <div className={styles['govuk-input__wrapper']}>
+      <div className="govuk-input__wrapper">
         {prefix && (
-          <div className={styles['govuk-input__prefix']} aria-hidden="true">
+          <div className="govuk-input__prefix" aria-hidden="true">
             {prefix}
           </div>
         )}
@@ -43,12 +42,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((
           className={clsx('govuk-input', {
             'govuk-input--error': !!error,
           })}
-          id={id}
+          id={props.id ?? id}
           name={name}
           ref={ref}
         />
         {suffix && (
-          <div className={styles['govuk-input__suffix']} aria-hidden="true">
+          <div className="govuk-input__suffix" aria-hidden="true">
             {suffix}
           </div>
         )}

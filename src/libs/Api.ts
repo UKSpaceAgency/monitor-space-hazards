@@ -1,5 +1,5 @@
 import { MshService } from '@/__generated__/V1';
-import { getSession } from '@/auth/getSession';
+import { auth } from '@/auth';
 
 export const initialiseApi = (token?: string) => {
   return new MshService({
@@ -9,7 +9,7 @@ export const initialiseApi = (token?: string) => {
       if (token) {
         accessToken = token;
       } else {
-        const session = await getSession();
+        const session = await auth();
         if (session?.access_token) {
           accessToken = session.access_token;
         }

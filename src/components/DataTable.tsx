@@ -1,10 +1,10 @@
 'use client';
 
 import type {
-  ColumnDef,
   Header,
   OnChangeFn,
   Row,
+  RowData,
   SortingState,
 } from '@tanstack/react-table';
 import {
@@ -14,12 +14,16 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import clsx from 'clsx';
+import type { MessageKeys } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import type { ReactNode } from 'react';
-import { Fragment } from 'react';
+import { Fragment, useMemo } from 'react';
 
-export type DataTableProps<T extends Record<string, string | number>> = {
+import type { TranslatedColumnDef } from '@/types';
+
+export type DataTableProps<T extends RowData> = {
   data: T[];
-  columns: ColumnDef<T>[];
+  columns: TranslatedColumnDef<T>[];
   // Sorting
   sorting?: SortingState;
   onSortingChange?: OnChangeFn<SortingState>;
@@ -29,10 +33,30 @@ export type DataTableProps<T extends Record<string, string | number>> = {
   stickyHeader?: true;
 };
 
-const DataTable = <T extends Record<string, string | number>>({ data, columns, stickyHeader, sorting, onSortingChange, renderSubComponent }: DataTableProps<T>) => {
+const DataTable = <T extends RowData>({ data, columns, stickyHeader, sorting, onSortingChange, renderSubComponent }: DataTableProps<T>) => {
+  const t = useTranslations('Tables');
+
+  const translatedColumns = useMemo(() => {
+    const translateColumn = (column: TranslatedColumnDef<T>) => {
+      const clonedColumn = { ...column };
+
+      if ('columns' in clonedColumn) {
+        if (clonedColumn.columns) {
+          clonedColumn.columns = clonedColumn.columns.map(translateColumn);
+        }
+      }
+      if (column.header) {
+        const header = column.header as MessageKeys<IntlMessages, 'Tables'>;
+        clonedColumn.header = t.has(header) ? t(header) : header;
+      }
+      return clonedColumn;
+    };
+    return columns.map(translateColumn);
+  }, [columns, t]);
+
   const table = useReactTable({
     data,
-    columns,
+    columns: translatedColumns,
     state: {
       sorting,
     },
@@ -59,7 +83,7 @@ const DataTable = <T extends Record<string, string | number>>({ data, columns, s
           <th
             key={header.id}
             colSpan={header.colSpan}
-            style={{ minWidth: header.column.columnDef.minSize }}
+            style={{ minWidth: header.column.columnDef.minSize, width: `${header.getSize()}px` }}
             className={clsx('govuk-table__header', {
               'border-0': stickyHeader,
             })}
@@ -92,14 +116,14 @@ const DataTable = <T extends Record<string, string | number>>({ data, columns, s
                   </button>
                 )
               : (
-                  flexRender(header.column.columnDef.header, header.getContext())
+                  <div className="py-1">{flexRender(header.column.columnDef.header, header.getContext())}</div>
                 )}
           </th>
         );
   };
 
   return (
-    <table className="govuk-table">
+    <table className="govuk-table text-base">
       <thead className={clsx('govuk-table__head', {
         'sticky top-0 bg-white': stickyHeader,
       })}

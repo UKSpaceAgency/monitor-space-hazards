@@ -1,8 +1,6 @@
 import clsx from 'clsx';
 import type { HTMLAttributes, ReactNode } from 'react';
 
-import styles from './error-summary.module.scss';
-
 type ErrorSummaryProps = {
   title: ReactNode;
   errorList: {
@@ -29,8 +27,8 @@ export function ErrorSummary(props: ErrorSummaryProps) {
       {...rest}
     >
       <div role="alert">
-        <h2 className={styles['govuk-error-summary__title']}>{title}</h2>
-        <div className={styles['govuk-error-summary__body']}>
+        <h2 className="govuk-error-summary__title">{title}</h2>
+        <div className="govuk-error-summary__body">
           {description && <p>{description}</p>}
           <ul
             className={clsx(

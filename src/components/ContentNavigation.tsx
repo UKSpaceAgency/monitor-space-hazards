@@ -33,6 +33,7 @@ const ContentNavigation = () => {
       <ol className="list-none">
         {anchors.map((anchor, index) => {
           return (
+            // eslint-disable-next-line react/no-array-index-key
             <li key={index} className="relative pt-2 px-6">
               <span className="absolute left-0 w-5">—</span>
               <a className="govuk-link govuk-link--no-underline" href={`#${anchor.anchor}`} onClick={handleClick}>

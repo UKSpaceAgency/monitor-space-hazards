@@ -43,21 +43,20 @@ export interface TypeAlertSettingsOut {
 }
 
 /** AnalysesSortBy */
-export enum TypeAnalysesSortBy {
-  PrimaryObjectNoradId = "primary_object_norad_id",
-  SecondaryObjectNoradId = "secondary_object_norad_id",
-  EventShortId = "event_short_id",
-  TcaTime = "tca_time",
-  CollisionProbability = "collision_probability",
-  MissDistance = "miss_distance",
-  RadialMissDistance = "radial_miss_distance",
-  UpdatedAt = "updated_at",
-  UpdateTime = "update_time",
-  UploadedById = "uploaded_by_id",
-  DeletedById = "deleted_by_id",
-  RestoredById = "restored_by_id",
-  CdmExternalId = "cdm_external_id",
-}
+export type TypeAnalysesSortBy =
+  | "primary_object_norad_id"
+  | "secondary_object_norad_id"
+  | "event_short_id"
+  | "tca_time"
+  | "collision_probability"
+  | "miss_distance"
+  | "radial_miss_distance"
+  | "updated_at"
+  | "update_time"
+  | "uploaded_by_id"
+  | "deleted_by_id"
+  | "restored_by_id"
+  | "cdm_external_id";
 
 /** Analysis */
 export interface TypeAnalysis {
@@ -234,16 +233,15 @@ export interface TypeAnalysisOut {
 }
 
 /** AreaOfInterest */
-export enum TypeAreaOfInterest {
-  ENGLAND = "ENGLAND",
-  NORTHERN_IRELAND = "NORTHERN_IRELAND",
-  SCOTLAND = "SCOTLAND",
-  WALES = "WALES",
-  BRITISH_OVERSEAS_TERRITORIES = "BRITISH_OVERSEAS_TERRITORIES",
-  SHANWICK = "SHANWICK",
-  NAVAREA = "NAVAREA",
-  REST_OF_THE_WORLD = "REST_OF_THE_WORLD",
-}
+export type TypeAreaOfInterest =
+  | "ENGLAND"
+  | "NORTHERN_IRELAND"
+  | "SCOTLAND"
+  | "WALES"
+  | "BRITISH_OVERSEAS_TERRITORIES"
+  | "SHANWICK"
+  | "NAVAREA"
+  | "REST_OF_THE_WORLD";
 
 /** BannerMessage */
 export interface TypeBannerMessage {
@@ -292,11 +290,7 @@ export interface TypeBannerMessageIn {
 }
 
 /** BannerMessageSeverity */
-export enum TypeBannerMessageSeverity {
-  Low = "Low",
-  Medium = "Medium",
-  High = "High",
-}
+export type TypeBannerMessageSeverity = "Low" | "Medium" | "High";
 
 /** BannerMessageUpdate */
 export interface TypeBannerMessageUpdate {
@@ -407,13 +401,7 @@ export interface TypeBannerMessagesOut {
 }
 
 /** BannerMessagesSortBy */
-export enum TypeBannerMessagesSortBy {
-  Severity = "severity",
-  Title = "title",
-  CreatedById = "created_by_id",
-  CreatedAt = "created_at",
-  UpdatedAt = "updated_at",
-}
+export type TypeBannerMessagesSortBy = "severity" | "title" | "created_by_id" | "created_at" | "updated_at";
 
 /** BannerSchedule */
 export interface TypeBannerSchedule {
@@ -526,16 +514,15 @@ export interface TypeBannerSchedulesOut {
 }
 
 /** BannerSchedulesSortBy */
-export enum TypeBannerSchedulesSortBy {
-  BroadcastStart = "broadcast_start",
-  BroadcastEnd = "broadcast_end",
-  Title = "title",
-  SetById = "set_by_id",
-  CreatedById = "created_by_id",
-  CreatedAt = "created_at",
-  UpdatedAt = "updated_at",
-  Severity = "severity",
-}
+export type TypeBannerSchedulesSortBy =
+  | "broadcast_start"
+  | "broadcast_end"
+  | "title"
+  | "set_by_id"
+  | "created_by_id"
+  | "created_at"
+  | "updated_at"
+  | "severity";
 
 /** Body_create_analysis_v1_analyses__post */
 export interface TypeBodyCreateAnalysisV1AnalysesPost {
@@ -627,13 +614,12 @@ export interface TypeCDMOut {
 }
 
 /** CDMType */
-export enum TypeCDMType {
-  SSNObservations = "SSN observations",
-  OperationalOwnerOperatorEphemeris = "Operational owner/operator ephemeris",
-  NASACARA = "NASA/CARA",
-  SpecialOwnerOperatorEphemeris = "Special owner/operator ephemeris",
-  UnknownEphemeris = "Unknown ephemeris",
-}
+export type TypeCDMType =
+  | "SSN observations"
+  | "Operational owner/operator ephemeris"
+  | "NASA/CARA"
+  | "Special owner/operator ephemeris"
+  | "Unknown ephemeris";
 
 /** ConjunctionAlertSettings */
 export interface TypeConjunctionAlertSettings {
@@ -772,11 +758,7 @@ export interface TypeConjunctionReportOut {
 }
 
 /** ConjunctionRisk */
-export enum TypeConjunctionRisk {
-  Low = "Low",
-  Medium = "Medium",
-  High = "High",
-}
+export type TypeConjunctionRisk = "Low" | "Medium" | "High";
 
 /** ContactAnalystIn */
 export interface TypeContactAnalystIn {
@@ -789,10 +771,7 @@ export interface TypeContactAnalystIn {
 }
 
 /** DataSource */
-export enum TypeDataSource {
-  SpaceTrackCDM = "Space-Track CDM",
-  UKSAAnalysis = "UKSA Analysis",
-}
+export type TypeDataSource = "Space-Track CDM" | "UKSA Analysis";
 
 /** DataSourcesOut */
 export interface TypeDataSourcesOut {
@@ -871,24 +850,19 @@ export interface TypeEphemerisOut {
 }
 
 /** EphemerisSortBy */
-export enum TypeEphemerisSortBy {
-  UpdatedAt = "updated_at",
-  Uploader = "uploader",
-  FileName = "file_name",
-  CreationDate = "creation_date",
-  InternationalDesignator = "international_designator",
-  Satellite = "satellite",
-  UploaderOrganization = "uploader_organization",
-  Originator = "originator",
-  ObjectName = "object_name",
-}
+export type TypeEphemerisSortBy =
+  | "updated_at"
+  | "uploader"
+  | "file_name"
+  | "creation_date"
+  | "international_designator"
+  | "satellite"
+  | "uploader_organization"
+  | "originator"
+  | "object_name";
 
 /** Epoch */
-export enum TypeEpoch {
-  Future = "future",
-  Past = "past",
-  All = "all",
-}
+export type TypeEpoch = "future" | "past" | "all";
 
 /** EventCDMOut */
 export interface TypeEventCDMOut {
@@ -1182,47 +1156,44 @@ export interface TypeEventSummaryOut {
 }
 
 /** EventsByCDMExternalIDSortBy */
-export enum TypeEventsByCDMExternalIDSortBy {
-  PrimaryObjectNoradId = "primary_object_norad_id",
-  PrimaryObjectCommonName = "primary_object_common_name",
-  SecondaryObjectCommonName = "secondary_object_common_name",
-  ShortId = "short_id",
-  TcaTime = "tca_time",
-  CollisionProbability = "collision_probability",
-  MissDistance = "miss_distance",
-  RadialMissDistance = "radial_miss_distance",
-  UpdatedAt = "updated_at",
-  CdmExternalId = "cdm_external_id",
-}
+export type TypeEventsByCDMExternalIDSortBy =
+  | "primary_object_norad_id"
+  | "primary_object_common_name"
+  | "secondary_object_common_name"
+  | "short_id"
+  | "tca_time"
+  | "collision_probability"
+  | "miss_distance"
+  | "radial_miss_distance"
+  | "updated_at"
+  | "cdm_external_id";
 
 /** EventsForAnalysisSortBy */
-export enum TypeEventsForAnalysisSortBy {
-  PrimaryObjectNoradId = "primary_object_norad_id",
-  PrimaryObjectCommonName = "primary_object_common_name",
-  SecondaryObjectCommonName = "secondary_object_common_name",
-  ShortId = "short_id",
-  TcaTime = "tca_time",
-  CollisionProbability = "collision_probability",
-  MissDistance = "miss_distance",
-  RadialMissDistance = "radial_miss_distance",
-  UpdatedAt = "updated_at",
-  CdmExternalId = "cdm_external_id",
-}
+export type TypeEventsForAnalysisSortBy =
+  | "primary_object_norad_id"
+  | "primary_object_common_name"
+  | "secondary_object_common_name"
+  | "short_id"
+  | "tca_time"
+  | "collision_probability"
+  | "miss_distance"
+  | "radial_miss_distance"
+  | "updated_at"
+  | "cdm_external_id";
 
 /** EventsSortBy */
-export enum TypeEventsSortBy {
-  PrimaryObjectNoradId = "primary_object_norad_id",
-  PrimaryObjectCommonName = "primary_object_common_name",
-  SecondaryObjectCommonName = "secondary_object_common_name",
-  ShortId = "short_id",
-  TcaTime = "tca_time",
-  CollisionProbability = "collision_probability",
-  CollisionProbabilityUksa = "collision_probability_uksa",
-  MissDistance = "miss_distance",
-  RadialMissDistance = "radial_miss_distance",
-  UpdatedAt = "updated_at",
-  UserInterest = "user_interest",
-}
+export type TypeEventsSortBy =
+  | "primary_object_norad_id"
+  | "primary_object_common_name"
+  | "secondary_object_common_name"
+  | "short_id"
+  | "tca_time"
+  | "collision_probability"
+  | "collision_probability_uksa"
+  | "miss_distance"
+  | "radial_miss_distance"
+  | "updated_at"
+  | "user_interest";
 
 /** ExternalDataPerformanceAggregateOut */
 export interface TypeExternalDataPerformanceAggregateOut {
@@ -1240,15 +1211,14 @@ export interface TypeExternalDataPerformanceAggregateOut {
 }
 
 /** ExternalDataPerformanceItemsSortBy */
-export enum TypeExternalDataPerformanceItemsSortBy {
-  IngestionStart = "ingestion_start",
-  IngestionEnd = "ingestion_end",
-  ItemsFetched = "items_fetched",
-  SourceProvider = "source_provider",
-  SourceType = "source_type",
-  CreatedAt = "created_at",
-  UpdatedAt = "updated_at",
-}
+export type TypeExternalDataPerformanceItemsSortBy =
+  | "ingestion_start"
+  | "ingestion_end"
+  | "items_fetched"
+  | "source_provider"
+  | "source_type"
+  | "created_at"
+  | "updated_at";
 
 /** ExternalDataPerformanceOut */
 export interface TypeExternalDataPerformanceOut {
@@ -1281,24 +1251,18 @@ export interface TypeExternalDataPerformanceOut {
 }
 
 /** ExternalDataProvider */
-export enum TypeExternalDataProvider {
-  SpaceTrack = "SpaceTrack",
-  ESADiscos = "ESADiscos",
-  UKSA = "UKSA",
-  Operator = "Operator",
-}
+export type TypeExternalDataProvider = "SpaceTrack" | "ESADiscos" | "UKSA" | "Operator";
 
 /** ExternalDataType */
-export enum TypeExternalDataType {
-  CDM = "CDM",
-  Satellite = "Satellite",
-  Analysis = "Analysis",
-  Ephemeris = "Ephemeris",
-  ManoeuvreTradeSpacePlot = "Manoeuvre Trade Space Plot",
-  TrackingAndImpactPrediction = "Tracking and Impact Prediction",
-  ReentryEventReport = "Reentry Event Report",
-  ConjunctionReport = "Conjunction Report",
-}
+export type TypeExternalDataType =
+  | "CDM"
+  | "Satellite"
+  | "Analysis"
+  | "Ephemeris"
+  | "Manoeuvre Trade Space Plot"
+  | "Tracking and Impact Prediction"
+  | "Reentry Event Report"
+  | "Conjunction Report";
 
 /** HTTPValidationError */
 export interface TypeHTTPValidationError {
@@ -1374,14 +1338,13 @@ export interface TypeManoeuvrePlotMetadataOut {
 }
 
 /** ManoeuvrePlotMetadataSortBy */
-export enum TypeManoeuvrePlotMetadataSortBy {
-  CdmExternalId = "cdm_external_id",
-  CreatedAt = "created_at",
-  UpdatedAt = "updated_at",
-  FileName = "file_name",
-  EventShortId = "event_short_id",
-  UploadedByEmail = "uploaded_by_email",
-}
+export type TypeManoeuvrePlotMetadataSortBy =
+  | "cdm_external_id"
+  | "created_at"
+  | "updated_at"
+  | "file_name"
+  | "event_short_id"
+  | "uploaded_by_email";
 
 /** ManoeuvrePlotOut */
 export interface TypeManoeuvrePlotOut {
@@ -1481,10 +1444,7 @@ export interface TypeNotificationSettings {
 }
 
 /** NotificationType */
-export enum TypeNotificationType {
-  EMAIL = "EMAIL",
-  SMS = "SMS",
-}
+export type TypeNotificationType = "EMAIL" | "SMS";
 
 /** OrganizationOut */
 export interface TypeOrganizationOut {
@@ -1551,10 +1511,7 @@ export interface TypeReentryAlertSettings {
 }
 
 /** ReentryDirection */
-export enum TypeReentryDirection {
-  Ascending = "ascending",
-  Descending = "descending",
-}
+export type TypeReentryDirection = "ascending" | "descending";
 
 /** ReentryEventAlertIn */
 export interface TypeReentryEventAlertIn {
@@ -1802,64 +1759,45 @@ export interface TypeReentryEventReportOut {
 }
 
 /** ReentryEventSortBy */
-export enum TypeReentryEventSortBy {
-  CreatedAt = "created_at",
-  LicenseCountry = "license_country",
-  NoradId = "norad_id",
-  ObjectName = "object_name",
-  Probability = "probability",
-  ShortId = "short_id",
-  Survivability = "survivability",
-  TimeWindowEnd = "time_window_end",
-  TimeWindowStart = "time_window_start",
-  TipExternalId = "tip_external_id",
-  UkReentryProbability = "uk_reentry_probability",
-  OverflightTime = "overflight_time",
-  UpdatedAt = "updated_at",
-}
+export type TypeReentryEventSortBy =
+  | "created_at"
+  | "license_country"
+  | "norad_id"
+  | "object_name"
+  | "probability"
+  | "short_id"
+  | "survivability"
+  | "time_window_end"
+  | "time_window_start"
+  | "tip_external_id"
+  | "uk_reentry_probability"
+  | "overflight_time"
+  | "updated_at";
 
 /** ReentryInterest */
-export enum TypeReentryInterest {
-  Low = "low",
-  High = "high",
-}
+export type TypeReentryInterest = "low" | "high";
 
 /** ReentryReportSortBy */
-export enum TypeReentryReportSortBy {
-  CreatedAt = "created_at",
-  TipExternalId = "tip_external_id",
-  ReportNumber = "report_number",
-  UpdatedAt = "updated_at",
-}
+export type TypeReentryReportSortBy = "created_at" | "tip_external_id" | "report_number" | "updated_at";
 
 /** ReentrySurvivability */
-export enum TypeReentrySurvivability {
-  HighlyLikely = "Highly likely",
-  Likely = "Likely",
-  Unlikely = "Unlikely",
-  HighlyUnlikely = "Highly unlikely",
-}
+export type TypeReentrySurvivability = "Highly likely" | "Likely" | "Unlikely" | "Highly unlikely";
 
 /** ReferenceFrame */
-export enum TypeReferenceFrame {
-  EME2000 = "EME2000",
-  GCRF = "GCRF",
-  GRC = "GRC",
-  ICRF2000 = "ICRF2000",
-  ITRF93 = "ITRF93",
-  ITRF97 = "ITRF97",
-  MCI = "MCI",
-  TDR = "TDR",
-  TEME = "TEME",
-  TOD = "TOD",
-}
+export type TypeReferenceFrame =
+  | "EME2000"
+  | "GCRF"
+  | "GRC"
+  | "ICRF2000"
+  | "ITRF93"
+  | "ITRF97"
+  | "MCI"
+  | "TDR"
+  | "TEME"
+  | "TOD";
 
 /** ReportFlagSettings */
-export enum TypeReportFlagSettings {
-  Present = "present",
-  NotPresent = "not_present",
-  All = "all",
-}
+export type TypeReportFlagSettings = "present" | "not_present" | "all";
 
 /** SatelliteObservationsData */
 export interface TypeSatelliteObservationsData {
@@ -2079,34 +2017,22 @@ export interface TypeSatellitesCountByOrganizationOut {
 }
 
 /** SatellitesInOrganizationsSortBy */
-export enum TypeSatellitesInOrganizationsSortBy {
-  OrganizationId = "organization_id",
-  OrganizationName = "organization_name",
-  SatellitesCount = "satellites_count",
-}
+export type TypeSatellitesInOrganizationsSortBy = "organization_id" | "organization_name" | "satellites_count";
 
 /** SatellitesOrganizationsSortBy */
-export enum TypeSatellitesOrganizationsSortBy {
-  NoradId = "norad_id",
-  CommonName = "common_name",
-  InternationalDesignator = "international_designator",
-  OrganizationId = "organization_id",
-  OrganizationName = "organization_name",
-  EsaDiscosId = "esa_discos_id",
-}
+export type TypeSatellitesOrganizationsSortBy =
+  | "norad_id"
+  | "common_name"
+  | "international_designator"
+  | "organization_id"
+  | "organization_name"
+  | "esa_discos_id";
 
 /** SatellitesSortBy */
-export enum TypeSatellitesSortBy {
-  NoradId = "norad_id",
-  CommonName = "common_name",
-  InternationalDesignator = "international_designator",
-}
+export type TypeSatellitesSortBy = "norad_id" | "common_name" | "international_designator";
 
 /** SortOrder */
-export enum TypeSortOrder {
-  Asc = "asc",
-  Desc = "desc",
-}
+export type TypeSortOrder = "asc" | "desc";
 
 /** StatisticsConjunctionEventsByObjectTypeMonthlyCount */
 export interface TypeStatisticsConjunctionEventsByObjectTypeMonthlyCount {
@@ -2300,28 +2226,26 @@ export interface TypeThreshold {
 }
 
 /** ThresholdType */
-export enum TypeThresholdType {
-  PROBABILITY_OF_COLLISION = "PROBABILITY_OF_COLLISION",
-  TOTAL_MISS_DISTANCE = "TOTAL_MISS_DISTANCE",
-  MEAN_RADIAL_MISS_DISTANCE = "MEAN_RADIAL_MISS_DISTANCE",
-  TIME_TO_EVENT = "TIME_TO_EVENT",
-}
+export type TypeThresholdType =
+  | "PROBABILITY_OF_COLLISION"
+  | "TOTAL_MISS_DISTANCE"
+  | "MEAN_RADIAL_MISS_DISTANCE"
+  | "TIME_TO_EVENT";
 
 /** TimeSystem */
-export enum TypeTimeSystem {
-  GMS = "GMS",
-  GPS = "GPS",
-  MET = "MET",
-  MRT = "MRT",
-  SCL = "SCL",
-  TAI = "TAI",
-  TCB = "TCB",
-  TDB = "TDB",
-  TCG = "TCG",
-  TT = "TT",
-  UT1 = "UT1",
-  UTC = "UTC",
-}
+export type TypeTimeSystem =
+  | "GMS"
+  | "GPS"
+  | "MET"
+  | "MRT"
+  | "SCL"
+  | "TAI"
+  | "TCB"
+  | "TDB"
+  | "TCG"
+  | "TT"
+  | "UT1"
+  | "UTC";
 
 /** UniqueEventOut */
 export interface TypeUniqueEventOut {
@@ -2388,7 +2312,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2024-10-21T13:24:00.809123"
+   * @default "2024-11-01T15:25:24.735017"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -2514,11 +2438,7 @@ export interface TypeUserIn {
 }
 
 /** UserInterest */
-export enum TypeUserInterest {
-  Low = "Low",
-  Medium = "Medium",
-  High = "High",
-}
+export type TypeUserInterest = "Low" | "Medium" | "High";
 
 /** UserOut */
 export interface TypeUserOut {
@@ -2552,18 +2472,17 @@ export interface TypeUserOut {
 }
 
 /** UserRole */
-export enum TypeUserRole {
-  SATELLITE_OPERATOR_USER = "SATELLITE_OPERATOR_USER",
-  SATELLITE_OPERATOR = "SATELLITE_OPERATOR",
-  SATELLITE_OPERATOR_ADMIN = "SATELLITE_OPERATOR_ADMIN",
-  GOVERNMENT_USER = "GOVERNMENT_USER",
-  GOVERNMENT_ADMIN = "GOVERNMENT_ADMIN",
-  AGENCY_USER = "AGENCY_USER",
-  AGENCY_ADMIN = "AGENCY_ADMIN",
-  AGENCY_ANALYST = "AGENCY_ANALYST",
-  AGENCY_APPROVER = "AGENCY_APPROVER",
-  AGENCY_SUPERUSER = "AGENCY_SUPERUSER",
-}
+export type TypeUserRole =
+  | "SATELLITE_OPERATOR_USER"
+  | "SATELLITE_OPERATOR"
+  | "SATELLITE_OPERATOR_ADMIN"
+  | "GOVERNMENT_USER"
+  | "GOVERNMENT_ADMIN"
+  | "AGENCY_USER"
+  | "AGENCY_ADMIN"
+  | "AGENCY_ANALYST"
+  | "AGENCY_APPROVER"
+  | "AGENCY_SUPERUSER";
 
 /** UserUpdate */
 export interface TypeUserUpdate {
@@ -2638,4 +2557,875 @@ export interface TypeReentryEventReportImpact {
   overseas_territories: Record<string, TypeOverflightProbability>;
   /** Maritime And Airspace */
   maritime_and_airspace: Record<string, TypeOverflightProbability>;
+}
+
+export interface TypeGetAnalysesV1AnalysesGetParams {
+  /**
+   * Sort By
+   * Sorting column
+   */
+  sort_by: TypeAnalysesSortBy;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeGetEphemerisListV1EphemerisGetParams {
+  /**
+   * Norad Id
+   * Satellite NORAD ID
+   */
+  norad_id?: string | null;
+  /**
+   * Sort By
+   * Sorting column
+   */
+  sort_by: TypeEphemerisSortBy;
+  /**
+   * Show Inactive
+   * Show soft-deleted ephemeris
+   * @default false
+   */
+  show_inactive?: boolean;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeGetManoeuvrePlotsListV1ManoeuvrePlotsGetParams {
+  /**
+   * Sort By
+   * Sorting column
+   * @default "cdm_external_id"
+   */
+  sort_by?: TypeManoeuvrePlotMetadataSortBy;
+  /**
+   * Show Only Active
+   * @default true
+   */
+  show_only_active?: boolean;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeGetManoeuvrePlotsByEventIdV1ManoeuvrePlotsByEventEventShortIdGetParams {
+  /**
+   * Sort By
+   * Sorting column
+   * @default "cdm_external_id"
+   */
+  sort_by?: TypeManoeuvrePlotMetadataSortBy;
+  /**
+   * Show Only Active
+   * @default true
+   */
+  show_only_active?: boolean;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+  /** Event Short Id */
+  eventShortId: string;
+}
+
+export interface TypeUploadConjunctionReportV1ConjunctionReportsPostParams {
+  /**
+   * Source
+   * @default "UKSA"
+   */
+  source?: TypeExternalDataProvider;
+}
+
+export interface TypeGetConjunctionReportsByShortIdV1ConjunctionReportsConjunctionEventShortIdGetParams {
+  /**
+   * Show Only Active
+   * @default true
+   */
+  show_only_active?: boolean;
+  /** Short Id */
+  shortId: string;
+}
+
+export interface TypeGetEventListV1ConjunctionEventsGetParams {
+  /**
+   * Sort By
+   * Sorting column
+   * @default "tca_time"
+   */
+  sort_by?: TypeEventsSortBy;
+  /**
+   * Norad Id
+   * Satellite NORAD ID
+   */
+  norad_id?: string | null;
+  /**
+   * Search Like
+   * Pattern search value, ie: 'ONE-'
+   */
+  search_like?: string | null;
+  /**
+   * Epoch
+   * Describes future or past Events
+   * @default "future"
+   */
+  epoch?: TypeEpoch;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeGetFutureEventListV1ConjunctionEventsFutureEventsGetParams {
+  /**
+   * Sort By
+   * Sorting column
+   * @default "tca_time"
+   */
+  sort_by?: TypeEventsSortBy;
+  /**
+   * Norad Id
+   * Satellite NORAD ID
+   */
+  norad_id?: string | null;
+  /**
+   * Search Like
+   * Pattern search value, ie: 'ONE-'
+   */
+  search_like?: string | null;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeGetEventsNeedingAnalysisV1ConjunctionEventsForAnalysisGetParams {
+  /**
+   * Threshold
+   * Collision probability threshold in decimal format
+   */
+  threshold: number;
+  /**
+   * Sort By
+   * Sorting column
+   * @default "tca_time"
+   */
+  sort_by?: TypeEventsForAnalysisSortBy;
+  /**
+   * Max Age Days
+   * Maximum age of Events (count from TCA)
+   * @default 7
+   */
+  max_age_days?: number;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeGetEventsNeedingAnalysisFasterV1ConjunctionEventsFutureEventsForAnalysisGetParams {
+  /**
+   * Threshold
+   * Collision probability threshold in decimal format. Events have to have probability of collision higher than 1e-5 (0.00001)
+   */
+  threshold: number;
+  /**
+   * Sort By
+   * Sorting column
+   * @default "tca_time"
+   */
+  sort_by?: TypeEventsForAnalysisSortBy;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeGetEventListFromUniqueEventsTableV1ConjunctionEventsListGetParams {
+  /**
+   * Sort By
+   * Sorting column
+   * @default "tca_time"
+   */
+  sort_by?: TypeEventsSortBy;
+  /**
+   * Norad Id
+   * Satellite NORAD ID
+   */
+  norad_id?: string | null;
+  /**
+   * Search Like
+   * Pattern search value, ie: 'ONE-'
+   */
+  search_like?: string | null;
+  /**
+   * Epoch
+   * Describes future or past Events
+   * @default "future"
+   */
+  epoch?: TypeEpoch;
+  /**
+   * Report
+   * @default "all"
+   */
+  report?: TypeReportFlagSettings;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeGetConjunctionEventsCountV1ConjunctionEventsStatsGetParams {
+  /**
+   * Epoch
+   * @default "future"
+   */
+  epoch?: TypeEpoch;
+}
+
+export interface TypeGetEventSummaryV1ConjunctionEventsEventIdSummaryGetParams {
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+  /**
+   * Event Id
+   * Event short ID
+   */
+  eventId: string;
+}
+
+export interface TypeGetEventDataSourcesV1ConjunctionEventsEventIdDataSourcesGetParams {
+  /**
+   * Cdm External Id
+   * SpaceTrack CDM ID
+   */
+  cdm_external_id?: string | null;
+  /**
+   * Event Id
+   * Event short ID
+   */
+  eventId: string;
+}
+
+export interface TypeGetEventByCdmExternalIdV1ConjunctionEventsCdmExternalIdGetParams {
+  /**
+   * Sort By
+   * Sorting column
+   */
+  sort_by: TypeEventsByCDMExternalIDSortBy;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+  /**
+   * Cdm External Id
+   * SpaceTrack CDM External ID
+   */
+  cdmExternalId: string;
+}
+
+export interface TypeReadSatellitesWithMetadataV1SatellitesWithMetadataGetParams {
+  /** Sort By */
+  sort_by?: TypeSatellitesSortBy | null;
+  /** Search Like */
+  search_like?: string | null;
+  /** Organization Id */
+  organization_id?: string | null;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeMonitoredSatellitesOrganizationsV1SatellitesMonitoredGetParams {
+  /** Sort By */
+  sort_by?: TypeSatellitesOrganizationsSortBy | null;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeCountMonitoredSatellitesOrganizationsV1SatellitesByOrganizationsGetParams {
+  /** Sort By */
+  sort_by?: TypeSatellitesInOrganizationsSortBy | null;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeGetExternalDataPerformanceEntriesV1ExternalDataPerformanceGetParams {
+  /**
+   * Sort By
+   * @default "created_at"
+   */
+  sort_by?: TypeExternalDataPerformanceItemsSortBy | null;
+  /**
+   * Source Type
+   * Type of source
+   */
+  source_type?: TypeExternalDataType[];
+  /**
+   * Source Provider
+   * Source provider name
+   */
+  source_provider?: TypeExternalDataProvider | null;
+  /**
+   * Max Age Days
+   * Maximum age of entries, in days
+   */
+  max_age_days?: number | null;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeGetExternalDataPerformanceAggregatesV1ExternalDataPerformanceAggregatedGetParams {
+  /**
+   * Max Age Days
+   * Maximum age of entries, in days
+   */
+  max_age_days?: number | null;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeGetBannerMessagesV1BannersMessagesGetParams {
+  /**
+   * Sort By
+   * @default "created_at"
+   */
+  sort_by?: TypeBannerMessagesSortBy | null;
+  /**
+   * Show Inactive
+   * @default false
+   */
+  show_inactive?: boolean;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeGetCurrentBannerMessagesWithSortingV1BannersMessagesCurrentGetParams {
+  /**
+   * Sort By
+   * Sorting column
+   */
+  sort_by?: TypeBannerSchedulesSortBy | null;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeGetBannerSchedulesV1BannersSchedulesGetParams {
+  /**
+   * Show Inactive
+   * @default false
+   */
+  show_inactive?: boolean;
+  /**
+   * Sort By
+   * Sorting column
+   */
+  sort_by: TypeBannerSchedulesSortBy;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeEventsTypeV1StatsEventsTypeGetParams {
+  /** Start Date */
+  start_date?: string | null;
+  /** End Date */
+  end_date?: string | null;
+}
+
+export interface TypeEventsByOrganizationV1StatsEventsByOrganizationGetParams {
+  /** Start Date */
+  start_date?: string | null;
+  /** End Date */
+  end_date?: string | null;
+}
+
+export interface TypeEventsBySatelliteV1StatsEventsBySatelliteGetParams {
+  /** Start Date */
+  start_date?: string | null;
+  /** End Date */
+  end_date?: string | null;
+  /**
+   * Organization Id
+   * @default "all"
+   */
+  organization_id?: string | "all";
+}
+
+export interface TypeNotificationsSentV1StatsNotificationsSentGetParams {
+  /** Start Date */
+  start_date?: string | null;
+  /** End Date */
+  end_date?: string | null;
+  /**
+   * Group By Month
+   * @default false
+   */
+  group_by_month?: boolean | null;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeCountConjunctionEventsV1StatsCountConjunctionEventsGetParams {
+  /**
+   * Epoch
+   * @default "future"
+   */
+  epoch?: TypeEpoch;
+}
+
+export interface TypeCountReentryEventsV1StatsCountReentryEventsGetParams {
+  /**
+   * Epoch
+   * @default "future"
+   */
+  epoch?: TypeEpoch;
+}
+
+export interface TypeCountReentryEventReportsV1StatsCountReentryReportsGetParams {
+  /**
+   * Epoch
+   * @default "future"
+   */
+  epoch?: TypeEpoch;
+}
+
+export interface TypeGetMonthlyAnalysesCountV1StatsMonthlyAnalysesGetParams {
+  /**
+   * Start Date
+   * @format date
+   * @default "2022-01-01"
+   */
+  start_date?: string;
+  /**
+   * End Date
+   * @format date
+   * @default "2024-12-01"
+   */
+  end_date?: string;
+}
+
+export interface TypeGetMonthlyUsersRunningSumCountV1StatsMonthlyUsersGetParams {
+  /**
+   * Start Date
+   * @format date
+   * @default "2022-01-01"
+   */
+  start_date?: string;
+  /**
+   * End Date
+   * @format date
+   * @default "2024-12-01"
+   */
+  end_date?: string;
+}
+
+export interface TypeGetMonthlyOrganizationsRunningSumCountV1StatsMonthlyOrganizationsGetParams {
+  /**
+   * Start Date
+   * @format date
+   * @default "2022-01-01"
+   */
+  start_date?: string;
+  /**
+   * End Date
+   * @format date
+   * @default "2024-12-01"
+   */
+  end_date?: string;
+}
+
+export interface TypeGetMonthlyMtpsCountV1StatsMonthlyManoeuvrePlotsGetParams {
+  /**
+   * Start Date
+   * @format date
+   * @default "2022-01-01"
+   */
+  start_date?: string;
+  /**
+   * End Date
+   * @format date
+   * @default "2024-12-01"
+   */
+  end_date?: string;
+}
+
+export interface TypeGetCountOfMonthlyConjunctionEventsWithProbabilityRangesV1StatsMonthlyConjunctionEventsGetParams {
+  /**
+   * End Date
+   * @format date
+   */
+  end_date: string;
+  /**
+   * Start Date
+   * @format date
+   * @default "2022-01-01"
+   */
+  start_date?: string;
+}
+
+export interface TypeGetCountOfMonthlyConjunctionEventsWithObjectTypeV1StatsMonthlyConjunctionEventsByObjectTypeGetParams {
+  /**
+   * End Date
+   * @format date
+   */
+  end_date: string;
+  /**
+   * Start Date
+   * @format date
+   * @default "2022-01-01"
+   */
+  start_date?: string;
+}
+
+export interface TypeGetReentryEventCountV1ReentryEventsStatsGetParams {
+  /**
+   * Epoch
+   * @default "future"
+   */
+  epoch?: TypeEpoch;
+}
+
+export interface TypeGetReentryEventsV1ReentryEventsGetParams {
+  /**
+   * Report
+   * @default "all"
+   */
+  report?: TypeReportFlagSettings;
+  /**
+   * Epoch
+   * @default "future"
+   */
+  epoch?: TypeEpoch;
+  /**
+   * Sort By
+   * Sorting column
+   * @default "time_window_start"
+   */
+  sort_by?: TypeReentryEventSortBy;
+  /**
+   * Search Like
+   * Pattern search value, ie: 'ONE-'
+   */
+  search_like?: string | null;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeUploadReentryEventReportV1ReentryEventReportsPostParams {
+  /**
+   * Source
+   * @default "UKSA"
+   */
+  source?: TypeExternalDataProvider;
+}
+
+export interface TypeGetReentryEventReportsByShortIdV1ReentryEventReportsReentryEventShortIdGetParams {
+  /**
+   * Show Only Active
+   * @default true
+   */
+  show_only_active?: boolean;
+  /**
+   * Sort By
+   * Sorting column
+   * @default "report_number"
+   */
+  sort_by?: TypeReentryReportSortBy;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+  /** Short Id */
+  shortId: string;
+}
+
+export interface TypeUploadTrackingAndImpactPredictionFileV1TipsPostParams {
+  /**
+   * Source
+   * @default "UKSA"
+   */
+  source?: TypeExternalDataProvider;
+}
+
+export interface TypeGetLatestTipV1TipsLatestGetParams {
+  /**
+   * Show Only Active
+   * @default true
+   */
+  show_only_active?: boolean;
+}
+
+export interface TypeGetTipsByNoradIdV1TipsNoradIdGetParams {
+  /**
+   * Show Only Active
+   * @default true
+   */
+  show_only_active?: boolean;
+  /** Norad Id */
+  noradId: string;
 }

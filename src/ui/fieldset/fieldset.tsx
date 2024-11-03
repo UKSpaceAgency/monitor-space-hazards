@@ -1,8 +1,6 @@
 import clsx from 'clsx';
 import type { HTMLAttributes, ReactNode } from 'react';
 
-import styles from './fieldset.module.scss';
-
 type FieldsetProps = {
   legend?: {
     text: ReactNode;
@@ -31,7 +29,7 @@ export function Fieldset({
         >
           {legend.isPageHeading
             ? (
-                <h1 className={clsx(styles['govuk-fieldset__heading'])}>
+                <h1 className={clsx('govuk-fieldset__heading')}>
                   {legend.text}
                 </h1>
               )

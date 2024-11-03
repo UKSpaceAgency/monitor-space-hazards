@@ -4,9 +4,8 @@ import type { JWT } from 'next-auth/jwt';
 import Auth0 from 'next-auth/providers/auth0';
 
 import type { TypeUserRole } from '@/__generated__/data-contracts';
+import fetchUser from '@/actions/getUser';
 import { env } from '@/libs/Env';
-
-import fetchUser from './getUser';
 
 declare module 'next-auth' {
   /**
