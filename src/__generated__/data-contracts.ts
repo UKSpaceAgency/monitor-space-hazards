@@ -2312,7 +2312,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2024-11-01T15:25:24.735017"
+   * @default "2024-11-04T09:06:29.081009"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3292,30 +3292,32 @@ export interface TypeGetMonthlyMtpsCountV1StatsMonthlyManoeuvrePlotsGetParams {
 
 export interface TypeGetCountOfMonthlyConjunctionEventsWithProbabilityRangesV1StatsMonthlyConjunctionEventsGetParams {
   /**
-   * End Date
-   * @format date
-   */
-  end_date: string;
-  /**
    * Start Date
    * @format date
    * @default "2022-01-01"
    */
   start_date?: string;
+  /**
+   * End Date
+   * @format date
+   * @default "2024-12-01"
+   */
+  end_date?: string;
 }
 
 export interface TypeGetCountOfMonthlyConjunctionEventsWithObjectTypeV1StatsMonthlyConjunctionEventsByObjectTypeGetParams {
   /**
-   * End Date
-   * @format date
-   */
-  end_date: string;
-  /**
    * Start Date
    * @format date
    * @default "2022-01-01"
    */
   start_date?: string;
+  /**
+   * End Date
+   * @format date
+   * @default "2024-12-01"
+   */
+  end_date?: string;
 }
 
 export interface TypeGetReentryEventCountV1ReentryEventsStatsGetParams {

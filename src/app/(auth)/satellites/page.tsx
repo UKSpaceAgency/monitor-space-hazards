@@ -2,8 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 
-import type { TypeSatellitesSortBy, TypeSortOrder } from '@/__generated__/data-contracts';
-import { SatellitesDataTable } from '@/components/data-tables/satellites/SatellitesDataTable';
+import { SatellitesDataTable } from '@/components/satellites/data-table/SatellitesDataTable';
 import { SearchBar } from '@/components/SearchBar';
 import Spinner from '@/ui/spinner/spinner';
 
@@ -14,8 +13,6 @@ export const metadata: Metadata = {
 export default async function SatellitesPage(props: {
   searchParams?: Promise<{
     search_like?: string;
-    sort_by?: TypeSatellitesSortBy;
-    sort_order?: TypeSortOrder;
   }>;
 }) {
   const t = await getTranslations('SatellitesPage');

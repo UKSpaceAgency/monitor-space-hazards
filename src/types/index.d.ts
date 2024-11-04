@@ -1,12 +1,5 @@
 import type { AccessorColumnDef, ColumnDefBase, IdIdentifier, RowData, StringHeaderIdentifier } from '@tanstack/react-table';
 
-type ReplaceTypes<ObjType extends object, FromType, ToType> = {
-  [KeyType in keyof ObjType]: ObjType[KeyType] extends object
-    ? ReplaceTypes<ObjType[KeyType], FromType, ToType> // Recurse
-    : ObjType[KeyType] extends FromType // Not recursing, need to change?
-      ? ToType // Yes, change it
-      : ObjType[KeyType]; // No, keep original
-};
 type Paths<Schema, Path extends string = ''> = Schema extends string
   ? Path
   : Schema extends object

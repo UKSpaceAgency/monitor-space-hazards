@@ -3,11 +3,10 @@ import Link from 'next/link';
 import type { MessageKeys } from 'next-intl';
 import { useMessages, useTranslations } from 'next-intl';
 
+import { ObjectsTracked } from '@/components/dashboard/ObjectsTracked';
+import { UpcomingEvents } from '@/components/dashboard/UpcomingEvents';
 import nsocLogo from '@/public/nspoclogo2.png';
 import { AppConfig } from '@/utils/AppConfig';
-
-import { ObjectsTracked } from './_components/ObjectsTracked';
-import { UpcomingEvents } from './_components/UpcomingEvents';
 
 export default function DashboardPage() {
   const t = useTranslations('DashboardPage');
