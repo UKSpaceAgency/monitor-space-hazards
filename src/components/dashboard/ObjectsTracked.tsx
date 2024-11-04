@@ -6,7 +6,7 @@ type ObjectsTrackedProps = {
 };
 
 const ObjectsTracked = async ({ title, className }: ObjectsTrackedProps) => {
-  const { data } = await Api.trackedSatellitesV1StatsObjectsTrackedGet();
+  const { data } = await Api.getStatsObjectsTracked();
 
   return (
     <div className={className}>

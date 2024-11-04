@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
-import type { TypeReadSatellitesWithMetadataV1SatellitesWithMetadataGetParams, TypeSatelliteWithMetadataOut } from '@/__generated__/data-contracts';
+import type { TypeGetSatellitesWithMetadataParams, TypeSatelliteWithMetadataOut } from '@/__generated__/data-contracts';
 import { getSatellites } from '@/actions/getSatellites';
 import { DownloadData } from '@/components/DownloadData';
 import InfiniteTable from '@/components/InfiniteTable';
@@ -14,7 +14,7 @@ type SatellitesDataTableProps = {
 
 const SatellitesDataTable = async ({ query }: SatellitesDataTableProps) => {
   const t = await getTranslations('Tables');
-  const params: TypeReadSatellitesWithMetadataV1SatellitesWithMetadataGetParams = {
+  const params: TypeGetSatellitesWithMetadataParams = {
     search_like: query,
     limit: 50,
   };
@@ -22,7 +22,7 @@ const SatellitesDataTable = async ({ query }: SatellitesDataTableProps) => {
   const { data } = await getSatellites(params);
 
   // We need to ask should we donwload with query or not
-  const downloadParams: TypeReadSatellitesWithMetadataV1SatellitesWithMetadataGetParams = {
+  const downloadParams: TypeGetSatellitesWithMetadataParams = {
     search_like: query,
     limit: 9999999,
   };
@@ -34,7 +34,7 @@ const SatellitesDataTable = async ({ query }: SatellitesDataTableProps) => {
 
   return (
     <>
-      <InfiniteTable<TypeSatelliteWithMetadataOut, TypeReadSatellitesWithMetadataV1SatellitesWithMetadataGetParams> initialData={data} params={params} columns={columns} fetcher={getSatellites} />
+      <InfiniteTable<TypeSatelliteWithMetadataOut, TypeGetSatellitesWithMetadataParams> initialData={data} params={params} columns={columns} fetcher={getSatellites} />
       <DownloadData type={t('Download.types.satellites')} downloadData={downloadData} />
     </>
   );

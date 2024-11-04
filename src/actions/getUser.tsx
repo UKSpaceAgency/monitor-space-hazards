@@ -8,7 +8,7 @@ type UserData = {
 
 export default async function getUser(accessToken: string): Promise<UserData> {
   const apiClient = initialiseApi(accessToken);
-  const { data } = await apiClient.getMeV1UsersMeGet();
+  const { data } = await apiClient.getUsersMe();
 
   return {
     role: data.role,

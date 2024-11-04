@@ -2312,7 +2312,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2024-11-04T09:06:29.081009"
+   * @default "2024-11-04T15:48:11.554537"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -2559,7 +2559,7 @@ export interface TypeReentryEventReportImpact {
   maritime_and_airspace: Record<string, TypeOverflightProbability>;
 }
 
-export interface TypeGetAnalysesV1AnalysesGetParams {
+export interface TypeGetAnalysesParams {
   /**
    * Sort By
    * Sorting column
@@ -2582,7 +2582,7 @@ export interface TypeGetAnalysesV1AnalysesGetParams {
   sort_order?: TypeSortOrder;
 }
 
-export interface TypeGetEphemerisListV1EphemerisGetParams {
+export interface TypeGetEphemerisParams {
   /**
    * Norad Id
    * Satellite NORAD ID
@@ -2616,7 +2616,7 @@ export interface TypeGetEphemerisListV1EphemerisGetParams {
   sort_order?: TypeSortOrder;
 }
 
-export interface TypeGetManoeuvrePlotsListV1ManoeuvrePlotsGetParams {
+export interface TypeGetManoeuvrePlotsParams {
   /**
    * Sort By
    * Sorting column
@@ -2645,7 +2645,7 @@ export interface TypeGetManoeuvrePlotsListV1ManoeuvrePlotsGetParams {
   sort_order?: TypeSortOrder;
 }
 
-export interface TypeGetManoeuvrePlotsByEventIdV1ManoeuvrePlotsByEventEventShortIdGetParams {
+export interface TypeGetManoeuvrePlotsByEventEventShortIdParams {
   /**
    * Sort By
    * Sorting column
@@ -2676,7 +2676,7 @@ export interface TypeGetManoeuvrePlotsByEventIdV1ManoeuvrePlotsByEventEventShort
   eventShortId: string;
 }
 
-export interface TypeUploadConjunctionReportV1ConjunctionReportsPostParams {
+export interface TypePostConjunctionReportsParams {
   /**
    * Source
    * @default "UKSA"
@@ -2684,7 +2684,7 @@ export interface TypeUploadConjunctionReportV1ConjunctionReportsPostParams {
   source?: TypeExternalDataProvider;
 }
 
-export interface TypeGetConjunctionReportsByShortIdV1ConjunctionReportsConjunctionEventShortIdGetParams {
+export interface TypeGetConjunctionReportsConjunctionEventShortIdParams {
   /**
    * Show Only Active
    * @default true
@@ -2694,7 +2694,7 @@ export interface TypeGetConjunctionReportsByShortIdV1ConjunctionReportsConjuncti
   shortId: string;
 }
 
-export interface TypeGetEventListV1ConjunctionEventsGetParams {
+export interface TypeGetConjunctionEventsParams {
   /**
    * Sort By
    * Sorting column
@@ -2734,7 +2734,7 @@ export interface TypeGetEventListV1ConjunctionEventsGetParams {
   sort_order?: TypeSortOrder;
 }
 
-export interface TypeGetFutureEventListV1ConjunctionEventsFutureEventsGetParams {
+export interface TypeGetConjunctionEventsFutureEventsParams {
   /**
    * Sort By
    * Sorting column
@@ -2768,7 +2768,7 @@ export interface TypeGetFutureEventListV1ConjunctionEventsFutureEventsGetParams 
   sort_order?: TypeSortOrder;
 }
 
-export interface TypeGetEventsNeedingAnalysisV1ConjunctionEventsForAnalysisGetParams {
+export interface TypeGetConjunctionEventsForAnalysisParams {
   /**
    * Threshold
    * Collision probability threshold in decimal format
@@ -2803,7 +2803,7 @@ export interface TypeGetEventsNeedingAnalysisV1ConjunctionEventsForAnalysisGetPa
   sort_order?: TypeSortOrder;
 }
 
-export interface TypeGetEventsNeedingAnalysisFasterV1ConjunctionEventsFutureEventsForAnalysisGetParams {
+export interface TypeGetConjunctionEventsFutureEventsForAnalysisParams {
   /**
    * Threshold
    * Collision probability threshold in decimal format. Events have to have probability of collision higher than 1e-5 (0.00001)
@@ -2832,7 +2832,7 @@ export interface TypeGetEventsNeedingAnalysisFasterV1ConjunctionEventsFutureEven
   sort_order?: TypeSortOrder;
 }
 
-export interface TypeGetEventListFromUniqueEventsTableV1ConjunctionEventsListGetParams {
+export interface TypeGetConjunctionEventsListParams {
   /**
    * Sort By
    * Sorting column
@@ -2877,7 +2877,7 @@ export interface TypeGetEventListFromUniqueEventsTableV1ConjunctionEventsListGet
   sort_order?: TypeSortOrder;
 }
 
-export interface TypeGetConjunctionEventsCountV1ConjunctionEventsStatsGetParams {
+export interface TypeGetConjunctionEventsStatsParams {
   /**
    * Epoch
    * @default "future"
@@ -2885,7 +2885,7 @@ export interface TypeGetConjunctionEventsCountV1ConjunctionEventsStatsGetParams 
   epoch?: TypeEpoch;
 }
 
-export interface TypeGetEventSummaryV1ConjunctionEventsEventIdSummaryGetParams {
+export interface TypeGetConjunctionEventsEventIdSummaryParams {
   /**
    * Limit
    * @default 100
@@ -2908,7 +2908,7 @@ export interface TypeGetEventSummaryV1ConjunctionEventsEventIdSummaryGetParams {
   eventId: string;
 }
 
-export interface TypeGetEventDataSourcesV1ConjunctionEventsEventIdDataSourcesGetParams {
+export interface TypeGetConjunctionEventsEventIdDataSourcesParams {
   /**
    * Cdm External Id
    * SpaceTrack CDM ID
@@ -2921,7 +2921,7 @@ export interface TypeGetEventDataSourcesV1ConjunctionEventsEventIdDataSourcesGet
   eventId: string;
 }
 
-export interface TypeGetEventByCdmExternalIdV1ConjunctionEventsCdmExternalIdGetParams {
+export interface TypeGetConjunctionEventsCdmExternalIdParams {
   /**
    * Sort By
    * Sorting column
@@ -2949,7 +2949,7 @@ export interface TypeGetEventByCdmExternalIdV1ConjunctionEventsCdmExternalIdGetP
   cdmExternalId: string;
 }
 
-export interface TypeReadSatellitesWithMetadataV1SatellitesWithMetadataGetParams {
+export interface TypeGetSatellitesWithMetadataParams {
   /** Sort By */
   sort_by?: TypeSatellitesSortBy | null;
   /** Search Like */
@@ -2973,7 +2973,7 @@ export interface TypeReadSatellitesWithMetadataV1SatellitesWithMetadataGetParams
   sort_order?: TypeSortOrder;
 }
 
-export interface TypeMonitoredSatellitesOrganizationsV1SatellitesMonitoredGetParams {
+export interface TypeGetSatellitesMonitoredParams {
   /** Sort By */
   sort_by?: TypeSatellitesOrganizationsSortBy | null;
   /**
@@ -2993,7 +2993,7 @@ export interface TypeMonitoredSatellitesOrganizationsV1SatellitesMonitoredGetPar
   sort_order?: TypeSortOrder;
 }
 
-export interface TypeCountMonitoredSatellitesOrganizationsV1SatellitesByOrganizationsGetParams {
+export interface TypeGetSatellitesByOrganizationsParams {
   /** Sort By */
   sort_by?: TypeSatellitesInOrganizationsSortBy | null;
   /**
@@ -3013,7 +3013,7 @@ export interface TypeCountMonitoredSatellitesOrganizationsV1SatellitesByOrganiza
   sort_order?: TypeSortOrder;
 }
 
-export interface TypeGetExternalDataPerformanceEntriesV1ExternalDataPerformanceGetParams {
+export interface TypeGetExternalDataPerformanceParams {
   /**
    * Sort By
    * @default "created_at"
@@ -3051,7 +3051,7 @@ export interface TypeGetExternalDataPerformanceEntriesV1ExternalDataPerformanceG
   sort_order?: TypeSortOrder;
 }
 
-export interface TypeGetExternalDataPerformanceAggregatesV1ExternalDataPerformanceAggregatedGetParams {
+export interface TypeGetExternalDataPerformanceAggregatedParams {
   /**
    * Max Age Days
    * Maximum age of entries, in days
@@ -3074,7 +3074,7 @@ export interface TypeGetExternalDataPerformanceAggregatesV1ExternalDataPerforman
   sort_order?: TypeSortOrder;
 }
 
-export interface TypeGetBannerMessagesV1BannersMessagesGetParams {
+export interface TypeGetBannersMessagesParams {
   /**
    * Sort By
    * @default "created_at"
@@ -3102,7 +3102,7 @@ export interface TypeGetBannerMessagesV1BannersMessagesGetParams {
   sort_order?: TypeSortOrder;
 }
 
-export interface TypeGetCurrentBannerMessagesWithSortingV1BannersMessagesCurrentGetParams {
+export interface TypeGetBannersMessagesCurrentParams {
   /**
    * Sort By
    * Sorting column
@@ -3125,7 +3125,7 @@ export interface TypeGetCurrentBannerMessagesWithSortingV1BannersMessagesCurrent
   sort_order?: TypeSortOrder;
 }
 
-export interface TypeGetBannerSchedulesV1BannersSchedulesGetParams {
+export interface TypeGetBannersSchedulesParams {
   /**
    * Show Inactive
    * @default false
@@ -3153,21 +3153,21 @@ export interface TypeGetBannerSchedulesV1BannersSchedulesGetParams {
   sort_order?: TypeSortOrder;
 }
 
-export interface TypeEventsTypeV1StatsEventsTypeGetParams {
+export interface TypeGetStatsEventsTypeParams {
   /** Start Date */
   start_date?: string | null;
   /** End Date */
   end_date?: string | null;
 }
 
-export interface TypeEventsByOrganizationV1StatsEventsByOrganizationGetParams {
+export interface TypeGetStatsEventsByOrganizationParams {
   /** Start Date */
   start_date?: string | null;
   /** End Date */
   end_date?: string | null;
 }
 
-export interface TypeEventsBySatelliteV1StatsEventsBySatelliteGetParams {
+export interface TypeGetStatsEventsBySatelliteParams {
   /** Start Date */
   start_date?: string | null;
   /** End Date */
@@ -3179,7 +3179,7 @@ export interface TypeEventsBySatelliteV1StatsEventsBySatelliteGetParams {
   organization_id?: string | "all";
 }
 
-export interface TypeNotificationsSentV1StatsNotificationsSentGetParams {
+export interface TypeGetStatsNotificationsSentParams {
   /** Start Date */
   start_date?: string | null;
   /** End Date */
@@ -3206,7 +3206,7 @@ export interface TypeNotificationsSentV1StatsNotificationsSentGetParams {
   sort_order?: TypeSortOrder;
 }
 
-export interface TypeCountConjunctionEventsV1StatsCountConjunctionEventsGetParams {
+export interface TypeGetStatsCountConjunctionEventsParams {
   /**
    * Epoch
    * @default "future"
@@ -3214,7 +3214,7 @@ export interface TypeCountConjunctionEventsV1StatsCountConjunctionEventsGetParam
   epoch?: TypeEpoch;
 }
 
-export interface TypeCountReentryEventsV1StatsCountReentryEventsGetParams {
+export interface TypeGetStatsCountReentryEventsParams {
   /**
    * Epoch
    * @default "future"
@@ -3222,7 +3222,7 @@ export interface TypeCountReentryEventsV1StatsCountReentryEventsGetParams {
   epoch?: TypeEpoch;
 }
 
-export interface TypeCountReentryEventReportsV1StatsCountReentryReportsGetParams {
+export interface TypeGetStatsCountReentryReportsParams {
   /**
    * Epoch
    * @default "future"
@@ -3230,7 +3230,7 @@ export interface TypeCountReentryEventReportsV1StatsCountReentryReportsGetParams
   epoch?: TypeEpoch;
 }
 
-export interface TypeGetMonthlyAnalysesCountV1StatsMonthlyAnalysesGetParams {
+export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * Start Date
    * @format date
@@ -3245,7 +3245,7 @@ export interface TypeGetMonthlyAnalysesCountV1StatsMonthlyAnalysesGetParams {
   end_date?: string;
 }
 
-export interface TypeGetMonthlyUsersRunningSumCountV1StatsMonthlyUsersGetParams {
+export interface TypeGetStatsMonthlyUsersParams {
   /**
    * Start Date
    * @format date
@@ -3260,7 +3260,7 @@ export interface TypeGetMonthlyUsersRunningSumCountV1StatsMonthlyUsersGetParams 
   end_date?: string;
 }
 
-export interface TypeGetMonthlyOrganizationsRunningSumCountV1StatsMonthlyOrganizationsGetParams {
+export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * Start Date
    * @format date
@@ -3275,7 +3275,7 @@ export interface TypeGetMonthlyOrganizationsRunningSumCountV1StatsMonthlyOrganiz
   end_date?: string;
 }
 
-export interface TypeGetMonthlyMtpsCountV1StatsMonthlyManoeuvrePlotsGetParams {
+export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * Start Date
    * @format date
@@ -3290,7 +3290,7 @@ export interface TypeGetMonthlyMtpsCountV1StatsMonthlyManoeuvrePlotsGetParams {
   end_date?: string;
 }
 
-export interface TypeGetCountOfMonthlyConjunctionEventsWithProbabilityRangesV1StatsMonthlyConjunctionEventsGetParams {
+export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * Start Date
    * @format date
@@ -3305,7 +3305,7 @@ export interface TypeGetCountOfMonthlyConjunctionEventsWithProbabilityRangesV1St
   end_date?: string;
 }
 
-export interface TypeGetCountOfMonthlyConjunctionEventsWithObjectTypeV1StatsMonthlyConjunctionEventsByObjectTypeGetParams {
+export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * Start Date
    * @format date
@@ -3320,7 +3320,7 @@ export interface TypeGetCountOfMonthlyConjunctionEventsWithObjectTypeV1StatsMont
   end_date?: string;
 }
 
-export interface TypeGetReentryEventCountV1ReentryEventsStatsGetParams {
+export interface TypeGetReentryEventsStatsParams {
   /**
    * Epoch
    * @default "future"
@@ -3328,7 +3328,7 @@ export interface TypeGetReentryEventCountV1ReentryEventsStatsGetParams {
   epoch?: TypeEpoch;
 }
 
-export interface TypeGetReentryEventsV1ReentryEventsGetParams {
+export interface TypeGetReentryEventsParams {
   /**
    * Report
    * @default "all"
@@ -3367,7 +3367,7 @@ export interface TypeGetReentryEventsV1ReentryEventsGetParams {
   sort_order?: TypeSortOrder;
 }
 
-export interface TypeUploadReentryEventReportV1ReentryEventReportsPostParams {
+export interface TypePostReentryEventReportsParams {
   /**
    * Source
    * @default "UKSA"
@@ -3375,7 +3375,7 @@ export interface TypeUploadReentryEventReportV1ReentryEventReportsPostParams {
   source?: TypeExternalDataProvider;
 }
 
-export interface TypeGetReentryEventReportsByShortIdV1ReentryEventReportsReentryEventShortIdGetParams {
+export interface TypeGetReentryEventReportsReentryEventShortIdParams {
   /**
    * Show Only Active
    * @default true
@@ -3406,7 +3406,7 @@ export interface TypeGetReentryEventReportsByShortIdV1ReentryEventReportsReentry
   shortId: string;
 }
 
-export interface TypeUploadTrackingAndImpactPredictionFileV1TipsPostParams {
+export interface TypePostTipsParams {
   /**
    * Source
    * @default "UKSA"
@@ -3414,7 +3414,7 @@ export interface TypeUploadTrackingAndImpactPredictionFileV1TipsPostParams {
   source?: TypeExternalDataProvider;
 }
 
-export interface TypeGetLatestTipV1TipsLatestGetParams {
+export interface TypeGetTipsLatestParams {
   /**
    * Show Only Active
    * @default true
@@ -3422,7 +3422,7 @@ export interface TypeGetLatestTipV1TipsLatestGetParams {
   show_only_active?: boolean;
 }
 
-export interface TypeGetTipsByNoradIdV1TipsNoradIdGetParams {
+export interface TypeGetTipsNoradIdParams {
   /**
    * Show Only Active
    * @default true
