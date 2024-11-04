@@ -29,6 +29,7 @@
     "@tanstack/react-table": "8.20.5",
     "@types/file-saver": "2.0.7",
     "clsx": "2.1.1",
+    "dayjs": "1.11.13",
     "file-saver": "2.0.5",
     "govuk-frontend": "5.7.1",
     "json2csv": "6.0.0-alpha.2",

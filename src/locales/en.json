@@ -126,5 +126,10 @@
         "satellites": "UK-licensed satellites"
       }
     }
+  },
+  "Components": {
+    "Last_integration": {
+      "text": "Upcoming known conjunction events as of {date}."
+    }
   }
 }
