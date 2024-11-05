@@ -119,6 +119,7 @@
     "change_your_organisation_details": {
       "title": "Change your organisation details",
       "organisation_information": "Organisation information",
+      "organisations": "Organisations",
       "add_new_user": "Add new user"
     },
     "view_terms_and_conditions": {

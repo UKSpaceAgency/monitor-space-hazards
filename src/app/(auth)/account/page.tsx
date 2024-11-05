@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import { getSession } from '@/actions/getSession';
+import { getUsersMe } from '@/actions/getUsersMe';
 import { isAgencyUser, isGovUser, isOrgAdmin, isSuperAdmin } from '@/libs/Roles';
 import TaskList from '@/ui/task-list/task-list';
 
@@ -13,12 +14,13 @@ export const metadata: Metadata = {
 export default async function AccountPage() {
   const t = await getTranslations('AccountPage');
   const session = await getSession();
+  const role = session?.user.role;
 
   if (!session?.user.setup_completed) {
     redirect('/account/setup');
   }
 
-  const role = session?.user.role;
+  const data = await getUsersMe();
 
   return (
     <div className="govuk-grid-row">
@@ -74,8 +76,8 @@ export default async function AccountPage() {
             <TaskList
               items={[
                 {
-                  title: t('change_your_organisation_details.organisation_information'),
-                  href: '/account/organisations',
+                  title: t(`change_your_organisation_details.${isSuperAdmin(role) ? 'organisations' : 'organisation_information'}`),
+                  href: isSuperAdmin(role) ? '/account/organisations' : `/account/organisations/${data.organization_id}`,
                 },
                 {
                   title: t('change_your_organisation_details.add_new_user'),
