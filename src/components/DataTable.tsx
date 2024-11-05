@@ -20,6 +20,7 @@ import type { ReactNode } from 'react';
 import { Fragment, useMemo } from 'react';
 
 import type { TranslatedColumnDef } from '@/types';
+import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
 
 export type DataTableProps<T extends RowData> = {
   data: T[];
@@ -70,8 +71,9 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, sorting, on
   const renderHeaderCell = (header: Header<T, unknown>, stickyHeader?: true) => {
     return header.isPlaceholder
       ? (
-          <td
+          <TableCell
             key={header.id}
+            scope="col"
             colSpan={header.colSpan}
             className={clsx('govuk-table__header', {
               'border-0': stickyHeader,
@@ -80,8 +82,9 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, sorting, on
           />
         )
       : (
-          <th
+          <TableCellHeader
             key={header.id}
+            scope="col"
             colSpan={header.colSpan}
             style={{ minWidth: header.column.columnDef.minSize, width: `${header.getSize()}px` }}
             className={clsx('govuk-table__header', {
@@ -118,44 +121,44 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, sorting, on
               : (
                   <div className="py-1">{flexRender(header.column.columnDef.header, header.getContext())}</div>
                 )}
-          </th>
+          </TableCellHeader>
         );
   };
 
   return (
-    <table className="govuk-table text-base">
-      <thead className={clsx('govuk-table__head', {
+    <Table className="text-base">
+      <TableHead className={clsx({
         'sticky top-0 bg-white': stickyHeader,
       })}
       >
         {table.getHeaderGroups().map(headerGroup => (
-          <tr key={headerGroup.id} className="govuk-table__row">
+          <TableRow key={headerGroup.id}>
             {headerGroup.headers.map(header => renderHeaderCell(header, stickyHeader))}
-          </tr>
+          </TableRow>
         ))}
-      </thead>
-      <tbody className="govuk-table__body">
+      </TableHead>
+      <TableBody>
         {table.getRowModel().rows.map(row => (
           <Fragment key={row.id}>
-            <tr key={row.id} className="govuk-table__row">
+            <TableRow key={row.id}>
               {row.getVisibleCells().map(cell => (
-                <td key={cell.id} className="govuk-table__cell">
+                <TableCell key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
+                </TableCell>
               ))}
-            </tr>
+            </TableRow>
             {row.getIsExpanded() && renderSubComponent && (
-              <tr className="govuk-table__row">
+              <TableRow>
                 {/* 2nd row is a custom 1 cell row */}
-                <td className="govuk-table__cell" colSpan={row.getVisibleCells().length}>
+                <TableCell colSpan={row.getVisibleCells().length}>
                   {renderSubComponent({ row })}
-                </td>
-              </tr>
+                </TableCell>
+              </TableRow>
             )}
           </Fragment>
         ))}
-      </tbody>
-    </table>
+      </TableBody>
+    </Table>
   );
 };
 
