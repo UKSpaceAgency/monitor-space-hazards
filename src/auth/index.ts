@@ -49,7 +49,7 @@ async function refreshAccessToken(token: JWT) {
       refresh_token: token.refresh_token ?? '',
     });
 
-    const response = await fetch(`${process.env.AUTH0_BASEURL}/oauth/token`, {
+    const response = await fetch(`${env.AUTH0_BASEURL}/oauth/token`, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -87,13 +87,13 @@ async function refreshAccessToken(token: JWT) {
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Auth0({
-      clientId: process.env.AUTH0_CLIENT_ID,
-      clientSecret: process.env.AUTH0_CLIENT_SECRET,
-      issuer: process.env.AUTH0_BASEURL,
+      clientId: env.AUTH0_CLIENT_ID,
+      clientSecret: env.AUTH0_CLIENT_SECRET,
+      issuer: env.AUTH0_BASEURL,
       authorization: {
         params: {
           scope: 'openid email profile offline_access',
-          audience: process.env.AUTH0_AUDIENCE,
+          audience: env.AUTH0_AUDIENCE,
         },
       },
     }),

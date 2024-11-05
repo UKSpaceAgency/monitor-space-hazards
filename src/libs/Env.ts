@@ -29,7 +29,7 @@ export const env = createEnv({
   },
 
   client: {
-    NEXT_PUBLIC_SENTRY_DSN: z.string(),
+    NEXT_PUBLIC_SENTRY_DSN: z.string().optional(),
     NEXT_PUBLIC_PUBLIC_GA: z.string().optional(),
     NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: z.string(),
   },

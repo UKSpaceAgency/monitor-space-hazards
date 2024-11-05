@@ -2,8 +2,9 @@
   "name": "monitorspacehazards",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@9.12.3",
   "scripts": {
-    "dev:spotlight": "spotlight-sidecar",
+    "dev:spotlight": "pnpx @spotlightjs/spotlight",
     "dev:next": "next dev",
     "dev": "run-p dev:*",
     "build": "next build",
@@ -37,7 +38,7 @@
     "next": "^14.2.4",
     "next-auth": "beta",
     "next-intl": "3.20.0",
-    "npm-run-all": "4.1.5",
+    "npm-run-all2": "7.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-html-map": "0.1.1",
@@ -50,13 +51,14 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.27.3",
-    "@commitlint/cli": "19.5.0",
-    "@commitlint/config-conventional": "19.5.0",
-    "@commitlint/cz-commitlint": "19.5.0",
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "@commitlint/cz-commitlint": "^19.5.0",
+    "@commitlint/types": "^19.5.0",
     "@eslint-react/eslint-plugin": "^1.15.0",
     "@eslint/js": "9.12.0",
     "@next/bundle-analyzer": "14.2.14",
-    "@next/eslint-plugin-next": "^14.2.15",
+    "@next/eslint-plugin-next": "^15.0.2",
     "@playwright/test": "1.48.1",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.0.1",
@@ -69,7 +71,7 @@
     "@typescript-eslint/parser": "^8.1.0",
     "@vitejs/plugin-react": "^4.3.1",
     "@vitest/coverage-v8": "^2.1.1",
-    "cz-conventional-changelog": "3.3.0",
+    "commitizen": "^4.3.1",
     "dotenv": "16.4.5",
     "eslint": "^8.57.1",
     "eslint-plugin-format": "^0.1.2",
@@ -100,10 +102,30 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "@commitlint/cz-commitlint"
     }
   },
-  "ct3aMetadata": {
-    "initVersion": "7.37.0"
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "preset": "conventionalcommits"
+        }
+      ],
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false
+        }
+      ],
+      "@semantic-release/git",
+      "@semantic-release/github"
+    ]
   }
 }

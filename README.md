@@ -8,17 +8,17 @@ It is deployed at [https://www.monitor-space-hazards.service.gov.uk/](https://ww
 ## Technical documenation
 
 ### Before you start
-You will first need to ensure you have [Node LTS](https://nodejs.org/en/download/) and [Yarn](https://yarnpkg.com/getting-started/install) installed. You can check by running `yarn --version`.
+You will first need to ensure you have [Node LTS](https://nodejs.org/en/download/) and [Pnpm](https://pnpm.io/installation) installed. You can check by running `pnpm --version`.
 
 Create a copy of `.env.example` as `.env` and fill in relevant secrets. You will need to obtain these from the development team.
 
 You will need a running version of the back-end API. You may wish to use the hosted back-end dev environment. If you wish you can also set up a [local copy of the back-end](https://github.com/UKSpaceAgency/sst-beta-python-backend) too.
 
 ### Running a local dev environment
-Run `yarn` to install project dependencies then `yarn start` to run a local copy of the app (bound to `localhost` on IPv6).
+Run `pnpm install` to install project dependencies then `pnpm dev:next` to run a local copy of the app (bound to `localhost` on IPv6).
 
 > **Note:**
-> To run a copy that can be accessed outside your local machine you need to run `yarn nx serve --hostname=0.0.0.0 --port=4200` - this binds to IPv4 on a port of your choice.
+> To run a copy that can be accessed outside your local machine you need to run `yarn nx serve --hostname=0.0.0.0 --port=3000` - this binds to IPv4 on a port of your choice.
 
 ### Additional docs
 * [Tech docs website for Monitor Space Hazards](https://mys-tech-docs.onrender.com/)

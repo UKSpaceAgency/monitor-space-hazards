@@ -22,6 +22,7 @@ const config = {
   },
   poweredByHeader: false,
   reactStrictMode: true,
+  output: 'standalone',
 };
 
 export default withSentryConfig(bundleAnalyzer(

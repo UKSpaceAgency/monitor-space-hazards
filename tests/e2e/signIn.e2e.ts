@@ -14,7 +14,7 @@ test.describe('Index page', () => {
   test('should redirect to index if not logged in', async ({ page }) => {
     await page.goto('/dashboard');
 
-    await expect(page.url()).toMatch(/(\?|&)([^=]+)=([^&]+dashboard)/g);
+    expect(page.url()).toMatch(/(\?|&)([^=]+)=([^&]+dashboard)/g);
   });
 
   test('should redirect to dashboard if logged in', async ({ browser }) => {
@@ -23,7 +23,7 @@ test.describe('Index page', () => {
 
     await page.goto('/');
 
-    await expect(page.url()).toMatch(/dashboard/g);
+    expect(page.url()).toMatch(/dashboard/g);
 
     await userContext.close();
   });
