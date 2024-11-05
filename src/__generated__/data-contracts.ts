@@ -2312,7 +2312,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2024-11-04T15:48:11.554537"
+   * @default "2024-11-04T23:40:10.690457"
    */
   updated_at?: string | null;
   /** Report Number */
