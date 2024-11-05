@@ -123,13 +123,17 @@
     },
     "view_terms_and_conditions": {
       "title": "View terms and conditions and data privacy notice",
-      "termsAndConditions": "Terms and Conditions",
+      "terms_and_conditions": "Terms and Conditions",
       "data_privacy_notice": "Data privacy notice"
     },
     "view_your_account_activity": {
       "title": "View your account activity",
       "analysis_uploads": "Analysis uploads",
       "manoeuvre_support_uploads": "Manoeuvre support uploads"
+    },
+    "manage_an_incident": {
+      "title": "Manage an incident",
+      "manage_incident_banners": "Manage incident banners"
     }
   },
   "SatellitesPage": {
