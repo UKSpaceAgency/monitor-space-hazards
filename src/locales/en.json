@@ -104,6 +104,34 @@
       "title": "Objects tracked"
     }
   },
+  "AccountPage": {
+    "title": "Your account information",
+    "view_account_details": {
+      "title": "View your account details",
+      "account_details": "Account details",
+      "credentials_for_api": "Credentials for API authentication"
+    },
+    "change_your_notification_settings": {
+      "title": "Change your notification settings",
+      "conjunction_event_notification_thresholds_settings": "Conjuction event notification thresholds settings",
+      "conjunction_event_notification_settings": "Conjuction event notification settings"
+    },
+    "change_your_organisation_details": {
+      "title": "Change your organisation details",
+      "organisation_information": "Organisation information",
+      "add_new_user": "Add new user"
+    },
+    "view_terms_and_conditions": {
+      "title": "View terms and conditions and data privacy notice",
+      "termsAndConditions": "Terms and Conditions",
+      "data_privacy_notice": "Data privacy notice"
+    },
+    "view_your_account_activity": {
+      "title": "View your account activity",
+      "analysis_uploads": "Analysis uploads",
+      "manoeuvre_support_uploads": "Manoeuvre support uploads"
+    }
+  },
   "SatellitesPage": {
     "title": "UK-licensed satellites",
     "search_bar": {
