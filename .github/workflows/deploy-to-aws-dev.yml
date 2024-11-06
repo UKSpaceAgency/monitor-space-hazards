@@ -11,6 +11,7 @@ env:
 
 jobs:
   build_and_push_awsdev:
+    environment: dev
     runs-on: ubuntu-latest
     # needs: execute_e2e_fe_tests #todo
     permissions:
