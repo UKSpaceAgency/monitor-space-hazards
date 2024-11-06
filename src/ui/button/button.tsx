@@ -7,7 +7,7 @@ export type ButtonProps = {
   href?: string;
   isStartButton?: true;
   text?: string;
-  disabled?: true;
+  disabled?: boolean;
 } & (
   | (ButtonHTMLAttributes<HTMLButtonElement> & {
     element: 'button';

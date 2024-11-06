@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 
 import { getUsersMe } from '@/actions/getUsersMe';
+import { AccountDetailsButtons } from '@/components/account/contact-and-organisation-information/AccountDetailsButtons';
 import { AccountType } from '@/libs/Roles';
-import Button from '@/ui/button/button';
 import SummaryList from '@/ui/summary-list/summary-list';
 
 export const metadata: Metadata = {
@@ -44,17 +44,7 @@ export default async function ContactAndOrganisationInformation() {
       ]}
       />
 
-      {data.account_details_confirmed_at
-        ? (
-            <Button element="button">
-              {t('buttons.return')}
-            </Button>
-          )
-        : (
-            <Button element="button">
-              {t('buttons.save_and_continue')}
-            </Button>
-          )}
+      <AccountDetailsButtons showReturnButton={!!data.account_details_confirmed_at} />
     </div>
   );
 }
