@@ -62,16 +62,16 @@ jobs:
           #cache-from: type=registry,ref=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:cache
           #cache-to: type=registry,mode=max,image-manifest=true,oci-mediatypes=true,ref=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:cache
 
-#  deploy_awsdev:
-#    name: Invoke deploy to AWS DEV workflow
-#    needs: build_and_push_awsdev
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Invoke deploy workflow with inputs
-#        uses: benc-uk/workflow-dispatch@v1
-#        with:
-#          workflow: deploy-to-aws.yml
-#          repo: UKSpaceAgency/sst-beta-infra
-#          ref: main
-#          token: ${{ secrets.INFRA_REPO_TOKEN }}
-#          inputs: '{ "invoker": "frontend2", "env": "dev", "image-tag":"${{ github.sha }}"}'
+  deploy_awsdev:
+    name: Invoke deploy to AWS DEV workflow
+    needs: build_and_push_awsdev
+    runs-on: ubuntu-latest
+    steps:
+      - name: Invoke deploy workflow with inputs
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: deploy-to-aws.yml
+          repo: UKSpaceAgency/sst-beta-infra
+          ref: main
+          token: ${{ secrets.INFRA_REPO_TOKEN }}
+          inputs: '{ "invoker": "frontend2", "env": "dev", "image-tag":"${{ github.sha }}"}'
