@@ -5,6 +5,10 @@ on:
     branches:
       - develop
 
+env:
+  AWS_REGION: eu-west-2
+  ECR_REPOSITORY: frontend2
+
 jobs:
   build_and_push_awsdev:
     runs-on: ubuntu-latest
@@ -20,8 +24,8 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::915338536460:role/frontend_ecr_role
-          aws-region: eu-west-2
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/frontend_ecr_role
+          aws-region: ${{ env.AWS_REGION }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -35,6 +39,10 @@ jobs:
         with:
           mask-password: 'true'
 
+      - name: Create and use a new builder instance
+        run: |
+          docker buildx create --name mybuilder --use
+
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
@@ -46,8 +54,11 @@ jobs:
             ENV_COSMIC_READ_KEY=${{ secrets.COSMIC_READ_KEY }}
             ENV_NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }}
           tags: |
-            ${{ steps.login-ecr.outputs.registry }}/frontend2:latest
-            ${{ steps.login-ecr.outputs.registry }}/frontend2:${{ github.sha }}
+            ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
+            ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
+          builder: mybuilder
+          cache-from: type=registry,ref=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:cache
+          cache-to: type=registry,mode=max,image-manifest=true,oci-mediatypes=true,ref=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:cache
 
 #  deploy_awsdev:
 #    name: Invoke deploy to AWS DEV workflow
