@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
+import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import { getUsersMe } from '@/actions/getUsersMe';
-import { AccountDetailsButtons } from '@/components/account/contact-and-organisation-information/AccountDetailsButtons';
+import { patchUsersMe } from '@/actions/patchUsersMe';
 import { AccountType } from '@/libs/Roles';
+import Button from '@/ui/button/button';
 import SummaryList from '@/ui/summary-list/summary-list';
 
 export const metadata: Metadata = {
@@ -12,7 +14,25 @@ export const metadata: Metadata = {
 
 export default async function ContactAndOrganisationInformation() {
   const t = await getTranslations('ContactAndOrganisationInformation');
+  const tCommon = await getTranslations('Common');
+
   const data = await getUsersMe();
+
+  const redirectToAccountPage = async () => {
+    'use server';
+
+    redirect('/account');
+  };
+
+  const saveAndContinue = async () => {
+    'use server';
+
+    await patchUsersMe({
+      account_details_confirmed_at: new Date().toJSON(),
+    });
+
+    redirect('/account');
+  };
 
   return (
     <div>
@@ -44,7 +64,17 @@ export default async function ContactAndOrganisationInformation() {
       ]}
       />
 
-      <AccountDetailsButtons showReturnButton={!!data.account_details_confirmed_at} />
+      {data.account_details_confirmed_at
+        ? (
+            <form action={redirectToAccountPage}>
+              <Button type="submit" element="button">{tCommon('return', { to: 'account page' })}</Button>
+            </form>
+          )
+        : (
+            <form action={saveAndContinue}>
+              <Button type="submit" element="button">{tCommon('save_and_continue')}</Button>
+            </form>
+          )}
     </div>
   );
 }

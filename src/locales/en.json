@@ -147,10 +147,6 @@
       "user_type": "User Type",
       "email_address": "Email address",
       "phone_number": "Phone number"
-    },
-    "buttons": {
-      "return": "Return to account page",
-      "save_and_continue": "Save and continue"
     }
   },
   "SatellitesPage": {
@@ -180,5 +176,9 @@
     "Last_integration": {
       "text": "Upcoming known conjunction events as of {date}."
     }
+  },
+  "Common": {
+    "return": "Return to {to}",
+    "save_and_continue": "Save and continue"
   }
 }
