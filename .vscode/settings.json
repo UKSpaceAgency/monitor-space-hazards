@@ -37,5 +37,8 @@
   ],
   "i18n-ally.enabledFrameworks": ["custom"],
   "i18n-ally.sourceLanguage": "en", // Language that will replace the key on the file
-  "i18n-ally.sortKeys": true // On key edit through the plugin, sort the JSON
+  "i18n-ally.sortKeys": true,
+  "cSpell.words": [
+    "Organisation"
+  ] // On key edit through the plugin, sort the JSON
 }
