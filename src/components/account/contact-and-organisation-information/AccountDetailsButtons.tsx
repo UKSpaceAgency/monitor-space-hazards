@@ -1,9 +1,8 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
 
-import { patchUsersMe } from '@/actions/patchUsersMe';
+import { usePatchUsersMe } from '@/queries/usePatchUsersMe';
 import Button from '@/ui/button/button';
 
 type AccountDetailsButtonsProps = {
@@ -13,11 +12,10 @@ type AccountDetailsButtonsProps = {
 export function AccountDetailsButtons({ showReturnButton }: AccountDetailsButtonsProps) {
   const t = useTranslations('ContactAndOrganisationInformation');
   const router = useRouter();
-  const [isLoading, setLoading] = useState(false);
+
+  const { mutateAsync: patchUsersMe, isPending } = usePatchUsersMe();
 
   const saveAndContinue = async () => {
-    setLoading(true);
-
     await patchUsersMe({
       account_details_confirmed_at: new Date().toJSON(),
     });
@@ -34,7 +32,7 @@ export function AccountDetailsButtons({ showReturnButton }: AccountDetailsButton
             </Button>
           )
         : (
-            <Button element="button" disabled={isLoading} onClick={saveAndContinue}>
+            <Button element="button" disabled={isPending} onClick={saveAndContinue}>
               {t('buttons.save_and_continue')}
             </Button>
           )}
