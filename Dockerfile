@@ -34,6 +34,7 @@ RUN corepack enable pnpm && SKIP_ENV_VALIDATION=1 pnpm run build
 
 # Production image, copy all the files and run next
 FROM base AS runner
+RUN apk add curl
 WORKDIR /app
 
 ENV NODE_ENV production
