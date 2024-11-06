@@ -40,7 +40,7 @@ export default async function ContactAndOrganisationInformation() {
 
       <div className="flex gap-2 govuk-body">
         <p>{t('contact_the_uksa_via')}</p>
-        <a key="a" className="govuk-link" href="mailto:monitoryoursatellites@ukspaceagency.gov.uk">{t('email')}</a>
+        <a className="govuk-link" href="mailto:monitoryoursatellites@ukspaceagency.gov.uk">{t('email')}</a>
         <p>{t('if_your_contact_details_are_incorrect')}</p>
       </div>
 
