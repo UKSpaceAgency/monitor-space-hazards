@@ -137,6 +137,22 @@
       "manage_incident_banners": "Manage incident banners"
     }
   },
+  "ContactAndOrganisationInformation": {
+    "title": "View your account details",
+    "contact_the_uksa_via": "Contact the UKSA via",
+    "if_your_contact_details_are_incorrect": "if your details are incorrect",
+    "email": "monitoryoursatellites@ukspaceagency.gov.uk",
+    "keys": {
+      "organisation": "Organisation",
+      "user_type": "User Type",
+      "email_address": "Email address",
+      "phone_number": "Phone number"
+    },
+    "buttons": {
+      "return": "Return to account page",
+      "save_and_continue": "Save and continue"
+    }
+  },
   "SatellitesPage": {
     "title": "UK-licensed satellites",
     "search_bar": {
