@@ -49,7 +49,7 @@ jobs:
           context: .
           platforms: linux/amd64
           push: true
-          secret-envs: |
+          secrets: |
             cosmic-slug=${{ secrets.COSMIC_BUCKET_SLUG }}
             cosmic-key=${{ secrets.COSMIC_READ_KEY }}
             mapbox-token=${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }}
