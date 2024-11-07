@@ -8,8 +8,6 @@ FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-RUN cat /run/secrets/cosmic-slug
-
 # Install dependencies
 COPY package.json pnpm-lock.yaml* ./
 RUN corepack enable pnpm && pnpm --v && pnpm i --frozen-lockfile
@@ -25,7 +23,13 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
-RUN corepack enable pnpm && SKIP_ENV_VALIDATION=1 pnpm run build
+RUN --mount=type=secret,id=COSMIC_BUCKET_SLUG \
+    --mount=type=secret,id=COSMIC_READ_KEY \
+    --mount=type=secret,id=NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN \
+    COSMIC_BUCKET_SLUG=/run/secrets/COSMIC_BUCKET_SLUG \
+    COSMIC_READ_KEY=/run/secrets/COSMIC_READ_KEY \
+    NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=/run/secrets/NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN \type=secret,id=mapbox-token,env=NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN \
+    corepack enable pnpm && SKIP_ENV_VALIDATION=1 pnpm run build
 
 # Production image, copy all the files and run next
 FROM base AS runner
