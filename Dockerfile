@@ -22,14 +22,17 @@ COPY . .
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
-RUN --mount=type=secret,id=cosmic-slug ls -lart /run/secrets/
+RUN --mount=type=secret,id=cosmic-slug \
+    --mount=type=secret,id=cosmic-key \
+    --mount=type=secret,id=mapbox-token \
+    ls -lart /run/secrets/
 
 RUN --mount=type=secret,id=cosmic-slug \
     --mount=type=secret,id=cosmic-key \
     --mount=type=secret,id=mapbox-token \
-    COSMIC_BUCKET_SLUG=/run/secrets/cosmic-slug \
-    COSMIC_READ_KEY=/run/secrets/cosmic-key \
-    NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=/run/secrets/mapbox-token \
+    COSMIC_BUCKET_SLUG=$(cat /run/secrets/cosmic-slug) && \
+    COSMIC_READ_KEY=$(cat /run/secrets/cosmic-key) && \
+    NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=$(cat /run/secrets/mapbox-token) && \
     corepack enable pnpm && SKIP_ENV_VALIDATION=1 pnpm run build
 
 # Production image, copy all the files and run next
