@@ -26,14 +26,14 @@ RUN --mount=type=secret,id=cosmic-slug \
     --mount=type=secret,id=cosmic-key \
     --mount=type=secret,id=mapbox-token \
     ls -lart /run/secrets/ && \
-    TROLOL=(cat /run/secrets/cosmic-slug) echo "dupa${TROLOL}dupa"
+    export TROLOL=$(cat /run/secrets/cosmic-slug) && echo "dupa${TROLOL}dupa"
 
 RUN --mount=type=secret,id=cosmic-slug \
     --mount=type=secret,id=cosmic-key \
     --mount=type=secret,id=mapbox-token \
-    COSMIC_BUCKET_SLUG=$(cat /run/secrets/cosmic-slug) && \
-    COSMIC_READ_KEY=$(cat /run/secrets/cosmic-key) && \
-    NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=$(cat /run/secrets/mapbox-token) && \
+    export COSMIC_BUCKET_SLUG=$(cat /run/secrets/cosmic-slug) && \
+    export COSMIC_READ_KEY=$(cat /run/secrets/cosmic-key) && \
+    export NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=$(cat /run/secrets/mapbox-token) && \
     corepack enable pnpm && SKIP_ENV_VALIDATION=1 pnpm run build
 
 # Production image, copy all the files and run next
