@@ -25,7 +25,8 @@ COPY . .
 RUN --mount=type=secret,id=cosmic-slug \
     --mount=type=secret,id=cosmic-key \
     --mount=type=secret,id=mapbox-token \
-    ls -lart /run/secrets/
+    ls -lart /run/secrets/ && \
+    cat /run/secrets/cosmic-slug
 
 RUN --mount=type=secret,id=cosmic-slug \
     --mount=type=secret,id=cosmic-key \
