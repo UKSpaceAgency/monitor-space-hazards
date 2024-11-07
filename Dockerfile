@@ -10,12 +10,9 @@ WORKDIR /app
 
 # Install dependencies
 COPY package.json pnpm-lock.yaml* ./
-RUN --mount=type=secret,id=COSMIC_BUCKET_SLUG \
-    --mount=type=secret,id=COSMIC_READ_KEY \
-    --mount=type=secret,id=NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN \
-    COSMIC_BUCKET_SLUG=/run/secrets/COSMIC_BUCKET_SLUG \
-    COSMIC_READ_KEY=/run/secrets/COSMIC_READ_KEY \
-    NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=/run/secrets/NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN \
+RUN --mount=type=secret,id=cosmic-slug,env=COSMIC_BUCKET_SLUG \
+    --mount=type=secret,id=cosmic-key,env=COSMIC_READ_KEY \
+    --mount=type=secret,id=mapbox-token,env=NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN \
     corepack enable pnpm && pnpm --v && pnpm i --frozen-lockfile
 
 # Rebuild the source code only when needed
