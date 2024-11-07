@@ -50,9 +50,9 @@ jobs:
           platforms: linux/amd64
           push: true
           secrets: |
-            ENV_COSMIC_BUCKET_SLUG=${{ secrets.COSMIC_BUCKET_SLUG }}
-            ENV_COSMIC_READ_KEY=${{ secrets.COSMIC_READ_KEY }}
-            ENV_NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }}
+            COSMIC_BUCKET_SLUG=${{ secrets.COSMIC_BUCKET_SLUG }}
+            COSMIC_READ_KEY=${{ secrets.COSMIC_READ_KEY }}
+            NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }}
           tags: |
             ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
             ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}

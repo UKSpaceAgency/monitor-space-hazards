@@ -1,13 +1,6 @@
 # syntax=docker/dockerfile:1.2
 FROM node:22-alpine AS base
 
-ARG ENV_COSMIC_BUCKET_SLUG
-ARG ENV_COSMIC_READ_KEY
-ARG ENV_NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
-
-ENV COSMIC_BUCKET_SLUG=$ENV_COSMIC_BUCKET_SLUG
-ENV COSMIC_READ_KEY=$ENV_COSMIC_READ_KEY
-ENV NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=$ENV_NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -17,7 +10,7 @@ WORKDIR /app
 
 # Install dependencies
 COPY package.json pnpm-lock.yaml* ./
-RUN corepack enable pnpm && pnpm --v && pnpm i --frozen-lockfile
+RUN --mount=type=secret,id=COSMIC_BUCKET_SLUG corepack enable pnpm && pnpm --v && pnpm i --frozen-lockfile
 
 # Rebuild the source code only when needed
 FROM base AS builder
