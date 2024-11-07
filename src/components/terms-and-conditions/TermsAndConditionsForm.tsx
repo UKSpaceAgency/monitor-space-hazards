@@ -7,11 +7,10 @@ import Button from '@/ui/button/button';
 import Checkboxes from '@/ui/checkboxes/checkboxes';
 
 type TermsAndConditionsFormProps = {
-  isTocAccepted: boolean;
   onSubmit: VoidFunction;
 };
 
-const TermsAndConditionsForm = ({ isTocAccepted, onSubmit }: TermsAndConditionsFormProps) => {
+const TermsAndConditionsForm = ({ onSubmit }: TermsAndConditionsFormProps) => {
   const t = useTranslations('TermsAndConditions');
   const tCommon = useTranslations('Common');
 
@@ -23,10 +22,8 @@ const TermsAndConditionsForm = ({ isTocAccepted, onSubmit }: TermsAndConditionsF
         items={[
           {
             id: 'accept-terms',
-            checked: checked || isTocAccepted,
+            checked,
             children: t('label'),
-            value: 'true',
-            disabled: isTocAccepted,
             onChange: () => setChecked(prevChecked => !prevChecked),
           },
         ]}

@@ -44,7 +44,6 @@ export default async function TermsAndConditions() {
         ? <Download />
         : (
             <TermsAndConditionsForm
-              isTocAccepted={!!data.toc_accepted_at}
               onSubmit={submitForm}
             />
           )}
