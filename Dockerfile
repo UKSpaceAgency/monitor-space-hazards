@@ -23,12 +23,12 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
-RUN --mount=type=secret,id=COSMIC_BUCKET_SLUG \
-    --mount=type=secret,id=COSMIC_READ_KEY \
-    --mount=type=secret,id=NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN \
-    COSMIC_BUCKET_SLUG=/run/secrets/COSMIC_BUCKET_SLUG \
-    COSMIC_READ_KEY=/run/secrets/COSMIC_READ_KEY \
-    NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=/run/secrets/NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN \type=secret,id=mapbox-token,env=NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN \
+RUN --mount=type=secret,id=cosmic-slug \
+    --mount=type=secret,id=cosmic-key \
+    --mount=type=secret,id=mapbox-token \
+    COSMIC_BUCKET_SLUG=/run/secrets/cosmic-slug \
+    COSMIC_READ_KEY=/run/secrets/cosmic-key \
+    NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=/run/secrets/mapbox-token \
     corepack enable pnpm && SKIP_ENV_VALIDATION=1 pnpm run build
 
 # Production image, copy all the files and run next
