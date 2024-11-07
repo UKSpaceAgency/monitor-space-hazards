@@ -152,6 +152,10 @@
   "TermsAndConditions": {
     "title": "View Terms and Conditions"
   },
+  "DataPrivacyNotice": {
+    "title": "Data Privacy Notice",
+    "button": "Download data privacy notice"
+  },
   "SatellitesPage": {
     "title": "UK-licensed satellites",
     "search_bar": {
