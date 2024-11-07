@@ -26,7 +26,7 @@ RUN --mount=type=secret,id=cosmic-slug \
     --mount=type=secret,id=cosmic-key \
     --mount=type=secret,id=mapbox-token \
     ls -lart /run/secrets/ && \
-    cat /run/secrets/cosmic-slug
+    TROLOL=(cat /run/secrets/cosmic-slug) echo "dupa${TROLOL}dupa"
 
 RUN --mount=type=secret,id=cosmic-slug \
     --mount=type=secret,id=cosmic-key \
