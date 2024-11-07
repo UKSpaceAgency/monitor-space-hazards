@@ -3,7 +3,7 @@ name: Build and Deploy to AWS DEV WWW2
 on:
   push:
     branches:
-      - develop
+      - feat/docker-secrets
 
 env:
   AWS_REGION: eu-west-2
@@ -49,7 +49,7 @@ jobs:
           context: .
           platforms: linux/amd64
           push: true
-          build-args: |
+          secret-envs: |
             ENV_COSMIC_BUCKET_SLUG=${{ secrets.COSMIC_BUCKET_SLUG }}
             ENV_COSMIC_READ_KEY=${{ secrets.COSMIC_READ_KEY }}
             ENV_NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }}
@@ -59,19 +59,17 @@ jobs:
           builder: mybuilder
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          #cache-from: type=registry,ref=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:cache
-          #cache-to: type=registry,mode=max,image-manifest=true,oci-mediatypes=true,ref=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:cache
 
-  deploy_awsdev:
-    name: Invoke deploy to AWS DEV workflow
-    needs: build_and_push_awsdev
-    runs-on: ubuntu-latest
-    steps:
-      - name: Invoke deploy workflow with inputs
-        uses: benc-uk/workflow-dispatch@v1
-        with:
-          workflow: deploy-to-aws.yml
-          repo: UKSpaceAgency/sst-beta-infra
-          ref: main
-          token: ${{ secrets.INFRA_REPO_TOKEN }}
-          inputs: '{ "invoker": "frontend2", "env": "dev", "image-tag":"${{ github.sha }}"}'
+#  deploy_awsdev:
+#    name: Invoke deploy to AWS DEV workflow
+#    needs: build_and_push_awsdev
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Invoke deploy workflow with inputs
+#        uses: benc-uk/workflow-dispatch@v1
+#        with:
+#          workflow: deploy-to-aws.yml
+#          repo: UKSpaceAgency/sst-beta-infra
+#          ref: main
+#          token: ${{ secrets.INFRA_REPO_TOKEN }}
+#          inputs: '{ "invoker": "frontend2", "env": "dev", "image-tag":"${{ github.sha }}"}'
