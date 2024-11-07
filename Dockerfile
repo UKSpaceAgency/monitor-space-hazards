@@ -22,11 +22,6 @@ COPY . .
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
-RUN --mount=type=secret,id=cosmic-slug \
-    --mount=type=secret,id=cosmic-key \
-    --mount=type=secret,id=mapbox-token \
-    ls -lart /run/secrets/ && \
-    export TROLOL=$(cat /run/secrets/cosmic-slug) && echo "dupa${TROLOL}dupa"
 
 RUN --mount=type=secret,id=cosmic-slug \
     --mount=type=secret,id=cosmic-key \

@@ -3,7 +3,7 @@ name: Build and Deploy to AWS DEV WWW2
 on:
   push:
     branches:
-      - feat/docker-secrets
+      - develop
 
 env:
   AWS_REGION: eu-west-2
@@ -39,10 +39,6 @@ jobs:
         with:
           mask-password: 'true'
 
-      - name: Create and use a new builder instance
-        run: |
-          docker buildx create --name mybuilder --use
-
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
@@ -56,20 +52,19 @@ jobs:
           tags: |
             ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
             ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
-          builder: mybuilder
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-#  deploy_awsdev:
-#    name: Invoke deploy to AWS DEV workflow
-#    needs: build_and_push_awsdev
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Invoke deploy workflow with inputs
-#        uses: benc-uk/workflow-dispatch@v1
-#        with:
-#          workflow: deploy-to-aws.yml
-#          repo: UKSpaceAgency/sst-beta-infra
-#          ref: main
-#          token: ${{ secrets.INFRA_REPO_TOKEN }}
-#          inputs: '{ "invoker": "frontend2", "env": "dev", "image-tag":"${{ github.sha }}"}'
+  deploy_awsdev:
+    name: Invoke deploy to AWS DEV workflow
+    needs: build_and_push_awsdev
+    runs-on: ubuntu-latest
+    steps:
+      - name: Invoke deploy workflow with inputs
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: deploy-to-aws.yml
+          repo: UKSpaceAgency/sst-beta-infra
+          ref: main
+          token: ${{ secrets.INFRA_REPO_TOKEN }}
+          inputs: '{ "invoker": "frontend2", "env": "dev", "image-tag":"${{ github.sha }}"}'
