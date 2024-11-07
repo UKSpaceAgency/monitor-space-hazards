@@ -150,7 +150,10 @@
     }
   },
   "TermsAndConditions": {
-    "title": "View Terms and Conditions"
+    "title": "View Terms and Conditions",
+    "accepted_text": "By using Monitor Space Hazards you have agreed to the Terms and Conditions of the site.",
+    "button": "Download Terms and Conditions",
+    "label": "I have read and agreed to the Terms and Conditions"
   },
   "DataPrivacyNotice": {
     "title": "Data Privacy Notice",
