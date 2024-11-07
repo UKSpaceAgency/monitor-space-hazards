@@ -149,6 +149,9 @@
       "phone_number": "Phone number"
     }
   },
+  "TermsAndConditions": {
+    "title": "View Terms and Conditions"
+  },
   "SatellitesPage": {
     "title": "UK-licensed satellites",
     "search_bar": {
