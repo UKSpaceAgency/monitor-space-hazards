@@ -8,12 +8,11 @@ FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
+RUN cat /run/secrets/cosmic-slug
+
 # Install dependencies
 COPY package.json pnpm-lock.yaml* ./
-RUN --mount=type=secret,id=cosmic-slug,env=COSMIC_BUCKET_SLUG \
-    --mount=type=secret,id=cosmic-key,env=COSMIC_READ_KEY \
-    --mount=type=secret,id=mapbox-token,env=NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN \
-    corepack enable pnpm && pnpm --v && pnpm i --frozen-lockfile
+RUN corepack enable pnpm && pnpm --v && pnpm i --frozen-lockfile
 
 # Rebuild the source code only when needed
 FROM base AS builder
