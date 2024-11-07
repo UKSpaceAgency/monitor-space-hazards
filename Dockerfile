@@ -1,13 +1,6 @@
-# syntax=docker/dockerfile:1
+# syntax=docker/dockerfile:1.2
 FROM node:22-alpine AS base
 
-ARG ENV_COSMIC_BUCKET_SLUG
-ARG ENV_COSMIC_READ_KEY
-ARG ENV_NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
-
-ENV COSMIC_BUCKET_SLUG=$ENV_COSMIC_BUCKET_SLUG
-ENV COSMIC_READ_KEY=$ENV_COSMIC_READ_KEY
-ENV NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=$ENV_NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -30,7 +23,13 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
-RUN corepack enable pnpm && SKIP_ENV_VALIDATION=1 pnpm run build
+RUN --mount=type=secret,id=cosmic-slug \
+    --mount=type=secret,id=cosmic-key \
+    --mount=type=secret,id=mapbox-token \
+    export COSMIC_BUCKET_SLUG=$(cat /run/secrets/cosmic-slug) && \
+    export COSMIC_READ_KEY=$(cat /run/secrets/cosmic-key) && \
+    export NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=$(cat /run/secrets/mapbox-token) && \
+    corepack enable pnpm && SKIP_ENV_VALIDATION=1 pnpm run build
 
 # Production image, copy all the files and run next
 FROM base AS runner
