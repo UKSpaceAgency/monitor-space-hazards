@@ -22,7 +22,7 @@ COPY . .
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
-RUN --mount=type=secret,id=cosmic-slug cat /run/secrets/cosmic-slug
+RUN --mount=type=secret,id=cosmic-slug ls -lart /run/secrets/
 
 RUN --mount=type=secret,id=cosmic-slug \
     --mount=type=secret,id=cosmic-key \
