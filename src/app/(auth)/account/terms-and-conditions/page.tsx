@@ -45,6 +45,7 @@ export default async function TermsAndConditions() {
         : (
             <TermsAndConditionsForm
               onSubmit={submitForm}
+              label={t('label')}
             />
           )}
     </>

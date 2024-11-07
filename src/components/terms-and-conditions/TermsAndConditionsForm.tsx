@@ -8,10 +8,10 @@ import Checkboxes from '@/ui/checkboxes/checkboxes';
 
 type TermsAndConditionsFormProps = {
   onSubmit: VoidFunction;
+  label: string;
 };
 
-const TermsAndConditionsForm = ({ onSubmit }: TermsAndConditionsFormProps) => {
-  const t = useTranslations('TermsAndConditions');
+const TermsAndConditionsForm = ({ label, onSubmit }: TermsAndConditionsFormProps) => {
   const tCommon = useTranslations('Common');
 
   const [checked, setChecked] = useState(false);
@@ -23,7 +23,7 @@ const TermsAndConditionsForm = ({ onSubmit }: TermsAndConditionsFormProps) => {
           {
             id: 'accept-terms',
             checked,
-            children: t('label'),
+            children: label,
             onChange: () => setChecked(prevChecked => !prevChecked),
           },
         ]}
