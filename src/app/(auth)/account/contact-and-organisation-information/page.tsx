@@ -67,12 +67,12 @@ export default async function ContactAndOrganisationInformation() {
       {data.account_details_confirmed_at
         ? (
             <form action={redirectToAccountPage}>
-              <Button type="submit" element="button">{tCommon('return', { to: 'account page' })}</Button>
+              <Button type="submit">{tCommon('return', { to: 'account page' })}</Button>
             </form>
           )
         : (
             <form action={saveAndContinue}>
-              <Button type="submit" element="button">{tCommon('save_and_continue')}</Button>
+              <Button type="submit">{tCommon('save_and_continue')}</Button>
             </form>
           )}
     </div>

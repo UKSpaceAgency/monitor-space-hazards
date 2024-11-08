@@ -7,7 +7,7 @@ export function ButtonGroup({
 }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={clsx('govuk-button-group', className)}
+      className={clsx('govuk-button-group', 'items-start', className)}
       {...rest}
     />
   );

@@ -38,12 +38,10 @@ export function Cookies() {
             {
               actions: [
                 {
-                  element: 'button',
                   children: 'Yes, I\'m OK with analytics cookies',
                   onClick: () => setCookieConsent('granted'),
                 },
                 {
-                  element: 'button',
                   children: 'No, do not use analytics cookies',
                   onClick: () => setCookieConsent('denied'),
                 },
@@ -71,7 +69,6 @@ export function Cookies() {
               actions: [
                 {
                   children: 'Hide this message',
-                  element: 'button',
                   onClick: closeConsentForm,
                 },
               ],
@@ -84,7 +81,6 @@ export function Cookies() {
               actions: [
                 {
                   children: 'Hide this message',
-                  element: 'button',
                   onClick: closeConsentForm,
                 },
               ],

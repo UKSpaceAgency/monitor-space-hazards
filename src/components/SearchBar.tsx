@@ -36,7 +36,7 @@ const SearchBar = ({ label, placeholder }: SearchBarProps) => {
       <form className="flex gap-3" onSubmit={onSubmit}>
         <Input className="flex-1" id="search-input" placeholder={placeholder} value={search} onChange={e => setSearch(e.target.value)} />
         <div>
-          <Button element="button" type="submit">Search</Button>
+          <Button type="submit">Search</Button>
         </div>
       </form>
     </div>
