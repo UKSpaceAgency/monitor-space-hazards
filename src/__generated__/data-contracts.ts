@@ -2029,7 +2029,7 @@ export type TypeSatellitesOrganizationsSortBy =
   | "esa_discos_id";
 
 /** SatellitesSortBy */
-export type TypeSatellitesSortBy = "norad_id" | "common_name" | "international_designator";
+export type TypeSatellitesSortBy = "norad_id" | "common_name" | "international_designator" | "future_events_count";
 
 /** SortOrder */
 export type TypeSortOrder = "asc" | "desc";
@@ -2312,7 +2312,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2024-11-04T23:40:10.690457"
+   * @default "2024-11-07T17:24:47.257592"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -2553,8 +2553,8 @@ export interface TypeReentryEventReportImpact {
   scotland: Record<string, TypeOverflightProbability>;
   /** Wales */
   wales: Record<string, TypeOverflightProbability>;
-  /** Overseas Territories */
-  overseas_territories: Record<string, TypeOverflightProbability>;
+  /** Overseas Territories And Crown Dependencies */
+  overseas_territories_and_crown_dependencies: Record<string, TypeOverflightProbability>;
   /** Maritime And Airspace */
   maritime_and_airspace: Record<string, TypeOverflightProbability>;
 }
@@ -2950,8 +2950,11 @@ export interface TypeGetConjunctionEventsCdmExternalIdParams {
 }
 
 export interface TypeGetSatellitesWithMetadataParams {
-  /** Sort By */
-  sort_by?: TypeSatellitesSortBy | null;
+  /**
+   * Sort By
+   * @default "future_events_count"
+   */
+  sort_by?: TypeSatellitesSortBy;
   /** Search Like */
   search_like?: string | null;
   /** Organization Id */

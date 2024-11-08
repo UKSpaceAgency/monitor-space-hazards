@@ -11,10 +11,6 @@ test.describe('Contact and organisation information page', () => {
     await expect(
       page.getByRole('button', { name: 'Return to account page' }),
     ).toBeVisible();
-
-    await expect(
-      page.getByRole('button', { name: 'Return to account page' }),
-    ).toBeVisible();
   });
 
   test('should go back to /account page', async ({ page }) => {

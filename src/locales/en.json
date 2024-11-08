@@ -150,7 +150,10 @@
     }
   },
   "TermsAndConditions": {
-    "title": "View Terms and Conditions"
+    "title": "View Terms and Conditions",
+    "accepted_text": "By using Monitor Space Hazards you have agreed to the Terms and Conditions of the site.",
+    "button": "Download Terms and Conditions",
+    "label": "I have read and agreed to the Terms and Conditions"
   },
   "DataPrivacyNotice": {
     "title": "Data Privacy Notice",
@@ -159,6 +162,13 @@
   "EventNotificationThresholdsSettings": {
     "title": "Set your conjunction event notification thresholds",
     "description": "<p>We will send you notifications when the probability of collision, total miss distance and mean radial miss distance meets threshold and the time to conjunction event is below the threshold you have set.</p><p>You are responsible for the safe operation of your satellites and should choose settings which allow you to do this.</p><p>The default settings are examples of thresholds, not recommendations.</p>"
+  },
+  "Credentials": {
+    "title": "Credentials for API authentication",
+    "client_id": "Client ID",
+    "copy_client_id_button": "Copy Client ID to clipboard",
+    "client_secret": "Client Secret",
+    "copy_client_secret_button": "Copy Client Secret to clipboard"
   },
   "SatellitesPage": {
     "title": "UK-licensed satellites",

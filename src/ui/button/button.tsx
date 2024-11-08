@@ -11,7 +11,7 @@ export type ButtonProps = {
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button = forwardRef<HTMLElement, ButtonProps>((
-  { isStartButton, variant, ...props },
+  { isStartButton, variant, className, ...props },
   ref,
 ) => {
   const startIcon = (
@@ -28,7 +28,7 @@ export const Button = forwardRef<HTMLElement, ButtonProps>((
     </svg>
   );
 
-  const className = clsx('govuk-button', {
+  const classes = clsx('govuk-button', className, {
     'govuk-button--start': isStartButton,
     'govuk-button--secondary': variant === 'secondary',
     'govuk-button--warning': variant === 'warning',
@@ -44,7 +44,7 @@ export const Button = forwardRef<HTMLElement, ButtonProps>((
     <button
       ref={ref as ForwardedRef<HTMLButtonElement>}
       type="button"
-      className={className}
+      className={classes}
       disabled={disabled}
       aria-disabled={disabled}
       {...rest}

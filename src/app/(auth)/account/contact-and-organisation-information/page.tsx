@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
@@ -18,12 +19,6 @@ export default async function ContactAndOrganisationInformation() {
 
   const data = await getUsersMe();
 
-  const redirectToAccountPage = async () => {
-    'use server';
-
-    redirect('/account');
-  };
-
   const saveAndContinue = async () => {
     'use server';
 
@@ -40,7 +35,7 @@ export default async function ContactAndOrganisationInformation() {
 
       <div className="flex gap-2 govuk-body">
         <p>{t('contact_the_uksa_via')}</p>
-        <a className="govuk-link" href="mailto:monitoryoursatellites@ukspaceagency.gov.uk">{t('email')}</a>
+        <a className="govuk-link" href="mailto:monitorspacehazards@ukspaceagency.gov.uk">{t('email')}</a>
         <p>{t('if_your_contact_details_are_incorrect')}</p>
       </div>
 
@@ -66,9 +61,11 @@ export default async function ContactAndOrganisationInformation() {
 
       {data.account_details_confirmed_at
         ? (
-            <form action={redirectToAccountPage}>
-              <Button type="submit">{tCommon('return', { to: 'account page' })}</Button>
-            </form>
+            <Link href="/account">
+              <Button type="submit">
+                {tCommon('return', { to: 'account page' })}
+              </Button>
+            </Link>
           )
         : (
             <form action={saveAndContinue}>
