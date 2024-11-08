@@ -28,7 +28,7 @@ const TermsAndConditionsForm = ({ label, onSubmit }: TermsAndConditionsFormProps
           },
         ]}
       />
-      <Button type="submit" element="button" disabled={!checked}>
+      <Button type="submit" disabled={!checked}>
         {tCommon('save_and_continue')}
       </Button>
     </form>

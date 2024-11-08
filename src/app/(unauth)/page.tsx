@@ -37,7 +37,7 @@ export default function IndexPage() {
           });
         }}
       >
-        <Button element="button" type="submit" isStartButton>{t('existing_users.button')}</Button>
+        <Button type="submit" isStartButton>{t('existing_users.button')}</Button>
       </form>
       <h2 className="govuk-heading-m">{t('new_users.title')}</h2>
       { t.rich('new_users.markup', {

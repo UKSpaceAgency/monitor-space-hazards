@@ -31,7 +31,7 @@ export default async function TermsAndConditions() {
       <hr />
       <p className="govuk-body">{t('accepted_text')}</p>
       <a href="/Monitor Space Hazards Terms and Conditions.pdf" download>
-        <Button element="button">{t('button')}</Button>
+        <Button>{t('button')}</Button>
       </a>
     </>
   );

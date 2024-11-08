@@ -52,6 +52,7 @@
   "exclude": [
     "node_modules",
     "generate-api",
+    ".github",
     "**/*.spec.ts",
     "**/*.e2e.ts"
   ]

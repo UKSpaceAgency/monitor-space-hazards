@@ -159,6 +159,10 @@
     "title": "Data Privacy Notice",
     "button": "Download data privacy notice"
   },
+  "EventNotificationThresholdsSettings": {
+    "title": "Set your conjunction event notification thresholds",
+    "description": "<p>We will send you notifications when the probability of collision, total miss distance and mean radial miss distance meets threshold and the time to conjunction event is below the threshold you have set.</p><p>You are responsible for the safe operation of your satellites and should choose settings which allow you to do this.</p><p>The default settings are examples of thresholds, not recommendations.</p>"
+  },
   "Credentials": {
     "title": "Credentials for API authentication",
     "client_id": "Client ID",
@@ -187,6 +191,18 @@
       "types": {
         "satellites": "UK-licensed satellites"
       }
+    }
+  },
+  "Forms": {
+    "Thresholds_settings": {
+      "success_message": "Settings updated successfully",
+      "error_message": "Something went wrong!",
+      "notification_criteria": "Notification criteria",
+      "threshold": "Threshold",
+      "PROBABILITY_OF_COLLISION": "Probability of collision is above (percent)",
+      "TOTAL_MISS_DISTANCE": "Total miss distance is below (metres)",
+      "MEAN_RADIAL_MISS_DISTANCE": "Mean radial miss distance is below (metres)",
+      "TIME_TO_EVENT": "Time to conjunction event is below (hours)"
     }
   },
   "Components": {

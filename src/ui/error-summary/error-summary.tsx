@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import type { HTMLAttributes, ReactNode } from 'react';
 
 type ErrorSummaryProps = {
-  title: ReactNode;
+  title?: ReactNode;
   errorList: {
     href?: string;
     children: string;
@@ -13,7 +13,7 @@ type ErrorSummaryProps = {
 
 export function ErrorSummary(props: ErrorSummaryProps) {
   const {
-    title,
+    title = 'There is a problem',
     description,
     errorList,
     disableAutoFocus,
@@ -27,7 +27,7 @@ export function ErrorSummary(props: ErrorSummaryProps) {
       {...rest}
     >
       <div role="alert">
-        <h2 className="govuk-error-summary__title">{title}</h2>
+        {title && <h2 className="govuk-error-summary__title">{title}</h2>}
         <div className="govuk-error-summary__body">
           {description && <p>{description}</p>}
           <ul

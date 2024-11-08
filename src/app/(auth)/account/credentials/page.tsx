@@ -23,7 +23,6 @@ export default async function Credentials() {
         </p>
       </div>
       <Button
-        element="button"
         className="govuk-button--secondary"
       >
         {t('copy_client_id_button')}
@@ -38,7 +37,6 @@ export default async function Credentials() {
         </p>
       </div>
       <Button
-        element="button"
         className="govuk-button--secondary"
       >
         {t('copy_client_secret_button')}

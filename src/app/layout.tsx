@@ -31,7 +31,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} className="font-sans">
       <body className="govuk-template__body" suppressHydrationWarning>
-        <NextIntlClientProvider messages={pick(messages, ['Tables', 'BaseTemplate', 'Common'])}>
+        <NextIntlClientProvider messages={pick(messages, ['Tables', 'BaseTemplate', 'Forms', 'Common'])}>
           <SessionProvider>
             <BaseTemplate showNavigation={!!session}>
               {children}

@@ -62,14 +62,14 @@ export default async function ContactAndOrganisationInformation() {
       {data.account_details_confirmed_at
         ? (
             <Link href="/account">
-              <Button type="submit" element="button">
+              <Button type="submit">
                 {tCommon('return', { to: 'account page' })}
               </Button>
             </Link>
           )
         : (
             <form action={saveAndContinue}>
-              <Button type="submit" element="button">{tCommon('save_and_continue')}</Button>
+              <Button type="submit">{tCommon('save_and_continue')}</Button>
             </form>
           )}
     </div>
