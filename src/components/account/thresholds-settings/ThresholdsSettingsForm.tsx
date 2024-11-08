@@ -1,5 +1,3 @@
-import { useMemo } from 'react';
-
 import type { TypeThreshold, TypeThresholdType } from '@/__generated__/data-contracts';
 import { patchUsersMe } from '@/actions/patchUsersMe';
 import Form from '@/components/form/Form';
@@ -12,7 +10,7 @@ type ThresholdsSettingsFormProps = {
 };
 
 const ThresholdsSettingsForm = ({ currentSettings }: ThresholdsSettingsFormProps) => {
-  const defaultValues = useMemo(() => currentSettings?.reduce((acc, cur) => {
+  const defaultValues = currentSettings?.reduce((acc, cur) => {
     if (cur.type === 'TIME_TO_EVENT') {
       acc[cur.type] = cur.value / 3600;
     } else if (cur.type === 'PROBABILITY_OF_COLLISION') {
@@ -21,7 +19,7 @@ const ThresholdsSettingsForm = ({ currentSettings }: ThresholdsSettingsFormProps
       acc[cur.type] = cur.value;
     }
     return acc;
-  }, {} as Record<TypeThresholdType, number>), [currentSettings]);
+  }, {} as Record<TypeThresholdType, number>);
 
   const handleFormSubmit = async (values: Record<TypeThresholdType, number>) => {
     'use server';
