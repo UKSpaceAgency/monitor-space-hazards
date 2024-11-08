@@ -9,7 +9,7 @@ import Navigation from './components/Navigation';
 
 type BaseTemplateProps = {
   children: React.ReactNode;
-  showNavigation?: true;
+  showNavigation?: boolean;
 };
 
 const BaseTemplate = ({
