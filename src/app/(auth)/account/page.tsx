@@ -100,7 +100,7 @@ export default async function AccountPage() {
             },
             {
               title: t('view_terms_and_conditions.data_privacy_notice'),
-              href: '/account/data-privacy-notice',
+              href: '/data-privacy-notice',
             },
           ]}
         />

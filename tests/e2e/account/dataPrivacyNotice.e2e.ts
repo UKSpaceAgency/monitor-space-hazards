@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Data Privacy Notice page', () => {
   test('should render', async ({ page }) => {
-    await page.goto('/account/data-privacy-notice');
+    await page.goto('/data-privacy-notice');
 
     await expect(
       page.getByRole('heading', { name: 'Data Privacy Notice' }),
@@ -14,7 +14,7 @@ test.describe('Data Privacy Notice page', () => {
   });
 
   test('should download privacy notice pdf', async ({ page }) => {
-    await page.goto('/account/data-privacy-notice');
+    await page.goto('/data-privacy-notice');
 
     const downloadPromise = page.waitForEvent('download');
     await page.getByRole('button', { name: 'Download data privacy notice' }).click();
