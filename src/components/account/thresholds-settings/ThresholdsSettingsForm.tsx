@@ -3,26 +3,25 @@
 import { useMutation } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { type ReactNode, useMemo } from 'react';
+import { useMemo } from 'react';
 
 import type { TypeThreshold, TypeThresholdType } from '@/__generated__/data-contracts';
 import { patchUsersMe } from '@/actions/patchUsersMe';
 import Form from '@/components/form/Form';
 import { FormInput } from '@/components/form/Input';
+import { TopNotificationBanner } from '@/components/TopNotificationBanner';
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
 import Label from '@/ui/label/label';
-import NotificationBanner from '@/ui/notification-banner/notification-banner';
 import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
 
 import { schema } from './ThresholdsSettingsFormSchema';
 
 type ThresholdsSettingsFormProps = {
   currentSettings?: TypeThreshold[] | null;
-  children: ReactNode;
 };
 
-const ThresholdsSettingsForm = ({ currentSettings, children }: ThresholdsSettingsFormProps) => {
+const ThresholdsSettingsForm = ({ currentSettings }: ThresholdsSettingsFormProps) => {
   const t = useTranslations('Forms.Thresholds_settings');
   const tCommon = useTranslations('Common');
 
@@ -59,14 +58,13 @@ const ThresholdsSettingsForm = ({ currentSettings, children }: ThresholdsSetting
         value,
       });
     }
-    await mutate(notificationThresholds);
+    mutate(notificationThresholds);
   };
 
   return (
     <div>
-      {isSuccess && <NotificationBanner status="success">{t('success_message')}</NotificationBanner>}
-      {isError && <NotificationBanner status="error">{t('error_message')}</NotificationBanner>}
-      {children}
+      {isSuccess && <TopNotificationBanner status="success">{t('success_message')}</TopNotificationBanner>}
+      {isError && <TopNotificationBanner status="error">{t('error_message')}</TopNotificationBanner>}
       <Form
         action={handleFormSubmit}
         defaultValues={defaultValues}

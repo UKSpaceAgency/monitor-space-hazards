@@ -30,6 +30,7 @@ const BaseTemplate = ({
       {showNavigation && <Navigation />}
       <div className="govuk-width-container">
         <main className="govuk-main-wrapper" id="main-content">
+          <div id="main-top-portal" />
           {children}
         </main>
       </div>

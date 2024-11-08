@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import type { HTMLAttributes, ReactNode } from 'react';
 
-type NotificationBannerProps = {
+export type NotificationBannerProps = {
   heading?: ReactNode;
   status?: 'success' | 'error' | 'important';
 } & HTMLAttributes<HTMLDivElement>;

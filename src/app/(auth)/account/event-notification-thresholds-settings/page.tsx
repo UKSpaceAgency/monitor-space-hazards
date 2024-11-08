@@ -9,9 +9,10 @@ export default async function EventNotificationThresholdsSettingsPage() {
   const data = await getUsersMe();
 
   return (
-    <ThresholdsSettingsForm currentSettings={data.notification_thresholds}>
+    <div>
       <h1 className="govuk-heading-xl">{t('title')}</h1>
       {t.rich('description')}
-    </ThresholdsSettingsForm>
+      <ThresholdsSettingsForm currentSettings={data.notification_thresholds} />
+    </div>
   );
 }
