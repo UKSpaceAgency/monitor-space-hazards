@@ -216,6 +216,9 @@
     },
     "add_new_user": "Add new user"
   },
+  "AnalysisUploadLog": {
+    "title": "UKSA analysis uploads"
+  },
   "SatellitesPage": {
     "title": "UK-licensed satellites",
     "search_bar": {
