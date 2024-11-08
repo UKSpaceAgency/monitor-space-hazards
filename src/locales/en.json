@@ -159,16 +159,20 @@
     "title": "Data Privacy Notice",
     "button": "Download data privacy notice"
   },
-  "EventNotificationThresholdsSettings": {
-    "title": "Set your conjunction event notification thresholds",
-    "description": "<p>We will send you notifications when the probability of collision, total miss distance and mean radial miss distance meets threshold and the time to conjunction event is below the threshold you have set.</p><p>You are responsible for the safe operation of your satellites and should choose settings which allow you to do this.</p><p>The default settings are examples of thresholds, not recommendations.</p>"
-  },
   "Credentials": {
     "title": "Credentials for API authentication",
     "client_id": "Client ID",
     "copy_client_id_button": "Copy Client ID to clipboard",
     "client_secret": "Client Secret",
     "copy_client_secret_button": "Copy Client Secret to clipboard"
+  },
+  "EventNotificationThresholdsSettings": {
+    "title": "Set your conjunction event notification thresholds",
+    "description": "<p>We will send you notifications when the probability of collision, total miss distance and mean radial miss distance meets threshold and the time to conjunction event is below the threshold you have set.</p><p>You are responsible for the safe operation of your satellites and should choose settings which allow you to do this.</p><p>The default settings are examples of thresholds, not recommendations.</p>"
+  },
+  "NotificationSettings": {
+    "title": "Choose your notification settings",
+    "description": "<p>New event notifications will be collated and sent in one email and/or text every 12 hours.</p><p>Choose which notifications you wish to receive. Uncheck boxes where you do not wish to receive notifications.</p>"
   },
   "SatellitesPage": {
     "title": "UK-licensed satellites",
@@ -203,6 +207,13 @@
       "TOTAL_MISS_DISTANCE": "Total miss distance is below (metres)",
       "MEAN_RADIAL_MISS_DISTANCE": "Mean radial miss distance is below (metres)",
       "TIME_TO_EVENT": "Time to conjunction event is below (hours)"
+    },
+    "Notification_settings": {
+      "success_message": "Settings updated successfully",
+      "error_message": "Something went wrong!",
+      "on_event_created": "New conjunction event crosses your thresholds",
+      "on_event_updated": "Updated conjunction event crosses your thresholds",
+      "on_analysis_uploaded": "New UKSA event analysis uploaded"
     }
   },
   "Components": {

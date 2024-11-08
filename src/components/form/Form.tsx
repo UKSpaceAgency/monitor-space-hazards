@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import type { ReactNode } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import type {
   DefaultValues,
 } from 'react-hook-form';
@@ -14,6 +14,8 @@ import {
 import type { z } from 'zod';
 
 import ErrorSummary from '@/ui/error-summary/error-summary';
+
+import { TopNotificationBanner } from '../TopNotificationBanner';
 
 export type FormProps<T extends object> = {
   defaultValues?: DefaultValues<T>;
@@ -36,6 +38,8 @@ const Form = <T extends object>({
   i18path,
 }: FormProps<T>) => {
   const t = useTranslations(`Forms.${i18path}`);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const methods = useForm({
     defaultValues,
@@ -60,11 +64,20 @@ const Form = <T extends object>({
   }, [methods, responseErrors]);
 
   const onSubmit = async (values: T) => {
-    await action(values);
+    setIsError(false);
+    setIsSuccess(false);
+    try {
+      await action(values);
+      setIsSuccess(true);
+    } catch {
+      setIsError(true);
+    }
   };
 
   return (
     <FormProvider {...methods}>
+      {isSuccess && <TopNotificationBanner status="success">{t('success_message')}</TopNotificationBanner>}
+      {isError && <TopNotificationBanner status="error">{t('error_message')}</TopNotificationBanner>}
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         {Object.keys(errors).length > 0 && (
           <ErrorSummary
