@@ -13,7 +13,7 @@ type ErrorSummaryProps = {
 
 export function ErrorSummary(props: ErrorSummaryProps) {
   const {
-    title,
+    title = 'There is a problem',
     description,
     errorList,
     disableAutoFocus,

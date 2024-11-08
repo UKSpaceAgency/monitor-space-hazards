@@ -71,6 +71,7 @@ const ThresholdsSettingsForm = ({ currentSettings, children }: ThresholdsSetting
         action={handleFormSubmit}
         defaultValues={defaultValues}
         schema={schema}
+        i18path="Thresholds_settings"
       >
         <Table>
           <TableHead>
@@ -81,19 +82,19 @@ const ThresholdsSettingsForm = ({ currentSettings, children }: ThresholdsSetting
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell className="align-center"><Label className="font-bold mb-0" htmlFor="poc_field">{t('probability_of_collision')}</Label></TableCell>
+              <TableCell className="align-center"><Label className="font-bold mb-0" htmlFor="poc_field">{t('PROBABILITY_OF_COLLISION')}</Label></TableCell>
               <TableCell><FormInput id="poc_field" name="PROBABILITY_OF_COLLISION" className="mb-0" type="number" suffix="%" step={0.001} /></TableCell>
             </TableRow>
             <TableRow>
-              <TableCell className="align-center"><Label className="font-bold mb-0" htmlFor="total_miss_distance">{t('total_miss_distance')}</Label></TableCell>
+              <TableCell className="align-center"><Label className="font-bold mb-0" htmlFor="total_miss_distance">{t('TOTAL_MISS_DISTANCE')}</Label></TableCell>
               <TableCell><FormInput id="total_miss_distance" name="TOTAL_MISS_DISTANCE" className="mb-0" type="number" suffix="m" /></TableCell>
             </TableRow>
             <TableRow>
-              <TableCell className="align-center"><Label className="font-bold mb-0" htmlFor="total_radial_distance">{t('total_radial_distance')}</Label></TableCell>
+              <TableCell className="align-center"><Label className="font-bold mb-0" htmlFor="total_radial_distance">{t('MEAN_RADIAL_MISS_DISTANCE')}</Label></TableCell>
               <TableCell><FormInput id="total_radial_distance" name="MEAN_RADIAL_MISS_DISTANCE" className="mb-0" type="number" suffix="m" /></TableCell>
             </TableRow>
             <TableRow>
-              <TableCell className="align-center"><Label className="font-bold mb-0" htmlFor="time_to_conjunction">{t('time_to_conjunction')}</Label></TableCell>
+              <TableCell className="align-center"><Label className="font-bold mb-0" htmlFor="time_to_conjunction">{t('TIME_TO_EVENT')}</Label></TableCell>
               <TableCell><FormInput id="time_to_conjunction" name="TIME_TO_EVENT" className="mb-0" type="number" suffix="hours" /></TableCell>
             </TableRow>
           </TableBody>

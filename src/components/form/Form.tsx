@@ -1,6 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslations } from 'next-intl';
 import type { ReactNode } from 'react';
 import { useEffect } from 'react';
 import type {
@@ -22,6 +23,7 @@ export type FormProps<T extends object> = {
   errors?: {
     [key: string]: unknown;
   };
+  i18path: keyof IntlMessages['Forms'];
   children: ReactNode;
 };
 
@@ -31,7 +33,10 @@ const Form = <T extends object>({
   errors: responseErrors,
   children,
   action,
+  i18path,
 }: FormProps<T>) => {
+  const t = useTranslations(`Forms.${i18path}`);
+
   const methods = useForm({
     defaultValues,
     resolver: schema ? zodResolver(schema) : undefined,
@@ -65,7 +70,7 @@ const Form = <T extends object>({
           <ErrorSummary
             errorList={Object.entries(errors).map(([key, value]) => ({
               href: `#${key}`,
-              children: `${key}: ${value?.message}`,
+              children: `${t(key as any)}: ${value?.message}`,
             }))}
           />
         )}
