@@ -156,6 +156,13 @@
     "title": "Data Privacy Notice",
     "button": "Download data privacy notice"
   },
+  "Credentials": {
+    "title": "Credentials for API authentication",
+    "client_id": "Client ID",
+    "copy_client_id_button": "Copy Client ID to clipboard",
+    "client_secret": "Client Secret",
+    "copy_client_secret_button": "Copy Client Secret to clipboard"
+  },
   "SatellitesPage": {
     "title": "UK-licensed satellites",
     "search_bar": {
