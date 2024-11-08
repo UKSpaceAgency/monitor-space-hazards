@@ -217,7 +217,13 @@
     "add_new_user": "Add new user"
   },
   "AnalysisUploadLog": {
-    "title": "UKSA analysis uploads"
+    "title": "UKSA analysis uploads",
+    "description": "View all UKSA analysis uploaded to Monitor Space Hazards for UK conjunction events.",
+    "help": {
+      "title": "Help with this table",
+      "description1": "Select the file to view the analysis.",
+      "description2": "Select delete to permanently remove the analysis from the service."
+    }
   },
   "SatellitesPage": {
     "title": "UK-licensed satellites",
@@ -240,6 +246,12 @@
       "types": {
         "satellites": "UK-licensed satellites"
       }
+    },
+    "AnalysisData": {
+      "date": "Date",
+      "user_email": "User email",
+      "event_id": "Event ID",
+      "file_uploaded": "File uploaded"
     }
   },
   "Forms": {
