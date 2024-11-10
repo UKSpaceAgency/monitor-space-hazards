@@ -1,8 +1,6 @@
-'use client';
-
 import { z } from 'zod';
 
-export const schema = z.object({
+export const thresholdsSettingsFormSchema = z.object({
   PROBABILITY_OF_COLLISION: z.number({
     invalid_type_error: 'Enter a positive number.',
   }).positive({
@@ -26,3 +24,5 @@ export const schema = z.object({
     message: 'Must be a positive number.',
   }),
 });
+
+export type ThresholdsSettingsFormSchema = z.infer<typeof thresholdsSettingsFormSchema>;

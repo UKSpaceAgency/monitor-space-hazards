@@ -2,15 +2,16 @@
 
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { useFormState } from 'react-hook-form';
+import type { UseFormRegister } from 'react-hook-form';
 
-import { FormCheckboxes } from '@/components/form/FormCheckboxes';
+import type { TypeNotificationSettings } from '@/__generated__/data-contracts';
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
+import Checkboxes from '@/ui/checkboxes/checkboxes';
 
-function Option({ name, label }: { name: string; label: string }) {
+function Option({ name, label, register }: { name: keyof TypeNotificationSettings; label: string; register: UseFormRegister<TypeNotificationSettings> }) {
   return (
-    <FormCheckboxes
+    <Checkboxes
       name={name}
       legend={label}
       items={[
@@ -18,37 +19,45 @@ function Option({ name, label }: { name: string; label: string }) {
           id: `${name}_email`,
           children: 'Email',
           value: 'EMAIL',
+          ...register(name),
         },
         {
           id: `${name}_sms`,
           children: 'Text',
           value: 'SMS',
+          ...register(name),
         },
       ]}
     />
   );
 }
 
-const NotificationSettingsFormContent = () => {
+type NotificationSettingsFormContentProps = {
+  isSubmitting: boolean;
+  register: UseFormRegister<TypeNotificationSettings>;
+};
+
+const NotificationSettingsFormContent = ({ isSubmitting, register }: NotificationSettingsFormContentProps) => {
   const t = useTranslations('Forms.Notification_settings');
   const tCommon = useTranslations('Common');
-
-  const { isSubmitting } = useFormState();
 
   return (
     <div>
       <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
       <Option
+        register={register}
         name="on_event_created"
         label={t('on_event_created')}
       />
       <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
       <Option
+        register={register}
         name="on_event_updated"
         label={t('on_event_updated')}
       />
       <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
       <Option
+        register={register}
         name="on_analysis_uploaded"
         label={t('on_analysis_uploaded')}
       />

@@ -2,18 +2,24 @@
 
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { useFormState } from 'react-hook-form';
+import type { FieldErrors, UseFormRegister } from 'react-hook-form';
 
-import { FormInput } from '@/components/form/FormInput';
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
+import Input from '@/ui/input/input';
 import Label from '@/ui/label/label';
 import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
+import type { ThresholdsSettingsFormSchema } from '@/validations/thresholdsSettingsFormSchema';
 
-const ThresholdsSettingsFormContent = () => {
+type ThresholdsSettingsFormContentProps = {
+  isSubmitting: boolean;
+  register: UseFormRegister<ThresholdsSettingsFormSchema>;
+  errors: FieldErrors<ThresholdsSettingsFormSchema>;
+};
+
+const ThresholdsSettingsFormContent = ({ isSubmitting, register, errors }: ThresholdsSettingsFormContentProps) => {
   const t = useTranslations('Forms.Thresholds_settings');
   const tCommon = useTranslations('Common');
-  const { isSubmitting } = useFormState();
 
   return (
     <div>
@@ -27,19 +33,19 @@ const ThresholdsSettingsFormContent = () => {
         <TableBody>
           <TableRow>
             <TableCell className="align-center"><Label className="font-bold mb-0" htmlFor="poc_field">{t('PROBABILITY_OF_COLLISION')}</Label></TableCell>
-            <TableCell><FormInput id="poc_field" name="PROBABILITY_OF_COLLISION" className="mb-0" type="number" suffix="%" step={0.001} /></TableCell>
+            <TableCell><Input id="poc_field" {...register('PROBABILITY_OF_COLLISION', { valueAsNumber: true })} className="mb-0" type="number" suffix="%" step={0.001} error={errors.PROBABILITY_OF_COLLISION?.message} /></TableCell>
           </TableRow>
           <TableRow>
             <TableCell className="align-center"><Label className="font-bold mb-0" htmlFor="total_miss_distance">{t('TOTAL_MISS_DISTANCE')}</Label></TableCell>
-            <TableCell><FormInput id="total_miss_distance" name="TOTAL_MISS_DISTANCE" className="mb-0" type="number" suffix="m" /></TableCell>
+            <TableCell><Input id="total_miss_distance" {...register('TOTAL_MISS_DISTANCE', { valueAsNumber: true })} className="mb-0" type="number" suffix="m" error={errors.TOTAL_MISS_DISTANCE?.message} /></TableCell>
           </TableRow>
           <TableRow>
             <TableCell className="align-center"><Label className="font-bold mb-0" htmlFor="total_radial_distance">{t('MEAN_RADIAL_MISS_DISTANCE')}</Label></TableCell>
-            <TableCell><FormInput id="total_radial_distance" name="MEAN_RADIAL_MISS_DISTANCE" className="mb-0" type="number" suffix="m" /></TableCell>
+            <TableCell><Input id="total_radial_distance" {...register('MEAN_RADIAL_MISS_DISTANCE', { valueAsNumber: true })} className="mb-0" type="number" suffix="m" error={errors.MEAN_RADIAL_MISS_DISTANCE?.message} /></TableCell>
           </TableRow>
           <TableRow>
             <TableCell className="align-center"><Label className="font-bold mb-0" htmlFor="time_to_conjunction">{t('TIME_TO_EVENT')}</Label></TableCell>
-            <TableCell><FormInput id="time_to_conjunction" name="TIME_TO_EVENT" className="mb-0" type="number" suffix="hours" /></TableCell>
+            <TableCell><Input id="time_to_conjunction" {...register('TIME_TO_EVENT', { valueAsNumber: true })} className="mb-0" type="number" suffix="hours" error={errors.TIME_TO_EVENT?.message} /></TableCell>
           </TableRow>
         </TableBody>
       </Table>

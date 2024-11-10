@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import type { InputHTMLAttributes, ReactNode } from 'react';
-import { forwardRef } from 'react';
+import { forwardRef, useId } from 'react';
 
 export type RadioProps = {
   hint?: ReactNode;
@@ -11,7 +11,6 @@ export type RadioProps = {
 export const Radio = forwardRef<HTMLInputElement, RadioProps>(
   (
     {
-      id,
       hint,
       conditional,
       smaller,
@@ -21,6 +20,8 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
     }: RadioProps,
     ref,
   ) => {
+    const id = useId();
+
     return (
       <>
         <div className={clsx('govuk-radios__item', className)}>
@@ -28,11 +29,11 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
             ref={ref}
             className="govuk-radios__input"
             type="radio"
-            id={id}
+            id={props.id ?? id}
             {...props}
           />
           <label
-            htmlFor={id}
+            htmlFor={props.id ?? id}
             className={clsx('govuk-label', 'govuk-radios__label')}
           >
             {children}

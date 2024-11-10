@@ -174,6 +174,10 @@
     "title": "Choose your notification settings",
     "description": "<p>New event notifications will be collated and sent in one email and/or text every 12 hours.</p><p>Choose which notifications you wish to receive. Uncheck boxes where you do not wish to receive notifications.</p>"
   },
+  "AddNewUser": {
+    "title": "Add a new user",
+    "description": "<p>Add a new user to join your organisation by entering the details below. New users will receive an invitation to the email address specified.</p>"
+  },
   "SatellitesPage": {
     "title": "UK-licensed satellites",
     "search_bar": {
@@ -214,6 +218,24 @@
       "on_event_created": "New conjunction event crosses your thresholds",
       "on_event_updated": "Updated conjunction event crosses your thresholds",
       "on_analysis_uploaded": "New UKSA event analysis uploaded"
+    },
+    "Add_new_user": {
+      "success_message": "<p>User has been added to {organization}.</p><p>They will be sent an invitation email to the address provided to finish setting up their account.</p>",
+      "success_message_only_admins": "<p>You can edit the new user's settings to select the notifications they receive.</p>",
+      "success_message_edit_settings_button": "Edit user alert settings",
+      "success_message_return_button": "Go to organisation",
+      "error_message": "Something went wrong!",
+      "organization_id": "Organisation",
+      "first_name": "First name",
+      "last_name": "Last name",
+      "email": "Email address",
+      "phone_number": "Phone number",
+      "select_account_type": "Select an account type",
+      "select_account_type_hint": "What type of access will this user require to Monitor Space Hazards?",
+      "role": "Role",
+      "help_summary": "What can these accounts do?",
+      "help_content": "<p><b>Admins</b> can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site. Administrators can also view all user accounts for an organisation, and can add new users, and change or delete existing users.</p><p><b>Operators</b> can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site.</p><p><b>Users</b> can view information on their organisation's satellites and the upcoming conjunction events involving them.</p>",
+      "submit": "Add user"
     }
   },
   "Components": {

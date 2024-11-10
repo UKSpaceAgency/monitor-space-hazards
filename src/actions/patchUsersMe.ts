@@ -8,8 +8,7 @@ import Api from '@/libs/Api';
 import { REVALIDATION_TAGS } from './tags';
 
 export async function patchUsersMe(params: TypeUserUpdate) {
-  const { data } = await Api.patchUsersMe(params);
-
+  const data = await Api.patchUsersMe(params);
   revalidateTag(REVALIDATION_TAGS.GET_USERS_ME);
-  return { data };
+  return data;
 };
