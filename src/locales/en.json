@@ -178,6 +178,44 @@
     "title": "Add a new user",
     "description": "<p>Add a new user to join your organisation by entering the details below. New users will receive an invitation to the email address specified.</p>"
   },
+  "Organisations": {
+    "title": "Organisations",
+    "summary": {
+      "total_orgs": "Total number of organisations",
+      "total_sats": "Total number of satellites"
+    },
+    "table": {
+      "organisation": "Organisaton",
+      "registred_users": "Number of registered satellites",
+      "registred_satellites": "Number of registered users",
+      "date_added": "Date account added"
+    }
+  },
+  "Organisation": {
+    "summary": {
+      "operator_information": "Operator Information",
+      "uk_satellites": "Number of UK-licensed satellites",
+      "users": "Number of registered users"
+    },
+    "satellites_table": {
+      "registered_satellites": "Registered satellites",
+      "commonName": "Common name",
+      "noradId": "NORAD ID",
+      "international_designator": "International designator",
+      "country": "Country",
+      "launchSite": "Launch site",
+      "launchDate": "Launch date"
+    },
+    "users_table": {
+      "registered_users": "Registered users",
+      "name": "Name",
+      "account_type": "Account type",
+      "email": "Email",
+      "phone_number": "Phone number",
+      "registered": "Registered"
+    },
+    "add_new_user": "Add new user"
+  },
   "SatellitesPage": {
     "title": "UK-licensed satellites",
     "search_bar": {

@@ -4,8 +4,14 @@ import Link from 'next/link';
 import type { ReactNode } from 'react';
 
 type Row = {
-  key: ReactNode;
-  value: ReactNode;
+  key: {
+    className?: string;
+    children: ReactNode;
+  };
+  value: {
+    className?: string;
+    children: ReactNode;
+  };
   actions?: LinkProps[];
 };
 
@@ -23,8 +29,8 @@ export function SummaryList({ className, rows }: SummaryListProps) {
           key={index}
           className="govuk-summary-list__row"
         >
-          <dt className="govuk-summary-list__key">{key}</dt>
-          <dd className="govuk-summary-list__value">{value}</dd>
+          <dt className={clsx('govuk-summary-list__key', key.className)}>{key.children}</dt>
+          <dd className={clsx('govuk-summary-list__value', value.className)}>{value.children}</dd>
           {actions && (
             <ul className="govuk-summary-list__actions-list">
               {actions?.map((action, index) => (

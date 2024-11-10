@@ -5,13 +5,13 @@ import { useTranslations } from 'next-intl';
 import type { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 import type { TypeOrganizationOut, TypeUserRole } from '@/__generated__/data-contracts';
-import { AccountType } from '@/libs/Roles';
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
 import Fieldset from '@/ui/fieldset/fieldset';
 import Input from '@/ui/input/input';
 import Radios from '@/ui/radios/radios';
 import Select from '@/ui/select/select';
+import { AccountType } from '@/utils/Roles';
 import type { AddNewUserSchema } from '@/validations/addNewUserSchema';
 
 const roles = {

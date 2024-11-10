@@ -20,7 +20,7 @@ const SatellitesDataTable = async ({ query }: SatellitesDataTableProps) => {
     limit: 50,
   };
 
-  const { data } = await getSatellites(params);
+  const data = await getSatellites(params);
 
   // We need to ask should we donwload with query or not
   const downloadParams: TypeGetSatellitesWithMetadataParams = {

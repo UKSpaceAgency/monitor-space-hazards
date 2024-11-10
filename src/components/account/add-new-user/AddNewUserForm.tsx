@@ -11,9 +11,9 @@ import { postUsers } from '@/actions/postUsers';
 import { FormErrorSummary } from '@/components/form/FormErrorSummary';
 import RichText from '@/components/RichText';
 import { TopNotificationBanner } from '@/components/TopNotificationBanner';
-import { isAgencyUser, isGovUser } from '@/libs/Roles';
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
+import { isAgencyUser, isGovUser } from '@/utils/Roles';
 import type { AddNewUserSchema } from '@/validations/addNewUserSchema';
 
 import { AddNewUserFormContent } from './AddNewUserFormContent';
