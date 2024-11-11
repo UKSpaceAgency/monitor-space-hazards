@@ -182,9 +182,9 @@
     "title": "Manage incident banners",
     "content": "<p>In the case of an incident, the Monitor Space Hazards service will remain live, but it is important to notify all Monitor Space Hazards users.</p><p>Super users are able to display banners that will be visible at the top of each page, warning users that the information presented on Monitor Space Hazards may not be accurate.</p>",
     "Scheduled_banners": {
-      "title": "Scheduled incident banners",
-      "add_new": "Set up new incident banner"
-    }
+      "title": "Scheduled incident banners"
+    },
+    "add_new": "Set up new incident banner"
   },
   "SatellitesPage": {
     "title": "UK-licensed satellites",
@@ -260,6 +260,11 @@
       "help_summary": "What can these accounts do?",
       "help_content": "<p><b>Admins</b> can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site. Administrators can also view all user accounts for an organisation, and can add new users, and change or delete existing users.</p><p><b>Operators</b> can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site.</p><p><b>Users</b> can view information on their organisation's satellites and the upcoming conjunction events involving them.</p>",
       "submit": "Add user"
+    },
+    "Schedule_banner_form": {
+      "select_banner": "Select the incident banner you would like to display",
+      "when_display_banner": "Choose when to display banner",
+      "confirm": "Confirm choices"
     }
   },
   "Components": {
