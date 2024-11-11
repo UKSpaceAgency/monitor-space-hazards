@@ -20,10 +20,10 @@ export default async function AnalysisUploadLog(props: {
   const t = await getTranslations('AnalysisUploadLog');
 
   const searchParams = await props.searchParams;
-  const query = searchParams?.sort_by || 'cdm_external_id';
+  const query = searchParams?.sort_by || 'created_at';
 
   const params: TypeGetAnalysesParams = {
-    sort_by: 'created_at',
+    sort_by: query,
     limit: 50,
   };
 
