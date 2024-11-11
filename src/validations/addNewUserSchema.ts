@@ -1,6 +1,9 @@
 import parsePhoneNumber from 'libphonenumber-js';
 import { z } from 'zod';
 
+import { AccountType } from '@/libs/Roles';
+import { getZodEnumFromObjectKeys } from '@/utils/Zod';
+
 export const addNewUserSchema = z.object({
   organization_id: z.string({
     invalid_type_error: 'Field is required.',
@@ -8,7 +11,7 @@ export const addNewUserSchema = z.object({
   email: z.string().email('Must be correct email format'),
   first_name: z.string().min(1, 'Field is required.'),
   last_name: z.string().min(1, 'Field is required.'),
-  role: z.string({
+  role: getZodEnumFromObjectKeys<typeof AccountType>(AccountType, {
     invalid_type_error: 'Field is required.',
   }),
   phone_number: z.string().transform((value, ctx) => {

@@ -9,7 +9,6 @@ export async function patchNotificationSettings(formData: TypeNotificationSettin
     const { data } = await patchUsersMe({ notification_settings: formData });
 
     return {
-      errors: null,
       data,
     };
   } catch {
@@ -18,7 +17,6 @@ export async function patchNotificationSettings(formData: TypeNotificationSettin
         path: 'root',
         message: 'An unexpected error occurred.',
       }],
-      data: null,
     };
   }
 };
