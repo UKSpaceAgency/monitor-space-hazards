@@ -22,7 +22,6 @@ export async function postUsers(formData: AddNewUserSchema) {
     if (error instanceof z.ZodError) {
       return {
         errors: transformZodErrors(error),
-        data: null,
       };
     }
     if (error instanceof Response) {
@@ -34,7 +33,6 @@ export async function postUsers(formData: AddNewUserSchema) {
             path: 'email',
             message: detail,
           }],
-          data: null,
         };
       }
     }
@@ -43,7 +41,6 @@ export async function postUsers(formData: AddNewUserSchema) {
         path: 'root',
         message: 'An unexpected error occurred.',
       }],
-      data: null,
     };
   }
 };
