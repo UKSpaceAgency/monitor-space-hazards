@@ -23,7 +23,7 @@ export default async function AnalysisUploadLog(props: {
   const query = searchParams?.sort_by || 'cdm_external_id';
 
   const params: TypeGetAnalysesParams = {
-    sort_by: 'event_short_id',
+    sort_by: 'created_at',
     limit: 50,
   };
 

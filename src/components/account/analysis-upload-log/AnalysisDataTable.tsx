@@ -1,4 +1,6 @@
 'use client';
+import { useQueryClient } from '@tanstack/react-query';
+import saveAs from 'file-saver';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { type SyntheticEvent, useCallback, useState } from 'react';
@@ -9,10 +11,12 @@ import { getAnalyses } from '@/actions/getAnalyses';
 import { getAnalysesAnalysisId } from '@/actions/getAnalysisId';
 import InfiniteTable from '@/components/InfiniteTable';
 import { formatDateTime } from '@/libs/Date';
+import { createJSON } from '@/libs/File';
 import type { TranslatedColumnDef } from '@/types';
 import Button from '@/ui/button/button';
 import NotificationBanner from '@/ui/notification-banner/notification-banner';
 import Tag from '@/ui/tag/tag';
+import { QUERY_KEYS } from '@/utils/QueryKeys';
 
 type AnalysisDataTableProps = {
   data: TypeAnalysisOut[];
@@ -21,6 +25,7 @@ type AnalysisDataTableProps = {
 
 const AnalysisDataTable = ({ data, params }: AnalysisDataTableProps) => {
   const tCommon = useTranslations('Common');
+  const queryClient = useQueryClient();
 
   const [fileToDelete, setFile] = useState<string | null>(null);
   const [isFileDeleted, setFileDeleted] = useState(false);
@@ -40,21 +45,15 @@ const AnalysisDataTable = ({ data, params }: AnalysisDataTableProps) => {
         return;
       }
 
-      const blob = new Blob([JSON.stringify(data)], {
-        type: 'text/json',
-      });
-        // Create an anchor element and dispatch a click event on it
-        // to trigger a download
-      const a = document.createElement('a');
-      a.download = `${id}.json`;
-      a.href = window.URL.createObjectURL(blob);
-      const clickEvt = new MouseEvent('click', {
-        view: window,
-        bubbles: true,
-        cancelable: true,
-      });
-      a.dispatchEvent(clickEvt);
-      a.remove();
+      const blob = createJSON(data);
+      saveAs(blob, `${id}.json`);
+
+      // gaEvent({
+      //   action: "download",
+      //   format: "json",
+      //   page_path: router.pathname,
+      //   table_name: "analyses"
+      // })
     },
     [],
   );
@@ -78,12 +77,16 @@ const AnalysisDataTable = ({ data, params }: AnalysisDataTableProps) => {
 
     try {
       await deleteAnalysesAnalysisId(fileToDelete);
+      // We need to clear cache in InfiniteTable
+      await queryClient.resetQueries({
+        queryKey: [QUERY_KEYS.Analyses],
+      });
 
       setFileDeleted(true);
     } catch {
       setFileDeleted(false);
     }
-  }, [fileToDelete]);
+  }, [fileToDelete, queryClient]);
 
   const cancel = () => {
     setFile(null);
@@ -193,6 +196,7 @@ const AnalysisDataTable = ({ data, params }: AnalysisDataTableProps) => {
         params={params}
         columns={columns}
         fetcher={getAnalyses}
+        queryKeys={[QUERY_KEYS.Analyses]}
       />
     </>
   );
