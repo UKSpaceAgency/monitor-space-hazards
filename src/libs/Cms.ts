@@ -3,8 +3,8 @@ import { createBucketClient } from '@cosmicjs/sdk';
 import { env } from './Env';
 
 const bucket = createBucketClient({
-  bucketSlug: env.COSMIC_BUCKET_SLUG,
-  readKey: env.COSMIC_READ_KEY,
+  bucketSlug: env.COSMIC_BUCKET_SLUG || '',
+  readKey: env.COSMIC_READ_KEY || '',
 });
 
 type Page = {
