@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 'use client';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
@@ -96,11 +95,13 @@ const AnalysisDataTable = ({ data, params }: AnalysisDataTableProps) => {
       accessorKey: 'createdAt',
       header: 'AnalysisData.date',
       cell: ({ getValue }) => formatDateTime(getValue() as string),
+      size: 150,
     },
     {
       id: 'uploadedByEmail',
       accessorKey: 'uploadedByEmail',
       header: 'AnalysisData.user_email',
+      size: 300,
     },
     {
       id: 'eventShortId',
@@ -114,25 +115,27 @@ const AnalysisDataTable = ({ data, params }: AnalysisDataTableProps) => {
           </Link>
         );
       },
+      size: 150,
     },
     {
-      id: 'id',
+      id: 'uploadedById',
       accessorKey: 'id',
       header: 'AnalysisData.file_uploaded',
       cell: ({ getValue }) => {
         const value = getValue() as string;
         return (
-          <a
+          <Link
             href="#"
             className="govuk-link"
             data-id={value}
             onClick={handleDownload}
           >
             {value}
-            .json
-          </a>
+            {tCommon('json')}
+          </Link>
         );
       },
+      size: 300,
     },
     {
       id: 'isActive',
@@ -143,18 +146,20 @@ const AnalysisDataTable = ({ data, params }: AnalysisDataTableProps) => {
         const value = getValue() as string;
         return value === null || value
           ? (
-              <a
-                href="#"
-                className="govuk-link"
-                data-id={row?.original.id}
-                onClick={handleDelete}
-              >
-                Delete
-                <span className="govuk-visually-hidden">
-                  analysis for
-                  {row?.original?.eventShortId}
-                </span>
-              </a>
+              <div className="text-right mr-2">
+                <Link
+                  href="#"
+                  className="govuk-link"
+                  data-id={row?.original.id}
+                  onClick={handleDelete}
+                >
+                  Delete
+                  <span className="govuk-visually-hidden">
+                    analysis for
+                    {row?.original?.eventShortId}
+                  </span>
+                </Link>
+              </div>
             )
           : (
               <Tag className="govuk-tag--red">Deleted</Tag>
@@ -168,10 +173,10 @@ const AnalysisDataTable = ({ data, params }: AnalysisDataTableProps) => {
       {fileToDelete && !isFileDeleted && (
         <NotificationBanner status="error" heading={tCommon('areYouSureYouWantToDeleteJson', { fileToDelete })}>
           <div className="govuk-button-group">
-            <Button element="button" className="govuk-button--warning" onClick={confirmDelete}>
+            <Button className="govuk-button--warning" onClick={confirmDelete}>
               {tCommon('yesDelete')}
             </Button>
-            <Button element="button" className="govuk-button--secondary" onClick={cancel}>
+            <Button className="govuk-button--secondary" onClick={cancel}>
               {tCommon('cancel')}
             </Button>
           </div>
