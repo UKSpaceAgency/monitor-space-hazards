@@ -26,7 +26,7 @@ export default async function AnalysisUploadLog(props: {
       <h1 className="govuk-heading-xl">{t('title')}</h1>
       <p className="govuk-body">{t('description')}</p>
       <Suspense key={query} fallback={<Spinner />}>
-        <AnalysisDataTable query={query} />
+        <AnalysisDataTable />
       </Suspense>
       <Details summary={t('help.title')}>
         <p>{t('help.description1')}</p>

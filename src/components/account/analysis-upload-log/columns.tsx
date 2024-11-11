@@ -7,8 +7,8 @@ import type { TranslatedColumnDef } from '@/types';
 
 export const columns: TranslatedColumnDef<TypeAnalysisOut>[] = [
   {
-    id: 'commonName',
-    accessorKey: 'commonName',
+    id: 'createdAt',
+    accessorKey: 'createdAt',
     header: 'AnalysisData.date',
     size: 150,
     cell: ({ getValue, row }) => (
@@ -22,21 +22,21 @@ export const columns: TranslatedColumnDef<TypeAnalysisOut>[] = [
     ),
   },
   {
-    id: 'user_email',
-    accessorKey: 'user_email',
+    id: 'uploadedByEmail',
+    accessorKey: 'uploadedByEmail',
     header: 'AnalysisData.user_email',
     size: 100,
   },
   {
-    id: 'event_id',
-    accessorKey: 'event_id',
+    id: 'eventId',
+    accessorKey: 'eventId',
     header: 'AnalysisData.event_id',
     size: 100,
   },
   {
-    id: `file_uploaded`,
-    accessorKey: `metadata.futureEventsCount`,
+    id: `isActive`,
+    accessorKey: `isActive`,
     header: 'AnalysisData.file_uploaded',
-    enableSorting: false,
+    size: 100,
   },
 ];
