@@ -19,8 +19,8 @@ export const env = createEnv({
     AUTH0_AUDIENCE: z.string(),
     AUTH0_CLIENT_ID: z.string(),
     AUTH0_CLIENT_SECRET: z.string(),
-    COSMIC_BUCKET_SLUG: z.string(),
-    COSMIC_READ_KEY: z.string(),
+    COSMIC_BUCKET_SLUG: z.string().optional(),
+    COSMIC_READ_KEY: z.string().optional(),
   },
   shared: {
     NODE_ENV: z
