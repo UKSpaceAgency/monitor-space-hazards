@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 
-import type { TypeAnalysesSortBy } from '@/__generated__/data-contracts';
+import type { TypeAnalysesSortBy, TypeGetAnalysesParams } from '@/__generated__/data-contracts';
+import { getAnalyses } from '@/actions/getAnalyses';
 import { AnalysisDataTable } from '@/components/account/analysis-upload-log/AnalysisDataTable';
 import Details from '@/ui/details/details';
 import Spinner from '@/ui/spinner/spinner';
@@ -21,12 +22,19 @@ export default async function AnalysisUploadLog(props: {
   const searchParams = await props.searchParams;
   const query = searchParams?.sort_by || 'cdm_external_id';
 
+  const params: TypeGetAnalysesParams = {
+    sort_by: 'event_short_id',
+    limit: 50,
+  };
+
+  const { data } = await getAnalyses(params);
+
   return (
     <div>
       <h1 className="govuk-heading-xl">{t('title')}</h1>
       <p className="govuk-body">{t('description')}</p>
       <Suspense key={query} fallback={<Spinner />}>
-        <AnalysisDataTable />
+        <AnalysisDataTable data={data} params={params} />
       </Suspense>
       <Details summary={t('help.title')}>
         <p>{t('help.description1')}</p>

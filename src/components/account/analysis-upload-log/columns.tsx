@@ -3,6 +3,7 @@
 import Link from 'next/link';
 
 import type { TypeAnalysisOut } from '@/__generated__/data-contracts';
+import { formatDateTime } from '@/libs/Date';
 import type { TranslatedColumnDef } from '@/types';
 
 export const columns: TranslatedColumnDef<TypeAnalysisOut>[] = [
@@ -10,33 +11,33 @@ export const columns: TranslatedColumnDef<TypeAnalysisOut>[] = [
     id: 'createdAt',
     accessorKey: 'createdAt',
     header: 'AnalysisData.date',
-    size: 150,
-    cell: ({ getValue, row }) => (
-      <Link
-        href={`/account/analysis_upload_log/${row?.original.cdmExternalId}`}
-        passHref
-        className="govuk-link"
-      >
-        {getValue() as string}
-      </Link>
-    ),
+    cell: ({ getValue }) => formatDateTime(getValue() as string),
   },
   {
     id: 'uploadedByEmail',
     accessorKey: 'uploadedByEmail',
     header: 'AnalysisData.user_email',
-    size: 100,
+  },
+  {
+    id: 'eventShortId',
+    accessorKey: 'eventShortId',
+    header: 'AnalysisData.event_id',
+    cell: ({ getValue }) => {
+      const value = getValue() as string;
+      return (
+        <Link href={`/conjunctions/${value}`} passHref className="govuk-link">
+          {value}
+        </Link>
+      );
+    },
   },
   {
     id: 'eventId',
     accessorKey: 'eventId',
-    header: 'AnalysisData.event_id',
-    size: 100,
+    header: 'AnalysisData.file_uploaded',
   },
   {
-    id: `isActive`,
-    accessorKey: `isActive`,
-    header: 'AnalysisData.file_uploaded',
-    size: 100,
+    id: 'Delete',
+    enableSorting: false,
   },
 ];
