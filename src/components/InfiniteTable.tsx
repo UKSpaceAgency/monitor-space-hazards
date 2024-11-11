@@ -12,7 +12,7 @@ import type { TranslatedColumnDef } from '@/types';
 type InfiniteTableProps<T extends RowData, K extends object> = {
   initialData: T[];
   params: K;
-  fetcher: (params: K) => Promise<{ data: T[] }>;
+  fetcher: (params: K) => Promise<T[]>;
   columns: TranslatedColumnDef<T>[];
 };
 
@@ -25,19 +25,19 @@ const InfiniteTable = <T extends RowData, K extends object>({ initialData, param
       return await fetcher({ ...params, offset: pageParam, sort_order: sortOrder, sort_by: sortBy });
     },
     initialPageParam: 0,
-    initialData: { pages: [{ data: initialData }], pageParams: [0] },
+    initialData: { pages: [initialData], pageParams: [0] },
     getNextPageParam: (lastPage, _, lastPageParam) => {
       const limit = 'limit' in params && typeof params.limit === 'number' ? params.limit : 50;
-      if (lastPage.data.length < limit) {
+      if (lastPage.length < limit) {
         return undefined;
       }
-      return lastPageParam + lastPage.data.length;
+      return lastPageParam + lastPage.length;
     },
     placeholderData: prev => prev,
   });
 
   const flatData = useMemo(
-    () => data?.pages?.flatMap(page => page.data) ?? [],
+    () => data?.pages?.flatMap(page => page) ?? [],
     [data],
   );
 

@@ -5,9 +5,9 @@ import { getTranslations } from 'next-intl/server';
 
 import { getUsersMe } from '@/actions/getUsersMe';
 import { patchUsersMe } from '@/actions/patchUsersMe';
-import { AccountType } from '@/libs/Roles';
 import Button from '@/ui/button/button';
 import SummaryList from '@/ui/summary-list/summary-list';
+import { AccountType } from '@/utils/Roles';
 
 export const metadata: Metadata = {
   title: 'View your account details',
@@ -41,20 +41,36 @@ export default async function ContactAndOrganisationInformation() {
 
       <SummaryList rows={[
         {
-          key: t('keys.organisation'),
-          value: data.organization_name,
+          key: {
+            children: t('keys.organisation'),
+          },
+          value: {
+            children: data.organization_name,
+          },
         },
         {
-          key: t('keys.user_type'),
-          value: AccountType[data.role || 'AGENCY_ADMIN'],
+          key: {
+            children: t('keys.user_type'),
+          },
+          value: {
+            children: AccountType[data.role || 'AGENCY_ADMIN'],
+          },
         },
         {
-          key: t('keys.email_address'),
-          value: data.email,
+          key: {
+            children: t('keys.email_address'),
+          },
+          value: {
+            children: data.email,
+          },
         },
         {
-          key: t('keys.phone_number'),
-          value: data.phone_number,
+          key: {
+            children: t('keys.phone_number'),
+          },
+          value: {
+            children: data.phone_number,
+          },
         },
       ]}
       />

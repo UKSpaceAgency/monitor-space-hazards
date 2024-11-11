@@ -4,8 +4,8 @@ import { getTranslations } from 'next-intl/server';
 
 import { getSession } from '@/actions/getSession';
 import { getUsersMe } from '@/actions/getUsersMe';
-import { isAgencyUser, isGovUser, isOrgAdmin, isSuperAdmin } from '@/libs/Roles';
 import TaskList from '@/ui/task-list/task-list';
+import { isAgencyUser, isGovUser, isOrgAdmin, isSuperAdmin } from '@/utils/Roles';
 
 export const metadata: Metadata = {
   title: 'Your account information',

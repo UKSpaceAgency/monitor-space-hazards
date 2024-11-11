@@ -1,7 +1,7 @@
 import parsePhoneNumber from 'libphonenumber-js';
 import { z } from 'zod';
 
-import { AccountType } from '@/libs/Roles';
+import { AccountType } from '@/utils/Roles';
 import { getZodEnumFromObjectKeys } from '@/utils/Zod';
 
 export const addNewUserSchema = z.object({
