@@ -298,6 +298,11 @@
   },
   "Common": {
     "return": "Return to {to}",
-    "save_and_continue": "Save and continue"
+    "save_and_continue": "Save and continue",
+    "yesDelete": "Yes, delete",
+    "cancel": "Cancel",
+    "areYouSureYouWantToDeleteJson": "Are you sure you want to delete file {fileToDelete}.json?",
+    "jsonHasBeenDeleted": ".json has been deleted",
+    "json": ".json"
   }
 }
