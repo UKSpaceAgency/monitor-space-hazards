@@ -30,7 +30,7 @@ export default async function OrganisationPage({
   const t = await getTranslations('Organisation');
   const tCommon = await getTranslations('Common');
 
-  const id = (await params).id;
+  const { id } = await params;
   const organisation = await getOrganisation(id);
 
   return (

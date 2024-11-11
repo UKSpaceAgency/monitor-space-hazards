@@ -31,14 +31,12 @@ export async function patchThresholds(formData: ThresholdsSettingsFormSchema) {
     const { data } = await patchUsersMe({ notification_thresholds: notificationThresholds });
 
     return {
-      errors: null,
       data,
     };
   } catch (error) {
     if (error instanceof z.ZodError) {
       return {
         errors: transformZodErrors(error),
-        data: null,
       };
     }
     return {
@@ -46,7 +44,6 @@ export async function patchThresholds(formData: ThresholdsSettingsFormSchema) {
         path: 'root',
         message: 'An unexpected error occurred.',
       }],
-      data: null,
     };
   }
 };

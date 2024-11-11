@@ -78,7 +78,7 @@ export const getFullCountry = (key: string | null | undefined) => {
     SAUD: 'Saudi Arabia',
     SEAL: 'Sea Launch',
     SING: 'Singapore',
-  };
+  } as const;
 
   if (key in list) {
     return list[key as keyof typeof list];
