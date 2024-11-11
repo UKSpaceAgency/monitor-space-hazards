@@ -17,7 +17,7 @@ export default async function NotificationSettingsPage() {
   return (
     <div>
       <h1 className="govuk-heading-xl">{t('title')}</h1>
-      {t.rich('description')}
+      {t.rich('content')}
       <NotificationSettingsForm defaultValues={defaultValues} />
     </div>
   );

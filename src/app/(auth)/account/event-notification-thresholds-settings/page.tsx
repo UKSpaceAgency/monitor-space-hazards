@@ -23,7 +23,7 @@ export default async function EventNotificationThresholdsSettingsPage() {
   return (
     <div>
       <h1 className="govuk-heading-xl">{t('title')}</h1>
-      {t.rich('description')}
+      {t.rich('content')}
       <ThresholdsSettingsForm defaultValues={defaultValues} />
     </div>
   );

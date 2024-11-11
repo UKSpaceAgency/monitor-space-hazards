@@ -24,7 +24,7 @@ export default async function AddNewUserPage(props: {
   return (
     <div>
       <h1 className="govuk-heading-xl">{t('title')}</h1>
-      {t.rich('description')}
+      {t.rich('content')}
       <AddNewUserForm role={session?.user.role} defaultValues={defaultValues} organizations={organizations} />
     </div>
   );

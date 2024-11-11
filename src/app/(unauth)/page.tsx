@@ -21,7 +21,7 @@ export default function IndexPage() {
         </div>
       </div>
       <h2 className="govuk-heading-m">{t('nsoc.title')}</h2>
-      <p className="govuk-body">{t('nsoc.description')}</p>
+      <p className="govuk-body">{t('nsoc.content')}</p>
       <p className="govuk-body">{t('nsoc.list_title')}</p>
       <ul className="govuk-list govuk-list--bullet">
         <li>{t('nsoc.list_items.track_events')}</li>

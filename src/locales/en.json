@@ -13,7 +13,7 @@
   "IndexPage": {
     "nsoc": {
       "title": "National Space Operations Centre Warning and Protection Services",
-      "description": "National Space Operations Centre (NSpOC) Warning and Protection Services support UK and international partners to manage space risks and hazards.",
+      "content": "National Space Operations Centre (NSpOC) Warning and Protection Services support UK and international partners to manage space risks and hazards.",
       "list_title": "Use this service to:",
       "list_items": {
         "track_events": "Track conjunction events",
@@ -32,7 +32,7 @@
   },
   "DashboardPage": {
     "title": "National Space Operations Centre Warning and Protection Services",
-    "description": "National Space Operations Centre (NSpOC) Warning and Protection Services support UK and international partners to manage space risks and hazards.",
+    "content": "National Space Operations Centre (NSpOC) Warning and Protection Services support UK and international partners to manage space risks and hazards.",
     "services": {
       "live": {
         "title": "Live Services",
@@ -168,15 +168,23 @@
   },
   "EventNotificationThresholdsSettings": {
     "title": "Set your conjunction event notification thresholds",
-    "description": "<p>We will send you notifications when the probability of collision, total miss distance and mean radial miss distance meets threshold and the time to conjunction event is below the threshold you have set.</p><p>You are responsible for the safe operation of your satellites and should choose settings which allow you to do this.</p><p>The default settings are examples of thresholds, not recommendations.</p>"
+    "content": "<p>We will send you notifications when the probability of collision, total miss distance and mean radial miss distance meets threshold and the time to conjunction event is below the threshold you have set.</p><p>You are responsible for the safe operation of your satellites and should choose settings which allow you to do this.</p><p>The default settings are examples of thresholds, not recommendations.</p>"
   },
   "NotificationSettings": {
     "title": "Choose your notification settings",
-    "description": "<p>New event notifications will be collated and sent in one email and/or text every 12 hours.</p><p>Choose which notifications you wish to receive. Uncheck boxes where you do not wish to receive notifications.</p>"
+    "content": "<p>New event notifications will be collated and sent in one email and/or text every 12 hours.</p><p>Choose which notifications you wish to receive. Uncheck boxes where you do not wish to receive notifications.</p>"
   },
   "AddNewUser": {
     "title": "Add a new user",
-    "description": "<p>Add a new user to join your organisation by entering the details below. New users will receive an invitation to the email address specified.</p>"
+    "content": "<p>Add a new user to join your organisation by entering the details below. New users will receive an invitation to the email address specified.</p>"
+  },
+  "IncidentBanners": {
+    "title": "Manage incident banners",
+    "content": "<p>In the case of an incident, the Monitor Space Hazards service will remain live, but it is important to notify all Monitor Space Hazards users.</p><p>Super users are able to display banners that will be visible at the top of each page, warning users that the information presented on Monitor Space Hazards may not be accurate.</p>",
+    "Scheduled_banners": {
+      "title": "Scheduled incident banners",
+      "add_new": "Set up new incident banner"
+    }
   },
   "SatellitesPage": {
     "title": "UK-licensed satellites",
@@ -191,6 +199,22 @@
       "norad_id": "NORAD ID",
       "international_designator": "International designator",
       "upcoming_known_conjunction_events": "Upcoming known conjunction events"
+    },
+    "Incident_banners": {
+      "incident_type": "Incident type",
+      "time_period": "Active time period",
+      "remove": "Remove",
+      "empty": "There are currently no incident banners scheduled for Monitor Space Hazards.",
+      "Remove_confirmation": {
+        "title": "Are you sure you want to remove the banner for \"{title}\" from the site?",
+        "yes": "Yes, remove",
+        "no": "Cancel"
+      },
+      "Success_banner": {
+        "title": "Incident banner for \"Major incident\" has been removed.",
+        "content": "This banner will no longer be displayed on the site.",
+        "button": "View upcoming conjunction events page"
+      }
     },
     "Download": {
       "text": "Download {type}",
