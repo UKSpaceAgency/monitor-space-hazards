@@ -36,10 +36,12 @@ export default async function AnalysisUploadLog(props: {
       <Suspense key={query} fallback={<Spinner />}>
         <AnalysisDataTable data={data} params={params} />
       </Suspense>
-      <Details summary={t('help.title')}>
-        <p>{t('help.description1')}</p>
-        <p>{t('help.description2')}</p>
-      </Details>
+      <div className="mt-2">
+        <Details summary={t('help.title')}>
+          <p>{t('help.description1')}</p>
+          <p>{t('help.description2')}</p>
+        </Details>
+      </div>
     </div>
   );
 }
