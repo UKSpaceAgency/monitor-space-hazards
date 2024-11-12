@@ -23,7 +23,7 @@ const renderTemplate = ({ id, title, content }: TypeBannerMessagesOut) => (
 );
 
 const ScheduleBannerFormTemplate = ({ register, templates }: BannerTemplateProps) => {
-  const t = useTranslations('Forms.Schedule_banner_form');
+  const t = useTranslations('Forms.Schedule_banner');
   return (
     <div>
       <h2 className="app-task-list__section govuk-heading-m">

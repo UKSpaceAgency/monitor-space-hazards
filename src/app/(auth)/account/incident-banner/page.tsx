@@ -1,9 +1,14 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 
 import { ScheduledBanners } from '@/components/account/incident-banners/ScheduledBanners';
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
+
+export const metadata: Metadata = {
+  title: 'Manage incident banners',
+};
 
 export default async function IncidentBannersPage() {
   const t = await getTranslations('IncidentBanners');

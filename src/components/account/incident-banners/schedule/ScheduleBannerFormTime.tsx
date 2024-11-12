@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import type { SyntheticEvent } from 'react';
 import { useEffect, useState } from 'react';
 import type { UseFormResetField, UseFormSetValue, UseFormWatch } from 'react-hook-form';
@@ -16,10 +17,11 @@ type ScheduleBannerFormTimeProps = {
 
 enum ActivateTime {
   NOW,
-  CUSTOM,
+  LATER,
 }
 
 const ScheduleBannerFormTime = ({ setValue, watch, resetField }: ScheduleBannerFormTimeProps) => {
+  const t = useTranslations('Forms.Schedule_banner');
   const [activateTime, setActivateTime] = useState<ActivateTime>(ActivateTime.NOW);
 
   const startDate = watch('broadcastStart');
@@ -46,15 +48,18 @@ const ScheduleBannerFormTime = ({ setValue, watch, resetField }: ScheduleBannerF
 
   return (
     <div>
-      <h2 className="app-task-list__section govuk-heading-m">2. Select the incident banner you would like to display</h2>
+      <h2 className="app-task-list__section govuk-heading-m">
+        2.
+        {t('when_display_banner')}
+      </h2>
       <Radios
         items={[
           {
             name: 'activateTime',
-            children: 'Activate incident banner now',
+            children: t('activate_now'),
             conditional: (
               <p className="govuk-body">
-                The banner will be visible on the site until you remove it.
+                {t('activate_now_help')}
               </p>
             ),
             value: ActivateTime.NOW,
@@ -63,7 +68,7 @@ const ScheduleBannerFormTime = ({ setValue, watch, resetField }: ScheduleBannerF
           },
           {
             name: 'activateTime',
-            children: 'Choose custom time period to display banner for',
+            children: t('activate_later'),
             conditional: (
               <>
                 <DatetimeInput
@@ -80,8 +85,8 @@ const ScheduleBannerFormTime = ({ setValue, watch, resetField }: ScheduleBannerF
                 />
               </>
             ),
-            value: ActivateTime.CUSTOM,
-            checked: activateTime === ActivateTime.CUSTOM,
+            value: ActivateTime.LATER,
+            checked: activateTime === ActivateTime.LATER,
             onChange: onActivateTimeHandler,
 
           },

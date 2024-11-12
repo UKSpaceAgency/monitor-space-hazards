@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 
@@ -18,7 +19,8 @@ type ScheduleBannerFormProps = {
 };
 
 const ScheduleBannerForm = ({ templates, startDate, handleForm }: ScheduleBannerFormProps) => {
-  const t = useTranslations('Forms.Schedule_banner_form');
+  const t = useTranslations('Forms.Schedule_banner');
+  const tCommon = useTranslations('Common');
 
   const { register, handleSubmit, setValue, watch, resetField } = useForm<TypeBannerScheduleIn>({
     defaultValues: {
@@ -40,6 +42,9 @@ const ScheduleBannerForm = ({ templates, startDate, handleForm }: ScheduleBanner
         <Button type="submit">
           {t('confirm')}
         </Button>
+        <Link href="/account">
+          <Button variant="secondary">{tCommon('return', { to: 'account page' })}</Button>
+        </Link>
       </ButtonGroup>
 
     </form>

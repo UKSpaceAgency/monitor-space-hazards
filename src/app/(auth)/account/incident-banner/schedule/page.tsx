@@ -1,9 +1,14 @@
+import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import type { TypeBannerScheduleIn } from '@/__generated__/data-contracts';
 import { ScheduleBannerForm } from '@/components/account/incident-banners/schedule/ScheduleBannerForm';
 import Api from '@/libs/Api';
+
+export const metadata: Metadata = {
+  title: 'Schedule incident banners',
+};
 
 export default async function NewIncidentBannerPage() {
   const t = await getTranslations('IncidentBanners');

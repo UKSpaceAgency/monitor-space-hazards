@@ -186,6 +186,11 @@
     },
     "add_new": "Set up new incident banner"
   },
+  "IncidentBannersConfirm": {
+    "title": "Confirm incident banner settings",
+    "incident_type": "Incident type",
+    "active_time": "Active time period"
+  },
   "Organisations": {
     "title": "Organisations",
     "summary": {
@@ -258,7 +263,7 @@
         "no": "Cancel"
       },
       "Success_banner": {
-        "title": "Incident banner for \"Major incident\" has been removed.",
+        "title": "Incident banner for \"{title}\" has been removed.",
         "content": "This banner will no longer be displayed on the site.",
         "button": "View upcoming conjunction events page"
       }
@@ -314,10 +319,27 @@
       "help_content": "<p><b>Admins</b> can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site. Administrators can also view all user accounts for an organisation, and can add new users, and change or delete existing users.</p><p><b>Operators</b> can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site.</p><p><b>Users</b> can view information on their organisation's satellites and the upcoming conjunction events involving them.</p>",
       "submit": "Add user"
     },
-    "Schedule_banner_form": {
+    "Schedule_banner": {
       "select_banner": "Select the incident banner you would like to display",
       "when_display_banner": "Choose when to display banner",
-      "confirm": "Confirm choices"
+      "activate_now": "Activate incident banner now",
+      "activate_now_help": "The banner will be visible on the site for now.",
+      "activate_later": "Choose custom time period to display banner for",
+      "confirm": "Confirm choices",
+      "display_button": "Display incident banner",
+      "Confirm_banner": {
+        "title": "Are you sure you want to display the banner for  \"{title}\" on the site?",
+        "content": "The banner will be visible to all users of the service until the active time period is over or until you manually remove it.",
+        "yes": "Display incident banner",
+        "no": "Cancel"
+      },
+      "Success_banner": {
+        "title": "The incident banner for \"{title}\" has been set up.",
+        "content": "The banner will be visible to all users of the service between {from} to {to}",
+        "conjunction_events": "View conjunction events page",
+        "upcoming_events": "View upcoming conjunction events page",
+        "manage_incident_banners": "Manage incident banners"
+      }
     }
   },
   "Components": {
