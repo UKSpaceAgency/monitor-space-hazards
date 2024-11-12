@@ -17,23 +17,23 @@ import type { AddNewUserSchema } from '@/validations/addNewUserSchema';
 const roles = {
   AGENCY_SUPERUSER: AccountType,
   AGENCY_APPROVER: AccountType,
-  AGENCY_ADMIN: pick(AccountType, [
-    AccountType.AGENCY_ADMIN,
-    AccountType.AGENCY_USER,
+  AGENCY_ADMIN: pick<Record<TypeUserRole, string>, TypeUserRole>(AccountType, [
+    'AGENCY_ADMIN',
+    'AGENCY_USER',
   ]),
-  AGENCY_ANALYST: pick(AccountType, [
-    AccountType.AGENCY_ADMIN,
-    AccountType.AGENCY_ANALYST,
-    AccountType.AGENCY_USER,
+  AGENCY_ANALYST: pick<Record<TypeUserRole, string>, TypeUserRole>(AccountType, [
+    'AGENCY_ADMIN',
+    'AGENCY_ANALYST',
+    'AGENCY_USER',
   ]),
-  GOVERNMENT_ADMIN: pick(AccountType, [
-    AccountType.GOVERNMENT_ADMIN,
-    AccountType.GOVERNMENT_USER,
+  GOVERNMENT_ADMIN: pick<Record<TypeUserRole, string>, TypeUserRole>(AccountType, [
+    'GOVERNMENT_ADMIN',
+    'GOVERNMENT_USER',
   ]),
-  SATELLITE_OPERATOR_ADMIN: pick(AccountType, [
-    AccountType.SATELLITE_OPERATOR_ADMIN,
-    AccountType.SATELLITE_OPERATOR,
-    AccountType.SATELLITE_OPERATOR_USER,
+  SATELLITE_OPERATOR_ADMIN: pick<Record<TypeUserRole, string>, TypeUserRole>(AccountType, [
+    'SATELLITE_OPERATOR_ADMIN',
+    'SATELLITE_OPERATOR',
+    'SATELLITE_OPERATOR_USER',
   ]),
 };
 
