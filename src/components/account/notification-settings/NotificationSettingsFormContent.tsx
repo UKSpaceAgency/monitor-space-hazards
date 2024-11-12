@@ -23,7 +23,7 @@ function Option({ name, label, register }: { name: keyof TypeNotificationSetting
         },
         {
           id: `${name}_sms`,
-          children: 'Text',
+          children: 'SMS',
           value: 'SMS',
           ...register(name),
         },
