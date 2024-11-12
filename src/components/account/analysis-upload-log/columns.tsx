@@ -1,8 +1,9 @@
+import dayjs from 'dayjs';
 import Link from 'next/link';
 import type { SyntheticEvent } from 'react';
 
 import type { TypeAnalysisOut } from '@/__generated__/data-contracts';
-import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
 

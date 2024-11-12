@@ -16,7 +16,6 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
       smaller,
       className,
       children,
-      checked,
       ...props
     }: RadioProps,
     ref,
@@ -31,7 +30,6 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
             className="govuk-radios__input"
             type="radio"
             id={props.id ?? id}
-            checked={checked}
             {...props}
           />
           <label
@@ -42,10 +40,10 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
           </label>
           {hint && <div className="govuk-hint govuk-radios__hint">{hint}</div>}
         </div>
-        {conditional && checked && (
+        {conditional && (
           <div
             className={clsx('govuk-radios__conditional', {
-              'govuk-radios__conditional--hidden': !checked,
+              'govuk-radios__conditional--hidden': !props.checked,
             })}
           >
             {conditional}

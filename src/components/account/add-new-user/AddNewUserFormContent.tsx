@@ -69,6 +69,7 @@ const AddNewUserFormContent = ({ organizations, isSubmitting, register, role, er
       >
         {role in roles && (
           <Radios
+            name="role"
             id="role"
             hint={t('select_account_type_hint')}
             error={errors.role?.message}

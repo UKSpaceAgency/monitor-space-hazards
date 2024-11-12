@@ -26,7 +26,7 @@ export default function DashboardPage() {
       </div>
       <div className="mb-12">
         <h2 className="govuk-heading-m">{t('title')}</h2>
-        <p className="govuk-body mb-0">{t('content')}</p>
+        <p className="govuk-body mb-0">{t('description')}</p>
       </div>
 
       {services.map((serviceKey) => {

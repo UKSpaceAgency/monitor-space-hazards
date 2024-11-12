@@ -18,6 +18,7 @@ export function FormRadios({
   return (
     <Radios
       {...props}
+      name={name}
       items={items.map(item => ({
         ...item,
         ...register(name),

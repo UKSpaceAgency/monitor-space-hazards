@@ -1,6 +1,7 @@
+import type { ZodError } from 'zod';
 import { z } from 'zod';
 
-export const transformZodErrors = (error: z.ZodError) => {
+export const transformZodErrors = (error: ZodError) => {
   return error.issues.map(issue => ({
     path: issue.path.join('.'),
     message: issue.message,
