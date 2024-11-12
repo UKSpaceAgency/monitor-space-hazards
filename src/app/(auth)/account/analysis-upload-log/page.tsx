@@ -1,12 +1,15 @@
 import type { Metadata } from 'next';
+import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 
 import type { TypeAnalysesSortBy, TypeGetAnalysesParams } from '@/__generated__/data-contracts';
 import { getAnalyses } from '@/actions/getAnalyses';
+import { getUsersMe } from '@/actions/getUsersMe';
 import { AnalysisDataTable } from '@/components/account/analysis-upload-log/AnalysisDataTable';
 import Details from '@/ui/details/details';
 import Spinner from '@/ui/spinner/spinner';
+import { isAnalysist } from '@/utils/Roles';
 
 export const metadata: Metadata = {
   title: 'UKSA analysis uploads',
@@ -18,6 +21,12 @@ export default async function AnalysisUploadLog(props: {
   }>;
 }) {
   const t = await getTranslations('AnalysisUploadLog');
+
+  const user = await getUsersMe();
+
+  if (!isAnalysist(user.role)) {
+    redirect('/account');
+  }
 
   const searchParams = await props.searchParams;
   const query = searchParams?.sort_by || 'created_at';

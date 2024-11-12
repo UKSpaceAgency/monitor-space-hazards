@@ -114,7 +114,12 @@ const ManoeuvreDataTable = ({ data, params }: ManoeuvreDataTableProps) => {
           </div>
         </TopNotificationBanner>
       )}
-
+      {fileToDelete && isFileDeleted && (
+        <NotificationBanner status="success">
+          {fileToDelete}
+          {tCommon('jsonHasBeenDeleted')}
+        </NotificationBanner>
+      )}
       <InfiniteTable<TypeManoeuvrePlotWithUserMetadataOut, TypeGetManoeuvrePlotsParams>
         initialData={data}
         params={params}
@@ -122,13 +127,6 @@ const ManoeuvreDataTable = ({ data, params }: ManoeuvreDataTableProps) => {
         fetcher={getManoeuvrePlots}
         queryKeys={[QUERY_KEYS.Manoeuvres]}
       />
-
-      {fileToDelete && isFileDeleted && (
-        <NotificationBanner status="success">
-          {fileToDelete}
-          {tCommon('jsonHasBeenDeleted')}
-        </NotificationBanner>
-      )}
     </>
   );
 };

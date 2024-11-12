@@ -1,12 +1,15 @@
 import type { Metadata } from 'next';
+import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 
 import type { TypeGetManoeuvrePlotsParams, TypeManoeuvrePlotMetadataSortBy } from '@/__generated__/data-contracts';
 import { getManoeuvrePlots } from '@/actions/getManoeuvrePlots';
+import { getUsersMe } from '@/actions/getUsersMe';
 import { ManoeuvreDataTable } from '@/components/account/manoeuvre-support-upload-log/ManoeuvreDataTable';
 import Details from '@/ui/details/details';
 import Spinner from '@/ui/spinner/spinner';
+import { isAgencyApprover } from '@/utils/Roles';
 
 export const metadata: Metadata = {
   title: 'Manoeuvre support uploads',
@@ -18,6 +21,12 @@ export default async function ManoeuvreSupportUploadLog(props: {
   }>;
 }) {
   const t = await getTranslations('ManoeuvreSupportUploadLog');
+
+  const user = await getUsersMe();
+
+  if (!isAgencyApprover(user.role)) {
+    redirect('/account');
+  }
 
   const searchParams = await props.searchParams;
   const query = searchParams?.sort_by || 'created_at';
