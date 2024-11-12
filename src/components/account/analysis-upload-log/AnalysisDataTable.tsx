@@ -1,7 +1,6 @@
 'use client';
 import { useQueryClient } from '@tanstack/react-query';
 import saveAs from 'file-saver';
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { type SyntheticEvent, useCallback, useState } from 'react';
 
@@ -11,13 +10,12 @@ import { getAnalyses } from '@/actions/getAnalyses';
 import { getAnalysesAnalysisId } from '@/actions/getAnalysisId';
 import InfiniteTable from '@/components/InfiniteTable';
 import { TopNotificationBanner } from '@/components/TopNotificationBanner';
-import { formatDateTime } from '@/libs/Date';
 import { createJSON } from '@/libs/File';
-import type { TranslatedColumnDef } from '@/types';
 import Button from '@/ui/button/button';
 import NotificationBanner from '@/ui/notification-banner/notification-banner';
-import Tag from '@/ui/tag/tag';
 import { QUERY_KEYS } from '@/utils/QueryKeys';
+
+import { getAnalysisDataTableColumns } from './columns';
 
 type AnalysisDataTableProps = {
   data: TypeAnalysisOut[];
@@ -93,84 +91,13 @@ const AnalysisDataTable = ({ data, params }: AnalysisDataTableProps) => {
     setFile(null);
   };
 
-  const columns: TranslatedColumnDef<TypeAnalysisOut>[] = [
-    {
-      id: 'createdAt',
-      accessorKey: 'createdAt',
-      header: 'AnalysisData.date',
-      cell: ({ getValue }) => formatDateTime(getValue() as string),
-      size: 150,
-    },
-    {
-      id: 'uploadedByEmail',
-      accessorKey: 'uploadedByEmail',
-      header: 'AnalysisData.user_email',
-      size: 300,
-    },
-    {
-      id: 'eventShortId',
-      accessorKey: 'eventShortId',
-      header: 'AnalysisData.event_id',
-      cell: ({ getValue }) => {
-        const value = getValue() as string;
-        return (
-          <Link href={`/conjunctions/${value}`} passHref className="govuk-link">
-            {value}
-          </Link>
-        );
-      },
-      size: 150,
-    },
-    {
-      id: 'uploadedById',
-      accessorKey: 'id',
-      header: 'AnalysisData.file_uploaded',
-      cell: ({ getValue }) => {
-        const value = getValue() as string;
-        return (
-          <Link
-            href="#"
-            className="govuk-link"
-            data-id={value}
-            onClick={handleDownload}
-          >
-            {value}
-            {tCommon('json')}
-          </Link>
-        );
-      },
-      size: 300,
-    },
-    {
-      id: 'isActive',
-      accessorKey: 'isActive',
-      enableSorting: false,
-      header: () => <span className="invisible">Action</span>,
-      cell: ({ getValue, row }) => {
-        const value = getValue() as string;
-        return value === null || value
-          ? (
-              <div className="text-right mr-2">
-                <Link
-                  href="#"
-                  className="govuk-link"
-                  data-id={row?.original.id}
-                  onClick={handleDelete}
-                >
-                  Delete
-                  <span className="govuk-visually-hidden">
-                    analysis for
-                    {row?.original?.eventShortId}
-                  </span>
-                </Link>
-              </div>
-            )
-          : (
-              <Tag className="govuk-tag--red">Deleted</Tag>
-            );
-      },
-    },
-  ];
+  const columns = getAnalysisDataTableColumns({
+    handleDelete,
+    handleDownload,
+    json: tCommon('json'),
+    del: tCommon('delete'),
+    deleted: tCommon('deleted'),
+  });
 
   return (
     <>

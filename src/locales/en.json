@@ -303,6 +303,8 @@
     "cancel": "Cancel",
     "areYouSureYouWantToDeleteJson": "Are you sure you want to delete file {fileToDelete}.json?",
     "jsonHasBeenDeleted": ".json has been deleted",
-    "json": ".json"
+    "json": ".json",
+    "delete": "Delete",
+    "deleted": "Deleted"
   }
 }
