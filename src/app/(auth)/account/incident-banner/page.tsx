@@ -19,7 +19,6 @@ export default async function IncidentBannersPage() {
       <h1 className="govuk-heading-xl">{t('title')}</h1>
       {t.rich('content')}
       <ScheduledBanners />
-      force
       <ButtonGroup>
         <Link href="/account/incident-banner/schedule">
           <Button>{t('add_new')}</Button>
