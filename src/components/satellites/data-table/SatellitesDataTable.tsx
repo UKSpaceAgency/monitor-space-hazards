@@ -5,6 +5,7 @@ import { getSatellites } from '@/actions/getSatellites';
 import { DownloadData } from '@/components/DownloadData';
 import InfiniteTable from '@/components/InfiniteTable';
 import { LastIntegration } from '@/components/LastIntegration';
+import { QUERY_KEYS } from '@/utils/QueryKeys';
 
 import { columns } from './columns';
 
@@ -35,7 +36,13 @@ const SatellitesDataTable = async ({ query }: SatellitesDataTableProps) => {
 
   return (
     <>
-      <InfiniteTable<TypeSatelliteWithMetadataOut, TypeGetSatellitesWithMetadataParams> initialData={data} params={params} columns={columns} fetcher={getSatellites} />
+      <InfiniteTable<TypeSatelliteWithMetadataOut, TypeGetSatellitesWithMetadataParams>
+        initialData={data}
+        params={params}
+        columns={columns}
+        fetcher={getSatellites}
+        queryKeys={[QUERY_KEYS.Satellites]}
+      />
       <DownloadData type={t('Download.types.satellites')} downloadData={downloadData} />
       <LastIntegration />
     </>

@@ -216,6 +216,15 @@
     },
     "add_new_user": "Add new user"
   },
+  "AnalysisUploadLog": {
+    "title": "UKSA analysis uploads",
+    "description": "View all UKSA analysis uploaded to Monitor Space Hazards for UK conjunction events.",
+    "help": {
+      "title": "Help with this table",
+      "description1": "Select the file to view the analysis.",
+      "description2": "Select delete to permanently remove the analysis from the service."
+    }
+  },
   "SatellitesPage": {
     "title": "UK-licensed satellites",
     "search_bar": {
@@ -237,6 +246,12 @@
       "types": {
         "satellites": "UK-licensed satellites"
       }
+    },
+    "AnalysisData": {
+      "date": "Date",
+      "user_email": "User email",
+      "event_id": "Event ID",
+      "file_uploaded": "File uploaded"
     }
   },
   "Forms": {
@@ -283,6 +298,13 @@
   },
   "Common": {
     "return": "Return to {to}",
-    "save_and_continue": "Save and continue"
+    "save_and_continue": "Save and continue",
+    "yesDelete": "Yes, delete",
+    "cancel": "Cancel",
+    "areYouSureYouWantToDeleteJson": "Are you sure you want to delete file {fileToDelete}.json?",
+    "jsonHasBeenDeleted": ".json has been deleted",
+    "json": ".json",
+    "delete": "Delete",
+    "deleted": "Deleted"
   }
 }

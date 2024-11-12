@@ -14,13 +14,14 @@ type InfiniteTableProps<T extends RowData, K extends object> = {
   params: K;
   fetcher: (params: K) => Promise<T[]>;
   columns: TranslatedColumnDef<T>[];
+  queryKeys: (string | K | undefined)[];
 };
 
-const InfiniteTable = <T extends RowData, K extends object>({ initialData, params, fetcher, columns }: InfiniteTableProps<T, K>) => {
+const InfiniteTable = <T extends RowData, K extends object>({ initialData, params, fetcher, columns, queryKeys }: InfiniteTableProps<T, K>) => {
   const { sorting, onSortingChange, sortBy, sortOrder } = useSorting();
 
   const { data, fetchNextPage, isFetching, hasNextPage } = useInfiniteQuery({
-    queryKey: ['satellites', sortBy, sortOrder, params],
+    queryKey: [...queryKeys, sortBy, sortOrder, params],
     queryFn: async ({ pageParam }) => {
       return await fetcher({ ...params, offset: pageParam, sort_order: sortOrder, sort_by: sortBy });
     },
