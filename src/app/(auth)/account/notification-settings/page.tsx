@@ -1,7 +1,12 @@
+import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 
 import { getUsersMe } from '@/actions/getUsersMe';
 import { NotificationSettingsForm } from '@/components/account/notification-settings/NotificationSettingsForm';
+
+export const metadata: Metadata = {
+  title: 'Choose your notification settings',
+};
 
 export default async function NotificationSettingsPage() {
   const t = await getTranslations('NotificationSettings');
@@ -17,7 +22,7 @@ export default async function NotificationSettingsPage() {
   return (
     <div>
       <h1 className="govuk-heading-xl">{t('title')}</h1>
-      {t.rich('description')}
+      {t.rich('content')}
       <NotificationSettingsForm defaultValues={defaultValues} />
     </div>
   );
