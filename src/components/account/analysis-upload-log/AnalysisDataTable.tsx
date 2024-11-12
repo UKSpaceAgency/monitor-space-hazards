@@ -10,6 +10,7 @@ import { deleteAnalysesAnalysisId } from '@/actions/deleteAnalysesAnalysisId';
 import { getAnalyses } from '@/actions/getAnalyses';
 import { getAnalysesAnalysisId } from '@/actions/getAnalysisId';
 import InfiniteTable from '@/components/InfiniteTable';
+import { TopNotificationBanner } from '@/components/TopNotificationBanner';
 import { formatDateTime } from '@/libs/Date';
 import { createJSON } from '@/libs/File';
 import type { TranslatedColumnDef } from '@/types';
@@ -174,7 +175,7 @@ const AnalysisDataTable = ({ data, params }: AnalysisDataTableProps) => {
   return (
     <>
       {fileToDelete && !isFileDeleted && (
-        <NotificationBanner status="error" heading={tCommon('areYouSureYouWantToDeleteJson', { fileToDelete })}>
+        <TopNotificationBanner status="error" heading={tCommon('areYouSureYouWantToDeleteJson', { fileToDelete })}>
           <div className="govuk-button-group">
             <Button className="govuk-button--warning" onClick={confirmDelete}>
               {tCommon('yesDelete')}
@@ -183,7 +184,7 @@ const AnalysisDataTable = ({ data, params }: AnalysisDataTableProps) => {
               {tCommon('cancel')}
             </Button>
           </div>
-        </NotificationBanner>
+        </TopNotificationBanner>
       )}
       {fileToDelete && isFileDeleted && (
         <NotificationBanner status="success">

@@ -27,7 +27,7 @@ export default async function AnalysisUploadLog(props: {
     limit: 50,
   };
 
-  const { data } = await getAnalyses(params);
+  const data = await getAnalyses(params);
 
   return (
     <div>

@@ -11,5 +11,5 @@ export async function getAnalyses(query?: TypeGetAnalysesParams, params: Request
     next: { tags: [REVALIDATION_TAGS.GET_ANALYSES] },
     ...params,
   });
-  return { data };
+  return data;
 };
