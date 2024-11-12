@@ -44,7 +44,7 @@ export const getManoeuvreDataTableColumns = ({
         </Link>
       );
     },
-    size: 150,
+    size: 200,
   },
   {
     id: 'uploadedById',

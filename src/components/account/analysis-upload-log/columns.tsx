@@ -41,7 +41,7 @@ export const getAnalysisDataTableColumns = ({ handleDelete, handleDownload, json
         </Link>
       );
     },
-    size: 150,
+    size: 200,
   },
   {
     id: 'uploadedById',
