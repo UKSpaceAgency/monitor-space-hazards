@@ -25,7 +25,7 @@ export default async function ManoeuvreSupportUploadLog(props: {
   const user = await getUsersMe();
 
   if (!isAgencyApprover(user.role)) {
-    redirect('/account');
+    redirect('/not-found');
   }
 
   const searchParams = await props.searchParams;

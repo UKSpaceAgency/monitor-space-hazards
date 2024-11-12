@@ -1,14 +1,14 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
-type BreakcrumbsProps = {
+type BreadcrumbsProps = {
   items: Array<{
     text: ReactNode;
     href?: string;
   }>;
 };
 
-export function Breakcrumbs({ items }: BreakcrumbsProps) {
+export function Breadcrumbs({ items }: BreadcrumbsProps) {
   return (
     <nav className="govuk-breadcrumbs" aria-label="Breadcrumb">
       <ol className="govuk-breadcrumbs__list">
@@ -34,4 +34,4 @@ export function Breakcrumbs({ items }: BreakcrumbsProps) {
   );
 }
 
-export default Breakcrumbs;
+export default Breadcrumbs;

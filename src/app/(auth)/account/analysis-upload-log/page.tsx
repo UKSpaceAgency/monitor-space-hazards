@@ -25,7 +25,7 @@ export default async function AnalysisUploadLog(props: {
   const user = await getUsersMe();
 
   if (!isAnalysist(user.role)) {
-    redirect('/account');
+    redirect('/not-found');
   }
 
   const searchParams = await props.searchParams;
