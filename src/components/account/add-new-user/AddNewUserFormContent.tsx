@@ -5,35 +5,35 @@ import { useTranslations } from 'next-intl';
 import type { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 import type { TypeOrganizationOut, TypeUserRole } from '@/__generated__/data-contracts';
-import { AccountType } from '@/libs/Roles';
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
 import Fieldset from '@/ui/fieldset/fieldset';
 import Input from '@/ui/input/input';
 import Radios from '@/ui/radios/radios';
 import Select from '@/ui/select/select';
+import { AccountType } from '@/utils/Roles';
 import type { AddNewUserSchema } from '@/validations/addNewUserSchema';
 
 const roles = {
   AGENCY_SUPERUSER: AccountType,
   AGENCY_APPROVER: AccountType,
-  AGENCY_ADMIN: pick(AccountType, [
-    AccountType.AGENCY_ADMIN,
-    AccountType.AGENCY_USER,
+  AGENCY_ADMIN: pick<Record<TypeUserRole, string>, TypeUserRole>(AccountType, [
+    'AGENCY_ADMIN',
+    'AGENCY_USER',
   ]),
-  AGENCY_ANALYST: pick(AccountType, [
-    AccountType.AGENCY_ADMIN,
-    AccountType.AGENCY_ANALYST,
-    AccountType.AGENCY_USER,
+  AGENCY_ANALYST: pick<Record<TypeUserRole, string>, TypeUserRole>(AccountType, [
+    'AGENCY_ADMIN',
+    'AGENCY_ANALYST',
+    'AGENCY_USER',
   ]),
-  GOVERNMENT_ADMIN: pick(AccountType, [
-    AccountType.GOVERNMENT_ADMIN,
-    AccountType.GOVERNMENT_USER,
+  GOVERNMENT_ADMIN: pick<Record<TypeUserRole, string>, TypeUserRole>(AccountType, [
+    'GOVERNMENT_ADMIN',
+    'GOVERNMENT_USER',
   ]),
-  SATELLITE_OPERATOR_ADMIN: pick(AccountType, [
-    AccountType.SATELLITE_OPERATOR_ADMIN,
-    AccountType.SATELLITE_OPERATOR,
-    AccountType.SATELLITE_OPERATOR_USER,
+  SATELLITE_OPERATOR_ADMIN: pick<Record<TypeUserRole, string>, TypeUserRole>(AccountType, [
+    'SATELLITE_OPERATOR_ADMIN',
+    'SATELLITE_OPERATOR',
+    'SATELLITE_OPERATOR_USER',
   ]),
 };
 

@@ -44,19 +44,21 @@ export interface TypeAlertSettingsOut {
 
 /** AnalysesSortBy */
 export type TypeAnalysesSortBy =
-  | "primary_object_norad_id"
-  | "secondary_object_norad_id"
-  | "event_short_id"
-  | "tca_time"
+  | "cdm_external_id"
+  | "created_at"
   | "collision_probability"
+  | "deleted_by_id"
+  | "event_short_id"
   | "miss_distance"
+  | "primary_object_norad_id"
   | "radial_miss_distance"
+  | "restored_by_id"
+  | "secondary_object_norad_id"
+  | "tca_time"
   | "updated_at"
   | "update_time"
   | "uploaded_by_id"
-  | "deleted_by_id"
-  | "restored_by_id"
-  | "cdm_external_id";
+  | "uploaded_by_email";
 
 /** Analysis */
 export interface TypeAnalysis {
@@ -2312,7 +2314,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2024-11-08T20:47:10.897961"
+   * @default "2024-11-11T15:36:10.200646"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -2562,9 +2564,14 @@ export interface TypeReentryEventReportImpact {
 export interface TypeGetAnalysesParams {
   /**
    * Sort By
-   * Sorting column
+   * @default "created_at"
    */
-  sort_by: TypeAnalysesSortBy;
+  sort_by?: TypeAnalysesSortBy;
+  /**
+   * Sort Order
+   * @default "desc"
+   */
+  sort_order?: TypeSortOrder;
   /**
    * Limit
    * @default 100
@@ -2575,11 +2582,6 @@ export interface TypeGetAnalysesParams {
    * @default 0
    */
   offset?: number;
-  /**
-   * Sort Order
-   * @default "asc"
-   */
-  sort_order?: TypeSortOrder;
 }
 
 export interface TypeGetEphemerisParams {

@@ -186,6 +186,53 @@
     },
     "add_new": "Set up new incident banner"
   },
+  "Organisations": {
+    "title": "Organisations",
+    "summary": {
+      "total_orgs": "Total number of organisations",
+      "total_sats": "Total number of satellites"
+    },
+    "table": {
+      "organisation": "Organisaton",
+      "registred_users": "Number of registered satellites",
+      "registred_satellites": "Number of registered users",
+      "date_added": "Date account added"
+    }
+  },
+  "Organisation": {
+    "summary": {
+      "operator_information": "Operator Information",
+      "uk_satellites": "Number of UK-licensed satellites",
+      "users": "Number of registered users"
+    },
+    "satellites_table": {
+      "registered_satellites": "Registered satellites",
+      "commonName": "Common name",
+      "noradId": "NORAD ID",
+      "international_designator": "International designator",
+      "country": "Country",
+      "launchSite": "Launch site",
+      "launchDate": "Launch date"
+    },
+    "users_table": {
+      "registered_users": "Registered users",
+      "name": "Name",
+      "account_type": "Account type",
+      "email": "Email",
+      "phone_number": "Phone number",
+      "registered": "Registered"
+    },
+    "add_new_user": "Add new user"
+  },
+  "AnalysisUploadLog": {
+    "title": "UKSA analysis uploads",
+    "description": "View all UKSA analysis uploaded to Monitor Space Hazards for UK conjunction events.",
+    "help": {
+      "title": "Help with this table",
+      "description1": "Select the file to view the analysis.",
+      "description2": "Select delete to permanently remove the analysis from the service."
+    }
+  },
   "SatellitesPage": {
     "title": "UK-licensed satellites",
     "search_bar": {
@@ -223,6 +270,12 @@
       "types": {
         "satellites": "UK-licensed satellites"
       }
+    },
+    "AnalysisData": {
+      "date": "Date",
+      "user_email": "User email",
+      "event_id": "Event ID",
+      "file_uploaded": "File uploaded"
     }
   },
   "Forms": {
@@ -274,6 +327,13 @@
   },
   "Common": {
     "return": "Return to {to}",
-    "save_and_continue": "Save and continue"
+    "save_and_continue": "Save and continue",
+    "yesDelete": "Yes, delete",
+    "cancel": "Cancel",
+    "areYouSureYouWantToDeleteJson": "Are you sure you want to delete file {fileToDelete}.json?",
+    "jsonHasBeenDeleted": ".json has been deleted",
+    "json": ".json",
+    "delete": "Delete",
+    "deleted": "Deleted"
   }
 }

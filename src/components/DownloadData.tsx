@@ -10,7 +10,7 @@ import Tooltip from '@/ui/tooltip/tooltip';
 
 type DownloadDataProps = {
   type: string;
-  downloadData: () => Promise<{ data: unknown }>;
+  downloadData: () => Promise<unknown>;
 };
 
 const DownloadData = ({ type, downloadData }: DownloadDataProps) => {
@@ -22,7 +22,7 @@ const DownloadData = ({ type, downloadData }: DownloadDataProps) => {
 
     setFetching(true);
 
-    const { data } = await downloadData();
+    const data = await downloadData();
     if (data) {
       const file
         = format === 'csv'

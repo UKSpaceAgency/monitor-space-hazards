@@ -15,7 +15,6 @@ export async function postUsers(formData: AddNewUserSchema) {
     const { data } = await Api.postUsers(formData as TypeUserIn);
 
     return {
-      errors: null,
       data,
     };
   } catch (error) {
