@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 
 import type { TypeGetManoeuvrePlotsParams, TypeManoeuvrePlotMetadataSortBy } from '@/__generated__/data-contracts';
 import { getManoeuvrePlots } from '@/actions/getManoeuvrePlots';
+import { ManoeuvreDataTable } from '@/components/account/manoeuvre-support-upload-log/ManoeuvreDataTable';
 import Details from '@/ui/details/details';
 import Spinner from '@/ui/spinner/spinner';
 
@@ -33,7 +34,7 @@ export default async function ManoeuvreSupportUploadLog(props: {
       <h1 className="govuk-heading-xl">{t('title')}</h1>
       <p className="govuk-body">{t('description')}</p>
       <Suspense key={query} fallback={<Spinner />}>
-        <div>{data.map(item => <div key={item.id}>{item.id}</div>)}</div>
+        <ManoeuvreDataTable data={data} params={params} />
       </Suspense>
       <div className="mt-2">
         <Details summary={t('help.title')}>

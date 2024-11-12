@@ -261,6 +261,12 @@
       "user_email": "User email",
       "event_id": "Event ID",
       "file_uploaded": "File uploaded"
+    },
+    "ManoeuvreData": {
+      "date": "Date",
+      "user_email": "User email",
+      "event_id": "Event ID",
+      "file_uploaded": "File uploaded"
     }
   },
   "Forms": {
