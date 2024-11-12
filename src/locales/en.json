@@ -225,6 +225,15 @@
       "description2": "Select delete to permanently remove the analysis from the service."
     }
   },
+  "ManoeuvreSupportUploadLog": {
+    "title": "Manoeuvre support uploads",
+    "description": "View all Manoeuvre support files uploaded to Monitor Space Hazards for UK conjunction events.",
+    "help": {
+      "title": "Help with this table",
+      "description1": "Select the file to view the manoeuvre support.",
+      "description2": "Select delete to permanently remove the file from the service."
+    }
+  },
   "SatellitesPage": {
     "title": "UK-licensed satellites",
     "search_bar": {

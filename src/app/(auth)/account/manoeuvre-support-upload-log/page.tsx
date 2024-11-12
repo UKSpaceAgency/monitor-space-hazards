@@ -1,0 +1,46 @@
+import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+import { Suspense } from 'react';
+
+import type { TypeGetManoeuvrePlotsParams, TypeManoeuvrePlotMetadataSortBy } from '@/__generated__/data-contracts';
+import { getManoeuvrePlots } from '@/actions/getManoeuvrePlots';
+import Details from '@/ui/details/details';
+import Spinner from '@/ui/spinner/spinner';
+
+export const metadata: Metadata = {
+  title: 'Manoeuvre support uploads',
+};
+
+export default async function ManoeuvreSupportUploadLog(props: {
+  searchParams?: Promise<{
+    sort_by?: TypeManoeuvrePlotMetadataSortBy;
+  }>;
+}) {
+  const t = await getTranslations('ManoeuvreSupportUploadLog');
+
+  const searchParams = await props.searchParams;
+  const query = searchParams?.sort_by || 'created_at';
+
+  const params: TypeGetManoeuvrePlotsParams = {
+    limit: 50,
+    sort_by: query,
+  };
+
+  const data = await getManoeuvrePlots(params);
+
+  return (
+    <div>
+      <h1 className="govuk-heading-xl">{t('title')}</h1>
+      <p className="govuk-body">{t('description')}</p>
+      <Suspense key={query} fallback={<Spinner />}>
+        <div>{data.map(item => <div key={item.id}>{item.id}</div>)}</div>
+      </Suspense>
+      <div className="mt-2">
+        <Details summary={t('help.title')}>
+          <p>{t('help.description1')}</p>
+          <p>{t('help.description2')}</p>
+        </Details>
+      </div>
+    </div>
+  );
+}
