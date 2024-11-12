@@ -103,41 +103,6 @@ export function DatetimeInput({
     }
   };
 
-  // useEffect(() => {
-  //   const validateData = async () => {
-  //     setErrors({});
-  //     try {
-  //       await schema.parseAsync(date);
-  //       const newDate = new Date(
-  //         Number.parseInt(date.year as string),
-  //         Number.parseInt(date.month as string) - 1,
-  //         Number.parseInt(date.day as string),
-  //         Number.parseInt(date.hour as string),
-  //         Number.parseInt(date.minute as string),
-  //       );
-  //       onChange(newDate.toJSON());
-  //     } catch (error) {
-  //       if (error instanceof z.ZodError) {
-  //         const errors: Record<string, string> = {};
-  //         for (const issue of error.issues) {
-  //           const path = issue.path[0];
-  //           if (path && typeof path === 'string') {
-  //             errors[path] = issue.message;
-  //           }
-  //         }
-  //         setErrors(errors);
-  //       } else {
-  //         console.error('Unexpected error: ', error);
-  //       }
-  //     }
-  //   };
-  //   if (firstRenderRef.current) {
-  //     firstRenderRef.current = false;
-  //   } else {
-  //     validateData();
-  //   }
-  // }, [date, onChange]);
-
   const dateErrors = pick(errors, ['day', 'month', 'year']);
   const timeErrors = pick(errors, ['hour', 'minute']);
 
