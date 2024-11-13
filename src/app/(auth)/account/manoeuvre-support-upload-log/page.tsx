@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 
@@ -25,7 +25,7 @@ export default async function ManoeuvreSupportUploadLog(props: {
   const user = await getUsersMe();
 
   if (!isAgencyApprover(user.role)) {
-    redirect('/not-found');
+    notFound();
   }
 
   const searchParams = await props.searchParams;
