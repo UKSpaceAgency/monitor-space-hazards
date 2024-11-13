@@ -13,7 +13,7 @@
   "IndexPage": {
     "nsoc": {
       "title": "National Space Operations Centre Warning and Protection Services",
-      "description": "National Space Operations Centre (NSpOC) Warning and Protection Services support UK and international partners to manage space risks and hazards.",
+      "content": "National Space Operations Centre (NSpOC) Warning and Protection Services support UK and international partners to manage space risks and hazards.",
       "list_title": "Use this service to:",
       "list_items": {
         "track_events": "Track conjunction events",
@@ -32,7 +32,7 @@
   },
   "DashboardPage": {
     "title": "National Space Operations Centre Warning and Protection Services",
-    "description": "National Space Operations Centre (NSpOC) Warning and Protection Services support UK and international partners to manage space risks and hazards.",
+    "content": "National Space Operations Centre (NSpOC) Warning and Protection Services support UK and international partners to manage space risks and hazards.",
     "services": {
       "live": {
         "title": "Live Services",
@@ -168,15 +168,28 @@
   },
   "EventNotificationThresholdsSettings": {
     "title": "Set your conjunction event notification thresholds",
-    "description": "<p>We will send you notifications when the probability of collision, total miss distance and mean radial miss distance meets threshold and the time to conjunction event is below the threshold you have set.</p><p>You are responsible for the safe operation of your satellites and should choose settings which allow you to do this.</p><p>The default settings are examples of thresholds, not recommendations.</p>"
+    "content": "<p>We will send you notifications when the probability of collision, total miss distance and mean radial miss distance meets threshold and the time to conjunction event is below the threshold you have set.</p><p>You are responsible for the safe operation of your satellites and should choose settings which allow you to do this.</p><p>The default settings are examples of thresholds, not recommendations.</p>"
   },
   "NotificationSettings": {
     "title": "Choose your notification settings",
-    "description": "<p>New event notifications will be collated and sent in one email and/or text every 12 hours.</p><p>Choose which notifications you wish to receive. Uncheck boxes where you do not wish to receive notifications.</p>"
+    "content": "<p>New event notifications will be collated and sent in one email and/or text every 12 hours.</p><p>Choose which notifications you wish to receive. Uncheck boxes where you do not wish to receive notifications.</p>"
   },
   "AddNewUser": {
     "title": "Add a new user",
-    "description": "<p>Add a new user to join your organisation by entering the details below. New users will receive an invitation to the email address specified.</p>"
+    "content": "<p>Add a new user to join your organisation by entering the details below. New users will receive an invitation to the email address specified.</p>"
+  },
+  "IncidentBanners": {
+    "title": "Manage incident banners",
+    "content": "<p>In the case of an incident, the Monitor Space Hazards service will remain live, but it is important to notify all Monitor Space Hazards users.</p><p>Super users are able to display banners that will be visible at the top of each page, warning users that the information presented on Monitor Space Hazards may not be accurate.</p>",
+    "Scheduled_banners": {
+      "title": "Scheduled incident banners"
+    },
+    "add_new": "Set up new incident banner"
+  },
+  "IncidentBannersConfirm": {
+    "title": "Confirm incident banner settings",
+    "incident_type": "Incident type",
+    "active_time": "Active time period"
   },
   "Organisations": {
     "title": "Organisations",
@@ -248,6 +261,22 @@
       "international_designator": "International designator",
       "upcoming_known_conjunction_events": "Upcoming known conjunction events"
     },
+    "Incident_banners": {
+      "incident_type": "Incident type",
+      "time_period": "Active time period",
+      "remove": "Remove",
+      "empty": "There are currently no incident banners scheduled for Monitor Space Hazards.",
+      "Remove_confirmation": {
+        "title": "Are you sure you want to remove the banner for \"{title}\" from the site?",
+        "yes": "Yes, remove",
+        "no": "Cancel"
+      },
+      "Success_banner": {
+        "title": "Incident banner for \"{title}\" has been removed.",
+        "content": "This banner will no longer be displayed on the site.",
+        "button": "View upcoming conjunction events page"
+      }
+    },
     "Download": {
       "text": "Download {type}",
       "json": "JavaScript Object Notation",
@@ -304,6 +333,28 @@
       "help_summary": "What can these accounts do?",
       "help_content": "<p><b>Admins</b> can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site. Administrators can also view all user accounts for an organisation, and can add new users, and change or delete existing users.</p><p><b>Operators</b> can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site.</p><p><b>Users</b> can view information on their organisation's satellites and the upcoming conjunction events involving them.</p>",
       "submit": "Add user"
+    },
+    "Schedule_banner": {
+      "select_banner": "Select the incident banner you would like to display",
+      "when_display_banner": "Choose when to display banner",
+      "activate_now": "Activate incident banner now",
+      "activate_now_help": "The banner will be visible on the site for now.",
+      "activate_later": "Choose custom time period to display banner for",
+      "confirm": "Confirm choices",
+      "display_button": "Display incident banner",
+      "Confirm_banner": {
+        "title": "Are you sure you want to display the banner for  \"{title}\" on the site?",
+        "content": "The banner will be visible to all users of the service until the active time period is over or until you manually remove it.",
+        "yes": "Display incident banner",
+        "no": "Cancel"
+      },
+      "Success_banner": {
+        "title": "The incident banner for \"{title}\" has been set up.",
+        "content": "The banner will be visible to all users of the service between {from} to {to}",
+        "conjunction_events": "View conjunction events page",
+        "upcoming_events": "View upcoming conjunction events page",
+        "manage_incident_banners": "Manage incident banners"
+      }
     }
   },
   "Components": {
