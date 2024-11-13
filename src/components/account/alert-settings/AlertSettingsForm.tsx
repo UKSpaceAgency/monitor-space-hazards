@@ -136,25 +136,23 @@ const AlertSettingsForm = ({ userId, defaultValues }: AlertSettingsFormProps) =>
         <AlertSettingsDetails />
 
         <p className="govuk-body">
-          <b>Select the user's areas of interest:</b>
+          <b>{t('select_the_user_areas_of_interest')}</b>
         </p>
         <table className="govuk-table">
           <tbody className="govuk-table__body">
-            <RegionsTableRow region={Regions.ANYWHERE} name={Regions.ANYWHERE.id} toggleRegions />
-            <RegionsTableRow region={Regions.ENGLAND} name={Regions.ANYWHERE.id} intent />
-            <RegionsTableRow region={Regions.NORTHERN_IRELAND} name={Regions.ANYWHERE.id} intent />
-            <RegionsTableRow region={Regions.SCOTLAND} name={Regions.ANYWHERE.id} intent />
-            <RegionsTableRow region={Regions.WALES} name={Regions.ANYWHERE.id} intent />
-            <RegionsTableRow region={Regions.BRITISH_OVERSEAS_TERRITORIES} name={Regions.ANYWHERE.id} />
-            <RegionsTableRow region={Regions.SHANWICK} name={Regions.ANYWHERE.id} />
-            <RegionsTableRow region={Regions.NAVAREA} name={Regions.ANYWHERE.id} />
-            <RegionsTableRow region={Regions.REST_OF_THE_WORLD} name={Regions.ANYWHERE.id} />
+            <RegionsTableRow region={Regions.ANYWHERE} name="areasOfInterest" toggleRegions />
+            <RegionsTableRow region={Regions.ENGLAND} name="areasOfInterest" intent />
+            <RegionsTableRow region={Regions.NORTHERN_IRELAND} name="areasOfInterest" intent />
+            <RegionsTableRow region={Regions.SCOTLAND} name="areasOfInterest" intent />
+            <RegionsTableRow region={Regions.WALES} name="areasOfInterest" intent />
+            <RegionsTableRow region={Regions.BRITISH_OVERSEAS_TERRITORIES} name="areasOfInterest" />
+            <RegionsTableRow region={Regions.SHANWICK} name="areasOfInterest" />
+            <RegionsTableRow region={Regions.NAVAREA} name="areasOfInterest" />
+            <RegionsTableRow region={Regions.REST_OF_THE_WORLD} name="areasOfInterest" />
           </tbody>
         </table>
         <p className="govuk-body">
-          Notifications for re-entries over non UK nations are currently only
-          distributed in the case of the re-entering object being a UK licensed
-          satellite.
+          {t('notifications_for_re_entries')}
         </p>
 
         <Checkboxes

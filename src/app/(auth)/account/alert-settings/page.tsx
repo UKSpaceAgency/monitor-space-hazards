@@ -25,6 +25,7 @@ export default async function AlertSettingsPage() {
     receiveConjunction: alertSettings.conjunction_alert_settings?.notification_types || [],
     reEntryAlerts: alertSettings.reentry_alert_settings?.chosen_option || 'none',
     receiveReEntry: alertSettings.reentry_alert_settings?.notification_types || [],
+    areasOfInterest: alertSettings.reentry_alert_settings?.areas_of_interest || [],
   };
 
   return (
