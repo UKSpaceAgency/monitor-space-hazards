@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import type { HTMLProps } from 'react';
 
-export const Caption = ({ className, ...props }: HTMLProps<HTMLTableCaptionElement>) => <caption className={clsx('govuk-table__caption govuk-table__caption--m', className)} {...props} />;
+export const TableCaption = ({ className, ...props }: HTMLProps<HTMLTableCaptionElement>) => <caption className={clsx('govuk-table__caption govuk-table__caption--m', className)} {...props} />;
 
 export const Table = ({ className, ...props }: HTMLProps<HTMLTableElement>) => <table className={clsx('govuk-table', className)} {...props} />;
 

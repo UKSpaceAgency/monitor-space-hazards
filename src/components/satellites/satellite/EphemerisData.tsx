@@ -1,0 +1,5 @@
+const EphemerisData = () => {
+
+};
+
+export { EphemerisData };

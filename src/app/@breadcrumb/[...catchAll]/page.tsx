@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import { Fragment, type ReactElement } from 'react';
 
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage } from '@/ui/breadcrumbs/breadcrumbs';
@@ -5,6 +6,8 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbP
 export default function BreadcrumbSlot({
   params,
 }: { params: { catchAll: string[] } }) {
+  const t = useTranslations('Breadcrumb');
+
   const breadcrumbItems: ReactElement[] = [];
   let breadcrumbPage: ReactElement = <></>;
 
@@ -14,11 +17,12 @@ export default function BreadcrumbSlot({
 
   params.catchAll.forEach((element, i) => {
     const route = element.replaceAll('-', ' ');
-    const href = `/${params.catchAll.at(0)}/${route}`;
+    const name = t.has(route as any) ? t(route as any) : route;
+    const href = `/${params.catchAll.at(0)}`;
     if (i === params.catchAll.length - 1) {
       breadcrumbPage = (
         <BreadcrumbItem>
-          <BreadcrumbPage>{route}</BreadcrumbPage>
+          <BreadcrumbPage>{name}</BreadcrumbPage>
         </BreadcrumbItem>
       );
     } else {
@@ -26,7 +30,7 @@ export default function BreadcrumbSlot({
         <Fragment key={href}>
           <BreadcrumbItem>
             <BreadcrumbLink href={href}>
-              {route}
+              {name}
             </BreadcrumbLink>
           </BreadcrumbItem>
         </Fragment>,

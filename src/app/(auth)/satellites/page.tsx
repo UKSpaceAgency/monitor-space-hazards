@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 
-import { SatellitesDataTable } from '@/components/satellites/data-table/SatellitesDataTable';
+import { SatellitesDataTable } from '@/components/satellites/SatellitesDataTable';
 import { SearchBar } from '@/components/SearchBar';
 import Spinner from '@/ui/spinner/spinner';
 
