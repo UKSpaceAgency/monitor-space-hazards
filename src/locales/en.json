@@ -247,6 +247,9 @@
       "description2": "Select delete to permanently remove the file from the service."
     }
   },
+  "AlertSettings": {
+    "title": "Edit your alert settings"
+  },
   "SatellitesPage": {
     "title": "UK-licensed satellites",
     "search_bar": {
