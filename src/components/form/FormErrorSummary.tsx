@@ -3,8 +3,6 @@ import type { FieldErrors } from 'react-hook-form';
 
 import ErrorSummary from '@/ui/error-summary/error-summary';
 
-import { MainTopPortal } from '../MainTopPortal';
-
 type FormErrorSummaryProps<T extends object> = {
   i18path: keyof IntlMessages['Forms'];
   errors: FieldErrors<T>;
@@ -20,14 +18,12 @@ const FormErrorSummary = <T extends object>({ errors, i18path }: FormErrorSummar
   }
 
   return (
-    <MainTopPortal>
-      <ErrorSummary
-        errorList={entries.map(([key, value]) => ({
-          href: key !== 'root' ? `#${key}` : undefined,
-          children: t.has(key as any) ? `${t(key as any)}: ${value.message}` : value.message || '',
-        }))}
-      />
-    </MainTopPortal>
+    <ErrorSummary
+      errorList={entries.map(([key, value]) => ({
+        href: key !== 'root' ? `#${key}` : undefined,
+        children: t.has(key as any) ? `${t(key as any)}: ${value.message}` : value.message || '',
+      }))}
+    />
   );
 };
 
