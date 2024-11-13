@@ -332,7 +332,16 @@
       "role": "Role",
       "help_summary": "What can these accounts do?",
       "help_content": "<p><b>Admins</b> can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site. Administrators can also view all user accounts for an organisation, and can add new users, and change or delete existing users.</p><p><b>Operators</b> can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site.</p><p><b>Users</b> can view information on their organisation's satellites and the upcoming conjunction events involving them.</p>",
-      "submit": "Add user"
+      "submit": "Add user",
+      "help": {
+        "title": "What can these accounts do?",
+        "admins": "Admins",
+        "operators": "Operators",
+        "users": "Users",
+        "adminsDescription": "can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site. Administrators can also view all user accounts for an organisation, and can add new users, and change or delete existing users.",
+        "operatorsDescription": "can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site.",
+        "usersDescription": "can view information on their organisation's satellites and the upcoming conjunction events involving them."
+      }
     },
     "Schedule_banner": {
       "select_banner": "1. Select the incident banner you would like to display",

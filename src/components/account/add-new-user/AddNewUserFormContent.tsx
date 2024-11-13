@@ -7,6 +7,7 @@ import type { FieldErrors, UseFormRegister } from 'react-hook-form';
 import type { TypeOrganizationOut, TypeUserRole } from '@/__generated__/data-contracts';
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
+import Details from '@/ui/details/details';
 import Fieldset from '@/ui/fieldset/fieldset';
 import Input from '@/ui/input/input';
 import Radios from '@/ui/radios/radios';
@@ -80,6 +81,21 @@ const AddNewUserFormContent = ({ organizations, isSubmitting, register, role, er
           />
         )}
       </Fieldset>
+
+      <Details summary={t('help.title')}>
+        <p>
+          <b className="mr-1">{t('help.admins')}</b>
+          {t('help.adminsDescription')}
+        </p>
+        <p>
+          <b className="mr-1">{t('help.operators')}</b>
+          {t('help.operatorsDescription')}
+        </p>
+        <p>
+          <b className="mr-1">{t('help.users')}</b>
+          {t('help.usersDescription')}
+        </p>
+      </Details>
 
       <ButtonGroup>
         <Button type="submit" disabled={isSubmitting}>{t('submit')}</Button>
