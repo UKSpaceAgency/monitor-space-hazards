@@ -320,8 +320,8 @@
       "submit": "Add user"
     },
     "Schedule_banner": {
-      "select_banner": "Select the incident banner you would like to display",
-      "when_display_banner": "Choose when to display banner",
+      "select_banner": "1. Select the incident banner you would like to display",
+      "when_display_banner": "2. Choose when to display banner",
       "activate_now": "Activate incident banner now",
       "activate_now_help": "The banner will be visible on the site for now.",
       "activate_later": "Choose custom time period to display banner for",

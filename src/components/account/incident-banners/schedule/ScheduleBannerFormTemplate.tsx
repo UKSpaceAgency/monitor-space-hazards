@@ -27,7 +27,6 @@ const ScheduleBannerFormTemplate = ({ register, templates }: BannerTemplateProps
   return (
     <div>
       <h2 className="app-task-list__section govuk-heading-m">
-        1.
         {t('select_banner')}
       </h2>
       <Radios

@@ -24,8 +24,8 @@ const ScheduledBannersTable = ({ banners }: ScheduledBannersTableProps) => {
   const { mutate, isSuccess } = useMutation({
     mutationKey: ['removeBanner', bannerToRemove?.id],
     mutationFn: async () => {
-      if (bannerToRemove) {
-        await deleteIncidentBanner(bannerToRemove.id as string);
+      if (bannerToRemove?.id) {
+        await deleteIncidentBanner(bannerToRemove.id);
       }
     },
   });
