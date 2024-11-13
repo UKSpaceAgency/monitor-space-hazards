@@ -49,7 +49,6 @@ const ScheduleBannerFormTime = ({ setValue, watch, resetField }: ScheduleBannerF
   return (
     <div>
       <h2 className="app-task-list__section govuk-heading-m">
-        2.
         {t('when_display_banner')}
       </h2>
       <Radios
