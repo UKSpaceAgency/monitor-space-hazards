@@ -172,7 +172,7 @@
   },
   "NotificationSettings": {
     "title": "Choose your notification settings",
-    "content": "<p>New event notifications will be collated and sent in one email and/or text every 12 hours.</p><p>Choose which notifications you wish to receive. Uncheck boxes where you do not wish to receive notifications.</p>"
+    "content": "<p>New event notifications will be collated and sent in one email and/or SMS every 12 hours.</p><p>Choose which notifications you wish to receive. Uncheck boxes where you do not wish to receive notifications.</p>"
   },
   "AddNewUser": {
     "title": "Add a new user",
