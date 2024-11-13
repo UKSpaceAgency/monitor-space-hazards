@@ -12,8 +12,8 @@ export default function BreadcrumbSlot({
     return null;
   }
 
-  for (let i = 0; i < params.catchAll.length; i++) {
-    const route = params.catchAll[i]?.replaceAll('-', ' ');
+  params.catchAll.forEach((element, i) => {
+    const route = element.replaceAll('-', ' ');
     const href = `/${params.catchAll.at(0)}/${route}`;
     if (i === params.catchAll.length - 1) {
       breadcrumbPage = (
@@ -32,8 +32,7 @@ export default function BreadcrumbSlot({
         </Fragment>,
       );
     }
-  }
-
+  });
   return (
     <Breadcrumb>
       <BreadcrumbList>

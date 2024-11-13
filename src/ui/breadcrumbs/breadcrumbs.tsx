@@ -56,7 +56,7 @@ const BreadcrumbPage = forwardRef<
   <span
     ref={ref}
     role="link"
-    aria-disabled="true"
+    aria-disabled
     aria-current="page"
     className="capitalize"
     {...props}
