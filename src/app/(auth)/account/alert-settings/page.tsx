@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 
+import { getUsersMe } from '@/actions/getUsersMe';
+import { getUsersMeAlertSettings } from '@/actions/getUsersMeAlertSettings';
 import { AlertSettingsForm } from '@/components/account/alert-settings/AlertSettingsForm';
 import NotificationBanner from '@/ui/notification-banner/notification-banner';
 import WarningText from '@/ui/warning-text/warning-text';
@@ -13,11 +15,19 @@ export const metadata: Metadata = {
 export default async function AlertSettingsPage() {
   const t = await getTranslations('AlertSettings');
 
-  //   const user = await getUsersMe();
+  const user = await getUsersMe();
+  const alertSettings = await getUsersMeAlertSettings();
 
   //   if (!isSatteliteUser(user.role)) {
   //     return notFound();
   //   }
+
+  const defaultValues = {
+    conjunctionAlerts: alertSettings.conjunction_alert_settings?.chosen_option || 'none',
+    receiveConjunction: alertSettings.conjunction_alert_settings?.notification_types || [],
+    reEntryAlerts: alertSettings.reentry_alert_settings?.chosen_option || 'none',
+    receiveReEntry: alertSettings.reentry_alert_settings?.notification_types || [],
+  };
 
   return (
     <div>
@@ -38,7 +48,7 @@ export default async function AlertSettingsPage() {
       <WarningText>
         {t('warning')}
       </WarningText>
-      <AlertSettingsForm />
+      <AlertSettingsForm userId={user.id || ''} defaultValues={defaultValues} />
     </div>
   );
 }

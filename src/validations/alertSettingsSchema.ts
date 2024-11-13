@@ -1,17 +1,19 @@
 import { z } from 'zod';
 
-import { AccountType } from '@/utils/Roles';
-import { getZodEnumFromObjectKeys } from '@/utils/Zod';
-
 export const alertSettingsSchema = z.object({
-  conjunctionAlerts: getZodEnumFromObjectKeys<typeof AccountType>(AccountType, {
-    invalid_type_error: 'Field is required.',
-  }),
-  receiveConjunction: z.string().array(),
-  reEntryAlerts: getZodEnumFromObjectKeys<typeof AccountType>(AccountType, {
-    invalid_type_error: 'Field is required.',
-  }),
-  receiveReEntry: z.string().array(),
+  conjunctionAlerts: z.union([
+    z.literal('all'),
+    z.literal('none'),
+    z.literal('priority'),
+  ]),
+  receiveConjunction: z.array(z.union([z.literal('EMAIL'), z.literal('SMS')])).length(1, { message: 'Field is required.' }),
+  reEntryAlerts: z.union([
+    z.literal('all'),
+    z.literal('none'),
+    z.literal('priority'),
+    z.literal('uk_satellites_only'),
+  ]),
+  receiveReEntry: z.array(z.union([z.literal('EMAIL'), z.literal('SMS')])).length(1, { message: 'Field is required.' }),
 });
 
 export type AlertSettingsSchema = z.infer<typeof alertSettingsSchema>;

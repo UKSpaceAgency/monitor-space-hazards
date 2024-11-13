@@ -1,10 +1,11 @@
-/* eslint-disable no-console */
 'use client';
 
 import { useTranslations } from 'next-intl';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 
+import type { TypeAlertSettingsIn } from '@/__generated__/data-contracts';
+import { patchAlertsUserUserId } from '@/actions/patchAlertsUserUserId';
 import { FormErrorSummary } from '@/components/form/FormErrorSummary';
 import Button from '@/ui/button/button';
 import Checkboxes from '@/ui/checkboxes/checkboxes';
@@ -14,14 +15,32 @@ import type { AlertSettingsSchema } from '@/validations/alertSettingsSchema';
 
 import { AlertSettingsDetails } from './AlertSettingsDetails';
 
-const AlertSettingsForm = () => {
+type AlertSettingsFormProps = {
+  userId: string;
+  defaultValues: AlertSettingsSchema;
+};
+
+const AlertSettingsForm = ({ userId, defaultValues }: AlertSettingsFormProps) => {
   const t = useTranslations('Forms.Alert_settings');
   const tCommon = useTranslations('Common');
 
-  const { register, handleSubmit, formState: { errors } } = useForm<AlertSettingsSchema>();
+  const { register, handleSubmit, formState: { errors } } = useForm<AlertSettingsSchema>({
+    defaultValues,
+  });
 
   const onSubmit: SubmitHandler<AlertSettingsSchema> = async (data) => {
-    console.log('SUBMIT', data);
+    const payload: TypeAlertSettingsIn = {
+      conjunction_alert_settings: {
+        chosen_option: data.conjunctionAlerts,
+        notification_types: data.receiveConjunction,
+      },
+      reentry_alert_settings: {
+        chosen_option: data.reEntryAlerts,
+        notification_types: data.receiveReEntry,
+      },
+    };
+
+    await patchAlertsUserUserId(userId, payload);
   };
 
   return (
@@ -98,6 +117,11 @@ const AlertSettingsForm = () => {
             ...register('reEntryAlerts'),
           }, {
             value: 'uk_satellites_only',
+            children: t('re_entry_alerts_for_uk'),
+            hint: t('recommended_for_foreign'),
+            ...register('reEntryAlerts'),
+          }, {
+            value: 'priority',
             children: t('only_priority_re_entry'),
             hint: t('recommended_for_all_other'),
             ...register('reEntryAlerts'),
