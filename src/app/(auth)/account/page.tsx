@@ -136,7 +136,7 @@ export default async function AccountPage() {
               items={[
                 {
                   title: t('manage_an_incident.manage_incident_banners'),
-                  href: '/account/analysis-upload-log',
+                  href: '/account/incident-banner',
                 },
               ]}
             />
