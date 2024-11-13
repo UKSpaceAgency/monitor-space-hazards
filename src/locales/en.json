@@ -250,18 +250,7 @@
   "AlertSettings": {
     "title": "Edit your alert settings",
     "description": "We will send you notifications according to the settings selected on this page.",
-    "warning": "Changing these settings is only recommended if advised by the UK Space Agency.",
-    "information_banner": {
-      "title": "Due to a technical issue ingesting conjunction data messages, Monitor Space Hazards may display inaccurate information at this time.",
-      "content": {
-        "youCanVisit": "You can visit the",
-        "externalData": "external data sources performance page",
-        "toSeeWhen": "to see when the last fetch of data was.",
-        "contact": "Contact",
-        "email": "monitorspacehazards@ukspaceagency.gov.uk",
-        "forMoreInformation": "for more information."
-      }
-    }
+    "warning": "Changing these settings is only recommended if advised by the UK Space Agency."
   },
   "SatellitesPage": {
     "title": "UK-licensed satellites",
