@@ -3,12 +3,11 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
-import type { SubmitHandler } from 'react-hook-form';
+import type { SubmitHandler, UseFormRegister } from 'react-hook-form';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import type { TypeAlertSettingsIn } from '@/__generated__/data-contracts';
 import { patchAlertsUserUserId } from '@/actions/patchAlertsUserUserId';
-import { FormErrorSummary } from '@/components/form/FormErrorSummary';
 import Button from '@/ui/button/button';
 import Checkboxes from '@/ui/checkboxes/checkboxes';
 import Fieldset from '@/ui/fieldset/fieldset';
@@ -21,12 +20,38 @@ import type { AlertSettingsSchema } from '@/validations/alertSettingsSchema';
 import { AlertSettingsDetails } from './AlertSettingsDetails';
 import { RegionsTableRow } from './RegionsTableRow';
 
+function Option({ name, hint, label, register }: { name: keyof AlertSettingsSchema; hint: string; label: string; register: UseFormRegister<AlertSettingsSchema> }) {
+  return (
+    <Checkboxes
+      name={name}
+      hint={hint}
+      items={[
+        {
+          id: 'email',
+          children: 'Email',
+          value: 'EMAIL',
+          ...register(name),
+        },
+        {
+          id: 'sms',
+          children: 'SMS',
+          value: 'SMS',
+          ...register(name),
+        },
+      ]}
+    >
+      <p className="govuk-body"><b>{label}</b></p>
+    </Checkboxes>
+  );
+}
+
 type AlertSettingsFormProps = {
   userId: string;
   defaultValues: AlertSettingsSchema;
+  selfEdit?: boolean;
 };
 
-const AlertSettingsForm = ({ userId, defaultValues }: AlertSettingsFormProps) => {
+const AlertSettingsForm = ({ userId, defaultValues, selfEdit = true }: AlertSettingsFormProps) => {
   const t = useTranslations('Forms.Alert_settings');
   const tCommon = useTranslations('Common');
 
@@ -36,7 +61,7 @@ const AlertSettingsForm = ({ userId, defaultValues }: AlertSettingsFormProps) =>
     defaultValues,
   });
 
-  const { register, handleSubmit, formState: { errors } } = methods;
+  const { register, handleSubmit } = methods;
 
   const onSubmit: SubmitHandler<AlertSettingsSchema> = async (data) => {
     const payload: TypeAlertSettingsIn = {
@@ -75,25 +100,28 @@ const AlertSettingsForm = ({ userId, defaultValues }: AlertSettingsFormProps) =>
           )
         : (
             <>
-              <h1 className="govuk-heading-xl">{t('title')}</h1>
+              <h1 className="govuk-heading-xl">{t('title', { whose: selfEdit ? 'your' : 'user\'s' })}</h1>
               <p className="govuk-body">{t('description')}</p>
-              <WarningText>
-                {t('warning')}
-              </WarningText>
+              {selfEdit && (
+                <WarningText>
+                  {t('warning')}
+                </WarningText>
+              )}
               <FormProvider {...methods}>
                 <form
                   onSubmit={handleSubmit(onSubmit)}
                 >
-                  <FormErrorSummary i18path="Alert_settings" errors={errors} />
                   <Fieldset legend={{
                     text: t('conjunction_alerts'),
                   }}
                   >
                     <Radios
                       id="conjunctionAlerts"
-                      label={t('which_conjunction')}
+                      label={t(
+                        `${selfEdit ? 'self_which' : 'their_which'}`,
+                        { type: 'conjunction' },
+                      )}
                       hint={t('select_one_option')}
-                      error={errors.conjunctionAlerts?.message as string}
                       items={[{
                         value: 'none',
                         children: t('no_conjunction_alerts'),
@@ -113,26 +141,14 @@ const AlertSettingsForm = ({ userId, defaultValues }: AlertSettingsFormProps) =>
                   </Fieldset>
                   <AlertSettingsDetails />
 
-                  <Checkboxes
-                    name="receiveConjunction"
-                    hint={t('select_one_option')}
-                    items={[
-                      {
-                        id: 'email',
-                        children: 'Email',
-                        value: 'EMAIL',
-                        ...register('receiveConjunction'),
-                      },
-                      {
-                        id: 'sms',
-                        children: 'SMS',
-                        value: 'SMS',
-                        ...register('receiveConjunction'),
-                      },
-                    ]}
-                  >
-                    <p className="govuk-body"><b>{t('how_would_you_like_conjunction')}</b></p>
-                  </Checkboxes>
+                  {selfEdit && (
+                    <Option
+                      name="receiveConjunction"
+                      hint={t('select_one_option')}
+                      label={t('how_would_you_like_conjunction')}
+                      register={register}
+                    />
+                  )}
 
                   <Fieldset legend={{
                     text: t('re_entry_alerts'),
@@ -140,16 +156,18 @@ const AlertSettingsForm = ({ userId, defaultValues }: AlertSettingsFormProps) =>
                   >
                     <Radios
                       id="reEntryAlerts"
-                      label={t('which_re_entry')}
+                      label={t(
+                        `${selfEdit ? 'self_which' : 'their_which'}`,
+                        { type: 're-entry' },
+                      )}
                       hint={t('select_one_option')}
-                      error={errors.conjunctionAlerts?.message as string}
                       items={[{
                         value: 'none',
                         children: t('no_re_entry_alerts'),
                         ...register('reEntryAlerts'),
                       }, {
                         value: 'all',
-                        children: t('all_re_entry_alerts'),
+                        children: t('all_re_entry_alerts', { whose: selfEdit ? 'your' : 'user\'s' }),
                         hint: t('recommended_for_uk'),
                         ...register('reEntryAlerts'),
                       }, {
@@ -159,7 +177,7 @@ const AlertSettingsForm = ({ userId, defaultValues }: AlertSettingsFormProps) =>
                         ...register('reEntryAlerts'),
                       }, {
                         value: 'priority',
-                        children: t('only_priority_re_entry'),
+                        children: t('only_priority_re_entry', { whose: selfEdit ? 'your' : 'user\'s' }),
                         hint: t('recommended_for_all_other'),
                         ...register('reEntryAlerts'),
                       }]}
@@ -168,7 +186,12 @@ const AlertSettingsForm = ({ userId, defaultValues }: AlertSettingsFormProps) =>
                   <AlertSettingsDetails />
 
                   <p className="govuk-body">
-                    <b>{t('select_the_user_areas_of_interest')}</b>
+                    <b>
+                      {t(
+                        'select_the_areas_of_interest',
+                        { whose: selfEdit ? 'your' : 'user\'s' },
+                      )}
+                    </b>
                   </p>
                   <table className="govuk-table">
                     <tbody className="govuk-table__body">
@@ -187,26 +210,14 @@ const AlertSettingsForm = ({ userId, defaultValues }: AlertSettingsFormProps) =>
                     {t('notifications_for_re_entries')}
                   </p>
 
-                  <Checkboxes
-                    name="receiveReEntry"
-                    hint={t('select_one_option')}
-                    items={[
-                      {
-                        id: 'email',
-                        children: 'Email',
-                        value: 'EMAIL',
-                        ...register('receiveReEntry'),
-                      },
-                      {
-                        id: 'sms',
-                        children: 'SMS',
-                        value: 'SMS',
-                        ...register('receiveReEntry'),
-                      },
-                    ]}
-                  >
-                    <p className="govuk-body"><b>{t('how_would_you_like_re_entry')}</b></p>
-                  </Checkboxes>
+                  {selfEdit && (
+                    <Option
+                      name="receiveReEntry"
+                      hint={t('select_one_option')}
+                      label={t('how_would_you_like_re_entry')}
+                      register={register}
+                    />
+                  )}
 
                   <div className="govuk-button-group">
                     <Button type="submit">

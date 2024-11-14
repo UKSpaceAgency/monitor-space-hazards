@@ -36,7 +36,7 @@ export default async function EditUserAlertSettingsPage({
 
   return (
     <div>
-      <AlertSettingsForm userId={user.id!} defaultValues={defaultValues} />
+      <AlertSettingsForm userId={user.id!} defaultValues={defaultValues} selfEdit={false} />
     </div>
   );
 }
