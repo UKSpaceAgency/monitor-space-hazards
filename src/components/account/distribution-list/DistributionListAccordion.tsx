@@ -21,15 +21,15 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
     <>
 
       <h2 className="govuk-heading-l">
-        {t('distribution_list', { type: 'conjunctions' })}
+        {t('distribution_list', { type: 'conjunction' })}
       </h2>
 
       <Accordion
         id="conjunction-list"
         initialItems={[
           {
-            id: 'all-conjunctions',
-            heading: t('receive_alerts', { item: 'all conjunctions' }),
+            id: 'all-conjunction',
+            heading: t('receive_alerts', { item: 'all conjunction' }),
             content: (
               <DataTable data={alerts.filter(alert => alert.conjunction_alert_settings?.chosen_option === 'all')} columns={columns} />
             ),
