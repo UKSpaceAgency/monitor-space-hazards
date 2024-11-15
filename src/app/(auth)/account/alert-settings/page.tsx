@@ -28,7 +28,10 @@ export default async function AlertSettingsPage() {
 
   return (
     <div>
-      <AlertSettingsForm userId={user.id} defaultValues={defaultValues} />
+      <AlertSettingsForm
+        userId={user.id}
+        defaultValues={defaultValues}
+      />
     </div>
   );
 }

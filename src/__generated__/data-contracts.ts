@@ -1346,7 +1346,8 @@ export type TypeManoeuvrePlotMetadataSortBy =
   | "updated_at"
   | "file_name"
   | "event_short_id"
-  | "uploaded_by_email";
+  | "uploaded_by_email"
+  | "uploaded_by_id";
 
 /** ManoeuvrePlotOut */
 export interface TypeManoeuvrePlotOut {
@@ -2314,7 +2315,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2024-11-11T15:36:10.200646"
+   * @default "2024-11-14T21:23:04.126242"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -2621,10 +2622,14 @@ export interface TypeGetEphemerisParams {
 export interface TypeGetManoeuvrePlotsParams {
   /**
    * Sort By
-   * Sorting column
-   * @default "cdm_external_id"
+   * @default "created_at"
    */
   sort_by?: TypeManoeuvrePlotMetadataSortBy;
+  /**
+   * Sort Order
+   * @default "desc"
+   */
+  sort_order?: TypeSortOrder;
   /**
    * Show Only Active
    * @default true
@@ -2640,11 +2645,6 @@ export interface TypeGetManoeuvrePlotsParams {
    * @default 0
    */
   offset?: number;
-  /**
-   * Sort Order
-   * @default "asc"
-   */
-  sort_order?: TypeSortOrder;
 }
 
 export interface TypeGetManoeuvrePlotsByEventEventShortIdParams {
