@@ -14,13 +14,17 @@ import Fieldset from '@/ui/fieldset/fieldset';
 import Panel from '@/ui/panel/panel';
 import Radios from '@/ui/radios/radios';
 import WarningText from '@/ui/warning-text/warning-text';
-import { Regions } from '@/utils/Regions';
 import type { AlertSettingsSchema } from '@/validations/alertSettingsSchema';
 
 import { AlertSettingsDetails } from './AlertSettingsDetails';
-import { RegionsTableRow } from './RegionsTableRow';
+import { RegionsTable } from './RegionsTableRow';
 
-function Option({ name, hint, label, register }: { name: keyof AlertSettingsSchema; hint: string; label: string; register: UseFormRegister<AlertSettingsSchema> }) {
+function Option({
+  name,
+  hint,
+  label,
+  register,
+}: { name: keyof AlertSettingsSchema; hint: string; label: string; register: UseFormRegister<AlertSettingsSchema> }) {
   return (
     <Checkboxes
       name={name}
@@ -193,19 +197,9 @@ const AlertSettingsForm = ({ userId, defaultValues, selfEdit = true }: AlertSett
                       )}
                     </b>
                   </p>
-                  <table className="govuk-table">
-                    <tbody className="govuk-table__body">
-                      <RegionsTableRow region={Regions.ANYWHERE} name="areasOfInterest" toggleRegions />
-                      <RegionsTableRow region={Regions.ENGLAND} name="areasOfInterest" intent />
-                      <RegionsTableRow region={Regions.NORTHERN_IRELAND} name="areasOfInterest" intent />
-                      <RegionsTableRow region={Regions.SCOTLAND} name="areasOfInterest" intent />
-                      <RegionsTableRow region={Regions.WALES} name="areasOfInterest" intent />
-                      <RegionsTableRow region={Regions.BRITISH_OVERSEAS_TERRITORIES} name="areasOfInterest" />
-                      <RegionsTableRow region={Regions.SHANWICK} name="areasOfInterest" />
-                      <RegionsTableRow region={Regions.NAVAREA} name="areasOfInterest" />
-                      <RegionsTableRow region={Regions.REST_OF_THE_WORLD} name="areasOfInterest" />
-                    </tbody>
-                  </table>
+
+                  <RegionsTable name="areasOfInterest" />
+
                   <p className="govuk-body">
                     {t('notifications_for_re_entries')}
                   </p>

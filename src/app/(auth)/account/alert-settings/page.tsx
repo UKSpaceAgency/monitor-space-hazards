@@ -5,6 +5,7 @@ import { getUsersMe } from '@/actions/getUsersMe';
 import { getUsersMeAlertSettings } from '@/actions/getUsersMeAlertSettings';
 import { AlertSettingsForm } from '@/components/account/alert-settings/AlertSettingsForm';
 import { isSatteliteUser } from '@/utils/Roles';
+import type { AlertSettingsSchema } from '@/validations/alertSettingsSchema';
 
 export const metadata: Metadata = {
   title: 'Edit your alert settings',
@@ -18,7 +19,7 @@ export default async function AlertSettingsPage() {
     return notFound();
   }
 
-  const defaultValues = {
+  const defaultValues: AlertSettingsSchema = {
     conjunctionAlerts: alertSettings.conjunction_alert_settings?.chosen_option || 'none',
     receiveConjunction: alertSettings.conjunction_alert_settings?.notification_types || [],
     reEntryAlerts: alertSettings.reentry_alert_settings?.chosen_option || 'none',

@@ -4,9 +4,31 @@ import { useFormContext } from 'react-hook-form';
 
 import Checkboxes from '@/ui/checkboxes/checkboxes';
 import type { Region } from '@/utils/Regions';
-import { RegionsEnum } from '@/utils/Regions';
+import { Regions, RegionsEnum } from '@/utils/Regions';
 
-export function RegionsTableRow({
+type RegionsTableProps = {
+  name: string;
+};
+
+export function RegionsTable({ name }: RegionsTableProps) {
+  return (
+    <table className="govuk-table">
+      <tbody className="govuk-table__body">
+        <RegionsTableRow region={Regions.ANYWHERE} name={name} toggleRegions />
+        <RegionsTableRow region={Regions.ENGLAND} name={name} intent />
+        <RegionsTableRow region={Regions.NORTHERN_IRELAND} name={name} intent />
+        <RegionsTableRow region={Regions.SCOTLAND} name={name} intent />
+        <RegionsTableRow region={Regions.WALES} name={name} intent />
+        <RegionsTableRow region={Regions.BRITISH_OVERSEAS_TERRITORIES} name={name} />
+        <RegionsTableRow region={Regions.SHANWICK} name={name} />
+        <RegionsTableRow region={Regions.NAVAREA} name={name} />
+        <RegionsTableRow region={Regions.REST_OF_THE_WORLD} name={name} />
+      </tbody>
+    </table>
+  );
+}
+
+function RegionsTableRow({
   region,
   name,
   toggleRegions,

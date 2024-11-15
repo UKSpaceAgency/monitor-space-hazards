@@ -5,6 +5,7 @@ import { getAlertsUserUserId } from '@/actions/getAlertsUserUserId';
 import { getUsersMe } from '@/actions/getUsersMe';
 import { AlertSettingsForm } from '@/components/account/alert-settings/AlertSettingsForm';
 import { isAgencyApprover } from '@/utils/Roles';
+import type { AlertSettingsSchema } from '@/validations/alertSettingsSchema';
 
 export const metadata: Metadata = {
   title: 'Edit a user\'s alert settings',
@@ -24,7 +25,7 @@ export default async function EditUserAlertSettingsPage({
     return notFound();
   }
 
-  const defaultValues = {
+  const defaultValues: AlertSettingsSchema = {
     conjunctionAlerts: alertSettings.conjunction_alert_settings?.chosen_option || 'none',
     receiveConjunction: alertSettings.conjunction_alert_settings?.notification_types || [],
     reEntryAlerts: alertSettings.reentry_alert_settings?.chosen_option || 'none',
