@@ -249,8 +249,7 @@
   },
   "DistributionLists": {
     "title": "View distribution lists",
-    "description": "We will send notifications according to the distribution lists outlined on this page.",
-    "distribution_list": "Distribution lists for {type} events"
+    "description": "We will send notifications according to the distribution lists outlined on this page."
   },
   "SatellitesPage": {
     "title": "UK-licensed satellites",
@@ -261,7 +260,8 @@
   },
   "Accordions": {
     "DistributionLists": {
-      "receive_alerts": "Receive {item} alerts"
+      "receive_alerts": "Receive {item} alerts",
+      "distribution_list": "Distribution lists for {type} events"
     }
   },
   "Tables": {

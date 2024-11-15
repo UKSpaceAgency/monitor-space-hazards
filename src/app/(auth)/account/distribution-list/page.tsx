@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 
-import { DistributionListAccordion } from '@/components/account/distribution-list/DistributionListAccordion';
+import { getAlerts } from '@/actions/getAlerts';
+import { DistributionListAccordions } from '@/components/account/distribution-list/DistributionListAccordion';
 
 export const metadata: Metadata = {
   title: 'View distribution lists',
@@ -10,22 +11,14 @@ export const metadata: Metadata = {
 export default async function DistributionListsPage() {
   const t = await getTranslations('DistributionLists');
 
+  const alerts = await getAlerts();
+
   return (
     <div>
       <h1 className="govuk-heading-xl">{t('title')}</h1>
       <p className="govuk-body">{t('description')}</p>
 
-      <h2 className="govuk-heading-l">
-        {t('distribution_list', { type: 'conjunction' })}
-      </h2>
-
-      <DistributionListAccordion />
-
-      <h2 className="govuk-heading-l">
-        {t('distribution_list', { type: 're-entry' })}
-      </h2>
-
-      <DistributionListAccordion />
+      <DistributionListAccordions alerts={alerts} />
     </div>
   );
 }

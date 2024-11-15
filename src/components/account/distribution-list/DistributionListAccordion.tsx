@@ -1,80 +1,81 @@
 'use client';
 
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 import type { TypeAlertSettingsDistributionList } from '@/__generated__/data-contracts';
 import { DataTable } from '@/components/DataTable';
-import type { TranslatedColumnDef } from '@/types';
 import Accordion from '@/ui/accordion/accordion';
 
-const DistributionListAccordion = () => {
+import { getDistributionListColumns } from './columns';
+
+type DistributionListAccordionsProps = {
+  alerts: TypeAlertSettingsDistributionList[];
+};
+
+const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps) => {
   const t = useTranslations('Accordions.DistributionLists');
 
-  const columns: TranslatedColumnDef<TypeAlertSettingsDistributionList>[] = [
-    {
-      accessorKey: 'name',
-      id: 'name',
-      header: 'Name',
-      enableSorting: false,
-      cell: ({ row }) =>
-        `${row.original.first_name} ${row.original.last_name}`,
-    },
-    {
-      accessorKey: 'email',
-      id: 'email',
-      header: 'Email',
-      enableSorting: false,
-    },
-    {
-      accessorKey: 'organizationName',
-      id: 'organizationName',
-      header: 'Organisation/department',
-      enableSorting: false,
-    },
-    {
-      accessorKey: 'phoneNumber:',
-      id: 'phoneNumber:',
-      enableSorting: false,
-      header: 'Phone number',
-    },
-    {
-      id: 'userId',
-      accessorKey: `userId`,
-      enableSorting: false,
-      header: () => <span style={{ visibility: 'hidden' }}>Action</span>,
-      cell: ({ getValue }: any) => (
-        <Link
-          href={`/account/alert-settings/${getValue() as string}`}
-          className="govuk-link"
-        >
-          Edit
-        </Link>
-      ),
-    },
-  ];
+  const columns = getDistributionListColumns();
 
   return (
-    <Accordion
-      id="conjunction-list"
-      initialItems={[
-        {
-          id: 'all-conjunctions',
-          heading: t('receive_alerts', { item: 'all conjunctions' }),
-          content: (
-            <DataTable data={[]} columns={columns} />
-          ),
-        },
-        {
-          id: 'only-priority',
-          heading: t('receive_alerts', { item: 'only priority conjunction' }),
-          content: (
-            <DataTable data={[]} columns={columns} />
-          ),
-        },
-      ]}
-    />
+    <>
+
+      <h2 className="govuk-heading-l">
+        {t('distribution_list', { type: 'conjunctions' })}
+      </h2>
+
+      <Accordion
+        id="conjunction-list"
+        initialItems={[
+          {
+            id: 'all-conjunctions',
+            heading: t('receive_alerts', { item: 'all conjunctions' }),
+            content: (
+              <DataTable data={alerts.filter(alert => alert.conjunction_alert_settings?.chosen_option === 'all')} columns={columns} />
+            ),
+          },
+          {
+            id: 'only-priority-conjunctions',
+            heading: t('receive_alerts', { item: 'only priority conjunction' }),
+            content: (
+              <DataTable data={alerts.filter(alert => alert.conjunction_alert_settings?.chosen_option === 'priority')} columns={columns} />
+            ),
+          },
+        ]}
+      />
+
+      <h2 className="govuk-heading-l">
+        {t('distribution_list', { type: 're-entry' })}
+      </h2>
+
+      <Accordion
+        id="re-entries-list"
+        initialItems={[
+          {
+            id: 'all-re-entries',
+            heading: t('receive_alerts', { item: 'all re-entry' }),
+            content: (
+              <DataTable data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_option === 'all')} columns={columns} />
+            ),
+          },
+          {
+            id: 'only-uk-re-entries',
+            heading: t('receive_alerts', { item: 'only for UK satellites' }),
+            content: (
+              <DataTable data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_option === 'uk_satellites_only')} columns={columns} />
+            ),
+          },
+          {
+            id: 'only-priority-re-entries',
+            heading: t('receive_alerts', { item: 'only priority re-entry' }),
+            content: (
+              <DataTable data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_option === 'priority')} columns={columns} />
+            ),
+          },
+        ]}
+      />
+    </>
   );
 };
 
-export { DistributionListAccordion };
+export { DistributionListAccordions };
