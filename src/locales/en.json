@@ -248,13 +248,20 @@
     }
   },
   "DistributionLists": {
-    "title": "View distribution lists"
+    "title": "View distribution lists",
+    "description": "We will send notifications according to the distribution lists outlined on this page.",
+    "distribution_list": "Distribution lists for {type} events"
   },
   "SatellitesPage": {
     "title": "UK-licensed satellites",
     "search_bar": {
       "label": "Find a satellite:",
       "placeholder": "Search by common name or NORAD ID"
+    }
+  },
+  "Accordions": {
+    "DistributionLists": {
+      "receive_alerts": "Receive {item} alerts"
     }
   },
   "Tables": {
