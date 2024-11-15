@@ -24,6 +24,8 @@ export default async function DistributionListsPage() {
       <h2 className="govuk-heading-l">
         {t('distribution_list', { type: 're-entry' })}
       </h2>
+
+      <DistributionListAccordion />
     </div>
   );
 }

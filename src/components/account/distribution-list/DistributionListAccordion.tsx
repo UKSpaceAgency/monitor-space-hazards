@@ -57,14 +57,16 @@ const DistributionListAccordion = () => {
   return (
     <Accordion
       id="conjunction-list"
-      items={[
+      initialItems={[
         {
-          heading: t('receive_alerts', { item: 'all conjunction' }),
+          id: 'all-conjunctions',
+          heading: t('receive_alerts', { item: 'all conjunctions' }),
           content: (
             <DataTable data={[]} columns={columns} />
           ),
         },
         {
+          id: 'only-priority',
           heading: t('receive_alerts', { item: 'only priority conjunction' }),
           content: (
             <DataTable data={[]} columns={columns} />

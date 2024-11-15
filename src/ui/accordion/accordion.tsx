@@ -1,10 +1,11 @@
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type AccordionProps = {
   id: string;
-  items: {
+  initialItems: {
+    id: string;
     heading: string;
     summary?: ReactNode;
     content: ReactNode;
@@ -12,8 +13,10 @@ type AccordionProps = {
   }[];
 };
 
-export function Accordion({ id, items }: AccordionProps) {
+export function Accordion({ initialItems }: AccordionProps) {
   const [selected, setSelected] = useState(new Set());
+  const [isAllItemsExpanded, setAllItemsExpanded] = useState(false);
+  const [items, setItems] = useState(initialItems);
 
   const handleHeaderClick = (i: number) => {
     setSelected((selected) => {
@@ -27,19 +30,51 @@ export function Accordion({ id, items }: AccordionProps) {
     });
   };
 
+  const toggleAllItems = () => {
+    setAllItemsExpanded(prevState => !prevState);
+  };
+
+  const toggleItem = (id: string) => {
+    const modifiedItems = items.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          expanded: !item.expanded,
+        };
+      }
+
+      return item;
+    });
+
+    setItems(modifiedItems);
+  };
+
+  useEffect(() => {
+    setItems(prevItems => prevItems.map(item => ({
+      ...item,
+      expanded: isAllItemsExpanded,
+    })));
+  }, [isAllItemsExpanded]);
+
   return (
-    <div id={id} className={clsx('govuk-accordion')}>
-      {/* <div className={classNames(styles['govuk-accordion__controls'])}>
+    <div id="accordion-default" className="govuk-accordion govuk-frontend-supported">
+      <div className="govuk-accordion__controls">
         <button
           type="button"
-          class="govuk-accordion__show-all"
-          aria-expanded="false"
+          className="govuk-accordion__show-all"
+          onClick={toggleAllItems}
+          aria-expanded={isAllItemsExpanded}
         >
-          <span class="govuk-accordion-nav__chevron govuk-accordion-nav__chevron--down"></span>
-          <span class="govuk-accordion__show-all-text">Show all sections</span>
+          <span className={clsx({
+            'govuk-accordion-nav__chevron govuk-accordion-nav__chevron--down': !isAllItemsExpanded,
+            'govuk-accordion-nav__chevron': isAllItemsExpanded,
+          })}
+          >
+          </span>
+          <span className="govuk-accordion__show-all-text">{isAllItemsExpanded ? 'Hide all sections' : 'Show all sections'}</span>
         </button>
-      </div> */}
-      {items.map(({ heading, summary, content }, index) => (
+      </div>
+      {items.map(({ heading, summary, content, expanded, id }, index) => (
         <div
           // eslint-disable-next-line react/no-array-index-key
           key={`accordion-${index}`}
@@ -53,11 +88,9 @@ export function Accordion({ id, items }: AccordionProps) {
               <button
                 type="button"
                 aria-controls={`${id}-content-${index}`}
-                className={clsx(
-                  'govuk-accordion__section-button',
-                )}
                 aria-expanded={selected.has(index)}
                 aria-label={heading}
+                className="w-full"
                 onClick={() => handleHeaderClick(index)}
               >
                 <span
@@ -70,7 +103,25 @@ export function Accordion({ id, items }: AccordionProps) {
                 </span>
               </button>
             </h2>
-            {summary && (
+
+            <button
+              type="button"
+              className="govuk-accordion__section-toggle"
+              onClick={() => toggleItem(id)}
+              aria-expanded={isAllItemsExpanded}
+            >
+              <span className="govuk-accordion__section-toggle-focus">
+                <span className={clsx({
+                  'govuk-accordion-nav__chevron govuk-accordion-nav__chevron--down': !expanded,
+                  'govuk-accordion-nav__chevron': expanded,
+                })}
+                >
+                </span>
+                <span className="govuk-accordion__section-toggle-text">{expanded ? 'Hide' : 'Show'}</span>
+              </span>
+            </button>
+
+            {summary && expanded && (
               <div
                 className={clsx(
                   'govuk-accordion__section-summary',
@@ -82,15 +133,16 @@ export function Accordion({ id, items }: AccordionProps) {
               </div>
             )}
           </div>
-          <div
-            id={`${id}-content-${index}`}
-            className={clsx('govuk-accordion__section-content',
-            )}
-          >
-            {content}
-          </div>
+          {expanded && (
+            <div
+              id={`${id}-content-${index}`}
+            >
+              {content}
+            </div>
+          )}
         </div>
-      ))}
+      ),
+      )}
     </div>
   );
 }
