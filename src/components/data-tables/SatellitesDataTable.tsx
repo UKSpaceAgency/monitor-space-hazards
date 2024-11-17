@@ -7,7 +7,7 @@ import InfiniteTable from '@/components/InfiniteTable';
 import { LastIntegration } from '@/components/LastIntegration';
 import { QUERY_KEYS } from '@/utils/QueryKeys';
 
-import { columns } from './columns';
+import { satellitesColumns } from './columns/SatellitesColumns';
 
 type SatellitesDataTableProps = {
   query?: string;
@@ -23,14 +23,12 @@ const SatellitesDataTable = async ({ query }: SatellitesDataTableProps) => {
 
   const data = await getSatellites(params);
 
-  // We need to ask should we donwload with query or not
-  const downloadParams: TypeGetSatellitesWithMetadataParams = {
-    search_like: query,
-    limit: 9999999,
-  };
-
   const downloadData = async () => {
     'use server';
+    const downloadParams: TypeGetSatellitesWithMetadataParams = {
+      ...params,
+      limit: 9999999,
+    };
     return await getSatellites(downloadParams);
   };
 
@@ -39,7 +37,7 @@ const SatellitesDataTable = async ({ query }: SatellitesDataTableProps) => {
       <InfiniteTable<TypeSatelliteWithMetadataOut, TypeGetSatellitesWithMetadataParams>
         initialData={data}
         params={params}
-        columns={columns}
+        columns={satellitesColumns}
         fetcher={getSatellites}
         queryKeys={[QUERY_KEYS.Satellites]}
       />

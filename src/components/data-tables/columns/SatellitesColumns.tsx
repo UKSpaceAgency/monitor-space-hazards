@@ -5,38 +5,34 @@ import Link from 'next/link';
 import type { TypeSatelliteWithMetadataOut } from '@/__generated__/data-contracts';
 import type { TranslatedColumnDef } from '@/types';
 
-export const columns: TranslatedColumnDef<TypeSatelliteWithMetadataOut>[] = [
+export const satellitesColumns: TranslatedColumnDef<TypeSatelliteWithMetadataOut>[] = [
   {
-    id: 'commonName',
     accessorKey: 'commonName',
     header: 'Satellites.common_name',
     size: 150,
-    cell: ({ getValue, row }) => (
+    cell: ({ renderValue, row }) => (
       <Link
         href={`/satellites/${row?.original.noradId}`}
         passHref
         className="govuk-link"
       >
-        {getValue() as string}
+        {renderValue<string>()}
       </Link>
     ),
   },
   {
-    id: 'noradId',
     accessorKey: 'noradId',
     header: 'Satellites.norad_id',
     size: 100,
   },
   {
-    id: 'internationalDesignator',
     accessorKey: 'internationalDesignator',
     header: 'Satellites.international_designator',
     size: 100,
   },
   {
-    id: `upcomingKnownConjunctionEvents`,
+    id: `futureEventsCount`,
     accessorKey: `metadata.futureEventsCount`,
     header: 'Satellites.upcoming_known_conjunction_events',
-    enableSorting: false,
   },
 ];

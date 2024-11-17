@@ -1,5 +1,0 @@
-const EphemerisData = () => {
-
-};
-
-export { EphemerisData };

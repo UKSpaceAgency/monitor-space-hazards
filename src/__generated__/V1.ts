@@ -1681,7 +1681,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    *
    * @tags users
    * @name GetUsersMeAlertSettings
-   * @summary Get User Alert Settings
+   * @summary Get Users Me Alert Settings
    * @request GET:/v1/users/me/alert-settings
    * @secure
    */
@@ -1697,7 +1697,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    *
    * @tags users
    * @name PostUsersMeAlertSettings
-   * @summary Post User Alert Settings
+   * @summary Post Users Me Alert Settings
    * @request POST:/v1/users/me/alert-settings
    * @secure
    */
@@ -1742,6 +1742,22 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       body: data,
       secure: true,
       type: ContentType.Json,
+      format: "json",
+      ...params,
+    }); /**
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|View| |Agency user|-| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags alerts
+   * @name GetAlertsUserUserId
+   * @summary Get User Alert Settings
+   * @request GET:/v1/alerts/user/{user_id}
+   * @secure
+   */
+  getAlertsUserUserId = (userId: string, params: RequestParams = {}) =>
+    this.request<TypeAlertSettingsOut, TypeHTTPValidationError>({
+      path: `/v1/alerts/user/${userId}`,
+      method: "GET",
+      secure: true,
       format: "json",
       ...params,
     });

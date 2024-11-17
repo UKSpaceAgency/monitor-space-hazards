@@ -1,79 +1,24 @@
 import { useTranslations } from 'next-intl';
 
 import type { TypeSatelliteOut } from '@/__generated__/data-contracts';
-import { dayjs } from '@/libs/Dayjs';
-import { Table, TableBody, TableCaption, TableCell, TableCellHeader, TableRow } from '@/ui/table/Table';
-import { getFullCountry } from '@/utils/Regions';
+
+import { BaseInformationsTable } from './tables/BaseInformationsTable';
+import { LicenseInformationsTable } from './tables/LicenseInformationsTable';
+import { OrbitalInformationsTable } from './tables/OrbitalInformationsTable';
 
 type SatelliteInformationProps = {
-  object: TypeSatelliteOut;
+  object: TypeSatelliteOut | TypeSatelliteOut[];
 };
 
 const SatelliteInformation = ({ object }: SatelliteInformationProps) => {
-  const t = useTranslations('SatellitePage.Information');
-
+  const t = useTranslations('SatellitePage.Informations');
   return (
-    <div>
+    <div className="mb-12">
       <h2 data-anchor="information" className="hidden">{t('title')}</h2>
       <p className="govuk-body">{t('content')}</p>
-      <Table>
-        <TableBody>
-          <TableRow>
-            <TableCellHeader className="w-6/12">{t('base.common_name')}</TableCellHeader>
-            <TableCell>{object.commonName}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCellHeader className="w-6/12">{t('base.norad_id')}</TableCellHeader>
-            <TableCell>{object.noradId}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCellHeader className="w-6/12">{t('base.international_designator')}</TableCellHeader>
-            <TableCell>{object.internationalDesignator}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCellHeader className="w-6/12">{t('base.object_type')}</TableCellHeader>
-            <TableCell>{object.objectType}</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-      <Table>
-        <TableCaption>{t('license_information.caption')}</TableCaption>
-        <TableBody>
-          <TableRow>
-            <TableCellHeader className="w-6/12">{t('license_information.country')}</TableCellHeader>
-            <TableCell>{getFullCountry(object.licenseCountry)}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCellHeader className="w-6/12">{t('license_information.launching_site')}</TableCellHeader>
-            <TableCell>{object.launchSite}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCellHeader className="w-6/12">{t('license_information.launch_date')}</TableCellHeader>
-            <TableCell>{dayjs(object.launchDate).format('YYYY')}</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-      <Table>
-        <TableCaption>{t('orbital_information.caption')}</TableCaption>
-        <TableBody>
-          <TableRow>
-            <TableCellHeader className="w-6/12">{t('orbital_information.apogee')}</TableCellHeader>
-            <TableCell>{object.apogee || '-'}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCellHeader className="w-6/12">{t('orbital_information.perigee')}</TableCellHeader>
-            <TableCell>{object.perigee || '-'}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCellHeader className="w-6/12">{t('orbital_information.inclination')}</TableCellHeader>
-            <TableCell>{object.inclination || '-'}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCellHeader className="w-6/12">{t('orbital_information.period')}</TableCellHeader>
-            <TableCell>{object.period || '-'}</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
+      <BaseInformationsTable object={object} />
+      <LicenseInformationsTable object={object} />
+      <OrbitalInformationsTable object={object} />
     </div>
   );
 };
