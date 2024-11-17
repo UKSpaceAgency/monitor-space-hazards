@@ -172,7 +172,7 @@
   },
   "NotificationSettings": {
     "title": "Choose your notification settings",
-    "content": "<p>New event notifications will be collated and sent in one email and/or text every 12 hours.</p><p>Choose which notifications you wish to receive. Uncheck boxes where you do not wish to receive notifications.</p>"
+    "content": "<p>New event notifications will be collated and sent in one email and/or SMS every 12 hours.</p><p>Choose which notifications you wish to receive. Uncheck boxes where you do not wish to receive notifications.</p>"
   },
   "AddNewUser": {
     "title": "Add a new user",
@@ -458,6 +458,48 @@
         "conjunction_events": "View conjunction events page",
         "upcoming_events": "View upcoming conjunction events page",
         "manage_incident_banners": "Manage incident banners"
+      }
+    },
+    "Alert_settings": {
+      "title": "Edit {whose} alert settings",
+      "description": "We will send you notifications according to the settings selected on this page.",
+      "warning": "Changing these settings is only recommended if advised by the UK Space Agency.",
+      "conjunction_alerts": "Conjunction alerts",
+      "self_which": "Which {type} alerts would you like to receive?",
+      "their_which": "Which {type} alerts would you like the user to receive?",
+      "select_one_option": "Select one option.",
+      "no_conjunction_alerts": "No conjunction alerts",
+      "receive_all_conjunction_alerts": "Receive all conjunction alerts",
+      "recommended_for": "Recommended for UK Space Agency, Civil Aviation Authority and Ministry of Defence",
+      "only_priority_conjunction_alerts": "Only priority conjunction alerts",
+      "recommended_for_all_other": "Recommended for all other government departments",
+      "re_entry_alerts": "Re-entry alerts",
+      "no_re_entry_alerts": "No re-entry alerts",
+      "all_re_entry_alerts": "All re-entry alerts for {whose} areas of interest",
+      "recommended_for_uk": "Recommended for UK Space Agency, Civil Aviation Authority, Ministry of Defence and international partners",
+      "re_entry_alerts_for_uk": "Re-entry alerts for UK satellites only",
+      "recommended_for_foreign": "Recommended for Foreign, Commonwealth and Development Office (FCDO) and Department of Business, Energy and Industrial Strategy (BEIS) teams concerned with UK liability",
+      "only_priority_re_entry": "Only priority re-entry alerts for {whose} areas of interest",
+      "how_would_you_like_conjunction": "How would you like to receive conjunction alerts?",
+      "how_would_you_like_re_entry": "How would you like to receive re-entry alerts?",
+      "select_the_areas_of_interest": "Select the {whose} areas of interest:",
+      "notifications_for_re_entries": "Notifications for re-entries over non UK nations are currently only distributed in the case of the re-entering object being a UK licensed satellite.",
+      "sms": "SMS",
+      "email": "Email",
+      "help": {
+        "title": "Criteria for priority conjunction alerts",
+        "priority_conjunction": "Priority conjunction alerts are those with:",
+        "more_than_5": "More than 5% probability of collision",
+        "or_significant": "OR significant press interest",
+        "or_for_uk": "OR for UK-licensed objects:",
+        "more_than_1": "More than 1% probability of collision",
+        "and_no_manoeuvre": "AND no manoeuvre expected",
+        "or_for_non_uk": "OR for non-UK objects:",
+        "medium_or_higher": "Medium risk or higher"
+      },
+      "panel": {
+        "title": "Alert settings changed",
+        "description": "Alert settings updated. These can be viewed in the Account section."
       }
     }
   },
