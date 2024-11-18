@@ -34,9 +34,8 @@ export const columns: TranslatedColumnDef<TypeSatelliteWithMetadataOut>[] = [
     size: 100,
   },
   {
-    id: `upcomingKnownConjunctionEvents`,
-    accessorKey: `metadata.futureEventsCount`,
+    id: 'futureEventsCount',
+    accessorKey: 'futureEventsCount',
     header: 'Satellites.upcoming_known_conjunction_events',
-    enableSorting: false,
   },
 ];
