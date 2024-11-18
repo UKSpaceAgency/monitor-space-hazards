@@ -247,11 +247,21 @@
       "description2": "Select delete to permanently remove the file from the service."
     }
   },
+  "DistributionLists": {
+    "title": "View distribution lists",
+    "description": "We will send notifications according to the distribution lists outlined on this page."
+  },
   "SatellitesPage": {
     "title": "UK-licensed satellites",
     "search_bar": {
       "label": "Find a satellite:",
       "placeholder": "Search by common name or NORAD ID"
+    }
+  },
+  "Accordions": {
+    "DistributionLists": {
+      "receive_alerts": "Receive {item} alerts",
+      "distribution_list": "Distribution lists for {type} events"
     }
   },
   "Tables": {
