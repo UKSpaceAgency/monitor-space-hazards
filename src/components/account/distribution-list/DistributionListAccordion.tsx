@@ -19,7 +19,6 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
 
   return (
     <>
-
       <h2 className="govuk-heading-l">
         {t('distribution_list', { type: 'conjunction' })}
       </h2>

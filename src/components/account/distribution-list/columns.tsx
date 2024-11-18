@@ -35,7 +35,7 @@ export const getDistributionListColumns = (): TranslatedColumnDef<TypeAlertSetti
     accessorKey: `user_id`,
     enableSorting: false,
     header: () => <span style={{ visibility: 'hidden' }}></span>,
-    cell: ({ getValue }: any) => (
+    cell: ({ getValue }) => (
       <Link
         href={`/account/alert-settings/${getValue() as string}`}
         className="govuk-link"
