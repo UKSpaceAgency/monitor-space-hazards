@@ -78,7 +78,7 @@ function RegionsTableRow({
         <label htmlFor={region.id}>{region.name}</label>
       </td>
       <td className="govuk-table__cell">
-        <div>
+        <div className="h-11">
           <Checkboxes
             items={[{
               id: region.id,

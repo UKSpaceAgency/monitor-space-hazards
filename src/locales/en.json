@@ -247,6 +247,10 @@
       "description2": "Select delete to permanently remove the file from the service."
     }
   },
+  "DistributionLists": {
+    "title": "View distribution lists",
+    "description": "We will send notifications according to the distribution lists outlined on this page."
+  },
   "SatellitesPage": {
     "title": "UK-licensed satellites",
     "search_bar": {
@@ -277,6 +281,12 @@
     "AdditionalInformations": {
       "title": "Additional object data",
       "content": "<p>ESA DISCOS provides additional object data where available. Contact ESA DISCOS if your satellite data is incorrect.</p><p>ESA DISCOS data was last updated on: {updateTime} UTC</p>"
+    }
+  },
+  "Accordions": {
+    "DistributionLists": {
+      "receive_alerts": "Receive {item} alerts",
+      "distribution_list": "Distribution lists for {type} events"
     }
   },
   "Tables": {
