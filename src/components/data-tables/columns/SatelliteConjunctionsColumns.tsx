@@ -6,7 +6,7 @@ import type { TypeEventOut } from '@/__generated__/data-contracts';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 
-export const satteliteConjunctionColumns = async (): Promise<TranslatedColumnDef<TypeEventOut>[]> => [
+export const satteliteConjunctionColumns: TranslatedColumnDef<TypeEventOut>[] = [
   {
     header: 'Conjunctions.event_information',
     enableSorting: false,

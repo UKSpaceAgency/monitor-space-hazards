@@ -7,7 +7,7 @@ import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { DisplayUnit, TranslatedColumnDef } from '@/types';
 import { isAnalysist } from '@/utils/Roles';
 
-export const conjunctionColumns = async ({ role, displayUnit }: { role?: TypeUserRole | null; displayUnit?: DisplayUnit }): Promise<TranslatedColumnDef<TypeEventOut>[]> => [
+export const conjunctionColumns = ({ role, displayUnit }: { role?: TypeUserRole | null; displayUnit?: DisplayUnit }): TranslatedColumnDef<TypeEventOut>[] => [
   {
     id: 'baseData',
     header: 'Conjunctions.event_information',
@@ -120,14 +120,13 @@ export const conjunctionColumns = async ({ role, displayUnit }: { role?: TypeUse
         header: 'Space-Track CDM',
         cell: ({ getValue }) => {
           const collisionProbability = getValue<number>();
-          if (collisionProbability) {
-            if (displayUnit === 'percentage') {
-              return `${(collisionProbability * 100).toFixed(2)}%`;
-            }
-            return collisionProbability;
-          } else {
+          if (!collisionProbability) {
             return '';
           }
+          if (displayUnit === 'percentage') {
+            return `${(collisionProbability * 100).toFixed(2)}%`;
+          }
+          return collisionProbability;
         },
       },
       {

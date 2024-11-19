@@ -1,8 +1,9 @@
 import type { ColumnSort } from '@tanstack/react-table';
 import camelCase from 'lodash/camelCase';
-import { getTranslations } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
+import { useMemo } from 'react';
 
-import type { TypeEpoch, TypeEventOut, TypeGetConjunctionEventsListParams } from '@/__generated__/data-contracts';
+import type { TypeEventOut, TypeGetConjunctionEventsListParams } from '@/__generated__/data-contracts';
 import { getConjunctions } from '@/actions/getConjunctions';
 import { DownloadData } from '@/components/DownloadData';
 import InfiniteTable from '@/components/InfiniteTable';
@@ -11,48 +12,29 @@ import { QUERY_KEYS } from '@/utils/QueryKeys';
 import { satteliteConjunctionColumns } from './columns/SatelliteConjunctionsColumns';
 
 type SatelliteConjunctionsDataTableProps = {
-  query?: string;
-  epoch?: TypeEpoch;
-  noradId?: string;
+  params: TypeGetConjunctionEventsListParams;
+  initialData: TypeEventOut[];
 };
 
-const SatelliteConjunctionsDataTable = async ({ query, epoch, noradId }: SatelliteConjunctionsDataTableProps) => {
-  const t = await getTranslations('Tables');
-  const params: TypeGetConjunctionEventsListParams = {
-    search_like: query,
-    norad_id: noradId,
-    sort_by: 'tca_time',
-    sort_order: epoch === 'future' ? 'asc' : 'desc',
-    epoch,
-    limit: 50,
-  };
-  const initialSort: ColumnSort[] = [{
+const SatelliteConjunctionsDataTable = async ({ params, initialData }: SatelliteConjunctionsDataTableProps) => {
+  const t = useTranslations('Tables');
+
+  const initialSort: ColumnSort[] = useMemo(() => [{
     id: camelCase(params.sort_by),
     desc: params.sort_order === 'desc',
-  }];
-
-  const data = await getConjunctions(params);
-
-  const downloadData = async () => {
-    'use server';
-    const downloadParams: TypeGetConjunctionEventsListParams = {
-      ...params,
-      limit: 9999999,
-    };
-    return getConjunctions(downloadParams);
-  };
+  }], [params]);
 
   return (
     <>
       <InfiniteTable<TypeEventOut, TypeGetConjunctionEventsListParams>
-        initialData={data}
+        initialData={initialData}
         params={params}
-        columnsFn={satteliteConjunctionColumns}
+        columns={satteliteConjunctionColumns}
         fetcher={getConjunctions}
         queryKeys={[QUERY_KEYS.Conjunctions]}
         initialSort={initialSort}
       />
-      <DownloadData type={t('Download.types.satellite_events', { epoch: epoch === 'future' ? 'upcoming' : 'previous' })} downloadData={downloadData} />
+      <DownloadData type={t('Download.types.satellite_events', { epoch: params.epoch === 'future' ? 'upcoming' : 'previous' })} params={params} downloadAction={getConjunctions} />
     </>
   );
 };

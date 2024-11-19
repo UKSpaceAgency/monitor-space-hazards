@@ -34,7 +34,7 @@ const InfiniteScroller = ({ isFetching, hasNextPage, fetchNextPage, children }: 
   }, [fetchMoreOnBottomReached]);
 
   return (
-    <div ref={containerRef} className="overflow-auto" onScroll={e => fetchMoreOnBottomReached(e.target as HTMLDivElement)} style={{ maxHeight: '500px' }}>
+    <div ref={containerRef} className="overflow-auto max-h-[500px]" onScroll={e => fetchMoreOnBottomReached(e.target as HTMLDivElement)}>
       {children}
     </div>
 
