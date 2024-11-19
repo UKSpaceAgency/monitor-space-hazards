@@ -32,9 +32,10 @@ export type DataTableProps<T extends RowData> = {
   renderSubComponent?: (props: { row: Row<T> }) => ReactNode;
   // Extra
   stickyHeader?: true;
+  largerText?: true;
 };
 
-const DataTable = <T extends RowData>({ data, columns, stickyHeader, sorting, onSortingChange, renderSubComponent }: DataTableProps<T>) => {
+const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText, sorting, onSortingChange, renderSubComponent }: DataTableProps<T>) => {
   const t = useTranslations('Tables');
 
   const translatedColumns = useMemo(() => {
@@ -126,7 +127,7 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, sorting, on
   };
 
   return (
-    <Table className="text-base">
+    <Table className={`${largerText ? 'govuk-table' : 'text-base'}`}>
       <TableHead className={clsx({
         'sticky top-0 bg-white': stickyHeader,
       })}
