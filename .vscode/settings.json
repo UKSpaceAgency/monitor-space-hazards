@@ -42,6 +42,7 @@
     "Analysist",
     "Manoeuvre",
     "Manoeuvres",
-    "Organisation"
+    "Organisation",
+    "Sattelite"
   ] // On key edit through the plugin, sort the JSON
 }

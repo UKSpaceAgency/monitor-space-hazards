@@ -5,4 +5,5 @@ export enum REVALIDATION_TAGS {
   GET_ANALYSES = 'get-analyses',
   GET_MANOEUVRE = 'get-manoeuvre',
   GET_EPHEMERISES = 'get-ephemerises',
+  GET_ALERTS = 'get-alerts',
 }

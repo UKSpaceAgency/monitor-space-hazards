@@ -1,3 +1,3 @@
-export default function BreadcrumbHome() {
+export default function Breadcrumb() {
   return null;
 }

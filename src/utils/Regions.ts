@@ -86,3 +86,61 @@ export const getFullCountry = (key: string | null | undefined) => {
     return key;
   }
 };
+
+export enum RegionsEnum {
+  ANYWHERE = 'ANYWHERE',
+  ENGLAND = 'ENGLAND',
+  NORTHERN_IRELAND = 'NORTHERN_IRELAND',
+  SCOTLAND = 'SCOTLAND',
+  WALES = 'WALES',
+  BRITISH_OVERSEAS_TERRITORIES = 'BRITISH_OVERSEAS_TERRITORIES',
+  SHANWICK = 'SHANWICK',
+  NAVAREA = 'NAVAREA',
+  REST_OF_THE_WORLD = 'REST_OF_THE_WORLD',
+}
+
+export type Region = {
+  id: RegionsEnum;
+  name: string;
+};
+
+export const Regions: {
+  [key in RegionsEnum]: Region;
+} = {
+  [RegionsEnum.ANYWHERE]: {
+    id: RegionsEnum.ANYWHERE,
+    name: 'Anywhere in the United Kingdom',
+  },
+  [RegionsEnum.ENGLAND]: {
+    id: RegionsEnum.ENGLAND,
+    name: 'England',
+  },
+  [RegionsEnum.SCOTLAND]: {
+    id: RegionsEnum.SCOTLAND,
+    name: 'Scotland',
+  },
+  [RegionsEnum.WALES]: {
+    id: RegionsEnum.WALES,
+    name: 'Wales',
+  },
+  [RegionsEnum.NORTHERN_IRELAND]: {
+    id: RegionsEnum.NORTHERN_IRELAND,
+    name: 'Northern Ireland',
+  },
+  [RegionsEnum.BRITISH_OVERSEAS_TERRITORIES]: {
+    id: RegionsEnum.BRITISH_OVERSEAS_TERRITORIES,
+    name: 'British Overseas Territories and Crown Dependencies',
+  },
+  [RegionsEnum.SHANWICK]: {
+    id: RegionsEnum.SHANWICK,
+    name: 'Shanwick Airspace',
+  },
+  [RegionsEnum.NAVAREA]: {
+    id: RegionsEnum.NAVAREA,
+    name: 'UK NAVAREA',
+  },
+  [RegionsEnum.REST_OF_THE_WORLD]: {
+    id: RegionsEnum.REST_OF_THE_WORLD,
+    name: 'Rest of the World (for UK licensed satellites only)',
+  },
+};
