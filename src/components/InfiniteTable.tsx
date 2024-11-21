@@ -1,7 +1,7 @@
 'use client';
 
 import { useInfiniteQuery } from '@tanstack/react-query';
-import type { RowData } from '@tanstack/react-table';
+import type { ColumnSort, RowData } from '@tanstack/react-table';
 import { useMemo } from 'react';
 
 import { DataTable } from '@/components/DataTable';
@@ -15,10 +15,11 @@ type InfiniteTableProps<T extends RowData, K extends object> = {
   fetcher: (params: K) => Promise<T[]>;
   columns: TranslatedColumnDef<T>[];
   queryKeys: (string | K | undefined)[];
+  initialSort?: ColumnSort[];
 };
 
-const InfiniteTable = <T extends RowData, K extends object>({ initialData, params, fetcher, columns, queryKeys }: InfiniteTableProps<T, K>) => {
-  const { sorting, onSortingChange, sortBy, sortOrder } = useSorting();
+const InfiniteTable = <T extends RowData, K extends object>({ initialData, params, fetcher, columns, queryKeys, initialSort }: InfiniteTableProps<T, K>) => {
+  const { sorting, onSortingChange, sortBy, sortOrder } = useSorting(initialSort ?? []);
 
   const { data, fetchNextPage, isFetching, hasNextPage } = useInfiniteQuery({
     queryKey: [...queryKeys, sortBy, sortOrder, params],
@@ -45,7 +46,7 @@ const InfiniteTable = <T extends RowData, K extends object>({ initialData, param
   return (
     <div>
       <InfiniteScroller isFetching={isFetching} hasNextPage={hasNextPage} fetchNextPage={fetchNextPage}>
-        <DataTable columns={columns} data={flatData} sorting={sorting} onSortingChange={onSortingChange} />
+        <DataTable stickyHeader columns={columns} data={flatData} sorting={sorting} onSortingChange={onSortingChange} />
       </InfiniteScroller>
     </div>
   );

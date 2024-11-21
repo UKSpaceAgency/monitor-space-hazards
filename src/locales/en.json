@@ -258,6 +258,31 @@
       "placeholder": "Search by common name or NORAD ID"
     }
   },
+  "SatellitePage": {
+    "EphemerisData": {
+      "title": "Ephemeris data",
+      "content": "Ephemeris files uploaded by the operator are shown here:"
+    },
+    "ConjunctionEvents": {
+      "title": "{type} conjunction events",
+      "search_bar": {
+        "label": "Find a conjunction event:",
+        "placeholder": "Search by event or object ID"
+      },
+      "type": {
+        "future": "Upcoming",
+        "past": "Previouse"
+      }
+    },
+    "Informations": {
+      "title": "Satellite information",
+      "content": "Space-Track is the main source of all object data. Contact Space-Track if your satellite data is incorrect."
+    },
+    "AdditionalInformations": {
+      "title": "Additional object data",
+      "content": "<p>ESA DISCOS provides additional object data where available. Contact ESA DISCOS if your satellite data is incorrect.</p><p>ESA DISCOS data was last updated on: {updateTime} UTC</p>"
+    }
+  },
   "Accordions": {
     "DistributionLists": {
       "receive_alerts": "Receive {item} alerts",
@@ -265,6 +290,26 @@
     }
   },
   "Tables": {
+    "Objects": {
+      "primary": "Primary object",
+      "secondary": "Secondary object"
+    },
+    "Conjunctions": {
+      "event_information": "Event information",
+      "objects": "Objects",
+      "miss_distance": "Miss distance (m)",
+      "probability_of_collision": "Probability of collision",
+      "closest_approach_at": "Time of closest approach (UTC)",
+      "parameter": "Conjunction event information",
+      "primary": "Primary",
+      "radial_miss_distance": "Mean radial",
+      "secondary": "Secondary",
+      "secondary_object": "Secondary object",
+      "short_id": "Conjunction event ID",
+      "event_id": "Event ID",
+      "total_miss_distance": "Total",
+      "user_interest": "Your interest"
+    },
     "Satellites": {
       "common_name": "Common name",
       "norad_id": "NORAD ID",
@@ -292,7 +337,8 @@
       "json": "JavaScript Object Notation",
       "csv": "Comma Separated Variable",
       "types": {
-        "satellites": "UK-licensed satellites"
+        "satellites": "UK-licensed satellites",
+        "satellite_events": "{epoch} conjunction events"
       }
     },
     "AnalysisData": {
@@ -306,6 +352,55 @@
       "user_email": "User email",
       "event_id": "Event ID",
       "file_uploaded": "File uploaded"
+    },
+    "SatelliteInformations": {
+      "Base": {
+        "common_name": "Common name",
+        "norad_id": "NORAD ID",
+        "international_designator": "International designator",
+        "object_type": "Object type"
+      },
+      "License": {
+        "caption": "License information",
+        "country": "Country",
+        "launching_site": "Launching site",
+        "launch_date": "Launch date"
+      },
+      "Orbital": {
+        "caption": "Orbital information",
+        "apogee": "Apogee (km)",
+        "perigee": "Perigee (km)",
+        "inclination": "Inclination (°)",
+        "period": "Period (mins)"
+      },
+      "Additional": {
+        "shape": "Shape",
+        "mass": "Mass (kg)",
+        "cross_section_avg": "Average cross section (m²)",
+        "cross_section_max": "Maximum cross section (m²)",
+        "cross_section_min": "Minimum cross section (m²)",
+        "height": "Height (m)",
+        "width": "Width (m)",
+        "depth": "Depth (m)",
+        "span": "Span (m)",
+        "diameter": "Diameter (m)"
+      }
+    },
+    "Ephemerises": {
+      "empty": "No ephemeris files are available for this satellite.",
+      "file_name": "File name",
+      "start_time": "Start time",
+      "stop_time": "End time",
+      "delete": "Delete",
+      "deleted": "Deleted",
+      "Confirm_banner": {
+        "title": "Are you sure you want to delete \"{fileName}\"?",
+        "yes": "Yes, delete",
+        "no": "Cancel"
+      },
+      "Success_banner": {
+        "title": "File {fileName} has been deleted"
+      }
     }
   },
   "Forms": {
@@ -433,5 +528,45 @@
     "json": ".json",
     "delete": "Delete",
     "deleted": "Deleted"
+  },
+  "Breadcrumb": {
+    "account": "Account",
+    "add-banner": "Add new banner",
+    "add-new-user": "Add a new user",
+    "add-user": "Add a new user",
+    "alert": "Alert",
+    "alert-settings": "Edit alert settings",
+    "analysis-upload": "Upload UKSA analysis",
+    "analysis-upload-log": "Analysis upload log",
+    "confirmation": "Confirmation",
+    "conjunction-analysis-information": "Conjunction analysis information",
+    "conjunctions": "Conjunctions",
+    "contact-analyst": "Contact a UKSA orbital analyst",
+    "contact-and-organisation-information": "Account details",
+    "credentials": "Credentials",
+    "data-privacy-and-security": "Data privacy and security",
+    "data-privacy-notice": "Data privacy notice",
+    "definitions": "Definitions",
+    "distribution-list": "View distribution lists",
+    "edit": "Edit",
+    "ephemeris-upload": "Upload your ephemeris data",
+    "event-notification-thresholds-settings": "Conjunction event threshold settings",
+    "events": "Upcoming conjunction events",
+    "incident-banner": "Manage incident banner",
+    "manoeuvre-support-upload-log": "Manoeuvre Support Upload Log",
+    "miss-distance-evolution": "Evolution of miss distance predictions",
+    "notification-settings": "Notification settings",
+    "organisations": "Organisations",
+    "organisation-users": "Organisation user accounts",
+    "preview": "Final preview",
+    "probability-evolution": "Evolution of collision probability",
+    "re-entries": "Re-entries",
+    "review": "Review",
+    "satellites": "UK-licensed satellites",
+    "send": "Message send",
+    "successful": "Upload successful",
+    "terms-and-conditions": "Terms and Conditions",
+    "user": "User",
+    "users": "Users"
   }
 }

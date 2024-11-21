@@ -10,10 +10,11 @@ import Tooltip from '@/ui/tooltip/tooltip';
 
 type DownloadDataProps = {
   type: string;
-  downloadData: () => Promise<unknown>;
+  params: object;
+  downloadAction: (params: object) => Promise<unknown>;
 };
 
-const DownloadData = ({ type, downloadData }: DownloadDataProps) => {
+const DownloadData = ({ type, params, downloadAction }: DownloadDataProps) => {
   const t = useTranslations('Tables.Download');
   const [fetching, setFetching] = useState(false);
 
@@ -22,7 +23,7 @@ const DownloadData = ({ type, downloadData }: DownloadDataProps) => {
 
     setFetching(true);
 
-    const data = await downloadData();
+    const data = await downloadAction({ ...params, limit: 9999 });
     if (data) {
       const file
         = format === 'csv'
