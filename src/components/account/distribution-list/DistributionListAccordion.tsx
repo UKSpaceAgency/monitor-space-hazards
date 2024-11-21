@@ -30,14 +30,26 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
             id: 'all-conjunction',
             heading: t('receive_alerts', { item: 'all conjunction' }),
             content: (
-              <DataTable data={alerts.filter(alert => alert.conjunction_alert_settings?.chosen_option === 'all')} columns={columns} />
+              <div className="overflow-auto">
+                <DataTable
+                  data={alerts.filter(alert => alert.conjunction_alert_settings?.chosen_option === 'all')}
+                  columns={columns}
+                  largerText
+                />
+              </div>
             ),
           },
           {
             id: 'only-priority-conjunctions',
             heading: t('receive_alerts', { item: 'only priority conjunction' }),
             content: (
-              <DataTable data={alerts.filter(alert => alert.conjunction_alert_settings?.chosen_option === 'priority')} columns={columns} />
+              <div className="overflow-auto">
+                <DataTable
+                  data={alerts.filter(alert => alert.conjunction_alert_settings?.chosen_option === 'priority')}
+                  columns={columns}
+                  largerText
+                />
+              </div>
             ),
           },
         ]}
@@ -54,21 +66,39 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
             id: 'all-re-entries',
             heading: t('receive_alerts', { item: 'all re-entry' }),
             content: (
-              <DataTable data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_option === 'all')} columns={columns} />
+              <div className="overflow-auto">
+                <DataTable
+                  data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_option === 'all')}
+                  columns={columns}
+                  largerText
+                />
+              </div>
             ),
           },
           {
             id: 'only-uk-re-entries',
             heading: t('receive_alerts', { item: 'only for UK satellites' }),
             content: (
-              <DataTable data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_option === 'uk_satellites_only')} columns={columns} />
+              <div className="overflow-auto">
+                <DataTable
+                  data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_option === 'uk_satellites_only')}
+                  columns={columns}
+                  largerText
+                />
+              </div>
             ),
           },
           {
             id: 'only-priority-re-entries',
             heading: t('receive_alerts', { item: 'only priority re-entry' }),
             content: (
-              <DataTable data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_option === 'priority')} columns={columns} />
+              <div className="overflow-auto">
+                <DataTable
+                  data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_option === 'priority')}
+                  columns={columns}
+                  largerText
+                />
+              </div>
             ),
           },
         ]}
