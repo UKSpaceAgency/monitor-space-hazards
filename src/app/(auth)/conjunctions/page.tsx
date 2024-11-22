@@ -5,7 +5,7 @@ import { Suspense } from 'react';
 import type { TypeEpoch } from '@/__generated__/data-contracts';
 import { ConjunctionsDataFilters } from '@/components/conjunctions/ConjunctionsDataFilters';
 import { ConjunctionsDataTableWrapper } from '@/components/conjunctions/ConjunctionsDataTableWrapper';
-import { ConjunctionSummaryList } from '@/components/conjunctions/ConjunctionsSummaryList';
+import { ConjunctionsSummaryTable } from '@/components/conjunctions/ConjunctionsSummaryTable';
 import { SearchBar } from '@/components/SearchBar';
 import Details from '@/ui/details/details';
 import Spinner from '@/ui/spinner/spinner';
@@ -32,7 +32,7 @@ export default async function ConjunctionsPage(props: {
     <div>
       <h1 className="govuk-heading-xl">{t('title')}</h1>
       <Suspense key={params.search_like} fallback={<Spinner />}>
-        <ConjunctionSummaryList />
+        <ConjunctionsSummaryTable />
       </Suspense>
       <Details summary={t('help1.title')}>
         <p>{t('help1.heading')}</p>

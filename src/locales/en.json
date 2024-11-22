@@ -381,7 +381,6 @@
     "title": "Track conjunction events (Monitor your satellites)",
     "section_title": "Conjunction events",
     "description": "This table shows upcoming conjunction events involving UK-licensed satellites by default. You can apply filters to view past events.",
-    "upcoming_conjunction": "Upcoming conjunction {item}",
     "search_bar": {
       "label": "Find a conjunction event:",
       "placeholder": "Search by event or object ID"
@@ -529,6 +528,7 @@
         "past": "Past",
         "select_label": "Filter by"
       },
+      "upcoming_conjunction": "Upcoming conjunction {item}",
       "display_probability": "Display probability of collision as:",
       "conjunctions_events_as_of": "Conjunction events as of ",
       "event_information": "Event information",
