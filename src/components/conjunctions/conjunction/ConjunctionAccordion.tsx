@@ -5,12 +5,10 @@ import { useTranslations } from 'next-intl';
 import type { TypeDataSourcesOut, TypeEventSummaryOut, TypeSatelliteOut } from '@/__generated__/data-contracts';
 import { DataTable } from '@/components/DataTable';
 import { DownloadData } from '@/components/DownloadData';
-import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import Accordion from '@/ui/accordion/accordion';
 import Details from '@/ui/details/details';
-import SummaryList from '@/ui/summary-list/summary-list';
 
-import { getEventHistoryColumns } from './event-history-table/eventHistoryTable';
+import { ConjunctionEventHistoryTable } from './event-history-table/ConjunctionEventHistoryTable';
 import type {
   ObjectDataAdditionalType,
   ObjectDataGeneralType,
@@ -41,7 +39,6 @@ const ConjunctionAccordion = ({
   handleDownloadData,
 }: ConjunctionAccordionType) => {
   const t = useTranslations('Accordions');
-  const tTables = useTranslations('Tables');
 
   const objectDataColumns = getObjectDataColumns({
     primaryObject: t('Conjunction.objectData.primary_object'),
@@ -96,8 +93,6 @@ const ConjunctionAccordion = ({
       diameter: t('Conjunction.objectData.additional_object_summary.diameter'),
     },
   });
-
-  const eventHistoryColumns = getEventHistoryColumns();
 
   return (
     <Accordion
@@ -201,217 +196,7 @@ const ConjunctionAccordion = ({
           heading: t('Conjunction.event_history.title'),
           content: (
             <>
-              <div className="overflow-auto">
-                <DataTable
-                  data={events}
-                  columns={eventHistoryColumns}
-                  renderSubComponent={() => (
-                    <div className="govuk-details__text">
-                      <SummaryList
-                        className="block"
-                        rows={[
-                          {
-                            key: {
-                              children: <div>{tTables('Conjunction.event_history.sub_table.probability_of_collision')}</div>,
-                              className: 'w-1/2 text-base font-normal',
-                            },
-                            value: {
-                              children: event.collisionProbabilityMethod,
-                              className: 'font-normal',
-                            },
-                          },
-                          {
-                            key: {
-                              children: <div>{tTables('Conjunction.event_history.sub_table.primary_object_size')}</div>,
-                              className: 'w-1/2 text-base font-normal',
-                            },
-                            value: {
-                              children: event.primaryObjectSize,
-                              className: 'font-normal',
-                            },
-                          },
-                          {
-                            key: {
-                              children: tTables('Conjunction.event_history.sub_table.secondary_object_size'),
-                              className: 'w-1/2 text-base font-normal',
-                            },
-                            value: {
-                              children: event.secondaryObjectSize,
-                              className: 'font-normal',
-                            },
-                          },
-                        ]}
-                      />
-
-                      <SummaryList
-                        className="block"
-                        rows={[
-                          {
-                            key: {
-                              children: <div>{tTables('Conjunction.event_history.sub_table.primary_object')}</div>,
-                              className: 'w-2/5 text-base',
-                            },
-                            value: {
-                              children: event.primaryObjectCdmType,
-                              className: 'font-normal text-base',
-                            },
-                          },
-                          {
-                            key: {
-                              children: <div>{tTables('Conjunction.event_history.sub_table.ephemeris_file_name')}</div>,
-                              className: 'w-2/5 font-normal text-base',
-                            },
-                            value: {
-                              children: event.primaryObjectEphemerisName,
-                              className: 'font-normal text-base',
-                            },
-                          },
-                          {
-                            key: {
-                              children: <div>{tTables('Conjunction.event_history.sub_table.data_received')}</div>,
-                              className: 'w-2/5 font-normal text-base',
-                            },
-                            value: {
-                              children: dayjs(event.dataSource).format(FORMAT_DATE_TIME),
-                              className: 'font-normal text-base',
-                            },
-                          },
-                          {
-                            key: {
-                              children: <div>{tTables('Conjunction.event_history.sub_table.number_of_observations')}</div>,
-                              className: 'w-2/5 font-normal text-base',
-                            },
-                            value: {
-                              children: dataSources.spaceTrackCdm[0]?.observationsNumber,
-                              className: 'font-normal text-base',
-                            },
-                          },
-                          {
-                            key: {
-                              children: <div>{tTables('Conjunction.event_history.sub_table.time_span_of_observations')}</div>,
-                              className: 'w-2/5 font-normal text-base',
-                            },
-                            value: {
-                              children: dataSources.spaceTrackCdm[0]?.observationsTimespan,
-                              className: 'font-normal text-base',
-                            },
-                          },
-                          {
-                            key: {
-                              children: <div>{tTables('Conjunction.event_history.sub_table.position_radial')}</div>,
-                              className: 'w-2/5 font-normal text-base',
-                            },
-                            value: {
-                              children: event.primaryObjectUncertainties?.radialPositionUncertainty,
-                              className: 'font-normal text-base',
-                            },
-                          },
-                          {
-                            key: {
-                              children: <div>{tTables('Conjunction.event_history.sub_table.position_in_track')}</div>,
-                              className: 'w-2/5 font-normal text-base',
-                            },
-                            value: {
-                              children: event.primaryObjectUncertainties?.intrackPositionUncertainty,
-                              className: 'font-normal text-base',
-                            },
-                          },
-                          {
-                            key: {
-                              children: <div>{tTables('Conjunction.event_history.sub_table.position_cross_track')}</div>,
-                              className: 'w-2/5 font-normal text-base',
-                            },
-                            value: {
-                              children: event.primaryObjectUncertainties?.crosstrackPositionUncertainty,
-                              className: 'font-normal text-base',
-                            },
-                          },
-                          {
-                            key: {
-                              children: <div>{tTables('Conjunction.event_history.sub_table.secondary_object')}</div>,
-                              className: 'w-2/5 text-base',
-                            },
-                            value: {
-                              children: event.secondaryObjectCdmType,
-                              className: 'font-normal text-base',
-                            },
-                          },
-                          {
-                            key: {
-                              children: <div>{tTables('Conjunction.event_history.sub_table.ephemeris_file_name')}</div>,
-                              className: 'w-2/5 font-normal text-base',
-                            },
-                            value: {
-                              children: event.secondaryObjectEphemerisName,
-                              className: 'font-normal text-base',
-                            },
-                          },
-                          {
-                            key: {
-                              children: <div>{tTables('Conjunction.event_history.sub_table.data_received')}</div>,
-                              className: 'w-2/5 font-normal text-base',
-                            },
-                            value: {
-                              children: dayjs(event.dataSource).format(FORMAT_DATE_TIME),
-                              className: 'font-normal text-base',
-                            },
-                          },
-                          {
-                            key: {
-                              children: <div>{tTables('Conjunction.event_history.sub_table.number_of_observations')}</div>,
-                              className: 'w-2/5 font-normal text-base',
-                            },
-                            value: {
-                              children: dataSources.spaceTrackCdm[1]?.observationsNumber,
-                              className: 'font-normal text-base',
-                            },
-                          },
-                          {
-                            key: {
-                              children: <div>{tTables('Conjunction.event_history.sub_table.time_span_of_observations')}</div>,
-                              className: 'w-2/5 font-normal text-base',
-                            },
-                            value: {
-                              children: dataSources.spaceTrackCdm[1]?.observationsTimespan,
-                              className: 'font-normal text-base',
-                            },
-                          },
-                          {
-                            key: {
-                              children: <div>{tTables('Conjunction.event_history.sub_table.position_radial')}</div>,
-                              className: 'w-2/5 font-normal text-base',
-                            },
-                            value: {
-                              children: event.secondaryObjectUncertainties?.radialPositionUncertainty,
-                              className: 'font-normal text-base',
-                            },
-                          },
-                          {
-                            key: {
-                              children: <div>{tTables('Conjunction.event_history.sub_table.position_in_track')}</div>,
-                              className: 'w-2/5 font-normal text-base',
-                            },
-                            value: {
-                              children: event.secondaryObjectUncertainties?.intrackPositionUncertainty,
-                              className: 'font-normal text-base',
-                            },
-                          },
-                          {
-                            key: {
-                              children: <div>{tTables('Conjunction.event_history.sub_table.position_cross_track')}</div>,
-                              className: 'w-2/5 font-normal text-base',
-                            },
-                            value: {
-                              children: event.secondaryObjectUncertainties?.crosstrackPositionUncertainty,
-                              className: 'font-normal text-base',
-                            },
-                          },
-                        ]}
-                      />
-                    </div>
-                  )}
-                />
-              </div>
+              <ConjunctionEventHistoryTable events={events} event={event} dataSources={dataSources} />
               <DownloadData type={t('Conjunction.download')} params={{}} downloadAction={handleDownloadData} />
               <Details summary={t('Conjunction.event_history.help.title')}>
                 <p className="govuk-body">{t('Conjunction.event_history.help.description1')}</p>

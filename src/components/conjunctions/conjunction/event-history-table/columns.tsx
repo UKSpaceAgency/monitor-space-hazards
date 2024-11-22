@@ -49,6 +49,12 @@ export const getEventHistoryColumns = (): TranslatedColumnDef<TypeEventSummaryOu
     accessorKey: 'updateTime',
     id: 'updateTime',
     header: 'Conjunction.event_history.time_of_update',
+    cell: ({ getValue }) => {
+      const value = getValue() as string;
+      return (
+        <div>{dayjs(value).format(FORMAT_DATE_TIME)}</div>
+      );
+    },
     enableSorting: false,
   },
   {
