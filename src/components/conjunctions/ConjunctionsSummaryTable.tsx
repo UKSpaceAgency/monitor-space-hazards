@@ -24,7 +24,7 @@ export const ConjunctionsSummaryTable = async () => {
     accessorKey: 'conjunctionEventNormalCount',
   }];
 
-  return <InformationsTable rows={baseInformations} data={eventsStats} narrowerHeaderCell />;
+  return <InformationsTable rows={baseInformations} data={eventsStats} headerCellWidth="sm" />;
 };
 
 export { ConjunctionsDataTable };

@@ -87,7 +87,7 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText,
             key={header.id}
             scope="col"
             colSpan={header.colSpan}
-            style={{ minWidth: header.column.columnDef.minSize, width: `${header.getSize()}px` }}
+            style={{ minWidth: header.column.columnDef.minSize, width: `${header.getSize()}px`, maxWidth: header.column.columnDef.maxSize }}
             className={clsx('govuk-table__header', {
               'border-0': stickyHeader,
             })}
@@ -127,7 +127,7 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText,
   };
 
   return (
-    <Table className={`${largerText ? 'govuk-table' : 'govuk-body'}`}>
+    <Table className={`${largerText ? 'govuk-table' : 'text-base'}`}>
       <TableHead className={clsx({
         'sticky top-0 bg-white': stickyHeader,
       })}

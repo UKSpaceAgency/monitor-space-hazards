@@ -25,7 +25,7 @@ export const getConjunctionEventsColumns = ({
       {
         id: 'userInterest',
         accessorKey: 'userInterest',
-        header: 'Conjunctions.event_information',
+        header: 'Conjunctions.user_interest',
         cell: ({ getValue }) => {
           const value = getValue() as string;
           if (value === 'High') {
@@ -39,7 +39,7 @@ export const getConjunctionEventsColumns = ({
       {
         id: 'shortId',
         accessorKey: 'shortId',
-        header: 'Conjunctions.your_interest',
+        header: 'Conjunctions.conjunction_event_id',
         cell: ({ getValue }) => {
           const value = getValue() as string;
           return (
@@ -126,11 +126,13 @@ export const getConjunctionEventsColumns = ({
   {
     id: 'probabilityOfCollision',
     header: 'Conjunctions.probability_of_collision',
+    maxSize: 50,
     columns: [
       {
         id: 'collisionProbability',
         accessorKey: 'collisionProbability',
         header: 'Conjunctions.space_track',
+        maxSize: 50,
         cell: ({ getValue }) => {
           const collisionProbability = getValue();
           if (!collisionProbability) {
@@ -140,7 +142,7 @@ export const getConjunctionEventsColumns = ({
           if (probabilityUnit === 'percentage') {
             return `${(collisionProbability * 100).toFixed(2)}%`;
           }
-          return collisionProbability;
+          return collisionProbability.toExponential();
         },
       },
       {
@@ -158,7 +160,7 @@ export const getConjunctionEventsColumns = ({
           if (probabilityUnit === 'percentage') {
             return `${(collisionProbability * 100).toFixed(2)}%`;
           }
-          return collisionProbability;
+          return collisionProbability.toExponential();
         },
       },
     ],

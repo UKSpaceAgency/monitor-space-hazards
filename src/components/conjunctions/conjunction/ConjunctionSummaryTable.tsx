@@ -58,7 +58,7 @@ const ConjunctionSummaryInformationsTable = ({ object }: ConjunctionSummaryInfor
     accessorKey: 'secondaryObjectSize',
   }];
 
-  return <InformationsTable rows={baseInformations} data={object} narrowerHeaderCell />;
+  return <InformationsTable rows={baseInformations} data={object} headerCellWidth="sm" />;
 };
 
 export { ConjunctionSummaryInformationsTable };

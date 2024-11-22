@@ -14,12 +14,22 @@ type InformationsTableProps<T extends object> = {
   rows: InformationsTableRow<T>[];
   data: T | T[];
   caption?: string;
-  narrowerHeaderCell?: true;
+  headerCellWidth?: 'xs' | 'sm' | 'md';
   reducedFont?: true;
 };
 
-const InformationsTable = <T extends object>({ rows, data, caption, narrowerHeaderCell, reducedFont }: InformationsTableProps<T>) => {
+const InformationsTable = <T extends object>({ rows, data, caption, headerCellWidth = 'md', reducedFont }: InformationsTableProps<T>) => {
   const t = useTranslations('Tables.Objects');
+
+  let headerSize = 'w-6/12';
+  switch (headerCellWidth) {
+    case 'xs':
+      headerSize = 'w-1/3';
+      break;
+    case 'sm':
+      headerSize = 'w-2/5';
+      break;
+  }
 
   const renderTableCell = (accessorKey: keyof T, data: T, renderCell?: (row: T) => ReactNode, reducedFont?: true) => (
     <TableCell className={`${reducedFont ? 'text-base' : ''}`}>
@@ -41,7 +51,7 @@ const InformationsTable = <T extends object>({ rows, data, caption, narrowerHead
         {rows.map(({ header, accessorKey, renderCell, cellProps }) => {
           return (
             <TableRow key={accessorKey as string}>
-              <TableCellHeader className={`${narrowerHeaderCell ? 'w-2/5' : 'w-6/12'} ${reducedFont ? 'text-base' : ''}`} {...cellProps}>{header}</TableCellHeader>
+              <TableCellHeader className={`${headerSize} ${reducedFont ? 'text-base' : ''}`} {...cellProps}>{header}</TableCellHeader>
               {Array.isArray(data) ? data.map(row => renderTableCell(accessorKey, row, renderCell, reducedFont)) : renderTableCell(accessorKey, data, renderCell, reducedFont)}
             </TableRow>
           );
