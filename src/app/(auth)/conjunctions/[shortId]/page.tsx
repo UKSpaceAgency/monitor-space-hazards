@@ -64,7 +64,6 @@ export default async function ConjunctionPage({
 
   const handleDownloadData = async () => {
     'use server';
-
     const events = await getConjunctionEventsEventIdSummary({ eventId: shortId });
 
     const event = events.find(event => event.shortId === shortId);

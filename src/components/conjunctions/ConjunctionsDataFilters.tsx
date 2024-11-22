@@ -10,10 +10,10 @@ import Radios from '@/ui/radios/radios';
 import Select from '@/ui/select/select';
 
 type ConjunctionsDataFiltersProps = {
-  searchParams: ConjunctionsPageSearchParams | undefined;
+  params: ConjunctionsPageSearchParams;
 };
 
-const ConjunctionsDataFilters = ({ searchParams }: ConjunctionsDataFiltersProps) => {
+const ConjunctionsDataFilters = ({ params }: ConjunctionsDataFiltersProps) => {
   const t = useTranslations('Tables');
 
   const { replace } = useRouter();
@@ -23,16 +23,16 @@ const ConjunctionsDataFilters = ({ searchParams }: ConjunctionsDataFiltersProps)
     (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
       const { name, value } = e.currentTarget;
 
-      const params = new URLSearchParams(searchParams);
+      const queryParams = new URLSearchParams(params);
 
-      params.set(name, value);
+      queryParams.set(name, value);
 
-      replace(`${pathname}?${params.toString()}`, {
+      replace(`${pathname}?${queryParams.toString()}`, {
         scroll: false,
       });
       e.preventDefault();
     },
-    [pathname, replace, searchParams],
+    [pathname, replace, params],
   );
 
   return (
@@ -45,7 +45,7 @@ const ConjunctionsDataFilters = ({ searchParams }: ConjunctionsDataFiltersProps)
             children: t('Conjunctions.details.option1'),
             value: 'no',
             name: 'has_report',
-            checked: searchParams?.has_report !== 'yes',
+            checked: params.has_report !== 'yes',
             onChange: handleRefreshParams,
           },
           {
@@ -53,7 +53,7 @@ const ConjunctionsDataFilters = ({ searchParams }: ConjunctionsDataFiltersProps)
             children: t('Conjunctions.details.option2'),
             value: 'yes',
             name: 'has_report',
-            checked: searchParams?.has_report === 'yes',
+            checked: params.has_report === 'yes',
             onChange: handleRefreshParams,
           },
         ]}
@@ -64,7 +64,7 @@ const ConjunctionsDataFilters = ({ searchParams }: ConjunctionsDataFiltersProps)
         name="epoch"
         id="epoch"
         label={t('Conjunctions.details.select_label')}
-        value={searchParams?.epoch ?? 'future'}
+        value={params.epoch ?? 'future'}
         options={[
           {
             children: t('Conjunctions.details.all'),

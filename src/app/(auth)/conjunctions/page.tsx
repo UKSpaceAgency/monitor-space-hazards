@@ -26,11 +26,12 @@ export default async function ConjunctionsPage(props: {
   const t = await getTranslations('Conjunctions');
 
   const searchParams = await props.searchParams;
+  const params: ConjunctionsPageSearchParams = searchParams || {};
 
   return (
     <div>
       <h1 className="govuk-heading-xl">{t('title')}</h1>
-      <Suspense key={searchParams?.search_like} fallback={<Spinner />}>
+      <Suspense key={params.search_like} fallback={<Spinner />}>
         <ConjunctionSummaryList />
       </Suspense>
       <Details summary={t('help1.title')}>
@@ -50,10 +51,10 @@ export default async function ConjunctionsPage(props: {
       <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
       <p className="govuk-body">{t('description')}</p>
       <SearchBar label={t('search_bar.label')} placeholder={t('search_bar.placeholder')} />
-      <ConjunctionsDataFilters searchParams={searchParams} />
+      <ConjunctionsDataFilters params={params} />
 
-      <Suspense key={Object.values(searchParams || {}).toString()} fallback={<Spinner />}>
-        <ConjunctionsDataTableWrapper searchParams={searchParams} />
+      <Suspense key={Object.values(params).toString()} fallback={<Spinner />}>
+        <ConjunctionsDataTableWrapper params={params} />
       </Suspense>
 
       <Details summary={t('help2.title')}>

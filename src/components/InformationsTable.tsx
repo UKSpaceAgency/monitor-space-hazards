@@ -14,9 +14,10 @@ type InformationsTableProps<T extends object> = {
   rows: InformationsTableRow<T>[];
   data: T | T[];
   caption?: string;
+  narrowerHeaderCell?: true;
 };
 
-const InformationsTable = <T extends object>({ rows, data, caption }: InformationsTableProps<T>) => {
+const InformationsTable = <T extends object>({ rows, data, caption, narrowerHeaderCell }: InformationsTableProps<T>) => {
   const t = useTranslations('Tables.Objects');
 
   const renderTableCell = (accessorKey: keyof T, data: T, renderCell?: (row: T) => ReactNode) => (
@@ -39,7 +40,7 @@ const InformationsTable = <T extends object>({ rows, data, caption }: Informatio
         {rows.map(({ header, accessorKey, renderCell, cellProps }) => {
           return (
             <TableRow key={accessorKey as string}>
-              <TableCellHeader className="w-6/12" {...cellProps}>{header}</TableCellHeader>
+              <TableCellHeader className={`${narrowerHeaderCell ? 'w-2/5' : 'w-6/12'}`} {...cellProps}>{header}</TableCellHeader>
               {Array.isArray(data) ? data.map(row => renderTableCell(accessorKey, row, renderCell)) : renderTableCell(accessorKey, data, renderCell)}
             </TableRow>
           );

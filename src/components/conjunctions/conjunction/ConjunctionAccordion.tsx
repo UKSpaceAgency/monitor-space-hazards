@@ -412,7 +412,7 @@ const ConjunctionAccordion = ({
                   )}
                 />
               </div>
-              <DownloadData type={t('Conjunction.download')} downloadData={handleDownloadData} />
+              <DownloadData type={t('Conjunction.download')} params={{}} downloadAction={handleDownloadData} />
               <Details summary={t('Conjunction.event_history.help.title')}>
                 <p className="govuk-body">{t('Conjunction.event_history.help.description1')}</p>
                 <p className="govuk-body">

@@ -13,12 +13,12 @@ import type { ProbabilityUnitType } from './columns';
 import { getConjunctionEventsColumns } from './columns';
 
 type ConjunctionsDataTableProps = {
-  searchParams: ConjunctionsPageSearchParams | undefined;
+  params: ConjunctionsPageSearchParams;
   conjunctions: TypeEventOut[];
   isAnalyst: boolean;
 };
 
-const ConjunctionsDataTable = ({ searchParams, conjunctions, isAnalyst }: ConjunctionsDataTableProps) => {
+const ConjunctionsDataTable = ({ params, conjunctions, isAnalyst }: ConjunctionsDataTableProps) => {
   const t = useTranslations('Tables');
 
   const [probabilityUnit, setProbabilityUnit] = useState<ProbabilityUnitType>('scientific');
@@ -64,7 +64,7 @@ const ConjunctionsDataTable = ({ searchParams, conjunctions, isAnalyst }: Conjun
 
       <InfiniteTable<TypeEventOut, TypeGetConjunctionEventsParams>
         initialData={conjunctions}
-        params={searchParams || {}}
+        params={params}
         columns={columns}
         fetcher={getConjunctionEventsList}
         queryKeys={[QUERY_KEYS.Conjunctions]}
