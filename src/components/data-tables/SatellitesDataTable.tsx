@@ -15,7 +15,7 @@ type SatellitesDataTableProps = {
   params: TypeGetSatellitesWithMetadataParams;
 };
 
-const SatellitesDataTable = async ({ initialData, params }: SatellitesDataTableProps) => {
+const SatellitesDataTable = ({ initialData, params }: SatellitesDataTableProps) => {
   const t = useTranslations('Tables');
 
   return (

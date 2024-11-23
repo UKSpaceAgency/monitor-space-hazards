@@ -42,22 +42,12 @@ const EphemerisesTable = ({ data }: EphemerisesTableProps) => {
     }
   };
 
-  if (!data.length) {
-    return (
-      <p className="govuk-body text-red">
-        <span className="govuk-visually-hidden">Alert: </span>
-        {' '}
-        {t('empty')}
-      </p>
-    );
-  }
-
   return (
     <div>
       {ephemerisToDelete && isIdle && (
         <NotificationBanner
           status="error"
-          title={t('Confirm_banner.title', { fileName: ephemerisToDelete.fileName })}
+          heading={t('Confirm_banner.title', { fileName: ephemerisToDelete.fileName })}
         >
           <div className="govuk-button-group">
             <Button className="govuk-button--warning" onClick={() => mutate(ephemerisToDelete.id)}>
@@ -74,51 +64,63 @@ const EphemerisesTable = ({ data }: EphemerisesTableProps) => {
           {t('Success_banner.title', { fileName: ephemerisToDelete.fileName })}
         </NotificationBanner>
       )}
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCellHeader>
-              {t('file_name')}
-            </TableCellHeader>
-            <TableCellHeader>
-              {t('start_time')}
-            </TableCellHeader>
-            <TableCellHeader>
-              {t('stop_time')}
-            </TableCellHeader>
-            <TableCell />
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map(({ id, fileName, startTime, stopTime, isActive }) => (
-            <TableRow key={id}>
-              <TableCell>
-                <button type="button" className="govuk-link text-blue" onClick={() => downloadFile(id)}>
-                  {fileName.split('/').pop()}
-                </button>
-              </TableCell>
-              <TableCell>
-                {dayjs(startTime).format(FORMAT_DATE_TIME)}
-              </TableCell>
-              <TableCell>
-                {dayjs(stopTime).format(FORMAT_DATE_TIME)}
-              </TableCell>
-              <TableCell>
-                {!isActive
-                  ? <Tag color="red">{t('deleted')}</Tag>
-                  : (
-                      <button type="button" className="govuk-link text-blue" onClick={() => setEphemerisToDelete({ id, fileName })} disabled={isPending}>
-                        {t('delete')}
-                        <span className="govuk-visually-hidden">
-                          {fileName}
-                        </span>
-                      </button>
-                    )}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      {!data.length
+        ? (
+            <p className="govuk-body text-red">
+              <span className="govuk-visually-hidden">Alert: </span>
+              {t('empty')}
+            </p>
+          )
+        : (
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCellHeader>
+                    {t('file_name')}
+                  </TableCellHeader>
+                  <TableCellHeader>
+                    {t('start_time')}
+                  </TableCellHeader>
+                  <TableCellHeader>
+                    {t('stop_time')}
+                  </TableCellHeader>
+                  <TableCell />
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {data.map(({ id, fileName, startTime, stopTime, isActive }) => {
+                  const shortFileName = fileName.split('/').pop() || '';
+                  return (
+                    <TableRow key={id}>
+                      <TableCell>
+                        <button type="button" className="govuk-link text-blue" onClick={() => downloadFile(id)}>
+                          {shortFileName}
+                        </button>
+                      </TableCell>
+                      <TableCell>
+                        {dayjs(startTime).format(FORMAT_DATE_TIME)}
+                      </TableCell>
+                      <TableCell>
+                        {dayjs(stopTime).format(FORMAT_DATE_TIME)}
+                      </TableCell>
+                      <TableCell>
+                        {!isActive
+                          ? <Tag color="red">{t('deleted')}</Tag>
+                          : (
+                              <button type="button" className="govuk-link text-blue" onClick={() => setEphemerisToDelete({ id, fileName: shortFileName })} disabled={isPending}>
+                                {t('delete')}
+                                <span className="govuk-visually-hidden">
+                                  {fileName}
+                                </span>
+                              </button>
+                            )}
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          )}
     </div>
 
   );
