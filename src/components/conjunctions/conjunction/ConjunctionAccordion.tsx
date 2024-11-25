@@ -48,19 +48,11 @@ const ConjunctionAccordion = ({
           content: (
             <div>
               <Details summary={t('poc_chart.help.title')}>
-                <p className="govuk-body">{t('poc_chart.help.description1')}</p>
-                <p className="govuk-body">
-                  {t('poc_chart.help.description2_1')}
-                  <strong className="govuk-tag">{t('poc_chart.help.description2_2')}</strong>
-                  {t('poc_chart.help.description2_3')}
-                </p>
-                <p className="govuk-body">{t('poc_chart.help.description3')}</p>
-                <p className="govuk-body">
-                  {t('poc_chart.help.description4_1')}
-                  <Link href={`/conjunctions/${id}#eventHistory`} className="govuk-link">
-                    {t('poc_chart.help.description4_2')}
-                  </Link>
-                </p>
+                {t.rich('poc_chart.help.content', {
+                  p: chunks => <p>{chunks}</p>,
+                  special: chunks => <strong className="govuk-tag">{chunks}</strong>,
+                  link: chunks => <Link href={`/conjunctions/${id}#eventHistory`} className="govuk-link">{chunks}</Link>,
+                })}
               </Details>
             </div>
           ),
@@ -80,19 +72,11 @@ const ConjunctionAccordion = ({
           content: (
             <div>
               <Details summary={t('miss_distance_chart.help.title')}>
-                <p className="govuk-body">{t('miss_distance_chart.help.description1')}</p>
-                <p className="govuk-body">
-                  {t('miss_distance_chart.help.description2_1')}
-                  <strong className="govuk-tag">{t('miss_distance_chart.help.description2_2')}</strong>
-                  {t('miss_distance_chart.help.description2_3')}
-                </p>
-                <p className="govuk-body">{t('miss_distance_chart.help.description3')}</p>
-                <p className="govuk-body">
-                  {t('miss_distance_chart.help.description4_1')}
-                  <Link href={`/conjunctions/${id}#eventHistory`} className="govuk-link">
-                    {t('miss_distance_chart.help.description4_2')}
-                  </Link>
-                </p>
+                {t.rich('miss_distance_chart.help.content', {
+                  p: chunks => <p>{chunks}</p>,
+                  special: chunks => <strong className="govuk-tag">{chunks}</strong>,
+                  link: chunks => <Link href={`/conjunctions/${id}#eventHistory`} className="govuk-link">{chunks}</Link>,
+                })}
               </Details>
             </div>
           ),
@@ -137,13 +121,10 @@ const ConjunctionAccordion = ({
               <ConjunctionEventHistoryTable events={events} event={event} dataSources={dataSources} />
               <DownloadData type={t('download')} params={{}} downloadAction={handleDownloadData} />
               <Details summary={t('event_history.help.title')}>
-                <p className="govuk-body">{t('event_history.help.description1')}</p>
-                <p className="govuk-body">
-                  {t('event_history.help.description2')}
-                  <Link href={`/conjunctions/${id}#eventHistory`} className="govuk-link">
-                    {t('event_history.help.link')}
-                  </Link>
-                </p>
+                {t.rich('event_history.help.content', {
+                  p: chunks => <p>{chunks}</p>,
+                  link: chunks => <Link href="/page/definitions#data_sources" className="govuk-link">{chunks}</Link>,
+                })}
               </Details>
             </>
           ),

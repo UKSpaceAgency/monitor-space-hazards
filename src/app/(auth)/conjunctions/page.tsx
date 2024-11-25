@@ -35,17 +35,11 @@ export default async function ConjunctionsPage(props: {
         <ConjunctionsSummaryTable />
       </Suspense>
       <Details summary={t('help1.title')}>
-        <p>{t('help1.heading')}</p>
-        <ul className="govuk-list--bullet">
-          <li>
-            <b>{t('help1.conjunctions_alerts')}</b>
-            {t('help1.conjunctions_alerts_description')}
-          </li>
-          <li>
-            <b>{t('help1.all_conjunction_events')}</b>
-            {t('help1.all_conjunction_description')}
-          </li>
-        </ul>
+        {t.rich('help1.content', {
+          list: chunks => <ul className="govuk-list--bullet">{chunks}</ul>,
+          item: chunks => <li>{chunks}</li>,
+          bold: chunks => <b>{chunks}</b>,
+        })}
       </Details>
       <h2 className="govuk-heading-m">{t('section_title')}</h2>
       <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
@@ -58,22 +52,9 @@ export default async function ConjunctionsPage(props: {
       </Suspense>
 
       <Details summary={t('help2.title')}>
-        <p>{t('help2.heading')}</p>
-        <p>
-          {t('help2.select_the')}
-          <b>{t('help2.event_id')}</b>
-          {t('help2.view_more_info')}
-        </p>
-        <p>
-          {t('help2.each_event_id')}
-          <b>{t('help2.one_conjunction_event')}</b>
-          {t('help2.including_all')}
-        </p>
-        <p>
-          {t('help2.the')}
-          <b>{t('help2.your_interest')}</b>
-          {t('help2.column_contains')}
-        </p>
+        {t.rich('help2.content', {
+          bold: chunks => <b>{chunks}</b>,
+        })}
       </Details>
     </div>
   );

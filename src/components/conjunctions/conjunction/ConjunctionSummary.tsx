@@ -22,26 +22,26 @@ const ConjunctionSummary = async ({
   primaryObject,
   secondaryObject,
 }: ConjunctionSummaryProps) => {
-  const t = await getTranslations('Tables');
+  const t = await getTranslations('Tables.Conjunction');
 
   return (
     <>
       <div id="eventSummary">
-        <h2 className="govuk-heading-l" data-anchor="eventSummary">{t('Conjunction.conjunction_event_summary')}</h2>
+        <h2 className="govuk-heading-l" data-anchor="eventSummary">{t('conjunction_event_summary')}</h2>
         <ul className="govuk-list">
           <li>
-            {t('Conjunction.primary_object')}
+            {t('primary_object')}
             <Link
               href={`/satellites/${primaryObject.noradId}`}
               className="govuk-link"
             >
-              {primaryObject.commonName ?? t('Conjunction.unknown')}
+              {primaryObject.commonName ?? t('unknown')}
             </Link>
           </li>
           <li>
-            {t('Conjunction.secondary_object')}
+            {t('secondary_object')}
             {!secondaryObject
-              ? (t('Conjunction.unknown'))
+              ? (t('unknown'))
               : (
                   <Link
                     href={`/satellites/${secondaryObject.noradId}`}
@@ -53,9 +53,8 @@ const ConjunctionSummary = async ({
           </li>
         </ul>
         <ConjunctionSummaryInformationsTable object={event} />
-        <Details summary={t('Conjunction.information_on_calculations.title')}>
-          <p>{t('Conjunction.information_on_calculations.description1')}</p>
-          <p>{t('Conjunction.information_on_calculations.description2')}</p>
+        <Details summary={t('information_on_calculations.title')}>
+          {t.rich('information_on_calculations.content')}
         </Details>
       </div>
       <div className="govuk-button-group">
@@ -65,7 +64,7 @@ const ConjunctionSummary = async ({
             passHref
             legacyBehavior
           >
-            <Button>{t('Conjunction.upload_analysis')}</Button>
+            <Button>{t('upload_analysis')}</Button>
           </Link>
         )}
         <Link
@@ -79,7 +78,7 @@ const ConjunctionSummary = async ({
           legacyBehavior
         >
           <Button className="govuk-button--secondary">
-            {t('Conjunction.contact_analyst')}
+            {t('contact_analyst')}
           </Button>
         </Link>
       </div>

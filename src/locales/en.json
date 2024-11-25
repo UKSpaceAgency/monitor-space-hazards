@@ -302,13 +302,7 @@
         "title": "Evolution of collision probability",
         "help": {
           "title": "Help with this chart",
-          "description1": "Data sources can be turned on or off by selecting the series in the legend below the chart.",
-          "description2_1": "Evolution of operational conjunction event data is displayed as a continuous line. Individual ",
-          "description2_2": "Special",
-          "description2_3": "ephemeris probabilities can be turned on or off.",
-          "description3": "You can reveal more details about a specific data point by moving your mouse over it or tapping on the data point on touch-enabled screens.",
-          "description4_1": "Full conjunction event data can be viewed or downloaded from ",
-          "description4_2": "Conjunction event history."
+          "content": "<p>Data sources can be turned on or off by selecting the series in the legend below the chart.</p><p>Evolution of operational conjunction event data is displayed as a continuous line. Individual <special>Special</special> ephemeris probabilities can be turned on or off.</p><p>You can reveal more details about a specific data point by moving your mouse over it or tapping on the data point on touch-enabled screens.</p><p>Full conjunction event data can be viewed or downloaded from <link>Conjunction event history</link>.</p>"
         }
       },
       "mtp_chart": {
@@ -318,13 +312,7 @@
         "title": "Evolution of miss distance",
         "help": {
           "title": "Help with this chart",
-          "description1": "Miss distances can be turned on or off by selecting the series in the legend below the chart.",
-          "description2_1": "Evolution of operational conjunction event data is displayed as a continuous line. Individual ",
-          "description2_2": "Special",
-          "description2_3": "ephemeris probabilities can be turned on or off.",
-          "description3": "You can reveal more details about a specific data point by moving your mouse over it or tapping on the data point on touch-enabled screens.",
-          "description4_1": "Full conjunction event data can be viewed or downloaded from ",
-          "description4_2": "Conjunction event history."
+          "content": "<p>Miss distances can be turned on or off by selecting the series in the legend below the chart.</p><p>Evolution of operational conjunction event data is displayed as a continuous line. Individual <special>Special</special> ephemeris probabilities can be turned on or off.</p><p>You can reveal more details about a specific data point by moving your mouse over it or tapping on the data point on touch-enabled screens.</p><p>Full conjunction event data can be viewed or downloaded from <link>Conjunction event history</link>.</p>"
         }
       },
       "object_data": {
@@ -343,9 +331,7 @@
         "title": "Conjunction event history",
         "help": {
           "title": "Help with this table",
-          "description1": "Historical CDMs for the event are available in this table. Information about the individual CDM is available, including the calculation method for the probability of collision, the position uncertainty and data source for each object.",
-          "description2": "The data source for each object either comes from SSN observations, special or operational owner/operator ephemeris or NASA/CARA. Further information about these can be found in ",
-          "link": "definitions on data sources."
+          "content": "<p>Historical CDMs for the event are available in this table. Information about the individual CDM is available, including the calculation method for the probability of collision, the position uncertainty and data source for each object.</p><p>The data source for each object either comes from SSN observations, special or operational owner/operator ephemeris or NASA/CARA. Further information about these can be found in <link>definitions on data sources</link>.</p>"
         }
       },
       "further_information": {
@@ -366,24 +352,11 @@
     },
     "help1": {
       "title": "Help with this table",
-      "heading": "This service tracks all upcoming conjunction events for UK licenced objects. The service reports on two types of conjunction event.",
-      "conjunctions_alerts": "Upcoming conjunction alerts: ",
-      "all_conjunction_events": "Upcoming conjunction events: ",
-      "conjunctions_alerts_description": "all upcoming conjunction events that meet the UK Space Agency's thresholds for alerting UK government",
-      "all_conjunction_description": "all upcoming conjunction events, including those which have not met alerting thresholds, either for a specific operator or all UK-licenced satellites"
+      "content": "<p>This service tracks all upcoming conjunction events for UK licenced objects. The service reports on two types of conjunction event.</p><list><item><bold>Upcoming conjunction alerts:</bold> all upcoming conjunction events that meet the UK Space Agency's thresholds for alerting UK government</item><item><bold>Upcoming conjunction events:</bold> all upcoming conjunction events, including those which have not met alerting thresholds, either for a specific operator or all UK-licenced satellites</item></list>"
     },
     "help2": {
       "title": "Help with this table",
-      "heading": "This table shows upcoming conjunction events involving UK-licensed satellites by default. You can apply filters to view past events.",
-      "select_the": "Select the ",
-      "event_id": "event ID",
-      "view_more_info": " to view more information",
-      "each_event_id": "Each event ID or row represents ",
-      "one_conjunction_event": "one conjunction event",
-      "including_all": " including all related Conjunction Data Messages (CDMs) and UKSA analysis.",
-      "the": "The ",
-      "your_interest": "your interest",
-      "column_contains": " column contains HIGH labels for events that meet your thresholds for notifications."
+      "content": "<p>This table shows upcoming conjunction events involving UK-licensed satellites by default. You can apply filters to view past events.</p><p>Select the <bold>event ID</bold> to view more information</p><p>Each event ID or row represents <bold>one conjunction</bold> event including all related Conjunction Data Messages (CDMs) and UKSA analysis.</p><p>The <bold>your interest</bold> column contains HIGH labels for events that meet your thresholds for notifications.</p>"
     }
   },
   "Conjunction": {
@@ -578,8 +551,7 @@
       },
       "information_on_calculations": {
         "title": "Information on calculations",
-        "description1": "Probability of collision values will differ depending on the object sizes and methods used in calculations.",
-        "description2": "Space-Track uses a radius of 1m, 3m or 5m in their probability calculations. UKSA orbital analysis uses information on object sizes from ESA DISCOS or a custom value if suitable."
+        "content": "<p>Probability of collision values will differ depending on the object sizes and methods used in calculations.</p><p>Space-Track uses a radius of 1m, 3m or 5m in their probability calculations. UKSA orbital analysis uses information on object sizes from ESA DISCOS or a custom value if suitable.</p>"
       }
     }
   },
