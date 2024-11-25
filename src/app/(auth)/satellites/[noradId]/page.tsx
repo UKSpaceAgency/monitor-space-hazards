@@ -53,7 +53,7 @@ export default async function Satellite({
         <ContentNavigation />
         <div className="md:col-span-3">
           <SatelliteConjunctionEvents noradId={noradId} query={upcoming_search_like} epoch="future" />
-          <SatelliteEphemerisData ephemerises={ephemerises} />
+          <SatelliteEphemerisData noradId={noradId} ephemerises={ephemerises} />
           <SatelliteInformation object={satelltite} />
           <SatelliteAdditionalInformations object={satelltite} />
           <SatelliteConjunctionEvents noradId={noradId} query={previous_search_link} epoch="past" />

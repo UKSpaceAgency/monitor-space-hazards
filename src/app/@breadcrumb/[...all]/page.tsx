@@ -5,24 +5,19 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbP
 
 export default function BreadcrumbSlot({
   params,
-}: { params: { catchAll: string[] } }) {
+}: { params: { all: string[] } }) {
   const t = useTranslations('Breadcrumb');
 
   const breadcrumbItems: ReactElement[] = [];
   let breadcrumbPage: ReactElement = <></>;
 
-  if (params.catchAll.length <= 1) {
-    return null;
-  }
-
-  params.catchAll.forEach((element, i) => {
-    const route = element.replaceAll('-', ' ');
-    const name = t.has(route as any) ? t(route as any) : route;
-    const href = `/${params.catchAll.at(0)}`;
-    if (i === params.catchAll.length - 1) {
+  for (let i = 0; i < params.all.length; i++) {
+    const route = params.all[i] as any;
+    const href = `/${params.all.slice(0, i + 1).join('/')}`;
+    if (i === params.all.length - 1) {
       breadcrumbPage = (
         <BreadcrumbItem>
-          <BreadcrumbPage>{name}</BreadcrumbPage>
+          <BreadcrumbPage>{t.has(route) ? t(route) : route}</BreadcrumbPage>
         </BreadcrumbItem>
       );
     } else {
@@ -30,13 +25,13 @@ export default function BreadcrumbSlot({
         <Fragment key={href}>
           <BreadcrumbItem>
             <BreadcrumbLink href={href}>
-              {name}
+              {t.has(route) ? t(route) : route}
             </BreadcrumbLink>
           </BreadcrumbItem>
         </Fragment>,
       );
     }
-  });
+  };
   return (
     <Breadcrumb>
       <BreadcrumbList>
