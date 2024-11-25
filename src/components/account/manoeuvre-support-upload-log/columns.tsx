@@ -1,9 +1,8 @@
-import dayjs from 'dayjs';
 import Link from 'next/link';
 import type { SyntheticEvent } from 'react';
 
 import type { TypeManoeuvrePlotWithUserMetadataOut } from '@/__generated__/data-contracts';
-import { FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import dayjs, { FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 
 type ManoeuvreTableColumnsProps = {
