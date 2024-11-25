@@ -9,7 +9,7 @@ import Api from '@/libs/Api';
 
 import { REVALIDATION_TAGS } from './tags';
 
-export async function postEphemeris(prevState: any, formData: FormData) {
+export async function postEphemeris(_prevState: any, formData: FormData) {
   const data: TypeBodyCreateEphemerisV1EphemerisPost = {
     object_id: formData.get('object_id') as string,
     file: formData.get('file') as File,
