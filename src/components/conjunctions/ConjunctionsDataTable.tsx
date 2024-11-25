@@ -8,9 +8,9 @@ import type { ConjunctionsPageSearchParams } from '@/app/(auth)/conjunctions/pag
 import Radios from '@/ui/radios/radios';
 import { QUERY_KEYS } from '@/utils/QueryKeys';
 
+import type { ProbabilityUnitType } from '../data-tables/columns/ConjunctionColumns';
+import { getConjunctionEventsColumns } from '../data-tables/columns/ConjunctionColumns';
 import InfiniteTable from '../InfiniteTable';
-import type { ProbabilityUnitType } from './columns';
-import { getConjunctionEventsColumns } from './columns';
 
 type ConjunctionsDataTableProps = {
   params: ConjunctionsPageSearchParams;

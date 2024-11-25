@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useTranslations } from 'next-intl';
 import type { HTMLProps, ReactNode } from 'react';
 
@@ -21,16 +22,6 @@ type InformationsTableProps<T extends object> = {
 const InformationsTable = <T extends object>({ rows, data, caption, headerCellWidth = 'md', reducedFont }: InformationsTableProps<T>) => {
   const t = useTranslations('Tables.Objects');
 
-  let headerSize = 'w-6/12';
-  switch (headerCellWidth) {
-    case 'xs':
-      headerSize = 'w-1/3';
-      break;
-    case 'sm':
-      headerSize = 'w-2/5';
-      break;
-  }
-
   const renderTableCell = (accessorKey: keyof T, data: T, renderCell?: (row: T) => ReactNode, reducedFont?: true) => (
     <TableCell className={`${reducedFont ? 'text-base' : ''}`}>
       {renderCell ? renderCell(data) : data[accessorKey] as ReactNode}
@@ -51,7 +42,16 @@ const InformationsTable = <T extends object>({ rows, data, caption, headerCellWi
         {rows.map(({ header, accessorKey, renderCell, cellProps }) => {
           return (
             <TableRow key={accessorKey as string}>
-              <TableCellHeader className={`${headerSize} ${reducedFont ? 'text-base' : ''}`} {...cellProps}>{header}</TableCellHeader>
+              <TableCellHeader
+                className={clsx(`${reducedFont ? 'text-base' : ''}`, {
+                  'w-6/12': headerCellWidth === 'md',
+                  'w-2/5': headerCellWidth === 'sm',
+                  'w-1/3': headerCellWidth === 'xs',
+                })}
+                {...cellProps}
+              >
+                {header}
+              </TableCellHeader>
               {Array.isArray(data) ? data.map(row => renderTableCell(accessorKey, row, renderCell, reducedFont)) : renderTableCell(accessorKey, data, renderCell, reducedFont)}
             </TableRow>
           );

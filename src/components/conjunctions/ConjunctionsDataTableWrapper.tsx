@@ -1,11 +1,10 @@
-import dayjs from 'dayjs';
 import { getTranslations } from 'next-intl/server';
 
 import { getCdmsLatest } from '@/actions/getCdmsLatest';
 import { getConjunctionEventsList } from '@/actions/getConjunctionEventsList';
 import { getUsersMe } from '@/actions/getUsersMe';
 import type { ConjunctionsPageSearchParams } from '@/app/(auth)/conjunctions/page';
-import { FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import dayjs, { FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import { isAnalysist } from '@/utils/Roles';
 
 import { DownloadData } from '../DownloadData';

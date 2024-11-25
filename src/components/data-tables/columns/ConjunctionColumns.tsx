@@ -1,8 +1,7 @@
-import dayjs from 'dayjs';
 import Link from 'next/link';
 
 import type { TypeEventOut } from '@/__generated__/data-contracts';
-import { FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import dayjs, { FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 
 export type ProbabilityUnitType = 'scientific' | 'percentage';

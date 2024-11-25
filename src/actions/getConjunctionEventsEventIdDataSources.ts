@@ -3,9 +3,9 @@ import type { RequestParams } from '@/__generated__/http-client';
 import Api from '@/libs/Api';
 
 export async function getConjunctionEventsEventIdDataSources(
-  { eventId, ...query }: TypeGetConjunctionEventsEventIdDataSourcesParams,
+  query: TypeGetConjunctionEventsEventIdDataSourcesParams,
   params: RequestParams = {},
 ) {
-  const { data } = await Api.getConjunctionEventsEventIdDataSources({ eventId, ...query }, params);
+  const { data } = await Api.getConjunctionEventsEventIdDataSources(query, params);
   return data;
 }
