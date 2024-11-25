@@ -125,13 +125,12 @@ export const getConjunctionEventsColumns = ({
   {
     id: 'probabilityOfCollision',
     header: 'Conjunctions.probability_of_collision',
-    maxSize: 50,
     columns: [
       {
         id: 'collisionProbability',
         accessorKey: 'collisionProbability',
         header: 'Conjunctions.space_track',
-        maxSize: 50,
+        size: 200,
         cell: ({ getValue }) => {
           const collisionProbability = getValue();
           if (!collisionProbability) {
