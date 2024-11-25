@@ -88,6 +88,7 @@ export function Accordion({ initialItems, id }: AccordionProps) {
                 >
                   <h2
                     className="govuk-accordion__section-heading-text-focus"
+                    data-anchor={id}
                   >
                     {heading}
                   </h2>

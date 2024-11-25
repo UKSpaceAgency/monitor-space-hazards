@@ -27,7 +27,7 @@ const ConjunctionSummary = async ({
   return (
     <>
       <div id="eventSummary">
-        <h2 className="govuk-heading-l">{t('Conjunction.conjunction_event_summary')}</h2>
+        <h2 className="govuk-heading-l" data-anchor="eventSummary">{t('Conjunction.conjunction_event_summary')}</h2>
         <ul className="govuk-list">
           <li>
             {t('Conjunction.primary_object')}

@@ -290,6 +290,14 @@
     },
     "Conjunction": {
       "download": "Download event history",
+      "section_titles": {
+        "poc_chart": "Evolution of collision probability",
+        "miss_distance_chart": "Evolution of miss distance",
+        "object_data": "Object data",
+        "event_history": "Conjunction event history",
+        "further_information": "Further information",
+        "manoeuvre_support": "Manoeuvre support"
+      },
       "poc_chart": {
         "title": "Evolution of collision probability",
         "help": {
@@ -380,9 +388,7 @@
   },
   "Conjunction": {
     "title": "Conjunction event {id}",
-    "side_navigation": {
-      "title": "Contents",
-      "events_summary": "Conjunction event summary",
+    "section_titles": {
       "poc_chart": "Evolution of collision probability",
       "miss_distance_chart": "Evolution of miss distance",
       "object_data": "Object data",
@@ -531,6 +537,9 @@
       "conjunction_event_summary": "Conjunction event summary",
       "primary_object": "Primary object: ",
       "secondary_object": "Secondary object: ",
+      "section_titles": {
+        "events_summary": "Conjunction event summary"
+      },
       "summary_list": {
         "space_track_cdm": "Space-Track CDM",
         "cdm_id": "CDM ID",

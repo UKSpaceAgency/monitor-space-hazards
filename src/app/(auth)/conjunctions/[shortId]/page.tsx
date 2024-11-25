@@ -8,8 +8,7 @@ import { getManoeuvrePlots } from '@/actions/getManoeuvrePlots';
 import { getUsersMe } from '@/actions/getUsersMe';
 import { ConjunctionAccordion } from '@/components/conjunctions/conjunction/ConjunctionAccordion';
 import { ConjunctionSummary } from '@/components/conjunctions/conjunction/ConjunctionSummary';
-import { getConjunctionSideNavigationItems } from '@/components/conjunctions/conjunction/sideNavigationItems';
-import SideNavigationList from '@/ui/side-navigation-list/side-navigation-list';
+import { ContentNavigation } from '@/components/ContentNavigation';
 import { isAnalysist } from '@/utils/Roles';
 
 export async function generateMetadata({
@@ -44,23 +43,8 @@ export default async function ConjunctionPage({
     return notFound();
   }
 
-  const locales = {
-    eventsSummary: t('side_navigation.events_summary'),
-    pocChart: t('side_navigation.poc_chart'),
-    manoeuvreSupport: t('side_navigation.manoeuvre_support'),
-    missDistanceChart: t('side_navigation.miss_distance_chart'),
-    objectData: t('side_navigation.object_data'),
-    eventHistory: t('side_navigation.event_history'),
-    furtherInformation: t('side_navigation.further_information'),
-  };
-
   const haveMtp = manoeuvrePlots.length > 0;
   const isUserAnalysist = isAnalysist(user.role);
-
-  const navigationItems = getConjunctionSideNavigationItems({
-    locales,
-    haveMtp,
-  });
 
   const handleDownloadData = async () => {
     'use server';
@@ -80,7 +64,7 @@ export default async function ConjunctionPage({
       <h1 className="govuk-heading-xl">{t('title', { id: shortId })}</h1>
       <div className="govuk-grid-row">
         <div className="govuk-grid-column-one-quarter">
-          <SideNavigationList title={t('side_navigation.title')} items={navigationItems} />
+          <ContentNavigation />
         </div>
         <div className="govuk-grid-column-three-quarters">
           <ConjunctionSummary
