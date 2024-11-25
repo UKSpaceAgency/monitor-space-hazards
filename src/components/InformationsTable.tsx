@@ -4,6 +4,8 @@ import type { HTMLProps, ReactNode } from 'react';
 
 import { Table, TableBody, TableCaption, TableCell, TableCellHeader, TableRow } from '@/ui/table/Table';
 
+export type InformationsTableHeaderWidth = 'xs' | 'sm' | 'md';
+
 export type InformationsTableRow<T extends object> = {
   header: ReactNode | string;
   accessorKey: keyof T;
@@ -15,7 +17,7 @@ type InformationsTableProps<T extends object> = {
   rows: InformationsTableRow<T>[];
   data: T | T[];
   caption?: string;
-  headerCellWidth?: 'xs' | 'sm' | 'md';
+  headerCellWidth?: InformationsTableHeaderWidth;
   reducedFont?: true;
 };
 

@@ -4,14 +4,14 @@ import { useTranslations } from 'next-intl';
 
 import type { TypeDataSourcesOut, TypeEventSummaryOut, TypeSatelliteOut } from '@/__generated__/data-contracts';
 import { DownloadData } from '@/components/DownloadData';
+import { AdditionalInformationsTable } from '@/components/satellites/satellite/tables/AdditionalInformationsTable';
+import { BaseInformationsTable } from '@/components/satellites/satellite/tables/BaseInformationsTable';
+import { LicenseInformationsTable } from '@/components/satellites/satellite/tables/LicenseInformationsTable';
+import { OrbitalInformationsTable } from '@/components/satellites/satellite/tables/OrbitalInformationsTable';
 import Accordion from '@/ui/accordion/accordion';
 import Details from '@/ui/details/details';
 
-import { ConjunctionEventHistoryTable } from './event-history-table/ConjunctionEventHistoryTable';
-import { ConjunctionObjectDataAdditionalTable } from './object-data-table/ConjunctionObjectDataAdditionalTable';
-import { ConjunctionObjectDataGeneralTable } from './object-data-table/ConjunctionObjectDataGeneralTable';
-import { ConjunctionObjectDataLicenseTable } from './object-data-table/ConjunctionObjectDataLicenseTable';
-import { ConjunctionObjectDataOrbitalTable } from './object-data-table/ConjunctionObjectDataOrbitalTable';
+import { ConjunctionEventHistoryTable } from '../../data-tables/ConjunctionEventHistoryTable';
 
 type ConjunctionAccordionType = {
   id: string;
@@ -106,19 +106,13 @@ const ConjunctionAccordion = ({
                 {t('object_data.space_track')}
               </div>
               <div className="overflow-auto">
-                <ConjunctionObjectDataGeneralTable data={dataArray} />
+                <BaseInformationsTable object={dataArray} headerCellWidth="xs" />
               </div>
-              <h3 className="govuk-heading-s govuk-!-margin-top-6 govuk-!-margin-bottom-0">
-                {t('object_data.license_summary.title')}
-              </h3>
               <div className="overflow-auto">
-                <ConjunctionObjectDataLicenseTable data={dataArray} />
+                <LicenseInformationsTable object={dataArray} headerCellWidth="xs" />
               </div>
-              <h3 className="govuk-heading-s govuk-!-margin-top-6 govuk-!-margin-bottom-0">
-                {t('object_data.orbital_summary.title')}
-              </h3>
               <div className="overflow-auto">
-                <ConjunctionObjectDataOrbitalTable data={dataArray} />
+                <OrbitalInformationsTable object={dataArray} headerCellWidth="xs" />
               </div>
               <h3 className="govuk-heading-s govuk-!-margin-top-6 govuk-!-margin-bottom-0">
                 {t('object_data.additional_object_summary.title')}
@@ -130,7 +124,7 @@ const ConjunctionAccordion = ({
                 {t('object_data.additional_object_summary.description2')}
               </div>
               <div className="overflow-auto">
-                <ConjunctionObjectDataAdditionalTable data={dataArray} />
+                <AdditionalInformationsTable object={dataArray} headerCellWidth="xs" />
               </div>
             </>
           ),

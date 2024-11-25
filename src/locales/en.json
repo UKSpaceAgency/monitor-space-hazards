@@ -320,12 +320,6 @@
         }
       },
       "object_data": {
-        "license_summary": {
-          "title": "License information"
-        },
-        "orbital_summary": {
-          "title": "Orbital information"
-        },
         "additional_object_summary": {
           "title": "Additional object data",
           "description1": "ESA DISCOS provides additional object data where available. Contact ESA DISCOS if your satellite data is incorrect.",
@@ -550,41 +544,6 @@
         "time_of_update": "Time of update (UTC)",
         "primary_object_size": "Primary object size (m)",
         "secondary_object_size": "Secondary object size (m)"
-      },
-      "object_data": {
-        "general_summary": {
-          "common_name": "Common name",
-          "norad_id": "NORAD ID",
-          "international_designator": "International designator",
-          "object_type": "Object type",
-          "unknown": "UNKNOWN"
-        },
-        "license_summary": {
-          "title": "License information",
-          "country": "Country",
-          "launching_site": "Launching site",
-          "launch_date": "Launch date"
-        },
-        "orbital_summary": {
-          "title": "Orbital information",
-          "apogee": "Apogee (km)",
-          "perigee": "Perigee (km)",
-          "inclination": "Inclination (°)",
-          "period": "Period (mins)"
-        },
-        "additional_object_summary": {
-          "title": "Additional object data",
-          "shape": "Shape",
-          "mass": "Mass (kg)",
-          "average_cross_section": "Average cross section (m²)",
-          "max_cross_section": "Maximum cross section (m²)",
-          "min_cross_section": "Minimum cross section (m²)",
-          "height": "Height (m)",
-          "width": "Width (m)",
-          "depth": "Depth (m)",
-          "span": "Span (m)",
-          "diameter": "Diameter (m)"
-        }
       },
       "event_history": {
         "data_source": "Data source",

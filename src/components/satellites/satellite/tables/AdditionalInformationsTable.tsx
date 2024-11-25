@@ -1,16 +1,17 @@
 import { useTranslations } from 'next-intl';
 
 import type { TypeSatelliteOut } from '@/__generated__/data-contracts';
-import type { InformationsTableRow } from '@/components/InformationsTable';
+import type { InformationsTableHeaderWidth, InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 
 type AdditionalInformations = Pick<TypeSatelliteOut, 'shape' | 'mass' | 'crossSectionAvg' | 'crossSectionMax' | 'crossSectionMin' | 'height' | 'width' | 'depth' | 'span' | 'diameter'>;
 
 type AdditionalInformationsTableProps = {
   object: AdditionalInformations | AdditionalInformations[];
+  headerCellWidth?: InformationsTableHeaderWidth;
 };
 
-const AdditionalInformationsTable = ({ object }: AdditionalInformationsTableProps) => {
+const AdditionalInformationsTable = ({ object, headerCellWidth }: AdditionalInformationsTableProps) => {
   const t = useTranslations('Tables.SatelliteInformations');
 
   const baseInformations: InformationsTableRow<AdditionalInformations>[] = [{
@@ -45,7 +46,7 @@ const AdditionalInformationsTable = ({ object }: AdditionalInformationsTableProp
     accessorKey: 'diameter',
   }];
 
-  return <InformationsTable rows={baseInformations} data={object} />;
+  return <InformationsTable rows={baseInformations} data={object} headerCellWidth={headerCellWidth} />;
 };
 
 export { AdditionalInformationsTable };
