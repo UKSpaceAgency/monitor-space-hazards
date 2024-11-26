@@ -9,7 +9,6 @@ export const satellitesColumns: TranslatedColumnDef<TypeSatelliteWithMetadataOut
   {
     accessorKey: 'commonName',
     header: 'Satellites.common_name',
-    size: 150,
     cell: ({ renderValue, row }) => (
       <Link
         href={`/satellites/${row?.original.noradId}`}
@@ -23,16 +22,15 @@ export const satellitesColumns: TranslatedColumnDef<TypeSatelliteWithMetadataOut
   {
     accessorKey: 'noradId',
     header: 'Satellites.norad_id',
-    size: 100,
   },
   {
     accessorKey: 'internationalDesignator',
     header: 'Satellites.international_designator',
-    size: 100,
   },
   {
     id: 'futureEventsCount',
-    accessorKey: 'futureEventsCount',
+    accessorKey: 'metadata.futureEventsCount',
     header: 'Satellites.upcoming_known_conjunction_events',
+    size: 200,
   },
 ];
