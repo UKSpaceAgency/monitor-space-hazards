@@ -43,17 +43,17 @@ const ConjunctionsDataFilters = ({ params }: ConjunctionsDataFiltersProps) => {
           {
             id: 'viewAll',
             children: t('Conjunctions.details.option1'),
-            value: 'no',
-            name: 'has_report',
-            checked: params.has_report !== 'yes',
+            value: 'all',
+            name: 'report',
+            checked: params.report !== 'present',
             onChange: handleRefreshParams,
           },
           {
             id: 'viewOnly',
             children: t('Conjunctions.details.option2'),
-            value: 'yes',
-            name: 'has_report',
-            checked: params.has_report === 'yes',
+            value: 'present',
+            name: 'report',
+            checked: params.report === 'present',
             onChange: handleRefreshParams,
           },
         ]}
@@ -63,6 +63,7 @@ const ConjunctionsDataFilters = ({ params }: ConjunctionsDataFiltersProps) => {
       <Select
         name="epoch"
         id="epoch"
+        className="w-1/4"
         label={t('Conjunctions.details.select_label')}
         value={params.epoch ?? 'future'}
         options={[

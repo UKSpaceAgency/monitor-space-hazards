@@ -68,6 +68,7 @@ const ConjunctionsDataTable = ({ params, conjunctions, isAnalyst }: Conjunctions
         columns={columns}
         fetcher={getConjunctionEventsList}
         queryKeys={[QUERY_KEYS.Conjunctions]}
+        emptyLabel={t('Conjunctions.empty_list_info')}
       />
     </>
   );
