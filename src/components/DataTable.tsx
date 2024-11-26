@@ -127,7 +127,7 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText,
   };
 
   return (
-    <Table className={`${largerText ? 'govuk-table' : 'govuk-body'}`}>
+    <Table className={`${largerText ? 'govuk-table' : 'govuk-!-font-size-16'}`}>
       <TableHead className={clsx({
         'sticky top-0 bg-white': stickyHeader,
       })}
