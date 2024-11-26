@@ -33,9 +33,10 @@ export type DataTableProps<T extends RowData> = {
   // Extra
   stickyHeader?: true;
   largerText?: true;
+  emptyLabel?: string;
 };
 
-const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText, sorting, onSortingChange, renderSubComponent }: DataTableProps<T>) => {
+const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText, sorting, emptyLabel = 'No data', onSortingChange, renderSubComponent }: DataTableProps<T>) => {
   const t = useTranslations('Tables');
 
   const translatedColumns = useMemo(() => {
@@ -125,6 +126,15 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText,
           </TableCellHeader>
         );
   };
+
+  if (!data.length) {
+    return (
+      <p className="govuk-body" role="status">
+        <span className="govuk-visually-hidden">Alert: </span>
+        {emptyLabel}
+      </p>
+    );
+  }
 
   return (
     <Table className={`${largerText ? 'govuk-table' : 'govuk-!-font-size-16'}`}>

@@ -16,9 +16,10 @@ type InfiniteTableProps<T extends RowData, K extends object> = {
   columns: TranslatedColumnDef<T>[];
   queryKeys: (string | K | undefined)[];
   initialSort?: ColumnSort[];
+  emptyLabel?: string;
 };
 
-const InfiniteTable = <T extends RowData, K extends object>({ initialData, params, fetcher, columns, queryKeys, initialSort }: InfiniteTableProps<T, K>) => {
+const InfiniteTable = <T extends RowData, K extends object>({ initialData, params, fetcher, columns, queryKeys, initialSort, emptyLabel }: InfiniteTableProps<T, K>) => {
   const { sorting, onSortingChange, sortBy, sortOrder } = useSorting(initialSort ?? []);
 
   const { data, fetchNextPage, isFetching, hasNextPage } = useInfiniteQuery({
@@ -46,7 +47,7 @@ const InfiniteTable = <T extends RowData, K extends object>({ initialData, param
   return (
     <div>
       <InfiniteScroller isFetching={isFetching} hasNextPage={hasNextPage} fetchNextPage={fetchNextPage}>
-        <DataTable stickyHeader columns={columns} data={flatData} sorting={sorting} onSortingChange={onSortingChange} />
+        <DataTable stickyHeader columns={columns} data={flatData} sorting={sorting} emptyLabel={emptyLabel} onSortingChange={onSortingChange} />
       </InfiniteScroller>
     </div>
   );

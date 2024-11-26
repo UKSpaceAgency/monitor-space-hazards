@@ -16,7 +16,7 @@ test.describe('Conjunctions page', () => {
     await page.locator('#applySummary').click();
     await page.locator('#viewOnly').click();
 
-    await expect(page).toHaveURL(/.*has_report=yes/);
+    await expect(page).toHaveURL(/.*report=present/);
   });
 
   test('should filter past epoch', async ({ page }) => {

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 
-import type { TypeEpoch } from '@/__generated__/data-contracts';
+import type { TypeEpoch, TypeReportFlagSettings } from '@/__generated__/data-contracts';
 import { ConjunctionsDataFilters } from '@/components/conjunctions/ConjunctionsDataFilters';
 import { ConjunctionsDataTableWrapper } from '@/components/conjunctions/ConjunctionsDataTableWrapper';
 import { ConjunctionsSummaryTable } from '@/components/conjunctions/ConjunctionsSummaryTable';
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export type ConjunctionsPageSearchParams = {
-  has_report?: string;
+  report?: TypeReportFlagSettings;
   epoch?: TypeEpoch;
   search_like?: string;
 };

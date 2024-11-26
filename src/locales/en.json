@@ -512,7 +512,8 @@
       "short_id": "Conjunction event ID",
       "event_id": "Event ID",
       "total_miss_distance": "Total",
-      "user_interest": "Your interest"
+      "user_interest": "Your interest",
+      "empty_list_info": "No conjunction events have been found"
     },
     "Conjunction": {
       "contact_analyst": "Contact a UKSA orbital analyst",
