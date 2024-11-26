@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl';
 
 import type { TypeSatelliteOut } from '@/__generated__/data-contracts';
-import type { InformationsTableRow } from '@/components/InformationsTable';
+import type { InformationsTableHeaderWidth, InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs } from '@/libs/Dayjs';
 
@@ -9,9 +9,10 @@ type LicenseSatelliteInformations = Pick<TypeSatelliteOut, 'licenseCountry' | 'l
 
 type LicenseInformationsTableProps = {
   object: LicenseSatelliteInformations | LicenseSatelliteInformations[];
+  headerCellWidth?: InformationsTableHeaderWidth;
 };
 
-const LicenseInformationsTable = ({ object }: LicenseInformationsTableProps) => {
+const LicenseInformationsTable = ({ object, headerCellWidth }: LicenseInformationsTableProps) => {
   const t = useTranslations('Tables.SatelliteInformations');
 
   const baseInformations: InformationsTableRow<LicenseSatelliteInformations>[] = [{
@@ -26,7 +27,7 @@ const LicenseInformationsTable = ({ object }: LicenseInformationsTableProps) => 
     renderCell: row => dayjs(row.launchDate).format('YYYY'),
   }];
 
-  return <InformationsTable caption={t('License.caption')} rows={baseInformations} data={object} />;
+  return <InformationsTable caption={t('License.caption')} rows={baseInformations} data={object} headerCellWidth={headerCellWidth} />;
 };
 
 export { LicenseInformationsTable };
