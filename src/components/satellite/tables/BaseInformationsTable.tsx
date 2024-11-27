@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 import type { TypeSatelliteOut } from '@/__generated__/data-contracts';
@@ -9,14 +10,16 @@ type BaseSatelliteInformations = Pick<TypeSatelliteOut, 'commonName' | 'noradId'
 type BaseInformationsTableProps = {
   object: BaseSatelliteInformations | BaseSatelliteInformations[];
   headerCellWidth?: InformationsTableHeaderWidth;
+  showLink?: true;
 };
 
-const BaseInformationsTable = ({ object, headerCellWidth }: BaseInformationsTableProps) => {
+const BaseInformationsTable = ({ object, headerCellWidth, showLink }: BaseInformationsTableProps) => {
   const t = useTranslations('Tables.SatelliteInformations');
 
   const baseInformations: InformationsTableRow<BaseSatelliteInformations>[] = [{
     header: t('Base.common_name'),
     accessorKey: 'commonName',
+    renderCell: row => showLink ? <Link className="govuk-link" href={`/satellites/${row.noradId}`}>{row.commonName}</Link> : <div>{row.commonName}</div>,
   }, {
     header: t('Base.norad_id'),
     accessorKey: 'noradId',
