@@ -294,6 +294,9 @@
     "title": "Ephemeris upload complete",
     "content": "Your ephemeris for {noradId} has been successfully uploaded to Monitor Space Hazards"
   },
+  "FeedbackPage": {
+    "title": "Give feedback on Monitor Space Hazards"
+  },
   "Accordions": {
     "DistributionLists": {
       "receive_alerts": "Receive {item} alerts",
