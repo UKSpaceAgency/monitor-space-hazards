@@ -35,10 +35,10 @@ const FeedbackForm = () => {
     formData.append('Details', data.details);
 
     try {
-      // await fetch('https://getform.io/f/8eabf249-d62f-43d1-a035-e1ba5d637cb3', {
-      //   method: 'POST',
-      //   body: formData,
-      // });
+      await fetch('https://getform.io/f/8eabf249-d63d1-a035-e1ba5d637cb3', {
+        method: 'POST',
+        body: formData,
+      });
 
       setSubmitted(true);
       setLoading(false);
