@@ -1,12 +1,9 @@
-import { getTranslations } from 'next-intl/server';
+import { FeedbackForm } from '@/components/feedback/FeedbackForm';
 
 export default async function FeedbackPage() {
-  const t = await getTranslations('FeedbackPage');
-
   return (
     <div>
-      <h1 className="govuk-heading-xl">{t('title')}</h1>
-      Feedback
+      <FeedbackForm />
     </div>
   );
 }

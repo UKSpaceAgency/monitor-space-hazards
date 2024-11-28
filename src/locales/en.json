@@ -682,6 +682,20 @@
     "EphemerisUpload": {
       "label": "Upload .oem file:",
       "button": "Upload"
+    },
+    "Feedback": {
+      "title": "Give feedback on Monitor Space Hazards",
+      "success": "Your feedback form has been submitted successfully",
+      "very_satisfied": "Very satisfied",
+      "satisfied": "Satisfied",
+      "neither": "Neither satisfied of dissatisfied",
+      "dissatisfied": "Dissatisfied",
+      "very_dissatisfied": "Very dissatisfied",
+      "survey_label": "Satisfaction survey",
+      "radios_label": "Overall, how did you feel about the service you received today?",
+      "textarea_label": "Can you provide more detail?",
+      "textarea_hint": "If you would like to hear back from us directly about your comment, include your name. Do not include any sensitive information.",
+      "submit": "Submit"
     }
   },
   "Components": {

@@ -15,13 +15,14 @@ type RadioItem = {
 export type RadiosProps = {
   items: RadioItem[];
   label?: ReactNode;
+  labelClass?: string;
   hint?: ReactNode;
   error?: string;
   inline?: true;
   small?: true;
 } & HTMLAttributes<HTMLDivElement>;
 
-export function Radios({ items, label, hint, error, inline, small, className }: RadiosProps) {
+export function Radios({ items, label, hint, error, inline, small, labelClass, className }: RadiosProps) {
   const id = useId();
 
   return (
@@ -32,7 +33,7 @@ export function Radios({ items, label, hint, error, inline, small, className }: 
         className,
       )}
     >
-      {label && <Label htmlFor={id}><b>{label}</b></Label>}
+      {label && <Label className={labelClass} htmlFor={id}><b>{label}</b></Label>}
       {hint && <Hint>{hint}</Hint>}
       {error && <ErrorMessage>{error}</ErrorMessage>}
       <div

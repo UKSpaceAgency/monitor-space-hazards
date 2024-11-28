@@ -8,6 +8,7 @@ import Label from '../label/label';
 
 export type TextareaProps = {
   label?: ReactNode;
+  labelClass?: string;
   hint?: ReactNode;
   error?: string;
   prefix?: string;
@@ -16,7 +17,7 @@ export type TextareaProps = {
 
 export const TextArea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
-    { name, className, label, hint, error, prefix, suffix, ...props },
+    { name, className, label, hint, error, prefix, suffix, labelClass, ...props },
     ref,
   ) => {
     const id = useId();
@@ -27,7 +28,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           'govuk-form-group--error': !!error,
         })}
       >
-        {label && <Label htmlFor={id}>{label}</Label>}
+        {label && <Label htmlFor={id} className={labelClass}>{label}</Label>}
         {hint && <Hint>{hint}</Hint>}
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <textarea
