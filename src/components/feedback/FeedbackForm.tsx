@@ -6,6 +6,7 @@ import { useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { FormProvider, useForm } from 'react-hook-form';
 
+import { postFeedback } from '@/actions/postFeedback';
 import { FormErrorSummary } from '@/components/form/FormErrorSummary';
 import Button from '@/ui/button/button';
 import Fieldset, { } from '@/ui/fieldset/fieldset';
@@ -17,8 +18,8 @@ import { feedBackFormDefaultValues, type FeedbackSchema, feedbackSchema } from '
 const FeedbackForm = () => {
   const t = useTranslations('Forms.Feedback');
 
-  const [submitted, setSubmitted] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const methods = useForm<FeedbackSchema>({
     defaultValues: feedBackFormDefaultValues,
@@ -35,10 +36,7 @@ const FeedbackForm = () => {
     formData.append('Details', data.details);
 
     try {
-      await fetch('https://getform.io/f/8eabf249-d63d1-a035-e1ba5d637cb3', {
-        method: 'POST',
-        body: formData,
-      });
+      await postFeedback(formData);
 
       setSubmitted(true);
       setLoading(false);
