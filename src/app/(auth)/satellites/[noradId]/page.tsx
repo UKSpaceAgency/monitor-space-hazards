@@ -5,10 +5,10 @@ import { getTranslations } from 'next-intl/server';
 import { getEphemerises } from '@/actions/getEphemerises';
 import { getSatellite } from '@/actions/getSatellite';
 import { ContentNavigation } from '@/components/ContentNavigation';
-import { SatelliteAdditionalInformations } from '@/components/satellites/satellite/SatelliteAdditionalInformation';
-import { SatelliteConjunctionEvents } from '@/components/satellites/satellite/SatelliteConjunctionEvents';
-import { SatelliteEphemerisData } from '@/components/satellites/satellite/SatelliteEphemerisData';
-import { SatelliteInformation } from '@/components/satellites/satellite/SatelliteInformation';
+import { SatelliteAdditionalInformations } from '@/components/satellite/SatelliteAdditionalInformation';
+import { SatelliteConjunctionEvents } from '@/components/satellite/SatelliteConjunctionEvents';
+import { SatelliteEphemerisData } from '@/components/satellite/SatelliteEphemerisData';
+import { SatelliteInformation } from '@/components/satellite/SatelliteInformation';
 import Button from '@/ui/button/button';
 
 export async function generateMetadata({

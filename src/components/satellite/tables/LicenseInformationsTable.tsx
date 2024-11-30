@@ -4,6 +4,7 @@ import type { TypeSatelliteOut } from '@/__generated__/data-contracts';
 import type { InformationsTableHeaderWidth, InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs } from '@/libs/Dayjs';
+import { getFullCountry } from '@/utils/Regions';
 
 type LicenseSatelliteInformations = Pick<TypeSatelliteOut, 'licenseCountry' | 'launchSite' | 'launchDate' >;
 
@@ -18,6 +19,7 @@ const LicenseInformationsTable = ({ object, headerCellWidth }: LicenseInformatio
   const baseInformations: InformationsTableRow<LicenseSatelliteInformations>[] = [{
     header: t('License.country'),
     accessorKey: 'licenseCountry',
+    renderCell: row => getFullCountry(row.licenseCountry),
   }, {
     header: t('License.launching_site'),
     accessorKey: 'launchSite',

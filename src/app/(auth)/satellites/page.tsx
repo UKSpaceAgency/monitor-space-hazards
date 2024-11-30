@@ -4,8 +4,8 @@ import { Suspense } from 'react';
 
 import type { TypeGetSatellitesWithMetadataParams } from '@/__generated__/data-contracts';
 import { getSatellites } from '@/actions/getSatellites';
-import { SatellitesDataTable } from '@/components/data-tables/SatellitesDataTable';
 import { LastIntegration } from '@/components/LastIntegration';
+import { SatellitesDataTable } from '@/components/satellites/data-table/SatellitesDataTable';
 import { SearchBar } from '@/components/SearchBar';
 import Spinner from '@/ui/spinner/spinner';
 
@@ -18,7 +18,7 @@ export default async function SatellitesPage(props: {
     search_like?: string;
   }>;
 }) {
-  const t = await getTranslations('SatellitesPage');
+  const t = await getTranslations('Satellites');
 
   const searchParams = await props.searchParams;
 

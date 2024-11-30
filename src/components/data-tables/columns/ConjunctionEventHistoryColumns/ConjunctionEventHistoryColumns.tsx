@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 
 import type { TypeEventSummaryOut } from '@/__generated__/data-contracts';
-import dayjs, { FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
 

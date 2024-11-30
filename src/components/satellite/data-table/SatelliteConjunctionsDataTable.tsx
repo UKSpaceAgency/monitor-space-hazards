@@ -9,7 +9,7 @@ import { DownloadData } from '@/components/DownloadData';
 import InfiniteTable from '@/components/InfiniteTable';
 import { QUERY_KEYS } from '@/utils/QueryKeys';
 
-import { satteliteConjunctionColumns } from './columns/SatelliteConjunctionsColumns';
+import { satteliteConjunctionColumns } from './SatelliteConjunctionsDataTableColumns';
 
 type SatelliteConjunctionsDataTableProps = {
   params: TypeGetConjunctionEventsListParams;

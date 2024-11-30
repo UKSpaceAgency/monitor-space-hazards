@@ -7,6 +7,6 @@ const FORMAT_DATE = 'DD/MM/YYYY';
 
 const FORMAT_DATE_TIME = 'DD/MM/YYYY HH:mm:ss';
 
-export { dayjs, FORMAT_DATE, FORMAT_DATE_TIME };
+const FORMAT_FULL_DATE = 'dddd MM MMMM YYYY';
 
-export default dayjs;
+export { dayjs, FORMAT_DATE, FORMAT_DATE_TIME, FORMAT_FULL_DATE };

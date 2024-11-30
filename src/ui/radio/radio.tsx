@@ -36,7 +36,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
           />
           <label
             htmlFor={props.id ?? id}
-            className={clsx('govuk-label', 'govuk-radios__label')}
+            className={clsx('govuk-label', 'govuk-radios__label', 'max-w-max')}
           >
             {children}
           </label>

@@ -120,6 +120,7 @@ export function Accordion({ initialItems, id }: AccordionProps) {
             {expanded && (
               <div
                 id={`content-${id}`}
+                className="py-4"
               >
                 {content}
               </div>

@@ -11,7 +11,7 @@ type SatelliteInformationProps = {
 };
 
 const SatelliteInformation = ({ object }: SatelliteInformationProps) => {
-  const t = useTranslations('SatellitePage.Informations');
+  const t = useTranslations('Tables.SatelliteInformations.Informations');
   return (
     <div className="mb-12">
       <h2 data-anchor="information" className="hidden">{t('title')}</h2>
