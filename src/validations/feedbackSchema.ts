@@ -6,7 +6,7 @@ export const feedBackFormDefaultValues = {
 };
 
 export const feedbackSchema = z.object({
-  satisfaction: z.string().nullable().refine(value => value, 'You must select one option.'),
+  satisfaction: z.string().refine(value => value, 'You must select one option.'),
   details: z.string()
     .min(1, 'Field is required')
     .max(2000, 'Your text must be 2000 characters or fewer.'),
