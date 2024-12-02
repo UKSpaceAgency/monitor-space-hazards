@@ -1,40 +1,44 @@
 'use client';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useState } from 'react';
+import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 
 import { postFeedback } from '@/actions/postFeedback';
 import Button from '@/ui/button/button';
-import ErrorSummary from '@/ui/error-summary/error-summary';
 import Fieldset, { } from '@/ui/fieldset/fieldset';
 import Radios from '@/ui/radios/radios';
 import TextArea from '@/ui/text-area/text-area';
 import type { FeedbackSchema } from '@/validations/feedbackSchema';
-import { feedBackFormDefaultValues } from '@/validations/feedbackSchema';
+import { feedBackFormDefaultValues, feedbackSchema } from '@/validations/feedbackSchema';
+
+import { FormErrorSummary } from '../form/FormErrorSummary';
 
 const FeedbackForm = () => {
   const t = useTranslations('Forms.Feedback');
 
-  const { register } = useForm<FeedbackSchema>({
+  const [loading, setLoading] = useState(false);
+
+  const { register, handleSubmit, formState: { errors } } = useForm<FeedbackSchema>({
     defaultValues: feedBackFormDefaultValues,
+    resolver: zodResolver(feedbackSchema),
   });
 
-  const [state, formAction] = useFormState(postFeedback, null);
-  const { pending } = useFormStatus();
+  const onSubmit: SubmitHandler<FeedbackSchema> = async (data) => {
+    setLoading(true);
+
+    await postFeedback(data);
+
+    setLoading(false);
+  };
 
   return (
     <form
-      action={formAction}
+      onSubmit={handleSubmit(onSubmit)}
     >
-      {state?.errors && (
-        <ErrorSummary
-          errorList={state.errors.map(error => ({
-            href: error.href,
-            children: error.errorMessage,
-          }))}
-        />
-      )}
+      <FormErrorSummary i18path="Feedback" errors={errors} />
       <Fieldset
         legend={{
           text: t('survey_label'),
@@ -44,7 +48,7 @@ const FeedbackForm = () => {
           id="satisfaction"
           label={t('radios_label')}
           labelClass="govuk-fieldset__legend--m"
-          error={state?.errors.find(error => error.href === '#satisfaction')?.errorMessage}
+          error={errors.satisfaction?.message}
           items={[{
             value: '5',
             children: t('very_satisfied'),
@@ -74,9 +78,9 @@ const FeedbackForm = () => {
         label={t('textarea_label')}
         labelClass="govuk-fieldset__legend--m"
         hint={t('textarea_hint')}
-        error={state?.errors.find(error => error.href === '#details')?.errorMessage}
+        error={errors.details?.message}
       />
-      <Button type="submit" disabled={pending}>{t('submit')}</Button>
+      <Button type="submit" disabled={loading}>{t('submit')}</Button>
     </form>
   );
 };
