@@ -21,10 +21,7 @@ export default async function ConjunctionAnalysisUpload({
       <p className="govuk-body">{t('content')}</p>
       <ConjunctionAnalysisUploadForm objectId={shortId} />
       <Details summary={t('help.title')}>
-        {t.rich('help.content', {
-          list: chunks => <ul className="govuk-list--bullet govuk-body">{chunks}</ul>,
-          item: chunks => <li>{chunks}</li>,
-        })}
+        {t.rich('help.content')}
         <pre>
           {JSON.stringify(
             {
