@@ -5,9 +5,9 @@ import type { TypeEventSummaryOut, TypeSatelliteOut } from '@/__generated__/data
 import Button from '@/ui/button/button';
 import Details from '@/ui/details/details';
 
-import { ConjunctionSummaryInformationsTable } from './ConjunctionSummaryTable';
+import { ConjunctionEventSummaryTableInformationsTable } from './tables/ConjunctionEventSummaryTable';
 
-type ConjunctionSummaryProps = {
+type ConjunctionEventSummaryProps = {
   isUserAnalysist: boolean;
   shortId: string;
   primaryObject: TypeSatelliteOut;
@@ -15,13 +15,13 @@ type ConjunctionSummaryProps = {
   event: TypeEventSummaryOut;
 };
 
-const ConjunctionSummary = async ({
+const ConjunctionEventSummary = async ({
   isUserAnalysist,
   shortId,
   event,
   primaryObject,
   secondaryObject,
-}: ConjunctionSummaryProps) => {
+}: ConjunctionEventSummaryProps) => {
   const t = await getTranslations('Tables.Conjunction');
 
   return (
@@ -52,7 +52,7 @@ const ConjunctionSummary = async ({
                 )}
           </li>
         </ul>
-        <ConjunctionSummaryInformationsTable object={event} />
+        <ConjunctionEventSummaryTableInformationsTable object={event} />
         <Details summary={t('information_on_calculations.title')}>
           {t.rich('information_on_calculations.content')}
         </Details>
@@ -87,4 +87,4 @@ const ConjunctionSummary = async ({
   );
 };
 
-export { ConjunctionSummary };
+export { ConjunctionEventSummary };

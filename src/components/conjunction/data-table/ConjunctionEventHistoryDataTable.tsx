@@ -14,7 +14,7 @@ type ConjunctionEventHistoryGeneralTableProps = {
   object: ConjunctionEventHistoryGeneralInformations | ConjunctionEventHistoryGeneralInformations[];
 };
 
-const ConjunctionEventHistoryGeneralTable = ({ object }: ConjunctionEventHistoryGeneralTableProps) => {
+const ConjunctionEventHistoryDataTable = ({ object }: ConjunctionEventHistoryGeneralTableProps) => {
   const t = useTranslations('Tables.Conjunction');
 
   const rows: InformationsTableRow<ConjunctionEventHistoryGeneralInformations>[] = [{
@@ -31,4 +31,4 @@ const ConjunctionEventHistoryGeneralTable = ({ object }: ConjunctionEventHistory
   return <InformationsTable rows={rows} data={object} reducedFont />;
 };
 
-export { ConjunctionEventHistoryGeneralTable };
+export { ConjunctionEventHistoryDataTable };

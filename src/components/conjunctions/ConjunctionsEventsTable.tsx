@@ -10,11 +10,11 @@ import { isAnalysist } from '@/utils/Roles';
 import { DownloadData } from '../DownloadData';
 import { ConjunctionsDataTable } from './data-table/ConjunctionsDataTable';
 
-type ConjunctionsDataTableWrapperProps = {
+type ConjunctionsEventsTableProps = {
   params: ConjunctionsPageSearchParams;
 };
 
-const ConjunctionsEventsTable = async ({ params }: ConjunctionsDataTableWrapperProps) => {
+const ConjunctionsEventsTable = async ({ params }: ConjunctionsEventsTableProps) => {
   const t = await getTranslations('Tables');
 
   const latestCdms = await getCdmsLatest();

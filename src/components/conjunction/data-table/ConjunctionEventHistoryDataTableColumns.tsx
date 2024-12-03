@@ -4,8 +4,6 @@ import type { TranslatedColumnDef } from '@/types';
 import ExpandedButton from '@/ui/button/expanded-button';
 import Tag from '@/ui/tag/tag';
 
-import styles from './eventHistoryTable.module.scss';
-
 export const getEventHistoryColumns = (): TranslatedColumnDef<TypeEventSummaryOut>[] => [
   {
     accessorKey: 'dataSource',
@@ -18,9 +16,7 @@ export const getEventHistoryColumns = (): TranslatedColumnDef<TypeEventSummaryOu
               isExpanded={row.getIsExpanded()}
               onClick={row.getToggleExpandedHandler()}
             >
-              <span
-                className={styles.button_text}
-              >
+              <span>
                 {`${row.original?.dataSource}: ID ${row.original?.cdmExternalId}`}
               </span>
               {row.original.primaryObjectCdmType

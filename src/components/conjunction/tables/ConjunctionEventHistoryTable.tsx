@@ -1,9 +1,9 @@
 import type { TypeDataSourcesOut, TypeEventSummaryOut } from '@/__generated__/data-contracts';
 import { DataTable } from '@/components/DataTable';
 
-import { ConjunctionEventHistoryDetailedTable } from '../conjunction/event-history-table/informations-tables/ConjunctionEventHistoryDetailedTable';
-import { ConjunctionEventHistoryGeneralTable } from '../conjunction/event-history-table/informations-tables/ConjunctionEventHistoryGeneralTable';
-import { getEventHistoryColumns } from './columns/ConjunctionEventHistoryColumns/ConjunctionEventHistoryColumns';
+import { ConjunctionEventHistoryDataTable } from '../data-table/ConjunctionEventHistoryDataTable';
+import { getEventHistoryColumns } from '../data-table/ConjunctionEventHistoryDataTableColumns';
+import { ConjunctionEventHistoryDetailTable } from './ConjunctionEventHistoryDetailTable';
 
 type ConjunctionEventHistoryTableProps = {
   events: TypeEventSummaryOut[];
@@ -21,8 +21,8 @@ const ConjunctionEventHistoryTable = ({ events, event, dataSources }: Conjunctio
         columns={eventHistoryColumns}
         renderSubComponent={() => (
           <div className="govuk-details__text">
-            <ConjunctionEventHistoryGeneralTable object={event} />
-            <ConjunctionEventHistoryDetailedTable object={{
+            <ConjunctionEventHistoryDataTable object={event} />
+            <ConjunctionEventHistoryDetailTable object={{
               ...event,
               ...dataSources,
             }}

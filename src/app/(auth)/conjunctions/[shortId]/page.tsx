@@ -7,7 +7,7 @@ import { getConjunctionEventsEventIdSummary } from '@/actions/getConjunctionEven
 import { getManoeuvrePlots } from '@/actions/getManoeuvrePlots';
 import { getUsersMe } from '@/actions/getUsersMe';
 import { ConjunctionAccordion } from '@/components/conjunction/ConjunctionAccordion';
-import { ConjunctionSummary } from '@/components/conjunction/ConjunctionSummary';
+import { ConjunctionEventSummary } from '@/components/conjunction/ConjunctionEventSummary';
 import { ContentNavigation } from '@/components/ContentNavigation';
 import { isAnalysist } from '@/utils/Roles';
 
@@ -67,7 +67,7 @@ export default async function ConjunctionPage({
           <ContentNavigation />
         </div>
         <div className="govuk-grid-column-three-quarters">
-          <ConjunctionSummary
+          <ConjunctionEventSummary
             isUserAnalysist={isUserAnalysist}
             shortId={shortId}
             event={event}
