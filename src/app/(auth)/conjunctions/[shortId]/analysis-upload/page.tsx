@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
-import { ConjunctionAnalysisUploadForm } from '@/components/conjunctions/conjunction/ConjunctionAnalysisUploadForm';
+import { ConjunctionAnalysisUploadForm } from '@/components/conjunction/ConjunctionAnalysisUploadForm';
 import Details from '@/ui/details/details';
 
 export const metadata = {

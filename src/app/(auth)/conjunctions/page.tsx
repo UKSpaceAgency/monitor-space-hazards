@@ -3,8 +3,8 @@ import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 
 import type { TypeEpoch, TypeReportFlagSettings } from '@/__generated__/data-contracts';
-import { ConjunctionsDataFilters } from '@/components/conjunctions/ConjunctionsDataFilters';
-import { ConjunctionsDataTableWrapper } from '@/components/conjunctions/ConjunctionsDataTableWrapper';
+import { ConjunctionsEventsTable } from '@/components/conjunctions/ConjunctionsEventsTable';
+import { ConjunctionsDataFilters } from '@/components/conjunctions/ConjunctionsEventsTableFilters';
 import { ConjunctionsSummaryTable } from '@/components/conjunctions/ConjunctionsSummaryTable';
 import { SearchBar } from '@/components/SearchBar';
 import Details from '@/ui/details/details';
@@ -44,7 +44,7 @@ export default async function ConjunctionsPage(props: {
       <ConjunctionsDataFilters params={params} />
 
       <Suspense key={Object.values(params).toString()} fallback={<Spinner />}>
-        <ConjunctionsDataTableWrapper params={params} />
+        <ConjunctionsEventsTable params={params} />
       </Suspense>
 
       <Details summary={t('help2.title')}>

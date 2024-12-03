@@ -11,7 +11,7 @@ import { OrbitalInformationsTable } from '@/components/satellite/tables/OrbitalI
 import Accordion from '@/ui/accordion/accordion';
 import Details from '@/ui/details/details';
 
-import { ConjunctionEventHistoryTable } from '../../data-tables/ConjunctionEventHistoryTable';
+import { ConjunctionEventHistoryTable } from '../data-tables/ConjunctionEventHistoryTable';
 
 type ConjunctionAccordionType = {
   id: string;

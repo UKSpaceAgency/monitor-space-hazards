@@ -5,7 +5,6 @@ import { getConjunctionEventsStats } from '@/actions/getConjunctionEventsStats';
 
 import type { InformationsTableRow } from '../InformationsTable';
 import { InformationsTable } from '../InformationsTable';
-import { ConjunctionsDataTable } from './ConjunctionsDataTable';
 
 type ConjunctionsSummaryInformations = Pick<TypeConjunctionEventCount, 'conjunctionEventAlertCount' | 'conjunctionEventNormalCount'>;
 
@@ -26,5 +25,3 @@ export const ConjunctionsSummaryTable = async () => {
 
   return <InformationsTable rows={baseInformations} data={eventsStats} headerCellWidth="sm" />;
 };
-
-export { ConjunctionsDataTable };

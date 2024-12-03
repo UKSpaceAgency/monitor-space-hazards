@@ -6,8 +6,8 @@ import { getConjunctionEventsEventIdDataSources } from '@/actions/getConjunction
 import { getConjunctionEventsEventIdSummary } from '@/actions/getConjunctionEventsEventIdSummary';
 import { getManoeuvrePlots } from '@/actions/getManoeuvrePlots';
 import { getUsersMe } from '@/actions/getUsersMe';
-import { ConjunctionAccordion } from '@/components/conjunctions/conjunction/ConjunctionAccordion';
-import { ConjunctionSummary } from '@/components/conjunctions/conjunction/ConjunctionSummary';
+import { ConjunctionAccordion } from '@/components/conjunction/ConjunctionAccordion';
+import { ConjunctionSummary } from '@/components/conjunction/ConjunctionSummary';
 import { ContentNavigation } from '@/components/ContentNavigation';
 import { isAnalysist } from '@/utils/Roles';
 

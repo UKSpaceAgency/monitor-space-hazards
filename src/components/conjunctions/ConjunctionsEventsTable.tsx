@@ -8,13 +8,13 @@ import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import { isAnalysist } from '@/utils/Roles';
 
 import { DownloadData } from '../DownloadData';
-import { ConjunctionsDataTable } from './ConjunctionsDataTable';
+import { ConjunctionsDataTable } from './data-table/ConjunctionsDataTable';
 
 type ConjunctionsDataTableWrapperProps = {
   params: ConjunctionsPageSearchParams;
 };
 
-const ConjunctionsDataTableWrapper = async ({ params }: ConjunctionsDataTableWrapperProps) => {
+const ConjunctionsEventsTable = async ({ params }: ConjunctionsDataTableWrapperProps) => {
   const t = await getTranslations('Tables');
 
   const latestCdms = await getCdmsLatest();
@@ -42,4 +42,4 @@ const ConjunctionsDataTableWrapper = async ({ params }: ConjunctionsDataTableWra
   );
 };
 
-export { ConjunctionsDataTableWrapper };
+export { ConjunctionsEventsTable };

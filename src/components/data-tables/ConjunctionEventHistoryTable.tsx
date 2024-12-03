@@ -1,8 +1,8 @@
 import type { TypeDataSourcesOut, TypeEventSummaryOut } from '@/__generated__/data-contracts';
 import { DataTable } from '@/components/DataTable';
 
-import { ConjunctionEventHistoryDetailedTable } from '../conjunctions/conjunction/event-history-table/informations-tables/ConjunctionEventHistoryDetailedTable';
-import { ConjunctionEventHistoryGeneralTable } from '../conjunctions/conjunction/event-history-table/informations-tables/ConjunctionEventHistoryGeneralTable';
+import { ConjunctionEventHistoryDetailedTable } from '../conjunction/event-history-table/informations-tables/ConjunctionEventHistoryDetailedTable';
+import { ConjunctionEventHistoryGeneralTable } from '../conjunction/event-history-table/informations-tables/ConjunctionEventHistoryGeneralTable';
 import { getEventHistoryColumns } from './columns/ConjunctionEventHistoryColumns/ConjunctionEventHistoryColumns';
 
 type ConjunctionEventHistoryTableProps = {
