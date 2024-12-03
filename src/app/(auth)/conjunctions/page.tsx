@@ -35,11 +35,7 @@ export default async function ConjunctionsPage(props: {
         <ConjunctionsSummaryTable />
       </Suspense>
       <Details summary={t('help1.title')}>
-        {t.rich('help1.content', {
-          list: chunks => <ul className="govuk-list--bullet">{chunks}</ul>,
-          item: chunks => <li>{chunks}</li>,
-          bold: chunks => <b>{chunks}</b>,
-        })}
+        {t.rich('help1.content')}
       </Details>
       <h2 className="govuk-heading-m">{t('section_title')}</h2>
       <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />

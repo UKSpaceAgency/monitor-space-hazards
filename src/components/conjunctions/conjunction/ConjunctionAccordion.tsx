@@ -36,7 +36,7 @@ const ConjunctionAccordion = ({
 }: ConjunctionAccordionType) => {
   const t = useTranslations('Accordions.Conjunction');
 
-  const dataArray = [primaryObject, secondaryObject].filter(item => !!item);
+  const dataArray = [primaryObject, secondaryObject || {} as TypeSatelliteOut];
 
   return (
     <Accordion
@@ -90,7 +90,7 @@ const ConjunctionAccordion = ({
                 {t('object_data.space_track')}
               </div>
               <div className="overflow-auto">
-                <BaseInformationsTable object={dataArray} headerCellWidth="xs" />
+                <BaseInformationsTable object={dataArray} headerCellWidth="xs" showLink />
               </div>
               <div className="overflow-auto">
                 <LicenseInformationsTable object={dataArray} headerCellWidth="xs" />

@@ -6,6 +6,8 @@ import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 
+import { displayRoundedNumber } from './utils';
+
 type ConjunctionEventHistoryDetailedInformations = Pick<
   TypeEventSummaryOut & TypeDataSourcesOut,
 'primaryObjectCdmType' | 'primaryObjectEphemerisName' | 'updateTime' | 'spaceTrackCdm' | 'primaryObjectUncertainties' | 'secondaryObjectCdmType' | 'secondaryObjectUncertainties'
@@ -38,15 +40,15 @@ const ConjunctionEventHistoryDetailedTable = ({ object }: ConjunctionEventHistor
     accessorKey: 'spaceTrackCdm',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.position_radial')}</div>,
-    renderCell: row => row.primaryObjectUncertainties?.radialPositionUncertainty,
+    renderCell: row => displayRoundedNumber(row.primaryObjectUncertainties?.radialPositionUncertainty),
     accessorKey: 'primaryObjectUncertainties',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.position_in_track')}</div>,
-    renderCell: row => row.primaryObjectUncertainties?.intrackPositionUncertainty,
+    renderCell: row => displayRoundedNumber(row.primaryObjectUncertainties?.intrackPositionUncertainty),
     accessorKey: 'primaryObjectUncertainties',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.position_cross_track')}</div>,
-    renderCell: row => row.primaryObjectUncertainties?.crosstrackPositionUncertainty,
+    renderCell: row => displayRoundedNumber(row.primaryObjectUncertainties?.crosstrackPositionUncertainty),
     accessorKey: 'primaryObjectUncertainties',
   }, {
     header: t('event_history.sub_table.secondary_object'),
@@ -65,15 +67,15 @@ const ConjunctionEventHistoryDetailedTable = ({ object }: ConjunctionEventHistor
     accessorKey: 'spaceTrackCdm',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.position_radial')}</div>,
-    renderCell: row => row.secondaryObjectUncertainties?.radialPositionUncertainty,
+    renderCell: row => displayRoundedNumber(row.secondaryObjectUncertainties?.radialPositionUncertainty),
     accessorKey: 'secondaryObjectUncertainties',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.position_in_track')}</div>,
-    renderCell: row => row.secondaryObjectUncertainties?.intrackPositionUncertainty,
+    renderCell: row => displayRoundedNumber(row.secondaryObjectUncertainties?.intrackPositionUncertainty),
     accessorKey: 'secondaryObjectUncertainties',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.position_cross_track')}</div>,
-    renderCell: row => row.secondaryObjectUncertainties?.crosstrackPositionUncertainty,
+    renderCell: row => displayRoundedNumber(row.secondaryObjectUncertainties?.crosstrackPositionUncertainty),
     accessorKey: 'secondaryObjectUncertainties',
   }];
 

@@ -291,6 +291,18 @@
   "FeedbackPage": {
     "title": "Give feedback on Monitor Space Hazards"
   },
+  "ConjunctionAnalysisUploadPage": {
+    "title": "Upload UKSA analysis for conjunction event {shortId}",
+    "content": "Upload a JSON file. The file must be smaller than 12 MB and should meet the defined UKSA schema for JSON files.",
+    "help": {
+      "title": "Help with uploading your analysis",
+      "content": "<p>The file must have the following to be accepted:</p><list><item>The file must have a JSON extension.</item><item>The file must not exceed 12 MB.</item><item>The file must match the defined schema for analysis.</item></list><p>The data schema for JSON files is as follows:</p>"
+    }
+  },
+  "ConjunctionAnalysisUploadSuccessPage": {
+    "title": "Analysis upload complete",
+    "content": "Your analysis for {shortId} has been successfully uploaded to Monitor Space Hazards"
+  },
   "Accordions": {
     "DistributionLists": {
       "receive_alerts": "Receive {item} alerts",
@@ -774,6 +786,10 @@
       "submit": "Submit",
       "satisfaction": "Satisfaction survey",
       "details": "Satisfaction details"
+    },
+    "AnalysisUpload": {
+      "label": "Upload your analysis:",
+      "button": "Upload analysis"
     }
   },
   "Components": {

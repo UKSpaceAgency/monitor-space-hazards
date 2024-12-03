@@ -26,7 +26,7 @@ const LicenseInformationsTable = ({ object, headerCellWidth }: LicenseInformatio
   }, {
     header: t('License.launch_date'),
     accessorKey: 'launchDate',
-    renderCell: row => dayjs(row.launchDate).format('YYYY'),
+    renderCell: row => row.launchDate ? dayjs(row.launchDate).format('YYYY') : '',
   }];
 
   return <InformationsTable caption={t('License.caption')} rows={baseInformations} data={object} headerCellWidth={headerCellWidth} />;
