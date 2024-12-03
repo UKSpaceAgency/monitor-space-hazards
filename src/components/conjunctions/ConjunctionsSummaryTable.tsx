@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import type { TypeConjunctionEventCount } from '@/__generated__/data-contracts';
 import { getConjunctionEventsStats } from '@/actions/getConjunctionEventsStats';
 
+import { ConjunctionsDataTable } from '../data-tables/ConjunctionsDataTable';
 import type { InformationsTableRow } from '../InformationsTable';
 import { InformationsTable } from '../InformationsTable';
 
