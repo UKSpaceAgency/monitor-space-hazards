@@ -348,7 +348,7 @@
     "Reentry": {
       "object_data": "Object data",
       "history": "Re-entry event history",
-      "furhter_information": "Further information"
+      "further_information": "Further information"
     }
   },
   "Conjunctions": {
@@ -619,7 +619,7 @@
         "re-entry_time_window": "Re-entry time window worldwide (UTC)",
         "uk_overflight": "UK overflight time(s) (UTC)",
         "object": "Object",
-        "expected_survivality": "Expected survivability to the ground",
+        "expected_survivability": "Expected survivability to the ground",
         "licensing_country": "Licensing country"
       }
     },

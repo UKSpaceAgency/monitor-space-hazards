@@ -9,7 +9,7 @@ const ReentryFurtherInformation = ({ title }: ReentryFurtherInformationProps) =>
   const t = useTranslations('Re-entry.FurtherInformation');
   return (
     <div>
-      <h2 data-anchor="furhter_information" className="hidden">{title}</h2>
+      <h2 data-anchor="further_information" className="hidden">{title}</h2>
       <p className="govuk-body">{t('content')}</p>
       <ul className="govuk-list govuk-list--bullet">
         <li>

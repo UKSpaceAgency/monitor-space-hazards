@@ -95,7 +95,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
       {
         id: 'survivability',
         accessorKey: 'survivability',
-        header: 'Reentries.table.expected_survivality',
+        header: 'Reentries.table.expected_survivability',
         cell: ({ getValue }) => getValue() ?? '-',
       },
       {

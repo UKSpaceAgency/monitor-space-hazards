@@ -37,8 +37,8 @@ const ReentryAccordion = ({
           ),
         },
         {
-          id: 'furhter_information',
-          heading: t('furhter_information'),
+          id: 'further_information',
+          heading: t('further_information'),
           content: (
             <ReentryFurtherInformation />
           ),
