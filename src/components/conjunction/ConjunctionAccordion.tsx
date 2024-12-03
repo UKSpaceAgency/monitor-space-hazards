@@ -11,6 +11,7 @@ import { OrbitalInformationsTable } from '@/components/satellite/tables/OrbitalI
 import Accordion from '@/ui/accordion/accordion';
 import Details from '@/ui/details/details';
 
+import RichText from '../RichText';
 import { ConjunctionEventHistoryTable } from './tables/ConjunctionEventHistoryTable';
 
 type ConjunctionAccordionType = {
@@ -48,11 +49,12 @@ const ConjunctionAccordion = ({
           content: (
             <div>
               <Details summary={t('poc_chart.help.title')}>
-                {t.rich('poc_chart.help.content', {
-                  p: chunks => <p>{chunks}</p>,
-                  special: chunks => <strong className="govuk-tag">{chunks}</strong>,
-                  link: chunks => <Link href={`/conjunctions/${id}#eventHistory`} className="govuk-link">{chunks}</Link>,
-                })}
+                <RichText>
+                  {tags => t.rich('poc_chart.help.content', {
+                    ...tags,
+                    link: chunks => <Link href={`/conjunctions/${id}#eventHistory`} className="govuk-link">{chunks}</Link>,
+                  }) }
+                </RichText>
               </Details>
             </div>
           ),
@@ -72,11 +74,12 @@ const ConjunctionAccordion = ({
           content: (
             <div>
               <Details summary={t('miss_distance_chart.help.title')}>
-                {t.rich('miss_distance_chart.help.content', {
-                  p: chunks => <p>{chunks}</p>,
-                  special: chunks => <strong className="govuk-tag">{chunks}</strong>,
-                  link: chunks => <Link href={`/conjunctions/${id}#eventHistory`} className="govuk-link">{chunks}</Link>,
-                })}
+                <RichText>
+                  {tags => t.rich('miss_distance_chart.help.content', {
+                    ...tags,
+                    link: chunks => <Link href={`/conjunctions/${id}#eventHistory`} className="govuk-link">{chunks}</Link>,
+                  }) }
+                </RichText>
               </Details>
             </div>
           ),
@@ -121,10 +124,12 @@ const ConjunctionAccordion = ({
               <ConjunctionEventHistoryTable events={events} event={event} dataSources={dataSources} />
               <DownloadData type={t('download')} params={{}} downloadAction={handleDownloadData} />
               <Details summary={t('event_history.help.title')}>
-                {t.rich('event_history.help.content', {
-                  p: chunks => <p>{chunks}</p>,
-                  link: chunks => <Link href="/page/definitions#data_sources" className="govuk-link">{chunks}</Link>,
-                })}
+                <RichText>
+                  {tags => t.rich('event_history.help.content', {
+                    ...tags,
+                    link: chunks => <Link href="/page/definitions#data_sources" className="govuk-link">{chunks}</Link>,
+                  }) }
+                </RichText>
               </Details>
             </>
           ),
