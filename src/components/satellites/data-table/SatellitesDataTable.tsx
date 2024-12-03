@@ -8,7 +8,7 @@ import { DownloadData } from '@/components/DownloadData';
 import InfiniteTable from '@/components/InfiniteTable';
 import { QUERY_KEYS } from '@/utils/QueryKeys';
 
-import { satellitesColumns } from './columns/SatellitesColumns';
+import { satellitesColumns } from './SatellitesDataTableColumns';
 
 type SatellitesDataTableProps = {
   initialData: TypeSatelliteWithMetadataOut[];

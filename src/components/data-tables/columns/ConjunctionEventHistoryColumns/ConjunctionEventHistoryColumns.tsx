@@ -1,8 +1,7 @@
-import clsx from 'clsx';
-
 import type { TypeEventSummaryOut } from '@/__generated__/data-contracts';
-import dayjs, { FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
+import ExpandedButton from '@/ui/button/expanded-button';
 import Tag from '@/ui/tag/tag';
 
 import styles from './eventHistoryTable.module.scss';
@@ -13,16 +12,11 @@ export const getEventHistoryColumns = (): TranslatedColumnDef<TypeEventSummaryOu
     id: 'dataSource',
     header: 'Conjunction.event_history.data_source',
     cell: ({ row }) => {
-      const toggleButtonStyle = row.getIsExpanded() ? styles['button-open'] : '';
-
       return row.getCanExpand()
         ? (
-            <button
-              type="button"
-              className={clsx(styles.button, toggleButtonStyle)}
-              {...{
-                onClick: row.getToggleExpandedHandler(),
-              }}
+            <ExpandedButton
+              isExpanded={row.getIsExpanded()}
+              onClick={row.getToggleExpandedHandler()}
             >
               <span
                 className={styles.button_text}
@@ -36,7 +30,7 @@ export const getEventHistoryColumns = (): TranslatedColumnDef<TypeEventSummaryOu
                   <Tag className="govuk-!-margin-top-1">Special</Tag>
                 </>
               )}
-            </button>
+            </ExpandedButton>
           )
         : (
             `${row.original?.dataSource}: ID ${row.original?.cdmExternalId}`

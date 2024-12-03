@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 
-import { SatelliteEphemerisUploadForm } from '@/components/satellites/satellite/SatelliteEphemerisUploadForm';
+import { SatelliteEphemerisUploadForm } from '@/components/satellite/SatelliteEphemerisUploadForm';
 import Details from '@/ui/details/details';
 
 export const metadata = {

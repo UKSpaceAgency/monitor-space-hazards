@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl';
 import type { TypeEventSummaryOut } from '@/__generated__/data-contracts';
 import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
-import dayjs, { FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 
 type ConjunctionSummaryInformations = Pick<
   TypeEventSummaryOut,

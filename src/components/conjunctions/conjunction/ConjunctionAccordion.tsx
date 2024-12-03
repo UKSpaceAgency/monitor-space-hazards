@@ -4,10 +4,10 @@ import { useTranslations } from 'next-intl';
 
 import type { TypeDataSourcesOut, TypeEventSummaryOut, TypeSatelliteOut } from '@/__generated__/data-contracts';
 import { DownloadData } from '@/components/DownloadData';
-import { AdditionalInformationsTable } from '@/components/satellites/satellite/tables/AdditionalInformationsTable';
-import { BaseInformationsTable } from '@/components/satellites/satellite/tables/BaseInformationsTable';
-import { LicenseInformationsTable } from '@/components/satellites/satellite/tables/LicenseInformationsTable';
-import { OrbitalInformationsTable } from '@/components/satellites/satellite/tables/OrbitalInformationsTable';
+import { AdditionalInformationsTable } from '@/components/satellite/tables/AdditionalInformationsTable';
+import { BaseInformationsTable } from '@/components/satellite/tables/BaseInformationsTable';
+import { LicenseInformationsTable } from '@/components/satellite/tables/LicenseInformationsTable';
+import { OrbitalInformationsTable } from '@/components/satellite/tables/OrbitalInformationsTable';
 import Accordion from '@/ui/accordion/accordion';
 import Details from '@/ui/details/details';
 
