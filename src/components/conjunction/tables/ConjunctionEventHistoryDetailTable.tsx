@@ -6,21 +6,21 @@ import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 
-import { displayRoundedNumber } from './utils';
-
-type ConjunctionEventHistoryDetailedInformations = Pick<
+type ConjunctionEventHistoryDetailInformations = Pick<
   TypeEventSummaryOut & TypeDataSourcesOut,
 'primaryObjectCdmType' | 'primaryObjectEphemerisName' | 'updateTime' | 'spaceTrackCdm' | 'primaryObjectUncertainties' | 'secondaryObjectCdmType' | 'secondaryObjectUncertainties'
 >;
 
-type ConjunctionEventHistoryDetailedTableProps = {
-  object: ConjunctionEventHistoryDetailedInformations | ConjunctionEventHistoryDetailedInformations[];
+type ConjunctionEventHistoryDetailTableProps = {
+  object: ConjunctionEventHistoryDetailInformations | ConjunctionEventHistoryDetailInformations[];
 };
 
-const ConjunctionEventHistoryDetailedTable = ({ object }: ConjunctionEventHistoryDetailedTableProps) => {
+const displayRoundedNumber = (num: number | undefined | null): string => num ? `± ${num.toFixed(3)}` : '';
+
+const ConjunctionEventHistoryDetailTable = ({ object }: ConjunctionEventHistoryDetailTableProps) => {
   const t = useTranslations('Tables.Conjunction');
 
-  const rows: InformationsTableRow<ConjunctionEventHistoryDetailedInformations>[] = [{
+  const rows: InformationsTableRow<ConjunctionEventHistoryDetailInformations>[] = [{
     header: t('event_history.sub_table.primary_object'),
     accessorKey: 'primaryObjectCdmType',
   }, {
@@ -82,4 +82,4 @@ const ConjunctionEventHistoryDetailedTable = ({ object }: ConjunctionEventHistor
   return <InformationsTable rows={rows} data={object} reducedFont headerCellWidth="sm" />;
 };
 
-export { ConjunctionEventHistoryDetailedTable };
+export { ConjunctionEventHistoryDetailTable };

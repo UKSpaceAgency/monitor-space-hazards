@@ -8,10 +8,12 @@ import { AdditionalInformationsTable } from '@/components/satellite/tables/Addit
 import { BaseInformationsTable } from '@/components/satellite/tables/BaseInformationsTable';
 import { LicenseInformationsTable } from '@/components/satellite/tables/LicenseInformationsTable';
 import { OrbitalInformationsTable } from '@/components/satellite/tables/OrbitalInformationsTable';
+import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import Accordion from '@/ui/accordion/accordion';
 import Details from '@/ui/details/details';
 
-import { ConjunctionEventHistoryTable } from '../../data-tables/ConjunctionEventHistoryTable';
+import RichText from '../RichText';
+import { ConjunctionEventHistoryTable } from './tables/ConjunctionEventHistoryTable';
 
 type ConjunctionAccordionType = {
   id: string;
@@ -48,11 +50,12 @@ const ConjunctionAccordion = ({
           content: (
             <div>
               <Details summary={t('poc_chart.help.title')}>
-                {t.rich('poc_chart.help.content', {
-                  p: chunks => <p>{chunks}</p>,
-                  special: chunks => <strong className="govuk-tag">{chunks}</strong>,
-                  link: chunks => <Link href={`/conjunctions/${id}#eventHistory`} className="govuk-link">{chunks}</Link>,
-                })}
+                <RichText>
+                  {tags => t.rich('poc_chart.help.content', {
+                    ...tags,
+                    link: chunks => <Link href={`/conjunctions/${id}#eventHistory`} className="govuk-link">{chunks}</Link>,
+                  }) }
+                </RichText>
               </Details>
             </div>
           ),
@@ -72,11 +75,12 @@ const ConjunctionAccordion = ({
           content: (
             <div>
               <Details summary={t('miss_distance_chart.help.title')}>
-                {t.rich('miss_distance_chart.help.content', {
-                  p: chunks => <p>{chunks}</p>,
-                  special: chunks => <strong className="govuk-tag">{chunks}</strong>,
-                  link: chunks => <Link href={`/conjunctions/${id}#eventHistory`} className="govuk-link">{chunks}</Link>,
-                })}
+                <RichText>
+                  {tags => t.rich('miss_distance_chart.help.content', {
+                    ...tags,
+                    link: chunks => <Link href={`/conjunctions/${id}#eventHistory`} className="govuk-link">{chunks}</Link>,
+                  }) }
+                </RichText>
               </Details>
             </div>
           ),
@@ -101,12 +105,9 @@ const ConjunctionAccordion = ({
               <h3 className="govuk-heading-s govuk-!-margin-top-6 govuk-!-margin-bottom-0">
                 {t('object_data.additional_object_summary.title')}
               </h3>
-              <div className="govuk-body mt-5">
-                {t('object_data.additional_object_summary.description1')}
-              </div>
-              <div className="govuk-body mt-2">
-                {t('object_data.additional_object_summary.description2')}
-              </div>
+              <RichText>
+                {tags => t.rich('object_data.additional_object_summary.content', { ...tags, updateTime: dayjs(primaryObject.esaUpdateTime).format(FORMAT_DATE_TIME) }) }
+              </RichText>
               <div className="overflow-auto">
                 <AdditionalInformationsTable object={dataArray} headerCellWidth="xs" />
               </div>
@@ -121,10 +122,12 @@ const ConjunctionAccordion = ({
               <ConjunctionEventHistoryTable events={events} event={event} dataSources={dataSources} />
               <DownloadData type={t('download')} params={{}} downloadAction={handleDownloadData} />
               <Details summary={t('event_history.help.title')}>
-                {t.rich('event_history.help.content', {
-                  p: chunks => <p>{chunks}</p>,
-                  link: chunks => <Link href="/page/definitions#data_sources" className="govuk-link">{chunks}</Link>,
-                })}
+                <RichText>
+                  {tags => t.rich('event_history.help.content', {
+                    ...tags,
+                    link: chunks => <Link href="/page/definitions#data_sources" className="govuk-link">{chunks}</Link>,
+                  }) }
+                </RichText>
               </Details>
             </>
           ),

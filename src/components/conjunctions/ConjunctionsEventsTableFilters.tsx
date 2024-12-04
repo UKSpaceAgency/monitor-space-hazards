@@ -9,11 +9,11 @@ import Details from '@/ui/details/details';
 import Radios from '@/ui/radios/radios';
 import Select from '@/ui/select/select';
 
-type ConjunctionsDataFiltersProps = {
+type ConjunctionsEventsTableFiltersProps = {
   params: ConjunctionsPageSearchParams;
 };
 
-const ConjunctionsDataFilters = ({ params }: ConjunctionsDataFiltersProps) => {
+const ConjunctionsEventsTableFilters = ({ params }: ConjunctionsEventsTableFiltersProps) => {
   const t = useTranslations('Tables');
 
   const { replace } = useRouter();
@@ -86,4 +86,4 @@ const ConjunctionsDataFilters = ({ params }: ConjunctionsDataFiltersProps) => {
   );
 };
 
-export { ConjunctionsDataFilters };
+export { ConjunctionsEventsTableFilters };

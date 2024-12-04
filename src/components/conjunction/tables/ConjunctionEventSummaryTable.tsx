@@ -5,19 +5,19 @@ import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 
-type ConjunctionSummaryInformations = Pick<
+type ConjunctionEventSummaryTableInformations = Pick<
   TypeEventSummaryOut,
 'cdmExternalId' | 'collisionProbability' | 'collisionProbabilityMethod' | 'tcaTime' | 'missDistance' | 'radialMissDistance' | 'intrackMissDistance' | 'crosstrackMissDistance' | 'updateTime' | 'primaryObjectSize' | 'secondaryObjectSize'
 >;
 
-type ConjunctionSummaryInformationsTableProps = {
-  object: ConjunctionSummaryInformations | ConjunctionSummaryInformations[];
+type ConjunctionEventSummaryTableInformationsTableProps = {
+  object: ConjunctionEventSummaryTableInformations | ConjunctionEventSummaryTableInformations[];
 };
 
-const ConjunctionSummaryInformationsTable = ({ object }: ConjunctionSummaryInformationsTableProps) => {
+const ConjunctionEventSummaryTableInformationsTable = ({ object }: ConjunctionEventSummaryTableInformationsTableProps) => {
   const t = useTranslations('Tables.Conjunction');
 
-  const baseInformations: InformationsTableRow<ConjunctionSummaryInformations>[] = [{
+  const baseInformations: InformationsTableRow<ConjunctionEventSummaryTableInformations>[] = [{
     header: '',
     renderCell: () => <b className="w-2/5">{t('summary_list.space_track_cdm')}</b>,
     accessorKey: 'cdmExternalId',
@@ -61,4 +61,4 @@ const ConjunctionSummaryInformationsTable = ({ object }: ConjunctionSummaryInfor
   return <InformationsTable rows={baseInformations} data={object} headerCellWidth="sm" />;
 };
 
-export { ConjunctionSummaryInformationsTable };
+export { ConjunctionEventSummaryTableInformationsTable };

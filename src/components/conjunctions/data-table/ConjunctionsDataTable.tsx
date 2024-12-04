@@ -5,12 +5,11 @@ import { useState } from 'react';
 import type { TypeEventOut, TypeGetConjunctionEventsParams } from '@/__generated__/data-contracts';
 import { getConjunctionEventsList } from '@/actions/getConjunctionEventsList';
 import type { ConjunctionsPageSearchParams } from '@/app/(auth)/conjunctions/page';
+import type { ProbabilityUnitType } from '@/components/conjunctions/data-table/ConjunctionsDataTableColumns';
+import { getConjunctionEventsColumns } from '@/components/conjunctions/data-table/ConjunctionsDataTableColumns';
+import InfiniteTable from '@/components/InfiniteTable';
 import Radios from '@/ui/radios/radios';
 import { QUERY_KEYS } from '@/utils/QueryKeys';
-
-import type { ProbabilityUnitType } from '../data-tables/columns/ConjunctionColumns';
-import { getConjunctionEventsColumns } from '../data-tables/columns/ConjunctionColumns';
-import InfiniteTable from '../InfiniteTable';
 
 type ConjunctionsDataTableProps = {
   params: ConjunctionsPageSearchParams;

@@ -3,8 +3,8 @@ import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 
 import type { TypeEpoch, TypeReportFlagSettings } from '@/__generated__/data-contracts';
-import { ConjunctionsDataFilters } from '@/components/conjunctions/ConjunctionsDataFilters';
-import { ConjunctionsDataTableWrapper } from '@/components/conjunctions/ConjunctionsDataTableWrapper';
+import { ConjunctionsEventsTable } from '@/components/conjunctions/ConjunctionsEventsTable';
+import { ConjunctionsEventsTableFilters } from '@/components/conjunctions/ConjunctionsEventsTableFilters';
 import { ConjunctionsSummaryTable } from '@/components/conjunctions/ConjunctionsSummaryTable';
 import { SearchBar } from '@/components/SearchBar';
 import Details from '@/ui/details/details';
@@ -41,16 +41,14 @@ export default async function ConjunctionsPage(props: {
       <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
       <p className="govuk-body">{t('description')}</p>
       <SearchBar label={t('search_bar.label')} placeholder={t('search_bar.placeholder')} />
-      <ConjunctionsDataFilters params={params} />
+      <ConjunctionsEventsTableFilters params={params} />
 
       <Suspense key={Object.values(params).toString()} fallback={<Spinner />}>
-        <ConjunctionsDataTableWrapper params={params} />
+        <ConjunctionsEventsTable params={params} />
       </Suspense>
 
       <Details summary={t('help2.title')}>
-        {t.rich('help2.content', {
-          bold: chunks => <b>{chunks}</b>,
-        })}
+        {t.rich('help2.content')}
       </Details>
     </div>
   );
