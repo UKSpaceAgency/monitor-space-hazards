@@ -349,7 +349,7 @@
       "object_data": {
         "additional_object_summary": {
           "title": "Additional object data",
-          "content": "<p>ESA DISCOS provides additional object data where available. Contact ESA DISCOS if your satellite data is incorrect.</p><p>ESA DISCOS data was last updated on: {updateTime}</p>"
+          "content": "<p>ESA DISCOS provides additional object data where available. Contact ESA DISCOS if your satellite data is incorrect.</p><p>ESA DISCOS data was last updated on: {updateTime} UTC</p>"
         },
         "title": "Object Data",
         "primary_object": "Primary object",
@@ -479,7 +479,7 @@
       },
       "AdditionalInformations": {
         "title": "Additional object data",
-        "content": "<p>ESA DISCOS provides additional object data where available. Contact ESA DISCOS if your satellite data is incorrect.</p><p>ESA DISCOS data was last updated on: {updateTime}</p>"
+        "content": "<p>ESA DISCOS provides additional object data where available. Contact ESA DISCOS if your satellite data is incorrect.</p><p>ESA DISCOS data was last updated on: {updateTime} UTC</p>"
       },
       "Base": {
         "common_name": "Common name",
