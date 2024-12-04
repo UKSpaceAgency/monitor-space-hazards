@@ -8,6 +8,7 @@ import { AdditionalInformationsTable } from '@/components/satellite/tables/Addit
 import { BaseInformationsTable } from '@/components/satellite/tables/BaseInformationsTable';
 import { LicenseInformationsTable } from '@/components/satellite/tables/LicenseInformationsTable';
 import { OrbitalInformationsTable } from '@/components/satellite/tables/OrbitalInformationsTable';
+import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import Accordion from '@/ui/accordion/accordion';
 import Details from '@/ui/details/details';
 
@@ -104,12 +105,9 @@ const ConjunctionAccordion = ({
               <h3 className="govuk-heading-s govuk-!-margin-top-6 govuk-!-margin-bottom-0">
                 {t('object_data.additional_object_summary.title')}
               </h3>
-              <div className="govuk-body mt-5">
-                {t('object_data.additional_object_summary.description1')}
-              </div>
-              <div className="govuk-body mt-2">
-                {t('object_data.additional_object_summary.description2')}
-              </div>
+              <RichText>
+                {tags => t.rich('object_data.additional_object_summary.content', { ...tags, updateTime: dayjs(primaryObject.esaUpdateTime).format(FORMAT_DATE_TIME) }) }
+              </RichText>
               <div className="overflow-auto">
                 <AdditionalInformationsTable object={dataArray} headerCellWidth="xs" />
               </div>
