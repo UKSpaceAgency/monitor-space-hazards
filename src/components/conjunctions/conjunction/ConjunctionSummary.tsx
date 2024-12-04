@@ -72,6 +72,7 @@ const ConjunctionSummary = async ({
             pathname: '/contact-analyst',
             query: {
               id: shortId,
+              callback: `/conjunctions/${shortId}`,
             },
           }}
           passHref

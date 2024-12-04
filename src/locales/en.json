@@ -160,6 +160,17 @@
     "title": "Data Privacy Notice",
     "button": "Download data privacy notice"
   },
+  "ContactAnalyst": {
+    "title": "Contact a UKSA orbital analyst",
+    "content": "<p>UKSA orbital analysts are available Monday to Sunday, 8am to 4pm (except public holidays). Your message will be triaged and an analyst will get back to you as soon as possible.</p><p>UKSA orbital analysts <bold>can</bold> provide:</p><list><item>Further detail on their calculations</item><item>An indication on whether further analysis of an event is possible</item></list><p>UKSA orbital analysts <bold>cannot</bold> provide:</p><list><item>Advice on how you should manoeuvre your satellite</item><item>Analysis on a planned manoeuvre</item></list>",
+    "event_id": "Conjunction event ID or Re-entry event ID",
+    "email_address": "Your email address",
+    "submit": "Submit"
+  },
+  "ContactAnalystSend": {
+    "title": "Your message has been sent to a UKSA orbital analyst.",
+    "content": "Your message will be triaged and an analyst will get back to you as soon as possible."
+  },
   "Credentials": {
     "title": "Credentials for API authentication",
     "client_id": "Client ID",
@@ -790,6 +801,10 @@
     "AnalysisUpload": {
       "label": "Upload your analysis:",
       "button": "Upload analysis"
+    },
+    "ContactAnalyst": {
+      "submit": "Submit",
+      "message": "Message"
     }
   },
   "Components": {
