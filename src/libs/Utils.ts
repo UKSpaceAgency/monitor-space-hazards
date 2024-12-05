@@ -1,7 +1,5 @@
 export function roundToDecimalPlaces(num: number, decimalPlaces: number) {
-  let formatted = num.toFixed(decimalPlaces);
+  const formatted = num.toFixed(decimalPlaces);
 
-  formatted = formatted.replace(/\.?0+$/, '');
-
-  return formatted;
+  return formatted.replace(/\.?0+$/, '');
 }
