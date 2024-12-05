@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl';
 import type { TypeSatelliteOut } from '@/__generated__/data-contracts';
 import type { InformationsTableHeaderWidth, InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
+import { roundToDecimalPlaces } from '@/libs/Utils';
 
 type AdditionalInformations = Pick<TypeSatelliteOut, 'shape' | 'mass' | 'crossSectionAvg' | 'crossSectionMax' | 'crossSectionMin' | 'height' | 'width' | 'depth' | 'span' | 'diameter'>;
 
@@ -23,12 +24,15 @@ const AdditionalInformationsTable = ({ object, headerCellWidth }: AdditionalInfo
   }, {
     header: t('Additional.cross_section_avg'),
     accessorKey: 'crossSectionAvg',
+    renderCell: row => row.crossSectionAvg ? roundToDecimalPlaces(row.crossSectionAvg, 4) : undefined,
   }, {
     header: t('Additional.cross_section_max'),
     accessorKey: 'crossSectionMax',
+    renderCell: row => row.crossSectionMax ? roundToDecimalPlaces(row.crossSectionMax, 4) : undefined,
   }, {
     header: t('Additional.cross_section_min'),
     accessorKey: 'crossSectionMin',
+    renderCell: row => row.crossSectionMin ? roundToDecimalPlaces(row.crossSectionMin, 4) : undefined,
   }, {
     header: t('Additional.height'),
     accessorKey: 'height',
