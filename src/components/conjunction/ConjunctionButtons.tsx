@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
-import { createContentNew, generatePdf } from '@/libs/Pdf/Pdf';
+import { createContent, generatePdf } from '@/libs/Pdf/Pdf';
 import Button from '@/ui/button/button';
 
 type ConjunctionButtonsProps = {
@@ -23,7 +23,7 @@ const ConjunctionButtons = ({ title }: ConjunctionButtonsProps) => {
     exportables.forEach((exportable) => {
       if (exportable instanceof HTMLElement) {
         stacks.push({
-          stack: createContentNew(exportable.dataset.pdf as string, exportable),
+          stack: createContent(exportable.dataset.pdf as string, exportable),
         });
       }
     });

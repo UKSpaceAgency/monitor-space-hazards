@@ -57,7 +57,7 @@ const createTable = (table: HTMLElement, isDataTable = false) => {
   }
 };
 
-export const createContentNew = (title: string, node: Element) => {
+export const createContent = (title: string, node: Element) => {
   const content: Array<string | Record<string, unknown>> = [
     { text: title, style: 'h2', tocItem: true },
   ];
