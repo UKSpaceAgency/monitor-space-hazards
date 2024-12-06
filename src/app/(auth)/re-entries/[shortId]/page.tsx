@@ -51,7 +51,7 @@ export default async function Reentry({
         <ContentNavigation />
         <div className="md:col-span-3">
           <Suspense fallback={<Spinner />}>
-            <ReentryEventSummary event={event} object={satellite} />
+            <ReentryEventSummary event={event} shortId={shortId} object={satellite} />
           </Suspense>
           <ReentryAccordion object={satellite} noradId={event.noradId} />
           <Link href="/satellites">

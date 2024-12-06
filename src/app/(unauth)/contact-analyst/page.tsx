@@ -19,11 +19,9 @@ export default async function ContactAnalyst({ searchParams }: { searchParams: {
   return (
     <>
       <h1 className="govuk-heading-xl">{t('title')}</h1>
-      {t.rich('content', {
-        list: chunks => <ul className="govuk-list govuk-list--bullet">{chunks}</ul>,
-        item: chunks => <li>{chunks}</li>,
-        bold: chunks => <b>{chunks}</b>,
-      })}
+      <div className="govuk-body">
+        {t.rich('content')}
+      </div>
       <SummaryList
         rows={[
           {
