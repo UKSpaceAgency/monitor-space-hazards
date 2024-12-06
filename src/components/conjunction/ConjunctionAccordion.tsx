@@ -48,8 +48,8 @@ const ConjunctionAccordion = ({
           id: 'pocChart',
           heading: t('poc_chart.title'),
           content: (
-            <div>
-              <Details summary={t('poc_chart.help.title')}>
+            <div data-pdf={t('poc_chart.title')}>
+              <Details summary={t('poc_chart.help.title')} data-pdf-ignore>
                 <RichText>
                   {tags => t.rich('poc_chart.help.content', {
                     ...tags,
@@ -65,7 +65,7 @@ const ConjunctionAccordion = ({
               id: 'mtpChart',
               heading: t('mtp_chart.title'),
               content: (
-                <div></div>
+                <div data-pdf={t('mtp_chart.title')}></div>
               ),
             }]
           : []),
@@ -73,8 +73,8 @@ const ConjunctionAccordion = ({
           id: 'missDistanceChart',
           heading: t('miss_distance_chart.title'),
           content: (
-            <div>
-              <Details summary={t('miss_distance_chart.help.title')}>
+            <div data-pdf={t('miss_distance_chart.title')}>
+              <Details summary={t('miss_distance_chart.help.title')} data-pdf-ignore>
                 <RichText>
                   {tags => t.rich('miss_distance_chart.help.content', {
                     ...tags,
@@ -89,7 +89,7 @@ const ConjunctionAccordion = ({
           id: 'objectData',
           heading: t('object_data.title'),
           content: (
-            <>
+            <div data-pdf={t('object_data.title')}>
               <div className="govuk-body mt-2">
                 {t('object_data.space_track')}
               </div>
@@ -111,7 +111,7 @@ const ConjunctionAccordion = ({
               <div className="overflow-auto">
                 <AdditionalInformationsTable object={dataArray} headerCellWidth="xs" />
               </div>
-            </>
+            </div>
           ),
         },
         {
@@ -119,7 +119,9 @@ const ConjunctionAccordion = ({
           heading: t('event_history.title'),
           content: (
             <>
-              <ConjunctionEventHistoryTable events={events} event={event} dataSources={dataSources} />
+              <div data-pdf={t('event_history.title')}>
+                <ConjunctionEventHistoryTable events={events} event={event} dataSources={dataSources} />
+              </div>
               <DownloadData type={t('download')} params={{}} downloadAction={handleDownloadData} />
               <Details summary={t('event_history.help.title')}>
                 <RichText>

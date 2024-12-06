@@ -34,11 +34,13 @@ const InformationsTable = <T extends object>({ rows, data, caption, headerCellWi
     <Table>
       {caption && <TableCaption>{caption}</TableCaption>}
       {Array.isArray(data) && (
-        <TableRow>
-          <TableCell className="w-80" />
-          <TableCellHeader>{t('primary')}</TableCellHeader>
-          <TableCellHeader>{t('secondary')}</TableCellHeader>
-        </TableRow>
+        <TableBody>
+          <TableRow>
+            <TableCell className="w-80" />
+            <TableCellHeader>{t('primary')}</TableCellHeader>
+            <TableCellHeader>{t('secondary')}</TableCellHeader>
+          </TableRow>
+        </TableBody>
       )}
       <TableBody>
         {rows.map(({ header, accessorKey, renderCell, cellProps }) => {

@@ -86,7 +86,7 @@ export default async function ConjunctionPage({
             handleDownloadData={handleDownloadData}
           />
 
-          <ConjunctionButtons />
+          <ConjunctionButtons title={t('title', { id: shortId })} />
         </div>
       </div>
     </>
