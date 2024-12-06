@@ -10,9 +10,10 @@ import { ReentryEventSummaryTable } from './tables/ReentryEventSummaryTable';
 type ReentryEventSummaryProps = {
   event: TypeReentryEventOut;
   object: TypeSatelliteOut;
+  shortId: string;
 };
 
-const ReentryEventSummary = async ({ event, object }: ReentryEventSummaryProps) => {
+const ReentryEventSummary = async ({ event, object, shortId }: ReentryEventSummaryProps) => {
   const t = await getTranslations('Re-entry.EventSummary');
 
   const { data } = await Api.getTipsNoradId({ noradId: event.noradId });
@@ -26,7 +27,7 @@ const ReentryEventSummary = async ({ event, object }: ReentryEventSummaryProps) 
         <Link href={`/satellites/${event.noradId}`} className="govuk-link">{object.commonName}</Link>
       </p>
       {data[0] && <ReentryEventSummaryTable tip={data[0]} />}
-      <Link href={`/contact-analyst?id=${event.id}`}><Button variant="secondary">{t('contact_analyst')}</Button></Link>
+      <Link href={`/contact-analyst?id=${shortId}&callback=/re-entries/${shortId}`}><Button variant="secondary">{t('contact_analyst')}</Button></Link>
     </div>
   );
 };
