@@ -821,7 +821,8 @@
     "jsonHasBeenDeleted": ".json has been deleted",
     "json": ".json",
     "delete": "Delete",
-    "deleted": "Deleted"
+    "deleted": "Deleted",
+    "download_event_as": "Download event {as}"
   },
   "Breadcrumb": {
     "account": "Account",
