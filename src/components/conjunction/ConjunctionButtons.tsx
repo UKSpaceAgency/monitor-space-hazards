@@ -1,11 +1,35 @@
 'use client';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
+import { createContentNew, generatePdf } from '@/libs/Pdf/Pdf';
 import Button from '@/ui/button/button';
 
-const ConjunctionButtons = () => {
+type ConjunctionButtonsProps = {
+  title: string;
+};
+
+const ConjunctionButtons = ({ title }: ConjunctionButtonsProps) => {
   const tCommon = useTranslations('Common');
+
+  const pathname = usePathname();
+
+  const handleDownloadPdf = () => {
+    const exportables = document.querySelectorAll('[data-pdf]');
+
+    const stacks: any[] = [];
+
+    exportables.forEach((exportable) => {
+      if (exportable instanceof HTMLElement) {
+        stacks.push({
+          stack: createContentNew(exportable.dataset.pdf as string, exportable),
+        });
+      }
+    });
+
+    generatePdf(title, stacks, pathname);
+  };
 
   return (
     <div className="govuk-button-group">
@@ -19,7 +43,7 @@ const ConjunctionButtons = () => {
         </Button>
       </Link>
 
-      <Button>
+      <Button onClick={handleDownloadPdf}>
         {tCommon('download_event_as', { as: 'PDF' })}
       </Button>
     </div>
