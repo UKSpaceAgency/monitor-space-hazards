@@ -7,6 +7,7 @@ import { getConjunctionEventsEventIdSummary } from '@/actions/getConjunctionEven
 import { getManoeuvrePlots } from '@/actions/getManoeuvrePlots';
 import { getUsersMe } from '@/actions/getUsersMe';
 import { ConjunctionAccordion } from '@/components/conjunction/ConjunctionAccordion';
+import { ConjunctionButtons } from '@/components/conjunction/ConjunctionButtons';
 import { ConjunctionEventSummary } from '@/components/conjunction/ConjunctionEventSummary';
 import { ContentNavigation } from '@/components/ContentNavigation';
 import { isAnalysist } from '@/utils/Roles';
@@ -84,6 +85,8 @@ export default async function ConjunctionPage({
             dataSources={dataSources}
             handleDownloadData={handleDownloadData}
           />
+
+          <ConjunctionButtons />
         </div>
       </div>
     </>
