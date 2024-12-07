@@ -54,7 +54,7 @@ export default async function Reentry({
             <ReentryEventSummary event={event} object={satellite} />
           </Suspense>
           <ReentryAccordion object={satellite} noradId={event.noradId} />
-          <Link href="/satellites">
+          <Link href="/re-entries">
             <Button variant="secondary">{tCommon('return', { to: 'previous page' })}</Button>
           </Link>
         </div>

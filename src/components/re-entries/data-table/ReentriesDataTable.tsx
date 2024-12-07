@@ -38,7 +38,7 @@ const ReentriesDataTable = ({ initialData, params, haveAccessToAlerts }: Reentri
         queryKeys={[QUERY_KEYS.Reentries]}
         initialSort={initialSort}
       />
-      <DownloadData type={t('Download.types.satellites')} params={params} downloadAction={getSatellites} />
+      <DownloadData type={t('Download.types.reentry_events')} params={params} downloadAction={getSatellites} />
     </>
   );
 };

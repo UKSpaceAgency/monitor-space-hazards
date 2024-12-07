@@ -431,7 +431,8 @@
       "types": {
         "satellites": "UK-licensed satellites",
         "satellite_events": "{epoch} conjunction events",
-        "conjunction_events": "conjunction events"
+        "conjunction_events": "conjunction events",
+        "reentry_events": "re-entry events"
       }
     },
     "AnalysisData": {
