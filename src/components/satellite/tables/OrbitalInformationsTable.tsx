@@ -14,6 +14,16 @@ type OrbitalInformationsTableProps = {
 const OrbitalInformationsTable = ({ object, headerCellWidth }: OrbitalInformationsTableProps) => {
   const t = useTranslations('Tables.SatelliteInformations');
 
+  const headers = Array.isArray(object)
+    ? [{
+        className: 'w-80',
+      }, {
+        children: t('Objects.primary'),
+      }, {
+        children: t('Objects.secondary'),
+      }]
+    : undefined;
+
   const baseInformations: InformationsTableRow<OrbitalSatelliteInformations>[] = [{
     header: t('Orbital.apogee'),
     accessorKey: 'apogee',
@@ -28,7 +38,7 @@ const OrbitalInformationsTable = ({ object, headerCellWidth }: OrbitalInformatio
     accessorKey: 'period',
   }];
 
-  return <InformationsTable caption={t('Orbital.caption')} rows={baseInformations} data={object} headerCellWidth={headerCellWidth} />;
+  return <InformationsTable caption={t('Orbital.caption')} headers={headers} rows={baseInformations} data={object} headerCellWidth={headerCellWidth} />;
 };
 
 export { OrbitalInformationsTable };

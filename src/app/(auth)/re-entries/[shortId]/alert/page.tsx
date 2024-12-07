@@ -6,8 +6,9 @@ import { Suspense } from 'react';
 import { getReentryEvent } from '@/actions/getReentryEvent';
 import { getSatellite } from '@/actions/getSatellite';
 import { ContentNavigation } from '@/components/ContentNavigation';
-import { ReentryAccordion } from '@/components/re-entry/ReentryAccordion';
-import { ReentryEventSummary } from '@/components/re-entry/ReentryEventSummary';
+import { ReentryAlertAccordion } from '@/components/re-entry-alert/ReentryAlertAccordion';
+import { ReentryAlertExecutiveSummary } from '@/components/re-entry-alert/ReentryAlertExecutiveSummary';
+import { ReentryAlertNextUpdate } from '@/components/re-entry-alert/ReentryAleryNextUpdate';
 import { dayjs, FORMAT_FULL_DATE } from '@/libs/Dayjs';
 import Button from '@/ui/button/button';
 import Spinner from '@/ui/spinner/spinner';
@@ -17,7 +18,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ shortId: string }>;
 }) {
-  const t = await getTranslations('Reentry');
+  const t = await getTranslations('ReentryAlert');
   const { shortId } = await params;
   const event = await getReentryEvent(shortId);
   const satellite = await getSatellite(event.noradId);
@@ -35,7 +36,7 @@ export default async function Reentry({
 }: {
   params: Promise<{ shortId: string }>;
 }) {
-  const t = await getTranslations('Reentry');
+  const t = await getTranslations('ReentryAlert');
   const tCommon = await getTranslations('Common');
   const { shortId } = await params;
   const event = await getReentryEvent(shortId);
@@ -51,9 +52,10 @@ export default async function Reentry({
         <ContentNavigation />
         <div className="md:col-span-3">
           <Suspense fallback={<Spinner />}>
-            <ReentryEventSummary event={event} shortId={shortId} object={satellite} />
+            <ReentryAlertExecutiveSummary event={event} />
           </Suspense>
-          <ReentryAccordion object={satellite} noradId={event.noradId} />
+          <ReentryAlertNextUpdate shortId={shortId} />
+          <ReentryAlertAccordion event={event} />
           <Link href="/re-entries">
             <Button variant="secondary">{tCommon('return', { to: 'previous page' })}</Button>
           </Link>

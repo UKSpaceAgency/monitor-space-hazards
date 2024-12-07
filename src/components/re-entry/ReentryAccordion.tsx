@@ -7,7 +7,7 @@ import { SatelliteInformation } from '../satellite/SatelliteInformation';
 import { ReentryEventHistoryDataTable } from './data-table/ReentryEventHistoryDataTable';
 import { ReentryFurtherInformation } from './ReentryFurhterInformation';
 
-type ConjunctionAccordionType = {
+type ReentryAccordionProps = {
   noradId: string;
   object: TypeSatelliteOut;
 };
@@ -15,7 +15,7 @@ type ConjunctionAccordionType = {
 const ReentryAccordion = ({
   noradId,
   object,
-}: ConjunctionAccordionType) => {
+}: ReentryAccordionProps) => {
   const t = useTranslations('Accordions.Reentry');
 
   return (

@@ -15,6 +15,16 @@ type AdditionalInformationsTableProps = {
 const AdditionalInformationsTable = ({ object, headerCellWidth }: AdditionalInformationsTableProps) => {
   const t = useTranslations('Tables.SatelliteInformations');
 
+  const headers = Array.isArray(object)
+    ? [{
+        className: 'w-80',
+      }, {
+        children: t('Objects.primary'),
+      }, {
+        children: t('Objects.secondary'),
+      }]
+    : undefined;
+
   const baseInformations: InformationsTableRow<AdditionalInformations>[] = [{
     header: t('Additional.shape'),
     accessorKey: 'shape',
@@ -50,7 +60,7 @@ const AdditionalInformationsTable = ({ object, headerCellWidth }: AdditionalInfo
     accessorKey: 'diameter',
   }];
 
-  return <InformationsTable rows={baseInformations} data={object} headerCellWidth={headerCellWidth} />;
+  return <InformationsTable headers={headers} rows={baseInformations} data={object} headerCellWidth={headerCellWidth} />;
 };
 
 export { AdditionalInformationsTable };
