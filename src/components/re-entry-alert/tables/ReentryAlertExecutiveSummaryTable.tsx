@@ -1,4 +1,3 @@
-import { round } from 'lodash';
 import { useTranslations } from 'next-intl';
 
 import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
@@ -6,6 +5,7 @@ import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import Tag from '@/ui/tag/tag';
+import { roundedPercent } from '@/utils/Math';
 import { getFullCountry } from '@/utils/Regions';
 
 type EventSummaryData = Pick<TypeReentryEventOut, 'ukReentryProbability' | 'probability' | 'timeWindowStart' | 'timeWindowEnd' | 'overflightTime' | 'survivabilityComment' | 'objectName' | 'estimatedMass' | 'licenseCountry'>;
@@ -40,7 +40,7 @@ const ReentryAlertExecutiveSummaryTable = ({ event }: ReentryAlertExecutiveSumma
   }, {
     header: t('probability'),
     accessorKey: 'probability',
-    renderCell: ({ probability }) => (probability ? `${round(probability * 100, 3)}%` : '-'),
+    renderCell: ({ probability }) => (probability ? `${roundedPercent(probability)}%` : '-'),
   }, {
     header: t('time_window_world'),
     accessorKey: 'timeWindowStart',

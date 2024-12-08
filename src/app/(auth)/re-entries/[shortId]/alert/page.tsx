@@ -10,7 +10,7 @@ import { ContentNavigation } from '@/components/ContentNavigation';
 import { ReentryAlertAccordion } from '@/components/re-entry-alert/ReentryAlertAccordion';
 import { ReentryAlertExecutiveSummary } from '@/components/re-entry-alert/ReentryAlertExecutiveSummary';
 import { ReentryAlertNextUpdate } from '@/components/re-entry-alert/ReentryAleryNextUpdate';
-import { dayjs, FORMAT_FULL_DATE } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME, FORMAT_FULL_DATE } from '@/libs/Dayjs';
 import Button from '@/ui/button/button';
 import Spinner from '@/ui/spinner/spinner';
 
@@ -41,7 +41,7 @@ export default async function Reentry({
   const tCommon = await getTranslations('Common');
   const { shortId } = await params;
   const event = await getReentryEvent(shortId);
-  const reports = await getReentryReports(shortId);
+  const reports = await getReentryReports({ shortId });
 
   return (
     <div>
@@ -52,6 +52,7 @@ export default async function Reentry({
       <div className="grid md:grid-cols-4 gap-7">
         <ContentNavigation />
         <div className="md:col-span-3">
+          {t.rich('report_info', { number: event.reentryReportNumber?.toString(), time: dayjs(event.updatedAt).format(FORMAT_DATE_TIME) })}
           <Suspense fallback={<Spinner />}>
             <ReentryAlertExecutiveSummary event={event} />
           </Suspense>

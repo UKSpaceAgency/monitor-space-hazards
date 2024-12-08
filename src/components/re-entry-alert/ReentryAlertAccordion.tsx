@@ -3,9 +3,16 @@ import { useTranslations } from 'next-intl';
 import type { TypeReentryEventOut, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
 import Accordion from '@/ui/accordion/accordion';
 
+import { ReentryFurtherInformation } from '../re-entry/ReentryFurhterInformation';
+import { ReentryAlertHistoryDataTable } from './data-table/ReentryAlertHistoryDataTable';
+import { ReentryAlertAlertingProcedure } from './ReentryAlertAlertingProcedure';
+import { ReentryAlertGuidanceOnResponse } from './ReentryAlertGuidanceOnResponse';
 import { ReentryAlertImpactNation } from './ReentryAlertImpactNation';
 import { ReentryAlertImpactOverseas } from './ReentryAlertImpactOverseas';
 import { ReentryAlertImpactRegion } from './ReentryAlertImpactRegion';
+import { ReentryAlertLiabilityForDamages } from './ReentryAlertLiabilityForDamages';
+import { ReentryAlertPressAttention } from './ReentryAlertPressAttention';
+import { ReentryAlertRiskThresholds } from './ReentryAlertRiskThresholds';
 import { ReentryAlertAdditionalObjectDetailsTable } from './tables/ReentryAlertAdditionalObjectDetailsTable';
 
 type ReentryAlertAccordionProps = {
@@ -57,6 +64,43 @@ const ReentryAlertAccordion = ({
               ),
             }]
           : []),
+        {
+          id: 'guidance_on_response',
+          heading: t('guidance_on_response'),
+          content: <ReentryAlertGuidanceOnResponse immediateResponse={event.immediateResponse} recoveryAndCleanUp={event.recoveryAndCleanUp} />,
+        },
+        {
+          id: 'liability_for_damages',
+          heading: t('liability_for_damages'),
+          content: <ReentryAlertLiabilityForDamages licenseCountry={event.licenseCountry} damagesLiability={event.damagesLiability} />,
+        },
+        {
+          id: 'press_attention',
+          heading: t('press_attention'),
+          content: <ReentryAlertPressAttention pressAttention={event.pressAttention} />,
+        },
+        {
+          id: 'alert_history',
+          heading: t('alert_history'),
+          content: <ReentryAlertHistoryDataTable shortId={event.shortId} reports={reports} />,
+        },
+        {
+          id: 'risk_thresholds',
+          heading: t('risk_thresholds'),
+          content: <ReentryAlertRiskThresholds />,
+        },
+        {
+          id: 'alerting_procedure',
+          heading: t('alerting_procedure'),
+          content: <ReentryAlertAlertingProcedure />,
+        },
+        {
+          id: 'further_information',
+          heading: t('further_information'),
+          content: (
+            <ReentryFurtherInformation />
+          ),
+        },
       ]}
     />
   );

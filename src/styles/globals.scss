@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+p {
+  @extend .govuk-body;
+}
+
 .govuk-notification-banner--error {
   border-color: $govuk-error-colour !important;
   background-color: $govuk-error-colour !important;

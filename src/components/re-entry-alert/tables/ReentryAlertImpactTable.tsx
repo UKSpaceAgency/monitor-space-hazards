@@ -1,11 +1,11 @@
 import clsx from 'clsx';
-import { round } from 'lodash';
 import { useTranslations } from 'next-intl';
 import { type HTMLProps, useMemo } from 'react';
 
 import type { TypeOverflightProbability } from '@/__generated__/data-contracts';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import { Table, TableBody, TableCaption, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
+import { roundedPercent } from '@/utils/Math';
 import { jsonRegionsMap } from '@/utils/Regions';
 
 type ReentryAlertImpactTableProps = {
@@ -47,10 +47,10 @@ const ReentryAlertImpactTable = ({ caption, impact }: ReentryAlertImpactTablePro
               {jsonRegionsMap[key] ?? key}
             </TableCellHeader>
             <TableCell>
-              {value.probability ? `${round(value.probability * 100, 3)}%` : '-'}
+              {value.probability ? `${roundedPercent(value.probability)}%` : '-'}
             </TableCell>
             {...Array.from({ length: overflightsNumber }, (_, i) => (
-              <TableCell key={i}>
+              <TableCell key={key + i}>
                 {value.overflight_time && value?.overflight_time[i] ? dayjs(value.overflight_time[i]).format(FORMAT_DATE_TIME) : '-'}
               </TableCell>
             ))}

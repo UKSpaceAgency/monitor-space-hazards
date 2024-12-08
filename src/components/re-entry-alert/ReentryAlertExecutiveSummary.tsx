@@ -1,8 +1,8 @@
 import { getTranslations } from 'next-intl/server';
-import ReactMarkdown from 'react-markdown';
 
 import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
 
+import { Markdown } from '../Markdown';
 import { ReentryAlertExecutiveSummaryTable } from './tables/ReentryAlertExecutiveSummaryTable';
 
 type ReentryAlertExecutiveSummaryProps = {
@@ -19,9 +19,9 @@ const ReentryAlertExecutiveSummary = async ({ event, previewSummary }: ReentryAl
       <p className="govuk-body">
         {t('content')}
       </p>
-      <ReactMarkdown>
+      <Markdown>
         {previewSummary !== null ? previewSummary : event?.execSummary}
-      </ReactMarkdown>
+      </Markdown>
       <ReentryAlertExecutiveSummaryTable event={event} />
     </div>
   );
