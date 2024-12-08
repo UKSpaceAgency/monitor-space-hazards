@@ -377,7 +377,10 @@
       "further_information": "Further information"
     },
     "ReentryAlert": {
-      "additional_object_details": "Additional object and orbit details"
+      "additional_object_details": "Additional object and orbit details",
+      "potential_impact_uk_nation": "Potential impact by UK nation",
+      "potential_impact_uk_region": "Potential impact by UK region",
+      "potential_impact_overseas_territory": "Potential impact by British Overseas Territory"
     }
   },
   "Conjunctions": {
@@ -710,6 +713,13 @@
       "apogee": "Apogee (km)",
       "perigee": "Perigee (km)",
       "inclination": "Inclination (°)"
+    },
+    "ReentryAlertImpact": {
+      "probability_of_reentry": "Probability of re-entry (%)",
+      "time_of_overflight": "Time of overflight {number} (UTC)",
+      "uk_nations_hint": "Only UK nations which are at risk from this re-entry are included in the table(s) above.",
+      "overseas_hint": "* For the purposes of this table, British Antarctic Territory has been limited to the areas surrounding populated facilities in the territory.",
+      "see_further_information": "<p>See <link>Further information</link> for more detail on methodology used in this report.</p>"
     }
   },
   "Forms": {
