@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
-import { createContent, generatePdf } from '@/libs/Pdf/Pdf';
+import { generatePdf } from '@/libs/Pdf/Pdf';
 import Button from '@/ui/button/button';
 
 type ConjunctionButtonsProps = {
@@ -16,19 +16,7 @@ const ConjunctionButtons = ({ title }: ConjunctionButtonsProps) => {
   const pathname = usePathname();
 
   const handleDownloadPdf = () => {
-    const exportables = document.querySelectorAll('[data-pdf]');
-
-    const stacks: any[] = [];
-
-    exportables.forEach((exportable) => {
-      if (exportable instanceof HTMLElement) {
-        stacks.push({
-          stack: createContent(exportable.dataset.pdf as string, exportable),
-        });
-      }
-    });
-
-    generatePdf(title, stacks, pathname);
+    generatePdf(title, pathname);
   };
 
   return (
