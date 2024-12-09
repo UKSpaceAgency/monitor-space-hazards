@@ -6,17 +6,20 @@ import { reentryEventHistoryColumns } from './ReentryEventHistoryDataTableColumn
 
 type ReentryEventHistoryDataTableProps = {
   noradId: string;
+  dataPdf?: string;
 };
 
-const ReentryEventHistoryDataTable = async ({ noradId }: ReentryEventHistoryDataTableProps) => {
+const ReentryEventHistoryDataTable = async ({ noradId, dataPdf }: ReentryEventHistoryDataTableProps) => {
   const tips = await getTips(noradId);
 
   return (
-    <DataTable
-      columns={reentryEventHistoryColumns}
-      data={tips}
-      renderSubComponent={renderReentryHistoryDetailAsSubcomponent}
-    />
+    <div data-pdf={dataPdf}>
+      <DataTable
+        columns={reentryEventHistoryColumns}
+        data={tips}
+        renderSubComponent={renderReentryHistoryDetailAsSubcomponent}
+      />
+    </div>
   );
 };
 
