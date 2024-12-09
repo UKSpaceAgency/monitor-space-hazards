@@ -134,9 +134,20 @@ type Stack = {
 
 export const generatePdf = (
   title: string,
-  stacks: Stack[],
   _pathname: string,
 ) => {
+  const exportables = document.querySelectorAll('[data-pdf]');
+
+  const stacks: Stack[] = [];
+
+  exportables.forEach((exportable) => {
+    if (exportable instanceof HTMLElement) {
+      stacks.push({
+        stack: createContent(exportable.dataset.pdf as string, exportable),
+      });
+    }
+  });
+
   pdfMake.fonts = {
     Arial: {
       normal: `${origin}/fonts/arial.ttf`,
