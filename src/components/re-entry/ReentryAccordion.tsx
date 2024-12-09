@@ -26,14 +26,14 @@ const ReentryAccordion = ({
           id: 'object_data',
           heading: t('object_data'),
           content: (
-            <SatelliteInformation object={object} />
+            <SatelliteInformation object={object} dataPdf={t('object_data')} />
           ),
         },
         {
           id: 'history',
           heading: t('history'),
           content: (
-            <ReentryEventHistoryDataTable noradId={noradId} />
+            <ReentryEventHistoryDataTable noradId={noradId} dataPdf={t('history')} />
           ),
         },
         {
