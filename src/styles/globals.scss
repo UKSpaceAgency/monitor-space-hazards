@@ -8,3 +8,17 @@
   border-color: $govuk-error-colour !important;
   background-color: $govuk-error-colour !important;
 }
+
+ol.govuk-list {
+  counter-reset: section;
+  list-style-type: none;
+  ol.govuk-list {
+    padding-left: 1em;
+  }
+  li {
+    counter-increment: section;
+    &::before {
+      content: counters(section, '.') '. ';
+    }
+  }
+}

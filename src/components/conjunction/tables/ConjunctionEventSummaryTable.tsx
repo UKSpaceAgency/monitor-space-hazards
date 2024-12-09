@@ -27,12 +27,13 @@ const ConjunctionEventSummaryTableInformationsTable = ({ object }: ConjunctionEv
   }, {
     header: t('summary_list.probability_of_collision'),
     accessorKey: 'collisionProbability',
+    renderCell: row => row.collisionProbability?.toExponential(4),
   }, {
     header: t('summary_list.probability_of_collision_calc_method'),
     accessorKey: 'collisionProbabilityMethod',
   }, {
     header: t('summary_list.time_of_closest_approach'),
-    renderCell: row => <div>{dayjs(row.tcaTime).format(FORMAT_DATE_TIME)}</div>,
+    renderCell: row => dayjs(row.tcaTime).format(FORMAT_DATE_TIME),
     accessorKey: 'tcaTime',
   }, {
     header: t('summary_list.total_miss_distance'),
