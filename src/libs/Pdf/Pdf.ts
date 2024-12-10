@@ -1,6 +1,8 @@
 import pdfMake from 'pdfmake/build/pdfmake';
 
-import { imagePdf } from './image';
+import { pdfFonts } from './fonts';
+import { Footer } from './footer';
+import { Header } from './header';
 import { pdfStyles } from './styles';
 
 const createTable = (table: HTMLElement, isDataTable = false) => {
@@ -50,14 +52,14 @@ const createTable = (table: HTMLElement, isDataTable = false) => {
   } else {
     return {
       table: {
-        body: [...tableBody],
+        body: tableBody,
       },
       style: 'table',
     };
   }
 };
 
-export const createContent = (title: string, node: Element) => {
+const createContent = (title: string, node: Element) => {
   const content: Array<string | Record<string, unknown>> = [
     { text: title, style: 'h2', tocItem: true },
   ];
@@ -78,21 +80,21 @@ export const createContent = (title: string, node: Element) => {
         break;
       case 'H3':
         content.push({
-          text: (el as HTMLElement).textContent,
+          text: el.textContent,
           bold: true,
           style: 'h3',
         });
         break;
       case 'H4':
         content.push({
-          text: (el as HTMLElement).textContent,
+          text: el.textContent,
           bold: true,
           style: 'h4',
         });
         break;
       case 'P':
         content.push({
-          text: (el as HTMLElement).textContent,
+          text: el.textContent,
           style: 'paragraph',
         });
         break;
@@ -141,61 +143,12 @@ export const generatePdf = (
   const stacks: Stack[] = [];
 
   exportables.forEach((exportable) => {
-    if (exportable instanceof HTMLElement) {
+    if (exportable instanceof HTMLElement && exportable.dataset.pdf) {
       stacks.push({
-        stack: createContent(exportable.dataset.pdf as string, exportable),
+        stack: createContent(exportable.dataset.pdf, exportable),
       });
     }
   });
-
-  pdfMake.fonts = {
-    Arial: {
-      normal: `${origin}/fonts/arial.ttf`,
-      bold: `${origin}/fonts/arial-bold.ttf`,
-      italics: `${origin}/fonts/arial-italic.ttf`,
-    },
-  };
-
-  const Header = () => {
-    return [
-      {
-        image: imagePdf,
-        fit: [100, 100],
-        margin: [0, 0, 0, 20],
-      },
-    ];
-  };
-
-  const Footer = () => {
-    return [
-      {
-        text: [
-          'Produced by ',
-          {
-            text: 'National Space Operations Centre.',
-            bold: true,
-          },
-        ],
-        lineHeight: 1.5,
-      },
-      {
-        text: [
-          'Details are available on the Monitor Space Hazards website ',
-          {
-            text: 'https://www.monitor-space-hazards.service.gov.uk',
-            link: 'https://www.monitor-space-hazards.service.gov.uk',
-          },
-        ],
-        fontSize: 10,
-        lineHeight: 1.5,
-      },
-      {
-        text: 'All content is available under the Open Government Licence v3.0, except where otherwise stated.',
-        fontSize: 10,
-        lineHeight: 1.5,
-      },
-    ];
-  };
 
   const docDefinition = {
     content: [
@@ -221,6 +174,8 @@ export const generatePdf = (
   //     page_path: pathname,
   //     table_name: 'reentry-alert',
   //   });
+
+  pdfMake.fonts = pdfFonts;
 
   pdfMake.createPdf(docDefinition as any).download(`${title}.pdf`);
 };
