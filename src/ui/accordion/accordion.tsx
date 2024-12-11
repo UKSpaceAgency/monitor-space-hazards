@@ -119,9 +119,9 @@ export function Accordion({ initialItems, id }: AccordionProps) {
             </div>
             <div
               id={`content-${id}`}
-              className={clsx('py-4', {
-                hidden: !expanded,
-              })}
+              style={{
+                contentVisibility: expanded ? 'visible' : 'hidden',
+              }}
             >
               {content}
             </div>

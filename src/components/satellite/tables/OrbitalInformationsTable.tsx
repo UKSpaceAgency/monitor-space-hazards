@@ -1,3 +1,4 @@
+'use client';
 import { useTranslations } from 'next-intl';
 
 import type { TypeSatelliteOut } from '@/__generated__/data-contracts';

@@ -1,6 +1,8 @@
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
-import type { TypeDataSourcesOut, TypeEventSummaryOut, TypeSatelliteOut } from '@/__generated__/data-contracts';
+import type { TypeEventSummaryOut, TypeSatelliteOut } from '@/__generated__/data-contracts';
+import { getConjunctionEventsEventIdSummary } from '@/actions/getConjunctionEventsEventIdSummary';
+import { getManoeuvrePlotShortId } from '@/actions/getManoeuvrePlotShortId';
 import Accordion from '@/ui/accordion/accordion';
 
 import { ConjunctionCollisionProbabilityChart } from './ConjunctionCollisionProbabilityChart';
@@ -11,27 +13,24 @@ import { ConjunctionMissDistanceChart } from './ConjunctionMissDistanceChart';
 import { ConjunctionObjectData } from './ConjunctionObjectData';
 
 type ConjunctionAccordionType = {
-  id: string;
-  haveMtp: boolean;
+  shortId: string;
+  event: TypeEventSummaryOut;
   primaryObject: TypeSatelliteOut;
   secondaryObject: TypeSatelliteOut | null;
-  events: TypeEventSummaryOut[];
-  event: TypeEventSummaryOut;
-  dataSources: TypeDataSourcesOut;
-  handleDownloadData: () => Promise<unknown>;
+  isSpecial: boolean;
 };
 
-const ConjunctionAccordion = ({
-  id,
-  haveMtp,
+const ConjunctionAccordion = async ({
+  shortId,
+  event,
   primaryObject,
   secondaryObject,
-  events,
-  event,
-  dataSources,
-  handleDownloadData,
+  isSpecial,
 }: ConjunctionAccordionType) => {
-  const t = useTranslations('Conjunction');
+  const t = await getTranslations('Conjunction');
+
+  const events = await getConjunctionEventsEventIdSummary({ eventId: shortId });
+  const plot = await getManoeuvrePlotShortId(shortId);
 
   return (
     <Accordion
@@ -41,15 +40,15 @@ const ConjunctionAccordion = ({
           id: 'pocChart',
           heading: t('Poc_chart.title'),
           content: (
-            <ConjunctionCollisionProbabilityChart id={id} />
+            <ConjunctionCollisionProbabilityChart shortId={shortId} events={events} />
           ),
         },
-        ...(haveMtp
+        ...(plot
           ? [{
               id: 'mtpChart',
               heading: t('Mtp_chart.title'),
               content: (
-                <ConjunctionManoeuvreSupport />
+                <ConjunctionManoeuvreSupport plot={plot} />
               ),
             }]
           : []),
@@ -57,7 +56,7 @@ const ConjunctionAccordion = ({
           id: 'missDistanceChart',
           heading: t('Miss_distance_chart.title'),
           content: (
-            <ConjunctionMissDistanceChart id={id} />
+            <ConjunctionMissDistanceChart shortId={shortId} events={events} isSpecial={isSpecial} />
           ),
         },
         {
@@ -72,10 +71,9 @@ const ConjunctionAccordion = ({
           heading: t('Event_history.title'),
           content: (
             <ConjunctionEventHistory
-              events={events}
+              shortId={shortId}
               event={event}
-              dataSources={dataSources}
-              handleDownloadData={handleDownloadData}
+              events={events}
             />
           ),
         },

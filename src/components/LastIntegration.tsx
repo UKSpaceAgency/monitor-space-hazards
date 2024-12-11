@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
 import Api from '@/libs/Api';
-import { dayjs } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import InsetText from '@/ui/inset-text/inset-text';
 
 const LastIntegration = async () => {
@@ -18,7 +18,7 @@ const LastIntegration = async () => {
     ? (
         <InsetText>
           {t('text', {
-            date: dayjs(ingestionStart).format('DD/MM/YY HH:mm:ss'),
+            date: dayjs(ingestionStart).format(FORMAT_DATE_TIME),
           })}
         </InsetText>
       )

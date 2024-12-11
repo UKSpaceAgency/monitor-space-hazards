@@ -1,16 +1,13 @@
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
-import { getConjunctionEventsSatelliteEventShortId } from '@/actions/getConjunctionEvent';
-import { getConjunctionEventsEventIdDataSources } from '@/actions/getConjunctionEventsEventIdDataSources';
-import { getConjunctionEventsEventIdSummary } from '@/actions/getConjunctionEventsEventIdSummary';
-import { getManoeuvrePlots } from '@/actions/getManoeuvrePlots';
-import { getUsersMe } from '@/actions/getUsersMe';
+import { getConjunctionEvent } from '@/actions/getConjunctionEvent';
+import { getConjunctionEventsSatelliteEventShortId } from '@/actions/getConjunctionEventsSatelliteEvent';
 import { ConjunctionAccordion } from '@/components/conjunction/ConjunctionAccordion';
 import { ConjunctionButtons } from '@/components/conjunction/ConjunctionButtons';
 import { ConjunctionEventSummary } from '@/components/conjunction/ConjunctionEventSummary';
 import { ContentNavigation } from '@/components/ContentNavigation';
-import { isAnalysist } from '@/utils/Roles';
+import Tag from '@/ui/tag/tag';
 
 export async function generateMetadata({
   params,
@@ -37,35 +34,12 @@ export default async function ConjunctionPage({
 
   const { shortId } = await params;
   const { primaryObject, secondaryObject } = await getConjunctionEventsSatelliteEventShortId(shortId);
-  const dataSources = await getConjunctionEventsEventIdDataSources({ eventId: shortId });
-  const events = await getConjunctionEventsEventIdSummary({ eventId: shortId });
-  const manoeuvrePlots = await getManoeuvrePlots();
-  const user = await getUsersMe();
-
-  const event = events.find(event => event.shortId === shortId);
-
-  if (!event) {
-    return notFound();
-  }
-
-  const haveMtp = manoeuvrePlots.length > 0;
-  const isUserAnalysist = isAnalysist(user.role);
-
-  const handleDownloadData = async () => {
-    'use server';
-    const events = await getConjunctionEventsEventIdSummary({ eventId: shortId });
-
-    const event = events.find(event => event.shortId === shortId);
-
-    if (!event) {
-      throw new Error('Cannot Download this file!');
-    }
-
-    return event;
-  };
+  const event = await getConjunctionEvent({ eventId: shortId });
+  const isSpecial = event?.primaryObjectCdmType === 'Special owner/operator ephemeris';
 
   return (
     <>
+      {isSpecial && <Tag>{t('special_only')}</Tag>}
       <h1 className="govuk-heading-xl">{t('title', { id: shortId })}</h1>
       <div className="govuk-grid-row">
         <div className="govuk-grid-column-one-quarter">
@@ -73,21 +47,18 @@ export default async function ConjunctionPage({
         </div>
         <div className="govuk-grid-column-three-quarters">
           <ConjunctionEventSummary
-            isUserAnalysist={isUserAnalysist}
             shortId={shortId}
             event={event}
             primaryObject={primaryObject}
             secondaryObject={secondaryObject}
+            isSpecial={isSpecial}
           />
           <ConjunctionAccordion
-            id={shortId}
-            haveMtp={haveMtp}
+            shortId={shortId}
+            event={event}
             primaryObject={primaryObject}
             secondaryObject={secondaryObject}
-            events={events}
-            event={event}
-            dataSources={dataSources}
-            handleDownloadData={handleDownloadData}
+            isSpecial={isSpecial}
           />
           <ConjunctionButtons title={t('title', { id: shortId })} />
         </div>

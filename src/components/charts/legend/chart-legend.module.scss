@@ -1,0 +1,79 @@
+@import 'node_modules/govuk-frontend/dist/govuk/base';
+
+.legend {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+  font-family: $govuk-font-family;
+  font-size: 12px;
+
+  @include govuk-media-query($from: tablet) {
+    margin: 8px 0;
+    font-size: 16px;
+  }
+}
+
+.legend__title {
+  margin: 0;
+  padding: 4px;
+  font-weight: bold;
+}
+
+.legend__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  justify-content: center;
+}
+
+.legend__item {
+  display: block;
+}
+
+.legend__label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  padding: 4px;
+  pointer-events: none;
+}
+
+.legend__label--interactive {
+  pointer-events: all;
+  cursor: pointer;
+}
+
+.legend__input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.legend__shape {
+  display: block;
+  flex: 0 0 1em;
+  width: 1em;
+  height: 1em;
+  border: 1px solid;
+  opacity: 0.5;
+}
+
+.legend__text {
+  text-decoration: line-through;
+}
+
+.legend__input:checked + .legend__shape {
+  opacity: 1;
+}
+
+.legend__input:checked + .legend__shape + .legend__text {
+  text-decoration: none;
+}
