@@ -1,6 +1,5 @@
 import type { TypeEventSummaryOut } from '@/__generated__/data-contracts';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
-import { roundToDecimalPlaces } from '@/libs/Utils';
 import type { TranslatedColumnDef } from '@/types';
 import ExpandedButton from '@/ui/button/expanded-button';
 import Tag from '@/ui/tag/tag';
@@ -52,10 +51,8 @@ export const getEventHistoryColumns = (): TranslatedColumnDef<TypeEventSummaryOu
     id: 'collisionProbability',
     header: 'Conjunction.event_history.probability_of_collision',
     cell: ({ getValue }) => {
-      const value = getValue() as number;
-      return (
-        <div>{roundToDecimalPlaces(value, 4)}</div>
-      );
+      const value = getValue() as number | null;
+      return value?.toExponential(4);
     },
     enableSorting: false,
   },

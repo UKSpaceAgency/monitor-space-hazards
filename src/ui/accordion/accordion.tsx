@@ -117,14 +117,14 @@ export function Accordion({ initialItems, id }: AccordionProps) {
                 </div>
               )}
             </div>
-            {expanded && (
-              <div
-                id={`content-${id}`}
-                className="py-4"
-              >
-                {content}
-              </div>
-            )}
+            <div
+              id={`content-${id}`}
+              className={clsx('py-4', {
+                hidden: !expanded,
+              })}
+            >
+              {content}
+            </div>
           </div>
         ),
         )}

@@ -2,7 +2,6 @@ import Link from 'next/link';
 
 import type { TypeEventOut } from '@/__generated__/data-contracts';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
-import { roundToDecimalPlaces } from '@/libs/Utils';
 import type { TranslatedColumnDef } from '@/types';
 
 export type ProbabilityUnitType = 'scientific' | 'percentage';
@@ -133,7 +132,7 @@ export const getConjunctionEventsColumns = ({
         header: 'Conjunctions.space_track',
         size: 200,
         cell: ({ getValue }) => {
-          const collisionProbability = getValue();
+          const collisionProbability = getValue() as number;
           if (!collisionProbability) {
             return '';
           }
@@ -141,7 +140,7 @@ export const getConjunctionEventsColumns = ({
           if (probabilityUnit === 'percentage') {
             return `${(collisionProbability * 100).toFixed(2)}%`;
           }
-          return roundToDecimalPlaces(collisionProbability, 4);
+          return collisionProbability.toExponential(4);
         },
       },
       {
@@ -149,7 +148,7 @@ export const getConjunctionEventsColumns = ({
         accessorKey: 'additionalAnalysis',
         header: 'Conjunctions.uksa',
         cell: ({ getValue }) => {
-          const value = getValue();
+          const value = getValue() as { collisionProbability: number };
           const { collisionProbability } = value ?? {};
 
           if (!collisionProbability) {
@@ -159,7 +158,7 @@ export const getConjunctionEventsColumns = ({
           if (probabilityUnit === 'percentage') {
             return `${(collisionProbability * 100).toFixed(2)}%`;
           }
-          return roundToDecimalPlaces(collisionProbability, 4);
+          return collisionProbability.toExponential(4);
         },
       },
     ],

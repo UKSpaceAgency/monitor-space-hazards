@@ -19,8 +19,8 @@ const ReentryEventSummary = async ({ event, object, shortId }: ReentryEventSumma
   const { data } = await Api.getTipsNoradId({ noradId: event.noradId });
 
   return (
-    <div>
-      <h2 data-anchor="information" data-pdf className="govuk-heading-l">{t('title')}</h2>
+    <div data-pdf={t('title')}>
+      <h2 data-anchor="information" className="govuk-heading-l">{t('title')}</h2>
       <p className="govuk-body">
         {t('reentering_object')}
         {' '}
