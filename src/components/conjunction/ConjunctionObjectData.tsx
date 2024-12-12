@@ -25,24 +25,16 @@ const ConjunctionObjectData = ({ primaryObject, secondaryObject }: ConjunctionOb
       <div className="govuk-body mt-2">
         {t('space_track')}
       </div>
-      <div className="overflow-auto">
-        <BaseInformationsTable object={dataArray} headerCellWidth="xs" showLink />
-      </div>
-      <div className="overflow-auto">
-        <LicenseInformationsTable object={dataArray} headerCellWidth="xs" />
-      </div>
-      <div className="overflow-auto">
-        <OrbitalInformationsTable object={dataArray} headerCellWidth="xs" />
-      </div>
+      <BaseInformationsTable object={dataArray} headerCellWidth="xs" showLink />
+      <LicenseInformationsTable object={dataArray} headerCellWidth="xs" />
+      <OrbitalInformationsTable object={dataArray} headerCellWidth="xs" />
       <h3 className="govuk-heading-s govuk-!-margin-top-6 govuk-!-margin-bottom-0">
         {t('additional_object_summary.title')}
       </h3>
       <RichText>
         {tags => t.rich('additional_object_summary.content', { ...tags, updateTime: dayjs(primaryObject.esaUpdateTime).format(FORMAT_DATE_TIME) }) }
       </RichText>
-      <div className="overflow-auto">
-        <AdditionalInformationsTable object={dataArray} headerCellWidth="xs" />
-      </div>
+      <AdditionalInformationsTable object={dataArray} headerCellWidth="xs" />
     </div>
   );
 };

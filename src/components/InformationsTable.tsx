@@ -31,35 +31,37 @@ const InformationsTable = <T extends object>({ rows, data, caption, headerCellWi
   );
 
   return (
-    <Table>
-      {caption && <TableCaption>{caption}</TableCaption>}
-      <TableBody>
-        {Array.isArray(data) && (
-          <TableRow>
-            <TableCell className="w-80" />
-            <TableCellHeader>{t('primary')}</TableCellHeader>
-            <TableCellHeader>{t('secondary')}</TableCellHeader>
-          </TableRow>
-        )}
-        {rows.map(({ header, accessorKey, renderCell, cellProps }) => {
-          return (
-            <TableRow key={accessorKey as string}>
-              <TableCellHeader
-                className={clsx(`${reducedFont ? 'text-base' : ''}`, {
-                  'w-6/12': headerCellWidth === 'md',
-                  'w-2/5': headerCellWidth === 'sm',
-                  'w-1/3': headerCellWidth === 'xs',
-                })}
-                {...cellProps}
-              >
-                {header}
-              </TableCellHeader>
-              {Array.isArray(data) ? data.map(row => renderTableCell(accessorKey, row, renderCell, reducedFont)) : renderTableCell(accessorKey, data, renderCell, reducedFont)}
+    <div className="overflow-auto">
+      <Table>
+        {caption && <TableCaption>{caption}</TableCaption>}
+        <TableBody>
+          {Array.isArray(data) && (
+            <TableRow>
+              <TableCell className="w-80" />
+              <TableCellHeader>{t('primary')}</TableCellHeader>
+              <TableCellHeader>{t('secondary')}</TableCellHeader>
             </TableRow>
-          );
-        })}
-      </TableBody>
-    </Table>
+          )}
+          {rows.map(({ header, accessorKey, renderCell, cellProps }) => {
+            return (
+              <TableRow key={accessorKey as string}>
+                <TableCellHeader
+                  className={clsx(`${reducedFont ? 'text-base' : ''}`, {
+                    'w-6/12': headerCellWidth === 'md',
+                    'w-2/5': headerCellWidth === 'sm',
+                    'w-1/3': headerCellWidth === 'xs',
+                  })}
+                  {...cellProps}
+                >
+                  {header}
+                </TableCellHeader>
+                {Array.isArray(data) ? data.map(row => renderTableCell(accessorKey, row, renderCell, reducedFont)) : renderTableCell(accessorKey, data, renderCell, reducedFont)}
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+    </div>
   );
 };
 

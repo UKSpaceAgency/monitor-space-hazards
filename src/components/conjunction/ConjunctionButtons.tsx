@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 
 import { generatePdf } from '@/libs/Pdf/Pdf';
 import Button from '@/ui/button/button';
+import ButtonGroup from '@/ui/button-group/button-group';
 
 type ConjunctionButtonsProps = {
   title: string;
@@ -20,7 +21,7 @@ const ConjunctionButtons = ({ title }: ConjunctionButtonsProps) => {
   };
 
   return (
-    <div className="govuk-button-group">
+    <ButtonGroup>
       <Link
         href="/conjunctions"
         passHref
@@ -34,7 +35,7 @@ const ConjunctionButtons = ({ title }: ConjunctionButtonsProps) => {
       <Button onClick={handleDownloadPdf}>
         {tCommon('download_event_as', { as: 'PDF' })}
       </Button>
-    </div>
+    </ButtonGroup>
   );
 };
 

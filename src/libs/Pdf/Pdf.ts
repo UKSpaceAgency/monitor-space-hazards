@@ -1,6 +1,5 @@
 import pdfMake from 'pdfmake/build/pdfmake';
 
-import { pdfFonts } from './fonts';
 import { Footer } from './footer';
 import { Header } from './header';
 import { pdfStyles } from './styles';
@@ -175,7 +174,13 @@ export const generatePdf = (
   //     table_name: 'reentry-alert',
   //   });
 
-  pdfMake.fonts = pdfFonts;
+  pdfMake.fonts = {
+    Arial: {
+      normal: `${origin}/fonts/arial.ttf`,
+      bold: `${origin}/fonts/arial-bold.ttf`,
+      italics: `${origin}/fonts/arial-italic.ttf`,
+    },
+  };
 
   pdfMake.createPdf(docDefinition as any).download(`${title}.pdf`);
 };

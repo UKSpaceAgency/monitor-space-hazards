@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 
 import { generatePdf } from '@/libs/Pdf/Pdf';
 import Button from '@/ui/button/button';
+import ButtonGroup from '@/ui/button-group/button-group';
 
 type ReentryButtonsProps = {
   title: string;
@@ -20,7 +21,7 @@ const ReentryButtons = ({ title }: ReentryButtonsProps) => {
   };
 
   return (
-    <div className="govuk-button-group">
+    <ButtonGroup>
       <Button onClick={handleDownloadPdf}>
         {tCommon('download_event_as', { as: 'PDF' })}
       </Button>
@@ -34,7 +35,7 @@ const ReentryButtons = ({ title }: ReentryButtonsProps) => {
           {tCommon('return', { to: 'previous page' })}
         </Button>
       </Link>
-    </div>
+    </ButtonGroup>
   );
 };
 
