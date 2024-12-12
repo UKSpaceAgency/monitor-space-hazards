@@ -18,10 +18,12 @@ const BaseInformationsTable = ({ object, headerCellWidth, showLink }: BaseInform
 
   const headers = Array.isArray(object)
     ? [{
-        className: 'w-80',
+        className: 'w-1/3',
       }, {
+        className: 'w-1/3',
         children: t('Objects.primary'),
       }, {
+        className: 'w-1/3',
         children: t('Objects.secondary'),
       }]
     : undefined;

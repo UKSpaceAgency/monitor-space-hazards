@@ -21,6 +21,12 @@ import { ReentryAlertOverflights } from './ReentryAlertOverflights';
 import type { OverflightType } from './utils';
 import { flightpathStyle, fragmentsStyle, overflightStyle, regionLayer, RegionsGeoJson } from './utils';
 
+const initialViewState = {
+  longitude: -4.801161,
+  latitude: 53.22865,
+  zoom: 1,
+} as const;
+
 type ReentryAlertMapProps = {
   overflightTime: string[];
   flightpathCollection: FeatureCollection<Point>;
@@ -65,12 +71,8 @@ const ReentryAlertMap = ({ overflightTime, flightpathCollection, fragmentsCollec
           projection={{
             name: mapView,
           }}
-          initialViewState={{
-            longitude: -4.801161,
-            latitude: 53.22865,
-            zoom: 1,
-          }}
-          interactiveLayerIds={overflights}
+          initialViewState={initialViewState}
+          interactiveLayerIds={['land', ...overflights]}
           onMouseMove={onHover}
           attributionControl={false}
         >

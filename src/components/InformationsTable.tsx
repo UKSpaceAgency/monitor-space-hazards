@@ -25,17 +25,19 @@ type InformationsTableProps<T extends object> = {
 
 const InformationsTable = <T extends object>({ rows, data, headers, caption, headerCellWidth = 'md', reducedFont, className }: InformationsTableProps<T>) => {
   const renderTableCell = ({
+    key,
     data,
     accessorKey,
     renderCell,
     reducedFont,
   }: {
+    key?: string | number;
     data: T;
     accessorKey?: keyof T;
     renderCell?: (row: T) => ReactNode;
     reducedFont?: true;
   }) => (
-    <TableCell className={`${reducedFont ? 'text-base' : ''}`}>
+    <TableCell key={key} className={`${reducedFont ? 'text-base' : ''}`}>
       {renderCell ? renderCell(data) : accessorKey ? data[accessorKey] as ReactNode : '-'}
     </TableCell>
   );
@@ -51,10 +53,10 @@ const InformationsTable = <T extends object>({ rows, data, headers, caption, hea
         </TableHead>
       )}
       <TableBody>
-        {rows.map(({ header, accessorKey, renderCell, cellProps }) => {
+        {rows.map(({ header, accessorKey, renderCell, cellProps }, index) => {
           const { className, ...restCellPRops } = cellProps || {};
           return (
-            <TableRow key={accessorKey as string}>
+            <TableRow key={index}>
               <TableCellHeader
                 className={clsx(`${reducedFont ? 'text-base' : ''}`, {
                   'w-6/12': headerCellWidth === 'md',
@@ -65,7 +67,7 @@ const InformationsTable = <T extends object>({ rows, data, headers, caption, hea
               >
                 {header}
               </TableCellHeader>
-              {Array.isArray(data) ? data.map(row => renderTableCell({ accessorKey, data: row, renderCell, reducedFont })) : renderTableCell({ accessorKey, data, renderCell, reducedFont })}
+              {Array.isArray(data) ? data.map((row, index) => renderTableCell({ key: index, accessorKey, data: row, renderCell, reducedFont })) : renderTableCell({ accessorKey, data, renderCell, reducedFont })}
             </TableRow>
           );
         })}

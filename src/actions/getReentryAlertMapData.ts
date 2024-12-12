@@ -68,27 +68,27 @@ export async function getReentryAlertMapData(presignedUrl: string) {
     features: [],
   })) || [];
 
-  if (lastReport) {
-    for (const point of lastReport.map_points) {
-      if (!point.pass) {
-        flightpathCollection.features.push(generateFeature(point));
-      }
-      if (point.pass !== null) {
-        overflightCollection[point.pass - 1]?.features.push(generateFeature(point));
-      }
-      if (point.fragments) {
-        for (const fragment of point.fragments) {
-          fragmentsCollection.features.push(generateFeature(fragment));
-        }
-      }
-    }
-    return {
-      overflightTime: lastReport.overflight_time,
-      flightpathCollection,
-      fragmentsCollection,
-      overflightCollection,
-    };
-  } else {
+  if (!lastReport) {
     throw new Error('No reports found');
   }
+
+  for (const point of lastReport.map_points) {
+    if (!point.pass) {
+      flightpathCollection.features.push(generateFeature(point));
+    }
+    if (point.pass !== null) {
+      overflightCollection[point.pass - 1]?.features.push(generateFeature(point));
+    }
+    if (point.fragments) {
+      for (const fragment of point.fragments) {
+        fragmentsCollection.features.push(generateFeature(fragment));
+      }
+    }
+  }
+  return {
+    overflightTime: lastReport.overflight_time,
+    flightpathCollection,
+    fragmentsCollection,
+    overflightCollection,
+  };
 };

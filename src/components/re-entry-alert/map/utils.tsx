@@ -1,4 +1,4 @@
-import type { CircleLayerSpecification, FillLayer } from 'mapbox-gl';
+import type { CircleLayerSpecification, FillLayerSpecification } from 'mapbox-gl';
 
 import { RegionsEnum } from '@/utils/Regions';
 
@@ -22,7 +22,7 @@ export const RegionsGeoJson: Partial<Record<RegionsEnum, unknown>> = {
 
 export const RegionColor = '#FFDD00';
 
-export const regionLayer = (region: RegionsEnum): FillLayer => ({
+export const regionLayer = (region: RegionsEnum): FillLayerSpecification => ({
   id: region,
   source: region,
   type: 'fill',

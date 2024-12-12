@@ -976,6 +976,7 @@
   "OverflightMap": {
     "map_type": "Map type:",
     "map_view": "Map view:",
+    "center_button": "Zoom to UK",
     "area_of_interest": {
       "label": "Areas of interest:",
       "help": "Toggle areas of interest"
