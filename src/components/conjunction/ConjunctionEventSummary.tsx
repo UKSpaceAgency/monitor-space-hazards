@@ -26,9 +26,9 @@ const ConjunctionEventSummary = async ({
 
   return (
     <>
-      <div id="eventSummary">
+      <div id="eventSummary" data-pdf={t('conjunction_event_summary')}>
         <h2 className="govuk-heading-l" data-anchor="eventSummary">{t('conjunction_event_summary')}</h2>
-        <ul className="govuk-list">
+        <ul className="govuk-list" data-pdf-ignore>
           <li>
             {t('primary_object')}
             <Link
@@ -53,7 +53,7 @@ const ConjunctionEventSummary = async ({
           </li>
         </ul>
         <ConjunctionEventSummaryTableInformationsTable object={event} />
-        <Details summary={t('information_on_calculations.title')}>
+        <Details summary={t('information_on_calculations.title')} data-pdf-ignore>
           {t.rich('information_on_calculations.content')}
         </Details>
       </div>
