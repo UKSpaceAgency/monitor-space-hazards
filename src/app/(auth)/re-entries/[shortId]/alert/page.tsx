@@ -7,6 +7,7 @@ import { getReentryEvent } from '@/actions/getReentryEvent';
 import { getReentryReports } from '@/actions/getReentryReports';
 import { getSatellite } from '@/actions/getSatellite';
 import { ContentNavigation } from '@/components/ContentNavigation';
+import { ReentryAlertMapContainer } from '@/components/re-entry-alert/map/ReentryAlertMapContainer';
 import { ReentryAlertAccordion } from '@/components/re-entry-alert/ReentryAlertAccordion';
 import { ReentryAlertExecutiveSummary } from '@/components/re-entry-alert/ReentryAlertExecutiveSummary';
 import { ReentryAlertNextUpdate } from '@/components/re-entry-alert/ReentryAleryNextUpdate';
@@ -56,6 +57,11 @@ export default async function Reentry({
           <Suspense fallback={<Spinner />}>
             <ReentryAlertExecutiveSummary event={event} />
           </Suspense>
+          {reports[0]?.presignedUrl && (
+            <Suspense fallback={<Spinner />}>
+              <ReentryAlertMapContainer presignedUrl={reports[0].presignedUrl} />
+            </Suspense>
+          )}
           <ReentryAlertNextUpdate shortId={shortId} />
           <ReentryAlertAccordion event={event} reports={reports} />
           <Link href="/re-entries">

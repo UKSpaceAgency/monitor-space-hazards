@@ -443,6 +443,9 @@
       "title": "Executive summary",
       "content": "The UK Space Agency is tracking the upcoming re-entry of an object from space into the Earth's atmosphere, posing a potential threat to life and property on the ground. All re-entered debris should be considered as hazardous until proven otherwise."
     },
+    "Map": {
+      "see_further_information": "<p>See <link>Further information</link> for more detail on methodology used in this report and the organisations that have been sent this alert.</p>"
+    },
     "NextUpdate": {
       "title": "Next update",
       "content": "For Low Risk events, updates are only sent if the event breaches a higher risk threshold. For Medium and High Risk events, updates are sent as soon as new information is available. A close-down report will be sent in all cases.",
@@ -969,5 +972,25 @@
     "user": "User",
     "users": "Users",
     "upload-success": "Upload successful"
+  },
+  "OverflightMap": {
+    "map_type": "Map type:",
+    "map_view": "Map view:",
+    "area_of_interest": {
+      "label": "Areas of interest:",
+      "help": "Toggle areas of interest"
+    },
+    "overflights": {
+      "label": "Overflights and ground fragments:",
+      "help": "Toggle overflights and ground fragments",
+      "flightpath": "Flightpath",
+      "fragments": "Potential ground fragments",
+      "overflight": "Overflight {number}"
+    },
+    "tooltip": {
+      "overflight": "Overflight: {overflight}",
+      "longitude": "Longitude: {longitude}",
+      "latitude": "latitude: {latitude}"
+    }
   }
 }
