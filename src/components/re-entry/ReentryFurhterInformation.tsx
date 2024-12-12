@@ -6,7 +6,7 @@ type ReentryFurtherInformationProps = {
 };
 
 const ReentryFurtherInformation = ({ title }: ReentryFurtherInformationProps) => {
-  const t = useTranslations('Re-entry.FurtherInformation');
+  const t = useTranslations('Reentry.FurtherInformation');
   return (
     <div>
       <h2 data-anchor="further_information" className="hidden">{title}</h2>

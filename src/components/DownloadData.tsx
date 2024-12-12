@@ -8,13 +8,13 @@ import { useState } from 'react';
 import { createCSV, createJSON } from '@/libs/File';
 import Tooltip from '@/ui/tooltip/tooltip';
 
-type DownloadDataProps = {
+type DownloadDataProps<T extends object> = {
   type: string;
-  params: object;
-  downloadAction: (params: object) => Promise<unknown>;
+  params: T;
+  downloadAction: (params: T) => Promise<unknown>;
 };
 
-const DownloadData = ({ type, params, downloadAction }: DownloadDataProps) => {
+const DownloadData = <T extends object>({ type, params, downloadAction }: DownloadDataProps<T>) => {
   const t = useTranslations('Tables.Download');
   const [fetching, setFetching] = useState(false);
 

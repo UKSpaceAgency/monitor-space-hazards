@@ -16,7 +16,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ shortId: string }>;
 }) {
-  const t = await getTranslations('Re-entry');
+  const t = await getTranslations('Reentry');
   const { shortId } = await params;
   const event = await getReentryEvent(shortId);
   const satellite = await getSatellite(event.noradId);
@@ -34,7 +34,7 @@ export default async function Reentry({
 }: {
   params: Promise<{ shortId: string }>;
 }) {
-  const t = await getTranslations('Re-entry');
+  const t = await getTranslations('Reentry');
   const { shortId } = await params;
   const event = await getReentryEvent(shortId);
   const satellite = await getSatellite(event.noradId);

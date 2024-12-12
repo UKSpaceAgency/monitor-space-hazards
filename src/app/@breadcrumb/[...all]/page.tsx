@@ -11,6 +11,10 @@ export default function BreadcrumbSlot({
   const breadcrumbItems: ReactElement[] = [];
   let breadcrumbPage: ReactElement = <></>;
 
+  if (params.all.length === 1) {
+    return null;
+  }
+
   for (let i = 0; i < params.all.length; i++) {
     const route = params.all[i] as any;
     const href = `/${params.all.slice(0, i + 1).join('/')}`;

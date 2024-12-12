@@ -7,7 +7,6 @@ import { useMemo } from 'react';
 
 import type { TypeGetReentryEventsParams, TypeReentryEventOut } from '@/__generated__/data-contracts';
 import { getReentryEvents } from '@/actions/getReentryEvents';
-import { getSatellites } from '@/actions/getSatellites';
 import { DownloadData } from '@/components/DownloadData';
 import InfiniteTable from '@/components/InfiniteTable';
 import { QUERY_KEYS } from '@/utils/QueryKeys';
@@ -38,7 +37,7 @@ const ReentriesDataTable = ({ initialData, params, haveAccessToAlerts }: Reentri
         queryKeys={[QUERY_KEYS.Reentries]}
         initialSort={initialSort}
       />
-      <DownloadData type={t('Download.types.reentry_events')} params={params} downloadAction={getSatellites} />
+      <DownloadData type={t('Download.types.reentry_events')} params={params} downloadAction={getReentryEvents} />
     </>
   );
 };

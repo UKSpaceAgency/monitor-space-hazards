@@ -23,6 +23,7 @@ export default antfu({
 
   ignores: [
     'migrations/**/*',
+    '**/**/*.json',
     'next-env.d.ts',
     '.github',
   ],

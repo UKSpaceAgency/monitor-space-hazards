@@ -16,6 +16,18 @@ type BaseInformationsTableProps = {
 const BaseInformationsTable = ({ object, headerCellWidth, showLink }: BaseInformationsTableProps) => {
   const t = useTranslations('Tables.SatelliteInformations');
 
+  const headers = Array.isArray(object)
+    ? [{
+        className: 'w-1/3',
+      }, {
+        className: 'w-1/3',
+        children: t('Objects.primary'),
+      }, {
+        className: 'w-1/3',
+        children: t('Objects.secondary'),
+      }]
+    : undefined;
+
   const baseInformations: InformationsTableRow<BaseSatelliteInformations>[] = [{
     header: t('Base.common_name'),
     accessorKey: 'commonName',
@@ -31,7 +43,7 @@ const BaseInformationsTable = ({ object, headerCellWidth, showLink }: BaseInform
     accessorKey: 'objectType',
   }];
 
-  return <InformationsTable rows={baseInformations} data={object} headerCellWidth={headerCellWidth} />;
+  return <InformationsTable headers={headers} rows={baseInformations} data={object} headerCellWidth={headerCellWidth} />;
 };
 
 export { BaseInformationsTable };

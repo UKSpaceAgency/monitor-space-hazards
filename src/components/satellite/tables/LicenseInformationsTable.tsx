@@ -16,6 +16,18 @@ type LicenseInformationsTableProps = {
 const LicenseInformationsTable = ({ object, headerCellWidth }: LicenseInformationsTableProps) => {
   const t = useTranslations('Tables.SatelliteInformations');
 
+  const headers = Array.isArray(object)
+    ? [{
+        className: 'w-1/3',
+      }, {
+        className: 'w-1/3',
+        children: t('Objects.primary'),
+      }, {
+        className: 'w-1/3',
+        children: t('Objects.secondary'),
+      }]
+    : undefined;
+
   const baseInformations: InformationsTableRow<LicenseSatelliteInformations>[] = [{
     header: t('License.country'),
     accessorKey: 'licenseCountry',
@@ -29,7 +41,7 @@ const LicenseInformationsTable = ({ object, headerCellWidth }: LicenseInformatio
     renderCell: row => row.launchDate ? dayjs(row.launchDate).format('YYYY') : '',
   }];
 
-  return <InformationsTable caption={t('License.caption')} rows={baseInformations} data={object} headerCellWidth={headerCellWidth} />;
+  return <InformationsTable caption={t('License.caption')} headers={headers} rows={baseInformations} data={object} headerCellWidth={headerCellWidth} />;
 };
 
 export { LicenseInformationsTable };

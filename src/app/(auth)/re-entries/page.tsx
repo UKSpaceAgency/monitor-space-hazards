@@ -16,7 +16,7 @@ type ReentryPageSearchParams = TypeGetReentryEventsParams;
 export default async function ReentryPage(props: {
   searchParams?: Promise<ReentryPageSearchParams>;
 }) {
-  const t = await getTranslations('Re-entries');
+  const t = await getTranslations('Reentries');
 
   const searchParams = await props.searchParams;
 

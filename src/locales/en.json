@@ -375,6 +375,19 @@
       "object_data": "Object data",
       "history": "Re-entry event history",
       "further_information": "Further information"
+    },
+    "ReentryAlert": {
+      "additional_object_details": "Additional object and orbit details",
+      "potential_impact_uk_nation": "Potential impact by UK nation",
+      "potential_impact_uk_region": "Potential impact by UK region",
+      "potential_impact_overseas_territory": "Potential impact by British Overseas Territory",
+      "guidance_on_response": "Guidance on response",
+      "liability_for_damages": "Liability for damages",
+      "press_attention": "Press attention",
+      "alert_history": "Re-entry event history",
+      "risk_thresholds": "Risk thresholds",
+      "alerting_procedure": "Alerting procedure",
+      "further_information": "Further information"
     }
   },
   "Conjunctions": {
@@ -405,12 +418,12 @@
       "manoeuvre_support": "Manoeuvre support"
     }
   },
-  "Re-entries": {
+  "Reentries": {
     "title": "Track re-entry events",
     "section_title": "All re-entry events (upcoming and past)",
     "content": "<p>This table contains all tracked re-entry events, including re-entry events that meet the UK Space Agency's thresholds for alerting UK government. For further detail on how risk and alert thresholds are defined, see 'Help with this table' below.</p>"
   },
-  "Re-entry": {
+  "Reentry": {
     "title": "Re-entry event for {objectName}",
     "EventSummary": {
       "title": "Re-entry event summary",
@@ -423,11 +436,65 @@
       "help_with_information": "Help with the information on re-entry events"
     }
   },
-  "Tables": {
-    "Objects": {
-      "primary": "Primary object",
-      "secondary": "Secondary object"
+  "ReentryAlert": {
+    "title": "Re-entry alert for {objectName}",
+    "report_info": "<p><bold>Report {number}</bold> updated on {time} UTC</p>",
+    "ExecutiveSummary": {
+      "title": "Executive summary",
+      "content": "The UK Space Agency is tracking the upcoming re-entry of an object from space into the Earth's atmosphere, posing a potential threat to life and property on the ground. All re-entered debris should be considered as hazardous until proven otherwise."
     },
+    "Map": {
+      "see_further_information": "<p>See <link>Further information</link> for more detail on methodology used in this report and the organisations that have been sent this alert.</p>"
+    },
+    "NextUpdate": {
+      "title": "Next update",
+      "content": "For Low Risk events, updates are only sent if the event breaches a higher risk threshold. For Medium and High Risk events, updates are sent as soon as new information is available. A close-down report will be sent in all cases.",
+      "contact_analyst": "Contact the UK Space Agency for more information"
+    },
+    "GuidanceOnResponse": {
+      "immediate_response": {
+        "title": "Immediate response",
+        "content": "<p>All re-entered debris should be considered as hazardous until proven otherwise. The most commonly used hazardous materials used on spacecraft are:</p><list><item><hydrazine>Hydrazine</hydrazine></item><item><kerosene>Kerosene</kerosene></item></list><p>Debris objects should not be disposed of nor made available to the public. An appropriate hazmat response (i.e testing by fire service) should take place first.</p><p>The UK Space Agency is responsible for the monitoring of re-entry of objects from space into Earth's atmosphere, providing warnings and alerts across HM Government. UKSA will act as subject matter experts, providing advice and guidance on how to deal with the incident. This includes coordinating public communications about the event.</p><p>In the event of debris from the re-entry surviving to the ground, local authorities are responsible for any incident response and should follow standard response activities for the damage caused using existing Chemical, Biological, Radiological and Nuclear (CBRN) and/or plane crash policies.</p><p>Cabinet Office will take on the lead for incident response coordination if the impacts are significant or are across multiple sectors.</p>"
+      },
+      "recovery_and_clean_up": {
+        "title": "Recovery and clean up",
+        "content": "<p><bold>Decontamination:</bold> If the object is contaminated with hazardous material, it should be decontaminated. Decontamination is led by Defra who are the Lead Government Department for decontamination in England, in liaison with local authorities.</p><p><bold>Storage:</bold> The object should be sent to storage by a specialist supplier in the local area, as agreed and organised by Defra.</p><p><bold>Release:</bold> If the object has been declared safe (by Defra), UKSA will direct it's release to either: MOD Defence Intelligence if the object is of Chinese or Russian origin; the owner of the object or the state liable for the object, organised via the Foreign, Commonwealth and Development Office; or the Air Accident Investigation Bureau or the Civil Aviation Authority if the object is UK-licensed.</p><p><bold>Disposal:</bold> If the object cannot be declared safe or decontaminated, it should disposed of as per standard procedures held by Defra.</p><p><bold>Incident close down:</bold> When departments agree that recovery can be handled through Business As Usual structures, the incident can be closed down. The UK Space Agency and Cabinet Office will confirm close down of the event to all parties involved.</p>"
+      }
+    },
+    "LiabilityForDamages": {
+      "content": "<p>{licenseCountry} is liable for any damages and associated costs of the response and recovery efforts caused by the re-entry under the terms of the 1972 Space Liability Convention.</p>",
+      "licenseCountryEmpty": "It is unknown who"
+    },
+    "PressAttention": {
+      "empty": "We have not seen any press attention on this event."
+    },
+    "RiskThresholds": {
+      "content": "Risk thresholds are calculated according to the probability of the object re-entering over the UK.",
+      "risk_level": "Risk level",
+      "probability_of_reentry": "Probability of re-entry over the UK (%)",
+      "risk": {
+        "low": "Less than 1%",
+        "medium": "1% - 5%",
+        "high": "More than 5%"
+      }
+    },
+    "AlertingProcedure": {
+      "standard_alert": {
+        "title": "Standard re-entry alert",
+        "content": "<p>If this report is classified as a standard re-entry alert, then it has been distributed only to key UK government organisations (UKSA, Ministry of Defence, Cabinet Office, Civil Aviation Authority) and international partners.</p><p><bold>The criteria for producing a standard re-entry alert is as follows:</bold></p><list><item>The criteria for producing a standard re-entry alert is less than 36 hours until re-entry and one of the following:</item><list><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories</item><item>Any UK-licensed object (except designed for demise)</item><item>Press interest</item><item>Nominated for escalation by the National Space Operations Centre</item></list></list>"
+      },
+      "priority_alert": {
+        "title": "Priority re-entry alert",
+        "content": "<p>If this report is classified as a priority re-entry alert, then it has been distributed more widely across UK devolved and central government departments.</p><p><bold>The criteria for producing a priority re-entry alert is debris likely to survive to the ground and one of the following:</bold></p><list><item>Debris likely to survive to the ground and one of the following:</item><list><item>0.1% chance of impact in the UK</item><item>UK-licensed object</item></list></list>"
+      }
+    },
+    "FurtherInformation": {
+      "content": "To understand more about how this data was generated by the UKSA, see:",
+      "reentry_event_analysis_information": "Re-entry event analysis information",
+      "help_with_information": "Help with the information on re-entry events"
+    }
+  },
+  "Tables": {
     "Satellites": {
       "common_name": "Common name",
       "norad_id": "NORAD ID",
@@ -458,7 +525,8 @@
         "satellites": "UK-licensed satellites",
         "satellite_events": "{epoch} conjunction events",
         "conjunction_events": "conjunction events",
-        "reentry_events": "re-entry events"
+        "reentry_events": "re-entry events",
+        "reentry_reports": "re-entry reports"
       }
     },
     "AnalysisData": {
@@ -474,6 +542,10 @@
       "file_uploaded": "File uploaded"
     },
     "SatelliteInformations": {
+      "Objects": {
+        "primary": "Primary object",
+        "secondary": "Secondary object"
+      },
       "Informations": {
         "title": "Satellite information",
         "content": "Space-Track is the main source of all object data. Contact Space-Track if your satellite data is incorrect."
@@ -667,6 +739,43 @@
       "time_of_update": "Time of update (UTC)",
       "predicted_reentry_time": "Predicted re-entry time (UTC)",
       "uncertainty_window": "Uncertainty window for predicted re-entry time (mins)"
+    },
+    "ReentryAlertExecutiveSummary": {
+      "uk_reentry_probability": "Risk to the UK (see Risk thresholds)",
+      "probability": "Probability of re-entry over the UK (%)",
+      "time_window_world": "Re-entry time window worldwide (UTC)",
+      "overflight_time": "UK overflight time(s) (UTC)",
+      "survivability_comment": "Expected survivability to ground",
+      "object": "Object",
+      "estimated_mass": "Estimated mass (kg)",
+      "licensing_country": "Licensing country"
+    },
+    "ReentryAlertAdditionalObjectDetails": {
+      "object_details": "Object details",
+      "orbit_details": "Orbit details",
+      "international_designator": "International designator",
+      "norad_id": "NORAD ID",
+      "object_dimensions": "Object dimensions",
+      "height": "Height",
+      "span": "Span",
+      "launching_year": "Launching year",
+      "apogee": "Apogee (km)",
+      "perigee": "Perigee (km)",
+      "inclination": "Inclination (°)"
+    },
+    "ReentryAlertImpact": {
+      "probability_of_reentry": "Probability of re-entry (%)",
+      "time_of_overflight": "Time of overflight {number} (UTC)",
+      "uk_nations_hint": "Only UK nations which are at risk from this re-entry are included in the table(s) above.",
+      "overseas_hint": "* For the purposes of this table, British Antarctic Territory has been limited to the areas surrounding populated facilities in the territory.",
+      "see_further_information": "<p>See <link>Further information</link> for more detail on methodology used in this report.</p>"
+    },
+    "ReentryAlertHistory": {
+      "report_number": "Report number",
+      "report_time": "Time of report (UTC)",
+      "risk": "Risk",
+      "probability": "Probability of re-entry over the UK (%)",
+      "overflight": "UK overflight time(s) (UTC)"
     }
   },
   "Forms": {
@@ -864,5 +973,26 @@
     "user": "User",
     "users": "Users",
     "upload-success": "Upload successful"
+  },
+  "OverflightMap": {
+    "map_type": "Map type:",
+    "map_view": "Map view:",
+    "center_button": "Zoom to UK",
+    "area_of_interest": {
+      "label": "Areas of interest:",
+      "help": "Toggle areas of interest"
+    },
+    "overflights": {
+      "label": "Overflights and ground fragments:",
+      "help": "Toggle overflights and ground fragments",
+      "flightpath": "Flightpath",
+      "fragments": "Potential ground fragments",
+      "overflight": "Overflight {number}"
+    },
+    "tooltip": {
+      "overflight": "Overflight: {overflight}",
+      "longitude": "Longitude: {longitude}",
+      "latitude": "latitude: {latitude}"
+    }
   }
 }
