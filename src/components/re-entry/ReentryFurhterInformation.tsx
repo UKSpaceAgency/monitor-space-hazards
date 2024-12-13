@@ -1,16 +1,10 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
-type ReentryFurtherInformationProps = {
-  title?: string;
-};
-
-const ReentryFurtherInformation = ({ title }: ReentryFurtherInformationProps) => {
+const ReentryFurtherInformation = () => {
   const t = useTranslations('Reentry.FurtherInformation');
   return (
     <div>
-      <h2 data-anchor="further_information" className="hidden">{title}</h2>
-      <p className="govuk-body">{t('content')}</p>
       <ul className="govuk-list govuk-list--bullet">
         <li>
           <Link
