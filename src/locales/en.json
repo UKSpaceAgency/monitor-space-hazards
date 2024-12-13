@@ -990,9 +990,10 @@
       "overflight": "Overflight {number}"
     },
     "tooltip": {
-      "overflight": "Overflight: {overflight}",
-      "longitude": "Longitude: {longitude}",
-      "latitude": "latitude: {latitude}"
+      "regions": "Regions:",
+      "overflight": "Overflight:",
+      "longitude": "Longitude:",
+      "latitude": "Latitude:"
     }
   }
 }
