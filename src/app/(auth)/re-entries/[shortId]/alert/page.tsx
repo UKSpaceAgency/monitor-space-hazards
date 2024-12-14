@@ -4,15 +4,9 @@ import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 
 import { getReentryEvent } from '@/actions/getReentryEvent';
-import { getReentryReports } from '@/actions/getReentryReports';
 import { getSatellite } from '@/actions/getSatellite';
-import { ContentNavigation } from '@/components/ContentNavigation';
-import { ReentryAlertMapContainer } from '@/components/re-entry-alert/map/ReentryAlertMapContainer';
-import { ReentryAlertAccordion } from '@/components/re-entry-alert/ReentryAlertAccordion';
-import { ReentryAlertExecutiveSummary } from '@/components/re-entry-alert/ReentryAlertExecutiveSummary';
-import { ReentryAlertNextUpdate } from '@/components/re-entry-alert/ReentryAleryNextUpdate';
-import { dayjs, FORMAT_DATE_TIME, FORMAT_FULL_DATE } from '@/libs/Dayjs';
-import Button from '@/ui/button/button';
+import { ReentryAlertPage } from '@/components/re-entry-alert/ReentryAlertPage';
+import NotificationBanner from '@/ui/notification-banner/notification-banner';
 import Spinner from '@/ui/spinner/spinner';
 
 export async function generateMetadata({
@@ -33,42 +27,24 @@ export async function generateMetadata({
   };
 }
 
-export default async function Reentry({
+export default async function ReentryAlert({
   params,
 }: {
   params: Promise<{ shortId: string }>;
 }) {
   const t = await getTranslations('ReentryAlert');
-  const tCommon = await getTranslations('Common');
   const { shortId } = await params;
-  const event = await getReentryEvent(shortId);
-  const reports = await getReentryReports({ shortId });
 
   return (
     <div>
-      <h1 className="govuk-heading-xl">
-        {t('title', { objectName: event.objectName })}
-        <span className="block text-lg">{dayjs(event.decayEpoch).format(FORMAT_FULL_DATE)}</span>
-      </h1>
-      <div className="grid md:grid-cols-4 gap-7">
-        <ContentNavigation />
-        <div className="md:col-span-3">
-          {t.rich('report_info', { number: event.reentryReportNumber?.toString(), time: dayjs(event.updatedAt).format(FORMAT_DATE_TIME) })}
-          <Suspense fallback={<Spinner />}>
-            <ReentryAlertExecutiveSummary event={event} />
-          </Suspense>
-          {reports[0]?.presignedUrl && (
-            <Suspense fallback={<Spinner />}>
-              <ReentryAlertMapContainer presignedUrl={reports[0].presignedUrl} />
-            </Suspense>
-          )}
-          <ReentryAlertNextUpdate shortId={shortId} />
-          <ReentryAlertAccordion event={event} reports={reports} />
-          <Link href="/re-entries">
-            <Button variant="secondary">{tCommon('return', { to: 'previous page' })}</Button>
-          </Link>
-        </div>
-      </div>
+      <NotificationBanner heading={t.rich('notification_banner', {
+        edit: chunks => <Link className="govuk-link" href={`/re-entries/${shortId}/alert/edit`}>{chunks}</Link>,
+        send: chunks => <Link className="govuk-link" href={`/re-entries/${shortId}/alert/send`}>{chunks}</Link>,
+      })}
+      />
+      <Suspense fallback={<Spinner />}>
+        <ReentryAlertPage shortId={shortId} />
+      </Suspense>
     </div>
   );
 }

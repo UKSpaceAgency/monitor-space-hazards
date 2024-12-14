@@ -26,3 +26,12 @@ ol.govuk-list {
     }
   }
 }
+
+.govuk-hint {
+  p,
+  ul {
+    color: inherit;
+    font-size: inherit;
+    list-style: inherit;
+  }
+}
