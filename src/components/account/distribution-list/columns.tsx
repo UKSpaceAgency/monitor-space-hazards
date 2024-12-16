@@ -1,9 +1,11 @@
+'use client';
+
 import Link from 'next/link';
 
 import type { TypeAlertSettingsDistributionList } from '@/__generated__/data-contracts';
 import type { TranslatedColumnDef } from '@/types';
 
-export const getDistributionListColumns = (): TranslatedColumnDef<TypeAlertSettingsDistributionList>[] => ([
+export const distributionListColumns: TranslatedColumnDef<TypeAlertSettingsDistributionList>[] = [
   {
     accessorKey: 'name',
     id: 'name',
@@ -44,4 +46,4 @@ export const getDistributionListColumns = (): TranslatedColumnDef<TypeAlertSetti
       </Link>
     ),
   },
-]);
+];

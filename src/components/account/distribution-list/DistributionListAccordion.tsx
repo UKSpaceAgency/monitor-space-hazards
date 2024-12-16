@@ -1,12 +1,11 @@
-'use client';
-
 import { useTranslations } from 'next-intl';
 
 import type { TypeAlertSettingsDistributionList } from '@/__generated__/data-contracts';
 import { DataTable } from '@/components/DataTable';
 import Accordion from '@/ui/accordion/accordion';
+import Details from '@/ui/details/details';
 
-import { getDistributionListColumns } from './columns';
+import { distributionListColumns } from './columns';
 
 type DistributionListAccordionsProps = {
   alerts: TypeAlertSettingsDistributionList[];
@@ -14,8 +13,6 @@ type DistributionListAccordionsProps = {
 
 const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps) => {
   const t = useTranslations('Accordions.DistributionLists');
-
-  const columns = getDistributionListColumns();
 
   return (
     <>
@@ -33,7 +30,7 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
               <div className="overflow-auto">
                 <DataTable
                   data={alerts.filter(alert => alert.conjunction_alert_settings?.chosen_option === 'all')}
-                  columns={columns}
+                  columns={distributionListColumns}
                   largerText
                 />
               </div>
@@ -46,7 +43,7 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
               <div className="overflow-auto">
                 <DataTable
                   data={alerts.filter(alert => alert.conjunction_alert_settings?.chosen_option === 'priority')}
-                  columns={columns}
+                  columns={distributionListColumns}
                   largerText
                 />
               </div>
@@ -54,6 +51,10 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
           },
         ]}
       />
+
+      <Details summary={t('conjunctions_help.summary')}>
+        {t.rich('conjunctions_help.content')}
+      </Details>
 
       <h2 className="govuk-heading-l">
         {t('distribution_list', { type: 're-entry' })}
@@ -69,7 +70,7 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
               <div className="overflow-auto">
                 <DataTable
                   data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_option === 'all')}
-                  columns={columns}
+                  columns={distributionListColumns}
                   largerText
                 />
               </div>
@@ -82,7 +83,7 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
               <div className="overflow-auto">
                 <DataTable
                   data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_option === 'uk_satellites_only')}
-                  columns={columns}
+                  columns={distributionListColumns}
                   largerText
                 />
               </div>
@@ -95,7 +96,7 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
               <div className="overflow-auto">
                 <DataTable
                   data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_option === 'priority')}
-                  columns={columns}
+                  columns={distributionListColumns}
                   largerText
                 />
               </div>
@@ -103,6 +104,10 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
           },
         ]}
       />
+
+      <Details summary={t('reentry_help.summary')}>
+        {t.rich('reentry_help.content')}
+      </Details>
     </>
   );
 };

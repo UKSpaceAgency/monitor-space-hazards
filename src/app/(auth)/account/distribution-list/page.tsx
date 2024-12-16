@@ -17,7 +17,6 @@ export default async function DistributionListsPage() {
     <div>
       <h1 className="govuk-heading-xl">{t('title')}</h1>
       <p className="govuk-body">{t('description')}</p>
-
       <DistributionListAccordions alerts={alerts} />
     </div>
   );
