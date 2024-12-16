@@ -5,7 +5,7 @@ import { getTranslations } from 'next-intl/server';
 import { getSession } from '@/actions/getSession';
 import { getUsersMe } from '@/actions/getUsersMe';
 import TaskList from '@/ui/task-list/task-list';
-import { isAgencyUser, isGovUser, isOrgAdmin, isSuperAdmin } from '@/utils/Roles';
+import { isAgencyApprover, isAgencyUser, isGovUser, isOrgAdmin, isSatteliteUser, isSuperAdmin } from '@/utils/Roles';
 
 export const metadata: Metadata = {
   title: 'Your account information',
@@ -62,6 +62,14 @@ export default async function AccountPage() {
                   title: t('change_your_notification_settings.conjunction_event_notification_settings'),
                   href: '/account/notification-settings',
                 },
+                ...(!isSatteliteUser(session.user?.role)
+                  ? [
+                      {
+                        title: t('change_your_notification_settings.alert_settings'),
+                        href: '/account/alert-settings',
+                      },
+                    ]
+                  : []),
               ]}
             />
           </>
@@ -83,10 +91,19 @@ export default async function AccountPage() {
                   title: t('change_your_organisation_details.add_new_user'),
                   href: '/account/add-new-user',
                 },
+                ...(isAgencyApprover(role)
+                  ? [
+                      {
+                        title: t('change_your_organisation_details.distribution_lists'),
+                        href: '/account/distribution-list',
+                      },
+                    ]
+                  : []),
               ]}
             />
           </>
         )}
+
         <div>
           <h2 className="govuk-heading-m">
             {t('view_terms_and_conditions.title')}

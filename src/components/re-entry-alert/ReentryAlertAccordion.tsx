@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
 
-import type { TypeReentryEventOut, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
+import type { TypeReentryEventOut, TypeReentryEventPatch, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
 import Accordion from '@/ui/accordion/accordion';
 
 import { ReentryFurtherInformation } from '../re-entry/ReentryFurhterInformation';
@@ -18,13 +18,15 @@ import { ReentryAlertAdditionalObjectDetailsTable } from './tables/ReentryAlertA
 type ReentryAlertAccordionProps = {
   event: TypeReentryEventOut;
   reports?: TypeReentryEventReportOut[];
+  searchParams?: TypeReentryEventPatch;
 };
 
 const ReentryAlertAccordion = ({
   event,
   reports,
+  searchParams,
 }: ReentryAlertAccordionProps) => {
-  const t = useTranslations('Accordions.ReentryAlert');
+  const t = useTranslations('ReentryAlert.accordion');
 
   const impacts = reports && reports[0]?.impact;
 
@@ -67,17 +69,17 @@ const ReentryAlertAccordion = ({
         {
           id: 'guidance_on_response',
           heading: t('guidance_on_response'),
-          content: <ReentryAlertGuidanceOnResponse immediateResponse={event.immediateResponse} recoveryAndCleanUp={event.recoveryAndCleanUp} />,
+          content: <ReentryAlertGuidanceOnResponse immediateResponse={searchParams?.immediate_response ?? event.immediateResponse} recoveryAndCleanUp={searchParams?.recovery_and_clean_up ?? event.recoveryAndCleanUp} />,
         },
         {
           id: 'liability_for_damages',
           heading: t('liability_for_damages'),
-          content: <ReentryAlertLiabilityForDamages licenseCountry={event.licenseCountry} damagesLiability={event.damagesLiability} />,
+          content: <ReentryAlertLiabilityForDamages licenseCountry={event.licenseCountry} damagesLiability={searchParams?.damages_liability ?? event.damagesLiability} />,
         },
         {
           id: 'press_attention',
           heading: t('press_attention'),
-          content: <ReentryAlertPressAttention pressAttention={event.pressAttention} />,
+          content: <ReentryAlertPressAttention pressAttention={searchParams?.press_attention ?? event.pressAttention} />,
         },
         {
           id: 'alert_history',

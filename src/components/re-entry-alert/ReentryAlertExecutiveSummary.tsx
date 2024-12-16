@@ -7,7 +7,7 @@ import { ReentryAlertExecutiveSummaryTable } from './tables/ReentryAlertExecutiv
 
 type ReentryAlertExecutiveSummaryProps = {
   event: TypeReentryEventOut;
-  previewSummary?: string;
+  previewSummary?: string | null;
 };
 
 const ReentryAlertExecutiveSummary = async ({ event, previewSummary }: ReentryAlertExecutiveSummaryProps) => {
@@ -20,7 +20,7 @@ const ReentryAlertExecutiveSummary = async ({ event, previewSummary }: ReentryAl
         {t('content')}
       </p>
       <Markdown>
-        {previewSummary !== null ? previewSummary : event?.execSummary}
+        {previewSummary ?? event?.execSummary}
       </Markdown>
       <ReentryAlertExecutiveSummaryTable event={event} />
     </div>

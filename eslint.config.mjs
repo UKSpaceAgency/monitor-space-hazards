@@ -23,7 +23,7 @@ export default antfu({
 
   ignores: [
     'migrations/**/*',
-    '**/**/*.json',
+    'src/components/re-entry-alert/map/regions/*.json',
     'next-env.d.ts',
     '.github',
   ],

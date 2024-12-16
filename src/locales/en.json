@@ -115,13 +115,15 @@
     "change_your_notification_settings": {
       "title": "Change your notification settings",
       "conjunction_event_notification_thresholds_settings": "Conjuction event notification thresholds settings",
-      "conjunction_event_notification_settings": "Conjuction event notification settings"
+      "conjunction_event_notification_settings": "Conjuction event notification settings",
+      "alert_settings": "Edit your alert settings"
     },
     "change_your_organisation_details": {
       "title": "Change your organisation details",
       "organisation_information": "Organisation information",
       "organisations": "Organisations",
-      "add_new_user": "Add new user"
+      "add_new_user": "Add new user",
+      "distribution_lists": "View distribution lists"
     },
     "view_terms_and_conditions": {
       "title": "View terms and conditions and data privacy notice",
@@ -317,7 +319,15 @@
   "Accordions": {
     "DistributionLists": {
       "receive_alerts": "Receive {item} alerts",
-      "distribution_list": "Distribution lists for {type} events"
+      "distribution_list": "Distribution lists for {type} events",
+      "conjunctions_help": {
+        "summary": "Conjunction alert criteria",
+        "content": "<h3>Standard conjunction alert</h3><p>There are various criteria which determine if alerts are produced about conjunction events. These criteria vary by type of object.</p><p><bold>For UK-licensed objects:</bold></p><list><item>Less than 5 days until Time of Closest Approach</item><item>More than 0.1% probability of collision</item><item>Press interest</item></list><p><bold>For non-UK objects:</bold></p><list><item>Less than 5 days until Time of Closest Approach, with:</item><list><item>Low risk or higher</item><item>No manoeuvre expected</item></list></list><p><bold>For all objects:</bold></p><list><item>If nominated for escalation by the National Space Operations Centre</item></list><h3>Priority conjunction alert</h3><p><bold>For UK-licensed objects:</bold></p><list><item>More than 1% probability of collision</item><item>No manoeuvre expected</item></list><p><bold>For non-UK objects:</bold></p><list><item>More than 5% probability of collision</item><item>No manoeuvre expected</item><item>Significant press interest</item></list>"
+      },
+      "reentry_help": {
+        "summary": "Re-entry alert criteria",
+        "content": "<h3>Standard re-entry alert</h3><p>If this report is classified as a standard re-entry alert, then it has been distributed only to key UK government organisations (UK Space Agency, Ministry of Defence, Cabinet Office, Civil Aviation Authority) and international partners.</p><p><bold>The criteria for producing a standard re-entry alert is less than 36 hours until re-entry and one of the following:</bold></p><list><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories</item><item>Any UK-licensed object (except designed for demise)</item><item>Press interest</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Priority re-entry alert</h3><p>If this report is classified as a priority re-entry alert, then it has been distributed more widely across UK devolved and central government departments.</p><p><bold>The criteria for producing a priority re-entry alert is debris likely to survive to the ground and one of the following:</bold></p><list><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis)</item><item>UK-licensed object</item><item>Significant press interest</item></list>"
+      }
     },
     "Conjunction": {
       "section_titles": {
@@ -370,24 +380,6 @@
         "link1": "Conjunction event analysis information",
         "link2": "Help with the information on this page"
       }
-    },
-    "Reentry": {
-      "object_data": "Object data",
-      "history": "Re-entry event history",
-      "further_information": "Further information"
-    },
-    "ReentryAlert": {
-      "additional_object_details": "Additional object and orbit details",
-      "potential_impact_uk_nation": "Potential impact by UK nation",
-      "potential_impact_uk_region": "Potential impact by UK region",
-      "potential_impact_overseas_territory": "Potential impact by British Overseas Territory",
-      "guidance_on_response": "Guidance on response",
-      "liability_for_damages": "Liability for damages",
-      "press_attention": "Press attention",
-      "alert_history": "Re-entry event history",
-      "risk_thresholds": "Risk thresholds",
-      "alerting_procedure": "Alerting procedure",
-      "further_information": "Further information"
     }
   },
   "Conjunctions": {
@@ -425,6 +417,11 @@
   },
   "Reentry": {
     "title": "Re-entry event for {objectName}",
+    "accordion": {
+      "object_data": "Object data",
+      "history": "Re-entry event history",
+      "further_information": "Further information"
+    },
     "EventSummary": {
       "title": "Re-entry event summary",
       "reentering_object": "Re-entering object:",
@@ -437,8 +434,22 @@
     }
   },
   "ReentryAlert": {
+    "notification_banner": "You are able to <edit>edit this alert</edit> or <send>send this alert to additional recipients</send>",
     "title": "Re-entry alert for {objectName}",
     "report_info": "<p><bold>Report {number}</bold> updated on {time} UTC</p>",
+    "accordion": {
+      "additional_object_details": "Additional object and orbit details",
+      "potential_impact_uk_nation": "Potential impact by UK nation",
+      "potential_impact_uk_region": "Potential impact by UK region",
+      "potential_impact_overseas_territory": "Potential impact by British Overseas Territory",
+      "guidance_on_response": "Guidance on response",
+      "liability_for_damages": "Liability for damages",
+      "press_attention": "Press attention",
+      "alert_history": "Re-entry event history",
+      "risk_thresholds": "Risk thresholds",
+      "alerting_procedure": "Alerting procedure",
+      "further_information": "Further information"
+    },
     "ExecutiveSummary": {
       "title": "Executive summary",
       "content": "The UK Space Agency is tracking the upcoming re-entry of an object from space into the Earth's atmosphere, posing a potential threat to life and property on the ground. All re-entered debris should be considered as hazardous until proven otherwise."
@@ -481,17 +492,29 @@
     "AlertingProcedure": {
       "standard_alert": {
         "title": "Standard re-entry alert",
-        "content": "<p>If this report is classified as a standard re-entry alert, then it has been distributed only to key UK government organisations (UKSA, Ministry of Defence, Cabinet Office, Civil Aviation Authority) and international partners.</p><p><bold>The criteria for producing a standard re-entry alert is as follows:</bold></p><list><item>The criteria for producing a standard re-entry alert is less than 36 hours until re-entry and one of the following:</item><list><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories</item><item>Any UK-licensed object (except designed for demise)</item><item>Press interest</item><item>Nominated for escalation by the National Space Operations Centre</item></list></list>"
+        "content": "<p>If this report is classified as a standard re-entry alert, then it has been distributed only to key UK government organisations (UK Space Agency, Ministry of Defence, Cabinet Office, Civil Aviation Authority) and international partners.</p><p><bold>The criteria for producing a standard re-entry alert is less than 36 hours until re-entry and one of the following:</bold></p><list><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories</item><item>Any UK-licensed object (except designed for demise)</item><item>Press interest</item><item>Nominated for escalation by the National Space Operations Centre</item></list>"
       },
       "priority_alert": {
         "title": "Priority re-entry alert",
-        "content": "<p>If this report is classified as a priority re-entry alert, then it has been distributed more widely across UK devolved and central government departments.</p><p><bold>The criteria for producing a priority re-entry alert is debris likely to survive to the ground and one of the following:</bold></p><list><item>Debris likely to survive to the ground and one of the following:</item><list><item>0.1% chance of impact in the UK</item><item>UK-licensed object</item></list></list>"
+        "content": "<p>If this report is classified as a priority re-entry alert, then it has been distributed more widely across UK devolved and central government departments.</p><p><bold>The criteria for producing a priority re-entry alert is debris likely to survive to the ground and one of the following:</bold></p><list><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis)</item><item>>UK-licensed object</item><item>Significant press interest</item></list>"
       }
     },
     "FurtherInformation": {
       "content": "To understand more about how this data was generated by the UKSA, see:",
       "reentry_event_analysis_information": "Re-entry event analysis information",
       "help_with_information": "Help with the information on re-entry events"
+    }
+  },
+  "ReentryAlertEdit": {
+    "title": "Re-entry alert for {objectName}",
+    "content": "<p>If edits or additions are needed to the automatically generated report, these can be made through free text inputs in the boxes below. Once published, these edits will automatically be added to the relevant event page, and users on the appropriate distribution lists will be notified of the update.</p><p>The below boxes can only process <bold>plain text</bold>. Do not include images or text formatting.</p>",
+    "review_description": "Free text edits to re-entry event {shortId}",
+    "preview": {
+      "title": "Preview your edits before publishing",
+      "banner": {
+        "title": "Ensure you review before publishing.",
+        "content": "It is advised that at least two individuals review text edits before they are published on GOV.UK platforms."
+      }
     }
   },
   "Tables": {
@@ -914,6 +937,26 @@
     "ContactAnalyst": {
       "submit": "Submit",
       "message": "Message"
+    },
+    "Edit_alert": {
+      "type": {
+        "exec_summary": "Executive Summary",
+        "immediate_response": "Immediate response",
+        "recovery_and_clean_up": "Recovery and clean up",
+        "damages_liability": "Liability for damages",
+        "press_attention": "Press attention"
+      },
+      "add_to": "Add to `{name}`",
+      "hint": "This text will appear under paragraphs which read:",
+      "press_attention_hint": "<p>Include details of any press attention related to this event. Leave blank if there has been no press attention.</p><p>This text will appear alongside a link to standard UK Space Agency press lines.</p>",
+      "clear": "Clear `{name}` text box",
+      "review": "Review edit",
+      "change": "Change",
+      "review_hint": "Check your changes in the table above. Check for any spelling or grammatical errors. You can review how the changes will look in the report by selecting `See final preview` - this will not publish your changes. See final preview",
+      "preview": "See final preview",
+      "publish_confirm": "Are you sure you want to publish changes to this alert?",
+      "publish_edits": "Publish edits",
+      "publish_return": "Return to review edits page"
     }
   },
   "Components": {
@@ -922,6 +965,8 @@
     }
   },
   "Common": {
+    "yes": "Yes",
+    "no": "No",
     "return": "Return to {to}",
     "save_and_continue": "Save and continue",
     "yesDelete": "Yes, delete",

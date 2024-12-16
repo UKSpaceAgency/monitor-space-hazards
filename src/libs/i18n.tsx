@@ -1,11 +1,11 @@
 import type { RichTranslationValues } from 'next-intl';
 import { getRequestConfig } from 'next-intl/server';
-import type { ReactNode } from 'react';
 
 import { AppConfig } from '@/utils/AppConfig';
 
 export const defaultTranslationValues: RichTranslationValues = {
-  p: (chunks: ReactNode) => <p className="govuk-body">{chunks}</p>,
+  h3: chunks => <h3 className="govuk-heading-m">{chunks}</h3>,
+  p: chunks => <p className="govuk-body">{chunks}</p>,
   list: chunks => <ul className="govuk-list govuk-list--bullet">{chunks}</ul>,
   item: chunks => <li>{chunks}</li>,
   bold: chunks => <b>{chunks}</b>,

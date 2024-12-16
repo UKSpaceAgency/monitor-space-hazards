@@ -16,7 +16,7 @@ const ReentryAccordion = ({
   noradId,
   object,
 }: ReentryAccordionProps) => {
-  const t = useTranslations('Accordions.Reentry');
+  const t = useTranslations('Reentry.accordion');
 
   return (
     <Accordion

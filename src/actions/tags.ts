@@ -6,4 +6,5 @@ export enum REVALIDATION_TAGS {
   GET_MANOEUVRE = 'get-manoeuvre',
   GET_EPHEMERISES = 'get-ephemerises',
   GET_ALERTS = 'get-alerts',
+  GET_REENTRY_EVENT = 'get-reentry-event',
 }
