@@ -17,14 +17,14 @@ export async function generateMetadata({
   params: Promise<{ noradId: string }>;
 }) {
   const { noradId } = await params;
-  const satelltite = await getSatellite(noradId);
-
-  if (!satelltite) {
+  try {
+    const satelltite = await getSatellite(noradId);
+    return {
+      title: satelltite.commonName,
+    };
+  } catch {
     notFound();
   }
-  return {
-    title: satelltite.commonName,
-  };
 }
 
 export default async function Satellite({

@@ -18,20 +18,20 @@ export async function generateMetadata({
 }) {
   const t = await getTranslations('ReentryAlertEdit');
   const { shortId } = await params;
-  const event = await getReentryEvent(shortId);
-  const satellite = await getSatellite(event.noradId);
-
-  if (!event && !satellite) {
-    notFound();
-  }
 
   if (!searchParams) {
     redirect(`/re-entries/${shortId}/alert`);
   }
 
-  return {
-    title: t('title', { objectName: satellite.commonName }),
-  };
+  try {
+    const event = await getReentryEvent(shortId);
+    const satellite = await getSatellite(event.noradId);
+    return {
+      title: t('title', { objectName: satellite.commonName }),
+    };
+  } catch {
+    notFound();
+  }
 }
 
 export default async function ReentryAlertEditPreview({

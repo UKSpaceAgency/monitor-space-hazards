@@ -24,7 +24,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     return (
       <div
-        className={clsx('govuk-form-group', {
+        className={clsx('govuk-form-group', className, {
           'govuk-form-group--error': !!error,
         })}
       >

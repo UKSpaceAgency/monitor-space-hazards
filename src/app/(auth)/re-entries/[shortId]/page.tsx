@@ -18,15 +18,15 @@ export async function generateMetadata({
 }) {
   const t = await getTranslations('Reentry');
   const { shortId } = await params;
-  const event = await getReentryEvent(shortId);
-  const satellite = await getSatellite(event.noradId);
-
-  if (!event && !satellite) {
+  try {
+    const event = await getReentryEvent(shortId);
+    const satellite = await getSatellite(event.noradId);
+    return {
+      title: t('title', { objectName: satellite.commonName }),
+    };
+  } catch {
     notFound();
   }
-  return {
-    title: t('title', { objectName: satellite.commonName }),
-  };
 }
 
 export default async function Reentry({

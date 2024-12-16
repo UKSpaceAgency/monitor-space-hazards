@@ -18,10 +18,14 @@ export async function generateMetadata({
   params: { shortId: string };
 }) {
   const { shortId } = await params;
-  const event = await getConjunctionEventsSatelliteEventShortId(shortId);
-  return {
-    title: event.shortId,
-  };
+  try {
+    const event = await getConjunctionEventsSatelliteEventShortId(shortId);
+    return {
+      title: event.shortId,
+    };
+  } catch {
+    notFound();
+  }
 }
 
 export default async function ConjunctionPage({

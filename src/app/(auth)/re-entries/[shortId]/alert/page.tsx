@@ -39,7 +39,7 @@ export default async function ReentryAlert({
     <div>
       <NotificationBanner heading={t.rich('notification_banner', {
         edit: chunks => <Link className="govuk-link" href={`/re-entries/${shortId}/alert/edit`}>{chunks}</Link>,
-        send: chunks => <Link className="govuk-link" href={`/re-entries/${shortId}/alert/send`}>{chunks}</Link>,
+        send: chunks => <Link className="govuk-link" href={`/re-entries/${shortId}/alert/send-alert`}>{chunks}</Link>,
       })}
       />
       <Suspense fallback={<Spinner />}>
