@@ -19,7 +19,6 @@ export const satteliteConjunctionColumns: TranslatedColumnDef<TypeEventOut>[] = 
           return (
             <Link
               href={`/conjunctions/${value}`}
-              passHref
               className="govuk-link"
             >
               {value}

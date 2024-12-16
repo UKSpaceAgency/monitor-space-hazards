@@ -4,7 +4,6 @@ import { getTranslations } from 'next-intl/server';
 
 import { getReentryAlertLatest } from '@/actions/getReentryAlertLatest';
 import { getReentryEvent } from '@/actions/getReentryEvent';
-import { getSatellite } from '@/actions/getSatellite';
 import { EventAlertSend } from '@/components/event-alert-send/EventAlertSend';
 
 export async function generateMetadata({
@@ -12,13 +11,12 @@ export async function generateMetadata({
 }: {
   params: Promise<{ shortId: string }>;
 }) {
-  const t = await getTranslations('ReentryAlertSend');
+  const t = await getTranslations('Forms.Send_alert');
   const { shortId } = await params;
   try {
-    const event = await getReentryEvent(shortId);
-    const satellite = await getSatellite(event.noradId);
+    await getReentryEvent(shortId);
     return {
-      title: t('title', { objectName: satellite.commonName }),
+      title: t('title'),
     };
   } catch {
     notFound();

@@ -44,7 +44,6 @@ export const getConjunctionEventsColumns = ({
           return (
             <Link
               href={`/conjunctions/${value}`}
-              passHref
               className="govuk-link"
             >
               {value}
@@ -72,7 +71,6 @@ export const getConjunctionEventsColumns = ({
         cell: ({ row, getValue }) => (
           <Link
             href={`/satellites/${row?.original.primaryObjectNoradId}`}
-            passHref
             className="govuk-link"
           >
             {getValue() as string}
@@ -92,7 +90,6 @@ export const getConjunctionEventsColumns = ({
               ? (
                   <Link
                     href={`/satellites/${row?.original.secondaryObjectNoradId}`}
-                    passHref
                     className="govuk-link"
                   >
                     {value}

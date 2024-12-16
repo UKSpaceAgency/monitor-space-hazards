@@ -10,14 +10,13 @@ const ConjunctionFurtherInformation = () => {
         <li>
           <Link
             href="/page/conjunction-analysis-information"
-            passHref
             className="govuk-link"
           >
             {t('link1')}
           </Link>
         </li>
         <li>
-          <Link href="/page/definitions" passHref className="govuk-link">
+          <Link href="/page/definitions" className="govuk-link">
             {t('link2')}
           </Link>
         </li>

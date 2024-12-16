@@ -24,8 +24,6 @@ const ConjunctionButtons = ({ title }: ConjunctionButtonsProps) => {
     <ButtonGroup>
       <Link
         href="/conjunctions"
-        passHref
-        legacyBehavior
       >
         <Button className="govuk-button--secondary">
           {tCommon('return', { to: 'upcoming conjunction events page' })}

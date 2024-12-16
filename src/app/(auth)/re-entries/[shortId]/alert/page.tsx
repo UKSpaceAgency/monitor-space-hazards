@@ -4,7 +4,6 @@ import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 
 import { getReentryEvent } from '@/actions/getReentryEvent';
-import { getSatellite } from '@/actions/getSatellite';
 import { ReentryAlertPage } from '@/components/re-entry-alert/ReentryAlertPage';
 import NotificationBanner from '@/ui/notification-banner/notification-banner';
 import Spinner from '@/ui/spinner/spinner';
@@ -17,13 +16,12 @@ export async function generateMetadata({
   const t = await getTranslations('ReentryAlert');
   const { shortId } = await params;
   const event = await getReentryEvent(shortId);
-  const satellite = await getSatellite(event.noradId);
 
-  if (!event && !satellite) {
+  if (!event) {
     notFound();
   }
   return {
-    title: t('title', { objectName: satellite.commonName }),
+    title: t('title', { objectName: event.objectName }),
   };
 }
 

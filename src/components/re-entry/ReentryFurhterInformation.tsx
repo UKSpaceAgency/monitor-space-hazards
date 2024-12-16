@@ -9,7 +9,6 @@ const ReentryFurtherInformation = () => {
         <li>
           <Link
             href="/page/re-entry-analysis-information"
-            passHref
             className="govuk-link"
           >
             {t('reentry_event_analysis_information')}
@@ -18,7 +17,6 @@ const ReentryFurtherInformation = () => {
         <li>
           <Link
             href="/page/definitions"
-            passHref
             className="govuk-link"
           >
             {t('help_with_information')}
