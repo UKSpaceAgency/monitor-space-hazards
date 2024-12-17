@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 const ConjunctionAlertFurtherInformation = () => {
@@ -10,8 +11,15 @@ const ConjunctionAlertFurtherInformation = () => {
       })}
       <h4 className="govuk-heading-m">{t('methodology.title')}</h4>
       {t.rich('methodology.content', {
-        eventInformationLink: chunks => <a href="#alert_thresholds" className="govuk-link">{chunks}</a>,
-        helpLink: chunks => <a href="#alert_thresholds" className="govuk-link">{chunks}</a>,
+        eventInformationLink: chunks => (
+          <Link
+            href="/page/conjunction-analysis-information"
+            className="govuk-link"
+          >
+            {chunks}
+          </Link>
+        ),
+        helpLink: chunks => <Link href="/page/definitions" className="govuk-link">{chunks}</Link>,
       })}
     </div>
   );
