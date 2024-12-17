@@ -16,7 +16,7 @@ type EventAlertSendCurrentStatusProps = {
 };
 
 const EventAlertSendCurrentStatus = ({ type, detailsSummary, detailsContent, data }: EventAlertSendCurrentStatusProps) => {
-  const t = useTranslations('Forms.Send_alert.Distibution_status');
+  const t = useTranslations('Forms.Send_alert.Distribution_status');
 
   const { isPriority, additionalRecipients } = data;
 

@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
 import { Table, TableBody, TableCell, TableCellHeader, TableRow } from '@/ui/table/Table';
+import { getBackUrl } from '@/utils/Helpers';
 
 import type { EventAlertSearchParams } from './EventAlertTypes';
 
@@ -24,7 +25,7 @@ const EventAlertSendReview = ({ type, shortId, data, action }: EventAlertSendRev
   const [loading, setLoading] = useState(false);
   const t = useTranslations('Forms.Send_alert.Review');
 
-  const prevPageUrl = `${pathname.split('/').slice(0, -1).join('/')}?${searchParams.toString()}`;
+  const prevPageUrl = getBackUrl(pathname, 1, searchParams);
 
   const handleSubmit = () => {
     setLoading(true);

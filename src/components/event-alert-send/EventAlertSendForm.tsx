@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-import Button, { } from '@/ui/button/button';
+import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
 import Checkbox from '@/ui/checkbox/checkbox';
 import Checkboxes from '@/ui/checkboxes/checkboxes';
@@ -68,10 +68,10 @@ const EventAlertSendForm = ({ type, defaultValues }: EventAlertSendFormProps) =>
       <h3 className="govuk-heading-m">{t('Change_distribution.title')}</h3>
       <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
       <p className="govuk-body">{t('Change_distribution.hint')}</p>
-      <Checkbox {...register('isPriority')}>{t('Distibution_status.priority_alert', { type })}</Checkbox>
+      <Checkbox {...register('isPriority')}>{t('Distribution_status.priority_alert', { type })}</Checkbox>
       <Checkboxes items={[{
         ...register('haveAdditionalRecipients'),
-        children: t('Distibution_status.individually_selected_recipients', { type }),
+        children: t('Distribution_status.individually_selected_recipients', { type }),
         hint: t('Change_distribution.individually_selected_recipients_hint'),
         conditional: additionalRecipientsInput,
       }]}

@@ -9,6 +9,7 @@ import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
 import NotificationBanner from '@/ui/notification-banner/notification-banner';
 import Spinner from '@/ui/spinner/spinner';
+import { getBackUrl } from '@/utils/Helpers';
 
 type EventAlertPublishProps = {
   shortId: string;
@@ -23,7 +24,7 @@ const EventAlertPublish = ({ shortId, action }: EventAlertPublishProps) => {
   const [confirm, setConfirm] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const prevPageUrl = `${pathname.split('/').slice(0, -2).join('/')}?${searchParams.toString()}`;
+  const prevPageUrl = getBackUrl(pathname, 2, searchParams);
 
   const handleSubmit = async () => {
     const data = Object.fromEntries(searchParams);
