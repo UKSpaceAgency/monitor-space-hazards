@@ -143,7 +143,7 @@ const AlertSettingsForm = ({ userId, defaultValues, selfEdit = true }: AlertSett
                       }]}
                     />
                   </Fieldset>
-                  <AlertSettingsDetails />
+                  <AlertSettingsDetails type="conjunction" />
 
                   {selfEdit && (
                     <Option
@@ -187,7 +187,7 @@ const AlertSettingsForm = ({ userId, defaultValues, selfEdit = true }: AlertSett
                       }]}
                     />
                   </Fieldset>
-                  <AlertSettingsDetails />
+                  <AlertSettingsDetails type="re-entry" />
 
                   <p className="govuk-body">
                     <b>
