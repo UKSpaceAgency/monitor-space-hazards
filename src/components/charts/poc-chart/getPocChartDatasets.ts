@@ -2,7 +2,7 @@ import type { ChartData } from 'chart.js';
 
 import { dayjs, eachDayOfInterval } from '@/libs/Dayjs';
 
-import { brandColors, chartPalette } from '../utils/theme';
+import { brandColors, chartPalette } from '../base/theme';
 import type { PocChartDataType } from './PocChart';
 
 type Props = {

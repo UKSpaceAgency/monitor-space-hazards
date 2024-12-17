@@ -40,7 +40,7 @@ export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummar
     id: 'updateTime',
     header: 'Conjunction.event_history.time_of_update',
     cell: ({ getValue }) => {
-      const value = getValue() as string;
+      const value = getValue<string>();
       return (
         <div>{dayjs(value).format(FORMAT_DATE_TIME)}</div>
       );
@@ -52,7 +52,7 @@ export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummar
     id: 'collisionProbability',
     header: 'Conjunction.event_history.probability_of_collision',
     cell: ({ getValue }) => {
-      const value = getValue() as number | null;
+      const value = getValue<number | null>();
       return value?.toExponential(4);
     },
     enableSorting: false,
@@ -68,7 +68,7 @@ export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummar
     id: 'radialMissDistance',
     header: 'Conjunction.event_history.radial_miss_distance',
     cell: ({ getValue }) => {
-      const value = getValue() as number;
+      const value = getValue<number>();
 
       return getAbsoluteValue(value);
     },
@@ -79,7 +79,7 @@ export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummar
     id: 'tcaTime',
     header: 'Conjunction.event_history.time_of_closest_approach',
     cell: ({ getValue }) => {
-      const value = getValue() as string;
+      const value = getValue<string>();
 
       return dayjs(value).format(FORMAT_DATE_TIME);
     },

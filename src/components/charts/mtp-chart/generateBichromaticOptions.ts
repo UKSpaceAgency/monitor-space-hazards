@@ -1,4 +1,4 @@
-import { chartPalette } from '../utils/theme';
+import { chartPalette } from '../base/theme';
 
 export type BichromaticOptions = {
   thresh: number;

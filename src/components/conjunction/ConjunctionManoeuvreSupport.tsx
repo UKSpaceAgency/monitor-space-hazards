@@ -16,11 +16,7 @@ const ConjunctionManoeuvreSupport = async ({ plot }: ConjunctionManoeuvreSupport
   const { data } = await getManoeuvrePlotsManoeuvrePlotId(plot?.id);
   const manoeuvrePlot = await getManoeuvrePlot(data.presignedUrl);
 
-  return (
-    <div data-pdf={t('title')}>
-      <MtpChart manoeuvrePlot={manoeuvrePlot} />
-    </div>
-  );
+  return <MtpChart manoeuvrePlot={manoeuvrePlot} dataPdf={t('title')} />;
 };
 
 export { ConjunctionManoeuvreSupport };

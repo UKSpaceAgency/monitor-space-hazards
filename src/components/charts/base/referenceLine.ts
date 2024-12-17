@@ -2,8 +2,7 @@ import type { LineAnnotationOptions } from 'chartjs-plugin-annotation';
 
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 
-import { chartFontFamily } from '../utils/font';
-import { chartPalette } from '../utils/theme';
+import { chartFontFamily, chartPalette } from './theme';
 
 type Props = {
   referenceLineTitle: string | undefined;

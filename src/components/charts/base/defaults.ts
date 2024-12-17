@@ -1,12 +1,11 @@
 import { defaults } from 'chart.js';
 
 import { FORMAT_DATE, FORMAT_DATE_TIME } from '@/libs/Dayjs';
-import { palette } from '@/ui/theme/colours';
 
-import { chartFontFamily } from '../utils/font';
+import { chartFontFamily, chartPalette } from './theme';
 
 export const setChartDefaults = () => {
-  defaults.color = palette.black;
+  defaults.color = chartPalette.black;
 
   defaults.font = {
     family: chartFontFamily,
@@ -20,7 +19,7 @@ export const setChartDefaults = () => {
       position: 'bottom',
       labels: {
         ...defaults.plugins.legend.labels,
-        color: palette.black,
+        color: chartPalette.black,
         usePointStyle: true,
         font: {
           size: 16,
@@ -30,9 +29,9 @@ export const setChartDefaults = () => {
     tooltip: {
       ...defaults.plugins.tooltip,
       padding: 15,
-      backgroundColor: palette.white,
-      titleColor: palette.black,
-      bodyColor: palette.black,
+      backgroundColor: chartPalette.white,
+      titleColor: chartPalette.black,
+      bodyColor: chartPalette.black,
       borderColor: 'rgba(0, 0, 0, 0.5)',
       borderWidth: 0.5,
     },

@@ -2,7 +2,7 @@ import type { ChartData } from 'chart.js';
 
 import { dayjs, eachDayOfInterval } from '@/libs/Dayjs';
 
-import { chartPalette } from '../utils/theme';
+import { chartPalette } from '../base/theme';
 import type { MissDistanceChartDataType } from './MissDistanceChart';
 
 type Props = {
@@ -24,8 +24,8 @@ export const getMissDistanceChartDatasets = ({
     {
       label: 'Total',
       data: sortedDataWithoutEphemerises.map(data => ({
-        x: data.updateTime,
-        y: data.missDistance,
+        x: data.updateTime as any,
+        y: data.missDistance as any,
       })),
       borderColor: chartPalette.darkBlue,
       backgroundColor: chartPalette.darkBlue,
@@ -33,8 +33,8 @@ export const getMissDistanceChartDatasets = ({
     {
       label: 'Radial',
       data: sortedDataWithoutEphemerises.map(data => ({
-        x: data.updateTime,
-        y: data.radialMissDistance,
+        x: data.updateTime as any,
+        y: data.radialMissDistance as any,
       })),
       borderColor: chartPalette.orange,
       backgroundColor: chartPalette.orange,
@@ -63,8 +63,8 @@ export const getMissDistanceChartDatasets = ({
             label: 'Special ephemeris Total',
             type: 'scatter' as const,
             data: sortedDataEphemerises.map(data => ({
-              x: data.updateTime,
-              y: data.missDistance,
+              x: data.updateTime as any,
+              y: data.missDistance as any,
             })),
             pointStyle: 'triangle',
             pointRadius: 5,
@@ -74,8 +74,8 @@ export const getMissDistanceChartDatasets = ({
             label: 'Special ephemeris Radial',
             type: 'scatter' as const,
             data: sortedDataEphemerises.map(data => ({
-              x: data.updateTime,
-              y: data.radialMissDistance,
+              x: data.updateTime as any,
+              y: data.radialMissDistance as any,
             })),
             pointStyle: 'triangle',
             pointRadius: 5,
@@ -96,8 +96,8 @@ export const getMissDistanceChartDatasets = ({
             label: 'Special ephemeris Cross-track',
             type: 'scatter' as const,
             data: sortedDataEphemerises.map(data => ({
-              x: data.updateTime,
-              y: data.crosstrackMissDistance,
+              x: data.updateTime as any,
+              y: data.crosstrackMissDistance as any,
             })),
             pointStyle: 'triangle',
             pointRadius: 5,

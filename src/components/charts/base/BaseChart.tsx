@@ -38,10 +38,10 @@ import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
 
 import type { InferChartLegendProps } from '../legend/LegendChart';
 import { ChartLegend } from '../legend/LegendChart';
-import { useInViewport } from '../utils/useInViewport';
 import styles from './base.module.scss';
 import { setChartDefaults } from './defaults';
 import { getReferenceLine } from './referenceLine';
+import { useInViewport } from './useInViewport';
 
 ChartJS.register(
   LineController,

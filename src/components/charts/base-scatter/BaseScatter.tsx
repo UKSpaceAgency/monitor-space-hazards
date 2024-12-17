@@ -36,9 +36,9 @@ import { FORMAT_DATE, FORMAT_SHORT_DATE } from '@/libs/Dayjs';
 
 import { setChartDefaults } from '../base/defaults';
 import { getReferenceLine } from '../base/referenceLine';
+import { useInViewport } from '../base/useInViewport';
 import type { InferChartLegendProps } from '../legend/LegendChart';
 import { ChartLegend } from '../legend/LegendChart';
-import { useInViewport } from '../utils/useInViewport';
 import styles from './base-scatter.module.scss';
 
 ChartJS.register(

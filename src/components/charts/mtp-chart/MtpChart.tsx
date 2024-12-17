@@ -20,10 +20,12 @@ import styles from './mtp-chart.module.scss';
 
 type MtpChartProps = {
   manoeuvrePlot: ManoeuvrePlot;
+  dataPdf?: string;
 };
 
 export function MtpChart({
   manoeuvrePlot,
+  dataPdf,
 }: MtpChartProps) {
   const t = useTranslations('Charts.MtpChart');
 
@@ -92,7 +94,7 @@ export function MtpChart({
 
   return (
     <>
-      <div id="mtp-content" className={styles.container}>
+      <div id="mtp-content" className={styles.container} data-pdf={dataPdf}>
         <p className="govuk-body">
           {t('description')}
         </p>
