@@ -37,9 +37,9 @@ const generateFeature = (point: MapPoint): Feature<Point> => ({
   properties: {
     regions: Array.isArray(point.region) && point.region.length > 0
       ? point.region.map((el) => {
-        const [_, last] = el.split('.');
-        return jsonRegionsMap[last];
-      }).join('\n')
+          const [_, last] = el.split('.');
+          return jsonRegionsMap[last];
+        }).join('\n')
       : null,
     overflight: point.overflight,
     longitude: point.longitude,
