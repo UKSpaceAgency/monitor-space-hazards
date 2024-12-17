@@ -1,5 +1,4 @@
-'use client';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
 import type { TypeSatelliteOut } from '@/__generated__/data-contracts';
 import type { InformationsTableHeaderWidth, InformationsTableRow } from '@/components/InformationsTable';
@@ -12,8 +11,8 @@ type OrbitalInformationsTableProps = {
   headerCellWidth?: InformationsTableHeaderWidth;
 };
 
-const OrbitalInformationsTable = ({ object, headerCellWidth }: OrbitalInformationsTableProps) => {
-  const t = useTranslations('Tables.Satellite_informations');
+const OrbitalInformationsTable = async ({ object, headerCellWidth }: OrbitalInformationsTableProps) => {
+  const t = await getTranslations('Tables.Satellite_informations');
 
   const headers = Array.isArray(object)
     ? [{

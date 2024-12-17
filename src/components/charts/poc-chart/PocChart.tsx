@@ -9,7 +9,6 @@ import Checkboxes from '@/ui/checkboxes/checkboxes';
 
 import BaseChart from '../base/BaseChart';
 import { getPocChartDatasets } from './getPocChartDatasets';
-import styles from './poc-chart.module.scss';
 
 export type PocChartDataType = Pick<TypeEventSummaryOut, | 'updateTime'
   | 'dataSource'
@@ -43,7 +42,7 @@ export function PocChart({ data }: PocChartProps) {
   const datasets: ChartData = getPocChartDatasets({ sortedData, specialData, showSpecial, tca });
 
   return (
-    <div data-pdf={t('title')} data-canvas className={styles.container}>
+    <div data-pdf={t('title')} data-canvas className="mb-4">
       <RichText>
         {tags => t.rich('description', tags) }
       </RichText>

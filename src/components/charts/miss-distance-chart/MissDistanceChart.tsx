@@ -9,7 +9,6 @@ import Checkboxes from '@/ui/checkboxes/checkboxes';
 
 import BaseChart from '../base/BaseChart';
 import { getMissDistanceChartDatasets } from './getMissDistanceChartDatasets';
-import styles from './miss-distance-chart.module.scss';
 
 export type MissDistanceChartDataType = Pick<
   TypeEventSummaryOut,
@@ -54,7 +53,7 @@ export function MissDistanceChart({ data, isSpecial }: MissDistanceChartProps) {
   const datasets: ChartData = getMissDistanceChartDatasets({ sortedDataWithoutEphemerises, sortedData, sortedDataEphemerises, showSpecial, tca });
 
   return (
-    <div id="miss-distance-content" className={styles.container}>
+    <div id="miss-distance-content" className="mb-4">
       <p className="govuk-body">{t('header')}</p>
       <BaseChart
         id="miss-distance-chart"

@@ -1,6 +1,5 @@
-'use client';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
 import type { TypeSatelliteOut } from '@/__generated__/data-contracts';
 import type { InformationsTableHeaderWidth, InformationsTableRow } from '@/components/InformationsTable';
@@ -14,8 +13,8 @@ type BaseInformationsTableProps = {
   showLink?: true;
 };
 
-const BaseInformationsTable = ({ object, headerCellWidth, showLink }: BaseInformationsTableProps) => {
-  const t = useTranslations('Tables.Satellite_informations');
+const BaseInformationsTable = async ({ object, headerCellWidth, showLink }: BaseInformationsTableProps) => {
+  const t = await getTranslations('Tables.Satellite_informations');
 
   const headers = Array.isArray(object)
     ? [{
