@@ -55,7 +55,7 @@ export function Cookies() {
                 <p key="cookie-p-1" className="govuk-body">
                   You can
                   {' '}
-                  <Link href="/cookies" passHref className="govuk-link">
+                  <Link href="/cookies" className="govuk-link">
                     read more about our cookies
                   </Link>
                   {' '}

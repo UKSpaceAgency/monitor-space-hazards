@@ -42,7 +42,7 @@ const EventAlertReview = <T extends object>({ description, values }: EventAlertR
       </Table>
       <p className="govuk-body">{t('review_hint')}</p>
       <ButtonGroup>
-        <Link href={`${pathname}/preview?${searchParams.toString()}`} passHref>
+        <Link href={`${pathname}/preview?${searchParams.toString()}`}>
           <Button type="submit">{t('preview')}</Button>
         </Link>
         <Link href={prevPageUrl}>

@@ -35,7 +35,7 @@ export const getAnalysisDataTableColumns = ({ handleDelete, handleDownload, json
     cell: ({ getValue }) => {
       const value = getValue() as string;
       return (
-        <Link href={`/conjunctions/${value}`} passHref className="govuk-link">
+        <Link href={`/conjunctions/${value}`} className="govuk-link">
           {value}
         </Link>
       );

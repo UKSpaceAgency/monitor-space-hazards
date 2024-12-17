@@ -12,7 +12,6 @@ export const satellitesColumns: TranslatedColumnDef<TypeSatelliteWithMetadataOut
     cell: ({ renderValue, row }) => (
       <Link
         href={`/satellites/${row?.original.noradId}`}
-        passHref
         className="govuk-link"
       >
         {renderValue<string>()}

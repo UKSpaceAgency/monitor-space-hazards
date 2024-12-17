@@ -61,8 +61,6 @@ const ConjunctionEventSummary = async ({
         {isUserAnalysist && (
           <Link
             href={`/conjunctions/${shortId}/analysis-upload`}
-            passHref
-            legacyBehavior
           >
             <Button>{t('upload_analysis')}</Button>
           </Link>
@@ -75,8 +73,6 @@ const ConjunctionEventSummary = async ({
               callback: `/conjunctions/${shortId}`,
             },
           }}
-          passHref
-          legacyBehavior
         >
           <Button className="govuk-button--secondary">
             {t('contact_analyst')}

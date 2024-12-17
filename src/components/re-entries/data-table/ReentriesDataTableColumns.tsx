@@ -46,7 +46,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
             : `/re-entries/${value}`;
 
           return (
-            <Link href={href} passHref className="govuk-link">
+            <Link href={href} className="govuk-link">
               <strong>{value}</strong>
             </Link>
           );

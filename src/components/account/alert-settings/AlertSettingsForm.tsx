@@ -95,7 +95,7 @@ const AlertSettingsForm = ({ userId, defaultValues, selfEdit = true }: AlertSett
               >
                 {t('panel.description')}
               </Panel>
-              <Link href="/account" passHref legacyBehavior>
+              <Link href="/account">
                 <Button>
                   {tCommon('return', { to: 'account page' })}
                 </Button>

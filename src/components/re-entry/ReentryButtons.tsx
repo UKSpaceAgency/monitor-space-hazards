@@ -28,8 +28,6 @@ const ReentryButtons = ({ title }: ReentryButtonsProps) => {
 
       <Link
         href="/re-entries"
-        passHref
-        legacyBehavior
       >
         <Button className="govuk-button--secondary">
           {tCommon('return', { to: 'previous page' })}

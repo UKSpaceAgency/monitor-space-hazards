@@ -517,6 +517,14 @@
       }
     }
   },
+  "ReentryAlertSend": {
+    "title": "Send alert to additional recipients",
+    "content": "<p>This page shows you the current distribution status of the re-entry alert and allows you to manually distribute the alert to additional recipients.</p><p>If it is not already, you can choose to make the alert a priority re-entry alert. You are also able to manually select individual emails to send the alert to.</p>",
+    "alert_critera_help": {
+      "title": "Distribution lists and re-entry alert critera",
+      "content": "<h3>Distribution lists:</h3><p>You are able to view which distribution list users are currently on in the account section (<link>View distribution lists</link>)</p><h3>Standard re-entry alert</h3><p><bold>The criteria for producing a standard re-entry alert is less than 36 hours until re-entry and one of the following:</bold></p><list><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories</item><item>Any UK-licensed object (except designed for demise)</item><item>Press interest</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Priority re-entry alert:</h3><p><bold>The criteria for producing a priority re-entry alert is debris likely to survive to the ground and one of the following:</bold></p><list><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis)</item><item>UK-licensed object</item><item>Significant press interest</item></list>"
+    }
+  },
   "Tables": {
     "Satellites": {
       "common_name": "Common name",
@@ -957,6 +965,43 @@
       "publish_confirm": "Are you sure you want to publish changes to this alert?",
       "publish_edits": "Publish edits",
       "publish_return": "Return to review edits page"
+    },
+    "Send_alert": {
+      "title": "Send alert to additional recipients",
+      "content": "<p>This page shows you the current distribution status of the {type} alert and allows you to manually distribute the alert to additional recipients.</p><p>If it is not already, you can choose to make the alert a priority {type} alert. You are also able to manually select individual emails to send the alert to.</p>",
+      "review_button": "Review",
+      "Distibution_status": {
+        "title": "Current alert distribution status",
+        "using_distribution_lists": "Using distribution lists",
+        "status": "Status",
+        "all_alerts": "All {type} alerts",
+        "alert_for_uk": "{type} alerts for UK Satellites",
+        "priority_alert": "Priority {type} alerts only",
+        "using_individual_emails": "Using individual emails",
+        "individually_selected_recipients": "Individually selected recipients",
+        "sent_to_distribution_list": "Sent to distribution list",
+        "not_sent to distribution list": "Not sent to distribution list"
+      },
+      "Change_distribution": {
+        "title": "Change alert distribution",
+        "hint": "Select whether you would like to send this alert to additional recipients.",
+        "individually_selected_recipients_hint": "If you wish to send the alert to individual recipients not currently recieving alerts, you can do so here",
+        "individually_selected_recipients_label": "Provide individual email addresses to receive alerts about this event in the box below. Separate each email address with a semi-colon."
+      },
+      "Review": {
+        "title": "Review your alert before sending",
+        "hint": "Ensure that all the appropriate individuals and government agencies have been selected before sending alerts. The button below will send alerts automatically.",
+        "make_this_priority": "Make this a priority {type} alert:",
+        "send_alerts_to_selected_users": "Send alerts to selected users:",
+        "change": "Change",
+        "send_alerts": "Send alerts",
+        "return": "Return to review edits page"
+      },
+      "Success": {
+        "title": "Alert sent",
+        "content": "{type} event {shortId}",
+        "return": "Return to event page"
+      }
     }
   },
   "Components": {
@@ -1017,7 +1062,8 @@
     "terms-and-conditions": "Terms and Conditions",
     "user": "User",
     "users": "Users",
-    "upload-success": "Upload successful"
+    "upload-success": "Upload successful",
+    "send-alert": "Send alert to additional recipients"
   },
   "OverflightMap": {
     "map_type": "Map type:",
