@@ -3,8 +3,9 @@ import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import ExpandedButton from '@/ui/button/expanded-button';
 import Tag from '@/ui/tag/tag';
+import { getAbsoluteValue } from '@/utils/Math';
 
-export const getEventHistoryColumns = (): TranslatedColumnDef<TypeEventSummaryOut>[] => [
+export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummaryOut>[] = [
   {
     accessorKey: 'dataSource',
     id: 'dataSource',
@@ -66,6 +67,11 @@ export const getEventHistoryColumns = (): TranslatedColumnDef<TypeEventSummaryOu
     accessorKey: 'radialMissDistance',
     id: 'radialMissDistance',
     header: 'Conjunction.event_history.radial_miss_distance',
+    cell: ({ getValue }) => {
+      const value = getValue() as number;
+
+      return getAbsoluteValue(value);
+    },
     enableSorting: false,
   },
   {
@@ -74,9 +80,8 @@ export const getEventHistoryColumns = (): TranslatedColumnDef<TypeEventSummaryOu
     header: 'Conjunction.event_history.time_of_closest_approach',
     cell: ({ getValue }) => {
       const value = getValue() as string;
-      return (
-        <div>{dayjs(value).format(FORMAT_DATE_TIME)}</div>
-      );
+
+      return dayjs(value).format(FORMAT_DATE_TIME);
     },
     enableSorting: false,
   },

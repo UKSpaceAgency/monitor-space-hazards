@@ -63,7 +63,7 @@ const ConjunctionEventHistoryDetailTable = ({ object }: ConjunctionEventHistoryD
     accessorKey: 'spaceTrackCdm',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.time_span_of_observations')}</div>,
-    renderCell: row => row.spaceTrackCdm[1]?.observationsNumber,
+    renderCell: row => row.spaceTrackCdm[1]?.observationsTimespan,
     accessorKey: 'spaceTrackCdm',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.position_radial')}</div>,
@@ -79,7 +79,12 @@ const ConjunctionEventHistoryDetailTable = ({ object }: ConjunctionEventHistoryD
     accessorKey: 'secondaryObjectUncertainties',
   }];
 
-  return <InformationsTable rows={rows} data={object} reducedFont headerCellWidth="sm" />;
+  return <InformationsTable rows={rows} data={object} reducedFont headerCellWidth="sm" data-pdf-ignore />;
 };
 
-export { ConjunctionEventHistoryDetailTable };
+const renderConjunctionHistoryDetailAsSubcomponent = (props: ConjunctionEventHistoryDetailTableProps) => {
+  return <div className="govuk-details__text text-sm"><ConjunctionEventHistoryDetailTable {...props} /></div>;
+};
+
+// eslint-disable-next-line react-refresh/only-export-components
+export { ConjunctionEventHistoryDetailTable, renderConjunctionHistoryDetailAsSubcomponent };
