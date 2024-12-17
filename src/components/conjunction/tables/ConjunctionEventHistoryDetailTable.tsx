@@ -79,7 +79,7 @@ const ConjunctionEventHistoryDetailTable = ({ object }: ConjunctionEventHistoryD
     accessorKey: 'secondaryObjectUncertainties',
   }];
 
-  return <InformationsTable rows={rows} data={object} reducedFont headerCellWidth="sm" />;
+  return <InformationsTable rows={rows} data={object} reducedFont headerCellWidth="sm" data-pdf-ignore />;
 };
 
 const renderConjunctionHistoryDetailAsSubcomponent = (props: ConjunctionEventHistoryDetailTableProps) => {
