@@ -20,7 +20,7 @@ const ConjunctionEventHistoryTable = ({ events, event, dataSources }: Conjunctio
         data={events}
         columns={eventHistoryColumns}
         renderSubComponent={() => (
-          <div className="govuk-details__text">
+          <div className="govuk-details__text" data-pdf-ignore>
             <ConjunctionEventHistoryDataTable object={event} />
             <ConjunctionEventHistoryDetailTable object={{
               ...event,

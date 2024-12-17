@@ -63,7 +63,7 @@ const ConjunctionEventHistoryDetailTable = ({ object }: ConjunctionEventHistoryD
     accessorKey: 'spaceTrackCdm',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.time_span_of_observations')}</div>,
-    renderCell: row => row.spaceTrackCdm[1]?.observationsNumber,
+    renderCell: row => row.spaceTrackCdm[1]?.observationsTimespan,
     accessorKey: 'spaceTrackCdm',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.position_radial')}</div>,

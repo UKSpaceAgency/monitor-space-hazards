@@ -111,6 +111,11 @@ export const getConjunctionEventsColumns = ({
         id: 'radialMissDistance',
         accessorKey: 'radialMissDistance',
         header: 'Conjunctions.mean_radial',
+        cell: ({ getValue }) => {
+          const radialMissDistance = getValue() as number;
+
+          return Math.abs(radialMissDistance);
+        },
       },
       {
         id: 'missDistance',

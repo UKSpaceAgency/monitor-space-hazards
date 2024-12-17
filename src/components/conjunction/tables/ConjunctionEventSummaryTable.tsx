@@ -40,16 +40,19 @@ const ConjunctionEventSummaryTableInformationsTable = ({ object }: ConjunctionEv
     accessorKey: 'missDistance',
   }, {
     header: t('summary_list.radial_miss_distance'),
+    renderCell: row => row.radialMissDistance && Math.abs(row.radialMissDistance),
     accessorKey: 'radialMissDistance',
   }, {
     header: t('summary_list.in_track_miss_distance'),
+    renderCell: row => row.intrackMissDistance && Math.abs(row.intrackMissDistance),
     accessorKey: 'intrackMissDistance',
   }, {
     header: t('summary_list.cross_track_miss_distance'),
+    renderCell: row => row.crosstrackMissDistance && Math.abs(row.crosstrackMissDistance),
     accessorKey: 'crosstrackMissDistance',
   }, {
     header: t('summary_list.time_of_update'),
-    renderCell: row => <div>{dayjs(row.updateTime).format(FORMAT_DATE_TIME)}</div>,
+    renderCell: row => dayjs(row.updateTime).format(FORMAT_DATE_TIME),
     accessorKey: 'updateTime',
   }, {
     header: t('summary_list.primary_object_size'),
