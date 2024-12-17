@@ -970,7 +970,7 @@
       "title": "Send alert to additional recipients",
       "content": "<p>This page shows you the current distribution status of the {type} alert and allows you to manually distribute the alert to additional recipients.</p><p>If it is not already, you can choose to make the alert a priority {type} alert. You are also able to manually select individual emails to send the alert to.</p>",
       "review_button": "Review",
-      "Distibution_status": {
+      "Distribution_status": {
         "title": "Current alert distribution status",
         "using_distribution_lists": "Using distribution lists",
         "status": "Status",

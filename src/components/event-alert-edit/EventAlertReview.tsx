@@ -7,6 +7,7 @@ import React from 'react';
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
 import { Table, TableBody, TableCell, TableCellHeader, TableRow } from '@/ui/table/Table';
+import { getBackUrl } from '@/utils/Helpers';
 
 import { Markdown } from '../Markdown';
 
@@ -22,7 +23,7 @@ const EventAlertReview = <T extends object>({ description, values }: EventAlertR
   const t = useTranslations('Forms.Edit_alert');
   const tCommon = useTranslations('Common');
 
-  const prevPageUrl = `${pathname.split('/').slice(0, -1).join('/')}?${searchParams.toString()}`;
+  const prevPageUrl = getBackUrl(pathname, 1, searchParams);
 
   return (
     <div className="mt-12">

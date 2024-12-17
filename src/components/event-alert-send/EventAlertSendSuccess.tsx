@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 
 import Button from '@/ui/button/button';
 import Panel from '@/ui/panel/panel';
+import { getBackUrl } from '@/utils/Helpers';
 
 import type { EventAlertType } from './EventAlertTypes';
 
@@ -17,7 +18,7 @@ const EventAlertSendSuccess = ({ type, shortId }: EventAlertSendSuccessProps) =>
   const t = useTranslations('Forms.Send_alert.Success');
   const pathname = usePathname();
 
-  const eventPageUrl = `${pathname.split('/').slice(0, -2).join('/')}`;
+  const eventPageUrl = getBackUrl(pathname, 2);
 
   return (
     <div>

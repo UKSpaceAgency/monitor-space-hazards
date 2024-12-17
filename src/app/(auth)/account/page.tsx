@@ -62,7 +62,7 @@ export default async function AccountPage() {
                   title: t('change_your_notification_settings.conjunction_event_notification_settings'),
                   href: '/account/notification-settings',
                 },
-                ...(!isSatteliteUser(session.user?.role)
+                ...(!isSatteliteUser(role)
                   ? [
                       {
                         title: t('change_your_notification_settings.alert_settings'),
