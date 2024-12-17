@@ -14,7 +14,7 @@ type BaseInformationsTableProps = {
 };
 
 const BaseInformationsTable = ({ object, headerCellWidth, showLink }: BaseInformationsTableProps) => {
-  const t = useTranslations('Tables.SatelliteInformations');
+  const t = useTranslations('Tables.Satellite_informations');
 
   const headers = Array.isArray(object)
     ? [{

@@ -10,7 +10,7 @@ type SatelliteAdditionalInformationProps = {
 };
 
 const SatelliteAdditionalInformations = ({ object }: SatelliteAdditionalInformationProps) => {
-  const t = useTranslations('Tables.SatelliteInformations.AdditionalInformations');
+  const t = useTranslations('Tables.Satellite_informations.Additional_informations');
 
   const updateTime = dayjs(Array.isArray(object) ? object[0]?.esaUpdateTime : object.esaUpdateTime).format(FORMAT_DATE_TIME);
 

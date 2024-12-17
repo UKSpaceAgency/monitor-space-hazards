@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 const ConjunctionFurtherInformation = () => {
-  const t = useTranslations('Accordions.Conjunction.further_information');
+  const t = useTranslations('Conjunction.Further_information');
   return (
     <>
       <p className="govuk-body mt-2">{t('description')}</p>

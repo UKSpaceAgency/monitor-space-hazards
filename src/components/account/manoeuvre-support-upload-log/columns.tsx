@@ -21,20 +21,20 @@ export const getManoeuvreDataTableColumns = ({
   {
     id: 'createdAt',
     accessorKey: 'createdAt',
-    header: 'ManoeuvreData.date',
+    header: 'Manoeuvre_data.date',
     cell: ({ getValue }) => dayjs(getValue() as string).format(FORMAT_DATE_TIME),
     size: 150,
   },
   {
     id: 'uploadedByEmail',
     accessorKey: 'uploadedByEmail',
-    header: 'ManoeuvreData.user_email',
+    header: 'Manoeuvre_data.user_email',
     size: 350,
   },
   {
     id: 'eventShortId',
     accessorKey: 'eventShortId',
-    header: 'ManoeuvreData.event_id',
+    header: 'Manoeuvre_data.event_id',
     cell: ({ getValue }) => {
       const value = getValue() as string;
       return (
@@ -48,7 +48,7 @@ export const getManoeuvreDataTableColumns = ({
   {
     id: 'uploadedById',
     accessorKey: 'id',
-    header: 'ManoeuvreData.file_uploaded',
+    header: 'Manoeuvre_data.file_uploaded',
     cell: ({ getValue }) => {
       const value = getValue() as string;
       return (

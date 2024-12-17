@@ -1,4 +1,3 @@
-'use client';
 import { useTranslations } from 'next-intl';
 
 import type { TypeDataSourcesOut, TypeEventSummaryOut, TypeSatelliteOut } from '@/__generated__/data-contracts';
@@ -32,7 +31,7 @@ const ConjunctionAccordion = ({
   dataSources,
   handleDownloadData,
 }: ConjunctionAccordionType) => {
-  const t = useTranslations('Accordions.Conjunction');
+  const t = useTranslations('Conjunction');
 
   return (
     <Accordion
@@ -40,7 +39,7 @@ const ConjunctionAccordion = ({
       initialItems={[
         {
           id: 'pocChart',
-          heading: t('poc_chart.title'),
+          heading: t('Poc_chart.title'),
           content: (
             <ConjunctionCollisionProbabilityChart id={id} />
           ),
@@ -48,7 +47,7 @@ const ConjunctionAccordion = ({
         ...(haveMtp
           ? [{
               id: 'mtpChart',
-              heading: t('mtp_chart.title'),
+              heading: t('Mtp_chart.title'),
               content: (
                 <ConjunctionManoeuvreSupport />
               ),
@@ -56,21 +55,21 @@ const ConjunctionAccordion = ({
           : []),
         {
           id: 'missDistanceChart',
-          heading: t('miss_distance_chart.title'),
+          heading: t('Miss_distance_chart.title'),
           content: (
             <ConjunctionMissDistanceChart id={id} />
           ),
         },
         {
           id: 'objectData',
-          heading: t('object_data.title'),
+          heading: t('Object_data.title'),
           content: (
             <ConjunctionObjectData primaryObject={primaryObject} secondaryObject={secondaryObject} />
           ),
         },
         {
           id: 'eventHistory',
-          heading: t('event_history.title'),
+          heading: t('Event_history.title'),
           content: (
             <ConjunctionEventHistory
               events={events}
@@ -82,7 +81,7 @@ const ConjunctionAccordion = ({
         },
         {
           id: 'furtherInformation',
-          heading: t('further_information.title'),
+          heading: t('Further_information.title'),
           content: (
             <ConjunctionFurtherInformation />
           ),

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default async function EventNotificationThresholdsSettingsPage() {
-  const t = await getTranslations('EventNotificationThresholdsSettings');
+  const t = await getTranslations('Event_notification_thresholds_settings');
 
   const data = await getUsersMe();
 

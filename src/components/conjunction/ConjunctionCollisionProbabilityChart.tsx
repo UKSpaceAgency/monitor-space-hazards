@@ -10,7 +10,7 @@ type ConjunctionCollisionProbabilityChartProps = {
 };
 
 const ConjunctionCollisionProbabilityChart = ({ id }: ConjunctionCollisionProbabilityChartProps) => {
-  const t = useTranslations('Accordions.Conjunction.poc_chart');
+  const t = useTranslations('Conjunction.Poc_chart');
 
   return (
     <div data-pdf={t('title')}>

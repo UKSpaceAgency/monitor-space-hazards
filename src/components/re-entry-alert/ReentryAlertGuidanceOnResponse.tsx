@@ -9,7 +9,7 @@ type ReentryAlertGuidanceOnResponseProps = {
 };
 
 const ReentryAlertGuidanceOnResponse = ({ immediateResponse, recoveryAndCleanUp }: ReentryAlertGuidanceOnResponseProps) => {
-  const t = useTranslations('ReentryAlert.GuidanceOnResponse');
+  const t = useTranslations('Reentry_alert.Guidance_on_response');
   return (
     <div>
       <h4 className="govuk-heading-m">{t('immediate_response.title')}</h4>

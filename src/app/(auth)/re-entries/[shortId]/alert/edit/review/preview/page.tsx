@@ -16,7 +16,7 @@ export async function generateMetadata({
   params: Promise<{ shortId: string }>;
   searchParams: TypeReentryEventPatch;
 }) {
-  const t = await getTranslations('ReentryAlertEdit');
+  const t = await getTranslations('Reentry_alert_edit');
   const { shortId } = await params;
 
   if (!searchParams) {
@@ -42,7 +42,7 @@ export default async function ReentryAlertEditPreview({
   searchParams: TypeReentryEventPatch;
 }) {
   const { shortId } = await params;
-  const t = await getTranslations('ReentryAlertEdit');
+  const t = await getTranslations('Reentry_alert_edit');
 
   return (
     <div>

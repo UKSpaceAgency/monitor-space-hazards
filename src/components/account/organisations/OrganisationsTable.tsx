@@ -17,8 +17,8 @@ const OrganisationsTable = ({ organisations }: OrganisationsSummaryProps) => {
       <TableHead>
         <TableRow>
           <TableCellHeader>{t('organisation')}</TableCellHeader>
-          <TableCellHeader>{t('registred_satellites')}</TableCellHeader>
-          <TableCellHeader>{t('registred_users')}</TableCellHeader>
+          <TableCellHeader>{t('registered_satellites')}</TableCellHeader>
+          <TableCellHeader>{t('registered_users')}</TableCellHeader>
           <TableCellHeader>{t('date_added')}</TableCellHeader>
         </TableRow>
       </TableHead>

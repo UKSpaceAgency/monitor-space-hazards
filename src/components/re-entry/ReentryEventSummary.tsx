@@ -14,7 +14,7 @@ type ReentryEventSummaryProps = {
 };
 
 const ReentryEventSummary = async ({ event, object, shortId }: ReentryEventSummaryProps) => {
-  const t = await getTranslations('Reentry.EventSummary');
+  const t = await getTranslations('Reentry.Event_summary');
 
   const { data } = await Api.getTipsNoradId({ noradId: event.noradId });
 

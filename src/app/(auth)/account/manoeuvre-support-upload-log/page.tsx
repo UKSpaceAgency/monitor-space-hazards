@@ -20,7 +20,7 @@ export default async function ManoeuvreSupportUploadLog(props: {
     sort_by?: TypeManoeuvrePlotMetadataSortBy;
   }>;
 }) {
-  const t = await getTranslations('ManoeuvreSupportUploadLog');
+  const t = await getTranslations('Manoeuvre_support_upload_log');
 
   const user = await getUsersMe();
 

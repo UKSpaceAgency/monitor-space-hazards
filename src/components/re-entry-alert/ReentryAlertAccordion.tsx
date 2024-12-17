@@ -26,7 +26,7 @@ const ReentryAlertAccordion = ({
   reports,
   searchParams,
 }: ReentryAlertAccordionProps) => {
-  const t = useTranslations('ReentryAlert.accordion');
+  const t = useTranslations('Reentry_alert.accordion');
 
   const impacts = reports && reports[0]?.impact;
 

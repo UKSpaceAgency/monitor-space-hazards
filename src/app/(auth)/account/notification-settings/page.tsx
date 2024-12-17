@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default async function NotificationSettingsPage() {
-  const t = await getTranslations('NotificationSettings');
+  const t = await getTranslations('Notification_settings');
 
   const { notification_settings } = await getUsersMe();
 

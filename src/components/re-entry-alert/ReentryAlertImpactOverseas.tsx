@@ -9,7 +9,7 @@ type ReentryAlertImpactOverseasProps = {
 };
 
 const ReentryAlertImpactOverseas = ({ impact }: ReentryAlertImpactOverseasProps) => {
-  const t = useTranslations('Tables.ReentryAlertImpact');
+  const t = useTranslations('Tables.Reentry_alert_impact');
 
   return (
     <div>

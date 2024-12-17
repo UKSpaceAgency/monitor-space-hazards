@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 const ReentryFurtherInformation = () => {
-  const t = useTranslations('Reentry.FurtherInformation');
+  const t = useTranslations('Reentry.Further_information');
   return (
     <div>
       <ul className="govuk-list govuk-list--bullet">

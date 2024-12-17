@@ -10,7 +10,7 @@ type ReentryAlertEditFormProps = {
 };
 
 const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
-  const tReentryAlert = useTranslations('ReentryAlert');
+  const tReentryAlert = useTranslations('Reentry_alert');
   const tForm = useTranslations('Forms.Edit_alert');
 
   const formFields = [{
@@ -20,7 +20,7 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     help: (
       <div>
         <p>{tForm('hint')}</p>
-        {tReentryAlert.rich('ExecutiveSummary.content')}
+        {tReentryAlert.rich('Executive_summary.content')}
       </div>
     ),
   }, {
@@ -30,7 +30,7 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     help: (
       <div>
         <p>{tForm('hint')}</p>
-        {tReentryAlert.rich('GuidanceOnResponse.immediate_response.content', { hydrazine: chunks => chunks, kerosene: chunks => chunks })}
+        {tReentryAlert.rich('Guidance_on_response.immediate_response.content', { hydrazine: chunks => chunks, kerosene: chunks => chunks })}
       </div>
     ),
   }, {
@@ -40,7 +40,7 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     help: (
       <div>
         <p>{tForm('hint')}</p>
-        {tReentryAlert.rich('GuidanceOnResponse.recovery_and_clean_up.content')}
+        {tReentryAlert.rich('Guidance_on_response.recovery_and_clean_up.content')}
       </div>
     ),
   }, {
@@ -50,7 +50,7 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     help: (
       <div>
         <p>{tForm('hint')}</p>
-        {tReentryAlert.rich('LiabilityForDamages.content', { licenseCountry: getFullCountry(event.licenseCountry) })}
+        {tReentryAlert.rich('Liability_for_damages.content', { licenseCountry: getFullCountry(event.licenseCountry) })}
       </div>
     ),
   }, {

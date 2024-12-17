@@ -14,7 +14,7 @@ type ReentryAlertImpactTableProps = {
 };
 
 const ReentryAlertImpactTable = ({ caption, impact }: ReentryAlertImpactTableProps) => {
-  const t = useTranslations('Tables.ReentryAlertImpact');
+  const t = useTranslations('Tables.Reentry_alert_impact');
 
   const overflightsNumber = useMemo(() => impact ? Object.values(impact).reduce((acc, value) => value.overflight_time && value.overflight_time.length > acc ? value.overflight_time.length : acc, 0) : 0, [impact]);
 

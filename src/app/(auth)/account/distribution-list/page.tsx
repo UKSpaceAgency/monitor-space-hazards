@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default async function DistributionListsPage() {
-  const t = await getTranslations('DistributionLists');
+  const t = await getTranslations('Distribution_lists');
 
   const alerts = await getAlerts();
 

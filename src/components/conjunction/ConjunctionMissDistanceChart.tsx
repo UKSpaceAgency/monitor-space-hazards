@@ -10,7 +10,7 @@ type ConjunctionMissDistanceChartProps = {
 };
 
 const ConjunctionMissDistanceChart = ({ id }: ConjunctionMissDistanceChartProps) => {
-  const t = useTranslations('Accordions.Conjunction.miss_distance_chart');
+  const t = useTranslations('Conjunction.Miss_distance_chart');
 
   return (
     <div data-pdf={t('title')}>

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 export default async function FeedbackPage() {
-  const t = await getTranslations('Forms.Feedback');
+  const t = await getTranslations('Feedback');
 
   return (
     <>

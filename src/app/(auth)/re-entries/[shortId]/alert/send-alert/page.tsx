@@ -28,12 +28,12 @@ export default async function ReentryAlertSend({
 }: {
   params: Promise<{ shortId: string }>;
 }) {
-  const t = await getTranslations('ReentryAlertSend');
+  const t = await getTranslations('Reentry_alert_send');
   const { shortId } = await params;
 
   const alert = await getReentryAlertLatest(shortId);
 
-  const detailsContent = t.rich('alert_critera_help.content', {
+  const detailsContent = t.rich('alert_criteria_help.content', {
     link: chunks => <Link className="govuk-link" href="/account/distribution-list">{chunks}</Link>,
   });
 
@@ -42,5 +42,5 @@ export default async function ReentryAlertSend({
     additionalRecipients: alert.additionalRecipients?.join(', ') || '',
   };
 
-  return <EventAlertSend type="re-entry" data={defaultValues} content={t.rich('content')} detailsSummary={t('alert_critera_help.title')} detailsContent={detailsContent} />;
+  return <EventAlertSend type="re-entry" data={defaultValues} content={t.rich('content')} detailsSummary={t('alert_criteria_help.title')} detailsContent={detailsContent} />;
 }

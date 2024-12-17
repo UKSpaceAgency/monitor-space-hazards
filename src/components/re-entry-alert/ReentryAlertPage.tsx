@@ -25,7 +25,7 @@ type ReentryAlertPageProps = {
 };
 
 const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertPageProps) => {
-  const t = await getTranslations('ReentryAlert');
+  const t = await getTranslations('Reentry_alert');
   const tCommon = await getTranslations('Common');
   const event = await getReentryEvent(shortId);
   const reports = await getReentryReports({ shortId });

@@ -33,7 +33,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} className="font-sans">
       <body className="govuk-template__body" suppressHydrationWarning>
-        <NextIntlClientProvider messages={pick(messages, ['Tables', 'BaseTemplate', 'Forms', 'Common', 'Accordions', 'OverflightMap'])}>
+        <NextIntlClientProvider messages={pick(messages, ['Tables', 'Template', 'Forms', 'Common', 'OverflightMap'])}>
           <SessionProvider>
             <BaseTemplate showNavigation={!!session} breadcrumb={breadcrumb}>
               {children}

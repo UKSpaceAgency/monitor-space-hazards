@@ -19,7 +19,7 @@ const BaseTemplate = ({
   children,
   showNavigation,
 }: BaseTemplateProps) => {
-  const t = useTranslations('BaseTemplate');
+  const t = useTranslations('Template');
 
   return (
     <>

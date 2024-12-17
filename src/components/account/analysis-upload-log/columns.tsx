@@ -18,20 +18,20 @@ export const getAnalysisDataTableColumns = ({ handleDelete, handleDownload, json
   {
     id: 'createdAt',
     accessorKey: 'createdAt',
-    header: 'AnalysisData.date',
+    header: 'Analysis_data.date',
     cell: ({ getValue }) => dayjs(getValue() as string).format(FORMAT_DATE_TIME),
     size: 150,
   },
   {
     id: 'uploadedByEmail',
     accessorKey: 'uploadedByEmail',
-    header: 'AnalysisData.user_email',
+    header: 'Analysis_data.user_email',
     size: 350,
   },
   {
     id: 'eventShortId',
     accessorKey: 'eventShortId',
-    header: 'AnalysisData.event_id',
+    header: 'Analysis_data.event_id',
     cell: ({ getValue }) => {
       const value = getValue() as string;
       return (
@@ -45,7 +45,7 @@ export const getAnalysisDataTableColumns = ({ handleDelete, handleDownload, json
   {
     id: 'uploadedById',
     accessorKey: 'id',
-    header: 'AnalysisData.file_uploaded',
+    header: 'Analysis_data.file_uploaded',
     cell: ({ getValue }) => {
       const value = getValue() as string;
       return (

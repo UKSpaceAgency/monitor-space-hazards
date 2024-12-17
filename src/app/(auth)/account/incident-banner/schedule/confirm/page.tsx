@@ -26,7 +26,7 @@ export default async function BannerConfirmSchedulePage(props: {
     redirect('/account/incident-banner');
   }
 
-  const t = await getTranslations('IncidentBannersConfirm');
+  const t = await getTranslations('Incident_banners.Confirm');
 
   return (
     <div>

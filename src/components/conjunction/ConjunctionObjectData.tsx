@@ -16,7 +16,7 @@ type ConjunctionObjectDataProps = {
 };
 
 const ConjunctionObjectData = ({ primaryObject, secondaryObject }: ConjunctionObjectDataProps) => {
-  const t = useTranslations('Accordions.Conjunction.object_data');
+  const t = useTranslations('Conjunction.Object_data');
 
   const dataArray = [primaryObject, secondaryObject || {} as TypeSatelliteOut];
 

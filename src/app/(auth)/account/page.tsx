@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default async function AccountPage() {
-  const t = await getTranslations('AccountPage');
+  const t = await getTranslations('Account');
   const session = await getSession();
   const role = session?.user.role;
 

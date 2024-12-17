@@ -9,7 +9,7 @@ import { roundedPercent } from '@/utils/Math';
 
 export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventReportOut>[] = [
   {
-    header: 'ReentryAlertHistory.report_number',
+    header: 'Reentry_alert_history.report_number',
     id: 'reportNumber',
     enableSorting: false,
     cell: ({ row }) => {
@@ -33,7 +33,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
     },
   },
   {
-    header: 'ReentryAlertHistory.report_time',
+    header: 'Reentry_alert_history.report_time',
     accessorKey: 'reportTime',
     enableSorting: false,
     cell: ({ getValue }) => {
@@ -42,7 +42,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
     },
   },
   {
-    header: 'ReentryAlertHistory.risk',
+    header: 'Reentry_alert_history.risk',
     enableSorting: false,
     cell: ({ row: { original: { probability } } }) => {
       if (probability > 0.05) {
@@ -63,7 +63,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
     },
   },
   {
-    header: 'ReentryAlertHistory.probability',
+    header: 'Reentry_alert_history.probability',
     accessorKey: 'probability',
     enableSorting: false,
     cell: ({ getValue }) => {
@@ -72,7 +72,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
     },
   },
   {
-    header: 'ReentryAlertHistory.overflight',
+    header: 'Reentry_alert_history.overflight',
     accessorKey: 'overflightTime',
     enableSorting: false,
     cell: ({ getValue }) => {

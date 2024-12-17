@@ -1,5 +1,5 @@
 {
-  "BaseTemplate": {
+  "Template": {
     "skip_content": "Skip to main content",
     "phase_banner": "This is a new service - your <feedback>feedback</feedback> will help us to improve it.",
     "navigation": {
@@ -11,7 +11,7 @@
     },
     "sign_out": "Sign out"
   },
-  "IndexPage": {
+  "Index": {
     "nsoc": {
       "title": "National Space Operations Centre Warning and Protection Services",
       "content": "National Space Operations Centre (NSpOC) Warning and Protection Services support UK and international partners to manage space risks and hazards.",
@@ -31,7 +31,7 @@
       "markup": "<p>We provide monthly reports on space risks and hazards which are accessible to everyone (<nsoc>National Space Operations Centre</nsoc>) and regularly updated space weather information is available from our partner the <metoffice>Met Office</metoffice>.</p><p>At this time, access to the operational services provided by Monitor Space Hazards is available to UK licensed satellite operators and UK Government departments. If you meet these criteria and would like access, please contact <mailto>monitorspacehazards@ukspaceagency.gov.uk</mailto>.</p><p>Visit <nsoc>National Space Operations Centre</nsoc> for further information about our services.</p>"
     }
   },
-  "DashboardPage": {
+  "Dashboard": {
     "title": "National Space Operations Centre Warning and Protection Services",
     "content": "National Space Operations Centre (NSpOC) Warning and Protection Services support UK and international partners to manage space risks and hazards.",
     "services": {
@@ -105,7 +105,7 @@
       "title": "Objects tracked"
     }
   },
-  "AccountPage": {
+  "Account": {
     "title": "Your account information",
     "view_account_details": {
       "title": "View your account details",
@@ -114,8 +114,8 @@
     },
     "change_your_notification_settings": {
       "title": "Change your notification settings",
-      "conjunction_event_notification_thresholds_settings": "Conjuction event notification thresholds settings",
-      "conjunction_event_notification_settings": "Conjuction event notification settings",
+      "conjunction_event_notification_thresholds_settings": "Conjunction event notification thresholds settings",
+      "conjunction_event_notification_settings": "Conjunction event notification settings",
       "alert_settings": "Edit your alert settings"
     },
     "change_your_organisation_details": {
@@ -140,7 +140,7 @@
       "manage_incident_banners": "Manage incident banners"
     }
   },
-  "ContactAndOrganisationInformation": {
+  "Contact_and_organisation_information": {
     "title": "View your account details",
     "contact_the_uksa_via": "Contact the UKSA via",
     "if_your_contact_details_are_incorrect": "if your contact details are incorrect.",
@@ -152,26 +152,26 @@
       "phone_number": "Phone number"
     }
   },
-  "TermsAndConditions": {
+  "Terms_and_conditions": {
     "title": "View Terms and Conditions",
     "accepted_text": "By using Monitor Space Hazards you have agreed to the Terms and Conditions of the site.",
     "button": "Download Terms and Conditions",
     "label": "I have read and agreed to the Terms and Conditions"
   },
-  "DataPrivacyNotice": {
+  "Data_privacy_notice": {
     "title": "Data Privacy Notice",
     "button": "Download data privacy notice"
   },
-  "ContactAnalyst": {
+  "Contact_analyst": {
     "title": "Contact a UKSA orbital analyst",
     "content": "<p>UKSA orbital analysts are available Monday to Sunday, 8am to 4pm (except public holidays). Your message will be triaged and an analyst will get back to you as soon as possible.</p><p>UKSA orbital analysts <bold>can</bold> provide:</p><list><item>Further detail on their calculations</item><item>An indication on whether further analysis of an event is possible</item></list><p>UKSA orbital analysts <bold>cannot</bold> provide:</p><list><item>Advice on how you should manoeuvre your satellite</item><item>Analysis on a planned manoeuvre</item></list>",
     "event_id": "Conjunction event ID or Re-entry event ID",
     "email_address": "Your email address",
-    "submit": "Submit"
-  },
-  "ContactAnalystSend": {
-    "title": "Your message has been sent to a UKSA orbital analyst.",
-    "content": "Your message will be triaged and an analyst will get back to you as soon as possible."
+    "submit": "Submit",
+    "Send": {
+      "title": "Your message has been sent to a UKSA orbital analyst.",
+      "content": "Your message will be triaged and an analyst will get back to you as soon as possible."
+    }
   },
   "Credentials": {
     "title": "Credentials for API authentication",
@@ -181,30 +181,30 @@
     "copy_client_secret_button": "Copy Client Secret to clipboard",
     "warning": "Copy your Client ID and Client Secret to authenticate with the API. Do not share your credentials."
   },
-  "EventNotificationThresholdsSettings": {
+  "Event_notification_thresholds_settings": {
     "title": "Set your conjunction event notification thresholds",
     "content": "<p>We will send you notifications when the probability of collision, total miss distance and mean radial miss distance meets threshold and the time to conjunction event is below the threshold you have set.</p><p>You are responsible for the safe operation of your satellites and should choose settings which allow you to do this.</p><p>The default settings are examples of thresholds, not recommendations.</p>"
   },
-  "NotificationSettings": {
+  "Notification_settings": {
     "title": "Choose your notification settings",
     "content": "<p>New event notifications will be collated and sent in one email and/or SMS every 12 hours.</p><p>Choose which notifications you wish to receive. Uncheck boxes where you do not wish to receive notifications.</p>"
   },
-  "AddNewUser": {
+  "Add_new_user": {
     "title": "Add a new user",
     "content": "<p>Add a new user to join your organisation by entering the details below. New users will receive an invitation to the email address specified.</p>"
   },
-  "IncidentBanners": {
+  "Incident_banners": {
     "title": "Manage incident banners",
     "content": "<p>In the case of an incident, the Monitor Space Hazards service will remain live, but it is important to notify all Monitor Space Hazards users.</p><p>Super users are able to display banners that will be visible at the top of each page, warning users that the information presented on Monitor Space Hazards may not be accurate.</p>",
     "Scheduled_banners": {
       "title": "Scheduled incident banners"
     },
+    "Confirm": {
+      "title": "Confirm incident banner settings",
+      "incident_type": "Incident type",
+      "active_time": "Active time period"
+    },
     "add_new": "Set up new incident banner"
-  },
-  "IncidentBannersConfirm": {
-    "title": "Confirm incident banner settings",
-    "incident_type": "Incident type",
-    "active_time": "Active time period"
   },
   "Organisations": {
     "title": "Organisations",
@@ -214,8 +214,8 @@
     },
     "table": {
       "organisation": "Organisaton",
-      "registred_users": "Number of registered satellites",
-      "registred_satellites": "Number of registered users",
+      "registered_users": "Number of registered satellites",
+      "registered_satellites": "Number of registered users",
       "date_added": "Date account added"
     }
   },
@@ -244,7 +244,7 @@
     },
     "add_new_user": "Add new user"
   },
-  "AnalysisUploadLog": {
+  "Analysis_upload_log": {
     "title": "UKSA analysis uploads",
     "description": "View all UKSA analysis uploaded to Monitor Space Hazards for UK conjunction events.",
     "help": {
@@ -253,7 +253,7 @@
       "description2": "Select delete to permanently remove the analysis from the service."
     }
   },
-  "ManoeuvreSupportUploadLog": {
+  "Manoeuvre_support_upload_log": {
     "title": "Manoeuvre support uploads",
     "description": "View all Manoeuvre support files uploaded to Monitor Space Hazards for UK conjunction events.",
     "help": {
@@ -262,9 +262,21 @@
       "description2": "Select delete to permanently remove the file from the service."
     }
   },
-  "DistributionLists": {
+  "Distribution_lists": {
     "title": "View distribution lists",
-    "description": "We will send notifications according to the distribution lists outlined on this page."
+    "description": "We will send notifications according to the distribution lists outlined on this page.",
+    "accordion": {
+      "receive_alerts": "Receive {item} alerts",
+      "distribution_list": "Distribution lists for {type} events",
+      "conjunctions_help": {
+        "summary": "Conjunction alert criteria",
+        "content": "<h3>Standard conjunction alert</h3><p>There are various criteria which determine if alerts are produced about conjunction events. These criteria vary by type of object.</p><p><bold>For UK-licensed objects:</bold></p><list><item>Less than 5 days until Time of Closest Approach</item><item>More than 0.1% probability of collision</item><item>Press interest</item></list><p><bold>For non-UK objects:</bold></p><list><item>Less than 5 days until Time of Closest Approach, with:</item><list><item>Low risk or higher</item><item>No manoeuvre expected</item></list></list><p><bold>For all objects:</bold></p><list><item>If nominated for escalation by the National Space Operations Centre</item></list><h3>Priority conjunction alert</h3><p><bold>For UK-licensed objects:</bold></p><list><item>More than 1% probability of collision</item><item>No manoeuvre expected</item></list><p><bold>For non-UK objects:</bold></p><list><item>More than 5% probability of collision</item><item>No manoeuvre expected</item><item>Significant press interest</item></list>"
+      },
+      "reentry_help": {
+        "summary": "Re-entry alert criteria",
+        "content": "<h3>Standard re-entry alert</h3><p>If this report is classified as a standard re-entry alert, then it has been distributed only to key UK government organisations (UK Space Agency, Ministry of Defence, Cabinet Office, Civil Aviation Authority) and international partners.</p><p><bold>The criteria for producing a standard re-entry alert is less than 36 hours until re-entry and one of the following:</bold></p><list><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories</item><item>Any UK-licensed object (except designed for demise)</item><item>Press interest</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Priority re-entry alert</h3><p>If this report is classified as a priority re-entry alert, then it has been distributed more widely across UK devolved and central government departments.</p><p><bold>The criteria for producing a priority re-entry alert is debris likely to survive to the ground and one of the following:</bold></p><list><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis)</item><item>UK-licensed object</item><item>Significant press interest</item></list>"
+      }
+    }
   },
   "Satellites": {
     "title": "UK-licensed satellites",
@@ -274,12 +286,12 @@
     }
   },
   "Satellite": {
-    "EphemerisData": {
+    "Ephemeris_data": {
       "title": "Ephemeris data",
       "content": "Ephemeris files uploaded by the operator are shown here:",
       "upload_button": "Upload your ephemeris data"
     },
-    "ConjunctionEvents": {
+    "Conjunction_events": {
       "title": "{type} conjunction events",
       "search_bar": {
         "label": "Find a conjunction event:",
@@ -291,95 +303,29 @@
       }
     }
   },
-  "SatelliteEphemerisUploadPage": {
+  "Satellite_ephemeris_upload": {
     "title": "Uploading your ephemeris data",
     "content": "<p>If you would like updated UKSA analysis on this conjunction event using your ephemeris data, attach a file below.</p><p>If upload is successful, the file will be renamed with the timestamp of the creation date and made available from the Ephemeris table on the satellite information page.</p><p>Upload a CCSDS .oem file. The file must not exceed 20MB.</p>",
-    "help_summary": "More information about sharing your ephemerides with the UKSA",
-    "help_content": "<p>Additional analysis will be provided by UKSA orbital analysts only on conjunction events that UKSA analysis determines breach a probability of collision ≥ 10-5</p><p>View the <link>terms and conditions</link> for data handling information</p>"
+    "help_summary": "More information about sharing your ephemerises with the UKSA",
+    "help_content": "<p>Additional analysis will be provided by UKSA orbital analysts only on conjunction events that UKSA analysis determines breach a probability of collision ≥ 10-5</p><p>View the <link>terms and conditions</link> for data handling information</p>",
+    "Success": {
+      "title": "Ephemeris upload complete",
+      "content": "Your ephemeris for {noradId} has been successfully uploaded to Monitor Space Hazards"
+    }
   },
-  "SatelliteEphemerisUploadSuccessPage": {
-    "title": "Ephemeris upload complete",
-    "content": "Your ephemeris for {noradId} has been successfully uploaded to Monitor Space Hazards"
-  },
-  "FeedbackPage": {
+  "Feedback": {
     "title": "Give feedback on Monitor Space Hazards"
   },
-  "ConjunctionAnalysisUploadPage": {
+  "Conjunction_analysis_upload": {
     "title": "Upload UKSA analysis for conjunction event {shortId}",
     "content": "Upload a JSON file. The file must be smaller than 12 MB and should meet the defined UKSA schema for JSON files.",
     "help": {
       "title": "Help with uploading your analysis",
       "content": "<p>The file must have the following to be accepted:</p><list><item>The file must have a JSON extension.</item><item>The file must not exceed 12 MB.</item><item>The file must match the defined schema for analysis.</item></list><p>The data schema for JSON files is as follows:</p>"
-    }
-  },
-  "ConjunctionAnalysisUploadSuccessPage": {
-    "title": "Analysis upload complete",
-    "content": "Your analysis for {shortId} has been successfully uploaded to Monitor Space Hazards"
-  },
-  "Accordions": {
-    "DistributionLists": {
-      "receive_alerts": "Receive {item} alerts",
-      "distribution_list": "Distribution lists for {type} events",
-      "conjunctions_help": {
-        "summary": "Conjunction alert criteria",
-        "content": "<h3>Standard conjunction alert</h3><p>There are various criteria which determine if alerts are produced about conjunction events. These criteria vary by type of object.</p><p><bold>For UK-licensed objects:</bold></p><list><item>Less than 5 days until Time of Closest Approach</item><item>More than 0.1% probability of collision</item><item>Press interest</item></list><p><bold>For non-UK objects:</bold></p><list><item>Less than 5 days until Time of Closest Approach, with:</item><list><item>Low risk or higher</item><item>No manoeuvre expected</item></list></list><p><bold>For all objects:</bold></p><list><item>If nominated for escalation by the National Space Operations Centre</item></list><h3>Priority conjunction alert</h3><p><bold>For UK-licensed objects:</bold></p><list><item>More than 1% probability of collision</item><item>No manoeuvre expected</item></list><p><bold>For non-UK objects:</bold></p><list><item>More than 5% probability of collision</item><item>No manoeuvre expected</item><item>Significant press interest</item></list>"
-      },
-      "reentry_help": {
-        "summary": "Re-entry alert criteria",
-        "content": "<h3>Standard re-entry alert</h3><p>If this report is classified as a standard re-entry alert, then it has been distributed only to key UK government organisations (UK Space Agency, Ministry of Defence, Cabinet Office, Civil Aviation Authority) and international partners.</p><p><bold>The criteria for producing a standard re-entry alert is less than 36 hours until re-entry and one of the following:</bold></p><list><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories</item><item>Any UK-licensed object (except designed for demise)</item><item>Press interest</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Priority re-entry alert</h3><p>If this report is classified as a priority re-entry alert, then it has been distributed more widely across UK devolved and central government departments.</p><p><bold>The criteria for producing a priority re-entry alert is debris likely to survive to the ground and one of the following:</bold></p><list><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis)</item><item>UK-licensed object</item><item>Significant press interest</item></list>"
-      }
     },
-    "Conjunction": {
-      "section_titles": {
-        "poc_chart": "Evolution of collision probability",
-        "miss_distance_chart": "Evolution of miss distance",
-        "object_data": "Object data",
-        "event_history": "Conjunction event history",
-        "further_information": "Further information",
-        "manoeuvre_support": "Manoeuvre support"
-      },
-      "poc_chart": {
-        "title": "Evolution of collision probability",
-        "help": {
-          "title": "Help with this chart",
-          "content": "<p>Data sources can be turned on or off by selecting the series in the legend below the chart.</p><p>Evolution of operational conjunction event data is displayed as a continuous line. Individual <special>Special</special> ephemeris probabilities can be turned on or off.</p><p>You can reveal more details about a specific data point by moving your mouse over it or tapping on the data point on touch-enabled screens.</p><p>Full conjunction event data can be viewed or downloaded from <link>Conjunction event history</link>.</p>"
-        }
-      },
-      "mtp_chart": {
-        "title": "Manoeuvre support"
-      },
-      "miss_distance_chart": {
-        "title": "Evolution of miss distance",
-        "help": {
-          "title": "Help with this chart",
-          "content": "<p>Miss distances can be turned on or off by selecting the series in the legend below the chart.</p><p>Evolution of operational conjunction event data is displayed as a continuous line. Individual <special>Special</special> ephemeris probabilities can be turned on or off.</p><p>You can reveal more details about a specific data point by moving your mouse over it or tapping on the data point on touch-enabled screens.</p><p>Full conjunction event data can be viewed or downloaded from <link>Conjunction event history</link>.</p>"
-        }
-      },
-      "object_data": {
-        "additional_object_summary": {
-          "title": "Additional object data",
-          "content": "<p>ESA DISCOS provides additional object data where available. Contact ESA DISCOS if your satellite data is incorrect.</p><p>ESA DISCOS data was last updated on: {updateTime} UTC</p>"
-        },
-        "title": "Object Data",
-        "primary_object": "Primary object",
-        "secondary_object": "Secondary object",
-        "space_track": "Space-Track is the main source of object data. Contact Space-Track if your satellite data is incorrect."
-
-      },
-      "event_history": {
-        "title": "Conjunction event history",
-        "download": "Download event history",
-        "help": {
-          "title": "Help with this table",
-          "content": "<p>Historical CDMs for the event are available in this table. Information about the individual CDM is available, including the calculation method for the probability of collision, the position uncertainty and data source for each object.</p><p>The data source for each object either comes from SSN observations, special or operational owner/operator ephemeris or NASA/CARA. Further information about these can be found in <link>definitions on data sources</link>.</p>"
-        }
-      },
-      "further_information": {
-        "title": "Further information",
-        "description": "To understand more about how this data was generated by the UKSA, see:",
-        "link1": "Conjunction event analysis information",
-        "link2": "Help with the information on this page"
-      }
+    "Success": {
+      "title": "Analysis upload complete",
+      "content": "Your analysis for {shortId} has been successfully uploaded to Monitor Space Hazards"
     }
   },
   "Conjunctions": {
@@ -401,13 +347,46 @@
   },
   "Conjunction": {
     "title": "Conjunction event {id}",
-    "section_titles": {
-      "poc_chart": "Evolution of collision probability",
-      "miss_distance_chart": "Evolution of miss distance",
-      "object_data": "Object data",
-      "event_history": "Conjunction event history",
-      "further_information": "Further information",
-      "manoeuvre_support": "Manoeuvre support"
+    "Poc_chart": {
+      "title": "Evolution of collision probability",
+      "help": {
+        "title": "Help with this chart",
+        "content": "<p>Data sources can be turned on or off by selecting the series in the legend below the chart.</p><p>Evolution of operational conjunction event data is displayed as a continuous line. Individual <special>Special</special> ephemeris probabilities can be turned on or off.</p><p>You can reveal more details about a specific data point by moving your mouse over it or tapping on the data point on touch-enabled screens.</p><p>Full conjunction event data can be viewed or downloaded from <link>Conjunction event history</link>.</p>"
+      }
+    },
+    "Mtp_chart": {
+      "title": "Manoeuvre support"
+    },
+    "Miss_distance_chart": {
+      "title": "Evolution of miss distance",
+      "help": {
+        "title": "Help with this chart",
+        "content": "<p>Miss distances can be turned on or off by selecting the series in the legend below the chart.</p><p>Evolution of operational conjunction event data is displayed as a continuous line. Individual <special>Special</special> ephemeris probabilities can be turned on or off.</p><p>You can reveal more details about a specific data point by moving your mouse over it or tapping on the data point on touch-enabled screens.</p><p>Full conjunction event data can be viewed or downloaded from <link>Conjunction event history</link>.</p>"
+      }
+    },
+    "Object_data": {
+      "additional_object_summary": {
+        "title": "Additional object data",
+        "content": "<p>ESA DISCOS provides additional object data where available. Contact ESA DISCOS if your satellite data is incorrect.</p><p>ESA DISCOS data was last updated on: {updateTime} UTC</p>"
+      },
+      "title": "Object Data",
+      "primary_object": "Primary object",
+      "secondary_object": "Secondary object",
+      "space_track": "Space-Track is the main source of object data. Contact Space-Track if your satellite data is incorrect."
+    },
+    "Event_history": {
+      "title": "Conjunction event history",
+      "download": "Download event history",
+      "help": {
+        "title": "Help with this table",
+        "content": "<p>Historical CDMs for the event are available in this table. Information about the individual CDM is available, including the calculation method for the probability of collision, the position uncertainty and data source for each object.</p><p>The data source for each object either comes from SSN observations, special or operational owner/operator ephemeris or NASA/CARA. Further information about these can be found in <link>definitions on data sources</link>.</p>"
+      }
+    },
+    "Further_information": {
+      "title": "Further information",
+      "description": "To understand more about how this data was generated by the UKSA, see:",
+      "link1": "Conjunction event analysis information",
+      "link2": "Help with the information on this page"
     }
   },
   "Reentries": {
@@ -422,18 +401,18 @@
       "history": "Re-entry event history",
       "further_information": "Further information"
     },
-    "EventSummary": {
+    "Event_summary": {
       "title": "Re-entry event summary",
       "reentering_object": "Re-entering object:",
       "contact_analyst": "Contact the UK Space Agency for more information"
     },
-    "FurtherInformation": {
+    "Further_information": {
       "content": "To understand more about how this data was generated by the UKSA, see:",
       "reentry_event_analysis_information": "Re-entry event analysis information",
       "help_with_information": "Help with the information on re-entry events"
     }
   },
-  "ReentryAlert": {
+  "Reentry_alert": {
     "notification_banner": "You are able to <edit>edit this alert</edit> or <send>send this alert to additional recipients</send>",
     "title": "Re-entry alert for {objectName}",
     "report_info": "<p><bold>Report {number}</bold> updated on {time} UTC</p>",
@@ -450,19 +429,19 @@
       "alerting_procedure": "Alerting procedure",
       "further_information": "Further information"
     },
-    "ExecutiveSummary": {
+    "Executive_summary": {
       "title": "Executive summary",
       "content": "The UK Space Agency is tracking the upcoming re-entry of an object from space into the Earth's atmosphere, posing a potential threat to life and property on the ground. All re-entered debris should be considered as hazardous until proven otherwise."
     },
     "Map": {
       "see_further_information": "<p>See <link>Further information</link> for more detail on methodology used in this report and the organisations that have been sent this alert.</p>"
     },
-    "NextUpdate": {
+    "Next_update": {
       "title": "Next update",
       "content": "For Low Risk events, updates are only sent if the event breaches a higher risk threshold. For Medium and High Risk events, updates are sent as soon as new information is available. A close-down report will be sent in all cases.",
       "contact_analyst": "Contact the UK Space Agency for more information"
     },
-    "GuidanceOnResponse": {
+    "Guidance_on_response": {
       "immediate_response": {
         "title": "Immediate response",
         "content": "<p>All re-entered debris should be considered as hazardous until proven otherwise. The most commonly used hazardous materials used on spacecraft are:</p><list><item><hydrazine>Hydrazine</hydrazine></item><item><kerosene>Kerosene</kerosene></item></list><p>Debris objects should not be disposed of nor made available to the public. An appropriate hazmat response (i.e testing by fire service) should take place first.</p><p>The UK Space Agency is responsible for the monitoring of re-entry of objects from space into Earth's atmosphere, providing warnings and alerts across HM Government. UKSA will act as subject matter experts, providing advice and guidance on how to deal with the incident. This includes coordinating public communications about the event.</p><p>In the event of debris from the re-entry surviving to the ground, local authorities are responsible for any incident response and should follow standard response activities for the damage caused using existing Chemical, Biological, Radiological and Nuclear (CBRN) and/or plane crash policies.</p><p>Cabinet Office will take on the lead for incident response coordination if the impacts are significant or are across multiple sectors.</p>"
@@ -472,14 +451,14 @@
         "content": "<p><bold>Decontamination:</bold> If the object is contaminated with hazardous material, it should be decontaminated. Decontamination is led by Defra who are the Lead Government Department for decontamination in England, in liaison with local authorities.</p><p><bold>Storage:</bold> The object should be sent to storage by a specialist supplier in the local area, as agreed and organised by Defra.</p><p><bold>Release:</bold> If the object has been declared safe (by Defra), UKSA will direct it's release to either: MOD Defence Intelligence if the object is of Chinese or Russian origin; the owner of the object or the state liable for the object, organised via the Foreign, Commonwealth and Development Office; or the Air Accident Investigation Bureau or the Civil Aviation Authority if the object is UK-licensed.</p><p><bold>Disposal:</bold> If the object cannot be declared safe or decontaminated, it should disposed of as per standard procedures held by Defra.</p><p><bold>Incident close down:</bold> When departments agree that recovery can be handled through Business As Usual structures, the incident can be closed down. The UK Space Agency and Cabinet Office will confirm close down of the event to all parties involved.</p>"
       }
     },
-    "LiabilityForDamages": {
+    "Liability_for_damages": {
       "content": "<p>{licenseCountry} is liable for any damages and associated costs of the response and recovery efforts caused by the re-entry under the terms of the 1972 Space Liability Convention.</p>",
       "licenseCountryEmpty": "It is unknown who"
     },
-    "PressAttention": {
+    "Press_attention": {
       "empty": "We have not seen any press attention on this event."
     },
-    "RiskThresholds": {
+    "Risk_thresholds": {
       "content": "Risk thresholds are calculated according to the probability of the object re-entering over the UK.",
       "risk_level": "Risk level",
       "probability_of_reentry": "Probability of re-entry over the UK (%)",
@@ -489,7 +468,7 @@
         "high": "More than 5%"
       }
     },
-    "AlertingProcedure": {
+    "Alerting_procedure": {
       "standard_alert": {
         "title": "Standard re-entry alert",
         "content": "<p>If this report is classified as a standard re-entry alert, then it has been distributed only to key UK government organisations (UK Space Agency, Ministry of Defence, Cabinet Office, Civil Aviation Authority) and international partners.</p><p><bold>The criteria for producing a standard re-entry alert is less than 36 hours until re-entry and one of the following:</bold></p><list><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories</item><item>Any UK-licensed object (except designed for demise)</item><item>Press interest</item><item>Nominated for escalation by the National Space Operations Centre</item></list>"
@@ -499,13 +478,13 @@
         "content": "<p>If this report is classified as a priority re-entry alert, then it has been distributed more widely across UK devolved and central government departments.</p><p><bold>The criteria for producing a priority re-entry alert is debris likely to survive to the ground and one of the following:</bold></p><list><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis)</item><item>>UK-licensed object</item><item>Significant press interest</item></list>"
       }
     },
-    "FurtherInformation": {
+    "Further_information": {
       "content": "To understand more about how this data was generated by the UKSA, see:",
       "reentry_event_analysis_information": "Re-entry event analysis information",
       "help_with_information": "Help with the information on re-entry events"
     }
   },
-  "ReentryAlertEdit": {
+  "Reentry_alert_edit": {
     "title": "Re-entry alert for {objectName}",
     "content": "<p>If edits or additions are needed to the automatically generated report, these can be made through free text inputs in the boxes below. Once published, these edits will automatically be added to the relevant event page, and users on the appropriate distribution lists will be notified of the update.</p><p>The below boxes can only process <bold>plain text</bold>. Do not include images or text formatting.</p>",
     "review_description": "Free text edits to re-entry event {shortId}",
@@ -517,11 +496,11 @@
       }
     }
   },
-  "ReentryAlertSend": {
+  "Reentry_alert_send": {
     "title": "Send alert to additional recipients",
     "content": "<p>This page shows you the current distribution status of the re-entry alert and allows you to manually distribute the alert to additional recipients.</p><p>If it is not already, you can choose to make the alert a priority re-entry alert. You are also able to manually select individual emails to send the alert to.</p>",
-    "alert_critera_help": {
-      "title": "Distribution lists and re-entry alert critera",
+    "alert_criteria_help": {
+      "title": "Distribution lists and re-entry alert criteria",
       "content": "<h3>Distribution lists:</h3><p>You are able to view which distribution list users are currently on in the account section (<link>View distribution lists</link>)</p><h3>Standard re-entry alert</h3><p><bold>The criteria for producing a standard re-entry alert is less than 36 hours until re-entry and one of the following:</bold></p><list><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories</item><item>Any UK-licensed object (except designed for demise)</item><item>Press interest</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Priority re-entry alert:</h3><p><bold>The criteria for producing a priority re-entry alert is debris likely to survive to the ground and one of the following:</bold></p><list><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis)</item><item>UK-licensed object</item><item>Significant press interest</item></list>"
     }
   },
@@ -560,19 +539,19 @@
         "reentry_reports": "re-entry reports"
       }
     },
-    "AnalysisData": {
+    "Analysis_data": {
       "date": "Date",
       "user_email": "User email",
       "event_id": "Event ID",
       "file_uploaded": "File uploaded"
     },
-    "ManoeuvreData": {
+    "Manoeuvre_data": {
       "date": "Date",
       "user_email": "User email",
       "event_id": "Event ID",
       "file_uploaded": "File uploaded"
     },
-    "SatelliteInformations": {
+    "Satellite_informations": {
       "Objects": {
         "primary": "Primary object",
         "secondary": "Secondary object"
@@ -581,7 +560,7 @@
         "title": "Satellite information",
         "content": "Space-Track is the main source of all object data. Contact Space-Track if your satellite data is incorrect."
       },
-      "AdditionalInformations": {
+      "Additional_informations": {
         "title": "Additional object data",
         "content": "<p>ESA DISCOS provides additional object data where available. Contact ESA DISCOS if your satellite data is incorrect.</p><p>ESA DISCOS data was last updated on: {updateTime} UTC</p>"
       },
@@ -754,7 +733,7 @@
         "licensing_country": "Licensing country"
       }
     },
-    "ReentryEventSummary": {
+    "Reentry_event_summary": {
       "tip_id": "TIP ID",
       "predicted_reentry_time": "Predicted re-entry time (UTC)",
       "uncertainty_window": "Uncertainty window for predicted re-entry time (mins)",
@@ -765,13 +744,13 @@
       "high_interest": "High interest?",
       "time_of_update": "Time of update (UTC)"
     },
-    "ReentryEventHistory": {
+    "Reentry_event_history": {
       "data_source": "Data source",
       "time_of_update": "Time of update (UTC)",
       "predicted_reentry_time": "Predicted re-entry time (UTC)",
       "uncertainty_window": "Uncertainty window for predicted re-entry time (mins)"
     },
-    "ReentryAlertExecutiveSummary": {
+    "Reentry_alert_executive_summary": {
       "uk_reentry_probability": "Risk to the UK (see Risk thresholds)",
       "probability": "Probability of re-entry over the UK (%)",
       "time_window_world": "Re-entry time window worldwide (UTC)",
@@ -781,7 +760,7 @@
       "estimated_mass": "Estimated mass (kg)",
       "licensing_country": "Licensing country"
     },
-    "ReentryAlertAdditionalObjectDetails": {
+    "Reentry_alert_additional_object_details": {
       "object_details": "Object details",
       "orbit_details": "Orbit details",
       "international_designator": "International designator",
@@ -794,14 +773,14 @@
       "perigee": "Perigee (km)",
       "inclination": "Inclination (°)"
     },
-    "ReentryAlertImpact": {
+    "Reentry_alert_impact": {
       "probability_of_reentry": "Probability of re-entry (%)",
       "time_of_overflight": "Time of overflight {number} (UTC)",
       "uk_nations_hint": "Only UK nations which are at risk from this re-entry are included in the table(s) above.",
       "overseas_hint": "* For the purposes of this table, British Antarctic Territory has been limited to the areas surrounding populated facilities in the territory.",
       "see_further_information": "<p>See <link>Further information</link> for more detail on methodology used in this report.</p>"
     },
-    "ReentryAlertHistory": {
+    "Reentry_alert_history": {
       "report_number": "Report number",
       "report_time": "Time of report (UTC)",
       "risk": "Risk",
@@ -828,7 +807,7 @@
       "on_analysis_uploaded": "New UKSA event analysis uploaded"
     },
     "Add_new_user": {
-      "success_message": "<p>User has been added to {organization}.</p><p>They will be sent an invitation email to the address provided to finish setting up their account.</p>",
+      "success_message": "<p>User has been added to {organisation}.</p><p>They will be sent an invitation email to the address provided to finish setting up their account.</p>",
       "success_message_only_admins": "<p>You can edit the new user's settings to select the notifications they receive.</p>",
       "success_message_edit_settings_button": "Edit user alert settings",
       "success_message_return_button": "Go to organisation",
@@ -915,7 +894,7 @@
         "description": "Alert settings updated. These can be viewed in the Account section."
       }
     },
-    "EphemerisUpload": {
+    "Ephemeris_upload": {
       "label": "Upload .oem file:",
       "button": "Upload"
     },
@@ -935,11 +914,11 @@
       "satisfaction": "Satisfaction survey",
       "details": "Satisfaction details"
     },
-    "AnalysisUpload": {
+    "Analysis_upload": {
       "label": "Upload your analysis:",
       "button": "Upload analysis"
     },
-    "ContactAnalyst": {
+    "Contact_analyst": {
       "submit": "Submit",
       "message": "Message"
     },

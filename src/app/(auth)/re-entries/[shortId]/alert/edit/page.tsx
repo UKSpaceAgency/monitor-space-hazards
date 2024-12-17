@@ -11,7 +11,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ shortId: string }>;
 }) {
-  const t = await getTranslations('ReentryAlertEdit');
+  const t = await getTranslations('Reentry_alert_edit');
   const { shortId } = await params;
   try {
     const event = await getReentryEvent(shortId);
@@ -29,7 +29,7 @@ export default async function ReentryAlertEdit({
 }: {
   params: Promise<{ shortId: string }>;
 }) {
-  const t = await getTranslations('ReentryAlertEdit');
+  const t = await getTranslations('Reentry_alert_edit');
   const { shortId } = await params;
   const event = await getReentryEvent(shortId);
 

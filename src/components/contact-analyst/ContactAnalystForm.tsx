@@ -21,7 +21,7 @@ type ContactAnalystFormProps = {
 };
 
 const ContactAnalystForm = ({ searchParams }: ContactAnalystFormProps) => {
-  const t = useTranslations('Forms.ContactAnalyst');
+  const t = useTranslations('Forms.Contact_analyst');
 
   const { id, callback } = searchParams;
 
@@ -41,7 +41,7 @@ const ContactAnalystForm = ({ searchParams }: ContactAnalystFormProps) => {
     <form
       onSubmit={handleSubmit(onSubmit)}
     >
-      <FormErrorSummary i18path="ContactAnalyst" errors={errors} />
+      <FormErrorSummary i18path="Contact_analyst" errors={errors} />
       <TextArea
         {...register('messageContent')}
         id="message"

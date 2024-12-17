@@ -13,7 +13,7 @@ type ConjunctionAnalysisUploadFormProps = {
 };
 
 const ConjunctionAnalysisUploadForm = ({ objectId }: ConjunctionAnalysisUploadFormProps) => {
-  const t = useTranslations('Forms.AnalysisUpload');
+  const t = useTranslations('Forms.Analysis_upload');
   const [state, formAction] = useFormState(postAnalyses, null);
   const { pending } = useFormStatus();
 

@@ -5,7 +5,7 @@ import { getIncidentBanners } from '@/actions/getIncidentBanners';
 import { ScheduledBannersTable } from './ScheduledBannersTable';
 
 const ScheduledBanners = async () => {
-  const t = await getTranslations('IncidentBanners.Scheduled_banners');
+  const t = await getTranslations('Incident_banners.Scheduled_banners');
 
   const banners = await getIncidentBanners();
 

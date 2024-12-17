@@ -13,7 +13,7 @@ export default async function EphemerisUploadSuccess({
 }: {
   params: Promise<{ noradId: string }>;
 }) {
-  const t = await getTranslations('SatelliteEphemerisUploadSuccessPage');
+  const t = await getTranslations('Satellite_ephemeris_upload.Success');
   const tCommon = await getTranslations('Common');
   const { noradId } = await params;
 
