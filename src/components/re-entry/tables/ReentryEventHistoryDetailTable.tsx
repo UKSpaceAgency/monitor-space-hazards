@@ -15,7 +15,7 @@ type ReentryEventHistoryDetailTableProps = {
 };
 
 const ReentryEventHistoryDetailTable = ({ row }: ReentryEventHistoryDetailTableProps) => {
-  const t = useTranslations('Tables.ReentryEventSummary');
+  const t = useTranslations('Tables.Reentry_event_summary');
 
   const rows: InformationsTableRow<EventSummaryData>[] = [{
     header: t('tip_id'),

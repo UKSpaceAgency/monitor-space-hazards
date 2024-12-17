@@ -12,7 +12,7 @@ type OrbitalInformationsTableProps = {
 };
 
 const OrbitalInformationsTable = ({ object, headerCellWidth }: OrbitalInformationsTableProps) => {
-  const t = useTranslations('Tables.SatelliteInformations');
+  const t = useTranslations('Tables.Satellite_informations');
 
   const headers = Array.isArray(object)
     ? [{

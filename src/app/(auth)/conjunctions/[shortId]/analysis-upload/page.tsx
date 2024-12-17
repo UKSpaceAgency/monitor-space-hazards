@@ -12,7 +12,7 @@ export default async function ConjunctionAnalysisUpload({
 }: {
   params: Promise<{ shortId: string }>;
 }) {
-  const t = await getTranslations('ConjunctionAnalysisUploadPage');
+  const t = await getTranslations('Conjunction_analysis_upload');
   const { shortId } = await params;
 
   return (

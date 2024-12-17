@@ -13,7 +13,7 @@ export default async function ConjunctionSuccessfulAnalysisUpload({
 }: {
   params: Promise<{ shortId: string }>;
 }) {
-  const t = await getTranslations('ConjunctionAnalysisUploadSuccessPage');
+  const t = await getTranslations('Conjunction_analysis_upload.Success');
   const tCommon = await getTranslations('Common');
   const { shortId } = await params;
 

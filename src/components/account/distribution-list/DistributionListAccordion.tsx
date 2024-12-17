@@ -12,7 +12,7 @@ type DistributionListAccordionsProps = {
 };
 
 const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps) => {
-  const t = useTranslations('Accordions.DistributionLists');
+  const t = useTranslations('Distribution_lists.accordion');
 
   return (
     <>

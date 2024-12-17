@@ -15,7 +15,7 @@ type ReentryAlertExecutiveSummaryTableProps = {
 };
 
 const ReentryAlertExecutiveSummaryTable = ({ event }: ReentryAlertExecutiveSummaryTableProps) => {
-  const t = useTranslations('Tables.ReentryAlertExecutiveSummary');
+  const t = useTranslations('Tables.Reentry_alert_executive_summary');
 
   const rows: InformationsTableRow<EventSummaryData>[] = [{
     header: t('uk_reentry_probability'),

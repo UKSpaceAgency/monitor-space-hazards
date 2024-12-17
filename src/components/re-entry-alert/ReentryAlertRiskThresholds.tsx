@@ -4,7 +4,7 @@ import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } fro
 import Tag from '@/ui/tag/tag';
 
 const ReentryAlertRiskThresholds = () => {
-  const t = useTranslations('ReentryAlert.RiskThresholds');
+  const t = useTranslations('Reentry_alert.Risk_thresholds');
 
   return (
     <div>

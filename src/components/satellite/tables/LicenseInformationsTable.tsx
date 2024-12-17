@@ -14,7 +14,7 @@ type LicenseInformationsTableProps = {
 };
 
 const LicenseInformationsTable = ({ object, headerCellWidth }: LicenseInformationsTableProps) => {
-  const t = useTranslations('Tables.SatelliteInformations');
+  const t = useTranslations('Tables.Satellite_informations');
 
   const headers = Array.isArray(object)
     ? [{

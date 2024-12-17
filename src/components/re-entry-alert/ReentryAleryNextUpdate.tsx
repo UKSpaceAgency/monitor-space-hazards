@@ -8,7 +8,7 @@ type ReentryAlertNextUpdateProps = {
 };
 
 const ReentryAlertNextUpdate = ({ shortId }: ReentryAlertNextUpdateProps) => {
-  const t = useTranslations('ReentryAlert.NextUpdate');
+  const t = useTranslations('Reentry_alert.Next_update');
   return (
     <div>
       <h3 className="govuk-heading-m">{t('title')}</h3>

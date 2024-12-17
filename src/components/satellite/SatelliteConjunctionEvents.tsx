@@ -13,7 +13,7 @@ type SatelliteConjunctionEventsProps = {
 };
 
 const SatelliteConjunctionEvents = async ({ noradId, query, epoch }: SatelliteConjunctionEventsProps) => {
-  const t = await getTranslations('Satellite.ConjunctionEvents');
+  const t = await getTranslations('Satellite.Conjunction_events');
   const type = epoch === 'future' ? t('type.future') : t('type.past');
   const searchParamName = epoch === 'future' ? 'upcoming_search_like' : 'previous_search_link';
 

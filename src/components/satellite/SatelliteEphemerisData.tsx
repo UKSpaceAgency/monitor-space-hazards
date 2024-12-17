@@ -12,7 +12,7 @@ type SatelliteEphemerisDataProps = {
 };
 
 const SatelliteEphemerisData = ({ noradId, ephemerises }: SatelliteEphemerisDataProps) => {
-  const t = useTranslations('Satellite.EphemerisData');
+  const t = useTranslations('Satellite.Ephemeris_data');
   return (
     <div className="mb-12">
       <Link href={`/satellites/${noradId}/ephemeris-upload`}>

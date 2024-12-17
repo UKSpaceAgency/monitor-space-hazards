@@ -12,7 +12,7 @@ type AdditionalInformationsTableProps = {
 };
 
 const AdditionalInformationsTable = ({ object, headerCellWidth }: AdditionalInformationsTableProps) => {
-  const t = useTranslations('Tables.SatelliteInformations');
+  const t = useTranslations('Tables.Satellite_informations');
 
   const headers = Array.isArray(object)
     ? [{

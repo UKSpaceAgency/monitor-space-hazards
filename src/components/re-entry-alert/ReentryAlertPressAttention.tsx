@@ -7,7 +7,7 @@ type ReentryAlertPressAttentionProps = {
 };
 
 const ReentryAlertPressAttention = ({ pressAttention }: ReentryAlertPressAttentionProps) => {
-  const t = useTranslations('ReentryAlert.PressAttention');
+  const t = useTranslations('Reentry_alert.Press_attention');
   return (
     <div>
       {pressAttention ? <Markdown>{pressAttention}</Markdown> : <p>{t('empty')}</p>}

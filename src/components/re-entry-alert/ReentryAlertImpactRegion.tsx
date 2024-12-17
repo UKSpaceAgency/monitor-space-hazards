@@ -13,7 +13,7 @@ type ReentryAlertImpactRegionProps = {
 };
 
 const ReentryAlertImpactRegion = ({ england, ireland, wales, scotland }: ReentryAlertImpactRegionProps) => {
-  const t = useTranslations('Tables.ReentryAlertImpact');
+  const t = useTranslations('Tables.Reentry_alert_impact');
 
   return (
     <div>

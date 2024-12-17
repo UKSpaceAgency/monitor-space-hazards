@@ -15,7 +15,7 @@ export default async function AddNewUserPage(props: {
     organization_id?: string;
   }>;
 }) {
-  const t = await getTranslations('AddNewUser');
+  const t = await getTranslations('Add_new_user');
 
   const session = await getSession();
   const { organization_id } = await getUsersMe();

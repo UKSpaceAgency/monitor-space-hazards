@@ -12,7 +12,7 @@ type ReentryAlertAdditionalObjectDetailsTableProps = {
 };
 
 const ReentryAlertAdditionalObjectDetailsTable = ({ event }: ReentryAlertAdditionalObjectDetailsTableProps) => {
-  const t = useTranslations('Tables.ReentryAlertAdditionalObjectDetails');
+  const t = useTranslations('Tables.Reentry_alert_additional_object_details');
 
   const objectDetailsHeaders: HTMLProps<HTMLTableCellElement>[] = [{
     children: t('object_details'),

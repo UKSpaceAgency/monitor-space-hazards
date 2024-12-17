@@ -9,10 +9,10 @@ import nsocLogo from '@/public/nspoclogo2.png';
 import { AppConfig } from '@/utils/AppConfig';
 
 export default function DashboardPage() {
-  const t = useTranslations('DashboardPage');
+  const t = useTranslations('Dashboard');
 
   const messages = useMessages() as IntlMessages;
-  const services = Object.keys(messages.DashboardPage.services) as Array<keyof typeof messages['DashboardPage']['services']>; ;
+  const services = Object.keys(messages.Dashboard.services) as Array<keyof typeof messages['Dashboard']['services']>; ;
 
   return (
     <div>
@@ -30,17 +30,17 @@ export default function DashboardPage() {
       </div>
 
       {services.map((serviceKey) => {
-        const items = messages.DashboardPage.services[serviceKey].items;
+        const items = messages.Dashboard.services[serviceKey].items;
         return (
           <div key={serviceKey} className="mb-12">
             <h3 className="govuk-heading-m">{t(`services.${serviceKey}.title`)}</h3>
             <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
               {Object.keys(items).map((key) => {
-                const title = t(`services.${serviceKey}.items.${key}.title` as MessageKeys<IntlMessages, 'DashboardPage'>);
-                const description = t(`services.${serviceKey}.items.${key}.description` as MessageKeys<IntlMessages, 'DashboardPage'>);
+                const title = t(`services.${serviceKey}.items.${key}.title` as MessageKeys<IntlMessages, 'Dashboard'>);
+                const description = t(`services.${serviceKey}.items.${key}.description` as MessageKeys<IntlMessages, 'Dashboard'>);
 
-                const linkKey = `services.${serviceKey}.items.${key}.link` as MessageKeys<IntlMessages, 'DashboardPage'>;
+                const linkKey = `services.${serviceKey}.items.${key}.link` as MessageKeys<IntlMessages, 'Dashboard'>;
                 const link = t.has(linkKey) ? t(linkKey) : null;
 
                 return (

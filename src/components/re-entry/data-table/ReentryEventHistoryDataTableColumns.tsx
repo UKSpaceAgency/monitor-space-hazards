@@ -6,7 +6,7 @@ import ExpandedButton from '@/ui/button/expanded-button';
 
 export const reentryEventHistoryColumns: TranslatedColumnDef<TypeTIPOut>[] = [
   {
-    header: 'ReentryEventHistory.data_source',
+    header: 'Reentry_event_history.data_source',
     id: 'dataSource',
     enableSorting: false,
     cell: ({ row }) => {
@@ -28,7 +28,7 @@ export const reentryEventHistoryColumns: TranslatedColumnDef<TypeTIPOut>[] = [
     },
   },
   {
-    header: 'ReentryEventHistory.time_of_update',
+    header: 'Reentry_event_history.time_of_update',
     accessorKey: 'updatedAt',
     enableSorting: false,
     cell: ({ getValue }) => {
@@ -37,7 +37,7 @@ export const reentryEventHistoryColumns: TranslatedColumnDef<TypeTIPOut>[] = [
     },
   },
   {
-    header: 'ReentryEventHistory.predicted_reentry_time',
+    header: 'Reentry_event_history.predicted_reentry_time',
     accessorKey: 'decayEpoch',
     enableSorting: false,
     cell: ({ getValue }) => {
@@ -46,7 +46,7 @@ export const reentryEventHistoryColumns: TranslatedColumnDef<TypeTIPOut>[] = [
     },
   },
   {
-    header: 'ReentryEventHistory.uncertainty_window',
+    header: 'Reentry_event_history.uncertainty_window',
     accessorKey: 'uncertaintyWindow',
     enableSorting: false,
   },

@@ -20,7 +20,7 @@ export default async function AnalysisUploadLog(props: {
     sort_by?: TypeAnalysesSortBy;
   }>;
 }) {
-  const t = await getTranslations('AnalysisUploadLog');
+  const t = await getTranslations('Analysis_upload_log');
 
   const user = await getUsersMe();
 

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default async function DataPrivacyNotice() {
-  const t = await getTranslations('DataPrivacyNotice');
+  const t = await getTranslations('Data_privacy_notice');
   const { content } = await getPage('data-privacy-notice');
 
   return (

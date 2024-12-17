@@ -16,7 +16,7 @@ type ConjunctionEventHistoryProps = {
 };
 
 const ConjunctionEventHistory = ({ events, event, dataSources, handleDownloadData }: ConjunctionEventHistoryProps) => {
-  const t = useTranslations('Accordions.Conjunction.event_history');
+  const t = useTranslations('Conjunction.Event_history');
   return (
     <>
       <div data-pdf={t('title')}>

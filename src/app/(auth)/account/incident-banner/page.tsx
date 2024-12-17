@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function IncidentBannersPage() {
-  const t = await getTranslations('IncidentBanners');
+  const t = await getTranslations('Incident_banners');
   const tCommon = await getTranslations('Common');
 
   return (

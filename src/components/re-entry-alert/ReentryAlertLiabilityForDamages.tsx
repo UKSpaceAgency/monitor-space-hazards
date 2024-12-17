@@ -10,7 +10,7 @@ type ReentryAlertLiabilityForDamagesProps = {
 };
 
 const ReentryAlertLiabilityForDamages = ({ licenseCountry, damagesLiability }: ReentryAlertLiabilityForDamagesProps) => {
-  const t = useTranslations('ReentryAlert.LiabilityForDamages');
+  const t = useTranslations('Reentry_alert.Liability_for_damages');
   return (
     <div>
       {t.rich('content', { licenseCountry: getFullCountry(licenseCountry) ?? t('licenseCountryEmpty') })}

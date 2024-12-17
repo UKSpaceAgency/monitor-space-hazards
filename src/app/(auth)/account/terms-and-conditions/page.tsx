@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function TermsAndConditions() {
-  const t = await getTranslations('TermsAndConditions');
+  const t = await getTranslations('Terms_and_conditions');
   const { content } = await getPage('terms-and-conditions');
   const data = await getUsersMe();
 

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ContactAndOrganisationInformation() {
-  const t = await getTranslations('ContactAndOrganisationInformation');
+  const t = await getTranslations('Contact_and_organisation_information');
   const tCommon = await getTranslations('Common');
 
   const data = await getUsersMe();

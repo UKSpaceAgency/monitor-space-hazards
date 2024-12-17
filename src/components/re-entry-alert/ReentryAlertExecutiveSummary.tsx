@@ -11,7 +11,7 @@ type ReentryAlertExecutiveSummaryProps = {
 };
 
 const ReentryAlertExecutiveSummary = async ({ event, previewSummary }: ReentryAlertExecutiveSummaryProps) => {
-  const t = await getTranslations('ReentryAlert.ExecutiveSummary');
+  const t = await getTranslations('Reentry_alert.Executive_summary');
 
   return (
     <div>

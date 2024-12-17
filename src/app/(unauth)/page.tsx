@@ -8,7 +8,7 @@ import Button from '@/ui/button/button';
 import { AppConfig } from '@/utils/AppConfig';
 
 export default function IndexPage() {
-  const t = useTranslations('IndexPage');
+  const t = useTranslations('Index');
 
   return (
     <div>

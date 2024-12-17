@@ -13,7 +13,7 @@ type SatelliteEphemerisUploadFormProps = {
 };
 
 const SatelliteEphemerisUploadForm = ({ objectId }: SatelliteEphemerisUploadFormProps) => {
-  const t = useTranslations('Forms.EphemerisUpload');
+  const t = useTranslations('Forms.Ephemeris_upload');
   const [state, formAction] = useFormState(postEphemeris, null);
   const { pending } = useFormStatus();
 
