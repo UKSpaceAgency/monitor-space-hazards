@@ -902,16 +902,13 @@
       "notifications_for_re_entries": "Notifications for re-entries over non UK nations are currently only distributed in the case of the re-entering object being a UK licensed satellite.",
       "sms": "SMS",
       "email": "Email",
-      "help": {
+      "help_reentry": {
+        "title": "Criteria for priority re-entry alerts",
+        "content": "<h3>Standard re-entry alert</h3><p>If this report is classified as a standard re-entry alert, then it has been distributed only to key UK government organisations (UK Space Agency, Ministry of Defence, Cabinet Office, Civil Aviation Authority) and international partners.</p><p><b>The criteria for producing a standard re-entry alert is less than 36 hours until re-entry and one of the following:</b></p><list><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories</item><item>Any UK-licensed object (except designed for demise)</item><item>Press interest</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Priority re-entry alert</h3><p>If this report is classified as a priority re-entry alert, then it has been distributed more widely across UK devolved and central government departments.</p><p><b>The criteria for producing a priority re-entry alert is debris likely to survive to the ground and one of the following:</b></p><list><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis)</item><item>UK-licensed object</item><item>Significant press interest</item></list>"
+      },
+      "help_conjunctions": {
         "title": "Criteria for priority conjunction alerts",
-        "priority_conjunction": "Priority conjunction alerts are those with:",
-        "more_than_5": "More than 5% probability of collision",
-        "or_significant": "OR significant press interest",
-        "or_for_uk": "OR for UK-licensed objects:",
-        "more_than_1": "More than 1% probability of collision",
-        "and_no_manoeuvre": "AND no manoeuvre expected",
-        "or_for_non_uk": "OR for non-UK objects:",
-        "medium_or_higher": "Medium risk or higher"
+        "content": "<h3>Standard conjunction alert</h3><p>There are various criteria which determine if alerts are produced about conjunction events. These criteria vary by type of object.</p><p><b>For UK-licensed objects:</b></p><list><item>Less than 5 days until Time of Closest Approach</item><item>More than 0.1% probability of collision</item><item>Press interest</item></list><p><b>For non-UK objects:</b></p><list><item>Less than 5 days until Time of Closest Approach, with:</item><list><item>Low risk or higher</item><item>No manoeuvre expected</item></list></list><p><b>For all objects:</b></p><list><item>If nominated for escalation by the National Space Operations Centre</item></list><h3>Priority conjunction alert</h3><p><b>For UK-licensed objects:</b></p><list><item>More than 1% probability of collision</item><item>No manoeuvre expected</item></list><p><b>For non-UK objects:</b></p><list><item>More than 5% probability of collision</item><item>No manoeuvre expected</item><item>Significant press interest</item></list>"
       },
       "panel": {
         "title": "Alert settings changed",
