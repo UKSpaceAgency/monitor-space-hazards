@@ -376,7 +376,7 @@
     },
     "Event_history": {
       "title": "Conjunction event history",
-      "download": "Download event history",
+      "download": "event history",
       "help": {
         "title": "Help with this table",
         "content": "<p>Historical CDMs for the event are available in this table. Information about the individual CDM is available, including the calculation method for the probability of collision, the position uncertainty and data source for each object.</p><p>The data source for each object either comes from SSN observations, special or operational owner/operator ephemeris or NASA/CARA. Further information about these can be found in <link>definitions on data sources</link>.</p>"

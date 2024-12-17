@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { TypeEventOut } from '@/__generated__/data-contracts';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
+import { getAbsoluteValue } from '@/utils/Math';
 
 export type ProbabilityUnitType = 'scientific' | 'percentage';
 
@@ -114,7 +115,7 @@ export const getConjunctionEventsColumns = ({
         cell: ({ getValue }) => {
           const radialMissDistance = getValue() as number;
 
-          return Math.abs(radialMissDistance);
+          return getAbsoluteValue(radialMissDistance);
         },
       },
       {

@@ -1,34 +1,28 @@
-'use client';
-import { useTranslations } from 'next-intl';
+import type { TypeDataSourcesOut, TypeEventSummaryOut } from '@/__generated__/data-contracts';
+import { DataTable } from '@/components/DataTable';
 
-import type { TypeEventSummaryOut } from '@/__generated__/data-contracts';
-import type { InformationsTableRow } from '@/components/InformationsTable';
-import { InformationsTable } from '@/components/InformationsTable';
+import { renderConjunctionHistoryDetailAsSubcomponent } from '../tables/ConjunctionEventHistoryDetailTable';
+import { conjunctionEventHistoryColumns } from './ConjunctionEventHistoryDataTableColumns';
 
-type ConjunctionEventHistoryGeneralInformations = Pick<
-  TypeEventSummaryOut,
-'collisionProbabilityMethod' | 'primaryObjectSize' | 'secondaryObjectSize'
->;
-
-type ConjunctionEventHistoryGeneralTableProps = {
-  object: ConjunctionEventHistoryGeneralInformations | ConjunctionEventHistoryGeneralInformations[];
+type ConjunctionEventHistoryTableProps = {
+  events: TypeEventSummaryOut[];
+  event: TypeEventSummaryOut;
+  dataSources: TypeDataSourcesOut;
 };
 
-const ConjunctionEventHistoryDataTable = ({ object }: ConjunctionEventHistoryGeneralTableProps) => {
-  const t = useTranslations('Tables.Conjunction');
-
-  const rows: InformationsTableRow<ConjunctionEventHistoryGeneralInformations>[] = [{
-    header: t('event_history.sub_table.probability_of_collision'),
-    accessorKey: 'collisionProbabilityMethod',
-  }, {
-    header: t('event_history.sub_table.primary_object'),
-    accessorKey: 'primaryObjectSize',
-  }, {
-    header: t('event_history.sub_table.secondary_object'),
-    accessorKey: 'secondaryObjectSize',
-  }];
-
-  return <InformationsTable rows={rows} data={object} reducedFont />;
+const ConjunctionEventHistoryTable = ({ events, event, dataSources }: ConjunctionEventHistoryTableProps) => {
+  return (
+    <div className="overflow-auto">
+      <DataTable
+        data={events}
+        columns={conjunctionEventHistoryColumns}
+        renderSubComponent={() => renderConjunctionHistoryDetailAsSubcomponent({ object: {
+          ...event,
+          ...dataSources,
+        } })}
+      />
+    </div>
+  );
 };
 
-export { ConjunctionEventHistoryDataTable };
+export { ConjunctionEventHistoryTable };

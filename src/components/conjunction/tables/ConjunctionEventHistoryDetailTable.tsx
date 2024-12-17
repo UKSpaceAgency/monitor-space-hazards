@@ -82,4 +82,9 @@ const ConjunctionEventHistoryDetailTable = ({ object }: ConjunctionEventHistoryD
   return <InformationsTable rows={rows} data={object} reducedFont headerCellWidth="sm" />;
 };
 
-export { ConjunctionEventHistoryDetailTable };
+const renderConjunctionHistoryDetailAsSubcomponent = (props: ConjunctionEventHistoryDetailTableProps) => {
+  return <div className="govuk-details__text text-sm"><ConjunctionEventHistoryDetailTable {...props} /></div>;
+};
+
+// eslint-disable-next-line react-refresh/only-export-components
+export { ConjunctionEventHistoryDetailTable, renderConjunctionHistoryDetailAsSubcomponent };

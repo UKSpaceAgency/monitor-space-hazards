@@ -6,7 +6,7 @@ import Details from '@/ui/details/details';
 
 import { DownloadData } from '../DownloadData';
 import RichText from '../RichText';
-import { ConjunctionEventHistoryTable } from './tables/ConjunctionEventHistoryTable';
+import { ConjunctionEventHistoryTable } from './data-table/ConjunctionEventHistoryDataTable';
 
 type ConjunctionEventHistoryProps = {
   events: TypeEventSummaryOut[];

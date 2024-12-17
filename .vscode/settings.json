@@ -51,6 +51,7 @@
     "Manoeuvres",
     "Organisation",
     "Sattelite",
+    "Subcomponent",
     "Timespan",
     "UKSA"
   ] // On key edit through the plugin, sort the JSON

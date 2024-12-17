@@ -4,6 +4,7 @@ import type { TypeEventSummaryOut } from '@/__generated__/data-contracts';
 import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { getAbsoluteValue } from '@/utils/Math';
 
 type ConjunctionEventSummaryTableInformations = Pick<
   TypeEventSummaryOut,
@@ -40,15 +41,15 @@ const ConjunctionEventSummaryTableInformationsTable = ({ object }: ConjunctionEv
     accessorKey: 'missDistance',
   }, {
     header: t('summary_list.radial_miss_distance'),
-    renderCell: row => row.radialMissDistance && Math.abs(row.radialMissDistance),
+    renderCell: row => getAbsoluteValue(row.radialMissDistance),
     accessorKey: 'radialMissDistance',
   }, {
     header: t('summary_list.in_track_miss_distance'),
-    renderCell: row => row.intrackMissDistance && Math.abs(row.intrackMissDistance),
+    renderCell: row => getAbsoluteValue(row.intrackMissDistance),
     accessorKey: 'intrackMissDistance',
   }, {
     header: t('summary_list.cross_track_miss_distance'),
-    renderCell: row => row.crosstrackMissDistance && Math.abs(row.crosstrackMissDistance),
+    renderCell: row => getAbsoluteValue(row.crosstrackMissDistance),
     accessorKey: 'crosstrackMissDistance',
   }, {
     header: t('summary_list.time_of_update'),
