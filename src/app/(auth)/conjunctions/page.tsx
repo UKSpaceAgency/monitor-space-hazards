@@ -42,11 +42,9 @@ export default async function ConjunctionsPage(props: {
       <p className="govuk-body">{t('description')}</p>
       <SearchBar label={t('search_bar.label')} placeholder={t('search_bar.placeholder')} />
       <ConjunctionsEventsTableFilters params={params} />
-
       <Suspense key={Object.values(params).toString()} fallback={<Spinner />}>
         <ConjunctionsEventsTable params={params} />
       </Suspense>
-
       <Details summary={t('help2.title')}>
         {t.rich('help2.content')}
       </Details>

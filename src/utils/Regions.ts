@@ -1,6 +1,6 @@
 export const getFullCountry = (key: string | null | undefined) => {
   if (!key) {
-    return null;
+    return '-';
   }
 
   const list = {

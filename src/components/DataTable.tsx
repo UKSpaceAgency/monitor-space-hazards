@@ -11,6 +11,7 @@ import {
   flexRender,
   getCoreRowModel,
   getExpandedRowModel,
+  getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
 import clsx from 'clsx';
@@ -34,9 +35,10 @@ export type DataTableProps<T extends RowData> = {
   stickyHeader?: true;
   largerText?: true;
   emptyLabel?: string;
+  manualSorting?: boolean;
 };
 
-const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText, sorting, emptyLabel = 'No data', onSortingChange, renderSubComponent }: DataTableProps<T>) => {
+const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText, sorting, emptyLabel = 'No data', manualSorting = true, onSortingChange, renderSubComponent }: DataTableProps<T>) => {
   const t = useTranslations('Tables');
 
   const translatedColumns = useMemo(() => {
@@ -63,11 +65,12 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText,
     state: {
       sorting,
     },
+    manualSorting,
     onSortingChange,
-    manualSorting: true,
     getRowCanExpand: () => (!!renderSubComponent),
     getCoreRowModel: getCoreRowModel(),
     getExpandedRowModel: getExpandedRowModel(),
+    getSortedRowModel: getSortedRowModel(),
   });
 
   const renderHeaderCell = (header: Header<T, unknown>, stickyHeader?: true) => {
