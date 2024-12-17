@@ -112,11 +112,11 @@ export function DatetimeInput({
         errors={
           !isEmpty(dateErrors)
             ? Object.keys(dateErrors).map(key => (
-              <Fragment key={`error-${key}`}>
-                {errors[key as keyof ErrorState]}
-                <br />
-              </Fragment>
-            ))
+                <Fragment key={`error-${key}`}>
+                  {errors[key as keyof ErrorState]}
+                  <br />
+                </Fragment>
+              ))
             : null
         }
         legend={<b>{dateLabel}</b>}
@@ -154,11 +154,11 @@ export function DatetimeInput({
         errors={
           !isEmpty(timeErrors)
             ? Object.keys(timeErrors).map(key => (
-              <Fragment key={`error-${key}`}>
-                {errors[key as keyof ErrorState]}
-                <br />
-              </Fragment>
-            ))
+                <Fragment key={`error-${key}`}>
+                  {errors[key as keyof ErrorState]}
+                  <br />
+                </Fragment>
+              ))
             : null
         }
         legend={<b>{timeLabel}</b>}
