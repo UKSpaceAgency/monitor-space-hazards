@@ -44,7 +44,7 @@ const createTable = (table: HTMLElement, isDataTable = false) => {
     return {
       table: {
         widths: isDataTable
-          ? ['*', ...Array(tableHead.length - 1).fill('*')]
+          ? ['auto', ...Array(tableHead.length - 1).fill('auto')]
           : [...Array(tableHead.length).fill('*')],
         body: [tableHead, ...tableBody],
       },
