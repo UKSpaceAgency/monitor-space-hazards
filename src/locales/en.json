@@ -909,7 +909,7 @@
       "filters": {
         "summary": "Apply filters to this table",
         "option1": "View all events and alerts",
-        "option2": "Only view conjunction alerts",
+        "option2": "Only view re-entry alerts",
         "all": "All",
         "upcoming": "Upcoming",
         "past": "Past",
