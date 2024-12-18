@@ -4,7 +4,7 @@ import type { ChangeEvent } from 'react';
 import Label from '@/ui/label/label';
 import Radios from '@/ui/radios/radios';
 
-export type MapType = 'light-v11' | 'satellite-streets-v12';
+export type MapType = 'light-v11' | 'satellite-streets-v12' | 'streets-v12' | 'outdoors-v12';
 
 type ReentryAlertMapTypeProps = {
   value: MapType;
@@ -24,18 +24,21 @@ const ReentryAlertMapType = ({ value, onChange }: ReentryAlertMapTypeProps) => {
       <Radios
         inline
         small
+        value={value}
         items={[{
           children: 'Map',
           value: 'light-v11',
-          checked: value === 'light-v11',
-          onChange: handleChange,
         }, {
           children: 'Satellite',
           value: 'satellite-streets-v12',
-          checked: value === 'satellite-streets-v12',
-          onChange: handleChange,
+        }, {
+          children: 'Street',
+          value: 'streets-v12',
+        }, {
+          children: 'Outdoor',
+          value: 'outdoors-v12',
         }]}
-        onChange={((e: ChangeEvent<HTMLInputElement>) => onChange(e.target.value as MapType))}
+        onChange={handleChange}
       />
     </div>
   );

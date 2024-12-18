@@ -1,5 +1,6 @@
 import clsx from 'clsx';
-import { type HTMLAttributes, type InputHTMLAttributes, type ReactNode, useId } from 'react';
+import type { HTMLAttributes, InputHTMLAttributes, ReactNode } from 'react';
+import { useId } from 'react';
 
 import ErrorMessage from '../error-message/error-message';
 import Hint from '../hint/hint';
@@ -16,13 +17,14 @@ export type RadiosProps = {
   items: RadioItem[];
   label?: ReactNode;
   labelClass?: string;
+  value?: string;
   hint?: ReactNode;
   error?: string;
   inline?: true;
   small?: true;
-} & HTMLAttributes<HTMLDivElement>;
+} & Omit<HTMLAttributes<HTMLDivElement>, 'defaultChecked'>;
 
-export function Radios({ items, label, hint, error, inline, small, labelClass, className }: RadiosProps) {
+export function Radios({ items, label, value, hint, error, inline, small, labelClass, className, onChange }: RadiosProps) {
   const id = useId();
 
   return (
@@ -44,7 +46,7 @@ export function Radios({ items, label, hint, error, inline, small, labelClass, c
       >
         {items.map((radio, index) => (
         // eslint-disable-next-line react/no-array-index-key
-          <Radio key={index} {...radio} />
+          <Radio key={index} checked={radio.value === value} onChange={onChange} {...radio} />
         ))}
       </div>
     </div>
