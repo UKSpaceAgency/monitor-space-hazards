@@ -10,9 +10,10 @@ import { conjunctionAlertHistoryColumns } from './ConjunctionAlertHistoryDataTab
 type ConjunctionAlertHistoryDataTableProps = {
   shortId: string;
   reports?: TypeConjunctionReportOut[];
+  dataPdf?: string;
 };
 
-const ConjunctionAlertHistoryDataTable = async ({ shortId, reports }: ConjunctionAlertHistoryDataTableProps) => {
+const ConjunctionAlertHistoryDataTable = async ({ shortId, reports, dataPdf }: ConjunctionAlertHistoryDataTableProps) => {
   const t = useTranslations('Tables');
 
   const params: TypeGetReentryEventReportsReentryEventShortIdParams = {
@@ -20,12 +21,12 @@ const ConjunctionAlertHistoryDataTable = async ({ shortId, reports }: Conjunctio
   };
 
   return (
-    <div>
+    <div data-pdf={dataPdf}>
       <DataTable
         columns={conjunctionAlertHistoryColumns}
         data={reports ?? []}
       />
-      <DownloadData type={t('Download.types.conjunction_reports')} params={params} downloadAction={getConjunctionReports} />
+      <DownloadData type={t('Download.types.conjunction_reports')} params={params} downloadAction={getConjunctionReports} data-pdf-ignore />
     </div>
 
   );

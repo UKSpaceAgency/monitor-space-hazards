@@ -6,13 +6,14 @@ type ConjunctionAlertPotentialImpactProps = {
   immediateImpactAddition?: string | null;
   shortTermImpactAddition?: string | null;
   longTermImpactAddition?: string | null;
+  dataPdf?: string;
 };
 
-const ConjunctionAlertPotentialImpact = ({ immediateImpactAddition, shortTermImpactAddition, longTermImpactAddition }: ConjunctionAlertPotentialImpactProps) => {
+const ConjunctionAlertPotentialImpact = ({ immediateImpactAddition, shortTermImpactAddition, longTermImpactAddition, dataPdf }: ConjunctionAlertPotentialImpactProps) => {
   const t = useTranslations('Conjunction_alert.Potential_impact_of_event');
 
   return (
-    <div>
+    <div data-pdf={dataPdf}>
       <div>
         <h4 className="govuk-heading-m">{t('immediate_impact.title')}</h4>
         {t.rich('immediate_impact.content')}
