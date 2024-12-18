@@ -16,7 +16,6 @@ import { generateBichromaticOptions } from './generateBichromaticOptions';
 import type { TooltipCallbackModel } from './generateLabelColorCallbackFunction';
 import { getMtpChartDatasets } from './getMtpChartDatasets';
 import { getMtpChartTooltipConfig } from './getMtpChartTooltipConfig';
-import styles from './mtp-chart.module.scss';
 
 type MtpChartProps = {
   manoeuvrePlot: ManoeuvrePlot;
@@ -94,12 +93,12 @@ export function MtpChart({
 
   return (
     <>
-      <div id="mtp-content" className={styles.container} data-pdf={dataPdf}>
+      <div id="mtp-content" className="mb-4" data-pdf={dataPdf}>
         <p className="govuk-body">
           {t('description')}
         </p>
-        <div className={styles.inner}>
-          <div className={styles.header} data-pdf-ignore>
+        <div className="p-4 mb-4 bg-lightGrey">
+          <div className="mb-4 lg:flex lg:items-center lg:gap-4" data-pdf-ignore>
             <div>
               <h3 className="govuk-heading-s govuk-!-margin-bottom-1">
                 {t('chart.header')}
@@ -116,7 +115,7 @@ export function MtpChart({
               onChange={onThresholdSelectChange}
             />
           </div>
-          <div className={styles.toggle_buttons} data-pdf-ignore>
+          <div className="lg:flex lg:items-center lg:justify-end" data-pdf-ignore>
             <ToggleButtons
               name="mtp-source-toggle"
               title={t('chart.buttons.title')}

@@ -39,7 +39,6 @@ import { getReferenceLine } from '../base/referenceLine';
 import { useInViewport } from '../base/useInViewport';
 import type { InferChartLegendProps } from '../legend/LegendChart';
 import { ChartLegend } from '../legend/LegendChart';
-import styles from './base-scatter.module.scss';
 
 ChartJS.register(
   LinearScale,
@@ -100,9 +99,9 @@ export function BaseScatter({
   }, [isMobile]);
 
   return (
-    <div className={styles.container} data-type="chart">
-      <div className={styles['action-buttons']}>{actionButtons}</div>
-      <div className={styles['chart-container']}>
+    <div className="bg-lightGrey" data-type="chart">
+      <div className="flex justify-between">{actionButtons}</div>
+      <div className="lg:my-2 my-auto relative">
         <Chart
           aria-label="Scatter chart"
           ref={chart}

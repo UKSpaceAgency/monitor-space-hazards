@@ -38,7 +38,6 @@ import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
 
 import type { InferChartLegendProps } from '../legend/LegendChart';
 import { ChartLegend } from '../legend/LegendChart';
-import styles from './base.module.scss';
 import { setChartDefaults } from './defaults';
 import { getReferenceLine } from './referenceLine';
 import { useInViewport } from './useInViewport';
@@ -106,9 +105,9 @@ export function BaseChart({
   }, [isMobile]);
 
   return (
-    <div className={styles.container} data-type="chart">
-      <div className={styles['action-buttons']}>
-        <div className={styles['custom-action-buttons']}>
+    <div className="p-4 bg-lightGrey" data-type="chart">
+      <div className="flex justify-between">
+        <div className="flex-1">
           {actionButtons}
         </div>
         <ToggleButtons
@@ -129,7 +128,7 @@ export function BaseChart({
           title="Scale"
         />
       </div>
-      <div className={styles['chart-container']}>
+      <div className="relative w-auto my-4">
         <Chart
           aria-label="Base chart"
           id={id}
