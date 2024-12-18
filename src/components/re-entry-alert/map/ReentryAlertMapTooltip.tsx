@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl';
 import { Popup } from 'react-map-gl';
 
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { countries } from '@/utils/Regions';
 
 export type MapTooltipInfo = {
   longitude: number;
@@ -21,7 +22,7 @@ const ReentryAlertMapTooltip = ({ latitude, longitude, regions, overflight }: Re
   return (
     <Popup latitude={latitude} longitude={longitude} closeButton={false}>
       <h3 className="govuk-heading-s mb-1">
-        {`${name}, ${countryCode}`}
+        {`${name}, ${countries[countryCode as keyof typeof countries]}`}
       </h3>
       <ul className="govuk-list mb-0 text-sm">
         {regions && (

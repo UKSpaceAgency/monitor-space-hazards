@@ -43,11 +43,11 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
           <Suspense fallback={<Spinner />}>
             <ReentryAlertExecutiveSummary event={event} previewSummary={searchParams?.exec_summary} />
           </Suspense>
-          {reports[0]?.presignedUrl && (
-            <Suspense fallback={<Spinner />}>
+          <Suspense fallback={<Spinner />}>
+            {reports[0]?.presignedUrl && (
               <ReentryAlertMapContainer presignedUrl={reports[0].presignedUrl} />
-            </Suspense>
-          )}
+            )}
+          </Suspense>
           <ReentryAlertNextUpdate shortId={shortId} />
           <ReentryAlertAccordion event={event} reports={reports} />
           {footer || (
