@@ -36,5 +36,8 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    // eslint-disable-next-line ts/no-require-imports
+    require('tailwindcss-content-visibility'),
+  ],
 } satisfies Config;

@@ -14,7 +14,7 @@ type DownloadDataProps<T extends object> = {
   downloadAction: (params: T) => Promise<unknown>;
 };
 
-const DownloadData = <T extends object>({ type, params, downloadAction }: DownloadDataProps<T>) => {
+const DownloadData = <T extends object>({ type, params, downloadAction, ...rest }: DownloadDataProps<T>) => {
   const t = useTranslations('Tables.Download');
   const [fetching, setFetching] = useState(false);
 
@@ -41,7 +41,7 @@ const DownloadData = <T extends object>({ type, params, downloadAction }: Downlo
   };
 
   return (
-    <p className="govuk-body mt-6">
+    <p className="govuk-body mt-6" {...rest}>
       {fetching
         ? 'Your download is being prepared'
         : (

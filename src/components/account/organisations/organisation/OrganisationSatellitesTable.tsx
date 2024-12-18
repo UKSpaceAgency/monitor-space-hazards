@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 
 import { getSatellites } from '@/actions/getSatellites';
-import { dayjs } from '@/libs/Dayjs';
+import { dayjs, FORMAT_SHORT_DATE } from '@/libs/Dayjs';
 import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
 import { getFullCountry } from '@/utils/Regions';
 
@@ -37,7 +37,7 @@ const OrganisationTable = async ({ organisationId }: OrganisationTableProps) => 
               <TableCell>{internationalDesignator}</TableCell>
               <TableCell>{getFullCountry(licenseCountry)}</TableCell>
               <TableCell>{launchSite}</TableCell>
-              <TableCell>{dayjs(launchDate).format('DD/MM/YY')}</TableCell>
+              <TableCell>{dayjs(launchDate).format(FORMAT_SHORT_DATE)}</TableCell>
             </TableRow>
           ))}
         </TableBody>

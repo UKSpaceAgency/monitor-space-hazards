@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
-const ConjunctionFurtherInformation = () => {
-  const t = useTranslations('Conjunction.Further_information');
+const ConjunctionFurtherInformation = async () => {
+  const t = await getTranslations('Conjunction.Further_information');
   return (
     <>
       <p className="govuk-body mt-2">{t('description')}</p>
