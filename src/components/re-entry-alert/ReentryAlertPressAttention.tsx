@@ -4,12 +4,13 @@ import { Markdown } from '../Markdown';
 
 type ReentryAlertPressAttentionProps = {
   pressAttention?: string | null;
+  dataPdf?: string;
 };
 
-const ReentryAlertPressAttention = ({ pressAttention }: ReentryAlertPressAttentionProps) => {
+const ReentryAlertPressAttention = ({ pressAttention, dataPdf }: ReentryAlertPressAttentionProps) => {
   const t = useTranslations('Reentry_alert.Press_attention');
   return (
-    <div>
+    <div data-pdf={dataPdf}>
       {pressAttention ? <Markdown>{pressAttention}</Markdown> : <p>{t('empty')}</p>}
     </div>
   );

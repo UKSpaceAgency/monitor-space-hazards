@@ -6,13 +6,14 @@ import { ReentryAlertImpactTable } from './tables/ReentryAlertImpactTable';
 
 type ReentryAlertImpactOverseasProps = {
   impact: Record<string, TypeOverflightProbability>;
+  dataPdf?: string;
 };
 
-const ReentryAlertImpactOverseas = ({ impact }: ReentryAlertImpactOverseasProps) => {
+const ReentryAlertImpactOverseas = ({ impact, dataPdf }: ReentryAlertImpactOverseasProps) => {
   const t = useTranslations('Tables.Reentry_alert_impact');
 
   return (
-    <div>
+    <div data-pdf={dataPdf}>
       <ReentryAlertImpactTable impact={impact} />
       <p className="govuk-body">{t('overseas_hint')}</p>
       {t.rich('see_further_information', { link: chunks => <a href="#further_information" className="govuk-link">{chunks}</a> })}
