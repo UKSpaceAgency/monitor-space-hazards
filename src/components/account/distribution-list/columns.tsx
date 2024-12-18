@@ -39,7 +39,7 @@ export const distributionListColumns: TranslatedColumnDef<TypeAlertSettingsDistr
     header: () => <span style={{ visibility: 'hidden' }}></span>,
     cell: ({ getValue }) => (
       <Link
-        href={`/account/alert-settings/${getValue() as string}`}
+        href={`/account/alert-settings/${getValue<string>()}`}
         className="govuk-link"
       >
         Edit

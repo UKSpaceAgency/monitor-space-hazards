@@ -1,10 +1,9 @@
 import dayjs from 'dayjs';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
 import type { TypeSatelliteOut } from '@/__generated__/data-contracts';
 import { FORMAT_DATE_TIME } from '@/libs/Dayjs';
 
-import RichText from '../RichText';
 import { AdditionalInformationsTable } from '../satellite/tables/AdditionalInformationsTable';
 import { BaseInformationsTable } from '../satellite/tables/BaseInformationsTable';
 import { LicenseInformationsTable } from '../satellite/tables/LicenseInformationsTable';
@@ -15,8 +14,8 @@ type ConjunctionObjectDataProps = {
   secondaryObject: TypeSatelliteOut | null;
 };
 
-const ConjunctionObjectData = ({ primaryObject, secondaryObject }: ConjunctionObjectDataProps) => {
-  const t = useTranslations('Conjunction.Object_data');
+const ConjunctionObjectData = async ({ primaryObject, secondaryObject }: ConjunctionObjectDataProps) => {
+  const t = await getTranslations('Conjunction.Object_data');
 
   const dataArray = [primaryObject, secondaryObject || {} as TypeSatelliteOut];
 
@@ -25,16 +24,14 @@ const ConjunctionObjectData = ({ primaryObject, secondaryObject }: ConjunctionOb
       <div className="govuk-body mt-2">
         {t('space_track')}
       </div>
-      <BaseInformationsTable object={dataArray} headerCellWidth="xs" showLink />
-      <LicenseInformationsTable object={dataArray} headerCellWidth="xs" />
-      <OrbitalInformationsTable object={dataArray} headerCellWidth="xs" />
+      <BaseInformationsTable object={dataArray} headerCellWidth="sm" showLink />
+      <LicenseInformationsTable object={dataArray} headerCellWidth="sm" />
+      <OrbitalInformationsTable object={dataArray} headerCellWidth="sm" />
       <h3 className="govuk-heading-s govuk-!-margin-top-6 govuk-!-margin-bottom-0">
         {t('additional_object_summary.title')}
       </h3>
-      <RichText>
-        {tags => t.rich('additional_object_summary.content', { ...tags, updateTime: dayjs(primaryObject.esaUpdateTime).format(FORMAT_DATE_TIME) }) }
-      </RichText>
-      <AdditionalInformationsTable object={dataArray} headerCellWidth="xs" />
+      {t.rich('additional_object_summary.content', { updateTime: dayjs(primaryObject.esaUpdateTime).format(FORMAT_DATE_TIME) }) }
+      <AdditionalInformationsTable object={dataArray} headerCellWidth="sm" />
     </div>
   );
 };
