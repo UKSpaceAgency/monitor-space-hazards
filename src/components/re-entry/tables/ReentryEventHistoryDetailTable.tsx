@@ -50,7 +50,7 @@ const ReentryEventHistoryDetailTable = ({ row }: ReentryEventHistoryDetailTableP
     renderCell: row => dayjs(row.updatedAt).format(FORMAT_DATE_TIME),
   }];
 
-  return <InformationsTable reducedFont rows={rows} data={row.original} />;
+  return <InformationsTable reducedFont rows={rows} data={row.original} dataPdfIgnore />;
 };
 
 const renderReentryHistoryDetailAsSubcomponent = (props: ReentryEventHistoryDetailTableProps) => {

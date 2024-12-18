@@ -15,7 +15,9 @@ const createTable = (table: HTMLElement, isDataTable = false) => {
 
   const tableBody: Array<unknown> = [];
 
-  const rows = table.querySelector('tbody')?.children ?? [];
+  const rows = [...table.querySelector('tbody')?.children || []].filter(
+    elm => !elm.closest('[data-table-subcomponent]'),
+  );
 
   for (const row of rows) {
     const tableRow = [];
