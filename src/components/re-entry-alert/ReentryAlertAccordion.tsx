@@ -38,7 +38,7 @@ const ReentryAlertAccordion = ({
           id: 'additional_object_details',
           heading: t('additional_object_details'),
           content: (
-            <ReentryAlertAdditionalObjectDetailsTable event={event} />
+            <ReentryAlertAdditionalObjectDetailsTable event={event} dataPdf={t('additional_object_details')} />
           ),
         },
         ...(impacts?.by_nation
