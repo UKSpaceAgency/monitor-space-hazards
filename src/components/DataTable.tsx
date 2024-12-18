@@ -162,7 +162,7 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText,
               ))}
             </TableRow>
             {row.getIsExpanded() && renderSubComponent && (
-              <TableRow>
+              <TableRow data-table-subcomponent>
                 {/* 2nd row is a custom 1 cell row */}
                 <TableCell colSpan={row.getVisibleCells().length}>
                   {renderSubComponent({ row })}
