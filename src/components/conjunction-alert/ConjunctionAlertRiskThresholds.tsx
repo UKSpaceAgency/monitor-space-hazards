@@ -3,17 +3,23 @@ import { useTranslations } from 'next-intl';
 import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
 import Tag from '@/ui/tag/tag';
 
-const ConjunctionAlertRiskThresholds = () => {
+type ConjunctionAlertRiskThresholdsProps = {
+  dataPdf?: string;
+};
+
+const ConjunctionAlertRiskThresholds = ({ dataPdf }: ConjunctionAlertRiskThresholdsProps) => {
   const t = useTranslations('Conjunction_alert.Risk_thresholds');
 
   return (
-    <div>
+    <div data-pdf={dataPdf}>
       {t.rich('content')}
       <Table>
         <TableHead>
           <TableRow className="govuk-body-s">
             <TableCell className="w-1/3" />
             <TableCellHeader colSpan={3}>{t('probability_of_collision.title')}</TableCellHeader>
+            <TableCellHeader></TableCellHeader>
+            <TableCellHeader></TableCellHeader>
           </TableRow>
           <TableRow className="govuk-body-s">
             <TableCellHeader>{t('probability_of_collision.title')}</TableCellHeader>

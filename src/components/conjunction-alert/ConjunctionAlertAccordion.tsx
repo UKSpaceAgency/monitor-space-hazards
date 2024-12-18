@@ -36,27 +36,27 @@ const ConjunctionAlertAccordion = ({
           id: 'additional_event_details',
           heading: t('additional_event_details'),
           content: (
-            <ConjunctionAlertAdditionalEventDetails report={report} />
+            <ConjunctionAlertAdditionalEventDetails report={report} dataPdf={t('additional_event_details')} />
           ),
         },
         {
           id: 'potential_impact_of_event',
           heading: t('potential_impact_of_event'),
           content: (
-            <ConjunctionAlertPotentialImpact immediateImpactAddition={searchParams?.immediate_impact_addition ?? event.immediateImpactAddition} shortTermImpactAddition={searchParams?.short_term_impact_addition ?? event.shortTermImpactAddition} longTermImpactAddition={searchParams?.long_term_impact_addition ?? event.longTermImpactAddition} />
+            <ConjunctionAlertPotentialImpact immediateImpactAddition={searchParams?.immediate_impact_addition ?? event.immediateImpactAddition} shortTermImpactAddition={searchParams?.short_term_impact_addition ?? event.shortTermImpactAddition} longTermImpactAddition={searchParams?.long_term_impact_addition ?? event.longTermImpactAddition} dataPdf={t('potential_impact_of_event')} />
           ),
         },
         {
           id: 'guidance_on_response',
           heading: t('guidance_on_response'),
           content: (
-            <ConjunctionAlertGuidanceOnResponse ukResponseAddition={searchParams?.uk_response_addition ?? event.ukResponseAddition} pressAttentionAddition={searchParams?.press_attention_addition ?? event.pressAttentionAddition} />
+            <ConjunctionAlertGuidanceOnResponse ukResponseAddition={searchParams?.uk_response_addition ?? event.ukResponseAddition} pressAttentionAddition={searchParams?.press_attention_addition ?? event.pressAttentionAddition} dataPdf={t('guidance_on_response')} />
           ),
         },
         {
           id: 'additional_risk',
           heading: t('additional_risk'),
-          content: <ConjunctionAlertAdditionalRisk presignedUrl={report.presignedUrl as string} />,
+          content: <ConjunctionAlertAdditionalRisk presignedUrl={report.presignedUrl as string} dataPdf={t('additional_risk')} />,
         },
         {
           id: 'operator_view',
@@ -66,22 +66,22 @@ const ConjunctionAlertAccordion = ({
         {
           id: 'conjunction_event_history',
           heading: t('conjunction_event_history'),
-          content: <ConjunctionAlertHistoryDataTable shortId={event.shortId} reports={reports} />,
+          content: <ConjunctionAlertHistoryDataTable shortId={event.shortId} reports={reports} dataPdf={t('conjunction_event_history')} />,
         },
         {
           id: 'alert_thresholds',
           heading: t('alert_thresholds'),
-          content: <ConjunctionAlertThresholds />,
+          content: <ConjunctionAlertThresholds dataPdf={t('alert_thresholds')} />,
         },
         {
           id: 'risk_thresholds',
           heading: t('risk_thresholds'),
-          content: <ConjunctionAlertRiskThresholds />,
+          content: <ConjunctionAlertRiskThresholds dataPdf={t('risk_thresholds')} />,
         },
         {
           id: 'further_information',
           heading: t('further_information'),
-          content: <ConjunctionAlertFurtherInformation />,
+          content: <ConjunctionAlertFurtherInformation dataPdf={t('further_information')} />,
         },
       ]}
     />
