@@ -11,7 +11,6 @@ type ReentryAlertMapContainerProps = {
 const ReentryAlertMapContainer = async ({ presignedUrl }: ReentryAlertMapContainerProps) => {
   const t = useTranslations('Reentry_alert.Map');
   const { overflightTime, flightpathCollection, fragmentsCollection, overflightCollection } = await getReentryAlertMapData(presignedUrl);
-
   return (
     <div>
       <ReentryAlertMap overflightTime={overflightTime} flightpathCollection={flightpathCollection} fragmentsCollection={fragmentsCollection} overflightCollection={overflightCollection} />
