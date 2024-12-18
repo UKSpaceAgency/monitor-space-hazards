@@ -40,14 +40,16 @@ export const getConjunctionEventsColumns = ({
         id: 'shortId',
         accessorKey: 'shortId',
         header: 'Conjunctions.conjunction_event_id',
-        cell: ({ getValue }) => {
+        cell: ({ getValue, row: { original: { reportNumber } } }) => {
           const value = getValue<string>();
+
+          const href = reportNumber && reportNumber > 0 && isAnalyst
+            ? `/conjunctions/${value}/alert`
+            : `/conjunctions/${value}`;
+
           return (
-            <Link
-              href={`/conjunctions/${value}`}
-              className="govuk-link"
-            >
-              {value}
+            <Link href={href} className="govuk-link">
+              <strong>{value}</strong>
             </Link>
           );
         },

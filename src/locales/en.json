@@ -444,6 +444,97 @@
       "manoeuvre_support": "Manoeuvre support"
     }
   },
+  "Conjunction_alert": {
+    "title": "Conjunction event {shortId}: Alert",
+    "notification_banner": "You are able to <edit>edit this alert</edit> or <send>send this alert to additional recipients</send>",
+    "report_info": "<p><bold>Report {number}</bold> updated on {time} UTC</p>",
+    "accordion": {
+      "additional_event_details": "Additional event details",
+      "potential_impact_of_event": "Potential impact of event",
+      "guidance_on_response": "Guidance on response",
+      "additional_risk": "Additional risk to UK objects",
+      "operator_view": "Operator view",
+      "conjunction_event_history": "Conjunction event history",
+      "alert_thresholds": "Alert thresholds",
+      "risk_thresholds": "Risk thresholds",
+      "further_information": "Further information"
+    },
+    "Executive_summary": {
+      "title": "Executive summary",
+      "content": "The UK Space Agency is tracking the close approach of two objects, <primaryObjectUrl>{primaryObject}</primaryObjectUrl> and <secondaryObjectUrl>{secondaryObject}</secondaryObjectUrl>. A potential collision could damage the objects involved, limiting or eliminating their capability, as well as releasing new fragments, which would increase the risk of future collisions for other objects. This is a Low probability of collision (PoC).",
+      "see_further_information": "<p>See <link>Further information</link> for more detail on methodology used in this report and the organisations that have been sent this alert.</p>"
+    },
+    "Next_update": {
+      "title": "Next update",
+      "content": "For Low Risk events, updates are only sent if the event breaches a higher risk threshold. For Medium and High Risk events, updates are sent as soon as new information is available. A close-down report will be sent in all cases.",
+      "contact_analyst": "Contact the UK Space Agency for more information"
+    },
+    "Additional_event_details": {
+      "predicted_miss_distance": "Predicted miss distance (m)",
+      "impact_speed": "Impact speed (km/s)",
+      "altitude": "Altitude (km)",
+      "approximate_latlong": "Approximate latitude / longitude",
+      "predicted_number_of_fragments": "Predicted number of fragments generated >10cm",
+      "potential_increase": "Potential increase in future collisions for UK objects (%)",
+      "see_further_information": "<p>See <link>Further information</link> for more detail on methodology used in this report.</p>"
+    },
+    "Potential_impact_of_event": {
+      "immediate_impact": {
+        "title": "Immediate impact",
+        "content": "<p>Should the collision occur, it would likely result in a full breakup of both objects. In this worst-case scenario, an estimation of the number of fragments greater than 10cm is 223.</p>"
+      },
+      "short_term_impact": {
+        "title": "Short term impact",
+        "content": "<p>Should the collision occur, the debris would generate an increased risk to satellites. We are predicting that the event would result in an 3.76% increase in potential collisions across all UK satellites.</p>"
+      },
+      "long_term_impact": {
+        "title": "Long term impact",
+        "content": "<p>The collision would occur at an altitude of 1202.64 km. The risk from the resulting debris would be sustained for significant periods of time and could eventually impact a broad range of satellites and missions including human spaceflight.</p>"
+      }
+    },
+    "Guidance_on_response": {
+      "uk_response": {
+        "title": "UK response",
+        "content": "<p>The UK Space Agency are the leads for conjunction reporting and have reached out to the operator to confirm they are aware of the event and that they intend to manoeuvre.</p>"
+      },
+      "press_attention": { "title": "Press attention" },
+      "see_press_lines": "See <link>UK Space Agency press lines</link>."
+    },
+    "Additional_risk_to_objects": {
+      "content": "<p>If a collision between these objects were to occur, the resulting debris may pose additional risk to UK-licensed satellites.</p><p>The table below shows how, if this collision were to occur, the number of conjunction events (with a miss distance of 5km or less) for UK-licensed satellites would increase in the following 7 days.</p><p><bold>Only the 30 objects with the most predicted additional conjunction events in the week following a collision are shown here.</bold></p>"
+    },
+    "Operator_view": {
+      "content": "<p>The satellite operator of the UK-licensed object has been notified of the conjunction event via the Monitor space hazards platform. <link>Click to see the information that operators have received.</link></p>"
+    },
+    "Alert_thresholds": {
+      "content": "<p>There are various criteria which determine if alerts are produced about conjunction events. These criteria vary by type of object.</p><p><bold>For UK-licensed objects:</bold></p><p>Less than 5 days until Time of Closest Approach, with:</p><list><item>More than 0.1% probability of collision</item><item>OR press interest</item></list><p><bold>For non-UK objects:</bold></p><p>Less than 5 days until Time of Closest Approach, with:</p><list><item>Low risk or higher</item><item>AND no manoeuvre expected</item></list><p><bold>For all objects:</bold></p><p>If nominated for escalation by the National Space Operations Centre</p>"
+    },
+    "Risk_thresholds": {
+      "content": "<p>Risk thresholds are calculated accounting for the probability of the collision between the two objects (as calculated by the US), and the average number of additional conjunction events that the collision would create for UK satellites.</p><p>Any event with an expected maneouvre is automatically categorised as `Low risk`.</p>",
+      "probability_of_collision": {
+        "title": "Predicted additional conjunction events for UK objects",
+        "low": "<5%",
+        "medium": "5% - 10%",
+        "high": "More than 10%"
+      },
+      "predicted_conjunctions": {
+        "title": "Predicted additional conjunction events for UK objects",
+        "low": "Less than 5",
+        "medium": "5 - 50",
+        "high": "More than 50"
+      }
+    },
+    "Further_information": {
+      "alerting_procedure": {
+        "title": "Alerting procedure",
+        "content": "<p><bold>Standard conjunction alert:</bold> If this report is classified as a standard conjunction alert, then it has been distributed only to key UK government organisations (UKSA, Ministry of Defence, Cabinet Office) and international partners.</p><p><bold>Priority conjunction alert:</bold> If this report is classified as a priority conjunction alert, then it has been distributed distributed more widely across UK devolved and central government department.</p><p>More detail on the alerting thresholds and classifications can be found in <link>Alert thresholds</link></p>"
+      },
+      "methodology": {
+        "title": "Conjunction analysis methodology",
+        "content": "<p>To understand more about how this data was generated by the UKSA, see:</p><list><item><eventInformationLink>Conjunction event analysis information</eventInformationLink></item><item><helpLink>Help with the information on conjunction events</helpLink></item></list>"
+      }
+    }
+  },
   "Reentries": {
     "title": "Track re-entry events",
     "section_title": "All re-entry events (upcoming and past)",
@@ -590,6 +681,7 @@
         "satellites": "UK-licensed satellites",
         "satellite_events": "{epoch} conjunction events",
         "conjunction_events": "conjunction events",
+        "conjunction_reports": "conjunction reports",
         "reentry_events": "re-entry events",
         "reentry_reports": "re-entry reports"
       }
@@ -755,6 +847,40 @@
         "title": "Information on calculations",
         "content": "<p>Probability of collision values will differ depending on the object sizes and methods used in calculations.</p><p>Space-Track uses a radius of 1m, 3m or 5m in their probability calculations. UKSA orbital analysis uses information on object sizes from ESA DISCOS or a custom value if suitable.</p>"
       }
+    },
+    "Conjunction_alert_executive_summary": {
+      "risk": "Risk to the UK",
+      "tca": "Predicted Time of Closest Approach (UTC)",
+      "poc": "Probability of Collision (%)",
+      "manoeuvre_expected": "Manoeuvre expected?",
+      "primary_object": "Primary object",
+      "secondary_object": "Secondary object",
+      "licensing_country": "Licensing country",
+      "object_type": "Object type",
+      "mass": "Mass (kg)",
+      "manoeuvrable": "Manoeuvrable?",
+      "norad_id": "NORAD ID"
+    },
+    "Conjunction_alert_additional_event_details": {
+      "predicted_miss_distance": "Predicted miss distance (m)",
+      "impact_speed": "Impact speed (km/s)",
+      "altitude": "Altitude (km)",
+      "approximate_latlong": "Approximate latitude / longitude",
+      "predicted_number_of_fragments": "Predicted number of fragments generated >10cm",
+      "potential_increase": "Potential increase in future collisions for UK objects (%)"
+    },
+    "Conjunction_alert_additional_risk": {
+      "object_name": "Object name",
+      "current_weekly_events": "Current weekly conjunction events",
+      "predicted_total_events": "Predicted total conjunction events in week following collision",
+      "predicted_additional_events": "Predicted additional conjunction events in week following collision"
+    },
+    "Conjunction_alert_history": {
+      "report_number": "Report number",
+      "report_time": "Time of update (UTC)",
+      "risk": "Risk",
+      "probability": "Probability of collision (%)",
+      "overflight": "Predicted Time of Closest Approach (UTC)"
     },
     "Reentries_summary": {
       "upcoming_reentry": "Upcoming re-entry {item}",
