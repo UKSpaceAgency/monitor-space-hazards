@@ -9,15 +9,15 @@ type ObjectDetailsData = Pick<TypeReentryEventOut, 'internationalDesignator' | '
 
 type ReentryAlertAdditionalObjectDetailsTableProps = {
   event: TypeReentryEventOut;
+  dataPdf?: string;
 };
 
-const ReentryAlertAdditionalObjectDetailsTable = ({ event }: ReentryAlertAdditionalObjectDetailsTableProps) => {
+const ReentryAlertAdditionalObjectDetailsTable = ({ event, dataPdf }: ReentryAlertAdditionalObjectDetailsTableProps) => {
   const t = useTranslations('Tables.Reentry_alert_additional_object_details');
 
   const objectDetailsHeaders: HTMLProps<HTMLTableCellElement>[] = [{
     children: t('object_details'),
-    colSpan: 2,
-  }];
+  }, {}];
 
   const objectDetailsRows: InformationsTableRow<ObjectDetailsData>[] = [{
     header: t('international_designator'),
@@ -47,8 +47,7 @@ const ReentryAlertAdditionalObjectDetailsTable = ({ event }: ReentryAlertAdditio
 
   const orbitDetailsHeaders: HTMLProps<HTMLTableCellElement>[] = [{
     children: t('orbit_details'),
-    colSpan: 2,
-  }];
+  }, {}];
 
   const orbitDetailsRows: InformationsTableRow<ObjectDetailsData>[] = [
     {
@@ -78,10 +77,10 @@ const ReentryAlertAdditionalObjectDetailsTable = ({ event }: ReentryAlertAdditio
   ];
 
   return (
-    <>
+    <div data-pdf={dataPdf}>
       <InformationsTable className="mb-0" headers={objectDetailsHeaders} rows={objectDetailsRows} data={event} />
       <InformationsTable headers={orbitDetailsHeaders} rows={orbitDetailsRows} data={event} />
-    </>
+    </div>
 
   );
 };
