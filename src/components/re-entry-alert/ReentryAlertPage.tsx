@@ -1,5 +1,4 @@
 import dayjs from 'dayjs';
-import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 import type { ReactNode } from 'react';
 import { Suspense } from 'react';
@@ -8,13 +7,12 @@ import type { TypeReentryEventPatch } from '@/__generated__/data-contracts';
 import { getReentryEvent } from '@/actions/getReentryEvent';
 import { getReentryReports } from '@/actions/getReentryReports';
 import { FORMAT_DATE_TIME, FORMAT_FULL_DATE } from '@/libs/Dayjs';
-import Button from '@/ui/button/button';
-import ButtonGroup from '@/ui/button-group/button-group';
 import Spinner from '@/ui/spinner/spinner';
 
 import { ContentNavigation } from '../ContentNavigation';
 import { ReentryAlertMapContainer } from './map/ReentryAlertMapContainer';
 import { ReentryAlertAccordion } from './ReentryAlertAccordion';
+import { ReentryAlertButtons } from './ReentryAlertButtons';
 import { ReentryAlertExecutiveSummary } from './ReentryAlertExecutiveSummary';
 import { ReentryAlertNextUpdate } from './ReentryAleryNextUpdate';
 
@@ -26,7 +24,6 @@ type ReentryAlertPageProps = {
 
 const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertPageProps) => {
   const t = await getTranslations('Reentry_alert');
-  const tCommon = await getTranslations('Common');
   const event = await getReentryEvent(shortId);
   const reports = await getReentryReports({ shortId });
 
@@ -50,13 +47,7 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
           </Suspense>
           <ReentryAlertNextUpdate shortId={shortId} />
           <ReentryAlertAccordion event={event} reports={reports} />
-          {footer || (
-            <ButtonGroup>
-              <Link href="/re-entries">
-                <Button variant="secondary">{tCommon('return', { to: 'previous page' })}</Button>
-              </Link>
-            </ButtonGroup>
-          )}
+          {footer || <ReentryAlertButtons pdfTitle={t('title', { objectName: event.objectName })} />}
         </div>
       </div>
     </div>

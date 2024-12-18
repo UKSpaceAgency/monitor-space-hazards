@@ -1,9 +1,13 @@
 import { useTranslations } from 'next-intl';
 
-const ConjunctionAlertThresholds = () => {
+type ConjunctionAlertThresholdsProps = {
+  dataPdf?: string;
+};
+
+const ConjunctionAlertThresholds = ({ dataPdf }: ConjunctionAlertThresholdsProps) => {
   const t = useTranslations('Conjunction_alert.Alert_thresholds');
   return (
-    <div>
+    <div data-pdf={dataPdf}>
       {t.rich('content')}
     </div>
   );

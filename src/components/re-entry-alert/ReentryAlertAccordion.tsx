@@ -38,7 +38,7 @@ const ReentryAlertAccordion = ({
           id: 'additional_object_details',
           heading: t('additional_object_details'),
           content: (
-            <ReentryAlertAdditionalObjectDetailsTable event={event} />
+            <ReentryAlertAdditionalObjectDetailsTable event={event} dataPdf={t('additional_object_details')} />
           ),
         },
         ...(impacts?.by_nation
@@ -46,7 +46,7 @@ const ReentryAlertAccordion = ({
               id: 'potential_impact_uk_nation',
               heading: t('potential_impact_uk_nation'),
               content: (
-                <ReentryAlertImpactNation impact={impacts.by_nation} />
+                <ReentryAlertImpactNation impact={impacts.by_nation} dataPdf={t('potential_impact_uk_nation')} />
               ),
             }]
           : []),
@@ -54,7 +54,7 @@ const ReentryAlertAccordion = ({
           id: 'potential_impact_uk_region',
           heading: t('potential_impact_uk_region'),
           content: (
-            <ReentryAlertImpactRegion england={impacts?.england} ireland={impacts?.northern_ireland} wales={impacts?.wales} scotland={impacts?.scotland} />
+            <ReentryAlertImpactRegion england={impacts?.england} ireland={impacts?.northern_ireland} wales={impacts?.wales} scotland={impacts?.scotland} dataPdf={t('potential_impact_uk_region')} />
           ),
         },
         ...(impacts?.by_nation
@@ -62,39 +62,39 @@ const ReentryAlertAccordion = ({
               id: 'potential_impact_overseas_territory',
               heading: t('potential_impact_overseas_territory'),
               content: (
-                <ReentryAlertImpactOverseas impact={impacts.overseas_territories_and_crown_dependencies} />
+                <ReentryAlertImpactOverseas impact={impacts.overseas_territories_and_crown_dependencies} dataPdf={t('potential_impact_overseas_territory')} />
               ),
             }]
           : []),
         {
           id: 'guidance_on_response',
           heading: t('guidance_on_response'),
-          content: <ReentryAlertGuidanceOnResponse immediateResponse={searchParams?.immediate_response ?? event.immediateResponse} recoveryAndCleanUp={searchParams?.recovery_and_clean_up ?? event.recoveryAndCleanUp} />,
+          content: <ReentryAlertGuidanceOnResponse immediateResponse={searchParams?.immediate_response ?? event.immediateResponse} recoveryAndCleanUp={searchParams?.recovery_and_clean_up ?? event.recoveryAndCleanUp} dataPdf={t('guidance_on_response')} />,
         },
         {
           id: 'liability_for_damages',
           heading: t('liability_for_damages'),
-          content: <ReentryAlertLiabilityForDamages licenseCountry={event.licenseCountry} damagesLiability={searchParams?.damages_liability ?? event.damagesLiability} />,
+          content: <ReentryAlertLiabilityForDamages licenseCountry={event.licenseCountry} damagesLiability={searchParams?.damages_liability ?? event.damagesLiability} dataPdf={t('liability_for_damages')} />,
         },
         {
           id: 'press_attention',
           heading: t('press_attention'),
-          content: <ReentryAlertPressAttention pressAttention={searchParams?.press_attention ?? event.pressAttention} />,
+          content: <ReentryAlertPressAttention pressAttention={searchParams?.press_attention ?? event.pressAttention} dataPdf={t('press_attention')} />,
         },
         {
           id: 'alert_history',
           heading: t('alert_history'),
-          content: <ReentryAlertHistoryDataTable shortId={event.shortId} reports={reports} />,
+          content: <ReentryAlertHistoryDataTable shortId={event.shortId} reports={reports} dataPdf={t('alert_history')} />,
         },
         {
           id: 'risk_thresholds',
           heading: t('risk_thresholds'),
-          content: <ReentryAlertRiskThresholds />,
+          content: <ReentryAlertRiskThresholds dataPdf={t('risk_thresholds')} />,
         },
         {
           id: 'alerting_procedure',
           heading: t('alerting_procedure'),
-          content: <ReentryAlertAlertingProcedure />,
+          content: <ReentryAlertAlertingProcedure dataPdf={t('alerting_procedure')} />,
         },
         {
           id: 'further_information',
