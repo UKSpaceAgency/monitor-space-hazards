@@ -115,12 +115,29 @@ const createContent = (title: string, node: Element) => {
         });
         break;
       }
+      case 'CAPTION':
+        content.push({
+          text: el.textContent,
+          bold: true,
+          style: 'h4',
+        });
+        break;
       case 'DIV':
         if ((el as HTMLElement).dataset.type === 'chart') {
           const chart = (node as HTMLElement).querySelector('canvas');
           if (chart) {
             content.push({
               image: chart.toDataURL(),
+              fit: [500, 500],
+            });
+          }
+        }
+
+        if ((el as HTMLElement).dataset.type === 'map') {
+          const chart = (node as HTMLElement).querySelector('.mapboxgl-canvas');
+          if (chart) {
+            content.push({
+              image: (chart as HTMLCanvasElement).toDataURL(),
               fit: [500, 500],
             });
           }
