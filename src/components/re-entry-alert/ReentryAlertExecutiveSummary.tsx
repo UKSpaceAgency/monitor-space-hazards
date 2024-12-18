@@ -14,8 +14,8 @@ const ReentryAlertExecutiveSummary = async ({ event, previewSummary }: ReentryAl
   const t = await getTranslations('Reentry_alert.Executive_summary');
 
   return (
-    <div>
-      <h2 data-anchor="information" data-pdf className="govuk-heading-l">{t('title')}</h2>
+    <div data-pdf={t('title')}>
+      <h2 data-anchor="information" className="govuk-heading-l">{t('title')}</h2>
       <p className="govuk-body">
         {t('content')}
       </p>

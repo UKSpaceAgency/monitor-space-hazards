@@ -6,12 +6,13 @@ import { Markdown } from '../Markdown';
 type ReentryAlertGuidanceOnResponseProps = {
   immediateResponse?: string | null;
   recoveryAndCleanUp?: string | null;
+  dataPdf?: string;
 };
 
-const ReentryAlertGuidanceOnResponse = ({ immediateResponse, recoveryAndCleanUp }: ReentryAlertGuidanceOnResponseProps) => {
+const ReentryAlertGuidanceOnResponse = ({ immediateResponse, recoveryAndCleanUp, dataPdf }: ReentryAlertGuidanceOnResponseProps) => {
   const t = useTranslations('Reentry_alert.Guidance_on_response');
   return (
-    <div>
+    <div data-pdf={dataPdf}>
       <h4 className="govuk-heading-m">{t('immediate_response.title')}</h4>
       {t.rich('immediate_response.content', { hydrazine: chunks => (
         <Link

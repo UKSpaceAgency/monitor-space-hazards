@@ -3,11 +3,15 @@ import { useTranslations } from 'next-intl';
 import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
 import Tag from '@/ui/tag/tag';
 
-const ReentryAlertRiskThresholds = () => {
+type ReentryAlertRiskThresholdsProps = {
+  dataPdf?: string;
+};
+
+const ReentryAlertRiskThresholds = ({ dataPdf }: ReentryAlertRiskThresholdsProps) => {
   const t = useTranslations('Reentry_alert.Risk_thresholds');
 
   return (
-    <div>
+    <div data-pdf={dataPdf}>
       <p className="govuk-body">{t('content')}</p>
       <Table className="text-base">
         <TableHead>
