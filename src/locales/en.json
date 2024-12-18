@@ -391,7 +391,7 @@
   },
   "Conjunction_alert": {
     "title": "Conjunction event {shortId}: Alert",
-    "notification_banner": "You are able to <edit>edit this alert</edit> or <send>send this alert to additional recipients</send>",
+    "notification_banner": "You are able to <edit>edit this alert</edit>",
     "report_info": "<p><bold>Report {number}</bold> updated on {time} UTC</p>",
     "accordion": {
       "additional_event_details": "Additional event details",
