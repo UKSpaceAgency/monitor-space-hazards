@@ -8,6 +8,8 @@ const createTable = (table: HTMLElement, isDataTable = false) => {
   const tableHead: Array<string | Record<string, unknown>> = [];
 
   const headers = table.querySelector('.govuk-table__head tr')?.children ?? [];
+  const caption = table.querySelector('.govuk-table__caption')?.innerHTML;
+  const captionObject = { text: caption, bold: true, style: 'h3' };
 
   for (const header of headers) {
     tableHead.push({ text: header.textContent, bold: true });
@@ -39,7 +41,7 @@ const createTable = (table: HTMLElement, isDataTable = false) => {
   }
 
   if (tableHead?.length > 0) {
-    return {
+    return [captionObject, {
       table: {
         widths: isDataTable
           ? ['auto', ...Array(tableHead.length - 1).fill('auto')]
@@ -47,14 +49,14 @@ const createTable = (table: HTMLElement, isDataTable = false) => {
         body: [tableHead, ...tableBody],
       },
       style: 'table',
-    };
+    }];
   } else {
-    return {
+    return [captionObject, {
       table: {
         body: tableBody,
       },
       style: 'table',
-    };
+    }];
   }
 };
 
@@ -71,7 +73,7 @@ const createContent = (title: string, node: Element) => {
     switch (el.nodeName) {
       case 'TABLE':
         content.push(
-          createTable(
+          ...createTable(
             el as HTMLElement,
             (el as HTMLElement).dataset.type === 'data',
           ),
@@ -113,13 +115,6 @@ const createContent = (title: string, node: Element) => {
         });
         break;
       }
-      case 'CAPTION':
-        content.push({
-          text: el.textContent,
-          bold: true,
-          style: 'h4',
-        });
-        break;
       case 'DIV':
         if ((el as HTMLElement).dataset.type === 'chart') {
           const chart = (node as HTMLElement).querySelector('canvas');
