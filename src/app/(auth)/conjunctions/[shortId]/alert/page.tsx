@@ -40,7 +40,7 @@ export default async function ConjunctionAlert({
     <div>
       <NotificationBanner heading={t.rich('notification_banner', {
         edit: chunks => <Link className="govuk-link" href={`/conjunctions/${shortId}/alert/edit`}>{chunks}</Link>,
-        send: chunks => <Link className="govuk-link" href={`/conjunctions/${shortId}/alert/send-alert`}>{chunks}</Link>,
+        // send: chunks => <Link className="govuk-link" href={`/conjunctions/${shortId}/alert/send-alert`}>{chunks}</Link>,
       })}
       />
       <Suspense fallback={<Spinner />}>

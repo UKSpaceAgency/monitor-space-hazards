@@ -8,17 +8,28 @@ import { useForm } from 'react-hook-form';
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
 import Hint from '@/ui/hint/hint';
+import { Radios, type RadiosProps } from '@/ui/radios/radios';
 import TextArea from '@/ui/text-area/text-area';
 
-type FormFields = {
+type BaseFormField = {
   id: string;
   name: string;
   defaultValue?: string | null;
-  help: ReactNode;
+  help?: ReactNode;
 };
 
+type TextFormField = {
+  type: 'text';
+} & BaseFormField;
+
+type RadioFormField = {
+  type: 'radio';
+} & RadiosProps & BaseFormField;
+
+export type EventAlertFormField = TextFormField | RadioFormField;
+
 type EventAlertEditFormProps = {
-  fields: FormFields[];
+  fields: EventAlertFormField[];
 };
 
 const EventAlertEditForm = ({ fields }: EventAlertEditFormProps) => {
@@ -48,16 +59,36 @@ const EventAlertEditForm = ({ fields }: EventAlertEditFormProps) => {
     }
   }, [searchParams, reset]);
 
+  const renderTextField = ({ id, name }: BaseFormField) => (
+    <>
+      <TextArea {...register(id)} />
+      <Button variant="secondary" type="button" onClick={() => resetField(id, { defaultValue: '' })}>{t('clear', { name })}</Button>
+    </>
+  );
+
+  const renderRadioField = ({ id, name, items, ...props }: Omit<RadioFormField, 'type'>) => (
+    <Radios
+      items={items.map(item => ({
+        value: item.value,
+        children: item.children,
+        defaultChecked: item.value === props.defaultValue,
+        ...register(id),
+      }))}
+      {...props}
+    />
+  );
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {fields.map(({ id, name, help }) => (
-        <div key={id}>
-          <label className="govuk-heading-l" htmlFor={id}>{t('add_to', { name })}</label>
-          <Hint>
-            {help}
-          </Hint>
-          <TextArea {...register(id)} />
-          <Button variant="secondary" type="button" onClick={() => resetField(id, { defaultValue: '' })}>{t('clear', { name })}</Button>
+      {fields.map(props => (
+        <div key={props.id}>
+          <label className="govuk-heading-l" htmlFor={props.id}>{t('add_to', { name: props.name })}</label>
+          {props.help && (
+            <Hint>
+              {props.help}
+            </Hint>
+          )}
+          {props.type === 'radio' ? renderRadioField(props) : renderTextField(props)}
         </div>
       ))}
       <ButtonGroup>

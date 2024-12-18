@@ -9,10 +9,11 @@ import { ConjunctionAlertExecutiveSummaryTable } from './tables/ConjunctionAlert
 type ConjunctionAlertExecutiveSummaryProps = {
   event: TypeUniqueEventOut;
   report: TypeConjunctionReportOut;
-  previewSummary?: string | null;
+  execSummaryAddition?: string | null;
+  manoeuvreAddition?: string | null;
 };
 
-const ConjunctionAlertExecutiveSummary = async ({ event, report, previewSummary }: ConjunctionAlertExecutiveSummaryProps) => {
+const ConjunctionAlertExecutiveSummary = async ({ report, execSummaryAddition, manoeuvreAddition }: ConjunctionAlertExecutiveSummaryProps) => {
   const t = await getTranslations('Conjunction_alert.Executive_summary');
   return (
     <div>
@@ -26,9 +27,9 @@ const ConjunctionAlertExecutiveSummary = async ({ event, report, previewSummary 
         })}
       </p>
       <Markdown>
-        {previewSummary ?? event?.execSummaryAddition}
+        {execSummaryAddition}
       </Markdown>
-      <ConjunctionAlertExecutiveSummaryTable event={event} report={report} />
+      <ConjunctionAlertExecutiveSummaryTable report={report} manoeuvreAddition={manoeuvreAddition} />
       {t.rich('see_further_information', { link: chunks => <a href="#further_information" className="govuk-link">{chunks}</a> })}
     </div>
   );
