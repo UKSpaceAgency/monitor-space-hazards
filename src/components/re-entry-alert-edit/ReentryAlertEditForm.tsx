@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl';
 import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
 import { getFullCountry } from '@/utils/Regions';
 
+import type { EventAlertFormField } from '../event-alert-edit/EventAlertEditForm';
 import { EventAlertEditForm } from '../event-alert-edit/EventAlertEditForm';
 
 type ReentryAlertEditFormProps = {
@@ -13,10 +14,11 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
   const tReentryAlert = useTranslations('Reentry_alert');
   const tForm = useTranslations('Forms.Edit_alert');
 
-  const formFields = [{
+  const formFields: EventAlertFormField[] = [{
     id: 'exec_summary',
     name: tForm('type.exec_summary'),
     defaultValue: event.execSummary,
+    type: 'text',
     help: (
       <div>
         <p>{tForm('hint')}</p>
@@ -27,6 +29,7 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     id: 'immediate_response',
     name: tForm('type.immediate_response'),
     defaultValue: event.immediateResponse,
+    type: 'text',
     help: (
       <div>
         <p>{tForm('hint')}</p>
@@ -37,6 +40,7 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     id: 'recovery_and_clean_up',
     name: tForm('type.recovery_and_clean_up'),
     defaultValue: event.recoveryAndCleanUp,
+    type: 'text',
     help: (
       <div>
         <p>{tForm('hint')}</p>
@@ -47,6 +51,7 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     id: 'damages_liability',
     name: tForm('type.damages_liability'),
     defaultValue: event.damagesLiability,
+    type: 'text',
     help: (
       <div>
         <p>{tForm('hint')}</p>
@@ -57,6 +62,7 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     id: 'press_attention',
     name: tForm('type.press_attention'),
     defaultValue: event.pressAttention,
+    type: 'text',
     help: tForm.rich('press_attention_hint'),
   }];
 

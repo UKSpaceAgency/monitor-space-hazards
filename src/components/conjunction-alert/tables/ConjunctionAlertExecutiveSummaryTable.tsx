@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
-import type { TypeConjunctionReportOut, TypeUniqueEventOut } from '@/__generated__/data-contracts';
+import type { TypeConjunctionReportOut } from '@/__generated__/data-contracts';
 import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
@@ -10,11 +10,11 @@ import { roundedPercent } from '@/utils/Math';
 import { getFullCountry } from '@/utils/Regions';
 
 type ConjunctionAlertExecutiveSummaryTableProps = {
-  event: TypeUniqueEventOut;
   report: TypeConjunctionReportOut;
+  manoeuvreAddition?: string | null;
 };
 
-const ConjunctionAlertExecutiveSummaryTable = ({ event, report }: ConjunctionAlertExecutiveSummaryTableProps) => {
+const ConjunctionAlertExecutiveSummaryTable = ({ report, manoeuvreAddition }: ConjunctionAlertExecutiveSummaryTableProps) => {
   const t = useTranslations('Tables.Conjunction_alert_executive_summary');
 
   const rows: InformationsTableRow<Partial<TypeConjunctionReportOut>>[] = [{
@@ -45,9 +45,8 @@ const ConjunctionAlertExecutiveSummaryTable = ({ event, report }: ConjunctionAle
     accessorKey: 'collisionProbability',
     renderCell: ({ collisionProbability }) => collisionProbability ? roundedPercent(collisionProbability) : '-',
   }, {
-    // TO CONFIRM
     header: t('manoeuvre_expected'),
-    renderCell: () => event.manoeuvreAddition,
+    renderCell: () => manoeuvreAddition,
   }, {
     header: t('primary_object'),
     renderCell: ({ primaryObjectCommonName, primaryObjectNoradId }) => (
