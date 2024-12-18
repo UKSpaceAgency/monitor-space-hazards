@@ -19,7 +19,7 @@ export const getAnalysisDataTableColumns = ({ handleDelete, handleDownload, json
     id: 'createdAt',
     accessorKey: 'createdAt',
     header: 'Analysis_data.date',
-    cell: ({ getValue }) => dayjs(getValue() as string).format(FORMAT_DATE_TIME),
+    cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_DATE_TIME),
     size: 150,
   },
   {
@@ -33,7 +33,7 @@ export const getAnalysisDataTableColumns = ({ handleDelete, handleDownload, json
     accessorKey: 'eventShortId',
     header: 'Analysis_data.event_id',
     cell: ({ getValue }) => {
-      const value = getValue() as string;
+      const value = getValue<string>();
       return (
         <Link href={`/conjunctions/${value}`} className="govuk-link">
           {value}
@@ -47,7 +47,7 @@ export const getAnalysisDataTableColumns = ({ handleDelete, handleDownload, json
     accessorKey: 'id',
     header: 'Analysis_data.file_uploaded',
     cell: ({ getValue }) => {
-      const value = getValue() as string;
+      const value = getValue<string>();
       return (
         <Link
           href="#"
@@ -68,7 +68,7 @@ export const getAnalysisDataTableColumns = ({ handleDelete, handleDownload, json
     enableSorting: false,
     header: () => <span className="invisible">Action</span>,
     cell: ({ getValue, row }) => {
-      const value = getValue() as string;
+      const value = getValue<string>();
       return value === null || value
         ? (
             <div className="text-right mr-2">

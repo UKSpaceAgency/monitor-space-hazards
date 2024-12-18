@@ -114,11 +114,11 @@ const createContent = (title: string, node: Element) => {
         break;
       }
       case 'DIV':
-        if ((el as HTMLElement).dataset.canvas) {
-          const chart = (node as HTMLElement).querySelector('.mapboxgl-canvas');
+        if ((el as HTMLElement).dataset.type === 'chart') {
+          const chart = (node as HTMLElement).querySelector('canvas');
           if (chart) {
             content.push({
-              image: (chart as HTMLCanvasElement).toDataURL(),
+              image: chart.toDataURL(),
               fit: [500, 500],
             });
           }

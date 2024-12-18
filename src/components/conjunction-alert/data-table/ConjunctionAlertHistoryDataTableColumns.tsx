@@ -45,7 +45,7 @@ export const conjunctionAlertHistoryColumns: TranslatedColumnDef<TypeConjunction
     header: 'Conjunction_alert_history.risk',
     accessorKey: 'risk',
     cell: ({ getValue }) => {
-      const risk = getValue<number>();
+      const risk = getValue<string>();
       const classes = {
         Low: 'govuk-tag--green',
         Medium: 'govuk-tag--yellow',

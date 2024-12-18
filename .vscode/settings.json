@@ -40,9 +40,11 @@
   "i18n-ally.sortKeys": true,
   "cSpell.words": [
     "Analysist",
+    "Bichromatic",
     "Cdms",
     "clsx",
     "crosstrack",
+    "Ephemerises",
     "exportables",
     "govuk",
     "Informations",
@@ -51,6 +53,7 @@
     "Manoeuvres",
     "Organisation",
     "Sattelite",
+    "Subcomponent",
     "Timespan",
     "UKSA"
   ] // On key edit through the plugin, sort the JSON

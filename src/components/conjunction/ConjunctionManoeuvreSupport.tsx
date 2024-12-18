@@ -1,11 +1,22 @@
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
-const ConjunctionManoeuvreSupport = () => {
-  const t = useTranslations('Conjunction.Mtp_chart');
+import type { TypeManoeuvrePlotWithUserMetadataOut } from '@/__generated__/data-contracts';
+import { getManoeuvrePlot } from '@/actions/getManoeuvrePlot';
+import { getManoeuvrePlotsManoeuvrePlotId } from '@/actions/getManoeuvrePlotsManoeuvrePlotId';
 
-  return (
-    <div data-pdf={t('title')}></div>
-  );
+import MtpChart from '../charts/mtp-chart/MtpChart';
+
+type ConjunctionManoeuvreSupportProps = {
+  plot: TypeManoeuvrePlotWithUserMetadataOut;
+};
+
+const ConjunctionManoeuvreSupport = async ({ plot }: ConjunctionManoeuvreSupportProps) => {
+  const t = await getTranslations('Conjunction.Mtp_chart');
+
+  const { data } = await getManoeuvrePlotsManoeuvrePlotId(plot?.id);
+  const manoeuvrePlot = await getManoeuvrePlot(data.presignedUrl);
+
+  return <MtpChart manoeuvrePlot={manoeuvrePlot} dataPdf={t('title')} />;
 };
 
 export { ConjunctionManoeuvreSupport };

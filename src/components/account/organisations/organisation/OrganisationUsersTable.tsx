@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
 import { getUsersByOrganisation } from '@/actions/getUsers';
-import { dayjs } from '@/libs/Dayjs';
+import { dayjs, FORMAT_SHORT_DATE } from '@/libs/Dayjs';
 import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
 import { AccountType } from '@/utils/Roles';
 
@@ -34,7 +34,7 @@ const OrganisationUsersTable = async ({ organisationId }: OrganisationUsersTable
               <TableCell>{role ? AccountType[role] : '-'}</TableCell>
               <TableCell>{email}</TableCell>
               <TableCell>{phoneNumber || '-'}</TableCell>
-              <TableCell>{accountDetailsConfirmedAt ? dayjs(accountDetailsConfirmedAt).format('DD/MM/YY') : '-'}</TableCell>
+              <TableCell>{accountDetailsConfirmedAt ? dayjs(accountDetailsConfirmedAt).format(FORMAT_SHORT_DATE) : '-'}</TableCell>
             </TableRow>
           ))}
         </TableBody>
