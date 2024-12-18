@@ -27,7 +27,7 @@ export const getConjunctionEventsColumns = ({
         accessorKey: 'userInterest',
         header: 'Conjunctions.user_interest',
         cell: ({ getValue }) => {
-          const value = getValue() as string;
+          const value = getValue<string>();
           if (value === 'High') {
             return (
               <strong className="govuk-tag govuk-tag--red">High</strong>
@@ -41,7 +41,7 @@ export const getConjunctionEventsColumns = ({
         accessorKey: 'shortId',
         header: 'Conjunctions.conjunction_event_id',
         cell: ({ getValue }) => {
-          const value = getValue() as string;
+          const value = getValue<string>();
           return (
             <Link
               href={`/conjunctions/${value}`}
@@ -56,7 +56,7 @@ export const getConjunctionEventsColumns = ({
         id: 'tcaTime',
         accessorKey: 'tcaTime',
         header: 'Conjunctions.time_of_closest_approach',
-        cell: ({ getValue }) => dayjs(getValue() as string).format(FORMAT_DATE_TIME),
+        cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_DATE_TIME),
       },
     ],
   },
@@ -74,7 +74,7 @@ export const getConjunctionEventsColumns = ({
             href={`/satellites/${row?.original.primaryObjectNoradId}`}
             className="govuk-link"
           >
-            {getValue() as string}
+            {getValue<string>()}
           </Link>
         ),
       },
@@ -113,7 +113,7 @@ export const getConjunctionEventsColumns = ({
         accessorKey: 'radialMissDistance',
         header: 'Conjunctions.mean_radial',
         cell: ({ getValue }) => {
-          const radialMissDistance = getValue() as number;
+          const radialMissDistance = getValue<number>();
 
           return getAbsoluteValue(radialMissDistance);
         },
@@ -135,7 +135,7 @@ export const getConjunctionEventsColumns = ({
         header: 'Conjunctions.space_track',
         size: 200,
         cell: ({ getValue }) => {
-          const collisionProbability = getValue() as number;
+          const collisionProbability = getValue<number>();
           if (!collisionProbability) {
             return '';
           }
@@ -151,7 +151,7 @@ export const getConjunctionEventsColumns = ({
         accessorKey: 'additionalAnalysis',
         header: 'Conjunctions.uksa',
         cell: ({ getValue }) => {
-          const value = getValue() as { collisionProbability: number };
+          const value = getValue<{ collisionProbability: number }>();
           const { collisionProbability } = value ?? {};
 
           if (!collisionProbability) {

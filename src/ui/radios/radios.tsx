@@ -16,6 +16,7 @@ export type RadiosProps = {
   items: RadioItem[];
   label?: ReactNode;
   labelClass?: string;
+  name?: string;
   hint?: ReactNode;
   error?: string;
   inline?: true;

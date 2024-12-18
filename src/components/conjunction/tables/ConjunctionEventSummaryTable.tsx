@@ -4,11 +4,12 @@ import type { TypeEventSummaryOut } from '@/__generated__/data-contracts';
 import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import Tag from '@/ui/tag/tag';
 import { getAbsoluteValue } from '@/utils/Math';
 
 type ConjunctionEventSummaryTableInformations = Pick<
   TypeEventSummaryOut,
-'cdmExternalId' | 'collisionProbability' | 'collisionProbabilityMethod' | 'tcaTime' | 'missDistance' | 'radialMissDistance' | 'intrackMissDistance' | 'crosstrackMissDistance' | 'updateTime' | 'primaryObjectSize' | 'secondaryObjectSize'
+'cdmExternalId' | 'collisionProbability' | 'collisionProbabilityMethod' | 'tcaTime' | 'missDistance' | 'radialMissDistance' | 'intrackMissDistance' | 'crosstrackMissDistance' | 'updateTime' | 'primaryObjectSize' | 'secondaryObjectSize' | 'primaryObjectCdmType'
 >;
 
 type ConjunctionEventSummaryTableInformationsTableProps = {
@@ -25,6 +26,12 @@ const ConjunctionEventSummaryTableInformationsTable = ({ object }: ConjunctionEv
   }, {
     header: t('summary_list.cdm_id'),
     accessorKey: 'cdmExternalId',
+    renderCell: row => (
+      <>
+        {row.cdmExternalId}
+        {row.primaryObjectCdmType === 'Special owner/operator ephemeris' && <Tag className="ml-2">{t('summary_list.special')}</Tag>}
+      </>
+    ),
   }, {
     header: t('summary_list.probability_of_collision'),
     accessorKey: 'collisionProbability',

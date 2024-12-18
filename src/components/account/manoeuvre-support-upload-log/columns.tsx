@@ -22,7 +22,7 @@ export const getManoeuvreDataTableColumns = ({
     id: 'createdAt',
     accessorKey: 'createdAt',
     header: 'Manoeuvre_data.date',
-    cell: ({ getValue }) => dayjs(getValue() as string).format(FORMAT_DATE_TIME),
+    cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_DATE_TIME),
     size: 150,
   },
   {
@@ -36,7 +36,7 @@ export const getManoeuvreDataTableColumns = ({
     accessorKey: 'eventShortId',
     header: 'Manoeuvre_data.event_id',
     cell: ({ getValue }) => {
-      const value = getValue() as string;
+      const value = getValue<string>();
       return (
         <Link href={`/conjunctions/${value}`} className="govuk-link">
           {value}
@@ -50,7 +50,7 @@ export const getManoeuvreDataTableColumns = ({
     accessorKey: 'id',
     header: 'Manoeuvre_data.file_uploaded',
     cell: ({ getValue }) => {
-      const value = getValue() as string;
+      const value = getValue<string>();
       return (
         <Link
           href="#"
