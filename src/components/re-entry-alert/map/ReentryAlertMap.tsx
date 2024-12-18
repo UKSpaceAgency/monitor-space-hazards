@@ -57,20 +57,21 @@ const ReentryAlertMap = ({ overflightTime, flightpathCollection, fragmentsCollec
   }, []);
 
   return (
-    <div className="bg-lightGrey p-3 mb-4">
+    <div className="bg-lightGrey p-3 mb-4" data-pdf="Re-entry map">
       <div className="flex justify-between">
         <ReentryAlertMapType value={mapType} onChange={setMapType} />
         <ReentryAlertMapView value={mapView} onChange={setMapView} />
       </div>
       <ReentryAlertAreasOfInterest selected={regions} onChange={setRegions} />
       <ReentryAlertOverflights overflights={overflightTime} selected={overflights} onChange={setOverflights} />
-      <div className="relative w-full h-[500px]">
+      <div className="relative w-full h-[500px]" data-type="map">
         <Map
           mapboxAccessToken={env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
           mapStyle={`mapbox://styles/mapbox/${mapType}`}
           projection={{
             name: mapView,
           }}
+          preserveDrawingBuffer
           initialViewState={initialViewState}
           interactiveLayerIds={['land', ...overflights]}
           onMouseMove={onHover}
