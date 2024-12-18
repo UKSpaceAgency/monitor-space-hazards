@@ -1,28 +1,30 @@
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
+import type { TypeEventSummaryOut } from '@/__generated__/data-contracts';
 import Details from '@/ui/details/details';
 
-import RichText from '../RichText';
+import PocChart from '../charts/poc-chart/PocChart';
 
 type ConjunctionCollisionProbabilityChartProps = {
-  id: string;
+  shortId: string;
+  events: TypeEventSummaryOut[];
 };
 
-const ConjunctionCollisionProbabilityChart = ({ id }: ConjunctionCollisionProbabilityChartProps) => {
-  const t = useTranslations('Conjunction.Poc_chart');
+const ConjunctionCollisionProbabilityChart = async ({ shortId, events }: ConjunctionCollisionProbabilityChartProps) => {
+  const t = await getTranslations('Conjunction.Poc_chart');
 
   return (
-    <div data-pdf={t('title')}>
+    <>
+      <PocChart
+        data={events}
+      />
       <Details summary={t('help.title')} data-pdf-ignore>
-        <RichText>
-          {tags => t.rich('help.content', {
-            ...tags,
-            link: chunks => <Link href={`/conjunctions/${id}#eventHistory`} className="govuk-link">{chunks}</Link>,
-          }) }
-        </RichText>
+        {t.rich('help.content', {
+          link: chunks => <Link href={`/conjunctions/${shortId}#eventHistory`} className="govuk-link">{chunks}</Link>,
+        })}
       </Details>
-    </div>
+    </>
   );
 };
 

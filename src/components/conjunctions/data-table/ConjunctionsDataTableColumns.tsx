@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { TypeEventOut } from '@/__generated__/data-contracts';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
+import { getAbsoluteValue } from '@/utils/Math';
 
 export type ProbabilityUnitType = 'scientific' | 'percentage';
 
@@ -26,7 +27,7 @@ export const getConjunctionEventsColumns = ({
         accessorKey: 'userInterest',
         header: 'Conjunctions.user_interest',
         cell: ({ getValue }) => {
-          const value = getValue() as string;
+          const value = getValue<string>();
           if (value === 'High') {
             return (
               <strong className="govuk-tag govuk-tag--red">High</strong>
@@ -45,7 +46,7 @@ export const getConjunctionEventsColumns = ({
           const href = reportNumber && reportNumber > 0 && isAnalyst
             ? `/conjunctions/${value}/alert`
             : `/conjunctions/${value}`;
-
+          
           return (
             <Link href={href} className="govuk-link">
               <strong>{value}</strong>
@@ -57,7 +58,7 @@ export const getConjunctionEventsColumns = ({
         id: 'tcaTime',
         accessorKey: 'tcaTime',
         header: 'Conjunctions.time_of_closest_approach',
-        cell: ({ getValue }) => dayjs(getValue() as string).format(FORMAT_DATE_TIME),
+        cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_DATE_TIME),
       },
     ],
   },
@@ -75,7 +76,7 @@ export const getConjunctionEventsColumns = ({
             href={`/satellites/${row?.original.primaryObjectNoradId}`}
             className="govuk-link"
           >
-            {getValue() as string}
+            {getValue<string>()}
           </Link>
         ),
       },
@@ -113,6 +114,11 @@ export const getConjunctionEventsColumns = ({
         id: 'radialMissDistance',
         accessorKey: 'radialMissDistance',
         header: 'Conjunctions.mean_radial',
+        cell: ({ getValue }) => {
+          const radialMissDistance = getValue<number>();
+
+          return getAbsoluteValue(radialMissDistance);
+        },
       },
       {
         id: 'missDistance',
@@ -131,7 +137,7 @@ export const getConjunctionEventsColumns = ({
         header: 'Conjunctions.space_track',
         size: 200,
         cell: ({ getValue }) => {
-          const collisionProbability = getValue() as number;
+          const collisionProbability = getValue<number>();
           if (!collisionProbability) {
             return '';
           }
@@ -147,7 +153,7 @@ export const getConjunctionEventsColumns = ({
         accessorKey: 'additionalAnalysis',
         header: 'Conjunctions.uksa',
         cell: ({ getValue }) => {
-          const value = getValue() as { collisionProbability: number };
+          const value = getValue<{ collisionProbability: number }>();
           const { collisionProbability } = value ?? {};
 
           if (!collisionProbability) {

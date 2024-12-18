@@ -1,4 +1,4 @@
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
 import type { TypeSatelliteOut } from '@/__generated__/data-contracts';
 import type { InformationsTableHeaderWidth, InformationsTableRow } from '@/components/InformationsTable';
@@ -13,8 +13,8 @@ type LicenseInformationsTableProps = {
   headerCellWidth?: InformationsTableHeaderWidth;
 };
 
-const LicenseInformationsTable = ({ object, headerCellWidth }: LicenseInformationsTableProps) => {
-  const t = useTranslations('Tables.Satellite_informations');
+const LicenseInformationsTable = async ({ object, headerCellWidth }: LicenseInformationsTableProps) => {
+  const t = await getTranslations('Tables.Satellite_informations');
 
   const headers = Array.isArray(object)
     ? [{
