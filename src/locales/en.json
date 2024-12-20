@@ -244,6 +244,21 @@
     },
     "add_new_user": "Add new user"
   },
+  "Setup": {
+    "title": "Set up your account",
+    "description": "You have completed {count} of {of} sections.",
+    "confirm_account_details": "Confirm your account details",
+    "account_details": "Account details",
+    "review_terms_and_conditions": "Review terms and conditions and data privacy notice",
+    "terms_and_conditions": "Terms and Conditions",
+    "completed": "Completed",
+    "notification": {
+      "completed": "You have completed account set up. You can now access the site.",
+      "uncompleted": "You must review and complete all sections of account set up before you can access the service.",
+      "view_home": "View home page",
+      "add_users": "Add users to organisation"
+    }
+  },
   "Analysis_upload_log": {
     "title": "UKSA analysis uploads",
     "description": "View all UKSA analysis uploaded to Monitor Space Hazards for UK conjunction events.",
