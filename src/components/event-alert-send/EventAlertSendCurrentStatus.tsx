@@ -70,7 +70,7 @@ const EventAlertSendCurrentStatus = ({ type, detailsSummary, detailsContent, dat
               {t('individually_selected_recipients')}
             </TableCellHeader>
             <TableCell>
-              {additionalRecipients ?? '-'}
+              {additionalRecipients.split(';').join('\n') ?? '-'}
             </TableCell>
           </TableRow>
         </TableBody>

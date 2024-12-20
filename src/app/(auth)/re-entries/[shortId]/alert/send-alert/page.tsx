@@ -39,7 +39,7 @@ export default async function ReentryAlertSend({
 
   const defaultValues = {
     isPriority: alert.alertType === 'auto-priority' || alert.alertType === 'manual-priority',
-    additionalRecipients: alert.additionalRecipients?.join(', ') || '',
+    additionalRecipients: alert.additionalRecipients?.join('; ') || '',
   };
 
   return <EventAlertSend type="re-entry" data={defaultValues} content={t.rich('content')} detailsSummary={t('alert_criteria_help.title')} detailsContent={detailsContent} />;

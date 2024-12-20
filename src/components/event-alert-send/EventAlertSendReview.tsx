@@ -31,7 +31,7 @@ const EventAlertSendReview = ({ type, shortId, data, action }: EventAlertSendRev
     setLoading(true);
     action(shortId, {
       isPriority: data.isPriority === 'true',
-      additionalEmails: data.additionalRecipients ? data.additionalRecipients.split(',').map(r => r.trim()) : [],
+      additionalEmails: data.additionalRecipients ? data.additionalRecipients.split(/[,;]+/).map(r => r.trim()) : [],
     });
   };
 
@@ -49,7 +49,7 @@ const EventAlertSendReview = ({ type, shortId, data, action }: EventAlertSendRev
           </TableRow>
           <TableRow>
             <TableCellHeader className="w-1/3">{t('send_alerts_to_selected_users')}</TableCellHeader>
-            <TableCell>{data.additionalRecipients || '-'}</TableCell>
+            <TableCell className="text-ellipsis">{data.additionalRecipients.split(/[,;]+/).join('; ') || '-'}</TableCell>
             <TableCell className="w-20 text-right"><Link className="govuk-link" href={prevPageUrl}>{t('change')}</Link></TableCell>
           </TableRow>
         </TableBody>

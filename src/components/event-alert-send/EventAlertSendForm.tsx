@@ -44,7 +44,7 @@ const EventAlertSendForm = ({ type, defaultValues }: EventAlertSendFormProps) =>
   const onSubmit = async (data: FormData) => {
     const searchParams = new URLSearchParams();
     searchParams.set('isPriority', data.isPriority.toString());
-    searchParams.set('additionalRecipients', data.haveAdditionalRecipients && data.additionalRecipients ? data.additionalRecipients.replaceAll(' ', '').split(',').toString() : '');
+    searchParams.set('additionalRecipients', data.haveAdditionalRecipients && data.additionalRecipients ? data.additionalRecipients.replaceAll(' ', '').split(/[,;]+/).toString() : '');
     router.push(`${pathname}/review?${searchParams.toString()}`);
   };
 
