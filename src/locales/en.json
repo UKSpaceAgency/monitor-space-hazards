@@ -916,6 +916,7 @@
         "select_label": "Filter by"
       },
       "table": {
+        "empty_list_info": "No re-entry events have been found",
         "event_details": "Event details",
         "object_details": "Object details",
         "risk": "Risk to the UK",
