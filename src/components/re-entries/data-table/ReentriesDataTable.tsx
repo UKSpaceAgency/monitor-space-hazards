@@ -36,6 +36,7 @@ const ReentriesDataTable = ({ initialData, params, haveAccessToAlerts }: Reentri
         fetcher={getReentryEvents}
         queryKeys={[QUERY_KEYS.Reentries]}
         initialSort={initialSort}
+        emptyLabel={t('Reentries.table.empty_list_info')}
       />
       <DownloadData type={t('Download.types.reentry_events')} params={params} downloadAction={getReentryEvents} />
     </>
