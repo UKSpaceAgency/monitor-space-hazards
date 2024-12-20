@@ -22,9 +22,10 @@ type InformationsTableProps<T extends object> = {
   reducedFont?: true;
   className?: string;
   dataPdfIgnore?: true;
+  dataPdf?: string;
 };
 
-const InformationsTable = <T extends object>({ rows, data, headers, caption, headerCellWidth = 'md', reducedFont, className, dataPdfIgnore }: InformationsTableProps<T>) => {
+const InformationsTable = <T extends object>({ rows, data, headers, caption, headerCellWidth = 'md', reducedFont, className, dataPdfIgnore, dataPdf }: InformationsTableProps<T>) => {
   const renderTableCell = ({
     key,
     data,
@@ -44,7 +45,7 @@ const InformationsTable = <T extends object>({ rows, data, headers, caption, hea
   );
 
   return (
-    <div className="overflow-auto" data-pdf-ignore={dataPdfIgnore}>
+    <div className="overflow-auto" data-pdf-ignore={dataPdfIgnore} data-pdf={dataPdf}>
       <Table className={className}>
         {caption && <TableCaption>{caption}</TableCaption>}
         {headers && (

@@ -10,9 +10,10 @@ import { reentryAlertHistoryColumns } from './ReentryAlertHistoryDataTableColumn
 type ReentryAlertHistoryDataTableProps = {
   shortId: string;
   reports?: TypeReentryEventReportOut[];
+  dataPdf?: string;
 };
 
-const ReentryAlertHistoryDataTable = async ({ shortId, reports }: ReentryAlertHistoryDataTableProps) => {
+const ReentryAlertHistoryDataTable = async ({ shortId, reports, dataPdf }: ReentryAlertHistoryDataTableProps) => {
   const t = useTranslations('Tables');
 
   const params: TypeGetReentryEventReportsReentryEventShortIdParams = {
@@ -20,12 +21,12 @@ const ReentryAlertHistoryDataTable = async ({ shortId, reports }: ReentryAlertHi
   };
 
   return (
-    <div>
+    <div data-pdf={dataPdf}>
       <DataTable
         columns={reentryAlertHistoryColumns}
         data={reports ?? []}
       />
-      <DownloadData type={t('Download.types.reentry_reports')} params={params} downloadAction={getReentryReports} />
+      <DownloadData type={t('Download.types.reentry_reports')} params={params} downloadAction={getReentryReports} data-pdf-ignore />
     </div>
 
   );

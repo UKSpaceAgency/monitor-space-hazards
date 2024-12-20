@@ -1,5 +1,4 @@
 import dayjs from 'dayjs';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import type { ReactNode } from 'react';
@@ -8,13 +7,12 @@ import type { TypeUniqueEventUpdateTextFieldsIn } from '@/__generated__/data-con
 import { getConjunctionReports } from '@/actions/getConjunctionReports';
 import getConjunctionUniqueEvent from '@/actions/getConjunctionUniqueEvent';
 import { FORMAT_DATE_TIME } from '@/libs/Dayjs';
-import Button from '@/ui/button/button';
-import ButtonGroup from '@/ui/button-group/button-group';
 
 import { ContentNavigation } from '../ContentNavigation';
 import { ConjunctionAlertAccordion } from './ConjunctionAlertAccordion';
 import { ConjunctionAlertExecutiveSummary } from './ConjunctionAlertExecutiveSummary';
 import { ConjunctionAlertNextUpdate } from './ConjunctionAlertNextUpdate';
+import { ConjunctionAlertPageButtons } from './ConjunctionAlertPageButtons';
 
 type ConjunctionAlertPageProps = {
   shortId: string;
@@ -24,7 +22,6 @@ type ConjunctionAlertPageProps = {
 
 const ConjunctionAlertPage = async ({ shortId, searchParams, footer }: ConjunctionAlertPageProps) => {
   const t = await getTranslations('Conjunction_alert');
-  const tCommon = await getTranslations('Common');
   const event = await getConjunctionUniqueEvent(shortId);
   const reports = await getConjunctionReports({ shortId });
   const lastReport = reports[reports.length - 1];
@@ -45,13 +42,7 @@ const ConjunctionAlertPage = async ({ shortId, searchParams, footer }: Conjuncti
           <ConjunctionAlertExecutiveSummary event={event} report={lastReport} execSummaryAddition={searchParams?.exec_summary_addition ?? event.execSummaryAddition} manoeuvreAddition={searchParams?.manoeuvre_addition ?? event.manoeuvreAddition} />
           <ConjunctionAlertNextUpdate shortId={shortId} />
           <ConjunctionAlertAccordion event={event} report={lastReport} reports={reports} searchParams={searchParams} />
-          {footer || (
-            <ButtonGroup>
-              <Link href="/re-entries">
-                <Button variant="secondary">{tCommon('return', { to: 'previous page' })}</Button>
-              </Link>
-            </ButtonGroup>
-          )}
+          {footer || <ConjunctionAlertPageButtons pdfTitle={t('title', { shortId })} />}
         </div>
       </div>
     </div>
