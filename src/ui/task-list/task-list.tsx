@@ -9,7 +9,7 @@ type Item = {
   title: ReactNode;
   hint?: ReactNode;
   href?: string;
-  status?: TagProps;
+  status?: TagProps & { text: string } | null;
 };
 
 type TaskListProps = {
@@ -24,7 +24,7 @@ export function TaskList({ className, items }: TaskListProps) {
         <li
           // eslint-disable-next-line react/no-array-index-key
           key={index}
-          className={clsx('govuk-task-list__item', {
+          className={clsx('govuk-task-list__item flex justify-between', {
             'govuk-task-list__item--with-link': !!href,
           })}
         >
@@ -45,7 +45,7 @@ export function TaskList({ className, items }: TaskListProps) {
           {hint && (
             <div className="govuk-task-list__hint">{hint}</div>
           )}
-          {status && <Tag {...status} />}
+          {status && <Tag {...status}>{status.text}</Tag>}
         </li>
       ))}
     </div>
