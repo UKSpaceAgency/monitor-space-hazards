@@ -6,6 +6,7 @@ import { useMemo, useState } from 'react';
 import type { TypeEventSummaryOut } from '@/__generated__/data-contracts';
 import RichText from '@/components/RichText';
 import Checkboxes from '@/ui/checkboxes/checkboxes';
+import { getAbsoluteValue } from '@/utils/Math';
 
 import BaseChart from '../base/BaseChart';
 import { getMissDistanceChartDatasets } from './getMissDistanceChartDatasets';
@@ -28,27 +29,23 @@ export type MissDistanceChartProps = {
 };
 
 export function MissDistanceChart({ data, isSpecial }: MissDistanceChartProps) {
-  const t = useTranslations('Charts.MissDistance');
+  const t = useTranslations('Charts.Miss_Distance');
 
   const [showSpecial, setShowSpecial] = useState(true);
 
-  const sortedData = useMemo(
-    () =>
-      [...data].sort(
-        (a, b) => Date.parse(a.updateTime) - Date.parse(b.updateTime),
-      ),
-    [data],
-  );
+  const absoluteData: MissDistanceChartDataType = useMemo(() => data.map(item => ({
+    ...item,
+    crosstrackMissDistance: getAbsoluteValue(item.crosstrackMissDistance),
+    intrackMissDistance: getAbsoluteValue(item.intrackMissDistance),
+    radialMissDistance: getAbsoluteValue(item.radialMissDistance),
+    missDistance: getAbsoluteValue(item.missDistance)!,
+  })), [data]);
 
-  const sortedDataWithoutEphemerises = sortedData.filter(
-    data => !isSpecial && data.dataSource === 'Space-Track CDM',
-  );
-  const sortedDataEphemerises = sortedData.filter(data => data.primaryObjectCdmType === 'Special owner/operator ephemeris');
+  const sortedData = useMemo(() => absoluteData.sort((a, b) => Date.parse(a.updateTime) - Date.parse(b.updateTime)), [absoluteData]);
+  const sortedDataWithoutEphemerises = useMemo(() => sortedData.filter(data => !isSpecial && data.dataSource === 'Space-Track CDM'), [isSpecial, sortedData]);
+  const sortedDataEphemerises = useMemo(() => sortedData.filter(data => data.primaryObjectCdmType === 'Special owner/operator ephemeris'), []);
 
-  const tca = useMemo(
-    () => sortedData[sortedData.length - 1]?.tcaTime,
-    [sortedData],
-  );
+  const tca = useMemo(() => sortedData[sortedData.length - 1]?.tcaTime, [sortedData]);
 
   const datasets: ChartData = getMissDistanceChartDatasets({ sortedDataWithoutEphemerises, sortedData, sortedDataEphemerises, showSpecial, tca });
 

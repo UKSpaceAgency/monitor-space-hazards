@@ -26,7 +26,7 @@ export function MtpChart({
   manoeuvrePlot,
   dataPdf,
 }: MtpChartProps) {
-  const t = useTranslations('Charts.MtpChart');
+  const t = useTranslations('Charts.Mtp_Chart');
 
   const { data, cdm_external_id, tca_time } = manoeuvrePlot;
 
