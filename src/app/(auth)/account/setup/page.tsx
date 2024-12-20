@@ -33,7 +33,7 @@ export default async function SetupPage() {
                 {t('notification.view_home')}
               </Button>
             </Link>
-            {isAdmin(user.role) && (
+            {isAdmin(session.user.role) && (
               <Link
                 href="/account/add-new-user"
               >
