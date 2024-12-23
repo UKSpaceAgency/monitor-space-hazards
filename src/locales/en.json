@@ -344,15 +344,15 @@
     }
   },
   "Charts": {
-    "PocChart": {
+    "Poc_Chart": {
       "title": "Evolution of collision probability",
       "description": "<p>The changing probability of a conjunction event leading up to the time of closest approach (TCA). All available data is shown.</p>",
-      "xAxis": "Creation date of CDM(UTC)",
+      "xAxis": "Creation date of CDM (UTC)",
       "yAxis": "Probability of collision",
       "tca": "TCA",
       "special": "Show <special>Special</special> ephemeris"
     },
-    "MtpChart": {
+    "Mtp_Chart": {
       "description": "The probability of collision (PoC) for different combinations of date/time or number of orbits compared to time of closest approach (TCA) and Delta V (amount of burn) of manoeuvre are shown. All available data is shown.",
       "chart": {
         "header": "What is your mitigation requirement?",
@@ -379,12 +379,12 @@
       },
       "download": "Manoeuvre Trade Space data"
     },
-    "MissDistance": {
+    "Miss_Distance": {
       "header": "The changing expected miss distance leading up to the time of closest approach (TCA). Data from Space-Track is shown.",
       "chart": {
         "tca": "TCA",
-        "x_axis_title": "Creation date of CDM (UTC)",
-        "y_axis_title": "Miss distance (m)",
+        "x_axis_title": "Miss distance (m)",
+        "y_axis_title": "Creation date of CDM (UTC)",
         "show_ephemeris": "Show <special>Special</special> ephemeris"
       }
     }
