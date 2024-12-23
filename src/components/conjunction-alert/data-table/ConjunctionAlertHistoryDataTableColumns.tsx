@@ -1,4 +1,5 @@
 'use client';
+import { Download04Icon } from 'hugeicons-react';
 import Link from 'next/link';
 
 import type { TypeConjunctionReportOut } from '@/__generated__/data-contracts';
@@ -20,13 +21,16 @@ export const conjunctionAlertHistoryColumns: TranslatedColumnDef<TypeConjunction
         ? (
             <Link
               href={presignedUrl}
-              className="govuk-details__summary govuk-details__summary-text"
+              className="govuk-link flex items-center gap-2"
               target="_blank"
               rel="noreferrer"
             >
-              {shortId}
-              <br />
-              {report}
+              <Download04Icon />
+              <span>
+                {shortId}
+                <br />
+                {report}
+              </span>
             </Link>
           )
         : report;

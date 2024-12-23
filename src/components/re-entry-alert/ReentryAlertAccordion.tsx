@@ -7,6 +7,7 @@ import { ReentryFurtherInformation } from '../re-entry/ReentryFurhterInformation
 import { ReentryAlertHistoryDataTable } from './data-table/ReentryAlertHistoryDataTable';
 import { ReentryAlertAlertingProcedure } from './ReentryAlertAlertingProcedure';
 import { ReentryAlertGuidanceOnResponse } from './ReentryAlertGuidanceOnResponse';
+import { ReentryAlertImpactAirspaceAndMaritime } from './ReentryAlertImpactAirspaceAndMaritime';
 import { ReentryAlertImpactNation } from './ReentryAlertImpactNation';
 import { ReentryAlertImpactOverseas } from './ReentryAlertImpactOverseas';
 import { ReentryAlertImpactRegion } from './ReentryAlertImpactRegion';
@@ -63,6 +64,15 @@ const ReentryAlertAccordion = ({
               heading: t('potential_impact_overseas_territory'),
               content: (
                 <ReentryAlertImpactOverseas impact={impacts.overseas_territories_and_crown_dependencies} dataPdf={t('potential_impact_overseas_territory')} />
+              ),
+            }]
+          : []),
+        ...(impacts?.maritime_and_airspace
+          ? [{
+              id: 'potential_impact_airspace_and_maritime',
+              heading: t('potential_impact_airspace_and_maritime'),
+              content: (
+                <ReentryAlertImpactAirspaceAndMaritime impact={impacts.maritime_and_airspace} dataPdf={t('potential_impact_airspace_and_maritime')} />
               ),
             }]
           : []),

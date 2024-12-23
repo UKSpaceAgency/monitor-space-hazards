@@ -68,6 +68,9 @@ importers:
       govuk-frontend:
         specifier: 5.7.1
         version: 5.7.1
+      hugeicons-react:
+        specifier: ^0.3.0
+        version: 0.3.0(react@19.0.0)
       json2csv:
         specifier: 6.0.0-alpha.2
         version: 6.0.0-alpha.2
@@ -3398,6 +3401,11 @@ packages:
   https-proxy-agent@5.0.1:
     resolution: {integrity: sha512-dFcAjpTQFgoLMzC2VwU+C/CbS7uRL0lWmxDITmqm7C+7F0Odmj6s9l6alZc6AELXhrnggM2CeWSXHGOdX2YtwA==}
     engines: {node: '>= 6'}
+
+  hugeicons-react@0.3.0:
+    resolution: {integrity: sha512-znmC+uX7xVqcIs0q09LvwEvJkjX0U3xgT05BSiRV19farS4lPONOKjYT0JkcQG5cvfV0rXHSEAEVNjbHAu81rg==}
+    peerDependencies:
+      react: '>=16.0.0'
 
   human-signals@5.0.0:
     resolution: {integrity: sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ==}
@@ -9394,6 +9402,10 @@ snapshots:
       debug: 4.3.7
     transitivePeerDependencies:
       - supports-color
+
+  hugeicons-react@0.3.0(react@19.0.0):
+    dependencies:
+      react: 19.0.0
 
   human-signals@5.0.0: {}
 
