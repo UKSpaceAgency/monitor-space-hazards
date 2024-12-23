@@ -693,7 +693,11 @@
     "performance_accordion": {
       "title": "Performance monitoring",
       "cdm_ingests": {
-        "title": "CDM ingests"
+        "title": "CDM ingests",
+        "details": {
+          "title": "Information on event history",
+          "content": "<p>This table shows performance monitoring information for the external sources of CDMs that Monitor Space Hazards ingests.</p><list><item>Ingestion start and stop show the time the last data ingest started and finished</item><item>Number of items fetched shows how many items were retrieved</item></list>"
+        }
       },
       "object_data_ingests": {
         "title": "Object data ingests"
@@ -1041,6 +1045,16 @@
       "risk": "Risk",
       "probability": "Probability of re-entry over the UK (%)",
       "overflight": "UK overflight time(s) (UTC)"
+    },
+    "Performance_monitoring": {
+      "cdm_ingests": {
+        "source": "Source",
+        "type_of_source": "Type of source",
+        "ingestion_start": "Ingestion start",
+        "ingestion_stop": "Ingestion stop",
+        "number_of_items_fetched": "Number of items fetched",
+        "empty_label": "No ingests"
+      }
     }
   },
   "Forms": {
