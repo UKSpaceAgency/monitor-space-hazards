@@ -33,7 +33,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <textarea
           ref={ref}
-          className={clsx('govuk-textarea', {
+          className={clsx('govuk-textarea whitespace-pre-wrap', {
             'govuk-textarea--error': !!error,
           })}
           id={id}
