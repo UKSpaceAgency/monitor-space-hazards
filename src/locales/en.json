@@ -686,6 +686,41 @@
       "content": "<h3>Distribution lists:</h3><p>You are able to view which distribution list users are currently on in the account section (<link>View distribution lists</link>)</p><h3>Standard re-entry alert</h3><p><bold>The criteria for producing a standard re-entry alert is less than 36 hours until re-entry and one of the following:</bold></p><list><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories</item><item>Any UK-licensed object (except designed for demise)</item><item>Press interest</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Priority re-entry alert:</h3><p><bold>The criteria for producing a priority re-entry alert is debris likely to survive to the ground and one of the following:</bold></p><list><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis)</item><item>UK-licensed object</item><item>Significant press interest</item></list>"
     }
   },
+  "Performance_monitoring": {
+    "title": "Performance monitoring and statistics",
+    "description": "This page shows both performance data for the Monitor Space Hazards service and more detailed information about the object and conjunction event data processed by the service. This data is broken down by organisation and by satellite.",
+    "performance_monitoring": "Performance monitoring",
+    "performance_accordion": {
+      "title": "Performance monitoring",
+      "cdm_ingests": {
+        "title": "CDM ingests"
+      },
+      "object_data_ingests": {
+        "title": "Object data ingests"
+      },
+      "notifications_sent": {
+        "title": "Notifications sent"
+      },
+      "uksa": {
+        "title": "UKSA conjunction event analysis and manoeuvre support"
+      }
+    },
+    "conjunction_accordion": {
+      "title": "Conjunction event and organisation data",
+      "conjunction_event_by_type": {
+        "title": "Conjunction events by type"
+      },
+      "objects_catalogued": {
+        "title": "Objects catalogued"
+      },
+      "conjunctions_events_by_organisation": {
+        "title": "Conjunction events by organisation"
+      },
+      "conjunction_events_by_satellite": {
+        "title": "Conjunction events by satellite"
+      }
+    }
+  },
   "Tables": {
     "Satellites": {
       "common_name": "Common name",
