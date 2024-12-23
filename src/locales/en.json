@@ -700,7 +700,11 @@
         }
       },
       "object_data_ingests": {
-        "title": "Object data ingests"
+        "title": "Object data ingests",
+        "details": {
+          "title": "Information on event history",
+          "content": "<p>This table shows performance monitoring information for the external data sources of satellite information that Monitor Space Hazards ingests.</p><list><item>Ingestion start and stop show the time the last data ingest started and finished</item><item>Number of items fetched shows how many items were retrieved</item></list>"
+        }
       },
       "notifications_sent": {
         "title": "Notifications sent"
@@ -1047,7 +1051,7 @@
       "overflight": "UK overflight time(s) (UTC)"
     },
     "Performance_monitoring": {
-      "cdm_ingests": {
+      "data_performance": {
         "source": "Source",
         "type_of_source": "Type of source",
         "ingestion_start": "Ingestion start",

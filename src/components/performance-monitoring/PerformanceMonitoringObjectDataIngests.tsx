@@ -7,11 +7,11 @@ import Details from '@/ui/details/details';
 import { DownloadData } from '../DownloadData';
 import { PerformanceMonitoringDataPerformanceDataTable } from './data-table/PerformanceMonitoringDataPerformanceDataTable';
 
-const PerformanceMonitoringCdmIngests = async () => {
-  const t = await getTranslations('Performance_monitoring.performance_accordion.cdm_ingests');
+const PerformanceMonitoringObjectDataIngests = async () => {
+  const t = await getTranslations('Performance_monitoring.performance_accordion.object_data_ingests');
 
   const params: TypeGetExternalDataPerformanceParams = {
-    source_type: ['CDM'],
+    source_type: ['Satellite'],
     limit: 50,
   };
 
@@ -28,4 +28,4 @@ const PerformanceMonitoringCdmIngests = async () => {
   );
 };
 
-export { PerformanceMonitoringCdmIngests };
+export { PerformanceMonitoringObjectDataIngests };

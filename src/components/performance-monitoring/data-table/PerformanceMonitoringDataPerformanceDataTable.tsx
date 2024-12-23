@@ -5,21 +5,21 @@ import type { TypeExternalDataPerformanceOut, TypeGetExternalDataPerformancePara
 import { getExternalDataPerformance } from '@/actions/getExternalDataPerformance';
 import InfiniteTable from '@/components/InfiniteTable';
 
-import { cdmIngestsColumns } from './PerformanceMonitoringCdmIngestsDataTableColumns';
+import { dataPerformanceColumns } from './PerformanceMonitoringDataPerformanceDataTableColumns';
 
-type PerformanceMonitoringCdmIngestsDataTableProps = {
+type PerformanceMonitoringDataPerformanceDataTableProps = {
   params: TypeGetExternalDataPerformanceParams;
   data: TypeExternalDataPerformanceOut[];
 };
 
-const PerformanceMonitoringCdmIngestsDataTable = ({ params, data }: PerformanceMonitoringCdmIngestsDataTableProps) => {
-  const t = useTranslations('Tables.Performance_monitoring.cdm_ingests');
+const PerformanceMonitoringDataPerformanceDataTable = ({ params, data }: PerformanceMonitoringDataPerformanceDataTableProps) => {
+  const t = useTranslations('Tables.Performance_monitoring.data_performance');
 
   return (
     <InfiniteTable<TypeExternalDataPerformanceOut, TypeGetExternalDataPerformanceParams>
       initialData={data}
       params={params}
-      columns={cdmIngestsColumns}
+      columns={dataPerformanceColumns}
       fetcher={getExternalDataPerformance}
       queryKeys={[]}
       emptyLabel={t('empty_label')}
@@ -27,4 +27,4 @@ const PerformanceMonitoringCdmIngestsDataTable = ({ params, data }: PerformanceM
   );
 };
 
-export { PerformanceMonitoringCdmIngestsDataTable };
+export { PerformanceMonitoringDataPerformanceDataTable };

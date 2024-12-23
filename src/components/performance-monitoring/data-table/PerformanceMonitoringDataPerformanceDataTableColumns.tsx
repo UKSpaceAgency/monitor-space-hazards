@@ -4,25 +4,25 @@ import type { TypeExternalDataPerformanceOut } from '@/__generated__/data-contra
 import { FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 
-export const cdmIngestsColumns: TranslatedColumnDef<TypeExternalDataPerformanceOut>[] = [
+export const dataPerformanceColumns: TranslatedColumnDef<TypeExternalDataPerformanceOut>[] = [
   {
     accessorKey: 'sourceProvider',
     id: 'sourceProvider',
     size: 100,
-    header: 'Performance_monitoring.cdm_ingests.source',
+    header: 'Performance_monitoring.data_performance.source',
     enableSorting: false,
   },
   {
     accessorKey: 'sourceType',
     id: 'sourceType',
     size: 100,
-    header: 'Performance_monitoring.cdm_ingests.type_of_source',
+    header: 'Performance_monitoring.data_performance.type_of_source',
     enableSorting: false,
   },
   {
     accessorKey: 'ingestionStart',
     id: 'ingestionStart',
-    header: 'Performance_monitoring.cdm_ingests.ingestion_start',
+    header: 'Performance_monitoring.data_performance.ingestion_start',
     cell: ({ getValue }) => {
       const date = getValue<Date>();
 
@@ -33,7 +33,7 @@ export const cdmIngestsColumns: TranslatedColumnDef<TypeExternalDataPerformanceO
   {
     accessorKey: 'ingestionEnd',
     id: 'ingestionEnd',
-    header: 'Performance_monitoring.cdm_ingests.ingestion_stop',
+    header: 'Performance_monitoring.data_performance.ingestion_stop',
     cell: ({ getValue }) => {
       const date = getValue<Date>();
 
@@ -44,7 +44,7 @@ export const cdmIngestsColumns: TranslatedColumnDef<TypeExternalDataPerformanceO
   {
     accessorKey: 'itemsFetched',
     id: 'itemsFetched',
-    header: 'Performance_monitoring.cdm_ingests.number_of_items_fetched',
+    header: 'Performance_monitoring.data_performance.number_of_items_fetched',
     enableSorting: false,
   },
 ];
