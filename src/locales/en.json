@@ -1207,6 +1207,13 @@
         "content": "{type} event {shortId}",
         "return": "Return to event page"
       }
+    },
+    "Cookies": {
+      "success_message": "You've set your cookie preferences.",
+      "no": "No",
+      "yes": "Yes",
+      "question": "Do you want to accept analytics cookies?",
+      "button": "Save cookies settings"
     }
   },
   "Components": {
