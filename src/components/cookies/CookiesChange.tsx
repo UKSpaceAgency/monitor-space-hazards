@@ -59,11 +59,13 @@ const CookiesChange = () => {
           {
             children: t('yes'),
             value: 'granted',
+            defaultChecked: cookieConsent === 'granted',
             checked: cookieConsent === 'granted',
           },
           {
             children: t('no'),
             value: 'denied',
+            defaultChecked: cookieConsent === 'denied',
             checked: cookieConsent === 'denied',
 
           },
