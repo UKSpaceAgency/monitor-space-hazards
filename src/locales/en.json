@@ -710,22 +710,44 @@
         "title": "Notifications sent"
       },
       "uksa": {
-        "title": "UKSA conjunction event analysis and manoeuvre support"
+        "title": "UKSA conjunction event analysis and manoeuvre support",
+        "details": {
+          "title": "Help with this table",
+          "content": "This tables shows the number of analyses and manoeuvre support plots uploaded by a UKSA orbital analyst."
+        }
       }
     },
     "conjunction_accordion": {
       "title": "Conjunction event and organisation data",
       "conjunction_event_by_type": {
-        "title": "Conjunction events by type"
+        "title": "Conjunction events by type",
+        "description": "Total number of conjunction events monitored between different object types.",
+        "this_table": "this table",
+        "details": {
+          "title": "Help with this table",
+          "content": "This table shows the number of conjunction events between different object types."
+        }
       },
       "objects_catalogued": {
-        "title": "Objects catalogued"
+        "title": "Objects catalogued",
+        "details": {
+          "title": "Help with this table",
+          "content": "This table shows the number of objects catalogued in Monitor Space Hazards to date and their breakdown by type."
+        }
       },
-      "conjunctions_events_by_organisation": {
-        "title": "Conjunction events by organisation"
+      "conjunction_events_by_organisation": {
+        "title": "Conjunction events by organisation",
+        "details": {
+          "title": "Help with this table",
+          "content": "This table shows the total number and probability of conjunction events for an organisation."
+        }
       },
       "conjunction_events_by_satellite": {
-        "title": "Conjunction events by satellite"
+        "title": "Conjunction events by satellite",
+        "details": {
+          "title": "Help with this table",
+          "content": "This table shows the total number of conjunction events for each registered satellite in the last 30 days."
+        }
       }
     }
   },
