@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 
 import { ContentNavigation } from '@/components/ContentNavigation';
-import { PerformanceMonitoringConjunctionEventAccordion } from '@/components/performance-monitoring/CojunctionEventAccordion';
 import { PerformanceMonitoringAccordion } from '@/components/performance-monitoring/PerformanceMonitoringAccordion';
+import { PerformanceMonitoringConjunctionEventAccordion } from '@/components/performance-monitoring/PerformanceMonitoringCojunctionEventAccordion';
 
 export const metadata: Metadata = {
   title: 'Performance monitoring and statistics',

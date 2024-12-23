@@ -2,6 +2,8 @@ import { getTranslations } from 'next-intl/server';
 
 import Accordion from '@/ui/accordion/accordion';
 
+import { PerformanceMonitoringCdmIngests } from './PerformanceMonitoringCdmIngests';
+
 const PerformanceMonitoringAccordion = async () => {
   const t = await getTranslations('Performance_monitoring.performance_accordion');
 
@@ -14,7 +16,7 @@ const PerformanceMonitoringAccordion = async () => {
           {
             id: 'cdmIngests',
             heading: t('cdm_ingests.title'),
-            content: <div></div>,
+            content: <PerformanceMonitoringCdmIngests />,
           },
           {
             id: 'objectDataIngests',
