@@ -722,6 +722,7 @@
       },
       "objects_catalogued": {
         "title": "Objects catalogued",
+        "heading": "Objects catalogued by Monitor Space Hazards",
         "details": {
           "title": "Help with this table",
           "content": "This table shows the number of objects catalogued in Monitor Space Hazards to date and their breakdown by type."
@@ -1083,7 +1084,8 @@
       },
       "conjunction_events_by_type": {
         "type": "Type",
-        "conjunction_events": "Conjunctions events"
+        "conjunction_events": "Conjunctions events",
+        "this_table": "this table"
       }
     }
   },
