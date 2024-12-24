@@ -1089,6 +1089,10 @@
         "email": "Email",
         "this_table": "this table",
         "empty_label": "No Notifications Sent"
+      },
+      "conjunction_events_by_type": {
+        "type": "Type",
+        "conjunction_events": "Conjunctions events"
       }
     }
   },
