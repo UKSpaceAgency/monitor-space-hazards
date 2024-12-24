@@ -1095,6 +1095,14 @@
         "type": "Type",
         "conjunction_events": "Conjunctions events",
         "this_table": "this table"
+      },
+      "conjunction_events_by_organisation": {
+        "type": "Type",
+        "conjunction_events": "Conjunctions events",
+        "less": "<1e-5",
+        "between": "<1e-3 and >1e-5",
+        "more": ">1e-3",
+        "this_table": "this table"
       }
     }
   },
