@@ -692,6 +692,7 @@
       },
       "object_data_ingests": {
         "title": "Object data ingests",
+        "object_data_ingests": "object data ingests",
         "details": {
           "title": "Information on event history",
           "content": "<p>This table shows performance monitoring information for the external data sources of satellite information that Monitor Space Hazards ingests.</p><list><item>Ingestion start and stop show the time the last data ingest started and finished</item><item>Number of items fetched shows how many items were retrieved</item></list>"
@@ -1077,6 +1078,7 @@
         "all": "All",
         "sms": "SMS",
         "email": "Email",
+        "this_table": "this table",
         "empty_label": "No Notifications Sent"
       }
     }

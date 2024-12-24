@@ -20,7 +20,7 @@ const PerformanceMonitoringObjectDataIngests = async () => {
   return (
     <>
       <PerformanceMonitoringDataPerformanceDataTable data={data} params={params} />
-      <DownloadData type={t('title')} params={params} downloadAction={getExternalDataPerformance} />
+      <DownloadData type={t('object_data_ingests')} params={params} downloadAction={getExternalDataPerformance} />
       <Details summary={t('details.title')}>
         {t.rich('details.content')}
       </Details>
