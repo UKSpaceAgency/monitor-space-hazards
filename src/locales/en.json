@@ -746,6 +746,7 @@
       },
       "conjunction_events_by_satellite": {
         "title": "Conjunction events by satellite",
+        "description": "This table shows the registered satellites by organisation and the number of conjunction events each has been involved in at different probabilities of collision over the last 30 days.",
         "details": {
           "title": "Help with this table",
           "content": "This table shows the total number of conjunction events for each registered satellite in the last 30 days."
@@ -1099,6 +1100,13 @@
       "conjunction_events_by_organisation": {
         "type": "Type",
         "conjunction_events": "Conjunctions events",
+        "less": "<1e-5",
+        "between": "<1e-3 and >1e-5",
+        "more": ">1e-3",
+        "this_table": "this table"
+      },
+      "conjunction_events_by_satellite": {
+        "satellite_name": "Satellite name",
         "less": "<1e-5",
         "between": "<1e-3 and >1e-5",
         "more": ">1e-3",
