@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import Accordion from '@/ui/accordion/accordion';
 
 import { PerformanceMonitoringCdmIngests } from './PerformanceMonitoringCdmIngests';
+import { PerformanceMonitoringNotificationsSent } from './PerformanceMonitoringNotificationsSent';
 import { PerformanceMonitoringObjectDataIngests } from './PerformanceMonitoringObjectDataIngests';
 import { PerformanceMonitoringUksaConjunctionEvent } from './PerformanceMonitoringUksaConjunctionEvent';
 
@@ -28,7 +29,7 @@ const PerformanceMonitoringAccordion = async () => {
           {
             id: 'notificationsSent',
             heading: t('notifications_sent.title'),
-            content: <div></div>,
+            content: <PerformanceMonitoringNotificationsSent />,
           },
           {
             id: 'uksa',

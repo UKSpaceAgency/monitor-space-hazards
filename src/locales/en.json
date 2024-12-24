@@ -1080,6 +1080,13 @@
         "ingestion_stop": "Ingestion stop",
         "number_of_items_fetched": "Number of items fetched",
         "empty_label": "No ingests"
+      },
+      "notifications_sent": {
+        "date": "Date",
+        "all": "All",
+        "sms": "SMS",
+        "email": "Email",
+        "empty_label": "No Notifications Sent"
       }
     }
   },
