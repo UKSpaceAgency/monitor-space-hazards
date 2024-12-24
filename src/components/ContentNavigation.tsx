@@ -3,7 +3,7 @@
 import type { MouseEvent } from 'react';
 import { useEffect, useState } from 'react';
 
-const ContentNavigation = () => {
+const ContentNavigation = ({ title, className }: { title?: string; className?: string }) => {
   const [anchors, setAnchors] = useState<Array<{ text: string; anchor: string }>>([]);
 
   useEffect(() => {
@@ -28,8 +28,8 @@ const ContentNavigation = () => {
   };
 
   return (
-    <nav aria-label="Content navigation">
-      <h3 className="govuk-caption-m">Contents</h3>
+    <nav aria-label="Content navigation" className={className}>
+      <h3 className="govuk-caption-m">{title || 'Contents'}</h3>
       <ol className="list-none">
         {anchors.map((anchor, index) => {
           return (

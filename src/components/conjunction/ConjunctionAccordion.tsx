@@ -34,7 +34,7 @@ const ConjunctionAccordion = async ({
 
   return (
     <Accordion
-      id="event-details"
+      id="conjunction-accordion"
       initialItems={[
         {
           id: 'pocChart',
