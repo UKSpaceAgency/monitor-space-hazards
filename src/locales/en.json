@@ -387,6 +387,16 @@
         "y_axis_title": "Creation date of CDM (UTC)",
         "show_ephemeris": "Show <special>Special</special> ephemeris"
       }
+    },
+    "CdmIngests": {
+      "space_track": "Space-Track",
+      "latest_ingest": "Latest ingest:",
+      "data_range": "Data range",
+      "number_of_cdms": "Number of CDMs ingested",
+      "conjunction_data_message": "Conjunction Data Message (CDM) source",
+      "7_days": "7 days",
+      "30_days": "30 days",
+      "all_time": "All time"
     }
   },
   "Conjunctions": {
