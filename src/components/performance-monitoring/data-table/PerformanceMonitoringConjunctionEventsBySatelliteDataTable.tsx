@@ -56,10 +56,12 @@ const PerformanceMonitoringConjunctionsBySatelliteDataTable = ({ data, params, i
           onChange={selectChange}
         />
       )}
-      <DataTable
-        columns={conjunctionsBySatelliteColumns}
-        data={tableData}
-      />
+      <div className="overflow-auto max-h-[400px]">
+        <DataTable
+          columns={conjunctionsBySatelliteColumns}
+          data={tableData}
+        />
+      </div>
       <DownloadData type={t('this_table')} params={params} downloadAction={getStatsEventsBySatellite} />
     </>
   );

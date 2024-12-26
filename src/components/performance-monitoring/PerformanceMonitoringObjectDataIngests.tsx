@@ -12,7 +12,9 @@ const PerformanceMonitoringObjectDataIngests = async () => {
 
   const params: TypeGetExternalDataPerformanceParams = {
     source_type: ['Satellite'],
+    sort_by: 'ingestion_start',
     limit: 50,
+    sort_order: 'desc',
   };
 
   const data = await getExternalDataPerformance(params);

@@ -11,6 +11,7 @@ const PerformanceMonitoringNotificationsSent = async () => {
 
   const params: TypeGetStatsNotificationsSentParams = {
     limit: 50,
+    sort_order: 'desc',
   };
 
   const data = await getStatsNotificationsSent(params);
