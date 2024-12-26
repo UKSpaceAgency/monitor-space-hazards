@@ -2,7 +2,9 @@ import { getTranslations } from 'next-intl/server';
 
 import type { TypeGetStatsEventsBySatelliteParams } from '@/__generated__/data-contracts';
 import { getStatsEventsBySatellite } from '@/actions/getStatsEventsBySatellite';
+import { getUsersMe } from '@/actions/getUsersMe';
 import Details from '@/ui/details/details';
+import { isAnalysist } from '@/utils/Roles';
 
 import { PerformanceMonitoringConjunctionsBySatelliteDataTable } from './data-table/PerformanceMonitoringConjunctionEventsBySatelliteDataTable';
 
@@ -13,10 +15,12 @@ const PerformanceMonitoringConjunctionEventsBySatellite = async () => {
 
   const data = await getStatsEventsBySatellite(params);
 
+  const user = await getUsersMe();
+
   return (
     <div>
       <p className="govuk-body">{t('description')}</p>
-      <PerformanceMonitoringConjunctionsBySatelliteDataTable data={data} params={params} />
+      <PerformanceMonitoringConjunctionsBySatelliteDataTable isAnalysist={isAnalysist(user.role)} data={data} params={params} />
       <Details summary={t('details.title')}>
         {t('details.content')}
       </Details>
