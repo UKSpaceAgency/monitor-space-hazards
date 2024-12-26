@@ -2,7 +2,9 @@ import { getTranslations } from 'next-intl/server';
 
 import type { TypeGetStatsEventsByOrganizationParams } from '@/__generated__/data-contracts';
 import { getStatsEventsByOrganization } from '@/actions/getStatsEventsByOrganization';
+import { getUsersMe } from '@/actions/getUsersMe';
 import Details from '@/ui/details/details';
+import { isAnalysist } from '@/utils/Roles';
 
 import { PerformanceMonitoringConjunctionsByOrganisationDataTable } from './data-table/PerformanceMonitoringConjunctionEventsByOrganisationDataTable';
 
@@ -12,10 +14,11 @@ const PerformanceMonitoringConjunctionEventsByOrganisation = async () => {
   const params: TypeGetStatsEventsByOrganizationParams = {};
 
   const data = await getStatsEventsByOrganization(params);
+  const user = await getUsersMe();
 
   return (
     <div>
-      <PerformanceMonitoringConjunctionsByOrganisationDataTable data={data} params={params} />
+      <PerformanceMonitoringConjunctionsByOrganisationDataTable data={data} params={params} isAnalysist={isAnalysist(user.role)} />
       <Details summary={t('details.title')}>
         {t('details.content')}
       </Details>

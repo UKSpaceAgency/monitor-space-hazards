@@ -1103,7 +1103,8 @@
         "less": "<1e-5",
         "between": "<1e-3 and >1e-5",
         "more": ">1e-3",
-        "this_table": "this table"
+        "this_table": "this table",
+        "description": "Conjunction events and their probability of collision for events relating to an organisation."
       },
       "conjunction_events_by_satellite": {
         "satellite_name": "Satellite name",
