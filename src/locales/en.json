@@ -1111,6 +1111,13 @@
         "between": "<1e-3 and >1e-5",
         "more": ">1e-3",
         "this_table": "this table"
+      },
+      "analyses_and_manoeuvre_support": {
+        "source": "Source",
+        "date": "Date",
+        "numbers_of_analyses": "Number of analyses received",
+        "numbers_of_manoeuvre": "Number of manoeuvre support plots received",
+        "analysis_and_manoeuvre_support": "UKSA analysis and manoeuvre support"
       }
     }
   },
