@@ -20,6 +20,7 @@ const PerformanceMonitoringCdmIngests = async () => {
   };
 
   const aggregatedParams: TypeGetExternalDataPerformanceAggregatedParams = {
+    limit: 9999,
     max_age_days: 8,
     sort_order: 'desc',
   };

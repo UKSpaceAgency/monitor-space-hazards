@@ -397,6 +397,17 @@
       "7_days": "7 days",
       "30_days": "30 days",
       "all_time": "All time"
+    },
+    "ObjectDataIngests": {
+      "space_track": "Space-Track",
+      "esa_discos": "ESA-DISCOS",
+      "latest_ingest": "Latest ingest:",
+      "data_range": "Data range",
+      "number_of_objects": "Number of objects ingested",
+      "7_days": "7 days",
+      "30_days": "30 days",
+      "all_time": "All time",
+      "object_ingests": "Object ingest"
     }
   },
   "Conjunctions": {

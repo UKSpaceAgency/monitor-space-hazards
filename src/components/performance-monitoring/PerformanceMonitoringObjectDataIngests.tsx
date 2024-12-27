@@ -1,9 +1,11 @@
 import { getTranslations } from 'next-intl/server';
 
-import type { TypeGetExternalDataPerformanceParams } from '@/__generated__/data-contracts';
+import type { TypeGetExternalDataPerformanceAggregatedParams, TypeGetExternalDataPerformanceParams } from '@/__generated__/data-contracts';
 import { getExternalDataPerformance } from '@/actions/getExternalDataPerformance';
+import { getExternalDataPerformanceAggregated } from '@/actions/getExternalDataPerformanceAggregated';
 import Details from '@/ui/details/details';
 
+import ObjectDataIngests from '../charts/object-data-ingests/ObjectDataIngests';
 import { DownloadData } from '../DownloadData';
 import { PerformanceMonitoringDataPerformanceDataTable } from './data-table/PerformanceMonitoringDataPerformanceDataTable';
 
@@ -17,10 +19,18 @@ const PerformanceMonitoringObjectDataIngests = async () => {
     sort_order: 'desc',
   };
 
+  const aggregatedParams: TypeGetExternalDataPerformanceAggregatedParams = {
+    limit: 9999,
+    max_age_days: 8,
+    sort_order: 'desc',
+  };
+
   const data = await getExternalDataPerformance(params);
+  const chartData = await getExternalDataPerformanceAggregated(aggregatedParams);
 
   return (
     <>
+      <ObjectDataIngests initialData={chartData} params={aggregatedParams} />
       <PerformanceMonitoringDataPerformanceDataTable data={data} params={params} />
       <DownloadData type={t('object_data_ingests')} params={params} downloadAction={getExternalDataPerformance} />
       <Details summary={t('details.title')}>
