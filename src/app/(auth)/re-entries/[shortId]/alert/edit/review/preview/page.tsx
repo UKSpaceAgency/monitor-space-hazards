@@ -9,19 +9,14 @@ import { EventAlertPublish } from '@/components/event-alert-edit/EventAlertPubli
 import { ReentryAlertPage } from '@/components/re-entry-alert/ReentryAlertPage';
 import NotificationBanner from '@/ui/notification-banner/notification-banner';
 
-export async function generateMetadata({
-  params,
-  searchParams,
-}: {
+type PageProps = {
   params: Promise<{ shortId: string }>;
-  searchParams: TypeReentryEventPatch;
-}) {
-  const t = await getTranslations('Reentry_alert_edit');
-  const { shortId } = await params;
+  searchParams: Promise<TypeReentryEventPatch>;
+};
 
-  if (!searchParams) {
-    redirect(`/re-entries/${shortId}/alert`);
-  }
+export async function generateMetadata(props: PageProps) {
+  const t = await getTranslations('Reentry_alert_edit');
+  const { shortId } = await props.params;
 
   try {
     const event = await getReentryEvent(shortId);
@@ -34,15 +29,14 @@ export async function generateMetadata({
   }
 }
 
-export default async function ReentryAlertEditPreview({
-  params,
-  searchParams,
-}: {
-  params: Promise<{ shortId: string }>;
-  searchParams: TypeReentryEventPatch;
-}) {
-  const { shortId } = await params;
+export default async function ReentryAlertEditPreview(props: PageProps) {
+  const { shortId } = await props.params;
+  const searchParams = await props.searchParams;
   const t = await getTranslations('Reentry_alert_edit');
+
+  if (!searchParams) {
+    redirect(`/re-entries/${shortId}/alert`);
+  }
 
   return (
     <div>

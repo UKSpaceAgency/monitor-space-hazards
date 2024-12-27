@@ -6,11 +6,14 @@ import { putConjunctionAlertLatest } from '@/actions/putConjunctionAlertLatest';
 import { EventAlertSendReview } from '@/components/event-alert-send/EventAlertSendReview';
 import type { EventAlertSearchParams } from '@/components/event-alert-send/EventAlertTypes';
 
+type PageProps = {
+  params: Promise<{ shortId: string }>;
+  searchParams: Promise<EventAlertSearchParams>;
+};
+
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ shortId: string }>;
-}) {
+}: PageProps) {
   const t = await getTranslations('Forms.Send_alert.Review');
   const { shortId } = await params;
   try {
@@ -22,14 +25,9 @@ export async function generateMetadata({
     notFound();
   }
 }
-export default async function ConjunctionAlertEditReview({
-  params,
-  searchParams,
-}: {
-  params: Promise<{ shortId: string }>;
-  searchParams: EventAlertSearchParams;
-}) {
-  const { shortId } = await params;
+export default async function ConjunctionAlertEditReview(props: PageProps) {
+  const { shortId } = await props.params;
+  const searchParams = await props.searchParams;
 
   return <EventAlertSendReview type="conjunction" shortId={shortId} data={searchParams} action={putConjunctionAlertLatest} />;
 }

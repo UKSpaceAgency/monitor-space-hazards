@@ -8,20 +8,14 @@ import { ConjunctionAlertPage } from '@/components/conjunction-alert/Conjunction
 import { EventAlertPublish } from '@/components/event-alert-edit/EventAlertPublish';
 import NotificationBanner from '@/ui/notification-banner/notification-banner';
 
-export async function generateMetadata({
-  params,
-  searchParams,
-}: {
+type PageProps = {
   params: Promise<{ shortId: string }>;
-  searchParams: TypeUniqueEventUpdateTextFieldsIn;
-}) {
+  searchParams: Promise<TypeUniqueEventUpdateTextFieldsIn>;
+};
+
+export async function generateMetadata(props: PageProps) {
   const t = await getTranslations('Conjunction_alert_edit');
-  const { shortId } = await params;
-
-  if (!searchParams) {
-    redirect(`/conjunction/${shortId}/alert`);
-  }
-
+  const { shortId } = await props.params;
   try {
     await getConjunctionUniqueEvent(shortId);
     return {
@@ -32,15 +26,14 @@ export async function generateMetadata({
   }
 }
 
-export default async function ConjunctionAlertEditPreview({
-  params,
-  searchParams,
-}: {
-  params: Promise<{ shortId: string }>;
-  searchParams: TypeUniqueEventUpdateTextFieldsIn;
-}) {
-  const { shortId } = await params;
+export default async function ConjunctionAlertEditPreview(props: PageProps) {
   const t = await getTranslations('Conjunction_alert_edit');
+  const { shortId } = await props.params;
+  const searchParams = await props.searchParams;
+
+  if (!searchParams) {
+    redirect(`/conjunction/${shortId}/alert`);
+  }
 
   return (
     <div>

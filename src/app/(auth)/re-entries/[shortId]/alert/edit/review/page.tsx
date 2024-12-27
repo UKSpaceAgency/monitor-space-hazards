@@ -7,20 +7,14 @@ import { getSatellite } from '@/actions/getSatellite';
 import { EventAlertReview } from '@/components/event-alert-edit/EventAlertReview';
 import { dayjs, FORMAT_FULL_DATE } from '@/libs/Dayjs';
 
-export async function generateMetadata({
-  params,
-  searchParams,
-}: {
+type PageProps = {
   params: Promise<{ shortId: string }>;
-  searchParams: TypeReentryEventPatch;
-}) {
+  searchParams: Promise<TypeReentryEventPatch>;
+};
+
+export async function generateMetadata(props: PageProps) {
   const t = await getTranslations('Reentry_alert_edit');
-  const { shortId } = await params;
-
-  if (!searchParams) {
-    redirect(`/re-entries/${shortId}/alert`);
-  }
-
+  const { shortId } = await props.params;
   try {
     const event = await getReentryEvent(shortId);
     const satellite = await getSatellite(event.noradId);
@@ -32,15 +26,15 @@ export async function generateMetadata({
   }
 }
 
-export default async function ReentryAlertEditReview({
-  params,
-  searchParams,
-}: {
-  params: Promise<{ shortId: string }>;
-  searchParams: TypeReentryEventPatch;
-}) {
+export default async function ReentryAlertEditReview(props: PageProps) {
   const t = await getTranslations('Reentry_alert_edit');
-  const { shortId } = await params;
+  const { shortId } = await props.params;
+  const searchParams = await props.searchParams;
+
+  if (!searchParams) {
+    redirect(`/re-entries/${shortId}/alert`);
+  }
+
   const event = await getReentryEvent(shortId);
 
   return (

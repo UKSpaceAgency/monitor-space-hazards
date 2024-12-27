@@ -13,11 +13,13 @@ export const metadata: Metadata = {
   title: 'UK-licensed satellites',
 };
 
-export default async function SatellitesPage(props: {
+type PageProps = {
   searchParams?: Promise<{
     search_like?: string;
   }>;
-}) {
+};
+
+export default async function SatellitesPage(props: PageProps) {
   const t = await getTranslations('Satellites');
 
   const searchParams = await props.searchParams;

@@ -11,11 +11,13 @@ import { ReentryEventSummary } from '@/components/re-entry/ReentryEventSummary';
 import { dayjs, FORMAT_FULL_DATE } from '@/libs/Dayjs';
 import Spinner from '@/ui/spinner/spinner';
 
+type PageProps = {
+  params: Promise<{ shortId: string }>;
+};
+
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ shortId: string }>;
-}) {
+}: PageProps) {
   const t = await getTranslations('Reentry');
   const { shortId } = await params;
   try {
@@ -31,9 +33,7 @@ export async function generateMetadata({
 
 export default async function Reentry({
   params,
-}: {
-  params: Promise<{ shortId: string }>;
-}) {
+}: PageProps) {
   const t = await getTranslations('Reentry');
   const { shortId } = await params;
   const event = await getReentryEvent(shortId);

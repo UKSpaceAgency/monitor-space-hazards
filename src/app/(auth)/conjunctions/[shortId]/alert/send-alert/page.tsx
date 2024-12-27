@@ -5,11 +5,13 @@ import { getTranslations } from 'next-intl/server';
 import { getConjunctionAlertLatest } from '@/actions/getConjunctionAlertLatest';
 import { EventAlertSend } from '@/components/event-alert-send/EventAlertSend';
 
+type PageProps = {
+  params: Promise<{ shortId: string }>;
+};
+
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ shortId: string }>;
-}) {
+}: PageProps) {
   const t = await getTranslations('Forms.Send_alert');
   const { shortId } = await params;
   try {
@@ -24,9 +26,7 @@ export async function generateMetadata({
 
 export default async function ConjunctionAlertSend({
   params,
-}: {
-  params: Promise<{ shortId: string }>;
-}) {
+}: PageProps) {
   const t = await getTranslations('Conjunction_alert_send');
   const { shortId } = await params;
 

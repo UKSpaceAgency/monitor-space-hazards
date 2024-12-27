@@ -5,19 +5,14 @@ import type { TypeUniqueEventUpdateTextFieldsIn } from '@/__generated__/data-con
 import getConjunctionUniqueEvent from '@/actions/getConjunctionUniqueEvent';
 import { EventAlertReview } from '@/components/event-alert-edit/EventAlertReview';
 
-export async function generateMetadata({
-  params,
-  searchParams,
-}: {
+type PageProps = {
   params: Promise<{ shortId: string }>;
-  searchParams: TypeUniqueEventUpdateTextFieldsIn;
-}) {
-  const t = await getTranslations('Conjunction_alert_edit');
-  const { shortId } = await params;
+  searchParams: Promise<TypeUniqueEventUpdateTextFieldsIn>;
+};
 
-  if (!searchParams) {
-    redirect(`/conjunctions/${shortId}/alert`);
-  }
+export async function generateMetadata(props: PageProps) {
+  const t = await getTranslations('Conjunction_alert_edit');
+  const { shortId } = await props.params;
 
   try {
     await getConjunctionUniqueEvent(shortId);
@@ -29,15 +24,14 @@ export async function generateMetadata({
   }
 }
 
-export default async function ConjunctionAlertEditReview({
-  params,
-  searchParams,
-}: {
-  params: Promise<{ shortId: string }>;
-  searchParams: TypeUniqueEventUpdateTextFieldsIn;
-}) {
+export default async function ConjunctionAlertEditReview(props: PageProps) {
   const t = await getTranslations('Conjunction_alert_edit');
-  const { shortId } = await params;
+  const { shortId } = await props.params;
+  const searchParams = await props.searchParams;
+
+  if (!searchParams) {
+    redirect(`/conjunctions/${shortId}/alert`);
+  }
 
   return (
     <div>

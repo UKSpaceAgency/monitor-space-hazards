@@ -1,7 +1,6 @@
 import dayjs from 'dayjs';
 import { getTranslations } from 'next-intl/server';
-import type { ReactNode } from 'react';
-import { Suspense } from 'react';
+import { type ReactNode, Suspense } from 'react';
 
 import type { TypeReentryEventPatch } from '@/__generated__/data-contracts';
 import { getReentryEvent } from '@/actions/getReentryEvent';

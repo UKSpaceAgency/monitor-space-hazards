@@ -6,11 +6,13 @@ import { getReentryAlertLatest } from '@/actions/getReentryAlertLatest';
 import { getReentryEvent } from '@/actions/getReentryEvent';
 import { EventAlertSend } from '@/components/event-alert-send/EventAlertSend';
 
+type PageProps = {
+  params: Promise<{ shortId: string }>;
+};
+
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ shortId: string }>;
-}) {
+}: PageProps) {
   const t = await getTranslations('Forms.Send_alert');
   const { shortId } = await params;
   try {
@@ -25,9 +27,7 @@ export async function generateMetadata({
 
 export default async function ReentryAlertSend({
   params,
-}: {
-  params: Promise<{ shortId: string }>;
-}) {
+}: PageProps) {
   const t = await getTranslations('Reentry_alert_send');
   const { shortId } = await params;
 

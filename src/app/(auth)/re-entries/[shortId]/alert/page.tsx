@@ -6,11 +6,13 @@ import { getReentryEvent } from '@/actions/getReentryEvent';
 import { ReentryAlertPage } from '@/components/re-entry-alert/ReentryAlertPage';
 import NotificationBanner from '@/ui/notification-banner/notification-banner';
 
+type PageProps = {
+  params: Promise<{ shortId: string }>;
+};
+
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ shortId: string }>;
-}) {
+}: PageProps) {
   const t = await getTranslations('Reentry_alert');
   const { shortId } = await params;
   const event = await getReentryEvent(shortId);
@@ -25,9 +27,7 @@ export async function generateMetadata({
 
 export default async function ReentryAlert({
   params,
-}: {
-  params: Promise<{ shortId: string }>;
-}) {
+}: PageProps) {
   const t = await getTranslations('Reentry_alert');
   const { shortId } = await params;
 
