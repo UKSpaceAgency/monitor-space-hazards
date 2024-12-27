@@ -17,10 +17,12 @@ const PerformanceMonitoringAnalysisAndManoeuvreSupportDataTable = ({ data, param
 
   return (
     <>
-      <DataTable
-        columns={analysesAndManoeuvreSupport}
-        data={data}
-      />
+      <div className="overflow-auto max-h-[400px]">
+        <DataTable
+          columns={analysesAndManoeuvreSupport}
+          data={data}
+        />
+      </div>
       <DownloadData type={t('analysis_and_manoeuvre_support')} params={params} downloadAction={getStatsAnalysisAndManoeuvreSupport} />
     </>
   );

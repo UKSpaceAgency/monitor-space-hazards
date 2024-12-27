@@ -29,6 +29,7 @@ export function ObjectDataIngests({ initialData, params }: ObjectDataIngestsProp
       max_age_days: showDays,
     }),
     initialData,
+    refetchOnMount: false,
   });
 
   useEffect(() => {

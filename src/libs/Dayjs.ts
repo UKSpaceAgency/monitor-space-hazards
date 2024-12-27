@@ -13,6 +13,8 @@ const FORMAT_FULL_DATE = 'dddd DD MMMM YYYY';
 
 const FORMAT_API_DATE_TIME = 'YYYY-MM-DDTHH:mm:ss';
 
+const FORMAT_API_DATE = 'YYYY-MM-DD';
+
 const eachDayOfInterval = ({
   start,
   end,
@@ -39,4 +41,4 @@ const eachDayOfInterval = ({
   return dates;
 };
 
-export { dayjs, eachDayOfInterval, FORMAT_API_DATE_TIME, FORMAT_DATE, FORMAT_DATE_TIME, FORMAT_FULL_DATE, FORMAT_SHORT_DATE };
+export { dayjs, eachDayOfInterval, FORMAT_API_DATE, FORMAT_API_DATE_TIME, FORMAT_DATE, FORMAT_DATE_TIME, FORMAT_FULL_DATE, FORMAT_SHORT_DATE };

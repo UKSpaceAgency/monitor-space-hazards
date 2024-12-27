@@ -417,6 +417,17 @@
       "date": "Date",
       "notification_type": "Notification type",
       "data_range": "Data range"
+    },
+    "AnalysisAndManoeuvreSupport": {
+      "analysis_received": "Analyses received",
+      "manoeuvre_received": "Manoeuvre support plots received",
+      "file_type": "File type",
+      "number_received": "Number received",
+      "latest_ingest": "Latest ingest:",
+      "date_range": "Date range",
+      "7_days": "7 days",
+      "30_days": "30 days",
+      "all_time": "All time"
     }
   },
   "Conjunctions": {

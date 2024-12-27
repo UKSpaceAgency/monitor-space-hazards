@@ -29,6 +29,7 @@ export function CdmIngestsChart({ initialData, params }: CdmIngestsChartProps) {
       max_age_days: showDays,
     }),
     initialData,
+    refetchOnMount: false,
   });
 
   useEffect(() => {
