@@ -356,7 +356,7 @@
       "description": "The probability of collision (PoC) for different combinations of date/time or number of orbits compared to time of closest approach (TCA) and Delta V (amount of burn) of manoeuvre are shown. All available data is shown.",
       "chart": {
         "header": "What is your mitigation requirement?",
-        "content": "<p>This is the <b>maximum</b> PoC you would be prepared to accept after a manoeuvre</p>",
+        "content": "<p>This is the <bold>maximum</bold> PoC you would be prepared to accept after a manoeuvre</p>",
         "cdm_source": "CDM source ID:",
         "x_axis_title": "Date and time of manoeuvre",
         "y_axis_title": "Potential Manoeuvre Delta V (cm/s)",
@@ -461,7 +461,7 @@
   },
   "Conjunction_alert": {
     "title": "Conjunction event {shortId}: Alert",
-    "notification_banner": "You are able to <edit>edit this alert</edit>",
+    "notification_banner": "You are able to <edit>edit this alert</edit> or <send>send this alert to additional recipients</send>",
     "report_info": "<p><bold>Report {number}</bold> updated on {time} UTC</p>",
     "accordion": {
       "additional_event_details": "Additional event details",
@@ -560,6 +560,14 @@
         "title": "Ensure you review before publishing.",
         "content": "It is advised that at least two individuals review text edits before they are published on GOV.UK platforms."
       }
+    }
+  },
+  "Conjunction_alert_send": {
+    "title": "Send alert to additional recipients",
+    "content": "<p>This page shows you the current distribution status of the conjunction alert and allows you to manually distribute the alert to additional recipients.</p><p>If it is not already, you can choose to make the alert a priority conjunction alert. You are also able to manually select individual emails to send the alert to.</p>",
+    "alert_criteria_help": {
+      "title": "Distribution lists and conjunction alert criteria",
+      "content": "<h3>Standard conjunction alert</h3><p>There are various criteria which determine if alerts are produced about conjunction events. These criteria vary by type of object.</p><p><bold>For UK-licensed objects:</bold></p><list><item>Less than 5 days until Time of Closest Approach</item><item>More than 0.1% probability of collision</item><item>Press interest</item></list><p><bold>For non-UK objects:</bold></p><list><item>Less than 5 days until Time of Closest Approach, with:</item><list><item>Low risk or higher</item><item>No manoeuvre expected</item></list></list><p><bold>For all objects:</bold></p><list><item>If nominated for escalation by the National Space Operations Centre</item></list><h3>Priority conjunction alert</h3><p><bold>For UK-licensed objects:</bold></p><list><item>More than 1% probability of collision</item><item>No manoeuvre expected</item></list><p><bold>For non-UK objects:</bold></p><list><item>More than 5% probability of collision</item><item>No manoeuvre expected</item><item>Significant press interest</item></list>"
     }
   },
   "Reentries": {
@@ -1033,7 +1041,7 @@
       "select_account_type_hint": "What type of access will this user require to Monitor Space Hazards?",
       "role": "Role",
       "help_summary": "What can these accounts do?",
-      "help_content": "<p><b>Admins</b> can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site. Administrators can also view all user accounts for an organisation, and can add new users, and change or delete existing users.</p><p><b>Operators</b> can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site.</p><p><b>Users</b> can view information on their organisation's satellites and the upcoming conjunction events involving them.</p>",
+      "help_content": "<p><bold>Admins</bold> can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site. Administrators can also view all user accounts for an organisation, and can add new users, and change or delete existing users.</p><p><bold>Operators</bold> can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site.</p><p><bold>Users</bold> can view information on their organisation's satellites and the upcoming conjunction events involving them.</p>",
       "submit": "Add user",
       "help": {
         "title": "What can these accounts do?",
@@ -1095,11 +1103,11 @@
       "email": "Email",
       "help_reentry": {
         "title": "Criteria for priority re-entry alerts",
-        "content": "<h3>Standard re-entry alert</h3><p>If this report is classified as a standard re-entry alert, then it has been distributed only to key UK government organisations (UK Space Agency, Ministry of Defence, Cabinet Office, Civil Aviation Authority) and international partners.</p><p><b>The criteria for producing a standard re-entry alert is less than 36 hours until re-entry and one of the following:</b></p><list><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories</item><item>Any UK-licensed object (except designed for demise)</item><item>Press interest</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Priority re-entry alert</h3><p>If this report is classified as a priority re-entry alert, then it has been distributed more widely across UK devolved and central government departments.</p><p><b>The criteria for producing a priority re-entry alert is debris likely to survive to the ground and one of the following:</b></p><list><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis)</item><item>UK-licensed object</item><item>Significant press interest</item></list>"
+        "content": "<h3>Standard re-entry alert</h3><p>If this report is classified as a standard re-entry alert, then it has been distributed only to key UK government organisations (UK Space Agency, Ministry of Defence, Cabinet Office, Civil Aviation Authority) and international partners.</p><p><bold>The criteria for producing a standard re-entry alert is less than 36 hours until re-entry and one of the following:</bold></p><list><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories</item><item>Any UK-licensed object (except designed for demise)</item><item>Press interest</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Priority re-entry alert</h3><p>If this report is classified as a priority re-entry alert, then it has been distributed more widely across UK devolved and central government departments.</p><p><bold>The criteria for producing a priority re-entry alert is debris likely to survive to the ground and one of the following:</bold></p><list><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis)</item><item>UK-licensed object</item><item>Significant press interest</item></list>"
       },
       "help_conjunctions": {
         "title": "Criteria for priority conjunction alerts",
-        "content": "<h3>Standard conjunction alert</h3><p>There are various criteria which determine if alerts are produced about conjunction events. These criteria vary by type of object.</p><p><b>For UK-licensed objects:</b></p><list><item>Less than 5 days until Time of Closest Approach</item><item>More than 0.1% probability of collision</item><item>Press interest</item></list><p><b>For non-UK objects:</b></p><list><item>Less than 5 days until Time of Closest Approach, with:</item><list><item>Low risk or higher</item><item>No manoeuvre expected</item></list></list><p><b>For all objects:</b></p><list><item>If nominated for escalation by the National Space Operations Centre</item></list><h3>Priority conjunction alert</h3><p><b>For UK-licensed objects:</b></p><list><item>More than 1% probability of collision</item><item>No manoeuvre expected</item></list><p><b>For non-UK objects:</b></p><list><item>More than 5% probability of collision</item><item>No manoeuvre expected</item><item>Significant press interest</item></list>"
+        "content": "<h3>Standard conjunction alert</h3><p>There are various criteria which determine if alerts are produced about conjunction events. These criteria vary by type of object.</p><p><bold>For UK-licensed objects:</bold></p><list><item>Less than 5 days until Time of Closest Approach</item><item>More than 0.1% probability of collision</item><item>Press interest</item></list><p><bold>For non-UK objects:</bold></p><list><item>Less than 5 days until Time of Closest Approach, with:</item><list><item>Low risk or higher</item><item>No manoeuvre expected</item></list></list><p><bold>For all objects:</bold></p><list><item>If nominated for escalation by the National Space Operations Centre</item></list><h3>Priority conjunction alert</h3><p><bold>For UK-licensed objects:</bold></p><list><item>More than 1% probability of collision</item><item>No manoeuvre expected</item></list><p><bold>For non-UK objects:</bold></p><list><item>More than 5% probability of collision</item><item>No manoeuvre expected</item><item>Significant press interest</item></list>"
       },
       "panel": {
         "title": "Alert settings changed",

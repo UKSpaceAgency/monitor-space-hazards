@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 // These tags are available
-type Tag = 'p' | 'b' | 'i' | 'h3' | 'list' | 'item' | 'special';
+type Tag = 'p' | 'bold' | 'i' | 'h3' | 'list' | 'item' | 'special';
 
 type Props = {
   children: (tags: Record<Tag, (chunks: ReactNode) => ReactNode>) => ReactNode;
@@ -13,7 +13,7 @@ export default function RichText({ children }: Props) {
       {children({
         h3: (chunks: ReactNode) => <h3 className="govuk-heading-m">{chunks}</h3>,
         p: (chunks: ReactNode) => <p className="govuk-body">{chunks}</p>,
-        b: (chunks: ReactNode) => <b>{chunks}</b>,
+        bold: (chunks: ReactNode) => <b>{chunks}</b>,
         i: (chunks: ReactNode) => <i>{chunks}</i>,
         list: (chunks: ReactNode) => <ul className="govuk-list govuk-list--bullet">{chunks}</ul>,
         item: (chunks: ReactNode) => <li>{chunks}</li>,

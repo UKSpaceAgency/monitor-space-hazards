@@ -640,6 +640,34 @@ export interface TypeConjunctionAlertSettings {
   notification_types?: TypeNotificationType[];
 }
 
+/** ConjunctionEventAlertIn */
+export interface TypeConjunctionEventAlertIn {
+  /** Alerttype */
+  alertType: "manual-normal" | "manual-priority" | null;
+  /**
+   * Additionalemails
+   * @default []
+   */
+  additionalEmails?: string[];
+}
+
+/** ConjunctionEventAlertOut */
+export interface TypeConjunctionEventAlertOut {
+  /** Conjunctioneventshortid */
+  conjunctionEventShortId: string;
+  /**
+   * Conjunctionreportid
+   * @format uuid
+   */
+  conjunctionReportId: string;
+  /** Alerttype */
+  alertType: "normal" | "auto-priority" | "manual-priority" | null;
+  /** Additionalrecipients */
+  additionalRecipients: string[] | null;
+  /** Notificationsendingstatus */
+  notificationSendingStatus: "scheduled" | "in-progress" | "delivered";
+}
+
 /** ConjunctionEventCount */
 export interface TypeConjunctionEventCount {
   /**
@@ -679,7 +707,8 @@ export interface TypeConjunctionReportOut {
   reportNumber: number;
   /** Reporttime */
   reportTime?: string | null;
-  risk: TypeConjunctionRisk;
+  /** Risk */
+  risk: "Low" | "Medium" | "High";
   /** Tcatime */
   tcaTime?: string | null;
   /** Collisionprobability */
@@ -758,9 +787,6 @@ export interface TypeConjunctionReportOut {
   /** Filename */
   fileName: string;
 }
-
-/** ConjunctionRisk */
-export type TypeConjunctionRisk = "Low" | "Medium" | "High";
 
 /** ContactAnalystIn */
 export interface TypeContactAnalystIn {
@@ -1404,45 +1430,21 @@ export interface TypeMissDistanceUncertainty {
 
 /** NotificationSettings */
 export interface TypeNotificationSettings {
-  /**
-   * On Event Created
-   * @default []
-   */
+  /** On Event Created */
   on_event_created?: TypeNotificationType[];
-  /**
-   * On Event Updated
-   * @default []
-   */
+  /** On Event Updated */
   on_event_updated?: TypeNotificationType[];
-  /**
-   * On Event Under Threshold
-   * @default []
-   */
+  /** On Event Under Threshold */
   on_event_under_threshold?: TypeNotificationType[];
-  /**
-   * On Analysis Uploaded
-   * @default []
-   */
+  /** On Analysis Uploaded */
   on_analysis_uploaded?: TypeNotificationType[];
-  /**
-   * On Ephemeris Uploaded
-   * @default []
-   */
+  /** On Ephemeris Uploaded */
   on_ephemeris_uploaded?: TypeNotificationType[];
-  /**
-   * On User Added
-   * @default []
-   */
+  /** On User Added */
   on_user_added?: TypeNotificationType[];
-  /**
-   * On User Removed
-   * @default []
-   */
+  /** On User Removed */
   on_user_removed?: TypeNotificationType[];
-  /**
-   * On User Edited
-   * @default []
-   */
+  /** On User Edited */
   on_user_edited?: TypeNotificationType[];
 }
 
@@ -1518,8 +1520,8 @@ export type TypeReentryDirection = "ascending" | "descending";
 
 /** ReentryEventAlertIn */
 export interface TypeReentryEventAlertIn {
-  /** Ispriority */
-  isPriority: boolean;
+  /** Alerttype */
+  alertType: "manual-normal" | "manual-priority" | null;
   /**
    * Additionalemails
    * @default []
@@ -1540,7 +1542,7 @@ export interface TypeReentryEventAlertOut {
    */
   reentryReportId: string;
   /** Alerttype */
-  alertType: "normal" | "auto-priority" | "manual-priority";
+  alertType: "normal" | "auto-priority" | "manual-priority" | null;
   /** Additionalrecipients */
   additionalRecipients: string[] | null;
   /** Notificationsendingstatus */
@@ -2315,7 +2317,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2024-11-14T21:23:04.126242"
+   * @default "2024-12-27T14:32:50.840684"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -2585,6 +2587,103 @@ export interface TypeGetAnalysesParams {
   offset?: number;
 }
 
+export interface TypeGetBannersMessagesParams {
+  /**
+   * Sort By
+   * @default "created_at"
+   */
+  sort_by?: TypeBannerMessagesSortBy | null;
+  /**
+   * Show Inactive
+   * @default false
+   */
+  show_inactive?: boolean;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeGetBannersMessagesCurrentParams {
+  /**
+   * Sort By
+   * Sorting column
+   */
+  sort_by?: TypeBannerSchedulesSortBy | null;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeGetBannersSchedulesParams {
+  /**
+   * Show Inactive
+   * @default false
+   */
+  show_inactive?: boolean;
+  /**
+   * Sort By
+   * Sorting column
+   */
+  sort_by: TypeBannerSchedulesSortBy;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypePostConjunctionReportsParams {
+  /**
+   * Source
+   * @default "UKSA"
+   */
+  source?: TypeExternalDataProvider;
+}
+
+export interface TypeGetConjunctionReportsConjunctionEventShortIdParams {
+  /**
+   * Show Only Active
+   * @default true
+   */
+  show_only_active?: boolean;
+  /** Short Id */
+  shortId: string;
+}
+
 export interface TypeGetEphemerisParams {
   /**
    * Norad Id
@@ -2602,6 +2701,67 @@ export interface TypeGetEphemerisParams {
    * @default false
    */
   show_inactive?: boolean;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeGetExternalDataPerformanceParams {
+  /**
+   * Sort By
+   * @default "created_at"
+   */
+  sort_by?: TypeExternalDataPerformanceItemsSortBy | null;
+  /**
+   * Source Type
+   * Type of source
+   */
+  source_type?: TypeExternalDataType[];
+  /**
+   * Source Provider
+   * Source provider name
+   */
+  source_provider?: TypeExternalDataProvider | null;
+  /**
+   * Max Age Days
+   * Maximum age of entries, in days
+   */
+  max_age_days?: number | null;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeGetExternalDataPerformanceAggregatedParams {
+  /**
+   * Max Age Days
+   * Maximum age of entries, in days
+   */
+  max_age_days?: number | null;
   /**
    * Limit
    * @default 100
@@ -2678,7 +2838,7 @@ export interface TypeGetManoeuvrePlotsByEventEventShortIdParams {
   eventShortId: string;
 }
 
-export interface TypePostConjunctionReportsParams {
+export interface TypePostReentryEventReportsParams {
   /**
    * Source
    * @default "UKSA"
@@ -2686,14 +2846,82 @@ export interface TypePostConjunctionReportsParams {
   source?: TypeExternalDataProvider;
 }
 
-export interface TypeGetConjunctionReportsConjunctionEventShortIdParams {
+export interface TypeGetReentryEventReportsReentryEventShortIdParams {
   /**
    * Show Only Active
    * @default true
    */
   show_only_active?: boolean;
+  /**
+   * Sort By
+   * Sorting column
+   * @default "report_number"
+   */
+  sort_by?: TypeReentryReportSortBy;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
   /** Short Id */
   shortId: string;
+}
+
+export interface TypeGetReentryEventsStatsParams {
+  /**
+   * Epoch
+   * @default "future"
+   */
+  epoch?: TypeEpoch;
+}
+
+export interface TypeGetReentryEventsParams {
+  /**
+   * Report
+   * @default "all"
+   */
+  report?: TypeReportFlagSettings;
+  /**
+   * Epoch
+   * @default "future"
+   */
+  epoch?: TypeEpoch;
+  /**
+   * Sort By
+   * Sorting column
+   * @default "time_window_start"
+   */
+  sort_by?: TypeReentryEventSortBy;
+  /**
+   * Search Like
+   * Pattern search value, ie: 'ONE-'
+   */
+  search_like?: string | null;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
 }
 
 export interface TypeGetConjunctionEventsParams {
@@ -3018,146 +3246,6 @@ export interface TypeGetSatellitesByOrganizationsParams {
   sort_order?: TypeSortOrder;
 }
 
-export interface TypeGetExternalDataPerformanceParams {
-  /**
-   * Sort By
-   * @default "created_at"
-   */
-  sort_by?: TypeExternalDataPerformanceItemsSortBy | null;
-  /**
-   * Source Type
-   * Type of source
-   */
-  source_type?: TypeExternalDataType[];
-  /**
-   * Source Provider
-   * Source provider name
-   */
-  source_provider?: TypeExternalDataProvider | null;
-  /**
-   * Max Age Days
-   * Maximum age of entries, in days
-   */
-  max_age_days?: number | null;
-  /**
-   * Limit
-   * @default 100
-   */
-  limit?: number;
-  /**
-   * Offset
-   * @default 0
-   */
-  offset?: number;
-  /**
-   * Sort Order
-   * @default "asc"
-   */
-  sort_order?: TypeSortOrder;
-}
-
-export interface TypeGetExternalDataPerformanceAggregatedParams {
-  /**
-   * Max Age Days
-   * Maximum age of entries, in days
-   */
-  max_age_days?: number | null;
-  /**
-   * Limit
-   * @default 100
-   */
-  limit?: number;
-  /**
-   * Offset
-   * @default 0
-   */
-  offset?: number;
-  /**
-   * Sort Order
-   * @default "asc"
-   */
-  sort_order?: TypeSortOrder;
-}
-
-export interface TypeGetBannersMessagesParams {
-  /**
-   * Sort By
-   * @default "created_at"
-   */
-  sort_by?: TypeBannerMessagesSortBy | null;
-  /**
-   * Show Inactive
-   * @default false
-   */
-  show_inactive?: boolean;
-  /**
-   * Limit
-   * @default 100
-   */
-  limit?: number;
-  /**
-   * Offset
-   * @default 0
-   */
-  offset?: number;
-  /**
-   * Sort Order
-   * @default "asc"
-   */
-  sort_order?: TypeSortOrder;
-}
-
-export interface TypeGetBannersMessagesCurrentParams {
-  /**
-   * Sort By
-   * Sorting column
-   */
-  sort_by?: TypeBannerSchedulesSortBy | null;
-  /**
-   * Limit
-   * @default 100
-   */
-  limit?: number;
-  /**
-   * Offset
-   * @default 0
-   */
-  offset?: number;
-  /**
-   * Sort Order
-   * @default "asc"
-   */
-  sort_order?: TypeSortOrder;
-}
-
-export interface TypeGetBannersSchedulesParams {
-  /**
-   * Show Inactive
-   * @default false
-   */
-  show_inactive?: boolean;
-  /**
-   * Sort By
-   * Sorting column
-   */
-  sort_by: TypeBannerSchedulesSortBy;
-  /**
-   * Limit
-   * @default 100
-   */
-  limit?: number;
-  /**
-   * Offset
-   * @default 0
-   */
-  offset?: number;
-  /**
-   * Sort Order
-   * @default "asc"
-   */
-  sort_order?: TypeSortOrder;
-}
-
 export interface TypeGetStatsEventsTypeParams {
   /** Start Date */
   start_date?: string | null;
@@ -3245,7 +3333,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2024-12-01"
+   * @default "2025-01-01"
    */
   end_date?: string;
 }
@@ -3260,7 +3348,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2024-12-01"
+   * @default "2025-01-01"
    */
   end_date?: string;
 }
@@ -3275,7 +3363,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2024-12-01"
+   * @default "2025-01-01"
    */
   end_date?: string;
 }
@@ -3290,7 +3378,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2024-12-01"
+   * @default "2025-01-01"
    */
   end_date?: string;
 }
@@ -3305,7 +3393,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2024-12-01"
+   * @default "2025-01-01"
    */
   end_date?: string;
 }
@@ -3320,95 +3408,9 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2024-12-01"
+   * @default "2025-01-01"
    */
   end_date?: string;
-}
-
-export interface TypeGetReentryEventsStatsParams {
-  /**
-   * Epoch
-   * @default "future"
-   */
-  epoch?: TypeEpoch;
-}
-
-export interface TypeGetReentryEventsParams {
-  /**
-   * Report
-   * @default "all"
-   */
-  report?: TypeReportFlagSettings;
-  /**
-   * Epoch
-   * @default "future"
-   */
-  epoch?: TypeEpoch;
-  /**
-   * Sort By
-   * Sorting column
-   * @default "time_window_start"
-   */
-  sort_by?: TypeReentryEventSortBy;
-  /**
-   * Search Like
-   * Pattern search value, ie: 'ONE-'
-   */
-  search_like?: string | null;
-  /**
-   * Limit
-   * @default 100
-   */
-  limit?: number;
-  /**
-   * Offset
-   * @default 0
-   */
-  offset?: number;
-  /**
-   * Sort Order
-   * @default "asc"
-   */
-  sort_order?: TypeSortOrder;
-}
-
-export interface TypePostReentryEventReportsParams {
-  /**
-   * Source
-   * @default "UKSA"
-   */
-  source?: TypeExternalDataProvider;
-}
-
-export interface TypeGetReentryEventReportsReentryEventShortIdParams {
-  /**
-   * Show Only Active
-   * @default true
-   */
-  show_only_active?: boolean;
-  /**
-   * Sort By
-   * Sorting column
-   * @default "report_number"
-   */
-  sort_by?: TypeReentryReportSortBy;
-  /**
-   * Limit
-   * @default 100
-   */
-  limit?: number;
-  /**
-   * Offset
-   * @default 0
-   */
-  offset?: number;
-  /**
-   * Sort Order
-   * @default "asc"
-   */
-  sort_order?: TypeSortOrder;
-  /** Short Id */
-  shortId: string;
 }
 
 export interface TypePostTipsParams {

@@ -1,12 +1,10 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
-import { Suspense } from 'react';
 
 import getConjunctionUniqueEvent from '@/actions/getConjunctionUniqueEvent';
 import { ConjunctionAlertPage } from '@/components/conjunction-alert/ConjunctionAlertPage';
 import NotificationBanner from '@/ui/notification-banner/notification-banner';
-import Spinner from '@/ui/spinner/spinner';
 
 export async function generateMetadata({
   params,
@@ -40,12 +38,10 @@ export default async function ConjunctionAlert({
     <div>
       <NotificationBanner heading={t.rich('notification_banner', {
         edit: chunks => <Link className="govuk-link" href={`/conjunctions/${shortId}/alert/edit`}>{chunks}</Link>,
-        // send: chunks => <Link className="govuk-link" href={`/conjunctions/${shortId}/alert/send-alert`}>{chunks}</Link>,
+        send: chunks => <Link className="govuk-link" href={`/conjunctions/${shortId}/alert/send-alert`}>{chunks}</Link>,
       })}
       />
-      <Suspense fallback={<Spinner />}>
-        <ConjunctionAlertPage shortId={shortId} />
-      </Suspense>
+      <ConjunctionAlertPage shortId={shortId} />
     </div>
   );
 }

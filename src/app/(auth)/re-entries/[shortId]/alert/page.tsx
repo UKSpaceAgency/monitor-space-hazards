@@ -1,12 +1,10 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
-import { Suspense } from 'react';
 
 import { getReentryEvent } from '@/actions/getReentryEvent';
 import { ReentryAlertPage } from '@/components/re-entry-alert/ReentryAlertPage';
 import NotificationBanner from '@/ui/notification-banner/notification-banner';
-import Spinner from '@/ui/spinner/spinner';
 
 export async function generateMetadata({
   params,
@@ -40,9 +38,7 @@ export default async function ReentryAlert({
         send: chunks => <Link className="govuk-link" href={`/re-entries/${shortId}/alert/send-alert`}>{chunks}</Link>,
       })}
       />
-      <Suspense fallback={<Spinner />}>
-        <ReentryAlertPage shortId={shortId} />
-      </Suspense>
+      <ReentryAlertPage shortId={shortId} />
     </div>
   );
 }
