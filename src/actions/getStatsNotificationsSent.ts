@@ -13,14 +13,25 @@ export type NotificationsSentStatsType = {
 export async function getStatsNotificationsSent(query?: TypeGetStatsNotificationsSentParams): Promise<NotificationsSentStatsType[]> {
   const { data } = await Api.getStatsNotificationsSent(query);
 
-  return data.map((item) => {
-    const { count, day, month, type } = item;
+  const groupedData = data.reduce((acc, item) => {
+    const { type, count, day, month } = item;
 
-    return {
-      date: day || month,
-      totalCount: type === 'Total' ? count : 0,
-      smsCount: type === 'SMS' ? count : 0,
-      emailCount: type === 'EMAIL' ? count : 0,
-    };
-  });
+    const key = day || month as string;
+
+    if (!acc[key]) {
+      acc[key] = { date: day || month, totalCount: 0, smsCount: 0, emailCount: 0 };
+    }
+
+    if (type === 'Total') {
+      acc[key].totalCount = count;
+    } else if (type === 'SMS') {
+      acc[key].smsCount = count;
+    } else if (type === 'EMAIL') {
+      acc[key].emailCount = count;
+    }
+
+    return acc;
+  }, {} as { [key: string]: any });
+
+  return Object.values(groupedData);
 };

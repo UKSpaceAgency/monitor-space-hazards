@@ -1,27 +1,19 @@
-import { getTranslations } from 'next-intl/server';
-
 import type { TypeGetStatsNotificationsSentParams } from '@/__generated__/data-contracts';
 import { getStatsNotificationsSent } from '@/actions/getStatsNotificationsSent';
+import { dayjs, FORMAT_API_DATE_TIME } from '@/libs/Dayjs';
 
-import { DownloadData } from '../DownloadData';
-import { PerformanceMonitoringNotificationsSentDataTable } from './data-table/PerformanceMonitoringNotificationsSentDataTable';
+import { PerformanceMonitoringNotificationsSentContent } from './PerformanceMonitoringNotificationsSentContent';
 
 const PerformanceMonitoringNotificationsSent = async () => {
-  const t = await getTranslations('Tables.Performance_monitoring.notifications_sent');
-
   const params: TypeGetStatsNotificationsSentParams = {
-    limit: 50,
+    limit: 9999,
     sort_order: 'desc',
+    start_date: dayjs().hour(12).minute(0).second(0).subtract(7, 'day').format(FORMAT_API_DATE_TIME),
   };
 
   const data = await getStatsNotificationsSent(params);
 
-  return (
-    <div>
-      <PerformanceMonitoringNotificationsSentDataTable data={data} params={params} />
-      <DownloadData type={t('this_table')} params={params} downloadAction={getStatsNotificationsSent} />
-    </div>
-  );
+  return <PerformanceMonitoringNotificationsSentContent data={data} params={params} />;
 };
 
 export { PerformanceMonitoringNotificationsSent };

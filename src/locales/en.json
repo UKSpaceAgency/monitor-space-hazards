@@ -408,6 +408,15 @@
       "30_days": "30 days",
       "all_time": "All time",
       "object_ingests": "Object ingest"
+    },
+    "NotificationsSent": {
+      "all_notifications": "All notifications",
+      "sms_messages": "SMS messages",
+      "emails": "Emails",
+      "number_of_notifications": "Number of notifications",
+      "date": "Date",
+      "notification_type": "Notification type",
+      "data_range": "Data range"
     }
   },
   "Conjunctions": {

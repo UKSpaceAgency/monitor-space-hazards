@@ -22,19 +22,20 @@ export function CdmIngestsChart({ initialData, params }: CdmIngestsChartProps) {
 
   const [showDays, setShowDays] = useState<number>(8);
 
-  const { data: refreshedData, isFetching, refetch } = useQuery({
+  const { data, isFetching, refetch } = useQuery({
     queryKey: ['external-data-performance-aggregated'],
     queryFn: () => getExternalDataPerformanceAggregated({
       ...params,
       max_age_days: showDays,
     }),
+    initialData,
   });
 
   useEffect(() => {
     refetch();
   }, [refetch, showDays]);
 
-  const cdmChartData = (refreshedData || initialData).filter(item => item.sourceType === 'CDM');
+  const cdmChartData = data.filter(item => item.sourceType === 'CDM');
 
   const datasets = {
     datasets: [
