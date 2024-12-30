@@ -1,20 +1,23 @@
-import { getTranslations } from 'next-intl/server';
+import dayjs from 'dayjs';
 
-import Details from '@/ui/details/details';
+import type { TypeGetStatsEventsTypeParams } from '@/__generated__/data-contracts';
+import { getStatsEventsType } from '@/actions/getStatsEventsType';
+import { FORMAT_API_DATE_TIME } from '@/libs/Dayjs';
 
-import { PerformanceMonitoringConjunctionsByEventTypeDataTable } from './data-table/PerformanceMonitoringConjunctionsByEventTypeDataTable';
+import { PerformanceMonitoringConjunctionEventsByTypeContent } from './PerformanceMonitoringConjunctionEventsByTypeContent';
 
 const PerformanceMonitoringConjunctionEventsByType = async () => {
-  const t = await getTranslations('Performance_monitoring.conjunction_accordion.conjunction_event_by_type');
+  const today = dayjs().hour(12).minute(0).second(0);
+
+  const params: TypeGetStatsEventsTypeParams = {
+    start_date: today.subtract(7, 'day').format(FORMAT_API_DATE_TIME),
+    end_date: today.format(FORMAT_API_DATE_TIME),
+  };
+
+  const data = await getStatsEventsType(params);
 
   return (
-    <div>
-      <p className="govuk-body">{t('description')}</p>
-      <PerformanceMonitoringConjunctionsByEventTypeDataTable />
-      <Details summary={t('details.title')}>
-        {t('details.content')}
-      </Details>
-    </div>
+    <PerformanceMonitoringConjunctionEventsByTypeContent initialData={data} params={params} />
   );
 };
 

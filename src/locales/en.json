@@ -428,6 +428,20 @@
       "7_days": "7 days",
       "30_days": "30 days",
       "all_time": "All time"
+    },
+    "EventsType": {
+      "title": "Event type",
+      "description": "Total number of conjunction events monitored between different object types.",
+      "this_table": "this table",
+      "upcoming_events": "Upcoming events",
+      "last_7d": "Last 7d",
+      "last_1_month": "Last 1 month",
+      "last_6_months": "Last 6 months",
+      "data_range": "Date range",
+      "details": {
+        "title": "Help with this table",
+        "content": "This table shows the number of conjunction events between different object types."
+      }
     }
   },
   "Conjunctions": {
@@ -765,6 +779,11 @@
         "title": "Conjunction events by type",
         "description": "Total number of conjunction events monitored between different object types.",
         "this_table": "this table",
+        "upcoming_events": "Upcoming events",
+        "last_7d": "Last 7d",
+        "last_1_month": "Last 1 month",
+        "last_6_months": "Last 6 months",
+        "data_range": "Date range",
         "details": {
           "title": "Help with this table",
           "content": "This table shows the number of conjunction events between different object types."

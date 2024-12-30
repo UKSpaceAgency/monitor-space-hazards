@@ -1,11 +1,9 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
 import { type AnalysisAndManoeuvreSupportStatsParams, type AnalysisAndManoeuvreSupportStatsType, getStatsAnalysisAndManoeuvreSupport } from '@/actions/getStatsAnalysisAndManoeuvreSupport';
-import Details from '@/ui/details/details';
 import Spinner from '@/ui/spinner/spinner';
 
 import { AnalysisAndManoeuvreSupportChart } from '../charts/analysis-and-manoeuvre-support/AnalysisAndManoeuvreSupportChart';
@@ -17,8 +15,6 @@ type PerformanceMonitoringUksaConjunctionEventContentProps = {
 };
 
 const PerformanceMonitoringUksaConjunctionEventContent = ({ data, params }: PerformanceMonitoringUksaConjunctionEventContentProps) => {
-  const t = useTranslations('Performance_monitoring.performance_accordion.uksa');
-
   const [startDate, setStartDate] = useState<string>(params.start_date ?? '');
 
   const fetchParams = {
@@ -49,9 +45,6 @@ const PerformanceMonitoringUksaConjunctionEventContent = ({ data, params }: Perf
     <div>
       <AnalysisAndManoeuvreSupportChart data={fetchedData} setStartDate={setStartDate} startDate={startDate} />
       <PerformanceMonitoringAnalysisAndManoeuvreSupportDataTable data={fetchedData} params={params} />
-      <Details summary={t('details.title')}>
-        {t('details.content')}
-      </Details>
     </div>
   );
 };
