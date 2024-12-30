@@ -752,6 +752,7 @@
     "title": "Performance monitoring and statistics",
     "description": "This page shows both performance data for the Monitor Space Hazards service and more detailed information about the object and conjunction event data processed by the service. This data is broken down by organisation and by satellite.",
     "performance_monitoring": "Performance monitoring",
+    "conjunction_event_and_organisation_data": "Conjunction event and organisation data",
     "performance_accordion": {
       "title": "Performance monitoring",
       "cdm_ingests": {

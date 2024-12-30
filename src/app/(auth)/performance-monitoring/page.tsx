@@ -16,7 +16,14 @@ export default async function PerformanceMonitoring() {
     <div>
       <h1 className="govuk-heading-xl">{t('title')}</h1>
       <p className="govuk-body">{t('description')}</p>
-      <ContentNavigation title={t('performance_monitoring')} className="mb-8" />
+      <ContentNavigation
+        title={t('performance_monitoring')}
+        internalTitle={{
+          text: t('conjunction_event_and_organisation_data'),
+          index: 4,
+        }}
+        className="mb-8"
+      />
 
       <PerformanceMonitoringAccordion />
       <PerformanceMonitoringConjunctionEventAccordion />
