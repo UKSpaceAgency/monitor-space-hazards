@@ -1,14 +1,16 @@
 'use client';
 import { useTranslations } from 'next-intl';
 
-import { type AnalysisAndManoeuvreSupportStatsParams, type AnalysisAndManoeuvreSupportStatsType, getStatsAnalysisAndManoeuvreSupport } from '@/actions/getStatsAnalysisAndManoeuvreSupport';
+import type { TypeGetExternalDataPerformanceAggregatedParams } from '@/__generated__/data-contracts';
+import type { AnalysisAndManoeuvreSupportStatsType } from '@/actions/getStatsAnalysisAndManoeuvreSupport';
+import { getStatsAnalysisAndManoeuvreSupport } from '@/actions/getStatsAnalysisAndManoeuvreSupport';
 import { DataTable } from '@/components/DataTable';
 import { DownloadData } from '@/components/DownloadData';
 
-import { analysesAndManoeuvreSupport } from './PeformanceMonitoringAnalysisAndManoeuvreSupportDataTableColumns';
+import { analysesAndManoeuvreSupport } from './PerformanceMonitoringAnalysisAndManoeuvreSupportDataTableColumns';
 
 type PerformanceMonitoringConjunctionsByOrganisationDataTableProps = {
-  params: AnalysisAndManoeuvreSupportStatsParams;
+  params: TypeGetExternalDataPerformanceAggregatedParams;
   data: AnalysisAndManoeuvreSupportStatsType[];
 };
 

@@ -31,7 +31,7 @@ export async function getStatsNotificationsSent(query?: TypeGetStatsNotification
     }
 
     return acc;
-  }, {} as { [key: string]: any });
+  }, {} as { [key: string]: NotificationsSentStatsType });
 
   return Object.values(groupedData);
 };

@@ -1,32 +1,45 @@
 'use server';
 
-import type { TypeGetStatsMonthlyManoeuvrePlotsParams } from '@/__generated__/data-contracts';
+import type { TypeExternalDataProvider, TypeExternalDataType, TypeGetExternalDataPerformanceAggregatedParams } from '@/__generated__/data-contracts';
 
-import { getStatsMonthlyAnalyses } from './getStatsMonthlyAnalyses';
-import { getStatsMonthlyManoeuvrePlots } from './getStatsMonthlyManoeuvrePlots';
+import { getExternalDataPerformanceAggregated } from './getExternalDataPerformanceAggregated';
 
 export type AnalysisAndManoeuvreSupportStatsType = {
-  month: string;
+  sourceType: TypeExternalDataType;
+  sourceProvider: TypeExternalDataProvider;
+  date: string;
   analysesCount: number;
   manoeuvreSupportCount: number;
 };
 
-export type AnalysisAndManoeuvreSupportStatsParams = TypeGetStatsMonthlyManoeuvrePlotsParams;
+export async function getStatsAnalysisAndManoeuvreSupport(query?: TypeGetExternalDataPerformanceAggregatedParams) {
+  const data = await getExternalDataPerformanceAggregated(query);
 
-export async function getStatsAnalysisAndManoeuvreSupport(query?: TypeGetStatsMonthlyManoeuvrePlotsParams) {
-  const monthlyAnalyses = await getStatsMonthlyAnalyses(query);
-  const monthlyManoeuvrePlots = await getStatsMonthlyManoeuvrePlots(query);
+  const filteredData = data.filter(item => item.sourceType === 'Analysis' || item.sourceType === 'Manoeuvre Trade Space Plot');
 
-  const data: AnalysisAndManoeuvreSupportStatsType[] = monthlyAnalyses.map((analyse) => {
-    const manoeuvrePlot = monthlyManoeuvrePlots.find(plot => plot.month === analyse.month);
+  const groupedData = filteredData.reduce((acc, item) => {
+    const { sourceType, sourceProvider, ingestionDate, ingestionSum } = item;
 
-    return {
-      ...analyse,
-      source: 'UKSA',
-      analysesCount: analyse.count,
-      manoeuvreSupportCount: manoeuvrePlot?.count || 0,
-    };
-  });
+    const key = ingestionDate;
 
-  return data;
+    if (!acc[key]) {
+      acc[key] = {
+        sourceType: sourceType as TypeExternalDataType,
+        sourceProvider: sourceProvider as TypeExternalDataProvider,
+        date: ingestionDate,
+        analysesCount: 0,
+        manoeuvreSupportCount: 0,
+      };
+    }
+
+    if (sourceType === 'Analysis') {
+      acc[key].analysesCount = ingestionSum || 0;
+    } else if (sourceType === 'Manoeuvre Trade Space Plot') {
+      acc[key].manoeuvreSupportCount = ingestionSum || 0;
+    }
+
+    return acc;
+  }, {} as { [key: string]: AnalysisAndManoeuvreSupportStatsType });
+
+  return Object.values(groupedData);
 };

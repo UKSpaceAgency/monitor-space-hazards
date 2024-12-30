@@ -1,8 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
-import type { AnalysisAndManoeuvreSupportStatsParams } from '@/actions/getStatsAnalysisAndManoeuvreSupport';
+import type { TypeGetExternalDataPerformanceAggregatedParams } from '@/__generated__/data-contracts';
 import { getStatsAnalysisAndManoeuvreSupport } from '@/actions/getStatsAnalysisAndManoeuvreSupport';
-import { dayjs, FORMAT_API_DATE } from '@/libs/Dayjs';
 import Details from '@/ui/details/details';
 
 import { PerformanceMonitoringUksaConjunctionEventContent } from './PerformanceMonitoringUksaConjunctionEventContent';
@@ -10,8 +9,9 @@ import { PerformanceMonitoringUksaConjunctionEventContent } from './PerformanceM
 const PerformanceMonitoringUksaConjunctionEvent = async () => {
   const t = await getTranslations('Performance_monitoring.performance_accordion.uksa');
 
-  const params: AnalysisAndManoeuvreSupportStatsParams = {
-    start_date: dayjs().subtract(7, 'day').format(FORMAT_API_DATE),
+  const params: TypeGetExternalDataPerformanceAggregatedParams = {
+    limit: 9999,
+    max_age_days: 7,
   };
 
   const data = await getStatsAnalysisAndManoeuvreSupport(params);

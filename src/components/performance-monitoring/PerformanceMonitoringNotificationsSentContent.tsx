@@ -32,6 +32,7 @@ const PerformanceMonitoringNotificationsSentContent = ({ data, params }: Perform
     queryFn: () => getStatsNotificationsSent(fetchParams),
     initialData: data,
     refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 
   useEffect(() => {

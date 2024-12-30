@@ -5,7 +5,7 @@ import type { Dispatch, SetStateAction } from 'react';
 import { useMemo } from 'react';
 
 import type { AnalysisAndManoeuvreSupportStatsType } from '@/actions/getStatsAnalysisAndManoeuvreSupport';
-import { dayjs, FORMAT_API_DATE, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
 
 import BaseChart from '../base/BaseChart';
@@ -13,14 +13,14 @@ import { chartPalette } from '../base/theme';
 
 export type AnalysisAndManoeuvreSupportChartProps = {
   data: AnalysisAndManoeuvreSupportStatsType[];
-  setStartDate: Dispatch<SetStateAction<string>>;
-  startDate: string;
+  setShowDays: Dispatch<SetStateAction<number>>;
+  showDays: number;
 };
 
 const AnalysisAndManoeuvreSupportChart = ({
   data,
-  setStartDate,
-  startDate,
+  setShowDays,
+  showDays,
 }: AnalysisAndManoeuvreSupportChartProps) => {
   const t = useTranslations('Charts.AnalysisAndManoeuvreSupport');
 
@@ -30,7 +30,7 @@ const AnalysisAndManoeuvreSupportChart = ({
         {
           label: t('analysis_received'),
           data: data.map(
-            ({ analysesCount: y, month: x }) => ({ x, y }),
+            ({ analysesCount: y, date: x }) => ({ x, y }),
           ),
           borderColor: chartPalette.orange,
           backgroundColor: chartPalette.orange,
@@ -38,7 +38,7 @@ const AnalysisAndManoeuvreSupportChart = ({
         {
           label: t('manoeuvre_received'),
           data: data.map(
-            ({ manoeuvreSupportCount: y, month: x }) => ({ x, y }),
+            ({ manoeuvreSupportCount: y, date: x }) => ({ x, y }),
           ),
           borderColor: chartPalette.darkBlue,
           backgroundColor: chartPalette.darkBlue,
@@ -56,29 +56,29 @@ const AnalysisAndManoeuvreSupportChart = ({
           {
             title: '7d',
             ariaLabel: t('7_days'),
-            value: dayjs().subtract(7, 'day').format(FORMAT_API_DATE),
+            value: 7,
           },
           {
             title: '30d',
             ariaLabel: t('30_days'),
-            value: dayjs().subtract(30, 'day').format(FORMAT_API_DATE),
+            value: 30,
           },
           {
             title: 'All',
             ariaLabel: t('all_time'),
-            value: 0,
+            value: 9999,
           },
         ]}
-        active={startDate}
-        setActive={setStartDate}
+        active={showDays}
+        setActive={setShowDays}
         title={t('date_range')}
       />
     ),
-    [setStartDate, startDate, t],
+    [setShowDays, showDays, t],
   );
 
   const latestIngest = useMemo(() => {
-    return dayjs(data[0]?.month).format(FORMAT_DATE_TIME);
+    return dayjs(data[0]?.date).format(FORMAT_DATE_TIME);
   }, [data]);
 
   return (

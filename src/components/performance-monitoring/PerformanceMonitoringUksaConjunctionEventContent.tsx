@@ -3,23 +3,25 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 
-import { type AnalysisAndManoeuvreSupportStatsParams, type AnalysisAndManoeuvreSupportStatsType, getStatsAnalysisAndManoeuvreSupport } from '@/actions/getStatsAnalysisAndManoeuvreSupport';
+import type { TypeGetExternalDataPerformanceAggregatedParams } from '@/__generated__/data-contracts';
+import type { AnalysisAndManoeuvreSupportStatsType } from '@/actions/getStatsAnalysisAndManoeuvreSupport';
+import { getStatsAnalysisAndManoeuvreSupport } from '@/actions/getStatsAnalysisAndManoeuvreSupport';
 import Spinner from '@/ui/spinner/spinner';
 
 import { AnalysisAndManoeuvreSupportChart } from '../charts/analysis-and-manoeuvre-support/AnalysisAndManoeuvreSupportChart';
 import { PerformanceMonitoringAnalysisAndManoeuvreSupportDataTable } from './data-table/PerformanceMonitoringAnalysisAndManoeuvreSupportDataTable';
 
 type PerformanceMonitoringUksaConjunctionEventContentProps = {
-  params: AnalysisAndManoeuvreSupportStatsParams;
+  params: TypeGetExternalDataPerformanceAggregatedParams;
   data: AnalysisAndManoeuvreSupportStatsType[];
 };
 
 const PerformanceMonitoringUksaConjunctionEventContent = ({ data, params }: PerformanceMonitoringUksaConjunctionEventContentProps) => {
-  const [startDate, setStartDate] = useState<string>(params.start_date ?? '');
+  const [showDays, setShowDays] = useState<number>(params.max_age_days ?? 7);
 
-  const fetchParams = {
+  const fetchParams: TypeGetExternalDataPerformanceAggregatedParams = {
     ...params,
-    start_date: startDate,
+    max_age_days: showDays,
   };
 
   const { data: fetchedData, isFetching, refetch } = useQuery({
@@ -27,11 +29,12 @@ const PerformanceMonitoringUksaConjunctionEventContent = ({ data, params }: Perf
     queryFn: () => getStatsAnalysisAndManoeuvreSupport(fetchParams),
     initialData: data,
     refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 
   useEffect(() => {
     refetch();
-  }, [refetch, startDate]);
+  }, [refetch, showDays]);
 
   if (isFetching) {
     return (
@@ -43,7 +46,7 @@ const PerformanceMonitoringUksaConjunctionEventContent = ({ data, params }: Perf
 
   return (
     <div>
-      <AnalysisAndManoeuvreSupportChart data={fetchedData} setStartDate={setStartDate} startDate={startDate} />
+      <AnalysisAndManoeuvreSupportChart data={fetchedData} setShowDays={setShowDays} showDays={showDays} />
       <PerformanceMonitoringAnalysisAndManoeuvreSupportDataTable data={fetchedData} params={params} />
     </div>
   );

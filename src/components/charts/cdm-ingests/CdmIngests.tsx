@@ -30,6 +30,7 @@ export function CdmIngestsChart({ initialData, params }: CdmIngestsChartProps) {
     }),
     initialData,
     refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 
   useEffect(() => {

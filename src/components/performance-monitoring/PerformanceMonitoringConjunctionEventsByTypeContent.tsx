@@ -42,6 +42,7 @@ const PerformanceMonitoringConjunctionEventsByTypeContent = ({ initialData, para
     }),
     initialData,
     refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 
   useEffect(() => {

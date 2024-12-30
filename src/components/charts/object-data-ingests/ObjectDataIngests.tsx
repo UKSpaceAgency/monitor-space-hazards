@@ -30,6 +30,7 @@ export function ObjectDataIngests({ initialData, params }: ObjectDataIngestsProp
     }),
     initialData,
     refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 
   useEffect(() => {
