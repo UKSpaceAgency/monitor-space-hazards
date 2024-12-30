@@ -1,4 +1,4 @@
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
 import { getReentryAlertMapData } from '@/actions/getReentryAlertMapData';
 
@@ -9,7 +9,7 @@ type ReentryAlertMapContainerProps = {
 };
 
 const ReentryAlertMapContainer = async ({ presignedUrl }: ReentryAlertMapContainerProps) => {
-  const t = useTranslations('Reentry_alert.Map');
+  const t = await getTranslations('Reentry_alert.Map');
   const { overflightTime, flightpathCollection, fragmentsCollection, overflightCollection } = await getReentryAlertMapData(presignedUrl);
   return (
     <div>

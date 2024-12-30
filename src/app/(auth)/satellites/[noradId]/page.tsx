@@ -11,36 +11,33 @@ import { SatelliteEphemerisData } from '@/components/satellite/SatelliteEphemeri
 import { SatelliteInformation } from '@/components/satellite/SatelliteInformation';
 import Button from '@/ui/button/button';
 
+type PageProps = {
+  params: Promise<{ noradId: string }>;
+  searchParams?: Promise<{
+    upcoming_search_like?: string;
+    previous_search_link?: string;
+  }>;
+};
+
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ noradId: string }>;
-}) {
+}: PageProps) {
   const { noradId } = await params;
   try {
-    const satelltite = await getSatellite(noradId);
+    const satellite = await getSatellite(noradId);
     return {
-      title: satelltite.commonName,
+      title: satellite.commonName,
     };
   } catch {
     notFound();
   }
 }
 
-export default async function Satellite({
-  params,
-  searchParams,
-}: {
-  params: Promise<{ noradId: string }>;
-  searchParams?: Promise<{
-    upcoming_search_like?: string;
-    previous_search_link?: string;
-  }>;
-}) {
+export default async function Satellite(props: PageProps) {
   const t = await getTranslations('Common');
-  const { noradId } = await params;
-  const { upcoming_search_like, previous_search_link } = await searchParams || {};
-  const satelltite = await getSatellite(noradId);
+  const { noradId } = await props.params;
+  const { upcoming_search_like, previous_search_link } = await props.searchParams || {};
+  const satellite = await getSatellite(noradId);
   const ephemerises = await getEphemerises({
     norad_id: noradId,
     sort_by: 'updated_at',
@@ -48,14 +45,14 @@ export default async function Satellite({
 
   return (
     <div>
-      <h1 className="govuk-heading-xl">{satelltite.commonName}</h1>
+      <h1 className="govuk-heading-xl">{satellite.commonName}</h1>
       <div className="grid md:grid-cols-4 gap-7">
         <ContentNavigation />
         <div className="md:col-span-3">
           <SatelliteConjunctionEvents noradId={noradId} query={upcoming_search_like} epoch="future" />
           <SatelliteEphemerisData noradId={noradId} ephemerises={ephemerises} />
-          <SatelliteInformation object={satelltite} />
-          <SatelliteAdditionalInformations object={satelltite} />
+          <SatelliteInformation object={satellite} />
+          <SatelliteAdditionalInformations object={satellite} />
           <SatelliteConjunctionEvents noradId={noradId} query={previous_search_link} epoch="past" />
           <Link href="/satellites">
             <Button variant="secondary">{t('return', { to: 'all satellites' })}</Button>

@@ -13,9 +13,11 @@ export const metadata: Metadata = {
 
 type ReentryPageSearchParams = TypeGetReentryEventsParams;
 
-export default async function ReentryPage(props: {
+type PageProps = {
   searchParams?: Promise<ReentryPageSearchParams>;
-}) {
+};
+
+export default async function ReentryPage(props: PageProps) {
   const t = await getTranslations('Reentries');
 
   const searchParams = await props.searchParams;

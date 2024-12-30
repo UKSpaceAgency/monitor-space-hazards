@@ -30,6 +30,8 @@ import {
   TypeBodyUploadReentryEventReportV1ReentryEventReportsPost,
   TypeBodyUploadTrackingAndImpactPredictionFileV1TipsPost,
   TypeCDMOut,
+  TypeConjunctionEventAlertIn,
+  TypeConjunctionEventAlertOut,
   TypeConjunctionEventCount,
   TypeConjunctionReportOut,
   TypeContactAnalystIn,
@@ -129,6 +131,56 @@ import { ContentType, HttpClient, RequestParams } from "./http-client";
 
 export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
   /**
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|View| |Agency user|-| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags alerts
+   * @name GetAlerts
+   * @summary Get Users Alert Setting List
+   * @request GET:/v1/alerts/
+   * @secure
+   */
+  getAlerts = (params: RequestParams = {}) =>
+    this.request<TypeAlertSettingsDistributionList[], any>({
+      path: `/v1/alerts/`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|Update| |Agency user|-| |Agency admin|Update| |Agency analyst|Update| |Agency approver|Update| |Agency superuser|Update|
+   *
+   * @tags alerts
+   * @name PatchAlertsUserUserId
+   * @summary Patch User Alert Settings
+   * @request PATCH:/v1/alerts/user/{user_id}
+   * @secure
+   */
+  patchAlertsUserUserId = (userId: string, data: TypeAlertSettingsIn, params: RequestParams = {}) =>
+    this.request<TypeAlertSettingsOut, TypeHTTPValidationError>({
+      path: `/v1/alerts/user/${userId}`,
+      method: "PATCH",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    }); /**
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|View| |Agency user|-| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags alerts
+   * @name GetAlertsUserUserId
+   * @summary Get User Alert Settings
+   * @request GET:/v1/alerts/user/{user_id}
+   * @secure
+   */
+  getAlertsUserUserId = (userId: string, params: RequestParams = {}) =>
+    this.request<TypeAlertSettingsOut, TypeHTTPValidationError>({
+      path: `/v1/alerts/user/${userId}`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
    * @description ## Description Get a full list of uploaded analyses. The list may be sorted by users who uploaded, deleted or restored analyses. It`s also useful when sorted by collision probability or miss distances to check for erroneous uploads. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
    *
    * @tags analyses
@@ -195,6 +247,141 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
+   * @description ## Description Gets list of banner messages. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|View|
+   *
+   * @tags banners
+   * @name GetBannersMessages
+   * @summary Get list of Banner messages
+   * @request GET:/v1/banners/messages
+   * @secure
+   */
+  getBannersMessages = (query?: TypeGetBannersMessagesParams, params: RequestParams = {}) =>
+    this.request<TypeBannerMessagesOut[], void | TypeHTTPValidationError>({
+      path: `/v1/banners/messages`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Create a banner message. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Create|
+   *
+   * @tags banners
+   * @name PostBannersMessages
+   * @summary Create new Banner message
+   * @request POST:/v1/banners/messages
+   * @secure
+   */
+  postBannersMessages = (data: TypeBannerMessageIn, params: RequestParams = {}) =>
+    this.request<TypeBannerMessage, void | TypeHTTPValidationError>({
+      path: `/v1/banners/messages`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Modify a banner message. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Update|
+   *
+   * @tags banners
+   * @name PatchBannersMessages
+   * @summary Modify existing Banner message
+   * @request PATCH:/v1/banners/messages
+   * @secure
+   */
+  patchBannersMessages = (data: TypeBannerMessageUpdate, params: RequestParams = {}) =>
+    this.request<TypeBannerMessage, void | TypeHTTPValidationError>({
+      path: `/v1/banners/messages`,
+      method: "PATCH",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets currently broadcasted banner messages. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
+   *
+   * @tags banners
+   * @name GetBannersMessagesCurrent
+   * @summary Get list of Banner messages which are currently being displayed
+   * @request GET:/v1/banners/messages/current
+   * @secure
+   */
+  getBannersMessagesCurrent = (query?: TypeGetBannersMessagesCurrentParams, params: RequestParams = {}) =>
+    this.request<TypeBannerMessagesBroadcastedOut[], void | TypeHTTPValidationError>({
+      path: `/v1/banners/messages/current`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Soft-delete (set is_active=False) a banner message. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Delete|
+   *
+   * @tags banners
+   * @name DeleteBannersMessagesMessageId
+   * @summary Delete Banner message
+   * @request DELETE:/v1/banners/messages/{message_id}
+   * @secure
+   */
+  deleteBannersMessagesMessageId = (messageId: string, params: RequestParams = {}) =>
+    this.request<void, void | TypeHTTPValidationError>({
+      path: `/v1/banners/messages/${messageId}`,
+      method: "DELETE",
+      secure: true,
+      ...params,
+    }); /**
+   * @description ## Description Gets a list of defined banner schedules. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|View|
+   *
+   * @tags banners
+   * @name GetBannersSchedules
+   * @summary Get list of Banner schedules (which Banners should be displayed at which times)
+   * @request GET:/v1/banners/schedules
+   * @secure
+   */
+  getBannersSchedules = (query?: TypeGetBannersSchedulesParams, params: RequestParams = {}) =>
+    this.request<TypeBannerSchedulesOut[], void | TypeHTTPValidationError>({
+      path: `/v1/banners/schedules`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Creates a schedule for a given banner message. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Create|
+   *
+   * @tags banners
+   * @name PostBannersSchedules
+   * @summary Create a new Banner schedule (schedule a given Banner to be displayed between given times)
+   * @request POST:/v1/banners/schedules
+   * @secure
+   */
+  postBannersSchedules = (data: TypeBannerScheduleIn, params: RequestParams = {}) =>
+    this.request<TypeBannerSchedule, void | TypeHTTPValidationError>({
+      path: `/v1/banners/schedules`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Soft-deletes a schedule. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Delete|
+   *
+   * @tags banners
+   * @name DeleteBannersSchedulesScheduleId
+   * @summary Delete a Banner schedule
+   * @request DELETE:/v1/banners/schedules/{schedule_id}
+   * @secure
+   */
+  deleteBannersSchedulesScheduleId = (scheduleId: string, params: RequestParams = {}) =>
+    this.request<void, void | TypeHTTPValidationError>({
+      path: `/v1/banners/schedules/${scheduleId}`,
+      method: "DELETE",
+      secure: true,
+      ...params,
+    }); /**
    * @description Gives the CDM ID and date/time of the last ingested SpaceTrack CDM. Useful for checking if the ingestion process is alive and SpaceTrack is properly responding. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
    *
    * @tags cdms
@@ -211,186 +398,42 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Provides a list of uploaded ephemeris files. The list can be sorted by organizations that own satellites or by satellite name. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|View| |Agency superuser|View|
    *
-   * @tags ephemeris
-   * @name GetEphemeris
-   * @summary Get list of Ephemeris files with sorting
-   * @request GET:/v1/ephemeris/
+   * @tags conjunction-events
+   * @name GetConjunctionEventsShortIdAlertsLatest
+   * @summary Get Latest Conjunction Event Alert
+   * @request GET:/v1/conjunction-events/{short_id}/alerts/latest
    * @secure
    */
-  getEphemeris = (query?: TypeGetEphemerisParams, params: RequestParams = {}) =>
-    this.request<TypeEphemerisOut[], void | TypeHTTPValidationError>({
-      path: `/v1/ephemeris/`,
-      method: "GET",
-      query: query,
-      secure: true,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Allows operators to upload their ephemeris files. Ephemeris files have to be named in a special way according to Space-Track standards to include satellite NORAD ID, otherwise they will be rejected. They also have to be in line with the .oem file format guidelines. More information can be found at the links below: - [OEM file format definition](https://public.ccsds.org/Pubs/502x0b2c1e2.pdf) - [File naming convention from Space-Track Handbook for Operators (see page 23)](https://www.space-track.org/documents/Spaceflight_Safety_Handbook_for_Operators.pdf) |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|Create within Organisation| |Satellite operator admin|Create within Organisation| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create|
-   *
-   * @tags ephemeris
-   * @name PostEphemeris
-   * @summary Upload .oem compatible Ephemeris file
-   * @request POST:/v1/ephemeris/
-   * @secure
-   */
-  postEphemeris = (data: TypeBodyCreateEphemerisV1EphemerisPost, params: RequestParams = {}) =>
-    this.request<any, void | TypeHTTPValidationError>({
-      path: `/v1/ephemeris/`,
-      method: "POST",
-      body: data,
-      secure: true,
-      type: ContentType.FormData,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Gets the ephemeris file copy identical to the original upload. Internal database ID is required to get the file. The response is the text file in key-value .oem format. Filename is created after the CREATION_DATE from the ephemeris file to avoid accidental overwrites when similarly named files would be downloaded. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
-   *
-   * @tags ephemeris
-   * @name GetEphemerisEphemerisId
-   * @summary Get Ephemeris file
-   * @request GET:/v1/ephemeris/{ephemeris_id}
-   * @secure
-   */
-  getEphemerisEphemerisId = (ephemerisId: string, params: RequestParams = {}) =>
-    this.request<any, void | TypeHTTPValidationError>({
-      path: `/v1/ephemeris/${ephemerisId}`,
+  getConjunctionEventsShortIdAlertsLatest = (shortId: string, params: RequestParams = {}) =>
+    this.request<TypeConjunctionEventAlertOut, void | TypeHTTPValidationError>({
+      path: `/v1/conjunction-events/${shortId}/alerts/latest`,
       method: "GET",
       secure: true,
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Soft-delete an ephemeris, mark ephemeris in DB as is_active = False, allowing later restoration. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|Delete within Organisation| |Satellite operator admin|Delete within Organisation| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|Delete| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|Put| |Agency superuser|Put|
    *
-   * @tags ephemeris
-   * @name DeleteEphemerisEphemerisId
-   * @summary Soft-delete a single Ephemeris data
-   * @request DELETE:/v1/ephemeris/{ephemeris_id}
+   * @tags conjunction-events
+   * @name PutConjunctionEventsShortIdAlertsLatest
+   * @summary Put Latest Conjunction Event Alert
+   * @request PUT:/v1/conjunction-events/{short_id}/alerts/latest
    * @secure
    */
-  deleteEphemerisEphemerisId = (ephemerisId: string, params: RequestParams = {}) =>
-    this.request<void, void | TypeHTTPValidationError>({
-      path: `/v1/ephemeris/${ephemerisId}`,
-      method: "DELETE",
-      secure: true,
-      ...params,
-    }); /**
-   * @description ## Description Restore a soft-deleted ephemeris, mark ephemeris in DB as is_active = True. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|Delete within Organisation| |Satellite operator admin|Delete within Organisation| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|Delete| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete|
-   *
-   * @tags ephemeris
-   * @name PostEphemerisEphemerisIdRestore
-   * @summary Restore a soft-deleted Ephemeris
-   * @request POST:/v1/ephemeris/{ephemeris_id}/restore
-   * @secure
-   */
-  postEphemerisEphemerisIdRestore = (ephemerisId: string, params: RequestParams = {}) =>
-    this.request<void, void | TypeHTTPValidationError>({
-      path: `/v1/ephemeris/${ephemerisId}/restore`,
-      method: "POST",
-      secure: true,
-      ...params,
-    }); /**
-   * @description ## Description Gets Manoeuvre Plot file metadata with given ID |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
-   *
-   * @tags manoeuvre_plots
-   * @name GetManoeuvrePlotsManoeuvrePlotId
-   * @summary Get Manouevre Plots file metadata by its database ID
-   * @request GET:/v1/manoeuvre_plots/{manoeuvre_plot_id}
-   * @secure
-   */
-  getManoeuvrePlotsManoeuvrePlotId = (manoeuvrePlotId: string, params: RequestParams = {}) =>
-    this.request<TypeManoeuvrePlotOut, void | TypeHTTPValidationError>({
-      path: `/v1/manoeuvre_plots/${manoeuvrePlotId}`,
-      method: "GET",
-      secure: true,
-      format: "json",
-      ...params,
-    }); /**
-   * @description Soft-delete uploaded Manoeuvre Plot metadata setting is_active flag to False thus not showing in frontend. Still accessible for monitoring and audit purposes. The S3 file containing the full file is left intact. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|Delete| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete|
-   *
-   * @tags manoeuvre_plots
-   * @name DeleteManoeuvrePlotsManoeuvrePlotId
-   * @summary Soft-delete single Manoeuvre Plot
-   * @request DELETE:/v1/manoeuvre_plots/{manoeuvre_plot_id}
-   * @secure
-   */
-  deleteManoeuvrePlotsManoeuvrePlotId = (manoeuvrePlotId: string, params: RequestParams = {}) =>
-    this.request<void, void | TypeHTTPValidationError>({
-      path: `/v1/manoeuvre_plots/${manoeuvrePlotId}`,
-      method: "DELETE",
-      secure: true,
-      ...params,
-    }); /**
-   * @description ## Description Create Manoeuvre Plot file metadata in database and stores actual file in S3 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create|
-   *
-   * @tags manoeuvre_plots
-   * @name PostManoeuvrePlots
-   * @summary Create new Manouevre Plot file metadata
-   * @request POST:/v1/manoeuvre_plots/
-   * @secure
-   */
-  postManoeuvrePlots = (data: TypeBodyUploadManoeuvrePlotFileV1ManoeuvrePlotsPost, params: RequestParams = {}) =>
-    this.request<TypeManoeuvrePlot, void | TypeHTTPValidationError>({
-      path: `/v1/manoeuvre_plots/`,
-      method: "POST",
-      body: data,
-      secure: true,
-      type: ContentType.FormData,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Gets Manoeuvre Plot file list with user metadata (uploaders, deleters etc) |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
-   *
-   * @tags manoeuvre_plots
-   * @name GetManoeuvrePlots
-   * @summary Get Manouevre Plots file list with user data
-   * @request GET:/v1/manoeuvre_plots/
-   * @secure
-   */
-  getManoeuvrePlots = (query?: TypeGetManoeuvrePlotsParams, params: RequestParams = {}) =>
-    this.request<TypeManoeuvrePlotWithUserMetadataOut[], void | TypeHTTPValidationError>({
-      path: `/v1/manoeuvre_plots/`,
-      method: "GET",
-      query: query,
-      secure: true,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Gets Manoeuvre Plot file metadata list by Event short ID |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
-   *
-   * @tags manoeuvre_plots
-   * @name GetManoeuvrePlotsByEventEventShortId
-   * @summary Get Manouevre Plots file metadata list by Event short ID
-   * @request GET:/v1/manoeuvre_plots/by-event/{event_short_id}
-   * @secure
-   */
-  getManoeuvrePlotsByEventEventShortId = (
-    { eventShortId, ...query }: TypeGetManoeuvrePlotsByEventEventShortIdParams,
+  putConjunctionEventsShortIdAlertsLatest = (
+    shortId: string,
+    data: TypeConjunctionEventAlertIn,
     params: RequestParams = {},
   ) =>
-    this.request<TypeManoeuvrePlotMetadataOut[], void | TypeHTTPValidationError>({
-      path: `/v1/manoeuvre_plots/by-event/${eventShortId}`,
-      method: "GET",
-      query: query,
+    this.request<any, void | TypeHTTPValidationError>({
+      path: `/v1/conjunction-events/${shortId}/alerts/latest`,
+      method: "PUT",
+      body: data,
       secure: true,
+      type: ContentType.Json,
       format: "json",
-      ...params,
-    }); /**
-   * No description
-   *
-   * @tags events
-   * @name GetEventsRestOfPathpath
-   * @summary  Redirect Events To Conjunctions
-   * @request GET:/v1/events/{rest_of_path}
-   * @secure
-   */
-  getEventsRestOfPathpath = (restOfPath: string, params: RequestParams = {}) =>
-    this.request<any, void>({
-      path: `/v1/events/${restOfPath}`,
-      method: "GET",
-      secure: true,
       ...params,
     }); /**
    * @description |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
@@ -481,6 +524,436 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       path: `/v1/conjunction-reports/${conjunctionReportId}`,
       method: "DELETE",
       secure: true,
+      ...params,
+    }); /**
+   * @description ## Description Provides a list of uploaded ephemeris files. The list can be sorted by organizations that own satellites or by satellite name. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags ephemeris
+   * @name GetEphemeris
+   * @summary Get list of Ephemeris files with sorting
+   * @request GET:/v1/ephemeris/
+   * @secure
+   */
+  getEphemeris = (query?: TypeGetEphemerisParams, params: RequestParams = {}) =>
+    this.request<TypeEphemerisOut[], void | TypeHTTPValidationError>({
+      path: `/v1/ephemeris/`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Allows operators to upload their ephemeris files. Ephemeris files have to be named in a special way according to Space-Track standards to include satellite NORAD ID, otherwise they will be rejected. They also have to be in line with the .oem file format guidelines. More information can be found at the links below: - [OEM file format definition](https://public.ccsds.org/Pubs/502x0b2c1e2.pdf) - [File naming convention from Space-Track Handbook for Operators (see page 23)](https://www.space-track.org/documents/Spaceflight_Safety_Handbook_for_Operators.pdf) |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|Create within Organisation| |Satellite operator admin|Create within Organisation| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create|
+   *
+   * @tags ephemeris
+   * @name PostEphemeris
+   * @summary Upload .oem compatible Ephemeris file
+   * @request POST:/v1/ephemeris/
+   * @secure
+   */
+  postEphemeris = (data: TypeBodyCreateEphemerisV1EphemerisPost, params: RequestParams = {}) =>
+    this.request<any, void | TypeHTTPValidationError>({
+      path: `/v1/ephemeris/`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.FormData,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets the ephemeris file copy identical to the original upload. Internal database ID is required to get the file. The response is the text file in key-value .oem format. Filename is created after the CREATION_DATE from the ephemeris file to avoid accidental overwrites when similarly named files would be downloaded. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags ephemeris
+   * @name GetEphemerisEphemerisId
+   * @summary Get Ephemeris file
+   * @request GET:/v1/ephemeris/{ephemeris_id}
+   * @secure
+   */
+  getEphemerisEphemerisId = (ephemerisId: string, params: RequestParams = {}) =>
+    this.request<any, void | TypeHTTPValidationError>({
+      path: `/v1/ephemeris/${ephemerisId}`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Soft-delete an ephemeris, mark ephemeris in DB as is_active = False, allowing later restoration. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|Delete within Organisation| |Satellite operator admin|Delete within Organisation| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|Delete| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete|
+   *
+   * @tags ephemeris
+   * @name DeleteEphemerisEphemerisId
+   * @summary Soft-delete a single Ephemeris data
+   * @request DELETE:/v1/ephemeris/{ephemeris_id}
+   * @secure
+   */
+  deleteEphemerisEphemerisId = (ephemerisId: string, params: RequestParams = {}) =>
+    this.request<void, void | TypeHTTPValidationError>({
+      path: `/v1/ephemeris/${ephemerisId}`,
+      method: "DELETE",
+      secure: true,
+      ...params,
+    }); /**
+   * @description ## Description Restore a soft-deleted ephemeris, mark ephemeris in DB as is_active = True. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|Delete within Organisation| |Satellite operator admin|Delete within Organisation| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|Delete| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete|
+   *
+   * @tags ephemeris
+   * @name PostEphemerisEphemerisIdRestore
+   * @summary Restore a soft-deleted Ephemeris
+   * @request POST:/v1/ephemeris/{ephemeris_id}/restore
+   * @secure
+   */
+  postEphemerisEphemerisIdRestore = (ephemerisId: string, params: RequestParams = {}) =>
+    this.request<void, void | TypeHTTPValidationError>({
+      path: `/v1/ephemeris/${ephemerisId}/restore`,
+      method: "POST",
+      secure: true,
+      ...params,
+    }); /**
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
+   *
+   * @tags external-data-performance
+   * @name GetExternalDataPerformance
+   * @summary Get list of recent data ingestion from external data sources with metadata
+   * @request GET:/v1/external-data-performance/
+   * @secure
+   */
+  getExternalDataPerformance = (query?: TypeGetExternalDataPerformanceParams, params: RequestParams = {}) =>
+    this.request<TypeExternalDataPerformanceOut[], void | TypeHTTPValidationError>({
+      path: `/v1/external-data-performance/`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
+   *
+   * @tags external-data-performance
+   * @name GetExternalDataPerformanceAggregated
+   * @summary Get number of data items ingested, broken down by day and external data source
+   * @request GET:/v1/external-data-performance/aggregated
+   * @secure
+   */
+  getExternalDataPerformanceAggregated = (
+    query?: TypeGetExternalDataPerformanceAggregatedParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeExternalDataPerformanceAggregateOut[], void | TypeHTTPValidationError>({
+      path: `/v1/external-data-performance/aggregated`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets Manoeuvre Plot file metadata with given ID |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags manoeuvre_plots
+   * @name GetManoeuvrePlotsManoeuvrePlotId
+   * @summary Get Manouevre Plots file metadata by its database ID
+   * @request GET:/v1/manoeuvre_plots/{manoeuvre_plot_id}
+   * @secure
+   */
+  getManoeuvrePlotsManoeuvrePlotId = (manoeuvrePlotId: string, params: RequestParams = {}) =>
+    this.request<TypeManoeuvrePlotOut, void | TypeHTTPValidationError>({
+      path: `/v1/manoeuvre_plots/${manoeuvrePlotId}`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description Soft-delete uploaded Manoeuvre Plot metadata setting is_active flag to False thus not showing in frontend. Still accessible for monitoring and audit purposes. The S3 file containing the full file is left intact. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|Delete| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete|
+   *
+   * @tags manoeuvre_plots
+   * @name DeleteManoeuvrePlotsManoeuvrePlotId
+   * @summary Soft-delete single Manoeuvre Plot
+   * @request DELETE:/v1/manoeuvre_plots/{manoeuvre_plot_id}
+   * @secure
+   */
+  deleteManoeuvrePlotsManoeuvrePlotId = (manoeuvrePlotId: string, params: RequestParams = {}) =>
+    this.request<void, void | TypeHTTPValidationError>({
+      path: `/v1/manoeuvre_plots/${manoeuvrePlotId}`,
+      method: "DELETE",
+      secure: true,
+      ...params,
+    }); /**
+   * @description ## Description Create Manoeuvre Plot file metadata in database and stores actual file in S3 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create|
+   *
+   * @tags manoeuvre_plots
+   * @name PostManoeuvrePlots
+   * @summary Create new Manouevre Plot file metadata
+   * @request POST:/v1/manoeuvre_plots/
+   * @secure
+   */
+  postManoeuvrePlots = (data: TypeBodyUploadManoeuvrePlotFileV1ManoeuvrePlotsPost, params: RequestParams = {}) =>
+    this.request<TypeManoeuvrePlot, void | TypeHTTPValidationError>({
+      path: `/v1/manoeuvre_plots/`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.FormData,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets Manoeuvre Plot file list with user metadata (uploaders, deleters etc) |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags manoeuvre_plots
+   * @name GetManoeuvrePlots
+   * @summary Get Manouevre Plots file list with user data
+   * @request GET:/v1/manoeuvre_plots/
+   * @secure
+   */
+  getManoeuvrePlots = (query?: TypeGetManoeuvrePlotsParams, params: RequestParams = {}) =>
+    this.request<TypeManoeuvrePlotWithUserMetadataOut[], void | TypeHTTPValidationError>({
+      path: `/v1/manoeuvre_plots/`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets Manoeuvre Plot file metadata list by Event short ID |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags manoeuvre_plots
+   * @name GetManoeuvrePlotsByEventEventShortId
+   * @summary Get Manouevre Plots file metadata list by Event short ID
+   * @request GET:/v1/manoeuvre_plots/by-event/{event_short_id}
+   * @secure
+   */
+  getManoeuvrePlotsByEventEventShortId = (
+    { eventShortId, ...query }: TypeGetManoeuvrePlotsByEventEventShortIdParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeManoeuvrePlotMetadataOut[], void | TypeHTTPValidationError>({
+      path: `/v1/manoeuvre_plots/by-event/${eventShortId}`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Sends a message to pre-defined analyst email address. We allow all events for all users here. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
+   *
+   * @tags messages
+   * @name PostMessagesContactAnalyst
+   * @summary Send an email about a given Event to the orbital analyst team
+   * @request POST:/v1/messages/contact-analyst
+   * @secure
+   */
+  postMessagesContactAnalyst = (data: TypeContactAnalystIn, params: RequestParams = {}) =>
+    this.request<any, void | TypeHTTPValidationError>({
+      path: `/v1/messages/contact-analyst`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets list of all organizations with the number of user and admin accounts. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags organizations
+   * @name GetOrganizations
+   * @summary Get full list of Organizations.
+   * @request GET:/v1/organizations/
+   * @secure
+   */
+  getOrganizations = (params: RequestParams = {}) =>
+    this.request<TypeOrganizationOut[], void>({
+      path: `/v1/organizations/`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
+   *
+   * @tags reentry-event-reports
+   * @name GetReentryEventReportsSchema
+   * @summary Get Schema
+   * @request GET:/v1/reentry-event-reports/schema
+   * @secure
+   */
+  getReentryEventReportsSchema = (params: RequestParams = {}) =>
+    this.request<object, void>({
+      path: `/v1/reentry-event-reports/schema`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Create Reentry Event Report and saves its metadata in database and original file in S3 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create|
+   *
+   * @tags reentry-event-reports
+   * @name PostReentryEventReports
+   * @summary Upload Reentry Event Report file to database & S3
+   * @request POST:/v1/reentry-event-reports/
+   * @secure
+   */
+  postReentryEventReports = (
+    data: TypeBodyUploadReentryEventReportV1ReentryEventReportsPost,
+    query?: TypePostReentryEventReportsParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeReentryEventReportOut, void | TypeHTTPValidationError>({
+      path: `/v1/reentry-event-reports/`,
+      method: "POST",
+      query: query,
+      body: data,
+      secure: true,
+      type: ContentType.FormData,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets list of Reentry Event Reports data by Reentry Event short ID ie. re-20240404-23123 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags reentry-event-reports
+   * @name GetReentryEventReportsReentryEventShortId
+   * @summary Get list of Reentry Event Reports by Reentry Event short ID ie. re-20240404-23123
+   * @request GET:/v1/reentry-event-reports/reentry-event/{short_id}
+   * @secure
+   */
+  getReentryEventReportsReentryEventShortId = (
+    { shortId, ...query }: TypeGetReentryEventReportsReentryEventShortIdParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeReentryEventReportOut[], void | TypeHTTPValidationError>({
+      path: `/v1/reentry-event-reports/reentry-event/${shortId}`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets Reentry Event Report data by UUID |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags reentry-event-reports
+   * @name GetReentryEventReportsReentryEventReportId
+   * @summary Get Reentry Event Report Id
+   * @request GET:/v1/reentry-event-reports/{reentry_event_report_id}
+   * @secure
+   */
+  getReentryEventReportsReentryEventReportId = (reentryEventReportId: string, params: RequestParams = {}) =>
+    this.request<TypeReentryEventReportOut, void | TypeHTTPValidationError>({
+      path: `/v1/reentry-event-reports/${reentryEventReportId}`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description Soft-delete uploaded Reentry Event Report metadata setting is_active flag to False thus not showing in frontend. Still accessible for monitoring and audit purposes. The S3 file containing the full file is left intact. Revert some fields in Reentry Event |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|Delete| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete|
+   *
+   * @tags reentry-event-reports
+   * @name DeleteReentryEventReportsReentryEventReportId
+   * @summary Soft-delete single Reentry Event Report
+   * @request DELETE:/v1/reentry-event-reports/{reentry_event_report_id}
+   * @secure
+   */
+  deleteReentryEventReportsReentryEventReportId = (reentryEventReportId: string, params: RequestParams = {}) =>
+    this.request<void, void | TypeHTTPValidationError>({
+      path: `/v1/reentry-event-reports/${reentryEventReportId}`,
+      method: "DELETE",
+      secure: true,
+      ...params,
+    }); /**
+   * @description ## Description Get count of Reentry Events with or without reports. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags reentry-events
+   * @name GetReentryEventsStats
+   * @summary Get count of Reentry Events with or without reports
+   * @request GET:/v1/reentry-events/stats
+   * @secure
+   */
+  getReentryEventsStats = (query?: TypeGetReentryEventsStatsParams, params: RequestParams = {}) =>
+    this.request<TypeReentryEventCount, void | TypeHTTPValidationError>({
+      path: `/v1/reentry-events/stats`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets Reentry Event data by Reentry Event short ID ie. re-20240404-23123 |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags reentry-events
+   * @name GetReentryEventsShortId
+   * @summary Get Reentry Event By Short Id
+   * @request GET:/v1/reentry-events/{short_id}
+   * @secure
+   */
+  getReentryEventsShortId = (shortId: string, params: RequestParams = {}) =>
+    this.request<TypeReentryEventOut, void | TypeHTTPValidationError>({
+      path: `/v1/reentry-events/${shortId}`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Updates Reentry Event data by Reentry Event short ID ie. re-20240404-23123 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|Update| |Agency analyst|Update| |Agency approver|Update| |Agency superuser|Update|
+   *
+   * @tags reentry-events
+   * @name PatchReentryEventsShortId
+   * @summary Patch Reentry Event By Short Id
+   * @request PATCH:/v1/reentry-events/{short_id}
+   * @secure
+   */
+  patchReentryEventsShortId = (shortId: string, data: TypeReentryEventPatch, params: RequestParams = {}) =>
+    this.request<TypeReentryEventOut, void | TypeHTTPValidationError>({
+      path: `/v1/reentry-events/${shortId}`,
+      method: "PATCH",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    }); /**
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags reentry-events
+   * @name GetReentryEventsShortIdAlertsLatest
+   * @summary Get Latest Reentry Event Alert
+   * @request GET:/v1/reentry-events/{short_id}/alerts/latest
+   * @secure
+   */
+  getReentryEventsShortIdAlertsLatest = (shortId: string, params: RequestParams = {}) =>
+    this.request<TypeReentryEventAlertOut, void | TypeHTTPValidationError>({
+      path: `/v1/reentry-events/${shortId}/alerts/latest`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|Put| |Agency superuser|Put|
+   *
+   * @tags reentry-events
+   * @name PutReentryEventsShortIdAlertsLatest
+   * @summary Put Latest Reentry Event Alert
+   * @request PUT:/v1/reentry-events/{short_id}/alerts/latest
+   * @secure
+   */
+  putReentryEventsShortIdAlertsLatest = (shortId: string, data: TypeReentryEventAlertIn, params: RequestParams = {}) =>
+    this.request<any, void | TypeHTTPValidationError>({
+      path: `/v1/reentry-events/${shortId}/alerts/latest`,
+      method: "PUT",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets list of Reentry Events with sorting |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags reentry-events
+   * @name GetReentryEvents
+   * @summary Get list of Reentry Events
+   * @request GET:/v1/reentry-events/
+   * @secure
+   */
+  getReentryEvents = (query?: TypeGetReentryEventsParams, params: RequestParams = {}) =>
+    this.request<TypeReentryEventOut[], void | TypeHTTPValidationError>({
+      path: `/v1/reentry-events/`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
       ...params,
     }); /**
    * @description ## Description Provides a list of events with metadata (userInterest column). On the user application, this is presented on the /events page. It`s useful when the user needs to look at the past events or tries to find events specific to a single satellite. It`s possible to search with LIKE pattern (ie. when looking for all satellites matching some pattern in their names). It`s also possible to find events with the biggest probability of collision or the lowest miss distance. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
@@ -702,6 +1175,21 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
+   * No description
+   *
+   * @tags events
+   * @name GetEventsRestOfPathpath
+   * @summary  Redirect Events To Conjunctions
+   * @request GET:/v1/events/{rest_of_path}
+   * @secure
+   */
+  getEventsRestOfPathpath = (restOfPath: string, params: RequestParams = {}) =>
+    this.request<any, void>({
+      path: `/v1/events/${restOfPath}`,
+      method: "GET",
+      secure: true,
+      ...params,
+    }); /**
    * @description ## Description Returns a detailed list of satellites. Provides ability to search with simple text search to find groups of satellites matching the same pattern. Available satellites are filtered by user. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
    *
    * @tags satellites
@@ -799,345 +1287,6 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       path: `/v1/satellites/esa-integration`,
       method: "POST",
       secure: true,
-      format: "json",
-      ...params,
-    }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
-   *
-   * @tags external-data-performance
-   * @name GetExternalDataPerformance
-   * @summary Get list of recent data ingestion from external data sources with metadata
-   * @request GET:/v1/external-data-performance/
-   * @secure
-   */
-  getExternalDataPerformance = (query?: TypeGetExternalDataPerformanceParams, params: RequestParams = {}) =>
-    this.request<TypeExternalDataPerformanceOut[], void | TypeHTTPValidationError>({
-      path: `/v1/external-data-performance/`,
-      method: "GET",
-      query: query,
-      secure: true,
-      format: "json",
-      ...params,
-    }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
-   *
-   * @tags external-data-performance
-   * @name GetExternalDataPerformanceAggregated
-   * @summary Get number of data items ingested, broken down by day and external data source
-   * @request GET:/v1/external-data-performance/aggregated
-   * @secure
-   */
-  getExternalDataPerformanceAggregated = (
-    query?: TypeGetExternalDataPerformanceAggregatedParams,
-    params: RequestParams = {},
-  ) =>
-    this.request<TypeExternalDataPerformanceAggregateOut[], void | TypeHTTPValidationError>({
-      path: `/v1/external-data-performance/aggregated`,
-      method: "GET",
-      query: query,
-      secure: true,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Gets list of users with metadata in their organization. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View within Organisation| |Government admin|View within Organisation| |Agency user|View within Organisation| |Agency admin|View within Organisation| |Agency analyst|View within Organisation| |Agency approver|View| |Agency superuser|View|
-   *
-   * @tags users
-   * @name GetUsers
-   * @summary Get list of Users in logged in user's Organization
-   * @request GET:/v1/users
-   * @secure
-   */
-  getUsers = (params: RequestParams = {}) =>
-    this.request<TypeUserOut[], any>({
-      path: `/v1/users`,
-      method: "GET",
-      secure: true,
-      format: "json",
-      ...params,
-    }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|Create within Organisation| |Government user|-| |Government admin|Create within Organisation| |Agency user|-| |Agency admin|Create within Organisation| |Agency analyst|Create within Organisation| |Agency approver|Create| |Agency superuser|Create|
-   *
-   * @tags users
-   * @name PostUsers
-   * @summary Create a new User
-   * @request POST:/v1/users
-   * @secure
-   */
-  postUsers = (data: TypeUserIn, params: RequestParams = {}) =>
-    this.request<TypeUserIdOut, TypeHTTPValidationError>({
-      path: `/v1/users`,
-      method: "POST",
-      body: data,
-      secure: true,
-      type: ContentType.Json,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Gets full information about logged-in user (notification settings and thresholds, personal information) |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
-   *
-   * @tags users
-   * @name GetUsersMe
-   * @summary Get logged in User information
-   * @request GET:/v1/users/me
-   * @secure
-   */
-  getUsersMe = (params: RequestParams = {}) =>
-    this.request<TypeUser, any>({
-      path: `/v1/users/me`,
-      method: "GET",
-      secure: true,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Update information about yourself. |User Role|Permissions| |-|-| |Satellite operator user|Update| |Satellite operator|Update| |Satellite operator admin|Update| |Government user|Update| |Government admin|Update| |Agency user|Update| |Agency admin|Update| |Agency analyst|Update| |Agency approver|Update| |Agency superuser|Update|
-   *
-   * @tags users
-   * @name PatchUsersMe
-   * @summary Update logged in User information
-   * @request PATCH:/v1/users/me
-   * @secure
-   */
-  patchUsersMe = (data: TypeUserUpdate, params: RequestParams = {}) =>
-    this.request<TypeUser, TypeHTTPValidationError>({
-      path: `/v1/users/me`,
-      method: "PATCH",
-      body: data,
-      secure: true,
-      type: ContentType.Json,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Generate client credentials. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
-   *
-   * @tags users
-   * @name PostUsersMeClientCredentials
-   * @summary Generate API `client_credentials` for logged in User
-   * @request POST:/v1/users/me/client-credentials
-   * @secure
-   */
-  postUsersMeClientCredentials = (params: RequestParams = {}) =>
-    this.request<TypeUserClientCredentialsOut, any>({
-      path: `/v1/users/me/client-credentials`,
-      method: "POST",
-      secure: true,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Retrieves specific user. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|View within Organisation| |Government user|-| |Government admin|View within Organisation| |Agency user|-| |Agency admin|View within Organisation| |Agency analyst|View within Organisation| |Agency approver|View| |Agency superuser|View|
-   *
-   * @tags users
-   * @name GetUsersUserId
-   * @summary Get a single User
-   * @request GET:/v1/users/{user_id}
-   * @secure
-   */
-  getUsersUserId = (userId: string, params: RequestParams = {}) =>
-    this.request<TypeUser, TypeHTTPValidationError>({
-      path: `/v1/users/${userId}`,
-      method: "GET",
-      secure: true,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Updates information about specific user. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|Update within Organisation| |Government user|-| |Government admin|Update within Organisation| |Agency user|-| |Agency admin|Update within Organisation| |Agency analyst|Update within Organisation| |Agency approver|Update within Organisation| |Agency superuser|Update|
-   *
-   * @tags users
-   * @name PatchUsersUserId
-   * @summary Update a single User
-   * @request PATCH:/v1/users/{user_id}
-   * @secure
-   */
-  patchUsersUserId = (userId: string, data: TypeUserUpdate, params: RequestParams = {}) =>
-    this.request<TypeUser, TypeHTTPValidationError>({
-      path: `/v1/users/${userId}`,
-      method: "PATCH",
-      body: data,
-      secure: true,
-      type: ContentType.Json,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Soft-deletes user and deletes it permanently from Auth0. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|Delete within Organisation| |Government user|-| |Government admin|Delete within Organisation| |Agency user|-| |Agency admin|Delete within Organisation| |Agency analyst|Delete within Organisation| |Agency approver|Delete| |Agency superuser|Delete|
-   *
-   * @tags users
-   * @name DeleteUsersUserId
-   * @summary Soft-delete a single User and revoke their access
-   * @request DELETE:/v1/users/{user_id}
-   * @secure
-   */
-  deleteUsersUserId = (userId: string, params: RequestParams = {}) =>
-    this.request<void, TypeHTTPValidationError>({
-      path: `/v1/users/${userId}`,
-      method: "DELETE",
-      secure: true,
-      ...params,
-    }); /**
-   * @description ## Description Gets list of all organizations with the number of user and admin accounts. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
-   *
-   * @tags organizations
-   * @name GetOrganizations
-   * @summary Get full list of Organizations.
-   * @request GET:/v1/organizations/
-   * @secure
-   */
-  getOrganizations = (params: RequestParams = {}) =>
-    this.request<TypeOrganizationOut[], void>({
-      path: `/v1/organizations/`,
-      method: "GET",
-      secure: true,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Gets list of banner messages. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|View|
-   *
-   * @tags banners
-   * @name GetBannersMessages
-   * @summary Get list of Banner messages
-   * @request GET:/v1/banners/messages
-   * @secure
-   */
-  getBannersMessages = (query?: TypeGetBannersMessagesParams, params: RequestParams = {}) =>
-    this.request<TypeBannerMessagesOut[], void | TypeHTTPValidationError>({
-      path: `/v1/banners/messages`,
-      method: "GET",
-      query: query,
-      secure: true,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Create a banner message. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Create|
-   *
-   * @tags banners
-   * @name PostBannersMessages
-   * @summary Create new Banner message
-   * @request POST:/v1/banners/messages
-   * @secure
-   */
-  postBannersMessages = (data: TypeBannerMessageIn, params: RequestParams = {}) =>
-    this.request<TypeBannerMessage, void | TypeHTTPValidationError>({
-      path: `/v1/banners/messages`,
-      method: "POST",
-      body: data,
-      secure: true,
-      type: ContentType.Json,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Modify a banner message. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Update|
-   *
-   * @tags banners
-   * @name PatchBannersMessages
-   * @summary Modify existing Banner message
-   * @request PATCH:/v1/banners/messages
-   * @secure
-   */
-  patchBannersMessages = (data: TypeBannerMessageUpdate, params: RequestParams = {}) =>
-    this.request<TypeBannerMessage, void | TypeHTTPValidationError>({
-      path: `/v1/banners/messages`,
-      method: "PATCH",
-      body: data,
-      secure: true,
-      type: ContentType.Json,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Gets currently broadcasted banner messages. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
-   *
-   * @tags banners
-   * @name GetBannersMessagesCurrent
-   * @summary Get list of Banner messages which are currently being displayed
-   * @request GET:/v1/banners/messages/current
-   * @secure
-   */
-  getBannersMessagesCurrent = (query?: TypeGetBannersMessagesCurrentParams, params: RequestParams = {}) =>
-    this.request<TypeBannerMessagesBroadcastedOut[], void | TypeHTTPValidationError>({
-      path: `/v1/banners/messages/current`,
-      method: "GET",
-      query: query,
-      secure: true,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Soft-delete (set is_active=False) a banner message. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Delete|
-   *
-   * @tags banners
-   * @name DeleteBannersMessagesMessageId
-   * @summary Delete Banner message
-   * @request DELETE:/v1/banners/messages/{message_id}
-   * @secure
-   */
-  deleteBannersMessagesMessageId = (messageId: string, params: RequestParams = {}) =>
-    this.request<void, void | TypeHTTPValidationError>({
-      path: `/v1/banners/messages/${messageId}`,
-      method: "DELETE",
-      secure: true,
-      ...params,
-    }); /**
-   * @description ## Description Gets a list of defined banner schedules. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|View|
-   *
-   * @tags banners
-   * @name GetBannersSchedules
-   * @summary Get list of Banner schedules (which Banners should be displayed at which times)
-   * @request GET:/v1/banners/schedules
-   * @secure
-   */
-  getBannersSchedules = (query?: TypeGetBannersSchedulesParams, params: RequestParams = {}) =>
-    this.request<TypeBannerSchedulesOut[], void | TypeHTTPValidationError>({
-      path: `/v1/banners/schedules`,
-      method: "GET",
-      query: query,
-      secure: true,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Creates a schedule for a given banner message. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Create|
-   *
-   * @tags banners
-   * @name PostBannersSchedules
-   * @summary Create a new Banner schedule (schedule a given Banner to be displayed between given times)
-   * @request POST:/v1/banners/schedules
-   * @secure
-   */
-  postBannersSchedules = (data: TypeBannerScheduleIn, params: RequestParams = {}) =>
-    this.request<TypeBannerSchedule, void | TypeHTTPValidationError>({
-      path: `/v1/banners/schedules`,
-      method: "POST",
-      body: data,
-      secure: true,
-      type: ContentType.Json,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Soft-deletes a schedule. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Delete|
-   *
-   * @tags banners
-   * @name DeleteBannersSchedulesScheduleId
-   * @summary Delete a Banner schedule
-   * @request DELETE:/v1/banners/schedules/{schedule_id}
-   * @secure
-   */
-  deleteBannersSchedulesScheduleId = (scheduleId: string, params: RequestParams = {}) =>
-    this.request<void, void | TypeHTTPValidationError>({
-      path: `/v1/banners/schedules/${scheduleId}`,
-      method: "DELETE",
-      secure: true,
-      ...params,
-    }); /**
-   * @description ## Description Sends a message to pre-defined analyst email address. We allow all events for all users here. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
-   *
-   * @tags messages
-   * @name PostMessagesContactAnalyst
-   * @summary Send an email about a given Event to the orbital analyst team
-   * @request POST:/v1/messages/contact-analyst
-   * @secure
-   */
-  postMessagesContactAnalyst = (data: TypeContactAnalystIn, params: RequestParams = {}) =>
-    this.request<any, void | TypeHTTPValidationError>({
-      path: `/v1/messages/contact-analyst`,
-      method: "POST",
-      body: data,
-      secure: true,
-      type: ContentType.Json,
       format: "json",
       ...params,
     }); /**
@@ -1413,198 +1562,6 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Get count of Reentry Events with or without reports. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
-   *
-   * @tags reentry-events
-   * @name GetReentryEventsStats
-   * @summary Get count of Reentry Events with or without reports
-   * @request GET:/v1/reentry-events/stats
-   * @secure
-   */
-  getReentryEventsStats = (query?: TypeGetReentryEventsStatsParams, params: RequestParams = {}) =>
-    this.request<TypeReentryEventCount, void | TypeHTTPValidationError>({
-      path: `/v1/reentry-events/stats`,
-      method: "GET",
-      query: query,
-      secure: true,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Gets Reentry Event data by Reentry Event short ID ie. re-20240404-23123 |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
-   *
-   * @tags reentry-events
-   * @name GetReentryEventsShortId
-   * @summary Get Reentry Event By Short Id
-   * @request GET:/v1/reentry-events/{short_id}
-   * @secure
-   */
-  getReentryEventsShortId = (shortId: string, params: RequestParams = {}) =>
-    this.request<TypeReentryEventOut, void | TypeHTTPValidationError>({
-      path: `/v1/reentry-events/${shortId}`,
-      method: "GET",
-      secure: true,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Updates Reentry Event data by Reentry Event short ID ie. re-20240404-23123 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|Update| |Agency analyst|Update| |Agency approver|Update| |Agency superuser|Update|
-   *
-   * @tags reentry-events
-   * @name PatchReentryEventsShortId
-   * @summary Patch Reentry Event By Short Id
-   * @request PATCH:/v1/reentry-events/{short_id}
-   * @secure
-   */
-  patchReentryEventsShortId = (shortId: string, data: TypeReentryEventPatch, params: RequestParams = {}) =>
-    this.request<TypeReentryEventOut, void | TypeHTTPValidationError>({
-      path: `/v1/reentry-events/${shortId}`,
-      method: "PATCH",
-      body: data,
-      secure: true,
-      type: ContentType.Json,
-      format: "json",
-      ...params,
-    }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|View| |Agency superuser|View|
-   *
-   * @tags reentry-events
-   * @name GetReentryEventsShortIdAlertsLatest
-   * @summary Get Latest Reentry Event Alert
-   * @request GET:/v1/reentry-events/{short_id}/alerts/latest
-   * @secure
-   */
-  getReentryEventsShortIdAlertsLatest = (shortId: string, params: RequestParams = {}) =>
-    this.request<TypeReentryEventAlertOut, void | TypeHTTPValidationError>({
-      path: `/v1/reentry-events/${shortId}/alerts/latest`,
-      method: "GET",
-      secure: true,
-      format: "json",
-      ...params,
-    }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|Put| |Agency superuser|Put|
-   *
-   * @tags reentry-events
-   * @name PutReentryEventsShortIdAlertsLatest
-   * @summary Put Latest Reentry Event Alert
-   * @request PUT:/v1/reentry-events/{short_id}/alerts/latest
-   * @secure
-   */
-  putReentryEventsShortIdAlertsLatest = (shortId: string, data: TypeReentryEventAlertIn, params: RequestParams = {}) =>
-    this.request<any, void | TypeHTTPValidationError>({
-      path: `/v1/reentry-events/${shortId}/alerts/latest`,
-      method: "PUT",
-      body: data,
-      secure: true,
-      type: ContentType.Json,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Gets list of Reentry Events with sorting |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
-   *
-   * @tags reentry-events
-   * @name GetReentryEvents
-   * @summary Get list of Reentry Events
-   * @request GET:/v1/reentry-events/
-   * @secure
-   */
-  getReentryEvents = (query?: TypeGetReentryEventsParams, params: RequestParams = {}) =>
-    this.request<TypeReentryEventOut[], void | TypeHTTPValidationError>({
-      path: `/v1/reentry-events/`,
-      method: "GET",
-      query: query,
-      secure: true,
-      format: "json",
-      ...params,
-    }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
-   *
-   * @tags reentry-event-reports
-   * @name GetReentryEventReportsSchema
-   * @summary Get Schema
-   * @request GET:/v1/reentry-event-reports/schema
-   * @secure
-   */
-  getReentryEventReportsSchema = (params: RequestParams = {}) =>
-    this.request<object, void>({
-      path: `/v1/reentry-event-reports/schema`,
-      method: "GET",
-      secure: true,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Create Reentry Event Report and saves its metadata in database and original file in S3 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create|
-   *
-   * @tags reentry-event-reports
-   * @name PostReentryEventReports
-   * @summary Upload Reentry Event Report file to database & S3
-   * @request POST:/v1/reentry-event-reports/
-   * @secure
-   */
-  postReentryEventReports = (
-    data: TypeBodyUploadReentryEventReportV1ReentryEventReportsPost,
-    query?: TypePostReentryEventReportsParams,
-    params: RequestParams = {},
-  ) =>
-    this.request<TypeReentryEventReportOut, void | TypeHTTPValidationError>({
-      path: `/v1/reentry-event-reports/`,
-      method: "POST",
-      query: query,
-      body: data,
-      secure: true,
-      type: ContentType.FormData,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Gets list of Reentry Event Reports data by Reentry Event short ID ie. re-20240404-23123 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
-   *
-   * @tags reentry-event-reports
-   * @name GetReentryEventReportsReentryEventShortId
-   * @summary Get list of Reentry Event Reports by Reentry Event short ID ie. re-20240404-23123
-   * @request GET:/v1/reentry-event-reports/reentry-event/{short_id}
-   * @secure
-   */
-  getReentryEventReportsReentryEventShortId = (
-    { shortId, ...query }: TypeGetReentryEventReportsReentryEventShortIdParams,
-    params: RequestParams = {},
-  ) =>
-    this.request<TypeReentryEventReportOut[], void | TypeHTTPValidationError>({
-      path: `/v1/reentry-event-reports/reentry-event/${shortId}`,
-      method: "GET",
-      query: query,
-      secure: true,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Gets Reentry Event Report data by UUID |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
-   *
-   * @tags reentry-event-reports
-   * @name GetReentryEventReportsReentryEventReportId
-   * @summary Get Reentry Event Report Id
-   * @request GET:/v1/reentry-event-reports/{reentry_event_report_id}
-   * @secure
-   */
-  getReentryEventReportsReentryEventReportId = (reentryEventReportId: string, params: RequestParams = {}) =>
-    this.request<TypeReentryEventReportOut, void | TypeHTTPValidationError>({
-      path: `/v1/reentry-event-reports/${reentryEventReportId}`,
-      method: "GET",
-      secure: true,
-      format: "json",
-      ...params,
-    }); /**
-   * @description Soft-delete uploaded Reentry Event Report metadata setting is_active flag to False thus not showing in frontend. Still accessible for monitoring and audit purposes. The S3 file containing the full file is left intact. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|Delete| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete|
-   *
-   * @tags reentry-event-reports
-   * @name DeleteReentryEventReportsReentryEventReportId
-   * @summary Soft-delete single Reentry Event Report
-   * @request DELETE:/v1/reentry-event-reports/{reentry_event_report_id}
-   * @secure
-   */
-  deleteReentryEventReportsReentryEventReportId = (reentryEventReportId: string, params: RequestParams = {}) =>
-    this.request<void, void | TypeHTTPValidationError>({
-      path: `/v1/reentry-event-reports/${reentryEventReportId}`,
-      method: "DELETE",
-      secure: true,
-      ...params,
-    }); /**
    * @description ## Description Creates Tracking and Impact Prediction data in the database |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create|
    *
    * @tags tracking-impact-prediction
@@ -1711,33 +1668,67 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|View| |Agency user|-| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   * @description ## Description Gets list of users with metadata in their organization. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View within Organisation| |Government admin|View within Organisation| |Agency user|View within Organisation| |Agency admin|View within Organisation| |Agency analyst|View within Organisation| |Agency approver|View| |Agency superuser|View|
    *
-   * @tags alerts
-   * @name GetAlerts
-   * @summary Get Users Alert Setting List
-   * @request GET:/v1/alerts/
+   * @tags users
+   * @name GetUsers
+   * @summary Get list of Users in logged in user's Organization
+   * @request GET:/v1/users
    * @secure
    */
-  getAlerts = (params: RequestParams = {}) =>
-    this.request<TypeAlertSettingsDistributionList[], any>({
-      path: `/v1/alerts/`,
+  getUsers = (params: RequestParams = {}) =>
+    this.request<TypeUserOut[], any>({
+      path: `/v1/users`,
       method: "GET",
       secure: true,
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|Update| |Agency user|-| |Agency admin|Update| |Agency analyst|Update| |Agency approver|Update| |Agency superuser|Update|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|Create within Organisation| |Government user|-| |Government admin|Create within Organisation| |Agency user|-| |Agency admin|Create within Organisation| |Agency analyst|Create within Organisation| |Agency approver|Create| |Agency superuser|Create|
    *
-   * @tags alerts
-   * @name PatchAlertsUserUserId
-   * @summary Patch User Alert Settings
-   * @request PATCH:/v1/alerts/user/{user_id}
+   * @tags users
+   * @name PostUsers
+   * @summary Create a new User
+   * @request POST:/v1/users
    * @secure
    */
-  patchAlertsUserUserId = (userId: string, data: TypeAlertSettingsIn, params: RequestParams = {}) =>
-    this.request<TypeAlertSettingsOut, TypeHTTPValidationError>({
-      path: `/v1/alerts/user/${userId}`,
+  postUsers = (data: TypeUserIn, params: RequestParams = {}) =>
+    this.request<TypeUserIdOut, TypeHTTPValidationError>({
+      path: `/v1/users`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets full information about logged-in user (notification settings and thresholds, personal information) |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
+   *
+   * @tags users
+   * @name GetUsersMe
+   * @summary Get logged in User information
+   * @request GET:/v1/users/me
+   * @secure
+   */
+  getUsersMe = (params: RequestParams = {}) =>
+    this.request<TypeUser, any>({
+      path: `/v1/users/me`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Update information about yourself. |User Role|Permissions| |-|-| |Satellite operator user|Update| |Satellite operator|Update| |Satellite operator admin|Update| |Government user|Update| |Government admin|Update| |Agency user|Update| |Agency admin|Update| |Agency analyst|Update| |Agency approver|Update| |Agency superuser|Update|
+   *
+   * @tags users
+   * @name PatchUsersMe
+   * @summary Update logged in User information
+   * @request PATCH:/v1/users/me
+   * @secure
+   */
+  patchUsersMe = (data: TypeUserUpdate, params: RequestParams = {}) =>
+    this.request<TypeUser, TypeHTTPValidationError>({
+      path: `/v1/users/me`,
       method: "PATCH",
       body: data,
       secure: true,
@@ -1745,20 +1736,69 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|View| |Agency user|-| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   * @description ## Description Generate client credentials. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
    *
-   * @tags alerts
-   * @name GetAlertsUserUserId
-   * @summary Get User Alert Settings
-   * @request GET:/v1/alerts/user/{user_id}
+   * @tags users
+   * @name PostUsersMeClientCredentials
+   * @summary Generate API `client_credentials` for logged in User
+   * @request POST:/v1/users/me/client-credentials
    * @secure
    */
-  getAlertsUserUserId = (userId: string, params: RequestParams = {}) =>
-    this.request<TypeAlertSettingsOut, TypeHTTPValidationError>({
-      path: `/v1/alerts/user/${userId}`,
+  postUsersMeClientCredentials = (params: RequestParams = {}) =>
+    this.request<TypeUserClientCredentialsOut, any>({
+      path: `/v1/users/me/client-credentials`,
+      method: "POST",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Retrieves specific user. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|View within Organisation| |Government user|-| |Government admin|View within Organisation| |Agency user|-| |Agency admin|View within Organisation| |Agency analyst|View within Organisation| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags users
+   * @name GetUsersUserId
+   * @summary Get a single User
+   * @request GET:/v1/users/{user_id}
+   * @secure
+   */
+  getUsersUserId = (userId: string, params: RequestParams = {}) =>
+    this.request<TypeUser, TypeHTTPValidationError>({
+      path: `/v1/users/${userId}`,
       method: "GET",
       secure: true,
       format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Updates information about specific user. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|Update within Organisation| |Government user|-| |Government admin|Update within Organisation| |Agency user|-| |Agency admin|Update within Organisation| |Agency analyst|Update within Organisation| |Agency approver|Update within Organisation| |Agency superuser|Update|
+   *
+   * @tags users
+   * @name PatchUsersUserId
+   * @summary Update a single User
+   * @request PATCH:/v1/users/{user_id}
+   * @secure
+   */
+  patchUsersUserId = (userId: string, data: TypeUserUpdate, params: RequestParams = {}) =>
+    this.request<TypeUser, TypeHTTPValidationError>({
+      path: `/v1/users/${userId}`,
+      method: "PATCH",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Soft-deletes user and deletes it permanently from Auth0. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|Delete within Organisation| |Government user|-| |Government admin|Delete within Organisation| |Agency user|-| |Agency admin|Delete within Organisation| |Agency analyst|Delete within Organisation| |Agency approver|Delete| |Agency superuser|Delete|
+   *
+   * @tags users
+   * @name DeleteUsersUserId
+   * @summary Soft-delete a single User and revoke their access
+   * @request DELETE:/v1/users/{user_id}
+   * @secure
+   */
+  deleteUsersUserId = (userId: string, params: RequestParams = {}) =>
+    this.request<void, TypeHTTPValidationError>({
+      path: `/v1/users/${userId}`,
+      method: "DELETE",
+      secure: true,
       ...params,
     });
 }

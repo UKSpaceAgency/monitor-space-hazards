@@ -9,11 +9,14 @@ import { ConjunctionEventSummary } from '@/components/conjunction/ConjunctionEve
 import { ContentNavigation } from '@/components/ContentNavigation';
 import Tag from '@/ui/tag/tag';
 
+type PageProps = {
+  params: Promise<{ shortId: string }>;
+
+};
+
 export async function generateMetadata({
   params,
-}: {
-  params: { shortId: string };
-}) {
+}: PageProps) {
   const { shortId } = await params;
   try {
     const event = await getConjunctionEventsSatelliteEventShortId(shortId);
@@ -27,9 +30,7 @@ export async function generateMetadata({
 
 export default async function ConjunctionPage({
   params,
-}: {
-  params: Promise<{ shortId: string }>;
-}) {
+}: PageProps) {
   const t = await getTranslations('Conjunction');
 
   const { shortId } = await params;

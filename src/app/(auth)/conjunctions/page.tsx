@@ -20,9 +20,11 @@ export type ConjunctionsPageSearchParams = {
   search_like?: string;
 };
 
-export default async function ConjunctionsPage(props: {
+type PageProps = {
   searchParams?: Promise<ConjunctionsPageSearchParams>;
-}) {
+};
+
+export default async function ConjunctionsPage(props: PageProps) {
   const t = await getTranslations('Conjunctions');
 
   const searchParams = await props.searchParams;

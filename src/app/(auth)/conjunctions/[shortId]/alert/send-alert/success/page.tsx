@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
-import { getReentryEvent } from '@/actions/getReentryEvent';
+import { getConjunctionAlertLatest } from '@/actions/getConjunctionAlertLatest';
 import { EventAlertSendSuccess } from '@/components/event-alert-send/EventAlertSendSuccess';
 
 type PageProps = {
@@ -14,7 +14,7 @@ export async function generateMetadata({
   const t = await getTranslations('Forms.Send_alert.Success');
   const { shortId } = await params;
   try {
-    await getReentryEvent(shortId);
+    await getConjunctionAlertLatest(shortId);
     return {
       title: t('title'),
     };
@@ -22,10 +22,10 @@ export async function generateMetadata({
     notFound();
   }
 }
-export default async function ReentryAlertEditSuccess({
+export default async function ConjunctionAlertEditSuccess({
   params,
 }: PageProps) {
   const { shortId } = await params;
 
-  return <EventAlertSendSuccess type="re-entry" shortId={shortId} />;
+  return <EventAlertSendSuccess type="conjunction" shortId={shortId} />;
 }

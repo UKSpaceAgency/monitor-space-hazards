@@ -2,8 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
-import { getReentryAlertLatest } from '@/actions/getReentryAlertLatest';
-import { getReentryEvent } from '@/actions/getReentryEvent';
+import { getConjunctionAlertLatest } from '@/actions/getConjunctionAlertLatest';
 import { EventAlertSend } from '@/components/event-alert-send/EventAlertSend';
 
 type PageProps = {
@@ -16,7 +15,7 @@ export async function generateMetadata({
   const t = await getTranslations('Forms.Send_alert');
   const { shortId } = await params;
   try {
-    await getReentryEvent(shortId);
+    await getConjunctionAlertLatest(shortId);
     return {
       title: t('title'),
     };
@@ -25,13 +24,13 @@ export async function generateMetadata({
   }
 }
 
-export default async function ReentryAlertSend({
+export default async function ConjunctionAlertSend({
   params,
 }: PageProps) {
-  const t = await getTranslations('Reentry_alert_send');
+  const t = await getTranslations('Conjunction_alert_send');
   const { shortId } = await params;
 
-  const alert = await getReentryAlertLatest(shortId);
+  const alert = await getConjunctionAlertLatest(shortId);
 
   const detailsContent = t.rich('alert_criteria_help.content', {
     link: chunks => <Link className="govuk-link" href="/account/distribution-list">{chunks}</Link>,
@@ -42,5 +41,5 @@ export default async function ReentryAlertSend({
     additionalRecipients: alert.additionalRecipients?.join('; ') || '',
   };
 
-  return <EventAlertSend type="re-entry" data={defaultValues} content={t.rich('content')} detailsSummary={t('alert_criteria_help.title')} detailsContent={detailsContent} />;
+  return <EventAlertSend type="conjunction" data={defaultValues} content={t.rich('content')} detailsSummary={t('alert_criteria_help.title')} detailsContent={detailsContent} />;
 }

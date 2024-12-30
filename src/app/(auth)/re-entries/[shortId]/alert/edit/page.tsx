@@ -6,11 +6,13 @@ import { getSatellite } from '@/actions/getSatellite';
 import { ReentryAlertEditForm } from '@/components/re-entry-alert-edit/ReentryAlertEditForm';
 import { dayjs, FORMAT_FULL_DATE } from '@/libs/Dayjs';
 
+type PageProps = {
+  params: Promise<{ shortId: string }>;
+};
+
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ shortId: string }>;
-}) {
+}: PageProps) {
   const t = await getTranslations('Reentry_alert_edit');
   const { shortId } = await params;
   try {
@@ -26,9 +28,7 @@ export async function generateMetadata({
 
 export default async function ReentryAlertEdit({
   params,
-}: {
-  params: Promise<{ shortId: string }>;
-}) {
+}: PageProps) {
   const t = await getTranslations('Reentry_alert_edit');
   const { shortId } = await params;
   const event = await getReentryEvent(shortId);
