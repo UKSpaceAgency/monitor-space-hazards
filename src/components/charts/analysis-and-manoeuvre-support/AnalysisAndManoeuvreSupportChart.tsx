@@ -22,7 +22,7 @@ const AnalysisAndManoeuvreSupportChart = ({
   setShowDays,
   showDays,
 }: AnalysisAndManoeuvreSupportChartProps) => {
-  const t = useTranslations('Charts.AnalysisAndManoeuvreSupport');
+  const t = useTranslations('Charts.Analysis_and_manoeuvre_support');
 
   const datasets = useMemo(
     () => ({

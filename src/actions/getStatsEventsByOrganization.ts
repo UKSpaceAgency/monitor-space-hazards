@@ -12,9 +12,9 @@ export type EventsByOrganizationType = {
   name: string;
   id: string;
   totalEvents: number;
-  less: EventsByOrganizationSectionType;
-  between: EventsByOrganizationSectionType;
-  more: EventsByOrganizationSectionType;
+  low: number;
+  medium: number;
+  high: number;
 };
 
 export async function getStatsEventsByOrganization(query?: TypeGetStatsEventsByOrganizationParams): Promise<EventsByOrganizationType[]> {
@@ -26,17 +26,17 @@ export async function getStatsEventsByOrganization(query?: TypeGetStatsEventsByO
     const key = id as string;
 
     if (!acc[key]) {
-      acc[key] = { name, id, totalEvents: 0, less: {}, between: {}, more: {} };
+      acc[key] = { name, id, totalEvents: 0, low: {}, medium: {}, high: {} };
     }
 
     if (collisionProbabilityRange === '< 1e-5') {
-      acc[key].less = { events, collisionProbabilityRange };
+      acc[key].low = events;
       acc[key].totalEvents += events;
     } else if (collisionProbabilityRange === '1e-3 .. 1e-5') {
-      acc[key].between = { events, collisionProbabilityRange };
+      acc[key].medium = events;
       acc[key].totalEvents += events;
     } else if (collisionProbabilityRange === '> 1e-3') {
-      acc[key].more = { events, collisionProbabilityRange };
+      acc[key].high = events;
       acc[key].totalEvents += events;
     }
 

@@ -18,7 +18,7 @@ type ObjectDataIngestsProps = {
 };
 
 export function ObjectDataIngests({ initialData, params }: ObjectDataIngestsProps) {
-  const t = useTranslations('Charts.ObjectDataIngests');
+  const t = useTranslations('Charts.Object_data_ingests');
 
   const [showDays, setShowDays] = useState<number>(8);
 

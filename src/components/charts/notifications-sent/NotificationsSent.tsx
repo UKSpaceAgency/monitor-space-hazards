@@ -21,7 +21,7 @@ export function NotificationsSentChart({
   setStartDate,
   startDate,
 }: NotificationsSentChartProps) {
-  const t = useTranslations('Charts.NotificationsSent');
+  const t = useTranslations('Charts.Notifications_sent');
 
   const datasets = {
     labels: data.map(({ date }) => date as string),

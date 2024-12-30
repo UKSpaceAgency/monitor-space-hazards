@@ -344,7 +344,7 @@
     }
   },
   "Charts": {
-    "Poc_Chart": {
+    "Poc_chart": {
       "title": "Evolution of collision probability",
       "description": "<p>The changing probability of a conjunction event leading up to the time of closest approach (TCA). All available data is shown.</p>",
       "xAxis": "Creation date of CDM (UTC)",
@@ -352,7 +352,7 @@
       "tca": "TCA",
       "special": "Show <special>Special</special> ephemeris"
     },
-    "Mtp_Chart": {
+    "Mtp_chart": {
       "description": "The probability of collision (PoC) for different combinations of date/time or number of orbits compared to time of closest approach (TCA) and Delta V (amount of burn) of manoeuvre are shown. All available data is shown.",
       "chart": {
         "header": "What is your mitigation requirement?",
@@ -379,7 +379,7 @@
       },
       "download": "Manoeuvre Trade Space data"
     },
-    "Miss_Distance": {
+    "Miss_distance": {
       "header": "The changing expected miss distance leading up to the time of closest approach (TCA). Data from Space-Track is shown.",
       "chart": {
         "tca": "TCA",
@@ -388,7 +388,7 @@
         "show_ephemeris": "Show <special>Special</special> ephemeris"
       }
     },
-    "CdmIngests": {
+    "Cdm_ingests": {
       "space_track": "Space-Track",
       "latest_ingest": "Latest ingest:",
       "data_range": "Data range",
@@ -398,7 +398,7 @@
       "30_days": "30 days",
       "all_time": "All time"
     },
-    "ObjectDataIngests": {
+    "Object_data_ingests": {
       "space_track": "Space-Track",
       "esa_discos": "ESA-DISCOS",
       "latest_ingest": "Latest ingest:",
@@ -409,7 +409,7 @@
       "all_time": "All time",
       "object_ingests": "Object ingest"
     },
-    "NotificationsSent": {
+    "Notifications_sent": {
       "all_notifications": "All notifications",
       "sms_messages": "SMS messages",
       "emails": "Emails",
@@ -418,7 +418,7 @@
       "notification_type": "Notification type",
       "data_range": "Data range"
     },
-    "AnalysisAndManoeuvreSupport": {
+    "Analysis_and_manoeuvre_support": {
       "analysis_received": "Analyses received",
       "manoeuvre_received": "Manoeuvre support plots received",
       "file_type": "File type",
@@ -429,7 +429,7 @@
       "30_days": "30 days",
       "all_time": "All time"
     },
-    "EventsType": {
+    "Events_type": {
       "title": "Event type",
       "description": "Total number of conjunction events monitored between different object types.",
       "this_table": "this table",
@@ -442,6 +442,13 @@
         "title": "Help with this table",
         "content": "This table shows the number of conjunction events between different object types."
       }
+    },
+    "Events_by_organisation": {
+      "description": "Conjunction events and their probability of collision for events relating to an organisation.",
+      "events_involving": "Events involving",
+      "<1e-5": "<1e-5",
+      "<1e-3_and_>1e-5": "<1e-3 and >1e-5",
+      ">1e-3": ">1e-3"
     }
   },
   "Conjunctions": {
@@ -1160,17 +1167,16 @@
       "conjunction_events_by_organisation": {
         "type": "Type",
         "conjunction_events": "Conjunctions events",
-        "less": "<1e-5",
-        "between": "<1e-3 and >1e-5",
-        "more": ">1e-3",
-        "this_table": "this table",
-        "description": "Conjunction events and their probability of collision for events relating to an organisation."
+        "low": "<1e-5",
+        "medium": "<1e-3 and >1e-5",
+        "high": ">1e-3",
+        "this_table": "this table"
       },
       "conjunction_events_by_satellite": {
         "satellite_name": "Satellite name",
-        "less": "<1e-5",
-        "between": "<1e-3 and >1e-5",
-        "more": ">1e-3",
+        "low": "<1e-5",
+        "medium": "<1e-3 and >1e-5",
+        "high": ">1e-3",
         "this_table": "this table"
       },
       "analyses_and_manoeuvre_support": {

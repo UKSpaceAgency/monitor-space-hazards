@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 
 import type { TypeGetStatsEventsTypeParams, TypeStatisticsEventsType } from '@/__generated__/data-contracts';
 import { getStatsEventsType } from '@/actions/getStatsEventsType';
+import { assertUnreachable } from '@/libs/assertUnreachable';
 import { FORMAT_API_DATE_TIME } from '@/libs/Dayjs';
 import Details from '@/ui/details/details';
 import Spinner from '@/ui/spinner/spinner';
@@ -23,7 +24,7 @@ type PerformanceMonitoringConjunctionEventsByTypeContentProps = {
 type DataRangeType = 'Upcoming events' | 'Last 7d' | 'Last 1 month' | 'Last 6 months';
 
 const PerformanceMonitoringConjunctionEventsByTypeContent = ({ initialData, params }: PerformanceMonitoringConjunctionEventsByTypeContentProps) => {
-  const t = useTranslations('Charts.EventsType');
+  const t = useTranslations('Charts.Events_type');
 
   const [dataRange, setDataRange] = useState<DataRangeType>('Last 7d');
   const [dates, setDates] = useState<{ startDate: string; endDate?: string }>({
@@ -50,7 +51,9 @@ const PerformanceMonitoringConjunctionEventsByTypeContent = ({ initialData, para
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dates]);
 
-  useEffect(() => {
+  const handleDataRangeChange = (dataRange: DataRangeType) => {
+    setDataRange(dataRange);
+
     switch (dataRange) {
       case 'Last 7d':
         setDates({
@@ -75,9 +78,10 @@ const PerformanceMonitoringConjunctionEventsByTypeContent = ({ initialData, para
           startDate: today.format(FORMAT_API_DATE_TIME),
         });
         break;
+      default:
+        assertUnreachable(dataRange);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataRange]);
+  };
 
   const actionButtons = (
     <ToggleButtons
@@ -105,7 +109,7 @@ const PerformanceMonitoringConjunctionEventsByTypeContent = ({ initialData, para
         },
       ]}
       active={dataRange}
-      setActive={setDataRange}
+      setActive={handleDataRangeChange}
       title={t('data_range')}
     />
   );

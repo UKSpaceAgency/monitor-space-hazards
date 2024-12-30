@@ -29,7 +29,7 @@ export type MissDistanceChartProps = {
 };
 
 export function MissDistanceChart({ data, isSpecial }: MissDistanceChartProps) {
-  const t = useTranslations('Charts.Miss_Distance');
+  const t = useTranslations('Charts.Miss_distance');
 
   const [showSpecial, setShowSpecial] = useState(true);
 

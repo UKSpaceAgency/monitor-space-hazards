@@ -10,9 +10,9 @@ export const conjunctionsBySatelliteColumns: TranslatedColumnDef<EventsBySatelli
     enableSorting: false,
   },
   {
-    accessorKey: 'less',
-    id: 'less',
-    header: 'Performance_monitoring.conjunction_events_by_satellite.less',
+    accessorKey: 'low',
+    id: 'low',
+    header: 'Performance_monitoring.conjunction_events_by_satellite.low',
     cell: ({ getValue }) => {
       const { events } = getValue<EventsByOrganizationSectionType>();
       return events;
@@ -20,9 +20,9 @@ export const conjunctionsBySatelliteColumns: TranslatedColumnDef<EventsBySatelli
     enableSorting: false,
   },
   {
-    accessorKey: 'between',
-    id: 'between',
-    header: 'Performance_monitoring.conjunction_events_by_satellite.between',
+    accessorKey: 'medium',
+    id: 'medium',
+    header: 'Performance_monitoring.conjunction_events_by_satellite.medium',
     cell: ({ getValue }) => {
       const { events } = getValue<EventsByOrganizationSectionType>();
       return events;
@@ -30,9 +30,9 @@ export const conjunctionsBySatelliteColumns: TranslatedColumnDef<EventsBySatelli
     enableSorting: false,
   },
   {
-    accessorKey: 'more',
-    id: 'more',
-    header: 'Performance_monitoring.conjunction_events_by_satellite.more',
+    accessorKey: 'high',
+    id: 'high',
+    header: 'Performance_monitoring.conjunction_events_by_satellite.high',
     cell: ({ getValue }) => {
       const { events } = getValue<EventsByOrganizationSectionType>();
       return events;

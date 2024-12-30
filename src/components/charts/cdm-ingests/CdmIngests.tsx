@@ -18,7 +18,7 @@ type CdmIngestsChartProps = {
 };
 
 export function CdmIngestsChart({ initialData, params }: CdmIngestsChartProps) {
-  const t = useTranslations('Charts.CdmIngests');
+  const t = useTranslations('Charts.Cdm_ingests');
 
   const [showDays, setShowDays] = useState<number>(8);
 

@@ -21,7 +21,7 @@ export type PocChartProps = {
 };
 
 export function PocChart({ data }: PocChartProps) {
-  const t = useTranslations('Charts.Poc_Chart');
+  const t = useTranslations('Charts.Poc_chart');
   const [showSpecial, setShowSpecial] = useState(true);
 
   const sortedData = useMemo(

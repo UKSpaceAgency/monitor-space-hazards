@@ -11,9 +11,9 @@ export type EventsBySatelliteSectionType = {
 export type EventsBySatelliteType = {
   name: string;
   id: string;
-  less: EventsBySatelliteSectionType;
-  between: EventsBySatelliteSectionType;
-  more: EventsBySatelliteSectionType;
+  low: number;
+  medium: number;
+  high: number;
   organizationName: string;
 };
 
@@ -26,15 +26,15 @@ export async function getStatsEventsBySatellite(query?: TypeGetStatsEventsBySate
     const key = noradId;
 
     if (!acc[key]) {
-      acc[key] = { commonName, noradId, organizationName, less: {}, between: {}, more: {} };
+      acc[key] = { commonName, noradId, organizationName, low: {}, medium: {}, high: {} };
     }
 
     if (collisionProbabilityRange === '< 1e-5') {
-      acc[key].less = { events, collisionProbabilityRange };
+      acc[key].low = events;
     } else if (collisionProbabilityRange === '1e-3 .. 1e-5') {
-      acc[key].between = { events, collisionProbabilityRange };
+      acc[key].medium = events;
     } else if (collisionProbabilityRange === '> 1e-3') {
-      acc[key].more = { events, collisionProbabilityRange };
+      acc[key].high = events;
     }
 
     return acc;
