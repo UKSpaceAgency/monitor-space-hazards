@@ -1,25 +1,21 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import type { Dispatch, SetStateAction } from 'react';
+import type { ReactNode } from 'react';
 
 import type { NotificationsSentStatsType } from '@/actions/getStatsNotificationsSent';
-import { FORMAT_API_DATE_TIME, TODAY_DATE_TIME } from '@/libs/Dayjs';
-import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
 
 import BaseChart from '../base/BaseChart';
 import { chartPalette } from '../base/theme';
 
 export type NotificationsSentChartProps = {
   data: NotificationsSentStatsType[];
-  setStartDate: Dispatch<SetStateAction<string>>;
-  startDate: string;
+  actionButtons?: ReactNode;
 };
 
 export function NotificationsSentChart({
   data,
-  setStartDate,
-  startDate,
+  actionButtons,
 }: NotificationsSentChartProps) {
   const t = useTranslations('Charts.Notifications_sent');
 
@@ -46,32 +42,6 @@ export function NotificationsSentChart({
       },
     ],
   } as any;
-
-  const actionButtons = (
-    <ToggleButtons
-      name="notifications-send-days"
-      items={[
-        {
-          title: '7d',
-          ariaLabel: '7 days',
-          value: TODAY_DATE_TIME.subtract(7, 'day').format(FORMAT_API_DATE_TIME),
-        },
-        {
-          title: '30d',
-          ariaLabel: '30 days',
-          value: TODAY_DATE_TIME.subtract(30, 'day').format(FORMAT_API_DATE_TIME),
-        },
-        {
-          title: 'All',
-          ariaLabel: 'All time',
-          value: TODAY_DATE_TIME.subtract(9999, 'day').format(FORMAT_API_DATE_TIME),
-        },
-      ]}
-      active={startDate}
-      setActive={setStartDate}
-      title={t('data_range')}
-    />
-  );
 
   return (
     <div className="mb-4">

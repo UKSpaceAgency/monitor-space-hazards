@@ -46,8 +46,7 @@ const MonitoringEventsByTypeContent = ({ initialData, params }: MonitoringEvents
 
   useEffect(() => {
     refetch();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dates]);
+  }, [dates, refetch]);
 
   const handleDataRangeChange = (dataRange: DataRangeType) => {
     setDataRange(dataRange);

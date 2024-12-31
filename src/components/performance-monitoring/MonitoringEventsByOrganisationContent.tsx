@@ -49,8 +49,7 @@ const MonitoringEventsByOrganisationContent = ({ initialData, params, isAnalysis
 
   useEffect(() => {
     refetch();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dates]);
+  }, [dates, refetch]);
 
   const [organisation, setOrganisation] = useState<string>('');
 

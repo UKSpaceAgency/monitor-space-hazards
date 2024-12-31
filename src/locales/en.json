@@ -415,8 +415,7 @@
       "emails": "Emails",
       "number_of_notifications": "Number of notifications",
       "date": "Date",
-      "notification_type": "Notification type",
-      "data_range": "Data range"
+      "notification_type": "Notification type"
     },
     "Analysis_and_manoeuvre_support": {
       "analysis_received": "Analyses received",
@@ -1158,7 +1157,8 @@
         "sms": "SMS",
         "email": "Email",
         "this_table": "this table",
-        "empty_label": "No Notifications Sent"
+        "empty_label": "No Notifications Sent",
+        "data_range": "Data range"
       },
       "conjunction_events_by_type": {
         "type": "Type",
