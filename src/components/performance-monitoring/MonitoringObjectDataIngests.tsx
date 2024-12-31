@@ -7,9 +7,9 @@ import Details from '@/ui/details/details';
 
 import ObjectDataIngests from '../charts/object-data-ingests/ObjectDataIngests';
 import { DownloadData } from '../DownloadData';
-import { PerformanceMonitoringDataPerformanceDataTable } from './data-table/PerformanceMonitoringDataPerformanceDataTable';
+import { MonitoringDataPerformanceDataTable } from './data-table/MonitoringDataPerformanceDataTable';
 
-const PerformanceMonitoringObjectDataIngests = async () => {
+const MonitoringObjectDataIngests = async () => {
   const t = await getTranslations('Performance_monitoring.performance_accordion.object_data_ingests');
 
   const params: TypeGetExternalDataPerformanceParams = {
@@ -31,7 +31,7 @@ const PerformanceMonitoringObjectDataIngests = async () => {
   return (
     <>
       <ObjectDataIngests initialData={chartData} params={aggregatedParams} />
-      <PerformanceMonitoringDataPerformanceDataTable data={data} params={params} />
+      <MonitoringDataPerformanceDataTable data={data} params={params} />
       <DownloadData type={t('object_data_ingests')} params={params} downloadAction={getExternalDataPerformance} />
       <Details summary={t('details.title')}>
         {t.rich('details.content')}
@@ -40,4 +40,4 @@ const PerformanceMonitoringObjectDataIngests = async () => {
   );
 };
 
-export { PerformanceMonitoringObjectDataIngests };
+export { MonitoringObjectDataIngests };

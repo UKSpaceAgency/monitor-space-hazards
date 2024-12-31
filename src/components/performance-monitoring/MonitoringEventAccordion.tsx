@@ -2,12 +2,12 @@ import { getTranslations } from 'next-intl/server';
 
 import Accordion from '@/ui/accordion/accordion';
 
-import { PerformanceMonitoringConjunctionEventsByOrganisation } from './PerformanceMonitoringConjunctionEventsByOrganisation';
-import { PerformanceMonitoringConjunctionEventsBySatellite } from './PerformanceMonitoringConjunctionEventsBySatellite';
-import { PerformanceMonitoringConjunctionEventsByType } from './PerformanceMonitoringConjunctionEventsByType';
-import { PerformanceMonitoringObjectsCatalogued } from './PerformanceMonitoringObjectsCatalogued';
+import { MonitoringEventsByOrganisation } from './MonitoringEventsByOrganisation';
+import { MonitoringEventsBySatellite } from './MonitoringEventsBySatellite';
+import { MonitoringEventsByType } from './MonitoringEventsByType';
+import { MonitoringObjectsCatalogued } from './MonitoringObjectsCatalogued';
 
-const PerformanceMonitoringConjunctionEventAccordion = async () => {
+const MonitoringEventAccordion = async () => {
   const t = await getTranslations('Performance_monitoring.conjunction_accordion');
 
   return (
@@ -19,22 +19,22 @@ const PerformanceMonitoringConjunctionEventAccordion = async () => {
           {
             id: 'conjunctionEventsByType',
             heading: t('conjunction_event_by_type.title'),
-            content: <PerformanceMonitoringConjunctionEventsByType />,
+            content: <MonitoringEventsByType />,
           },
           {
             id: 'objectsCatalogued',
             heading: t('objects_catalogued.title'),
-            content: <PerformanceMonitoringObjectsCatalogued />,
+            content: <MonitoringObjectsCatalogued />,
           },
           {
             id: 'conjunctionEventsByOrganisation',
             heading: t('conjunction_events_by_organisation.title'),
-            content: <PerformanceMonitoringConjunctionEventsByOrganisation />,
+            content: <MonitoringEventsByOrganisation />,
           },
           {
             id: 'conjunctionEventsBySatellite',
             heading: t('conjunction_events_by_satellite.title'),
-            content: <PerformanceMonitoringConjunctionEventsBySatellite />,
+            content: <MonitoringEventsBySatellite />,
           },
         ]}
       />
@@ -42,4 +42,4 @@ const PerformanceMonitoringConjunctionEventAccordion = async () => {
   );
 };
 
-export { PerformanceMonitoringConjunctionEventAccordion };
+export { MonitoringEventAccordion };

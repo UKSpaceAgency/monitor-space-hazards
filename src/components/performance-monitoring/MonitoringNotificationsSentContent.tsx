@@ -10,14 +10,14 @@ import Spinner from '@/ui/spinner/spinner';
 
 import NotificationsSentChart from '../charts/notifications-sent/NotificationsSent';
 import { DownloadData } from '../DownloadData';
-import { PerformanceMonitoringNotificationsSentDataTable } from './data-table/PerformanceMonitoringNotificationsSentDataTable';
+import { MonitoringNotificationsSentDataTable } from './data-table/MonitoringNotificationsSentDataTable';
 
-export type PerformanceMonitoringNotificationsSentContentProps = {
+export type MonitoringNotificationsSentContentProps = {
   data: NotificationsSentStatsType[];
   params: TypeGetStatsNotificationsSentParams;
 };
 
-const PerformanceMonitoringNotificationsSentContent = ({ data, params }: PerformanceMonitoringNotificationsSentContentProps) => {
+const MonitoringNotificationsSentContent = ({ data, params }: MonitoringNotificationsSentContentProps) => {
   const t = useTranslations('Tables.Performance_monitoring.notifications_sent');
 
   const [startDate, setStartDate] = useState<string>(params.start_date ?? '');
@@ -50,10 +50,10 @@ const PerformanceMonitoringNotificationsSentContent = ({ data, params }: Perform
   return (
     <div>
       <NotificationsSentChart data={fetchedData} setStartDate={setStartDate} startDate={startDate} />
-      <PerformanceMonitoringNotificationsSentDataTable data={fetchedData} params={fetchParams} />
+      <MonitoringNotificationsSentDataTable data={fetchedData} params={fetchParams} />
       <DownloadData type={t('this_table')} params={fetchParams} downloadAction={getStatsNotificationsSent} />
     </div>
   );
 };
 
-export { PerformanceMonitoringNotificationsSentContent };
+export { MonitoringNotificationsSentContent };

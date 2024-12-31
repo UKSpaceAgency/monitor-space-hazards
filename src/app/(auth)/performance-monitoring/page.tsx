@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 
 import { ContentNavigation } from '@/components/ContentNavigation';
-import { PerformanceMonitoringAccordion } from '@/components/performance-monitoring/PerformanceMonitoringAccordion';
-import { PerformanceMonitoringConjunctionEventAccordion } from '@/components/performance-monitoring/PerformanceMonitoringCojunctionEventAccordion';
+import { MonitoringAccordion } from '@/components/performance-monitoring/MonitoringAccordion';
+import { MonitoringEventAccordion } from '@/components/performance-monitoring/MonitoringEventAccordion';
 
 export const metadata: Metadata = {
   title: 'Performance monitoring and statistics',
@@ -25,8 +25,8 @@ export default async function PerformanceMonitoring() {
         className="mb-8"
       />
 
-      <PerformanceMonitoringAccordion />
-      <PerformanceMonitoringConjunctionEventAccordion />
+      <MonitoringAccordion />
+      <MonitoringEventAccordion />
     </div>
   );
 }

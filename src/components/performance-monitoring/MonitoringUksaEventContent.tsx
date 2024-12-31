@@ -9,14 +9,14 @@ import { getStatsAnalysisAndManoeuvreSupport } from '@/actions/getStatsAnalysisA
 import Spinner from '@/ui/spinner/spinner';
 
 import { AnalysisAndManoeuvreSupportChart } from '../charts/analysis-and-manoeuvre-support/AnalysisAndManoeuvreSupportChart';
-import { PerformanceMonitoringAnalysisAndManoeuvreSupportDataTable } from './data-table/PerformanceMonitoringAnalysisAndManoeuvreSupportDataTable';
+import { MonitoringAnalysisAndManoeuvreSupportDataTable } from './data-table/MonitoringAnalysisAndManoeuvreSupportDataTable';
 
-type PerformanceMonitoringUksaConjunctionEventContentProps = {
+type MonitoringUksaEventContentProps = {
   params: TypeGetExternalDataPerformanceAggregatedParams;
   data: AnalysisAndManoeuvreSupportStatsType[];
 };
 
-const PerformanceMonitoringUksaConjunctionEventContent = ({ data, params }: PerformanceMonitoringUksaConjunctionEventContentProps) => {
+const MonitoringUksaEventContent = ({ data, params }: MonitoringUksaEventContentProps) => {
   const [showDays, setShowDays] = useState<number>(params.max_age_days ?? 7);
 
   const fetchParams: TypeGetExternalDataPerformanceAggregatedParams = {
@@ -47,9 +47,9 @@ const PerformanceMonitoringUksaConjunctionEventContent = ({ data, params }: Perf
   return (
     <div>
       <AnalysisAndManoeuvreSupportChart data={fetchedData} setShowDays={setShowDays} showDays={showDays} />
-      <PerformanceMonitoringAnalysisAndManoeuvreSupportDataTable data={fetchedData} params={params} />
+      <MonitoringAnalysisAndManoeuvreSupportDataTable data={fetchedData} params={params} />
     </div>
   );
 };
 
-export { PerformanceMonitoringUksaConjunctionEventContent };
+export { MonitoringUksaEventContent };

@@ -9,15 +9,15 @@ import { DataTable } from '@/components/DataTable';
 import { DownloadData } from '@/components/DownloadData';
 import Select from '@/ui/select/select';
 
-import { conjunctionsBySatelliteColumns } from './PerformanceMonitoringConjunctionEventsBySatelliteDataTableColumns';
+import { eventsBySatelliteColumns } from './MonitoringEventsBySatelliteDataTableColumns';
 
-type PerformanceMonitoringConjunctionsBySatelliteDataTableProps = {
+type MonitoringEventsBySatelliteDataTableProps = {
   params: TypeGetStatsEventsBySatelliteParams;
   data: EventsBySatelliteType[];
   isAnalysist: boolean;
 };
 
-const PerformanceMonitoringConjunctionsBySatelliteDataTable = ({ data, params, isAnalysist }: PerformanceMonitoringConjunctionsBySatelliteDataTableProps) => {
+const MonitoringEventsBySatelliteDataTable = ({ data, params, isAnalysist }: MonitoringEventsBySatelliteDataTableProps) => {
   const t = useTranslations('Tables.Performance_monitoring.conjunction_events_by_satellite');
 
   const [organisation, setOrganisation] = useState<string>('');
@@ -58,7 +58,7 @@ const PerformanceMonitoringConjunctionsBySatelliteDataTable = ({ data, params, i
       )}
       <div className="overflow-auto max-h-[400px]">
         <DataTable
-          columns={conjunctionsBySatelliteColumns}
+          columns={eventsBySatelliteColumns}
           data={tableData}
         />
       </div>
@@ -67,4 +67,4 @@ const PerformanceMonitoringConjunctionsBySatelliteDataTable = ({ data, params, i
   );
 };
 
-export { PerformanceMonitoringConjunctionsBySatelliteDataTable };
+export { MonitoringEventsBySatelliteDataTable };

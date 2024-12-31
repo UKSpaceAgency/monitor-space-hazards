@@ -7,9 +7,9 @@ import Details from '@/ui/details/details';
 
 import CdmIngestsChart from '../charts/cdm-ingests/CdmIngests';
 import { DownloadData } from '../DownloadData';
-import { PerformanceMonitoringDataPerformanceDataTable } from './data-table/PerformanceMonitoringDataPerformanceDataTable';
+import { MonitoringDataPerformanceDataTable } from './data-table/MonitoringDataPerformanceDataTable';
 
-const PerformanceMonitoringCdmIngests = async () => {
+const MonitoringCdmIngests = async () => {
   const t = await getTranslations('Performance_monitoring.performance_accordion.cdm_ingests');
 
   const params: TypeGetExternalDataPerformanceParams = {
@@ -31,7 +31,7 @@ const PerformanceMonitoringCdmIngests = async () => {
   return (
     <>
       <CdmIngestsChart initialData={chartData} params={aggregatedParams} />
-      <PerformanceMonitoringDataPerformanceDataTable data={data} params={params} />
+      <MonitoringDataPerformanceDataTable data={data} params={params} />
       <DownloadData type={t('title')} params={params} downloadAction={getExternalDataPerformance} />
       <Details summary={t('details.title')}>
         {t.rich('details.content')}
@@ -40,4 +40,4 @@ const PerformanceMonitoringCdmIngests = async () => {
   );
 };
 
-export { PerformanceMonitoringCdmIngests };
+export { MonitoringCdmIngests };

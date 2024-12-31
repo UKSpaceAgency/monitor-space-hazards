@@ -2,9 +2,9 @@ import type { TypeGetStatsNotificationsSentParams } from '@/__generated__/data-c
 import { getStatsNotificationsSent } from '@/actions/getStatsNotificationsSent';
 import { dayjs, FORMAT_API_DATE_TIME } from '@/libs/Dayjs';
 
-import { PerformanceMonitoringNotificationsSentContent } from './PerformanceMonitoringNotificationsSentContent';
+import { MonitoringNotificationsSentContent } from './MonitoringNotificationsSentContent';
 
-const PerformanceMonitoringNotificationsSent = async () => {
+const MonitoringNotificationsSent = async () => {
   const params: TypeGetStatsNotificationsSentParams = {
     limit: 9999,
     sort_order: 'desc',
@@ -13,7 +13,7 @@ const PerformanceMonitoringNotificationsSent = async () => {
 
   const data = await getStatsNotificationsSent(params);
 
-  return <PerformanceMonitoringNotificationsSentContent data={data} params={params} />;
+  return <MonitoringNotificationsSentContent data={data} params={params} />;
 };
 
-export { PerformanceMonitoringNotificationsSent };
+export { MonitoringNotificationsSent };

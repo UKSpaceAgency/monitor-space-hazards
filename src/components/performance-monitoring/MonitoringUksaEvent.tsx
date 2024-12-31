@@ -4,9 +4,9 @@ import type { TypeGetExternalDataPerformanceAggregatedParams } from '@/__generat
 import { getStatsAnalysisAndManoeuvreSupport } from '@/actions/getStatsAnalysisAndManoeuvreSupport';
 import Details from '@/ui/details/details';
 
-import { PerformanceMonitoringUksaConjunctionEventContent } from './PerformanceMonitoringUksaConjunctionEventContent';
+import { MonitoringUksaEventContent } from './MonitoringUksaEventContent';
 
-const PerformanceMonitoringUksaConjunctionEvent = async () => {
+const MonitoringUksaEvent = async () => {
   const t = await getTranslations('Performance_monitoring.performance_accordion.uksa');
 
   const params: TypeGetExternalDataPerformanceAggregatedParams = {
@@ -18,7 +18,7 @@ const PerformanceMonitoringUksaConjunctionEvent = async () => {
 
   return (
     <>
-      <PerformanceMonitoringUksaConjunctionEventContent data={data} params={params} />
+      <MonitoringUksaEventContent data={data} params={params} />
       <Details summary={t('details.title')}>
         {t('details.content')}
       </Details>
@@ -26,4 +26,4 @@ const PerformanceMonitoringUksaConjunctionEvent = async () => {
   );
 };
 
-export { PerformanceMonitoringUksaConjunctionEvent };
+export { MonitoringUksaEvent };

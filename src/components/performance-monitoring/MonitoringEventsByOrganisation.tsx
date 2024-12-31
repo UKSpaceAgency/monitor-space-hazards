@@ -7,9 +7,9 @@ import { dayjs, FORMAT_API_DATE_TIME } from '@/libs/Dayjs';
 import Details from '@/ui/details/details';
 import { isAnalysist } from '@/utils/Roles';
 
-import { PerformanceMonitoringConjunctionEventsByOrganisationContent } from './PerformanceMonitoringConjunctionEventsByOrganisationContent';
+import { MonitoringEventsByOrganisationContent } from './MonitoringEventsByOrganisationContent';
 
-const PerformanceMonitoringConjunctionEventsByOrganisation = async () => {
+const MonitoringEventsByOrganisation = async () => {
   const t = await getTranslations('Performance_monitoring.conjunction_accordion.conjunction_events_by_organisation');
 
   const today = dayjs().hour(12).minute(0).second(0);
@@ -24,7 +24,7 @@ const PerformanceMonitoringConjunctionEventsByOrganisation = async () => {
 
   return (
     <div>
-      <PerformanceMonitoringConjunctionEventsByOrganisationContent initialData={data} params={params} isAnalysist={isAnalysist(user.role)} />
+      <MonitoringEventsByOrganisationContent initialData={data} params={params} isAnalysist={isAnalysist(user.role)} />
       <Details summary={t('details.title')}>
         {t('details.content')}
       </Details>
@@ -32,4 +32,4 @@ const PerformanceMonitoringConjunctionEventsByOrganisation = async () => {
   );
 };
 
-export { PerformanceMonitoringConjunctionEventsByOrganisation };
+export { MonitoringEventsByOrganisation };

@@ -26,7 +26,7 @@ export async function getStatsEventsBySatellite(query?: TypeGetStatsEventsBySate
     const key = noradId;
 
     if (!acc[key]) {
-      acc[key] = { commonName, noradId, organizationName, low: {}, medium: {}, high: {} };
+      acc[key] = { commonName, noradId, organizationName, low: 0, medium: 0, high: 0 };
     }
 
     if (collisionProbabilityRange === '< 1e-5') {

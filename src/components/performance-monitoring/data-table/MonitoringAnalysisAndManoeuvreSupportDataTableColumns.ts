@@ -2,7 +2,7 @@ import type { AnalysisAndManoeuvreSupportStatsType } from '@/actions/getStatsAna
 import { dayjs, FORMAT_API_DATE } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 
-export const analysesAndManoeuvreSupport: TranslatedColumnDef<AnalysisAndManoeuvreSupportStatsType>[] = [
+export const analysesAndManoeuvreSupportColumns: TranslatedColumnDef<AnalysisAndManoeuvreSupportStatsType>[] = [
   {
     accessorKey: 'sourceProvider',
     id: 'sourceProvider',

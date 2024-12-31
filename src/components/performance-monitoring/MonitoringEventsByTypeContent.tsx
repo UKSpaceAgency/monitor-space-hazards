@@ -14,16 +14,16 @@ import Spinner from '@/ui/spinner/spinner';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
 
 import EventsTypeChart from '../charts/events-type-chart/EventsTypeChart';
-import { PerformanceMonitoringConjunctionsByEventTypeDataTable } from './data-table/PerformanceMonitoringConjunctionsByEventTypeDataTable';
+import { MonitoringEventsByTypeDataTable } from './data-table/MonitoringEventsByTypeDataTable';
 
-type PerformanceMonitoringConjunctionEventsByTypeContentProps = {
+type MonitoringEventsByTypeContentProps = {
   initialData: TypeStatisticsEventsType[];
   params: TypeGetStatsEventsTypeParams;
 };
 
 type DataRangeType = 'Upcoming events' | 'Last 7d' | 'Last 1 month' | 'Last 6 months';
 
-const PerformanceMonitoringConjunctionEventsByTypeContent = ({ initialData, params }: PerformanceMonitoringConjunctionEventsByTypeContentProps) => {
+const MonitoringEventsByTypeContent = ({ initialData, params }: MonitoringEventsByTypeContentProps) => {
   const t = useTranslations('Charts.Events_type');
 
   const [dataRange, setDataRange] = useState<DataRangeType>('Last 7d');
@@ -126,7 +126,7 @@ const PerformanceMonitoringConjunctionEventsByTypeContent = ({ initialData, para
     <div>
       <p className="govuk-body">{t('description')}</p>
       <EventsTypeChart data={data} actionButtons={actionButtons} />
-      <PerformanceMonitoringConjunctionsByEventTypeDataTable data={data} params={params} />
+      <MonitoringEventsByTypeDataTable data={data} params={params} />
       <Details summary={t('details.title')}>
         {t('details.content')}
       </Details>
@@ -134,4 +134,4 @@ const PerformanceMonitoringConjunctionEventsByTypeContent = ({ initialData, para
   );
 };
 
-export { PerformanceMonitoringConjunctionEventsByTypeContent };
+export { MonitoringEventsByTypeContent };

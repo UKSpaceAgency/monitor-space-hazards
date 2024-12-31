@@ -2,12 +2,12 @@ import { getTranslations } from 'next-intl/server';
 
 import Accordion from '@/ui/accordion/accordion';
 
-import { PerformanceMonitoringCdmIngests } from './PerformanceMonitoringCdmIngests';
-import { PerformanceMonitoringNotificationsSent } from './PerformanceMonitoringNotificationsSent';
-import { PerformanceMonitoringObjectDataIngests } from './PerformanceMonitoringObjectDataIngests';
-import { PerformanceMonitoringUksaConjunctionEvent } from './PerformanceMonitoringUksaConjunctionEvent';
+import { MonitoringCdmIngests } from './MonitoringCdmIngests';
+import { MonitoringNotificationsSent } from './MonitoringNotificationsSent';
+import { MonitoringObjectDataIngests } from './MonitoringObjectDataIngests';
+import { MonitoringUksaEvent } from './MonitoringUksaEvent';
 
-const PerformanceMonitoringAccordion = async () => {
+const MonitoringAccordion = async () => {
   const t = await getTranslations('Performance_monitoring.performance_accordion');
 
   return (
@@ -19,22 +19,22 @@ const PerformanceMonitoringAccordion = async () => {
           {
             id: 'cdmIngests',
             heading: t('cdm_ingests.title'),
-            content: <PerformanceMonitoringCdmIngests />,
+            content: <MonitoringCdmIngests />,
           },
           {
             id: 'objectDataIngests',
             heading: t('object_data_ingests.title'),
-            content: <PerformanceMonitoringObjectDataIngests />,
+            content: <MonitoringObjectDataIngests />,
           },
           {
             id: 'notificationsSent',
             heading: t('notifications_sent.title'),
-            content: <PerformanceMonitoringNotificationsSent />,
+            content: <MonitoringNotificationsSent />,
           },
           {
             id: 'uksa',
             heading: t('uksa.title'),
-            content: <PerformanceMonitoringUksaConjunctionEvent />,
+            content: <MonitoringUksaEvent />,
           },
         ]}
       />
@@ -42,4 +42,4 @@ const PerformanceMonitoringAccordion = async () => {
   );
 };
 
-export { PerformanceMonitoringAccordion };
+export { MonitoringAccordion };

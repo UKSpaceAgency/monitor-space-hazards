@@ -5,14 +5,14 @@ import type { TypeExternalDataPerformanceOut, TypeGetExternalDataPerformancePara
 import { getExternalDataPerformance } from '@/actions/getExternalDataPerformance';
 import InfiniteTable from '@/components/InfiniteTable';
 
-import { dataPerformanceColumns } from './PerformanceMonitoringDataPerformanceDataTableColumns';
+import { dataPerformanceColumns } from './MonitoringDataPerformanceDataTableColumns';
 
-type PerformanceMonitoringDataPerformanceDataTableProps = {
+type MonitoringDataPerformanceDataTableProps = {
   params: TypeGetExternalDataPerformanceParams;
   data: TypeExternalDataPerformanceOut[];
 };
 
-const PerformanceMonitoringDataPerformanceDataTable = ({ params, data }: PerformanceMonitoringDataPerformanceDataTableProps) => {
+const MonitoringDataPerformanceDataTable = ({ params, data }: MonitoringDataPerformanceDataTableProps) => {
   const t = useTranslations('Tables.Performance_monitoring.data_performance');
 
   return (
@@ -27,4 +27,4 @@ const PerformanceMonitoringDataPerformanceDataTable = ({ params, data }: Perform
   );
 };
 
-export { PerformanceMonitoringDataPerformanceDataTable };
+export { MonitoringDataPerformanceDataTable };

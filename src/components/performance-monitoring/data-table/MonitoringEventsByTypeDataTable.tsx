@@ -5,20 +5,20 @@ import { getStatsEventsType } from '@/actions/getStatsEventsType';
 import { DataTable } from '@/components/DataTable';
 import { DownloadData } from '@/components/DownloadData';
 
-import { conjunctionsByEventTypeColumns } from './PerformanceMonitoringConjunctionsByEventTypeDataTableColumns';
+import { eventsByTypeColumns } from './MonitoringEventsByTypeDataTableColumns';
 
-type PerformanceMonitoringConjunctionsByEventTypeDataTableProps = {
+type MonitoringEventsByTypeDataTableProps = {
   data: TypeStatisticsEventsType[];
   params: TypeGetStatsEventsTypeParams;
 };
 
-const PerformanceMonitoringConjunctionsByEventTypeDataTable = ({ data, params }: PerformanceMonitoringConjunctionsByEventTypeDataTableProps) => {
+const MonitoringEventsByTypeDataTable = ({ data, params }: MonitoringEventsByTypeDataTableProps) => {
   const t = useTranslations('Tables.Performance_monitoring.conjunction_events_by_type');
 
   return (
     <>
       <DataTable
-        columns={conjunctionsByEventTypeColumns}
+        columns={eventsByTypeColumns}
         data={data}
       />
       <DownloadData type={t('this_table')} params={params} downloadAction={getStatsEventsType} />
@@ -26,4 +26,4 @@ const PerformanceMonitoringConjunctionsByEventTypeDataTable = ({ data, params }:
   );
 };
 
-export { PerformanceMonitoringConjunctionsByEventTypeDataTable };
+export { MonitoringEventsByTypeDataTable };

@@ -14,7 +14,7 @@ import Spinner from '@/ui/spinner/spinner';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
 
 import EventsByOrganizationChart from '../charts/events-by-organisation/EventsByOrganisation';
-import { PerformanceMonitoringConjunctionsByOrganisationDataTable } from './data-table/PerformanceMonitoringConjunctionEventsByOrganisationDataTable';
+import { MonitoringEventsByOrganisationDataTable } from './data-table/MonitoringEventsByOrganisationDataTable';
 
 type PerformanceMonitoringConjunctionEventsByOrganisationContentProps = {
   initialData: EventsByOrganizationType[];
@@ -24,7 +24,7 @@ type PerformanceMonitoringConjunctionEventsByOrganisationContentProps = {
 
 type DataRangeType = 'Upcoming events' | 'Last 7d' | 'Last 1 month' | 'Last 6 months';
 
-const PerformanceMonitoringConjunctionEventsByOrganisationContent = ({ initialData, params, isAnalysist }: PerformanceMonitoringConjunctionEventsByOrganisationContentProps) => {
+const MonitoringEventsByOrganisationContent = ({ initialData, params, isAnalysist }: PerformanceMonitoringConjunctionEventsByOrganisationContentProps) => {
   const t = useTranslations('Charts.Events_by_organisation');
 
   const today = dayjs().hour(12).minute(0).second(0);
@@ -72,8 +72,8 @@ const PerformanceMonitoringConjunctionEventsByOrganisationContent = ({ initialDa
     return [
       ...(organisation
         ? data.filter(
-          obj => obj.name === organisation,
-        )
+            obj => obj.name === organisation,
+          )
         : data),
     ];
   }, [organisation, data]);
@@ -172,9 +172,9 @@ const PerformanceMonitoringConjunctionEventsByOrganisationContent = ({ initialDa
         />
       )}
       <EventsByOrganizationChart data={filteredData} actionButtons={actionButtons} />
-      <PerformanceMonitoringConjunctionsByOrganisationDataTable data={filteredData} params={fetchParams} />
+      <MonitoringEventsByOrganisationDataTable data={filteredData} params={fetchParams} />
     </div>
   );
 };
 
-export { PerformanceMonitoringConjunctionEventsByOrganisationContent };
+export { MonitoringEventsByOrganisationContent };

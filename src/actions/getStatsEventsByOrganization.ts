@@ -26,7 +26,7 @@ export async function getStatsEventsByOrganization(query?: TypeGetStatsEventsByO
     const key = id as string;
 
     if (!acc[key]) {
-      acc[key] = { name, id, totalEvents: 0, low: {}, medium: {}, high: {} };
+      acc[key] = { name, id, totalEvents: 0, low: 0, medium: 0, high: 0 };
     }
 
     if (collisionProbabilityRange === '< 1e-5') {

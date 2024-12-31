@@ -7,21 +7,21 @@ import { getStatsAnalysisAndManoeuvreSupport } from '@/actions/getStatsAnalysisA
 import { DataTable } from '@/components/DataTable';
 import { DownloadData } from '@/components/DownloadData';
 
-import { analysesAndManoeuvreSupport } from './PerformanceMonitoringAnalysisAndManoeuvreSupportDataTableColumns';
+import { analysesAndManoeuvreSupportColumns } from './MonitoringAnalysisAndManoeuvreSupportDataTableColumns';
 
-type PerformanceMonitoringConjunctionsByOrganisationDataTableProps = {
+type MonitoringAnalysisAndManoeuvreSupportDataTableProps = {
   params: TypeGetExternalDataPerformanceAggregatedParams;
   data: AnalysisAndManoeuvreSupportStatsType[];
 };
 
-const PerformanceMonitoringAnalysisAndManoeuvreSupportDataTable = ({ data, params }: PerformanceMonitoringConjunctionsByOrganisationDataTableProps) => {
+const MonitoringAnalysisAndManoeuvreSupportDataTable = ({ data, params }: MonitoringAnalysisAndManoeuvreSupportDataTableProps) => {
   const t = useTranslations('Tables.Performance_monitoring.analyses_and_manoeuvre_support');
 
   return (
     <>
       <div className="overflow-auto max-h-[400px]">
         <DataTable
-          columns={analysesAndManoeuvreSupport}
+          columns={analysesAndManoeuvreSupportColumns}
           data={data}
         />
       </div>
@@ -30,4 +30,4 @@ const PerformanceMonitoringAnalysisAndManoeuvreSupportDataTable = ({ data, param
   );
 };
 
-export { PerformanceMonitoringAnalysisAndManoeuvreSupportDataTable };
+export { MonitoringAnalysisAndManoeuvreSupportDataTable };

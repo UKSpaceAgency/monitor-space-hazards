@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { getStatsObjectsTracked } from '@/actions/getStatsObjectsTracked';
 import Details from '@/ui/details/details';
 
-const PerformanceMonitoringObjectsCatalogued = async () => {
+const MonitoringObjectsCatalogued = async () => {
   const t = await getTranslations('Performance_monitoring.conjunction_accordion.objects_catalogued');
 
   const data = await getStatsObjectsTracked();
@@ -28,4 +28,4 @@ const PerformanceMonitoringObjectsCatalogued = async () => {
   );
 };
 
-export { PerformanceMonitoringObjectsCatalogued };
+export { MonitoringObjectsCatalogued };

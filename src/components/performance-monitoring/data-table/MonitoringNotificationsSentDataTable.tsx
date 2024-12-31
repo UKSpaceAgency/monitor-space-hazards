@@ -6,14 +6,14 @@ import type { NotificationsSentStatsType } from '@/actions/getStatsNotifications
 import { getStatsNotificationsSent } from '@/actions/getStatsNotificationsSent';
 import InfiniteTable from '@/components/InfiniteTable';
 
-import { notificationsSentColumns } from './PerformanceMonitoringNotificationsSentDataTableColumns';
+import { notificationsSentColumns } from './MonitoringNotificationsSentDataTableColumns';
 
-type PerformanceMonitoringNotificationsSentDataTableProps = {
+type MonitoringNotificationsSentDataTableProps = {
   params: TypeGetStatsNotificationsSentParams;
   data: NotificationsSentStatsType[];
 };
 
-const PerformanceMonitoringNotificationsSentDataTable = ({ params, data }: PerformanceMonitoringNotificationsSentDataTableProps) => {
+const MonitoringNotificationsSentDataTable = ({ params, data }: MonitoringNotificationsSentDataTableProps) => {
   const t = useTranslations('Tables.Performance_monitoring.notifications_sent');
 
   return (
@@ -28,4 +28,4 @@ const PerformanceMonitoringNotificationsSentDataTable = ({ params, data }: Perfo
   );
 };
 
-export { PerformanceMonitoringNotificationsSentDataTable };
+export { MonitoringNotificationsSentDataTable };

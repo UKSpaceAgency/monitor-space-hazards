@@ -4,9 +4,9 @@ import type { TypeGetStatsEventsTypeParams } from '@/__generated__/data-contract
 import { getStatsEventsType } from '@/actions/getStatsEventsType';
 import { FORMAT_API_DATE_TIME } from '@/libs/Dayjs';
 
-import { PerformanceMonitoringConjunctionEventsByTypeContent } from './PerformanceMonitoringConjunctionEventsByTypeContent';
+import { MonitoringEventsByTypeContent } from './MonitoringEventsByTypeContent';
 
-const PerformanceMonitoringConjunctionEventsByType = async () => {
+const MonitoringEventsByType = async () => {
   const today = dayjs().hour(12).minute(0).second(0);
 
   const params: TypeGetStatsEventsTypeParams = {
@@ -17,8 +17,8 @@ const PerformanceMonitoringConjunctionEventsByType = async () => {
   const data = await getStatsEventsType(params);
 
   return (
-    <PerformanceMonitoringConjunctionEventsByTypeContent initialData={data} params={params} />
+    <MonitoringEventsByTypeContent initialData={data} params={params} />
   );
 };
 
-export { PerformanceMonitoringConjunctionEventsByType };
+export { MonitoringEventsByType };
