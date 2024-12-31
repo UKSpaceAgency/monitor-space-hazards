@@ -20,7 +20,7 @@ type CdmIngestsChartProps = {
 export function CdmIngestsChart({ initialData, params }: CdmIngestsChartProps) {
   const t = useTranslations('Charts.Cdm_ingests');
 
-  const [showDays, setShowDays] = useState<number>(8);
+  const [showDays, setShowDays] = useState<number>(params.max_age_days ?? 7);
 
   const { data, isFetching, refetch } = useQuery({
     queryKey: ['external-data-performance-aggregated'],
@@ -60,7 +60,7 @@ export function CdmIngestsChart({ initialData, params }: CdmIngestsChartProps) {
         {
           title: '7d',
           ariaLabel: t('7_days'),
-          value: 8,
+          value: 7,
         },
         {
           title: '30d',

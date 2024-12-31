@@ -1,14 +1,13 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import dayjs from 'dayjs';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
 import type { TypeGetStatsEventsTypeParams, TypeStatisticsEventsType } from '@/__generated__/data-contracts';
 import { getStatsEventsType } from '@/actions/getStatsEventsType';
 import { assertUnreachable } from '@/libs/assertUnreachable';
-import { FORMAT_API_DATE_TIME } from '@/libs/Dayjs';
+import { FORMAT_API_DATE_TIME, TODAY_DATE_TIME } from '@/libs/Dayjs';
 import Details from '@/ui/details/details';
 import Spinner from '@/ui/spinner/spinner';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
@@ -31,8 +30,6 @@ const MonitoringEventsByTypeContent = ({ initialData, params }: MonitoringEvents
     startDate: params.start_date ?? '',
     endDate: params.end_date ?? '',
   });
-
-  const today = dayjs().hour(12).minute(0).second(0);
 
   const { data, isFetching, refetch } = useQuery({
     queryKey: ['stats-event-type'],
@@ -57,25 +54,25 @@ const MonitoringEventsByTypeContent = ({ initialData, params }: MonitoringEvents
     switch (dataRange) {
       case 'Last 7d':
         setDates({
-          startDate: today.subtract(7, 'day').format(FORMAT_API_DATE_TIME),
-          endDate: today.format(FORMAT_API_DATE_TIME),
+          startDate: TODAY_DATE_TIME.subtract(7, 'day').format(FORMAT_API_DATE_TIME),
+          endDate: TODAY_DATE_TIME.format(FORMAT_API_DATE_TIME),
         });
         break;
       case 'Last 1 month':
         setDates({
-          startDate: today.subtract(1, 'month').format(FORMAT_API_DATE_TIME),
-          endDate: today.format(FORMAT_API_DATE_TIME),
+          startDate: TODAY_DATE_TIME.subtract(1, 'month').format(FORMAT_API_DATE_TIME),
+          endDate: TODAY_DATE_TIME.format(FORMAT_API_DATE_TIME),
         });
         break;
       case 'Last 6 months':
         setDates({
-          startDate: today.subtract(6, 'month').format(FORMAT_API_DATE_TIME),
-          endDate: today.format(FORMAT_API_DATE_TIME),
+          startDate: TODAY_DATE_TIME.subtract(6, 'month').format(FORMAT_API_DATE_TIME),
+          endDate: TODAY_DATE_TIME.format(FORMAT_API_DATE_TIME),
         });
         break;
       case 'Upcoming events':
         setDates({
-          startDate: today.format(FORMAT_API_DATE_TIME),
+          startDate: TODAY_DATE_TIME.format(FORMAT_API_DATE_TIME),
         });
         break;
       default:

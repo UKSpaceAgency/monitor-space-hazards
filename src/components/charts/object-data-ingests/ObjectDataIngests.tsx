@@ -20,7 +20,7 @@ type ObjectDataIngestsProps = {
 export function ObjectDataIngests({ initialData, params }: ObjectDataIngestsProps) {
   const t = useTranslations('Charts.Object_data_ingests');
 
-  const [showDays, setShowDays] = useState<number>(8);
+  const [showDays, setShowDays] = useState<number>(params.max_age_days ?? 7);
 
   const { data, isFetching, refetch } = useQuery({
     queryKey: ['external-data-performance-aggregated'],
@@ -71,7 +71,7 @@ export function ObjectDataIngests({ initialData, params }: ObjectDataIngestsProp
         {
           title: t('7_days'),
           ariaLabel: '7 days',
-          value: 8,
+          value: 7,
         },
         {
           title: t('30_days'),

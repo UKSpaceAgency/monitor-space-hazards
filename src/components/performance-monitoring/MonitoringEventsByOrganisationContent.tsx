@@ -1,6 +1,5 @@
 'use client';
 import { useQuery } from '@tanstack/react-query';
-import dayjs from 'dayjs';
 import { uniq } from 'lodash';
 import { useTranslations } from 'next-intl';
 import { useEffect, useMemo, useState } from 'react';
@@ -8,7 +7,7 @@ import { useEffect, useMemo, useState } from 'react';
 import type { TypeGetStatsEventsByOrganizationParams } from '@/__generated__/data-contracts';
 import { type EventsByOrganizationType, getStatsEventsByOrganization } from '@/actions/getStatsEventsByOrganization';
 import { assertUnreachable } from '@/libs/assertUnreachable';
-import { FORMAT_API_DATE_TIME } from '@/libs/Dayjs';
+import { FORMAT_API_DATE_TIME, TODAY_DATE_TIME } from '@/libs/Dayjs';
 import Select from '@/ui/select/select';
 import Spinner from '@/ui/spinner/spinner';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
@@ -26,8 +25,6 @@ type DataRangeType = 'Upcoming events' | 'Last 7d' | 'Last 1 month' | 'Last 6 mo
 
 const MonitoringEventsByOrganisationContent = ({ initialData, params, isAnalysist }: PerformanceMonitoringConjunctionEventsByOrganisationContentProps) => {
   const t = useTranslations('Charts.Events_by_organisation');
-
-  const today = dayjs().hour(12).minute(0).second(0);
 
   const [dataRange, setDataRange] = useState<DataRangeType>('Last 7d');
   const [dates, setDates] = useState<{ startDate: string; endDate?: string }>({
@@ -89,25 +86,25 @@ const MonitoringEventsByOrganisationContent = ({ initialData, params, isAnalysis
     switch (dataRange) {
       case 'Last 7d':
         setDates({
-          startDate: today.subtract(7, 'day').format(FORMAT_API_DATE_TIME),
-          endDate: today.format(FORMAT_API_DATE_TIME),
+          startDate: TODAY_DATE_TIME.subtract(7, 'day').format(FORMAT_API_DATE_TIME),
+          endDate: TODAY_DATE_TIME.format(FORMAT_API_DATE_TIME),
         });
         break;
       case 'Last 1 month':
         setDates({
-          startDate: today.subtract(1, 'month').format(FORMAT_API_DATE_TIME),
-          endDate: today.format(FORMAT_API_DATE_TIME),
+          startDate: TODAY_DATE_TIME.subtract(1, 'month').format(FORMAT_API_DATE_TIME),
+          endDate: TODAY_DATE_TIME.format(FORMAT_API_DATE_TIME),
         });
         break;
       case 'Last 6 months':
         setDates({
-          startDate: today.subtract(6, 'month').format(FORMAT_API_DATE_TIME),
-          endDate: today.format(FORMAT_API_DATE_TIME),
+          startDate: TODAY_DATE_TIME.subtract(6, 'month').format(FORMAT_API_DATE_TIME),
+          endDate: TODAY_DATE_TIME.format(FORMAT_API_DATE_TIME),
         });
         break;
       case 'Upcoming events':
         setDates({
-          startDate: today.format(FORMAT_API_DATE_TIME),
+          startDate: TODAY_DATE_TIME.format(FORMAT_API_DATE_TIME),
         });
         break;
       default:
