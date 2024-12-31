@@ -5,7 +5,7 @@ import type { Dispatch, SetStateAction } from 'react';
 import { useMemo } from 'react';
 
 import type { AnalysisAndManoeuvreSupportStatsType } from '@/actions/getStatsAnalysisAndManoeuvreSupport';
-import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE } from '@/libs/Dayjs';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
 
 import BaseChart from '../base/BaseChart';
@@ -78,7 +78,7 @@ const AnalysisAndManoeuvreSupportChart = ({
   );
 
   const latestIngest = useMemo(() => {
-    return dayjs(data[0]?.date).format(FORMAT_DATE_TIME);
+    return dayjs(data[0]?.date).format(FORMAT_DATE);
   }, [data]);
 
   return (

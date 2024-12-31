@@ -7,6 +7,5 @@ export async function getExternalDataPerformance(
   query?: TypeGetExternalDataPerformanceParams,
 ) {
   const { data } = await Api.getExternalDataPerformance(query);
-
   return data;
 };

@@ -7,6 +7,7 @@ import type { TypeGetExternalDataPerformanceAggregatedParams } from '@/__generat
 import type { AnalysisAndManoeuvreSupportStatsType } from '@/actions/getStatsAnalysisAndManoeuvreSupport';
 import { getStatsAnalysisAndManoeuvreSupport } from '@/actions/getStatsAnalysisAndManoeuvreSupport';
 import Spinner from '@/ui/spinner/spinner';
+import { QUERY_KEYS } from '@/utils/QueryKeys';
 
 import { AnalysisAndManoeuvreSupportChart } from '../charts/analysis-and-manoeuvre-support/AnalysisAndManoeuvreSupportChart';
 import { MonitoringAnalysisAndManoeuvreSupportDataTable } from './data-table/MonitoringAnalysisAndManoeuvreSupportDataTable';
@@ -25,7 +26,7 @@ const MonitoringUksaEventContent = ({ data, params }: MonitoringUksaEventContent
   };
 
   const { data: fetchedData, isFetching, refetch } = useQuery({
-    queryKey: ['stats-analysis-and-manoeuvre-support'],
+    queryKey: [QUERY_KEYS.StatsAnalysisAndManoeuvreSupport],
     queryFn: () => getStatsAnalysisAndManoeuvreSupport(fetchParams),
     initialData: data,
     refetchOnMount: false,

@@ -11,6 +11,7 @@ const MonitoringUksaEvent = async () => {
 
   const params: TypeGetExternalDataPerformanceAggregatedParams = {
     limit: 9999,
+    sort_order: 'desc',
     max_age_days: 7,
   };
 

@@ -11,6 +11,7 @@ import { FORMAT_API_DATE_TIME, TODAY_DATE_TIME } from '@/libs/Dayjs';
 import Details from '@/ui/details/details';
 import Spinner from '@/ui/spinner/spinner';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
+import { QUERY_KEYS } from '@/utils/QueryKeys';
 
 import EventsTypeChart from '../charts/events-type-chart/EventsTypeChart';
 import { MonitoringEventsByTypeDataTable } from './data-table/MonitoringEventsByTypeDataTable';
@@ -32,7 +33,7 @@ const MonitoringEventsByTypeContent = ({ initialData, params }: MonitoringEvents
   });
 
   const { data, isFetching, refetch } = useQuery({
-    queryKey: ['stats-event-type'],
+    queryKey: [QUERY_KEYS.StatsEventByType],
     queryFn: () => getStatsEventsType({
       ...params,
       start_date: dates.startDate,

@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import type { TypeGetStatsNotificationsSentParams } from '@/__generated__/data-contracts';
 import { getStatsNotificationsSent, type NotificationsSentStatsType } from '@/actions/getStatsNotificationsSent';
 import Spinner from '@/ui/spinner/spinner';
+import { QUERY_KEYS } from '@/utils/QueryKeys';
 
 import NotificationsSentChart from '../charts/notifications-sent/NotificationsSent';
 import { DownloadData } from '../DownloadData';
@@ -28,7 +29,7 @@ const MonitoringNotificationsSentContent = ({ data, params }: MonitoringNotifica
   };
 
   const { data: fetchedData, isFetching, refetch } = useQuery({
-    queryKey: ['stats-notifications-sent'],
+    queryKey: [QUERY_KEYS.StatsNotificationsSent],
     queryFn: () => getStatsNotificationsSent(fetchParams),
     initialData: data,
     refetchOnMount: false,

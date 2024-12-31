@@ -11,6 +11,7 @@ import { FORMAT_API_DATE_TIME, TODAY_DATE_TIME } from '@/libs/Dayjs';
 import Select from '@/ui/select/select';
 import Spinner from '@/ui/spinner/spinner';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
+import { QUERY_KEYS } from '@/utils/QueryKeys';
 
 import EventsByOrganizationChart from '../charts/events-by-organisation/EventsByOrganisation';
 import { MonitoringEventsByOrganisationDataTable } from './data-table/MonitoringEventsByOrganisationDataTable';
@@ -39,7 +40,7 @@ const MonitoringEventsByOrganisationContent = ({ initialData, params, isAnalysis
   };
 
   const { data, isFetching, refetch } = useQuery({
-    queryKey: ['stats-event-by-organisation'],
+    queryKey: [QUERY_KEYS.StatsEventByOrganisation],
     queryFn: () => getStatsEventsByOrganization(fetchParams),
     initialData,
     refetchOnMount: false,
@@ -66,13 +67,7 @@ const MonitoringEventsByOrganisationContent = ({ initialData, params, isAnalysis
   }, [data]);
 
   const filteredData = useMemo(() => {
-    return [
-      ...(organisation
-        ? data.filter(
-            obj => obj.name === organisation,
-          )
-        : data),
-    ];
+    return [...(organisation ? data.filter(obj => obj.name === organisation) : data)];
   }, [organisation, data]);
 
   const selectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {

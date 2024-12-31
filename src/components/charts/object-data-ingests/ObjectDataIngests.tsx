@@ -8,6 +8,7 @@ import type { TypeExternalDataPerformanceAggregateOut, TypeGetExternalDataPerfor
 import { getExternalDataPerformanceAggregated } from '@/actions/getExternalDataPerformanceAggregated';
 import { dayjs, FORMAT_DATE } from '@/libs/Dayjs';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
+import { QUERY_KEYS } from '@/utils/QueryKeys';
 
 import BaseChart from '../base/BaseChart';
 import { brandColors, chartPalette } from '../base/theme';
@@ -23,7 +24,7 @@ export function ObjectDataIngests({ initialData, params }: ObjectDataIngestsProp
   const [showDays, setShowDays] = useState<number>(params.max_age_days ?? 7);
 
   const { data, isFetching, refetch } = useQuery({
-    queryKey: ['external-data-performance-aggregated'],
+    queryKey: [QUERY_KEYS.DataPerformanceAggregated],
     queryFn: () => getExternalDataPerformanceAggregated({
       ...params,
       max_age_days: showDays,
