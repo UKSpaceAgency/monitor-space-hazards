@@ -3,8 +3,8 @@ import type { TranslatedColumnDef } from '@/types';
 
 export const eventsBySatelliteColumns: TranslatedColumnDef<EventsBySatelliteType>[] = [
   {
-    accessorKey: 'commonName',
-    id: 'commonName',
+    accessorKey: 'name',
+    id: 'name',
     header: 'Performance_monitoring.conjunction_events_by_satellite.satellite_name',
     enableSorting: false,
   },

@@ -21,7 +21,7 @@ type CdmIngestsChartProps = {
 export function CdmIngestsChart({ initialData, params }: CdmIngestsChartProps) {
   const t = useTranslations('Charts.Cdm_ingests');
 
-  const [showDays, setShowDays] = useState<number>(params.max_age_days ?? 7);
+  const [showDays, setShowDays] = useState(params.max_age_days ?? 7);
 
   const { data, isFetching, refetch } = useQuery({
     queryKey: [QUERY_KEYS.DataPerformanceAggregated],
@@ -45,7 +45,7 @@ export function CdmIngestsChart({ initialData, params }: CdmIngestsChartProps) {
       {
         label: t('space_track'),
         data: cdmChartData.map(data => ({
-          x: data.ingestionDate as any,
+          x: data.ingestionDate as unknown as number,
           y: data.ingestionSum as number,
         })),
         borderColor: chartPalette.darkBlue,

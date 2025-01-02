@@ -26,7 +26,7 @@ type DataRangeType = '7d' | '30d' | 'All';
 const MonitoringNotificationsSentContent = ({ data, params }: MonitoringNotificationsSentContentProps) => {
   const t = useTranslations('Tables.Performance_monitoring.notifications_sent');
 
-  const [startDate, setStartDate] = useState<string>(params.start_date ?? '');
+  const [startDate, setStartDate] = useState(params.start_date ?? '');
   const [dataRange, setDataRange] = useState<DataRangeType>('7d');
 
   const fetchParams = {

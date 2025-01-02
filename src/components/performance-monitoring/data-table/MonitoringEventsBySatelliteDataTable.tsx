@@ -20,7 +20,7 @@ type MonitoringEventsBySatelliteDataTableProps = {
 const MonitoringEventsBySatelliteDataTable = ({ data, params, isAnalysist }: MonitoringEventsBySatelliteDataTableProps) => {
   const t = useTranslations('Tables.Performance_monitoring.conjunction_events_by_satellite');
 
-  const [organisation, setOrganisation] = useState<string>('');
+  const [organisation, setOrganisation] = useState('');
 
   const organisations = useMemo(() => {
     return uniq(data.map(obj => obj.organizationName))
@@ -48,7 +48,7 @@ const MonitoringEventsBySatelliteDataTable = ({ data, params, isAnalysist }: Mon
           value={organisation}
           options={[
             {
-              children: 'All organisations',
+              children: t('all_organisations'),
               value: '',
             },
             ...organisations,

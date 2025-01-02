@@ -4,10 +4,10 @@ import type { TypeGetStatsNotificationsSentParams } from '@/__generated__/data-c
 import Api from '@/libs/Api';
 
 export type NotificationsSentStatsType = {
-  date: string | null | undefined;
+  date: string;
   totalCount: number;
-  smsCount: number | string;
-  emailCount: number | string;
+  smsCount: number;
+  emailCount: number;
 };
 
 export async function getStatsNotificationsSent(query?: TypeGetStatsNotificationsSentParams): Promise<NotificationsSentStatsType[]> {
@@ -19,7 +19,7 @@ export async function getStatsNotificationsSent(query?: TypeGetStatsNotification
     const key = day || month as string;
 
     if (!acc[key]) {
-      acc[key] = { date: day || month, totalCount: 0, smsCount: 0, emailCount: 0 };
+      acc[key] = { date: day || month || '', totalCount: 0, smsCount: 0, emailCount: 0 };
     }
 
     switch (type) {

@@ -10,7 +10,7 @@ import { chartPalette } from '../base/theme';
 
 export type NotificationsSentChartProps = {
   data: NotificationsSentStatsType[];
-  actionButtons?: ReactNode;
+  actionButtons: ReactNode;
 };
 
 export function NotificationsSentChart({
@@ -20,7 +20,7 @@ export function NotificationsSentChart({
   const t = useTranslations('Charts.Notifications_sent');
 
   const datasets = {
-    labels: data.map(({ date }) => date as string),
+    labels: data.map(({ date }) => date),
     datasets: [
       {
         label: t('all_notifications'),
@@ -41,7 +41,7 @@ export function NotificationsSentChart({
         backgroundColor: chartPalette.darkPink,
       },
     ],
-  } as any;
+  };
 
   return (
     <div className="mb-4">

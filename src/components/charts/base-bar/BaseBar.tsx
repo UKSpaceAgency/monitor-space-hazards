@@ -16,33 +16,17 @@ import type { ReactNode } from 'react';
 import { useEffect, useRef } from 'react';
 import { Bar } from 'react-chartjs-2';
 
-import { chartFontFamily, chartPalette } from '../base/theme';
+import { setChartDefaults } from '../base/defaults';
+import { chartPalette } from '../base/theme';
 import { useInViewport } from '../base/useInViewport';
 import type { InferChartLegendProps } from '../legend/LegendChart';
 import { ChartLegend } from '../legend/LegendChart';
 
 ChartJS.register(Title, Tooltip, Legend, AnnotationPlugin, BarElement);
 
-defaults.color = chartPalette.black;
+setChartDefaults();
 
-defaults.font = {
-  family: chartFontFamily,
-  size: 12,
-};
-
-defaults.plugins.legend.position = 'bottom';
 defaults.plugins.legend.labels.color = chartPalette.white;
-defaults.plugins.legend.labels.usePointStyle = true;
-defaults.plugins.legend.labels.font = {
-  size: 16,
-};
-
-defaults.plugins.tooltip.padding = 15;
-defaults.plugins.tooltip.backgroundColor = chartPalette.white;
-defaults.plugins.tooltip.titleColor = chartPalette.black;
-defaults.plugins.tooltip.bodyColor = chartPalette.black;
-defaults.plugins.tooltip.borderColor = 'rgba(0, 0, 0, 0.5)';
-defaults.plugins.tooltip.borderWidth = 0.5;
 defaults.plugins.tooltip.footerColor = chartPalette.black;
 
 export type BaseBarProps = {

@@ -21,7 +21,7 @@ type ObjectDataIngestsProps = {
 export function ObjectDataIngests({ initialData, params }: ObjectDataIngestsProps) {
   const t = useTranslations('Charts.Object_data_ingests');
 
-  const [showDays, setShowDays] = useState<number>(params.max_age_days ?? 7);
+  const [showDays, setShowDays] = useState(params.max_age_days ?? 7);
 
   const { data, isFetching, refetch } = useQuery({
     queryKey: [QUERY_KEYS.DataPerformanceAggregated],

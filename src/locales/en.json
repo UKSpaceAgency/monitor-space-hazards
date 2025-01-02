@@ -437,6 +437,8 @@
       "last_1_month": "Last 1 month",
       "last_6_months": "Last 6 months",
       "data_range": "Date range",
+      "total_events": "Total events across all organisations",
+      "event_type": "Event type",
       "details": {
         "title": "Help with this table",
         "content": "This table shows the number of conjunction events between different object types."
@@ -447,7 +449,14 @@
       "events_involving": "Events involving",
       "<1e-5": "<1e-5",
       "<1e-3_and_>1e-5": "<1e-3 and >1e-5",
-      ">1e-3": ">1e-3"
+      ">1e-3": ">1e-3",
+      "y_axis": "Number of events",
+      "legend_title": "Probability of collision",
+      "upcoming_events": "Upcoming events",
+      "last_7d": "Last 7d",
+      "last_1_month": "Last 1 month",
+      "last_6_months": "Last 6 months",
+      "all_organisations": "All organisations"
     }
   },
   "Conjunctions": {
@@ -1178,7 +1187,8 @@
         "low": "<1e-5",
         "medium": "<1e-3 and >1e-5",
         "high": ">1e-3",
-        "this_table": "this table"
+        "this_table": "this table",
+        "all_organisations": "All organisations"
       },
       "analyses_and_manoeuvre_support": {
         "source": "Source",

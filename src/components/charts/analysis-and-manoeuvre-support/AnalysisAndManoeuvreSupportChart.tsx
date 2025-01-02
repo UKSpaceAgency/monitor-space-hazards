@@ -1,26 +1,23 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import type { Dispatch, SetStateAction } from 'react';
+import type { ReactNode } from 'react';
 import { useMemo } from 'react';
 
 import type { AnalysisAndManoeuvreSupportStatsType } from '@/actions/getStatsAnalysisAndManoeuvreSupport';
 import { dayjs, FORMAT_DATE } from '@/libs/Dayjs';
-import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
 
 import BaseChart from '../base/BaseChart';
 import { chartPalette } from '../base/theme';
 
 export type AnalysisAndManoeuvreSupportChartProps = {
   data: AnalysisAndManoeuvreSupportStatsType[];
-  setShowDays: Dispatch<SetStateAction<number>>;
-  showDays: number;
+  actionButtons: ReactNode;
 };
 
 const AnalysisAndManoeuvreSupportChart = ({
   data,
-  setShowDays,
-  showDays,
+  actionButtons,
 }: AnalysisAndManoeuvreSupportChartProps) => {
   const t = useTranslations('Charts.Analysis_and_manoeuvre_support');
 
@@ -29,52 +26,25 @@ const AnalysisAndManoeuvreSupportChart = ({
       datasets: [
         {
           label: t('analysis_received'),
-          data: data.map(
-            ({ analysesCount: y, date: x }) => ({ x, y }),
-          ),
+          data: data.map(({ analysesCount, date }) => ({
+            x: date as unknown as number,
+            y: analysesCount,
+          })),
           borderColor: chartPalette.orange,
           backgroundColor: chartPalette.orange,
         },
         {
           label: t('manoeuvre_received'),
-          data: data.map(
-            ({ manoeuvreSupportCount: y, date: x }) => ({ x, y }),
-          ),
+          data: data.map(({ manoeuvreSupportCount, date }) => ({
+            x: date as unknown as number,
+            y: manoeuvreSupportCount,
+          })),
           borderColor: chartPalette.darkBlue,
           backgroundColor: chartPalette.darkBlue,
         },
-      ] as any,
+      ],
     }),
     [data, t],
-  );
-
-  const actionButtons = useMemo(
-    () => (
-      <ToggleButtons
-        name="analysis-ingest-days"
-        items={[
-          {
-            title: '7d',
-            ariaLabel: t('7_days'),
-            value: 7,
-          },
-          {
-            title: '30d',
-            ariaLabel: t('30_days'),
-            value: 30,
-          },
-          {
-            title: 'All',
-            ariaLabel: t('all_time'),
-            value: 9999,
-          },
-        ]}
-        active={showDays}
-        setActive={setShowDays}
-        title={t('date_range')}
-      />
-    ),
-    [setShowDays, showDays, t],
   );
 
   const latestIngest = useMemo(() => {

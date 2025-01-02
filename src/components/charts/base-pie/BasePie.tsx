@@ -17,32 +17,16 @@ import type { ReactNode } from 'react';
 import { useEffect, useRef } from 'react';
 import { Pie } from 'react-chartjs-2';
 
-import { chartFontFamily, chartPalette } from '../base/theme';
+import { setChartDefaults } from '../base/defaults';
+import { chartPalette } from '../base/theme';
 import { useInViewport } from '../base/useInViewport';
 import type { InferChartLegendProps } from '../legend/LegendChart';
 
 ChartJS.register(Title, Tooltip, Legend, AnnotationPlugin, ArcElement);
 
-defaults.color = chartPalette.black;
-
-defaults.font = {
-  family: chartFontFamily,
-  size: 12,
-};
+setChartDefaults();
 
 defaults.plugins.legend.position = 'left';
-defaults.plugins.legend.labels.color = chartPalette.black;
-defaults.plugins.legend.labels.usePointStyle = true;
-defaults.plugins.legend.labels.font = {
-  size: 16,
-};
-
-defaults.plugins.tooltip.padding = 15;
-defaults.plugins.tooltip.backgroundColor = chartPalette.white;
-defaults.plugins.tooltip.titleColor = chartPalette.black;
-defaults.plugins.tooltip.bodyColor = chartPalette.black;
-defaults.plugins.tooltip.borderColor = 'rgba(0, 0, 0, 0.5)';
-defaults.plugins.tooltip.borderWidth = 0.5;
 defaults.plugins.tooltip.footerColor = chartPalette.black;
 
 export type BasePieProps = {

@@ -55,7 +55,7 @@ export function EventsByOrganizationChart({
             backgroundColor: chartPalette.brightBlue,
           },
         ],
-      } as any;
+      };
 
   const title
     = isSingle && data.length > 0
@@ -70,13 +70,13 @@ export function EventsByOrganizationChart({
 
   return (
     <BaseBar
-      yAxisTitle="Number of events"
+      yAxisTitle={t('y_axis')}
       title={title}
       data={datasets}
       actionButtons={actionButtons}
       showTotal={!isSingle}
       showLegend={!isSingle}
-      legend={{ title: 'Probability of collision' }}
+      legend={{ title: t('legend_title') }}
     />
   );
 }

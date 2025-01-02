@@ -51,7 +51,7 @@ const MonitoringEventsByOrganisationContent = ({ initialData, params, isAnalysis
     refetch();
   }, [dates, refetch]);
 
-  const [organisation, setOrganisation] = useState<string>('');
+  const [organisation, setOrganisation] = useState('');
 
   const organisations = useMemo(() => {
     return uniq(
@@ -111,22 +111,22 @@ const MonitoringEventsByOrganisationContent = ({ initialData, params, isAnalysis
       name="events-by-organization-days"
       items={[
         {
-          title: 'Upcoming events',
+          title: t('upcoming_events'),
           ariaLabel: 'Upcoming events',
           value: 'Upcoming events',
         },
         {
-          title: 'Last 7d',
+          title: t('last_7d'),
           ariaLabel: 'Last 7 days',
           value: 'Last 7d',
         },
         {
-          title: 'Last 1 month',
+          title: t('last_1_month'),
           ariaLabel: 'Last 1 month',
           value: 'Last 1 month',
         },
         {
-          title: 'Last 6 months',
+          title: t('last_6_months'),
           ariaLabel: 'Last 6 months',
           value: 'Last 6 months',
         },
@@ -154,7 +154,7 @@ const MonitoringEventsByOrganisationContent = ({ initialData, params, isAnalysis
           value={organisation}
           options={[
             {
-              children: 'All organisations',
+              children: t('all_organisations'),
               value: '',
             },
             ...organisations,

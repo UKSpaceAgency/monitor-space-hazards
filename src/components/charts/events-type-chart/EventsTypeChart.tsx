@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import type { ReactNode } from 'react';
 
 import type { TypeStatisticsEventsType } from '@/__generated__/data-contracts';
@@ -7,11 +8,13 @@ import BasePie from '../base-pie/BasePie';
 
 export type EventsTypeChartProps = {
   data: TypeStatisticsEventsType[];
-  actionButtons?: ReactNode;
+  actionButtons: ReactNode;
 };
 
 export function EventsTypeChart({ data, actionButtons }: EventsTypeChartProps) {
-  const filteredData = [...data].filter(({ eventType }) => eventType !== 'Total events across all organisations');
+  const t = useTranslations('Charts.Events_type');
+
+  const filteredData = [...data].filter(({ eventType }) => eventType !== t('total_events'));
 
   const datasets = {
     labels: filteredData.map(({ eventType }) => eventType),
@@ -23,7 +26,7 @@ export function EventsTypeChart({ data, actionButtons }: EventsTypeChartProps) {
     ],
   };
 
-  return <BasePie data={datasets} actionButtons={actionButtons} legend={{ title: 'Event type' }} />;
+  return <BasePie data={datasets} actionButtons={actionButtons} legend={{ title: t('event_type') }} />;
 }
 
 export default EventsTypeChart;
