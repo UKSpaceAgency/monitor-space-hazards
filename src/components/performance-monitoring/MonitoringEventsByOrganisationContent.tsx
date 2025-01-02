@@ -27,7 +27,7 @@ type DataRangeType = 'Upcoming events' | 'Last 7d' | 'Last 1 month' | 'Last 6 mo
 const MonitoringEventsByOrganisationContent = ({ initialData, params, isAnalysist }: PerformanceMonitoringConjunctionEventsByOrganisationContentProps) => {
   const t = useTranslations('Charts.Events_by_organisation');
 
-  const [dataRange, setDataRange] = useState<DataRangeType>('Last 7d');
+  const [dataRange, setDataRange] = useState<DataRangeType>('Upcoming events');
   const [dates, setDates] = useState<{ startDate: string; endDate?: string }>({
     startDate: params.start_date ?? '',
     endDate: params.end_date ?? '',

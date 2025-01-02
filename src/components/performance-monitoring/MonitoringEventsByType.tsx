@@ -6,8 +6,7 @@ import { MonitoringEventsByTypeContent } from './MonitoringEventsByTypeContent';
 
 const MonitoringEventsByType = async () => {
   const params: TypeGetStatsEventsTypeParams = {
-    start_date: TODAY_DATE_TIME.subtract(7, 'day').format(FORMAT_API_DATE_TIME),
-    end_date: TODAY_DATE_TIME.format(FORMAT_API_DATE_TIME),
+    start_date: TODAY_DATE_TIME.format(FORMAT_API_DATE_TIME),
   };
 
   const data = await getStatsEventsType(params);

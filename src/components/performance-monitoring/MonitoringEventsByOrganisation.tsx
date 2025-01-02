@@ -13,8 +13,7 @@ const MonitoringEventsByOrganisation = async () => {
   const t = await getTranslations('Performance_monitoring.conjunction_accordion.conjunction_events_by_organisation');
 
   const params: TypeGetStatsEventsByOrganizationParams = {
-    start_date: TODAY_DATE_TIME.subtract(7, 'day').format(FORMAT_API_DATE_TIME),
-    end_date: TODAY_DATE_TIME.format(FORMAT_API_DATE_TIME),
+    start_date: TODAY_DATE_TIME.format(FORMAT_API_DATE_TIME),
   };
 
   const data = await getStatsEventsByOrganization(params);
