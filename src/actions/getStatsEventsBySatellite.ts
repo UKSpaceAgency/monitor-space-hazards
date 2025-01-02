@@ -3,11 +3,6 @@
 import type { TypeGetStatsEventsBySatelliteParams } from '@/__generated__/data-contracts';
 import Api from '@/libs/Api';
 
-export type EventsBySatelliteSectionType = {
-  events: number;
-  collisionProbabilityRange: string;
-};
-
 export type EventsBySatelliteType = {
   name: string;
   id: string;
@@ -26,19 +21,23 @@ export async function getStatsEventsBySatellite(query?: TypeGetStatsEventsBySate
     const key = noradId;
 
     if (!acc[key]) {
-      acc[key] = { commonName, noradId, organizationName, low: 0, medium: 0, high: 0 };
+      acc[key] = { name: commonName, id: noradId, organizationName, low: 0, medium: 0, high: 0 };
     }
 
-    if (collisionProbabilityRange === '< 1e-5') {
-      acc[key].low = events;
-    } else if (collisionProbabilityRange === '1e-3 .. 1e-5') {
-      acc[key].medium = events;
-    } else if (collisionProbabilityRange === '> 1e-3') {
-      acc[key].high = events;
+    switch (collisionProbabilityRange) {
+      case '< 1e-5':
+        acc[key].low = events;
+        break;
+      case '1e-3 .. 1e-5':
+        acc[key].medium = events;
+        break;
+      case '> 1e-3':
+        acc[key].high = events;
+        break;
     }
 
     return acc;
-  }, {} as { [key: string]: any });
+  }, {} as { [key: string]: EventsBySatelliteType });
 
   return Object.values(groupedData);
 };

@@ -39,7 +39,6 @@
   "i18n-ally.sourceLanguage": "en", // Language that will replace the key on the file
   "i18n-ally.sortKeys": true,
   "cSpell.words": [
-    "analyse",
     "Analysist",
     "Bichromatic",
     "Cdms",

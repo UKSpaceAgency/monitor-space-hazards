@@ -32,10 +32,13 @@ export async function getStatsAnalysisAndManoeuvreSupport(query?: TypeGetExterna
       };
     }
 
-    if (sourceType === 'Analysis') {
-      acc[key].analysesCount = ingestionSum || 0;
-    } else if (sourceType === 'Manoeuvre Trade Space Plot') {
-      acc[key].manoeuvreSupportCount = ingestionSum || 0;
+    switch (sourceType) {
+      case 'Analysis':
+        acc[key].analysesCount = ingestionSum || 0;
+        break;
+      case 'Manoeuvre Trade Space Plot':
+        acc[key].manoeuvreSupportCount = ingestionSum || 0;
+        break;
     }
 
     return acc;

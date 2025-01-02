@@ -26,22 +26,26 @@ export async function getStatsEventsByOrganization(query?: TypeGetStatsEventsByO
     const key = id as string;
 
     if (!acc[key]) {
-      acc[key] = { name, id, totalEvents: 0, low: 0, medium: 0, high: 0 };
+      acc[key] = { name, id: key, totalEvents: 0, low: 0, medium: 0, high: 0 };
     }
 
-    if (collisionProbabilityRange === '< 1e-5') {
-      acc[key].low = events;
-      acc[key].totalEvents += events;
-    } else if (collisionProbabilityRange === '1e-3 .. 1e-5') {
-      acc[key].medium = events;
-      acc[key].totalEvents += events;
-    } else if (collisionProbabilityRange === '> 1e-3') {
-      acc[key].high = events;
-      acc[key].totalEvents += events;
+    switch (collisionProbabilityRange) {
+      case '< 1e-5':
+        acc[key].low = events;
+        acc[key].totalEvents += events;
+        break;
+      case '1e-3 .. 1e-5':
+        acc[key].medium = events;
+        acc[key].totalEvents += events;
+        break;
+      case '> 1e-3':
+        acc[key].high = events;
+        acc[key].totalEvents += events;
+        break;
     }
 
     return acc;
-  }, {} as { [key: string]: any });
+  }, {} as { [key: string]: EventsByOrganizationType });
 
   return Object.values(groupedData);
 };

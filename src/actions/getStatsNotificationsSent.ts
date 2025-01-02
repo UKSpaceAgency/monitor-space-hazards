@@ -22,12 +22,16 @@ export async function getStatsNotificationsSent(query?: TypeGetStatsNotification
       acc[key] = { date: day || month, totalCount: 0, smsCount: 0, emailCount: 0 };
     }
 
-    if (type === 'Total') {
-      acc[key].totalCount = count;
-    } else if (type === 'SMS') {
-      acc[key].smsCount = count;
-    } else if (type === 'EMAIL') {
-      acc[key].emailCount = count;
+    switch (type) {
+      case 'Total':
+        acc[key].totalCount = count;
+        break;
+      case 'SMS':
+        acc[key].smsCount = count;
+        break;
+      case 'EMAIL':
+        acc[key].emailCount = count;
+        break;
     }
 
     return acc;
