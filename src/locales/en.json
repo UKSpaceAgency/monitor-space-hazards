@@ -344,7 +344,7 @@
     }
   },
   "Charts": {
-    "Poc_Chart": {
+    "Poc_chart": {
       "title": "Evolution of collision probability",
       "description": "<p>The changing probability of a conjunction event leading up to the time of closest approach (TCA). All available data is shown.</p>",
       "xAxis": "Creation date of CDM (UTC)",
@@ -352,7 +352,7 @@
       "tca": "TCA",
       "special": "Show <special>Special</special> ephemeris"
     },
-    "Mtp_Chart": {
+    "Mtp_chart": {
       "description": "The probability of collision (PoC) for different combinations of date/time or number of orbits compared to time of closest approach (TCA) and Delta V (amount of burn) of manoeuvre are shown. All available data is shown.",
       "chart": {
         "header": "What is your mitigation requirement?",
@@ -379,7 +379,7 @@
       },
       "download": "Manoeuvre Trade Space data"
     },
-    "Miss_Distance": {
+    "Miss_distance": {
       "header": "The changing expected miss distance leading up to the time of closest approach (TCA). Data from Space-Track is shown.",
       "chart": {
         "tca": "TCA",
@@ -387,6 +387,76 @@
         "y_axis_title": "Creation date of CDM (UTC)",
         "show_ephemeris": "Show <special>Special</special> ephemeris"
       }
+    },
+    "Cdm_ingests": {
+      "space_track": "Space-Track",
+      "latest_ingest": "Latest ingest:",
+      "data_range": "Data range",
+      "number_of_cdms": "Number of CDMs ingested",
+      "conjunction_data_message": "Conjunction Data Message (CDM) source",
+      "7_days": "7 days",
+      "30_days": "30 days",
+      "all_time": "All time"
+    },
+    "Object_data_ingests": {
+      "space_track": "Space-Track",
+      "esa_discos": "ESA-DISCOS",
+      "latest_ingest": "Latest ingest:",
+      "data_range": "Data range",
+      "number_of_objects": "Number of objects ingested",
+      "7_days": "7 days",
+      "30_days": "30 days",
+      "all_time": "All time",
+      "object_ingests": "Object ingest"
+    },
+    "Notifications_sent": {
+      "all_notifications": "All notifications",
+      "sms_messages": "SMS messages",
+      "emails": "Emails",
+      "number_of_notifications": "Number of notifications",
+      "date": "Date",
+      "notification_type": "Notification type"
+    },
+    "Analysis_and_manoeuvre_support": {
+      "analysis_received": "Analyses received",
+      "manoeuvre_received": "Manoeuvre support plots received",
+      "file_type": "File type",
+      "number_received": "Number received",
+      "latest_ingest": "Latest ingest:",
+      "date_range": "Date range",
+      "7_days": "7 days",
+      "30_days": "30 days",
+      "all_time": "All time"
+    },
+    "Events_type": {
+      "title": "Event type",
+      "description": "Total number of conjunction events monitored between different object types.",
+      "this_table": "this table",
+      "upcoming_events": "Upcoming events",
+      "last_7d": "Last 7d",
+      "last_1_month": "Last 1 month",
+      "last_6_months": "Last 6 months",
+      "data_range": "Date range",
+      "total_events": "Total events across all organisations",
+      "event_type": "Event type",
+      "details": {
+        "title": "Help with this table",
+        "content": "This table shows the number of conjunction events between different object types."
+      }
+    },
+    "Events_by_organisation": {
+      "description": "Conjunction events and their probability of collision for events relating to an organisation.",
+      "events_involving": "Events involving",
+      "<1e-5": "<1e-5",
+      "<1e-3_and_>1e-5": "<1e-3 and >1e-5",
+      ">1e-3": ">1e-3",
+      "y_axis": "Number of events",
+      "legend_title": "Probability of collision",
+      "upcoming_events": "Upcoming events",
+      "last_7d": "Last 7d",
+      "last_1_month": "Last 1 month",
+      "last_6_months": "Last 6 months",
+      "all_organisations": "All organisations"
     }
   },
   "Conjunctions": {
@@ -684,6 +754,80 @@
     "alert_criteria_help": {
       "title": "Distribution lists and re-entry alert criteria",
       "content": "<h3>Distribution lists:</h3><p>You are able to view which distribution list users are currently on in the account section (<link>View distribution lists</link>)</p><h3>Standard re-entry alert</h3><p><bold>The criteria for producing a standard re-entry alert is less than 36 hours until re-entry and one of the following:</bold></p><list><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories</item><item>Any UK-licensed object (except designed for demise)</item><item>Press interest</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Priority re-entry alert:</h3><p><bold>The criteria for producing a priority re-entry alert is debris likely to survive to the ground and one of the following:</bold></p><list><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis)</item><item>UK-licensed object</item><item>Significant press interest</item></list>"
+    }
+  },
+  "Performance_monitoring": {
+    "title": "Performance monitoring and statistics",
+    "description": "This page shows both performance data for the Monitor Space Hazards service and more detailed information about the object and conjunction event data processed by the service. This data is broken down by organisation and by satellite.",
+    "performance_monitoring": "Performance monitoring",
+    "conjunction_event_and_organisation_data": "Conjunction event and organisation data",
+    "performance_accordion": {
+      "title": "Performance monitoring",
+      "cdm_ingests": {
+        "title": "CDM ingests",
+        "details": {
+          "title": "Information on event history",
+          "content": "<p>This table shows performance monitoring information for the external sources of CDMs that Monitor Space Hazards ingests.</p><list><item>Ingestion start and stop show the time the last data ingest started and finished</item><item>Number of items fetched shows how many items were retrieved</item></list>"
+        }
+      },
+      "object_data_ingests": {
+        "title": "Object data ingests",
+        "object_data_ingests": "object data ingests",
+        "details": {
+          "title": "Information on event history",
+          "content": "<p>This table shows performance monitoring information for the external data sources of satellite information that Monitor Space Hazards ingests.</p><list><item>Ingestion start and stop show the time the last data ingest started and finished</item><item>Number of items fetched shows how many items were retrieved</item></list>"
+        }
+      },
+      "notifications_sent": {
+        "title": "Notifications sent"
+      },
+      "uksa": {
+        "title": "UKSA conjunction event analysis and manoeuvre support",
+        "details": {
+          "title": "Help with this table",
+          "content": "This tables shows the number of analyses and manoeuvre support plots uploaded by a UKSA orbital analyst."
+        }
+      }
+    },
+    "conjunction_accordion": {
+      "title": "Conjunction event and organisation data",
+      "conjunction_event_by_type": {
+        "title": "Conjunction events by type",
+        "description": "Total number of conjunction events monitored between different object types.",
+        "this_table": "this table",
+        "upcoming_events": "Upcoming events",
+        "last_7d": "Last 7d",
+        "last_1_month": "Last 1 month",
+        "last_6_months": "Last 6 months",
+        "data_range": "Date range",
+        "details": {
+          "title": "Help with this table",
+          "content": "This table shows the number of conjunction events between different object types."
+        }
+      },
+      "objects_catalogued": {
+        "title": "Objects catalogued",
+        "heading": "Objects catalogued by Monitor Space Hazards",
+        "details": {
+          "title": "Help with this table",
+          "content": "This table shows the number of objects catalogued in Monitor Space Hazards to date and their breakdown by type."
+        }
+      },
+      "conjunction_events_by_organisation": {
+        "title": "Conjunction events by organisation",
+        "details": {
+          "title": "Help with this table",
+          "content": "This table shows the total number and probability of conjunction events for an organisation."
+        }
+      },
+      "conjunction_events_by_satellite": {
+        "title": "Conjunction events by satellite",
+        "description": "This table shows the registered satellites by organisation and the number of conjunction events each has been involved in at different probabilities of collision over the last 30 days.",
+        "details": {
+          "title": "Help with this table",
+          "content": "This table shows the total number of conjunction events for each registered satellite in the last 30 days."
+        }
+      }
     }
   },
   "Tables": {
@@ -1006,6 +1150,55 @@
       "risk": "Risk",
       "probability": "Probability of re-entry over the UK (%)",
       "overflight": "UK overflight time(s) (UTC)"
+    },
+    "Performance_monitoring": {
+      "data_performance": {
+        "source": "Source",
+        "type_of_source": "Type of source",
+        "ingestion_start": "Ingestion start",
+        "ingestion_stop": "Ingestion stop",
+        "number_of_items_fetched": "Number of items fetched",
+        "empty_label": "No ingests"
+      },
+      "notifications_sent": {
+        "date": "Date",
+        "sms": "SMS",
+        "email": "Email",
+        "this_table": "this table",
+        "empty_label": "No Notifications Sent",
+        "data_range": "Data range",
+        "7d": "7d",
+        "30d": "30d",
+        "all": "All"
+      },
+      "conjunction_events_by_type": {
+        "type": "Type",
+        "conjunction_events": "Conjunctions events",
+        "this_table": "this table"
+      },
+      "conjunction_events_by_organisation": {
+        "type": "Type",
+        "conjunction_events": "Conjunctions events",
+        "low": "<1e-5",
+        "medium": "<1e-3 and >1e-5",
+        "high": ">1e-3",
+        "this_table": "this table"
+      },
+      "conjunction_events_by_satellite": {
+        "satellite_name": "Satellite name",
+        "low": "<1e-5",
+        "medium": "<1e-3 and >1e-5",
+        "high": ">1e-3",
+        "this_table": "this table",
+        "all_organisations": "All organisations"
+      },
+      "analyses_and_manoeuvre_support": {
+        "source": "Source",
+        "date": "Date",
+        "numbers_of_analyses": "Number of analyses received",
+        "numbers_of_manoeuvre": "Number of manoeuvre support plots received",
+        "analysis_and_manoeuvre_support": "UKSA analysis and manoeuvre support"
+      }
     }
   },
   "Forms": {

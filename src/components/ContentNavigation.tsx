@@ -3,7 +3,13 @@
 import type { MouseEvent } from 'react';
 import { useEffect, useState } from 'react';
 
-const ContentNavigation = () => {
+type ContentNavigationProps = {
+  title?: string;
+  className?: string;
+  internalTitle?: { text: string; index: number };
+};
+
+const ContentNavigation = ({ title, internalTitle, className }: ContentNavigationProps) => {
   const [anchors, setAnchors] = useState<Array<{ text: string; anchor: string }>>([]);
 
   useEffect(() => {
@@ -28,18 +34,21 @@ const ContentNavigation = () => {
   };
 
   return (
-    <nav aria-label="Content navigation">
-      <h3 className="govuk-caption-m">Contents</h3>
+    <nav aria-label="Content navigation" className={className}>
+      <h3 className="govuk-caption-m">{title || 'Contents'}</h3>
       <ol className="list-none">
         {anchors.map((anchor, index) => {
           return (
             // eslint-disable-next-line react/no-array-index-key
-            <li key={index} className="relative pt-2 px-6">
-              <span className="absolute left-0 w-5">—</span>
-              <a className="govuk-link govuk-link--no-underline" href={`#${anchor.anchor}`} onClick={handleClick}>
-                {anchor.text}
-              </a>
-            </li>
+            <div key={index}>
+              {internalTitle?.index === index && <h3 className="govuk-caption-m mt-[30px]">{internalTitle.text}</h3>}
+              <li className="relative pt-2 px-6">
+                <span className="absolute left-0 w-5">—</span>
+                <a className="govuk-link govuk-link--no-underline" href={`#${anchor.anchor}`} onClick={handleClick}>
+                  {anchor.text}
+                </a>
+              </li>
+            </div>
           );
         })}
 
