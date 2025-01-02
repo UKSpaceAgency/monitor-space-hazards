@@ -5,7 +5,6 @@ import { useTranslations } from 'next-intl';
 import { useEffect, useMemo, useState } from 'react';
 
 import type { TypeGetExternalDataPerformanceAggregatedParams } from '@/__generated__/data-contracts';
-import type { AnalysisAndManoeuvreSupportStatsType } from '@/actions/getStatsAnalysisAndManoeuvreSupport';
 import { getStatsAnalysisAndManoeuvreSupport } from '@/actions/getStatsAnalysisAndManoeuvreSupport';
 import Spinner from '@/ui/spinner/spinner';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
@@ -14,13 +13,14 @@ import { QUERY_KEYS } from '@/utils/QueryKeys';
 import { AnalysisAndManoeuvreSupportChart } from '../charts/analysis-and-manoeuvre-support/AnalysisAndManoeuvreSupportChart';
 import { MonitoringAnalysisAndManoeuvreSupportDataTable } from './data-table/MonitoringAnalysisAndManoeuvreSupportDataTable';
 
-type MonitoringUksaEventContentProps = {
-  params: TypeGetExternalDataPerformanceAggregatedParams;
-  data: AnalysisAndManoeuvreSupportStatsType[];
-};
-
-const MonitoringUksaEventContent = ({ data, params }: MonitoringUksaEventContentProps) => {
+const MonitoringUksaEventContent = () => {
   const t = useTranslations('Charts.Analysis_and_manoeuvre_support');
+
+  const params: TypeGetExternalDataPerformanceAggregatedParams = {
+    limit: 9999,
+    sort_order: 'desc',
+    max_age_days: 7,
+  };
 
   const [showDays, setShowDays] = useState(params.max_age_days ?? 7);
 
@@ -29,10 +29,9 @@ const MonitoringUksaEventContent = ({ data, params }: MonitoringUksaEventContent
     max_age_days: showDays,
   };
 
-  const { data: fetchedData, isFetching, refetch } = useQuery({
+  const { data, isFetching, refetch } = useQuery({
     queryKey: [QUERY_KEYS.StatsAnalysisAndManoeuvreSupport],
     queryFn: () => getStatsAnalysisAndManoeuvreSupport(fetchParams),
-    initialData: data,
     refetchOnMount: false,
     refetchOnWindowFocus: false,
   });
@@ -70,7 +69,7 @@ const MonitoringUksaEventContent = ({ data, params }: MonitoringUksaEventContent
     refetch();
   }, [refetch, showDays]);
 
-  if (isFetching) {
+  if (isFetching || !data) {
     return (
       <div className="p-10">
         <Spinner />
@@ -80,8 +79,8 @@ const MonitoringUksaEventContent = ({ data, params }: MonitoringUksaEventContent
 
   return (
     <div>
-      <AnalysisAndManoeuvreSupportChart data={fetchedData} actionButtons={actionButtons} />
-      <MonitoringAnalysisAndManoeuvreSupportDataTable data={fetchedData} params={params} />
+      <AnalysisAndManoeuvreSupportChart data={data} actionButtons={actionButtons} />
+      <MonitoringAnalysisAndManoeuvreSupportDataTable data={data} params={params} />
     </div>
   );
 };

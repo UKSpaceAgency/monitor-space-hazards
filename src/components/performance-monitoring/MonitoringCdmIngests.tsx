@@ -1,8 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
-import type { TypeGetExternalDataPerformanceAggregatedParams, TypeGetExternalDataPerformanceParams } from '@/__generated__/data-contracts';
+import type { TypeGetExternalDataPerformanceParams } from '@/__generated__/data-contracts';
 import { getExternalDataPerformance } from '@/actions/getExternalDataPerformance';
-import { getExternalDataPerformanceAggregated } from '@/actions/getExternalDataPerformanceAggregated';
 import Details from '@/ui/details/details';
 
 import CdmIngestsChart from '../charts/cdm-ingests/CdmIngests';
@@ -19,19 +18,10 @@ const MonitoringCdmIngests = async () => {
     sort_order: 'desc',
   };
 
-  const aggregatedParams: TypeGetExternalDataPerformanceAggregatedParams = {
-    limit: 9999,
-    max_age_days: 7,
-    sort_order: 'desc',
-  };
-
-  const data = await getExternalDataPerformance(params);
-  const chartData = await getExternalDataPerformanceAggregated(aggregatedParams);
-
   return (
     <>
-      <CdmIngestsChart initialData={chartData} params={aggregatedParams} />
-      <MonitoringDataPerformanceDataTable data={data} params={params} />
+      <CdmIngestsChart />
+      <MonitoringDataPerformanceDataTable params={params} />
       <DownloadData type={t('title')} params={params} downloadAction={getExternalDataPerformance} />
       <Details summary={t('details.title')}>
         {t.rich('details.content')}

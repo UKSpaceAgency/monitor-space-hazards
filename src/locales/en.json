@@ -1162,12 +1162,14 @@
       },
       "notifications_sent": {
         "date": "Date",
-        "all": "All",
         "sms": "SMS",
         "email": "Email",
         "this_table": "this table",
         "empty_label": "No Notifications Sent",
-        "data_range": "Data range"
+        "data_range": "Data range",
+        "7d": "7d",
+        "30d": "30d",
+        "all": "All"
       },
       "conjunction_events_by_type": {
         "type": "Type",

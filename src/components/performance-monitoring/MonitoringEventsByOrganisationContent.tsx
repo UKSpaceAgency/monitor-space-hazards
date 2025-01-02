@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { useEffect, useMemo, useState } from 'react';
 
 import type { TypeGetStatsEventsByOrganizationParams } from '@/__generated__/data-contracts';
-import { type EventsByOrganizationType, getStatsEventsByOrganization } from '@/actions/getStatsEventsByOrganization';
+import { getStatsEventsByOrganization } from '@/actions/getStatsEventsByOrganization';
 import { assertUnreachable } from '@/libs/assertUnreachable';
 import { FORMAT_API_DATE_TIME, TODAY_DATE_TIME } from '@/libs/Dayjs';
 import Select from '@/ui/select/select';
@@ -17,15 +17,17 @@ import EventsByOrganizationChart from '../charts/events-by-organisation/EventsBy
 import { MonitoringEventsByOrganisationDataTable } from './data-table/MonitoringEventsByOrganisationDataTable';
 
 type PerformanceMonitoringConjunctionEventsByOrganisationContentProps = {
-  initialData: EventsByOrganizationType[];
-  params: TypeGetStatsEventsByOrganizationParams;
   isAnalysist: boolean;
 };
 
 type DataRangeType = 'Upcoming events' | 'Last 7d' | 'Last 1 month' | 'Last 6 months';
 
-const MonitoringEventsByOrganisationContent = ({ initialData, params, isAnalysist }: PerformanceMonitoringConjunctionEventsByOrganisationContentProps) => {
+const MonitoringEventsByOrganisationContent = ({ isAnalysist }: PerformanceMonitoringConjunctionEventsByOrganisationContentProps) => {
   const t = useTranslations('Charts.Events_by_organisation');
+
+  const params: TypeGetStatsEventsByOrganizationParams = {
+    start_date: TODAY_DATE_TIME.format(FORMAT_API_DATE_TIME),
+  };
 
   const [dataRange, setDataRange] = useState<DataRangeType>('Upcoming events');
   const [dates, setDates] = useState<{ startDate: string; endDate?: string }>({
@@ -42,7 +44,6 @@ const MonitoringEventsByOrganisationContent = ({ initialData, params, isAnalysis
   const { data, isFetching, refetch } = useQuery({
     queryKey: [QUERY_KEYS.StatsEventByOrganisation],
     queryFn: () => getStatsEventsByOrganization(fetchParams),
-    initialData,
     refetchOnMount: false,
     refetchOnWindowFocus: false,
   });
@@ -55,7 +56,7 @@ const MonitoringEventsByOrganisationContent = ({ initialData, params, isAnalysis
 
   const organisations = useMemo(() => {
     return uniq(
-      data.filter(obj => obj.name !== 'Total')
+      (data || []).filter(obj => obj.name !== 'Total')
         .map(obj => obj.name),
     )
       .sort()
@@ -66,7 +67,7 @@ const MonitoringEventsByOrganisationContent = ({ initialData, params, isAnalysis
   }, [data]);
 
   const filteredData = useMemo(() => {
-    return [...(organisation ? data.filter(obj => obj.name === organisation) : data)];
+    return [...(organisation ? (data || []).filter(obj => obj.name === organisation) : data || [])];
   }, [organisation, data]);
 
   const selectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {

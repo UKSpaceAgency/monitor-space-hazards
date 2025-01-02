@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
-import type { TypeExternalDataPerformanceAggregateOut, TypeGetExternalDataPerformanceAggregatedParams } from '@/__generated__/data-contracts';
+import type { TypeGetExternalDataPerformanceAggregatedParams } from '@/__generated__/data-contracts';
 import { getExternalDataPerformanceAggregated } from '@/actions/getExternalDataPerformanceAggregated';
 import { dayjs, FORMAT_DATE } from '@/libs/Dayjs';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
@@ -13,13 +13,14 @@ import { QUERY_KEYS } from '@/utils/QueryKeys';
 import BaseChart from '../base/BaseChart';
 import { chartPalette } from '../base/theme';
 
-type CdmIngestsChartProps = {
-  initialData: TypeExternalDataPerformanceAggregateOut[];
-  params: TypeGetExternalDataPerformanceAggregatedParams;
-};
-
-export function CdmIngestsChart({ initialData, params }: CdmIngestsChartProps) {
+export function CdmIngestsChart() {
   const t = useTranslations('Charts.Cdm_ingests');
+
+  const params: TypeGetExternalDataPerformanceAggregatedParams = {
+    limit: 9999,
+    max_age_days: 7,
+    sort_order: 'desc',
+  };
 
   const [showDays, setShowDays] = useState(params.max_age_days ?? 7);
 
@@ -29,7 +30,6 @@ export function CdmIngestsChart({ initialData, params }: CdmIngestsChartProps) {
       ...params,
       max_age_days: showDays,
     }),
-    initialData,
     refetchOnMount: false,
     refetchOnWindowFocus: false,
   });
@@ -38,7 +38,7 @@ export function CdmIngestsChart({ initialData, params }: CdmIngestsChartProps) {
     refetch();
   }, [refetch, showDays]);
 
-  const cdmChartData = data.filter(item => item.sourceType === 'CDM');
+  const cdmChartData = (data || []).filter(item => item.sourceType === 'CDM');
 
   const datasets = {
     datasets: [
