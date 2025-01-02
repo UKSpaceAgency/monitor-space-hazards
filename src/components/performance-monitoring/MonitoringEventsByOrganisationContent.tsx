@@ -2,7 +2,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { uniq } from 'lodash';
 import { useTranslations } from 'next-intl';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import type { TypeGetStatsEventsByOrganizationParams } from '@/__generated__/data-contracts';
 import { getStatsEventsByOrganization } from '@/actions/getStatsEventsByOrganization';
@@ -41,16 +41,12 @@ const MonitoringEventsByOrganisationContent = ({ isAnalysist }: PerformanceMonit
     end_date: dates.endDate,
   };
 
-  const { data, isFetching, refetch } = useQuery({
-    queryKey: [QUERY_KEYS.StatsEventByOrganisation],
+  const { data, isFetching } = useQuery({
+    queryKey: [QUERY_KEYS.StatsEventByOrganisation, dates],
     queryFn: () => getStatsEventsByOrganization(fetchParams),
     refetchOnMount: false,
     refetchOnWindowFocus: false,
   });
-
-  useEffect(() => {
-    refetch();
-  }, [dates, refetch]);
 
   const [organisation, setOrganisation] = useState('');
 

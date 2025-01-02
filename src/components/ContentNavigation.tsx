@@ -3,7 +3,13 @@
 import type { MouseEvent } from 'react';
 import { useEffect, useState } from 'react';
 
-const ContentNavigation = ({ title, internalTitle, className }: { title?: string; className?: string; internalTitle?: { text: string; index: number } }) => {
+type ContentNavigationProps = {
+  title?: string;
+  className?: string;
+  internalTitle?: { text: string; index: number };
+};
+
+const ContentNavigation = ({ title, internalTitle, className }: ContentNavigationProps) => {
   const [anchors, setAnchors] = useState<Array<{ text: string; anchor: string }>>([]);
 
   useEffect(() => {

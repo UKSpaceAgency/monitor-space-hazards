@@ -2,7 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import type { TypeGetStatsEventsTypeParams } from '@/__generated__/data-contracts';
 import { getStatsEventsType } from '@/actions/getStatsEventsType';
@@ -31,8 +31,8 @@ const MonitoringEventsByType = () => {
     endDate: params.end_date ?? '',
   });
 
-  const { data, isFetching, refetch } = useQuery({
-    queryKey: [QUERY_KEYS.StatsEventByType],
+  const { data, isFetching } = useQuery({
+    queryKey: [QUERY_KEYS.StatsEventByType, dates],
     queryFn: () => getStatsEventsType({
       ...params,
       start_date: dates.startDate,
@@ -41,10 +41,6 @@ const MonitoringEventsByType = () => {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
   });
-
-  useEffect(() => {
-    refetch();
-  }, [dates, refetch]);
 
   const handleDataRangeChange = (dataRange: DataRangeType) => {
     setDataRange(dataRange);

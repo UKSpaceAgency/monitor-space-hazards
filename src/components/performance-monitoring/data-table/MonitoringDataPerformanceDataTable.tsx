@@ -21,7 +21,7 @@ const MonitoringDataPerformanceDataTable = ({ params }: MonitoringDataPerformanc
   const t = useTranslations('Tables.Performance_monitoring.data_performance');
 
   const { data, isFetching } = useQuery({
-    queryKey: [QUERY_KEYS.DataPerformance],
+    queryKey: [QUERY_KEYS.DataPerformance, params],
     queryFn: () => getExternalDataPerformance(params),
     refetchOnMount: false,
     refetchOnWindowFocus: false,

@@ -2,7 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import type { TypeGetStatsNotificationsSentParams } from '@/__generated__/data-contracts';
 import { getStatsNotificationsSent, type NotificationsSentStatsType } from '@/actions/getStatsNotificationsSent';
@@ -40,16 +40,12 @@ const MonitoringNotificationsSent = () => {
     start_date: startDate,
   };
 
-  const { data, isFetching, refetch } = useQuery({
-    queryKey: [QUERY_KEYS.StatsNotificationsSent],
+  const { data, isFetching } = useQuery({
+    queryKey: [QUERY_KEYS.StatsNotificationsSent, startDate],
     queryFn: () => getStatsNotificationsSent(fetchParams),
     refetchOnMount: false,
     refetchOnWindowFocus: false,
   });
-
-  useEffect(() => {
-    refetch();
-  }, [refetch, startDate]);
 
   const handleDataRangeChange = (dataRange: DataRangeType) => {
     setDataRange(dataRange);

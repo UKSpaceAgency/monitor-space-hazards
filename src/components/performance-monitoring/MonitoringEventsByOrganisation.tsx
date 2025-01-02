@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
-import { getUsersMe } from '@/actions/getUsersMe';
+import { getSession } from '@/actions/getSession';
 import Details from '@/ui/details/details';
 import { isAnalysist } from '@/utils/Roles';
 
@@ -9,11 +9,11 @@ import { MonitoringEventsByOrganisationContent } from './MonitoringEventsByOrgan
 const MonitoringEventsByOrganisation = async () => {
   const t = await getTranslations('Performance_monitoring.conjunction_accordion.conjunction_events_by_organisation');
 
-  const user = await getUsersMe();
+  const session = await getSession();
 
   return (
     <div>
-      <MonitoringEventsByOrganisationContent isAnalysist={isAnalysist(user.role)} />
+      <MonitoringEventsByOrganisationContent isAnalysist={isAnalysist(session?.user.role)} />
       <Details summary={t('details.title')}>
         {t('details.content')}
       </Details>

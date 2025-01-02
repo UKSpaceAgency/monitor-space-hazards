@@ -2,7 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import type { TypeGetExternalDataPerformanceAggregatedParams } from '@/__generated__/data-contracts';
 import { getExternalDataPerformanceAggregated } from '@/actions/getExternalDataPerformanceAggregated';
@@ -24,8 +24,8 @@ export function ObjectDataIngests() {
 
   const [showDays, setShowDays] = useState(params.max_age_days ?? 7);
 
-  const { data, isFetching, refetch } = useQuery({
-    queryKey: [QUERY_KEYS.DataPerformanceAggregated],
+  const { data, isFetching } = useQuery({
+    queryKey: [QUERY_KEYS.DataPerformanceAggregated, showDays],
     queryFn: () => getExternalDataPerformanceAggregated({
       ...params,
       max_age_days: showDays,
@@ -33,10 +33,6 @@ export function ObjectDataIngests() {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
   });
-
-  useEffect(() => {
-    refetch();
-  }, [refetch, showDays]);
 
   const objectChartData = (data || []).filter(item => item.sourceType === 'Satellite');
   const esaDiscosData = objectChartData.filter(item => item.sourceProvider === 'ESADiscos');

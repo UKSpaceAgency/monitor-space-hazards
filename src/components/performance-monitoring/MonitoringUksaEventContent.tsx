@@ -2,7 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import type { TypeGetExternalDataPerformanceAggregatedParams } from '@/__generated__/data-contracts';
 import { getStatsAnalysisAndManoeuvreSupport } from '@/actions/getStatsAnalysisAndManoeuvreSupport';
@@ -29,8 +29,8 @@ const MonitoringUksaEventContent = () => {
     max_age_days: showDays,
   };
 
-  const { data, isFetching, refetch } = useQuery({
-    queryKey: [QUERY_KEYS.StatsAnalysisAndManoeuvreSupport],
+  const { data, isFetching } = useQuery({
+    queryKey: [QUERY_KEYS.StatsAnalysisAndManoeuvreSupport, showDays],
     queryFn: () => getStatsAnalysisAndManoeuvreSupport(fetchParams),
     refetchOnMount: false,
     refetchOnWindowFocus: false,
@@ -64,10 +64,6 @@ const MonitoringUksaEventContent = () => {
     ),
     [setShowDays, showDays, t],
   );
-
-  useEffect(() => {
-    refetch();
-  }, [refetch, showDays]);
 
   if (isFetching || !data) {
     return (
