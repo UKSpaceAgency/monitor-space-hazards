@@ -25,40 +25,42 @@ const ReentryAlertImpactTable = ({ caption, impact }: ReentryAlertImpactTablePro
   }))];
 
   return (
-    <Table>
-      {caption && <TableCaption className="govuk-heading-m mb-0">{caption}</TableCaption>}
-      {headers && (
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            {headers.map((header, index) => (
+    <div className="w-full overflow-x-auto">
+      <Table>
+        {caption && <TableCaption className="govuk-heading-m mb-0">{caption}</TableCaption>}
+        {headers && (
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              {headers.map((header, index) => (
               // eslint-disable-next-line react/no-array-index-key
-              <TableCellHeader key={index} {...header} />
-            ))}
-          </TableRow>
-        </TableHead>
-      )}
-      <TableBody>
-        {Object.entries(impact).map(([key, value]) => (
-          <TableRow key={key}>
-            <TableCellHeader
-              className={clsx('w-6/12')}
-            >
-              {jsonRegionsMap[key] ?? key}
-            </TableCellHeader>
-            <TableCell>
-              {value.probability ? `${roundedPercent(value.probability)}%` : '-'}
-            </TableCell>
+                <TableCellHeader key={index} {...header} />
+              ))}
+            </TableRow>
+          </TableHead>
+        )}
+        <TableBody>
+          {Object.entries(impact).map(([key, value]) => (
+            <TableRow key={key}>
+              <TableCellHeader
+                className={clsx('w-6/12')}
+              >
+                {jsonRegionsMap[key] ?? key}
+              </TableCellHeader>
+              <TableCell>
+                {value.probability ? `${roundedPercent(value.probability)}%` : '-'}
+              </TableCell>
             {...Array.from({ length: overflightsNumber }, (_, i) => (
               <TableCell key={key + i}>
                 {value.overflight_time && value?.overflight_time[i] ? dayjs(value.overflight_time[i]).format(FORMAT_DATE_TIME) : '-'}
               </TableCell>
             ))}
-          </TableRow>
-        ),
-        )}
-      </TableBody>
-    </Table>
+            </TableRow>
+          ),
+          )}
+        </TableBody>
+      </Table>
+    </div>
   );
 };
 

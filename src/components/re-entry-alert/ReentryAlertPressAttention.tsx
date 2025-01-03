@@ -11,7 +11,7 @@ const ReentryAlertPressAttention = ({ pressAttention, dataPdf }: ReentryAlertPre
   const t = useTranslations('Reentry_alert.Press_attention');
   return (
     <div data-pdf={dataPdf}>
-      {pressAttention ? <Markdown>{pressAttention}</Markdown> : <p>{t('empty')}</p>}
+      {pressAttention ? <Markdown>{pressAttention}</Markdown> : <p className="govuk-body">{t('empty')}</p>}
     </div>
   );
 };
