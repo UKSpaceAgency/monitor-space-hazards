@@ -1,4 +1,4 @@
-name: Build and Deploy to AWS DEV WWW2
+name: Build and Deploy to AWS DEV WWW
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 env:
   AWS_REGION: eu-west-2
-  ECR_REPOSITORY: frontend2
+  ECR_REPOSITORY: frontend
 
 jobs:
   build_and_push_awsdev:
@@ -67,4 +67,4 @@ jobs:
           repo: UKSpaceAgency/sst-beta-infra
           ref: main
           token: ${{ secrets.INFRA_REPO_TOKEN }}
-          inputs: '{ "invoker": "frontend2", "env": "dev", "image-tag":"${{ github.sha }}"}'
+          inputs: '{ "invoker": "frontend", "env": "dev", "image-tag":"${{ github.sha }}"}'
