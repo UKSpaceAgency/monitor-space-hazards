@@ -7,4 +7,3 @@ files:
   - source: /src/locales/en.json
     translation: /src/locales/%two_letters_code%.json
     type: json
-    update_option: update_without_changes
