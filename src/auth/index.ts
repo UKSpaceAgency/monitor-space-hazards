@@ -111,7 +111,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
 
       if (request.nextUrl.pathname === '/' && auth) {
-        return Response.redirect(new URL('/dashboard', request.nextUrl.origin));
+        return Response.redirect(new URL('/home', request.nextUrl.origin));
       }
       return !!auth;
     },
