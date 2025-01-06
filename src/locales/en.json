@@ -3,11 +3,11 @@
     "skip_content": "Skip to main content",
     "phase_banner": "This is a new service - your <feedback>feedback</feedback> will help us to improve it.",
     "navigation": {
-      "dashboard": "Home",
       "conjunctions": "Conjunctions",
       "re-entries": "Re-entries",
       "satellites": "Satellites",
-      "account": "Account"
+      "account": "Account",
+      "home": "Home"
     },
     "sign_out": "Sign out"
   },
