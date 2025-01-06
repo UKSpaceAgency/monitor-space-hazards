@@ -50,7 +50,7 @@ jobs:
             cosmic-key=${{ secrets.COSMIC_READ_KEY }}
             mapbox-token=${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }}
           tags: |
-            ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
+            ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest-prod
             ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
