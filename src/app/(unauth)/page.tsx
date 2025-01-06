@@ -33,7 +33,7 @@ export default function IndexPage() {
         action={async () => {
           'use server';
           await signIn('auth0', {
-            redirectTo: '/dashboard',
+            redirectTo: '/home',
           });
         }}
       >

@@ -3,7 +3,7 @@
     "skip_content": "Skip to main content",
     "phase_banner": "This is a new service - your <feedback>feedback</feedback> will help us to improve it.",
     "navigation": {
-      "dashboard": "Home",
+      "home": "Home",
       "conjunctions": "Conjunctions",
       "re-entries": "Re-entries",
       "satellites": "Satellites",
@@ -55,7 +55,7 @@
         "items": {
           "reentry_events": {
             "title": "Track re-entry events",
-            "description": "In-space collision avoidance."
+            "description": "Uncontrolled re-entry early warning."
           }
         }
       },
@@ -63,8 +63,8 @@
         "title": "Satellite Directory and Statistics",
         "items": {
           "view_uk_satellites": {
-            "title": "View UK licensed satellites",
-            "description": "In-space collision avoidance.",
+            "title": "View UK-licensed satellites",
+            "description": "Data on UK-licensed satellites.",
             "link": "/satellites"
           },
           "explore_statistics": {

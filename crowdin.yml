@@ -1,38 +1,10 @@
-#
-# Basic Crowdin CLI configuration
-# See https://crowdin.github.io/crowdin-cli/configuration for more information
-# See https://support.crowdin.com/developer/configuration-file/ for all available options
-#
-
-#
-# Your Crowdin credentials
-#
 project_id: '747761'
 api_token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJ3UUVxdmhVM3ZMT2EyWGljbVV5VCIsImp0aSI6IjMxYzg0ZjRiMzQ5M2MwN2ViZDZjNjkwZmQ1YzcxYjgwMTE0MjJkYzkzNDMyNDE0ZjRjOTQ0YjhhZGRjYWEyMGI3Y2MxY2NmMDBkZGNkZmNjIiwiaWF0IjoxNzM1OTc1NDA5Ljk0NTgzNywibmJmIjoxNzM1OTc1NDA5Ljk0NTg0LCJleHAiOjE3Njc1MTE0MDkuODY0Njc2LCJzdWIiOiIxNjc3ODYzNyIsInNjb3BlcyI6WyJwcm9qZWN0Il0sImRvbWFpbiI6bnVsbCwiYXNzb2NpYXRpb25zIjpbIioiXSwibG9naW5fbWV0aG9kIjpudWxsLCJzZXNzaW9uIjowfQ.uFt4hMFRhRVtjKZePh151ItBmmuHnbPiNWdnTannmo1HWS3QRwbXolXfMlEeT4-zLydm3AYm5IRUMNgQy9y5wHC3d13VAt03yof1RrxpIp7d9mMtjUf2iSsf6NQRauhc4QE1FBD5jzU1icntuYBR5BdAnUXhFgW3Mo0LtU36qhGpW8mos5ovfDsuw1hysYBgc0Q9Xygf6PnzgWiWyHdgSAYudXkZk0_iJxihokQ0zFpNoNQiSVImJ4nO4hDKObHtHiv_wdQJBr0kUsid6xZkbZSkA-EziP91zOyeozlQ0aDXSgzp5DbZSAJkUoxuN0MEREf-K9PmbP070CG-rKkpM_AX4W129mzkOqA_DSnCslTul8UEtx4s1we2a389G9r5D_4BlTCRqHb0Dsfw8FwbqNxV29vgeRfxEgwXB6f2GDjuBkrCBOzoqUZ_beiruXg21NZfN_Y12YIryajJg28g7OhwEsYeh1w16bNcuDglIM1TFGhEbkG3MjlcV1l4aOIKMrCrhwkSdVmAT4R6FDYQWe9qktrxXGpZlu4j-XCpBrOCIsXA2LdlgE2Q79jstY2skcC73ozPu3k21yeNwVadDrC-Yjp4BEOHBl5WroRBVDoNPpLdxaWrXPyWp6dhZ0W9e4znSipQstTk21SKu1cLSr4ZxXftQNvY63UVBB1-ZgM
 base_path: .
 base_url: 'https://api.crowdin.com'
-
-#
-# Defines whether to preserve the original directory structure in the Crowdin project
-# Recommended to set to true
-#
-preserve_hierarchy: true
-
-#
-# Files configuration.
-# See https://support.crowdin.com/developer/configuration-file/ for all available options
-#
+preserve_hierarchy: 1
 files:
   - source: /src/locales/en.json
-
-    #
-    # Where translations will be placed
-    # e.g. "/resources/%two_letters_code%/%original_file_name%"
-    #
-    translation: '/src/locales/%two_letters_code%.json'
-
-    #
-    # File type
-    # e.g. "json"
-    #
+    translation: /src/locales/%two_letters_code%.json
     type: json
+    update_option: update_without_changes
