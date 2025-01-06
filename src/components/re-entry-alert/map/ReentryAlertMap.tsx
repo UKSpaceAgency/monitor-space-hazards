@@ -4,6 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 import type { FeatureCollection, Point } from 'geojson';
 import type { MapMouseEvent } from 'mapbox-gl';
+import dynamic from 'next/dynamic';
 import { useCallback, useEffect, useState } from 'react';
 import Map, { Layer, Source } from 'react-map-gl';
 
@@ -12,7 +13,7 @@ import type { RegionsEnum } from '@/utils/Regions';
 
 import { ReentryAlertAreasOfInterest } from './ReentryAlertAreasOfInterest';
 import { ReentryAlertMapCenterButton } from './ReentryAlertMapCenterButton';
-import { type MapTooltipInfo, ReentryAlertMapTooltip } from './ReentryAlertMapTooltip';
+import type { MapTooltipInfo } from './ReentryAlertMapTooltip';
 import type { MapType } from './ReentryAlertMapType';
 import { ReentryAlertMapType } from './ReentryAlertMapType';
 import type { MapView } from './ReentryAlertMapView';
@@ -20,6 +21,10 @@ import { ReentryAlertMapView } from './ReentryAlertMapView';
 import { ReentryAlertOverflights } from './ReentryAlertOverflights';
 import type { OverflightType } from './utils';
 import { flightpathStyle, fragmentsStyle, overflightStyle, regionLayer, RegionsGeoJson } from './utils';
+
+const ReentryAlertMapTooltip = dynamic(() => import('./ReentryAlertMapTooltip').then(mod => mod.ReentryAlertMapTooltip), {
+  ssr: false,
+});
 
 const initialViewState = {
   longitude: -4.801161,

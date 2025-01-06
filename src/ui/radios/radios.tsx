@@ -46,8 +46,8 @@ export function Radios({ items, label, value, hint, error, inline, small, labelC
         })}
       >
         {items.map((radio, index) => (
-        // eslint-disable-next-line react/no-array-index-key
-          <Radio key={index} checked={radio.value === value} onChange={onChange} {...radio} />
+          // eslint-disable-next-line react/no-array-index-key
+          <Radio key={index} checked={value ? radio.value === value : radio.checked} onChange={onChange} {...radio} />
         ))}
       </div>
     </div>

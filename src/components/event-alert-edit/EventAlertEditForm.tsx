@@ -71,7 +71,6 @@ const EventAlertEditForm = ({ fields }: EventAlertEditFormProps) => {
       items={items.map(item => ({
         value: item.value,
         children: item.children,
-        defaultChecked: item.value === props.defaultValue,
         ...register(id),
       }))}
       {...props}

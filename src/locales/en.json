@@ -582,7 +582,9 @@
         "title": "UK response",
         "content": "<p>The UK Space Agency are the leads for conjunction reporting and have reached out to the operator to confirm they are aware of the event and that they intend to manoeuvre.</p>"
       },
-      "press_attention": { "title": "Press attention" },
+      "press_attention": {
+        "title": "Press attention"
+      },
       "see_press_lines": "See <link>UK Space Agency press lines</link>."
     },
     "Additional_risk_to_objects": {
@@ -1352,7 +1354,6 @@
         "long_term_impact": "Long term impact",
         "long_term_impact_addition": "Long term impact",
         "uk_response_addition": "UK response"
-
       },
       "manoeuvrable": {
         "unknown": "Unknown",

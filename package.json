@@ -17,7 +17,9 @@
     "test:e2e": "playwright test",
     "commit": "cz",
     "prepare": "husky",
-    "generate-api": "vite-node generateApi.ts"
+    "generate-api": "vite-node generateApi.ts",
+    "push-i18n": "crowdin upload sources",
+    "pull-i18n": "crowdin download sources"
   },
   "dependencies": {
     "@cosmicjs/sdk": "1.2.0",
