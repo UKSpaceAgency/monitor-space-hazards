@@ -83,12 +83,12 @@
             "link": "/page/roadmap"
           },
           "support_and_guidance": {
-            "title": "Access support and guidance",
+            "title": "Access support and guidance.",
             "description": "Support and guidance for all active services.",
             "link": "/page/support-and-guidance"
           },
           "change_account_settings": {
-            "title": "Change account settings",
+            "title": "Change account settings.",
             "description": "Change notification settings, view T&Cs and see account details.",
             "link": "/account"
           }
