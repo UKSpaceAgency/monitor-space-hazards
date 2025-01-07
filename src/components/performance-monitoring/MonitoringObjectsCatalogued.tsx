@@ -11,7 +11,7 @@ const MonitoringObjectsCatalogued = async () => {
   return (
     <div>
       <h3 className="govuk-heading-l">{t('heading')}</h3>
-      <div className="flex justify-between flex-col lg:flex-row">
+      <div className="flex justify-between flex-col md:flex-row">
         {data.map(item => (
           <div key={item.objectType}>
             <h4 className="govuk-heading-l govuk-!-margin-bottom-2">
