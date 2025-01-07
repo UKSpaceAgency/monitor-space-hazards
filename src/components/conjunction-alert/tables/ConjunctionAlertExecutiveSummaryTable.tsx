@@ -12,10 +12,9 @@ import { getFullCountry } from '@/utils/Regions';
 type ConjunctionAlertExecutiveSummaryTableProps = {
   report: TypeConjunctionReportOut;
   manoeuvreAddition?: string | null;
-  dataPdf?: string;
 };
 
-const ConjunctionAlertExecutiveSummaryTable = ({ report, manoeuvreAddition, dataPdf }: ConjunctionAlertExecutiveSummaryTableProps) => {
+const ConjunctionAlertExecutiveSummaryTable = ({ report, manoeuvreAddition }: ConjunctionAlertExecutiveSummaryTableProps) => {
   const t = useTranslations('Tables.Conjunction_alert_executive_summary');
 
   const rows: InformationsTableRow<Partial<TypeConjunctionReportOut>>[] = [{
@@ -104,7 +103,7 @@ const ConjunctionAlertExecutiveSummaryTable = ({ report, manoeuvreAddition, data
     accessorKey: 'secondaryObjectNoradId',
   }];
 
-  return <InformationsTable rows={rows} data={report} dataPdf={dataPdf} />;
+  return <InformationsTable rows={rows} data={report} />;
 };
 
 export { ConjunctionAlertExecutiveSummaryTable };
