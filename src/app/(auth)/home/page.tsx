@@ -61,7 +61,7 @@ export default function DashboardPage() {
           </div>
         );
       })}
-      <UpcomingEvents className="mb-12" title={t('upcoming_events.title')} conjuntionTitle={t('upcoming_events.upcoming_conjuntion')} highestPocTitle={t('upcoming_events.highest_poc')} reentryTitle={t('upcoming_events.upcoming_reentry')} />
+      <UpcomingEvents className="mb-12" title={t('upcoming_events.title')} conjunctionTitle={t('upcoming_events.upcoming_conjunction')} highestPocTitle={t('upcoming_events.highest_poc')} reentryTitle={t('upcoming_events.upcoming_reentry')} />
       <ObjectsTracked className="mb-12" title={t('objects_tracked.title')} />
     </div>
   );
