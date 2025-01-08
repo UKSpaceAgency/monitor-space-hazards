@@ -5,7 +5,7 @@ test.describe('Re-entry page', () => {
     await page.goto('/re-entries/re-20241218-61067');
   });
 
-  test('Elements visibility check', async ({ page }) => {
+  test('show show page', async ({ page }) => {
     await expect(page.getByRole('heading', { name: 'Re-entry event for STARLINK-32368' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Contact the UK Space Agency for more information' })).toBeVisible();
     await expect(page.locator('#object_data')).toBeVisible();
