@@ -18,9 +18,14 @@ const MonitoringObjectDataIngests = async () => {
     sort_order: 'desc',
   };
 
+  const latestIngestArray = await getExternalDataPerformance({
+    ...params,
+    limit: 1,
+  });
+
   return (
     <>
-      <ObjectDataIngests />
+      <ObjectDataIngests latestIngestDate={latestIngestArray[0]?.ingestionEnd} />
       <MonitoringDataPerformanceDataTable params={params} />
       <DownloadData type={t('object_data_ingests')} params={params} downloadAction={getExternalDataPerformance} />
       <Details summary={t('details.title')}>

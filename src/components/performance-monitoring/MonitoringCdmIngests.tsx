@@ -18,9 +18,14 @@ const MonitoringCdmIngests = async () => {
     sort_order: 'desc',
   };
 
+  const latestIngestArray = await getExternalDataPerformance({
+    ...params,
+    limit: 1,
+  });
+
   return (
     <>
-      <CdmIngestsChart />
+      <CdmIngestsChart latestIngestDate={latestIngestArray[0]?.ingestionEnd} />
       <MonitoringDataPerformanceDataTable params={params} />
       <DownloadData type={t('title')} params={params} downloadAction={getExternalDataPerformance} />
       <Details summary={t('details.title')}>
