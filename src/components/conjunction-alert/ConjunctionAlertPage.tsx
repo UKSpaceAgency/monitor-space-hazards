@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import type { ReactNode } from 'react';
@@ -6,7 +5,7 @@ import type { ReactNode } from 'react';
 import type { TypeUniqueEventUpdateTextFieldsIn } from '@/__generated__/data-contracts';
 import { getConjunctionReports } from '@/actions/getConjunctionReports';
 import getConjunctionUniqueEvent from '@/actions/getConjunctionUniqueEvent';
-import { FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 
 import { ContentNavigation } from '../ContentNavigation';
 import { ConjunctionAlertAccordion } from './ConjunctionAlertAccordion';
