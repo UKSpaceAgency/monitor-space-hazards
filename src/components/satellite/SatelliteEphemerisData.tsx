@@ -18,9 +18,15 @@ const SatelliteEphemerisData = ({ noradId, ephemerises }: SatelliteEphemerisData
       <Link href={`/satellites/${noradId}/ephemeris-upload`}>
         <Button>{t('upload_button')}</Button>
       </Link>
-      <h2 className="govuk-heading-l" data-anchor="ephemeris">{t('title')}</h2>
-      <p className="govuk-body">{t('content')}</p>
-      <EphemerisesTable data={ephemerises} />
+      {ephemerises.length
+        ? (
+            <>
+              <h2 className="govuk-heading-l" data-anchor="ephemeris">{t('title')}</h2>
+              <p className="govuk-body">{t('content')}</p>
+              <EphemerisesTable data={ephemerises} />
+            </>
+          )
+        : null}
     </div>
   );
 };

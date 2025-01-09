@@ -64,63 +64,54 @@ const EphemerisesTable = ({ data }: EphemerisesTableProps) => {
           {t('Success_banner.title', { fileName: ephemerisToDelete.fileName })}
         </NotificationBanner>
       )}
-      {!data.length
-        ? (
-            <p className="govuk-body text-red">
-              <span className="govuk-visually-hidden">Alert: </span>
-              {t('empty')}
-            </p>
-          )
-        : (
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCellHeader>
-                    {t('file_name')}
-                  </TableCellHeader>
-                  <TableCellHeader>
-                    {t('start_time')}
-                  </TableCellHeader>
-                  <TableCellHeader>
-                    {t('stop_time')}
-                  </TableCellHeader>
-                  <TableCell />
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {data.map(({ id, fileName, startTime, stopTime, isActive }) => {
-                  const shortFileName = fileName.split('/').pop() || '';
-                  return (
-                    <TableRow key={id}>
-                      <TableCell>
-                        <button type="button" className="govuk-link text-blue" onClick={() => downloadFile(id)}>
-                          {shortFileName}
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCellHeader>
+              {t('file_name')}
+            </TableCellHeader>
+            <TableCellHeader>
+              {t('start_time')}
+            </TableCellHeader>
+            <TableCellHeader>
+              {t('stop_time')}
+            </TableCellHeader>
+            <TableCell />
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data.map(({ id, fileName, startTime, stopTime, isActive }) => {
+            const shortFileName = fileName.split('/').pop() || '';
+            return (
+              <TableRow key={id}>
+                <TableCell>
+                  <button type="button" className="govuk-link text-blue" onClick={() => downloadFile(id)}>
+                    {shortFileName}
+                  </button>
+                </TableCell>
+                <TableCell>
+                  {dayjs(startTime).format(FORMAT_DATE_TIME)}
+                </TableCell>
+                <TableCell>
+                  {dayjs(stopTime).format(FORMAT_DATE_TIME)}
+                </TableCell>
+                <TableCell>
+                  {!isActive
+                    ? <Tag color="red">{t('deleted')}</Tag>
+                    : (
+                        <button type="button" className="govuk-link text-blue" onClick={() => setEphemerisToDelete({ id, fileName: shortFileName })} disabled={isPending}>
+                          {t('delete')}
+                          <span className="govuk-visually-hidden">
+                            {fileName}
+                          </span>
                         </button>
-                      </TableCell>
-                      <TableCell>
-                        {dayjs(startTime).format(FORMAT_DATE_TIME)}
-                      </TableCell>
-                      <TableCell>
-                        {dayjs(stopTime).format(FORMAT_DATE_TIME)}
-                      </TableCell>
-                      <TableCell>
-                        {!isActive
-                          ? <Tag color="red">{t('deleted')}</Tag>
-                          : (
-                              <button type="button" className="govuk-link text-blue" onClick={() => setEphemerisToDelete({ id, fileName: shortFileName })} disabled={isPending}>
-                                {t('delete')}
-                                <span className="govuk-visually-hidden">
-                                  {fileName}
-                                </span>
-                              </button>
-                            )}
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </Table>
-          )}
+                      )}
+                </TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
     </div>
 
   );

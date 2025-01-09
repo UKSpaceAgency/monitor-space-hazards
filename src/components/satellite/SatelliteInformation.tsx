@@ -15,7 +15,7 @@ const SatelliteInformation = ({ object, dataPdf }: SatelliteInformationProps) =>
   const t = useTranslations('Tables.Satellite_informations.Informations');
   return (
     <div className="mb-12" data-pdf={dataPdf}>
-      <h2 data-anchor="information" className="hidden">{t('title')}</h2>
+      <h2 data-anchor="information" className="govuk-heading-l">{t('title')}</h2>
       <p className="govuk-body">{t('content')}</p>
       <BaseInformationsTable object={object} />
       <LicenseInformationsTable object={object} />
