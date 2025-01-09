@@ -10,6 +10,7 @@ import ButtonGroup from '@/ui/button-group/button-group';
 import Hint from '@/ui/hint/hint';
 import { Radios, type RadiosProps } from '@/ui/radios/radios';
 import TextArea from '@/ui/text-area/text-area';
+import { getBackUrl } from '@/utils/Helpers';
 
 type BaseFormField = {
   id: string;
@@ -92,7 +93,7 @@ const EventAlertEditForm = ({ fields }: EventAlertEditFormProps) => {
       ))}
       <ButtonGroup>
         <Button type="submit">{t('review')}</Button>
-        <Link href="/alert">
+        <Link href={getBackUrl(pathname, 1)}>
           <Button variant="secondary">{tCommon('return', { to: 'event' })}</Button>
         </Link>
       </ButtonGroup>
