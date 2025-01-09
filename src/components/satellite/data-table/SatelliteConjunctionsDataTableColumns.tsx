@@ -62,6 +62,10 @@ export const satteliteConjunctionColumns: TranslatedColumnDef<TypeEventOut>[] = 
       {
         accessorKey: `collisionProbability`,
         header: 'Space-Track CDM',
+        cell: ({ getValue }) => {
+          const value = getValue<number | null>();
+          return value ? value.toExponential(3) : 0;
+        },
       },
     ],
   },
