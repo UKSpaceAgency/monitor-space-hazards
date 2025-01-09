@@ -97,7 +97,7 @@
     },
     "upcoming_events": {
       "title": "Upcoming events",
-      "upcoming_conjuntion": "Upcoming conjunction events",
+      "upcoming_conjunction": "Upcoming conjunction events",
       "highest_poc": "Highest PoC in upcoming events",
       "upcoming_reentry": "Upcoming re-entry events"
     },

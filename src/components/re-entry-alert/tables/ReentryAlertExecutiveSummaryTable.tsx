@@ -40,7 +40,7 @@ const ReentryAlertExecutiveSummaryTable = ({ event }: ReentryAlertExecutiveSumma
   }, {
     header: t('probability'),
     accessorKey: 'probability',
-    renderCell: ({ probability }) => (probability ? `${roundedPercent(probability)}%` : '-'),
+    renderCell: ({ probability }) => (probability ? roundedPercent(probability) : '-'),
   }, {
     header: t('time_window_world'),
     accessorKey: 'timeWindowStart',
