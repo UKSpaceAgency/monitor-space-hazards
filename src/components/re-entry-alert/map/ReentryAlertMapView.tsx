@@ -22,7 +22,6 @@ const ReentryAlertMapView = ({ value, onChange }: ReentryAlertMapViewProps) => {
     <div>
       <Label className="font-bold">{t('map_view')}</Label>
       <Radios
-        inline
         small
         items={[{
           children: 'Globe',
