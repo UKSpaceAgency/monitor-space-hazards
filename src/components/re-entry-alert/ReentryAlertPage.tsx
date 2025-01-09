@@ -13,7 +13,7 @@ import { ReentryAlertMapContainer } from './map/ReentryAlertMapContainer';
 import { ReentryAlertAccordion } from './ReentryAlertAccordion';
 import { ReentryAlertButtons } from './ReentryAlertButtons';
 import { ReentryAlertExecutiveSummary } from './ReentryAlertExecutiveSummary';
-import { ReentryAlertNextUpdate } from './ReentryAleryNextUpdate';
+import { ReentryAlertNextUpdate } from './ReentryAlertNextUpdate';
 
 type ReentryAlertPageProps = {
   shortId: string;

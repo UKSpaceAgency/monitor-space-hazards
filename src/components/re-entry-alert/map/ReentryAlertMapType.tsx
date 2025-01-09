@@ -26,14 +26,14 @@ const ReentryAlertMapType = ({ value, onChange }: ReentryAlertMapTypeProps) => {
         small
         value={value}
         items={[{
+          children: 'Street',
+          value: 'streets-v12',
+        }, {
           children: 'Map',
           value: 'light-v11',
         }, {
           children: 'Satellite',
           value: 'satellite-streets-v12',
-        }, {
-          children: 'Street',
-          value: 'streets-v12',
         }, {
           children: 'Outdoor',
           value: 'outdoors-v12',
