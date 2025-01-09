@@ -37,6 +37,10 @@ export const AppConfig = {
           children: 'Roadmap',
           href: '/page/roadmap',
         },
+        {
+          children: 'Contact',
+          href: '/contact',
+        },
       ],
     },
     {

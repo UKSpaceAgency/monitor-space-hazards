@@ -40,7 +40,7 @@ type ReentryAlertMapProps = {
 };
 
 const ReentryAlertMap = ({ overflightTime, flightpathCollection, fragmentsCollection, overflightCollection }: ReentryAlertMapProps) => {
-  const [mapType, setMapType] = useState<MapType>('light-v11');
+  const [mapType, setMapType] = useState<MapType>('streets-v12');
   const [mapView, setMapView] = useState<MapView>('globe');
   const [regions, setRegions] = useState<RegionsEnum[]>([]);
   const [overflights, setOverflights] = useState<OverflightType[]>(['FLIGHTPATH', 'FRAGMENTS']);
@@ -63,7 +63,7 @@ const ReentryAlertMap = ({ overflightTime, flightpathCollection, fragmentsCollec
 
   return (
     <div className="bg-lightGrey p-3 mb-4" data-pdf="Re-entry map">
-      <div className="flex justify-between">
+      <div className="grid grid-cols-1 md:grid-cols-2">
         <ReentryAlertMapType value={mapType} onChange={setMapType} />
         <ReentryAlertMapView value={mapView} onChange={setMapView} />
       </div>

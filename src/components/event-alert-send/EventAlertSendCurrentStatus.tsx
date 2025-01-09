@@ -44,14 +44,16 @@ const EventAlertSendCurrentStatus = ({ type, detailsSummary, detailsContent, dat
               <Tag className="max-w-none">{t('sent_to_distribution_list')}</Tag>
             </TableCell>
           </TableRow>
-          <TableRow>
-            <TableCellHeader className="indent-10">
-              {t('alert_for_uk', { type: capitalized(type) })}
-            </TableCellHeader>
-            <TableCell>
-              <Tag className="max-w-none">{t('sent_to_distribution_list')}</Tag>
-            </TableCell>
-          </TableRow>
+          {type === 're-entry' && (
+            <TableRow>
+              <TableCellHeader className="indent-10">
+                {t('alert_for_uk', { type: capitalized(type) })}
+              </TableCellHeader>
+              <TableCell>
+                <Tag className="max-w-none">{t('sent_to_distribution_list')}</Tag>
+              </TableCell>
+            </TableRow>
+          )}
           <TableRow>
             <TableCellHeader className="indent-10">
               {t('priority_alert', { type })}

@@ -30,7 +30,7 @@ const SatelliteConjunctionEvents = async ({ noradId, query, epoch }: SatelliteCo
 
   return (
     <div className="mb-12">
-      <h2 className="govuk-heading-l" data-anchor="upcoming-conjunction-events">{t('title', { type })}</h2>
+      <h2 className="govuk-heading-l" data-anchor={`${epoch}-conjunction-events`}>{t('title', { type })}</h2>
       <SearchBar label={t('search_bar.label')} placeholder={t('search_bar.placeholder')} paramName={searchParamName} />
       <SatelliteConjunctionsDataTable params={params} initialData={initialData} />
     </div>

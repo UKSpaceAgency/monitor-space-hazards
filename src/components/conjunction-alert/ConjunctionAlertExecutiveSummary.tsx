@@ -16,7 +16,7 @@ type ConjunctionAlertExecutiveSummaryProps = {
 const ConjunctionAlertExecutiveSummary = async ({ report, execSummaryAddition, manoeuvreAddition }: ConjunctionAlertExecutiveSummaryProps) => {
   const t = await getTranslations('Conjunction_alert.Executive_summary');
   return (
-    <div>
+    <div data-pdf={t('title')}>
       <h2 data-anchor="information" className="govuk-heading-l">{t('title')}</h2>
       <p className="govuk-body">
         {t.rich('content', {
@@ -29,7 +29,7 @@ const ConjunctionAlertExecutiveSummary = async ({ report, execSummaryAddition, m
       <Markdown>
         {execSummaryAddition}
       </Markdown>
-      <ConjunctionAlertExecutiveSummaryTable report={report} manoeuvreAddition={manoeuvreAddition} dataPdf={t('title')} />
+      <ConjunctionAlertExecutiveSummaryTable report={report} manoeuvreAddition={manoeuvreAddition} />
       {t.rich('see_further_information', { link: chunks => <a href="#further_information" className="govuk-link">{chunks}</a> })}
     </div>
   );

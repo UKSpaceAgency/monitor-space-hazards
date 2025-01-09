@@ -22,6 +22,7 @@ export default antfu({
   },
 
   ignores: [
+    'node_modules',
     'migrations/**/*',
     'src/components/re-entry-alert/map/regions/*.json',
     'next-env.d.ts',
