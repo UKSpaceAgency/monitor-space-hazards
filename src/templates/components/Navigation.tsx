@@ -71,7 +71,7 @@ export const Navigation = () => {
             <li
               className="my-5 md:pl-0 md:my-0 md:mr-5 border-l-4 border-l-transparent md:border-l-0 md:border-b-4 md:border-transparent"
             >
-              <button type="button" className="block font-bold md:text-lg text-blue hover:text-lightBlue md:py-4" onClick={() => signOut({ redirectTo: '/' })}>{t('sign_out')}</button>
+              <button type="button" className="block font-bold md:text-lg text-blue hover:text-lightBlue md:py-4" onClick={() => signOut({ redirectTo: '/api/auth/logout' })}>{t('sign_out')}</button>
             </li>
           </ul>
         </div>
