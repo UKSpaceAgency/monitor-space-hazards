@@ -1,4 +1,3 @@
-import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import getConjunctionUniqueEvent from '@/actions/getConjunctionUniqueEvent';
@@ -13,14 +12,10 @@ export async function generateMetadata({
 }: PageProps) {
   const t = await getTranslations('Conjunction_alert_edit');
   const { shortId } = await params;
-  try {
-    await getConjunctionUniqueEvent(shortId);
-    return {
-      title: t('title', { shortId }),
-    };
-  } catch {
-    notFound();
-  }
+  await getConjunctionUniqueEvent(shortId);
+  return {
+    title: t('title', { shortId }),
+  };
 }
 
 export default async function ConjunctionAlertEdit({

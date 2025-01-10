@@ -12,10 +12,11 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
+  const { slug } = await params;
   try {
-    const page = await getPage(params.slug);
+    const page = await getPage(slug);
     return {
       title: page.title,
     };
@@ -27,9 +28,10 @@ export async function generateMetadata({
 export default async function StaticPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const { title, content, metadata } = await getPage(params.slug);
+  const { slug } = await params;
+  const { title, content, metadata } = await getPage(slug);
 
   return (
     <div>
