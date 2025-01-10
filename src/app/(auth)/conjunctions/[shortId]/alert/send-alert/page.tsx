@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import { getConjunctionAlertLatest } from '@/actions/getConjunctionAlertLatest';
@@ -14,14 +13,10 @@ export async function generateMetadata({
 }: PageProps) {
   const t = await getTranslations('Forms.Send_alert');
   const { shortId } = await params;
-  try {
-    await getConjunctionAlertLatest(shortId);
-    return {
-      title: t('title'),
-    };
-  } catch {
-    notFound();
-  }
+  await getConjunctionAlertLatest(shortId);
+  return {
+    title: t('title'),
+  };
 }
 
 export default async function ConjunctionAlertSend({

@@ -26,7 +26,7 @@ export async function getPages(): Promise<Array<Pick<Page, 'slug'>>> {
   return data.objects;
 }
 
-export async function getPage(slug: string): Promise<Page> {
+export async function getPage(slug: string) {
   const { object } = await bucket.objects
     .findOne({ type: 'pages', slug })
     .props(['slug,title,metadata,created_at,content']);

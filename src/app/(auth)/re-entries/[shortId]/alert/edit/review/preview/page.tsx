@@ -1,4 +1,4 @@
-import { notFound, redirect } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import type { TypeReentryEventPatch } from '@/__generated__/data-contracts';
@@ -17,16 +17,11 @@ type PageProps = {
 export async function generateMetadata(props: PageProps) {
   const t = await getTranslations('Reentry_alert_edit');
   const { shortId } = await props.params;
-
-  try {
-    const event = await getReentryEvent(shortId);
-    const satellite = await getSatellite(event.noradId);
-    return {
-      title: t('title', { objectName: satellite.commonName }),
-    };
-  } catch {
-    notFound();
-  }
+  const event = await getReentryEvent(shortId);
+  const satellite = await getSatellite(event.noradId);
+  return {
+    title: t('title', { objectName: satellite.commonName }),
+  };
 }
 
 export default async function ReentryAlertEditPreview(props: PageProps) {
