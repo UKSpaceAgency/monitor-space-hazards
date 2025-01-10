@@ -1,4 +1,5 @@
 import { createBucketClient } from '@cosmicjs/sdk';
+import { notFound } from 'next/navigation';
 
 import { env } from './Env';
 
@@ -27,8 +28,12 @@ export async function getPages(): Promise<Array<Pick<Page, 'slug'>>> {
 }
 
 export async function getPage(slug: string) {
-  const { object } = await bucket.objects
-    .findOne({ type: 'pages', slug })
-    .props(['slug,title,metadata,created_at,content']);
-  return object;
+  try {
+    const { object } = await bucket.objects
+      .findOne({ type: 'pages', slug })
+      .props(['slug,title,metadata,created_at,content']);
+    return object;
+  } catch {
+    notFound();
+  }
 }
