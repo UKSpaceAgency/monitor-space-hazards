@@ -50,7 +50,7 @@ const ReentryAlertMap = ({ overflightTime, flightpathCollection, fragmentsCollec
     setOverflights(overflights => [...new Set([...overflights, ...overflightTime.map((_, index) => `OVERFLIGHT-${index}`)])]);
   }, [overflightTime]);
 
-  const onHover = useCallback((event: MapMouseEvent) => {
+  const handleClick = useCallback((event: MapMouseEvent) => {
     const {
       features,
     } = event;
@@ -79,7 +79,7 @@ const ReentryAlertMap = ({ overflightTime, flightpathCollection, fragmentsCollec
           preserveDrawingBuffer
           initialViewState={initialViewState}
           interactiveLayerIds={['land', ...overflights]}
-          onMouseMove={onHover}
+          onClick={handleClick}
           attributionControl={false}
         >
           {regions.map(region => (
@@ -146,6 +146,7 @@ const ReentryAlertMap = ({ overflightTime, flightpathCollection, fragmentsCollec
               overflight={hoverInfo.overflight}
               latitude={hoverInfo.latitude}
               longitude={hoverInfo.longitude}
+              onClose={() => setHoverInfo(null)}
             />
           )}
           <ReentryAlertMapCenterButton />
