@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   title: 'Contact a UKSA orbital analyst',
 };
 
-export default async function ContactAnalyst({ searchParams }: { searchParams: { id: string; callback: string } }) {
+export default async function ContactAnalyst(props: { searchParams: Promise<{ id: string; callback: string }> }) {
   const t = await getTranslations('Contact_analyst');
 
   const session = await getSession();
 
-  const { id } = searchParams;
+  const searchParams = await props.searchParams;
 
   return (
     <>
@@ -29,7 +29,7 @@ export default async function ContactAnalyst({ searchParams }: { searchParams: {
               children: t('event_id'),
             },
             value: {
-              children: id,
+              children: searchParams.id,
             },
           },
           {
