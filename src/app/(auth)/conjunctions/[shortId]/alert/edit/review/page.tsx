@@ -1,4 +1,4 @@
-import { notFound, redirect } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import type { TypeUniqueEventUpdateTextFieldsIn } from '@/__generated__/data-contracts';
@@ -14,14 +14,10 @@ export async function generateMetadata(props: PageProps) {
   const t = await getTranslations('Conjunction_alert_edit');
   const { shortId } = await props.params;
 
-  try {
-    await getConjunctionUniqueEvent(shortId);
-    return {
-      title: t('title', { shortId }),
-    };
-  } catch {
-    notFound();
-  }
+  await getConjunctionUniqueEvent(shortId);
+  return {
+    title: t('title', { shortId }),
+  };
 }
 
 export default async function ConjunctionAlertEditReview(props: PageProps) {

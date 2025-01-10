@@ -22,7 +22,7 @@ export default async function EditUserAlertSettingsPage({
   const alertSettings = await getAlertsUserUserId(id);
 
   if (!isAgencyApprover(user.role)) {
-    return notFound();
+    notFound();
   }
 
   const defaultValues: AlertSettingsSchema = {

@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import { getEphemerises } from '@/actions/getEphemerises';
@@ -23,14 +22,10 @@ export async function generateMetadata({
   params,
 }: PageProps) {
   const { noradId } = await params;
-  try {
-    const satellite = await getSatellite(noradId);
-    return {
-      title: satellite.commonName,
-    };
-  } catch {
-    notFound();
-  }
+  const satellite = await getSatellite(noradId);
+  return {
+    title: satellite.commonName,
+  };
 }
 
 export default async function Satellite(props: PageProps) {

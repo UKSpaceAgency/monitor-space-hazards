@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import { getReentryAlertLatest } from '@/actions/getReentryAlertLatest';
@@ -15,14 +14,10 @@ export async function generateMetadata({
 }: PageProps) {
   const t = await getTranslations('Forms.Send_alert');
   const { shortId } = await params;
-  try {
-    await getReentryEvent(shortId);
-    return {
-      title: t('title'),
-    };
-  } catch {
-    notFound();
-  }
+  await getReentryEvent(shortId);
+  return {
+    title: t('title'),
+  };
 }
 
 export default async function ReentryAlertSend({
