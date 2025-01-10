@@ -106,6 +106,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   callbacks: {
     authorized: async ({ request, auth }) => {
+      if (auth && !auth.user.setup_completed && !request.nextUrl.pathname.includes('account')) {
+        return Response.redirect(new URL('/account/setup', request.nextUrl.origin));
+      }
+
       if (request.nextUrl.pathname === '/data-privacy-notice') {
         return true;
       }

@@ -5,6 +5,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { getUsersMe } from '@/actions/getUsersMe';
 import { patchUsersMe } from '@/actions/patchUsersMe';
+import { ContactAndOrganisationForm } from '@/components/account/contact-and-organisation-information/ContactAndOrganisationForm';
 import Button from '@/ui/button/button';
 import SummaryList from '@/ui/summary-list/summary-list';
 import { AccountType } from '@/utils/Roles';
@@ -84,9 +85,7 @@ export default async function ContactAndOrganisationInformation() {
             </Link>
           )
         : (
-            <form action={saveAndContinue}>
-              <Button type="submit">{tCommon('save_and_continue')}</Button>
-            </form>
+            <ContactAndOrganisationForm onSubmit={saveAndContinue} />
           )}
     </div>
   );
