@@ -1,13 +1,6 @@
-import { notFound } from 'next/navigation';
-
 import { ContentNavigation } from '@/components/ContentNavigation';
 import { HtmlMapper } from '@/components/HtmlMapper';
-import { getPage, getPages } from '@/libs/Cms';
-
-export async function generateStaticParams() {
-  const pages = await getPages();
-  return pages;
-}
+import { getPage } from '@/libs/Cms';
 
 export async function generateMetadata({
   params,
@@ -15,14 +8,10 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  try {
-    const page = await getPage(slug);
-    return {
-      title: page.title,
-    };
-  } catch {
-    notFound();
-  }
+  const page = await getPage(slug);
+  return {
+    title: page.title,
+  };
 }
 
 export default async function StaticPage({
