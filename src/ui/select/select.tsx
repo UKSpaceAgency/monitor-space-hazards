@@ -46,7 +46,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(({
         <select
           id={id}
           ref={ref}
-          className={clsx('govuk-select', {
+          className={clsx('govuk-select grow', {
             'govuk-select--error': !!error,
           })}
           {...props}
