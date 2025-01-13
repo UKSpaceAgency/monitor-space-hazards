@@ -27,7 +27,7 @@ export default async function ContactAndOrganisationInformation() {
       account_details_confirmed_at: new Date().toJSON(),
     });
 
-    update({});
+    await update({});
 
     redirect('/account');
   };

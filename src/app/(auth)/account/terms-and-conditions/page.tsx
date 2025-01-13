@@ -27,7 +27,7 @@ export default async function TermsAndConditions() {
       toc_accepted_at: new Date().toJSON(),
     });
 
-    update({});
+    await update({});
   };
 
   const Download = () => (
