@@ -84,7 +84,7 @@ async function refreshAccessToken(token: JWT) {
   }
 }
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
+export const { handlers, signIn, signOut, auth, unstable_update: update } = NextAuth({
   providers: [
     Auth0({
       clientId: env.AUTH0_CLIENT_ID,
@@ -106,6 +106,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   callbacks: {
     authorized: async ({ request, auth }) => {
+      if (auth && !auth.user.setup_completed && !request.nextUrl.pathname.includes('account')) {
+        return Response.redirect(new URL('/account/setup', request.nextUrl.origin));
+      }
+
       if (request.nextUrl.pathname === '/data-privacy-notice') {
         return true;
       }
