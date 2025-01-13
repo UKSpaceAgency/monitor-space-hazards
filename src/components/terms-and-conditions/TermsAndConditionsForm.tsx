@@ -1,6 +1,5 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
@@ -14,16 +13,11 @@ type TermsAndConditionsFormProps = {
 
 const TermsAndConditionsForm = ({ label, onSubmit }: TermsAndConditionsFormProps) => {
   const tCommon = useTranslations('Common');
-  const { update } = useSession();
 
   const [checked, setChecked] = useState(false);
 
   return (
-    <form action={async () => {
-      await onSubmit();
-      update('setup');
-    }}
-    >
+    <form action={onSubmit}>
       <Checkboxes
         items={[
           {

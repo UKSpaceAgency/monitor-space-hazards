@@ -1,9 +1,11 @@
 /* eslint-disable react/no-nested-components */
+
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 
 import { getUsersMe } from '@/actions/getUsersMe';
 import { patchUsersMe } from '@/actions/patchUsersMe';
+import { update } from '@/auth';
 import { HtmlMapper } from '@/components/HtmlMapper';
 import { TermsAndConditionsForm } from '@/components/terms-and-conditions/TermsAndConditionsForm';
 import { getPage } from '@/libs/Cms';
@@ -24,6 +26,8 @@ export default async function TermsAndConditions() {
     await patchUsersMe({
       toc_accepted_at: new Date().toJSON(),
     });
+
+    update({});
   };
 
   const Download = () => (

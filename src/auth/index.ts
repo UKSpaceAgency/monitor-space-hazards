@@ -84,7 +84,7 @@ async function refreshAccessToken(token: JWT) {
   }
 }
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
+export const { handlers, signIn, signOut, auth, unstable_update: update } = NextAuth({
   providers: [
     Auth0({
       clientId: env.AUTH0_CLIENT_ID,

@@ -5,7 +5,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { getUsersMe } from '@/actions/getUsersMe';
 import { patchUsersMe } from '@/actions/patchUsersMe';
-import { ContactAndOrganisationForm } from '@/components/account/contact-and-organisation-information/ContactAndOrganisationForm';
+import { update } from '@/auth';
 import Button from '@/ui/button/button';
 import SummaryList from '@/ui/summary-list/summary-list';
 import { AccountType } from '@/utils/Roles';
@@ -26,6 +26,8 @@ export default async function ContactAndOrganisationInformation() {
     await patchUsersMe({
       account_details_confirmed_at: new Date().toJSON(),
     });
+
+    update({});
 
     redirect('/account');
   };
@@ -85,7 +87,9 @@ export default async function ContactAndOrganisationInformation() {
             </Link>
           )
         : (
-            <ContactAndOrganisationForm onSubmit={saveAndContinue} />
+            <form action={saveAndContinue}>
+              <Button type="submit">{tCommon('save_and_continue')}</Button>
+            </form>
           )}
     </div>
   );
