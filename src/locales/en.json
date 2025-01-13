@@ -390,7 +390,7 @@
     },
     "Cdm_ingests": {
       "space_track": "Space-Track",
-      "latest_ingest": "Latest ingest:",
+      "latest_ingest": "Latest ingest: ",
       "data_range": "Data range",
       "number_of_cdms": "Number of CDMs ingested",
       "conjunction_data_message": "Conjunction Data Message (CDM) source",
@@ -401,7 +401,7 @@
     "Object_data_ingests": {
       "space_track": "Space-Track",
       "esa_discos": "ESA-DISCOS",
-      "latest_ingest": "Latest ingest:",
+      "latest_ingest": "Latest ingest: ",
       "data_range": "Data range",
       "number_of_objects": "Number of objects ingested",
       "7_days": "7 days",
@@ -422,7 +422,7 @@
       "manoeuvre_received": "Manoeuvre support plots received",
       "file_type": "File type",
       "number_received": "Number received",
-      "latest_ingest": "Latest ingest:",
+      "latest_ingest": "Latest ingest: ",
       "date_range": "Date range",
       "7_days": "7 days",
       "30_days": "30 days",
@@ -767,6 +767,7 @@
       "title": "Performance monitoring",
       "cdm_ingests": {
         "title": "CDM ingests",
+        "unknown": "Unknown",
         "details": {
           "title": "Information on event history",
           "content": "<p>This table shows performance monitoring information for the external sources of CDMs that Monitor Space Hazards ingests.</p><list><item>Ingestion start and stop show the time the last data ingest started and finished</item><item>Number of items fetched shows how many items were retrieved</item></list>"
@@ -775,6 +776,7 @@
       "object_data_ingests": {
         "title": "Object data ingests",
         "object_data_ingests": "object data ingests",
+        "unknown": "Unknown",
         "details": {
           "title": "Information on event history",
           "content": "<p>This table shows performance monitoring information for the external data sources of satellite information that Monitor Space Hazards ingests.</p><list><item>Ingestion start and stop show the time the last data ingest started and finished</item><item>Number of items fetched shows how many items were retrieved</item></list>"
@@ -785,6 +787,7 @@
       },
       "uksa": {
         "title": "UKSA conjunction event analysis and manoeuvre support",
+        "unknown": "Unknown",
         "details": {
           "title": "Help with this table",
           "content": "This tables shows the number of analyses and manoeuvre support plots uploaded by a UKSA orbital analyst."

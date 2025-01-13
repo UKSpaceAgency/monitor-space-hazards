@@ -6,14 +6,13 @@ import { useState } from 'react';
 
 import type { TypeGetExternalDataPerformanceAggregatedParams } from '@/__generated__/data-contracts';
 import { getExternalDataPerformanceAggregated } from '@/actions/getExternalDataPerformanceAggregated';
-import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
 import { QUERY_KEYS } from '@/utils/QueryKeys';
 
 import BaseChart from '../base/BaseChart';
 import { brandColors, chartPalette } from '../base/theme';
 
-export function ObjectDataIngests({ latestIngestDate }: { latestIngestDate: string | null | undefined }) {
+export function ObjectDataIngests({ latestIngestDate }: { latestIngestDate: string }) {
   const t = useTranslations('Charts.Object_data_ingests');
 
   const params: TypeGetExternalDataPerformanceAggregatedParams = {
@@ -92,7 +91,7 @@ export function ObjectDataIngests({ latestIngestDate }: { latestIngestDate: stri
       <p className="govuk-body-s">
         {t('latest_ingest')}
         {(latestIngestDate && !isFetching)
-          ? dayjs(latestIngestDate).format(FORMAT_DATE_TIME)
+          ? latestIngestDate
           : 'loading...'}
       </p>
       <BaseChart

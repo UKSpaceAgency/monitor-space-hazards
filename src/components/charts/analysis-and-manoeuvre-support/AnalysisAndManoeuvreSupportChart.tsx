@@ -5,7 +5,6 @@ import type { ReactNode } from 'react';
 import { useMemo } from 'react';
 
 import type { AnalysisAndManoeuvreSupportStatsType } from '@/actions/getStatsAnalysisAndManoeuvreSupport';
-import { dayjs, FORMAT_DATE } from '@/libs/Dayjs';
 
 import BaseChart from '../base/BaseChart';
 import { chartPalette } from '../base/theme';
@@ -13,11 +12,13 @@ import { chartPalette } from '../base/theme';
 export type AnalysisAndManoeuvreSupportChartProps = {
   data: AnalysisAndManoeuvreSupportStatsType[];
   actionButtons: ReactNode;
+  latestIngestDate: string;
 };
 
 const AnalysisAndManoeuvreSupportChart = ({
   data,
   actionButtons,
+  latestIngestDate,
 }: AnalysisAndManoeuvreSupportChartProps) => {
   const t = useTranslations('Charts.Analysis_and_manoeuvre_support');
 
@@ -47,15 +48,11 @@ const AnalysisAndManoeuvreSupportChart = ({
     [data, t],
   );
 
-  const latestIngest = useMemo(() => {
-    return dayjs(data[0]?.date).format(FORMAT_DATE);
-  }, [data]);
-
   return (
     <div className="mb-4">
       <p className="govuk-body-s">
         {t('latest_ingest')}
-        {latestIngest}
+        {latestIngestDate}
       </p>
       <BaseChart
         name="analysis-ingests-chart"
