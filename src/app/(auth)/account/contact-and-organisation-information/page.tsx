@@ -29,7 +29,7 @@ export default async function ContactAndOrganisationInformation() {
 
     await update({});
 
-    redirect('/account');
+    redirect('/account/setup');
   };
 
   return (
