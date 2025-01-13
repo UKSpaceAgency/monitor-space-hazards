@@ -1,6 +1,7 @@
 /* eslint-disable react/no-nested-components */
 
 import type { Metadata } from 'next';
+import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import { getUsersMe } from '@/actions/getUsersMe';
@@ -28,6 +29,8 @@ export default async function TermsAndConditions() {
     });
 
     await update({});
+
+    redirect('/account/setup');
   };
 
   const Download = () => (
