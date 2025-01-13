@@ -16,7 +16,7 @@ export default async function AlertSettingsPage() {
   const alertSettings = await getUsersMeAlertSettings();
 
   if (isSatteliteUser(user.role) || !user.id) {
-    return notFound();
+    notFound();
   }
 
   const defaultValues: AlertSettingsSchema = {

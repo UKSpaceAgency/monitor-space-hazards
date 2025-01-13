@@ -32,7 +32,7 @@ const HtmlMapper = ({ content }: { content: string }) => {
         thead: props => <thead className="govuk-table__head" {...props} />,
         tbody: props => <tbody className="govuk-table__body" {...props} />,
         // eslint-disable-next-line react/no-children-prop
-        table: props => <table className="govuk-table" children={props.children} />,
+        table: props => <div className="overflow-x-auto"><table className="govuk-table" children={props.children} /></div>,
         tr: props => <tr className="govuk-table__row" {...props} />,
         th: ({ style, ...props }) => <th className="govuk-table__header" {...props} />,
         td: ({ style, ...props }) => <td className="govuk-table__cell" {...props} />,

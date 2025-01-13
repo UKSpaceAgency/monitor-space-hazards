@@ -64,7 +64,7 @@ const AddNewUserForm = ({ defaultValues, organizations, role }: AddNewUserFormPr
             <RichText>
               {tags => t.rich('success_message', {
                 ...tags,
-                organization: organizations.find(({ id }) => id === createdUser?.organization_id)?.name,
+                organisation: organizations.find(({ id }) => id === createdUser?.organization_id)?.name,
               }) }
             </RichText>
             {(isGovUser(role) || isAgencyUser(role)) && (

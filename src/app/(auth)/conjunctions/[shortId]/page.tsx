@@ -1,4 +1,3 @@
-import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import { getConjunctionEvent } from '@/actions/getConjunctionEvent';
@@ -18,14 +17,10 @@ export async function generateMetadata({
   params,
 }: PageProps) {
   const { shortId } = await params;
-  try {
-    const event = await getConjunctionEventsSatelliteEventShortId(shortId);
-    return {
-      title: event.shortId,
-    };
-  } catch {
-    notFound();
-  }
+  const event = await getConjunctionEventsSatelliteEventShortId(shortId);
+  return {
+    title: event.shortId,
+  };
 }
 
 export default async function ConjunctionPage({

@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import { getReentryEvent } from '@/actions/getReentryEvent';
@@ -16,10 +15,6 @@ export async function generateMetadata({
   const t = await getTranslations('Reentry_alert');
   const { shortId } = await params;
   const event = await getReentryEvent(shortId);
-
-  if (!event) {
-    notFound();
-  }
   return {
     title: t('title', { objectName: event.objectName }),
   };

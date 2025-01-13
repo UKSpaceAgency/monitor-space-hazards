@@ -7,7 +7,7 @@ import Button from '@/ui/button/button';
 import Checkboxes from '@/ui/checkboxes/checkboxes';
 
 type TermsAndConditionsFormProps = {
-  onSubmit: VoidFunction;
+  onSubmit: () => Promise<void>;
   label: string;
 };
 

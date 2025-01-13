@@ -5,6 +5,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { getUsersMe } from '@/actions/getUsersMe';
 import { patchUsersMe } from '@/actions/patchUsersMe';
+import { update } from '@/auth';
 import Button from '@/ui/button/button';
 import SummaryList from '@/ui/summary-list/summary-list';
 import { AccountType } from '@/utils/Roles';
@@ -26,7 +27,9 @@ export default async function ContactAndOrganisationInformation() {
       account_details_confirmed_at: new Date().toJSON(),
     });
 
-    redirect('/account');
+    await update({});
+
+    redirect('/account/setup');
   };
 
   return (

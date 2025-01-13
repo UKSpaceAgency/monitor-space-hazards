@@ -1,7 +1,8 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 
 import { postEphemeris } from '@/actions/postEphemeris';
 import Button from '@/ui/button/button';
@@ -14,7 +15,7 @@ type SatelliteEphemerisUploadFormProps = {
 
 const SatelliteEphemerisUploadForm = ({ objectId }: SatelliteEphemerisUploadFormProps) => {
   const t = useTranslations('Forms.Ephemeris_upload');
-  const [state, formAction] = useFormState(postEphemeris, null);
+  const [state, formAction] = useActionState(postEphemeris, null);
   const { pending } = useFormStatus();
 
   return (
