@@ -3,7 +3,7 @@ import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import ExpandedButton from '@/ui/button/expanded-button';
 import Tag from '@/ui/tag/tag';
-import { getAbsoluteValue } from '@/utils/Math';
+import { displayExponential, getAbsoluteValue } from '@/utils/Math';
 
 export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummaryOut>[] = [
   {
@@ -53,7 +53,7 @@ export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummar
     header: 'Conjunction.event_history.probability_of_collision',
     cell: ({ getValue }) => {
       const value = getValue<number | null>();
-      return value?.toExponential(4);
+      return displayExponential(value, 4);
     },
     enableSorting: false,
   },

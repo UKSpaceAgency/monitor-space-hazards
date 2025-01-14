@@ -1,3 +1,5 @@
+import { displayExponential } from '@/utils/Math';
+
 import { chartPalette } from '../base/theme';
 
 export type BichromaticOptions = {
@@ -9,7 +11,7 @@ export type BichromaticOptions = {
 
 export const generateBichromaticOptions = (thresh: number): BichromaticOptions[] => {
   const exp = (value: number, fractionDigits = 0) =>
-    value.toExponential(fractionDigits);
+    displayExponential(value, fractionDigits);
   const nextThresh = thresh * 1e-1;
   return [
     {

@@ -6,6 +6,7 @@ import { useMemo, useState } from 'react';
 import type { TypeEventSummaryOut } from '@/__generated__/data-contracts';
 import RichText from '@/components/RichText';
 import Checkboxes from '@/ui/checkboxes/checkboxes';
+import { displayExponential } from '@/utils/Math';
 
 import BaseChart from '../base/BaseChart';
 import { getPocChartDatasets } from './getPocChartDatasets';
@@ -53,7 +54,7 @@ export function PocChart({ data }: PocChartProps) {
         yAxisTitle={t('yAxis')}
         referenceLineTitle={t('tca')}
         referenceLineValue={tca}
-        tickYCallback={(value: number) => value === 0 ? 0 : Number(value).toExponential(2)}
+        tickYCallback={(value: number) => displayExponential(Number(value), 2) || 0}
         legend={{ title: 'Data source' }}
         actionButtons={
           specialData.length > 0 && (

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import type { TypeEventOut } from '@/__generated__/data-contracts';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
-import { getAbsoluteValue } from '@/utils/Math';
+import { displayExponential, getAbsoluteValue } from '@/utils/Math';
 
 export type ProbabilityUnitType = 'scientific' | 'percentage';
 
@@ -145,7 +145,7 @@ export const getConjunctionEventsColumns = ({
           if (probabilityUnit === 'percentage') {
             return `${(collisionProbability * 100).toFixed(2)}%`;
           }
-          return collisionProbability.toExponential(4);
+          return displayExponential(collisionProbability, 4);
         },
       },
       {
@@ -163,7 +163,7 @@ export const getConjunctionEventsColumns = ({
           if (probabilityUnit === 'percentage') {
             return `${(collisionProbability * 100).toFixed(2)}%`;
           }
-          return collisionProbability.toExponential(4);
+          return displayExponential(collisionProbability, 4);
         },
       },
     ],

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import type { TypeEventOut } from '@/__generated__/data-contracts';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
+import { displayExponential } from '@/utils/Math';
 
 export const satteliteConjunctionColumns: TranslatedColumnDef<TypeEventOut>[] = [
   {
@@ -64,7 +65,7 @@ export const satteliteConjunctionColumns: TranslatedColumnDef<TypeEventOut>[] = 
         header: 'Space-Track CDM',
         cell: ({ getValue }) => {
           const value = getValue<number | null>();
-          return value ? value.toExponential(3) : 0;
+          return displayExponential(value, 3);
         },
       },
     ],
