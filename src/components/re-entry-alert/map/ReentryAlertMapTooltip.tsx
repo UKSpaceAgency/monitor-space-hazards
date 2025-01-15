@@ -24,18 +24,17 @@ const ReentryAlertMapTooltip = ({ latitude, longitude, regions, overflight, onCl
   const distance = calcDistance(latitude, longitude, city.latitude, city.longitude);
 
   return (
-    <div className="bg-white p-4 rounded-md absolute top-2 left-2">
+    <div className="bg-white p-4 rounded-md absolute top-2 left-2 max-w-[300px]">
       <button type="button" className="absolute top-2 right-2" onClick={onClose}>
         <Cancel01Icon className="size-4" />
       </button>
       <div className="pr-4">
-        {distance < 50 && (
-          <h3 className="font-bold text-base mb-1">
-            {`${name}, ${countries[countryCode as keyof typeof countries]}`}
-          </h3>
-        )}
-
         <ul className="govuk-list mb-0 text-sm">
+          {distance < 50 && (
+            <li>
+              <span className="font-bold mr-1">{`${name}, ${countries[countryCode as keyof typeof countries]}`}</span>
+            </li>
+          )}
           {regions && (
             <li>
               <span className="font-bold mr-1">{t('regions')}</span>
