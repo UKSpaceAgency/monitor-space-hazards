@@ -58,7 +58,7 @@ const ReentryAlertAccordion = ({
             <ReentryAlertImpactRegion england={impacts?.england} ireland={impacts?.northern_ireland} wales={impacts?.wales} scotland={impacts?.scotland} dataPdf={t('potential_impact_uk_region')} />
           ),
         },
-        ...(impacts?.by_nation
+        ...(impacts?.overseas_territories_and_crown_dependencies
           ? [{
               id: 'potential_impact_overseas_territory',
               heading: t('potential_impact_overseas_territory'),
