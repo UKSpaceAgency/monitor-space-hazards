@@ -991,6 +991,7 @@
       "summary_list": {
         "special": "Special",
         "space_track_cdm": "Space-Track CDM",
+        "uksa_analysis": "UKSA Analysis",
         "cdm_id": "CDM ID",
         "probability_of_collision": "Probability of collision",
         "probability_of_collision_calc_method": "Probability of collision calculation method",
