@@ -13,7 +13,7 @@ import { QUERY_KEYS } from '@/utils/QueryKeys';
 import { AnalysisAndManoeuvreSupportChart } from '../charts/analysis-and-manoeuvre-support/AnalysisAndManoeuvreSupportChart';
 import { MonitoringAnalysisAndManoeuvreSupportDataTable } from './data-table/MonitoringAnalysisAndManoeuvreSupportDataTable';
 
-const MonitoringUksaEventContent = () => {
+const MonitoringUksaEventContent = ({ latestIngestDate }: { latestIngestDate: string }) => {
   const t = useTranslations('Charts.Analysis_and_manoeuvre_support');
 
   const params: TypeGetExternalDataPerformanceAggregatedParams = {
@@ -75,7 +75,7 @@ const MonitoringUksaEventContent = () => {
 
   return (
     <div>
-      <AnalysisAndManoeuvreSupportChart data={data} actionButtons={actionButtons} />
+      <AnalysisAndManoeuvreSupportChart data={data} actionButtons={actionButtons} latestIngestDate={latestIngestDate} />
       <MonitoringAnalysisAndManoeuvreSupportDataTable data={data} params={params} />
     </div>
   );

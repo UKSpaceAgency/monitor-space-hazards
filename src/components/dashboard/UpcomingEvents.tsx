@@ -1,4 +1,5 @@
 import Api from '@/libs/Api';
+import { displayExponential } from '@/utils/Math';
 
 type UpcomingEventsProps = {
   title: string;
@@ -20,7 +21,7 @@ const UpcomingEvents = async ({ className, title, conjunctionTitle, highestPocTi
     },
     {
       title: highestPocTitle,
-      value: highestPOC.data.collisionProbability.toExponential(3),
+      value: displayExponential(highestPOC.data.collisionProbability, 3),
     },
     {
       title: reentryTitle,

@@ -10,6 +10,7 @@ import { dayjs } from '@/libs/Dayjs';
 import Details from '@/ui/details/details';
 import Select from '@/ui/select/select';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
+import { displayExponential } from '@/utils/Math';
 
 import BaseScatter from '../base-scatter/BaseScatter';
 import { generateBichromaticOptions } from './generateBichromaticOptions';
@@ -40,8 +41,8 @@ export function MtpChart({
     () =>
       [1e-3, 1e-4, 1e-5, 1e-6, 1e-7, 1e-8, 1e-9, 1e-10, 1e-11].map(
         thresh => ({
-          children: thresh.toExponential(0),
-          value: thresh.toExponential(0),
+          children: displayExponential(thresh, 0),
+          value: displayExponential(thresh, 0),
         }),
       ),
     [],
@@ -63,7 +64,7 @@ export function MtpChart({
   const callbackLabel = ({ raw }: TooltipCallbackModel) => {
     let poc_label = t('chart.poc');
     if (raw.prob !== null) {
-      poc_label += raw.prob.toExponential(4);
+      poc_label += displayExponential(raw.prob, 4);
     }
     let dv_label = t('chart.delta_v');
     if (raw.y !== null) {
@@ -110,7 +111,7 @@ export function MtpChart({
             <Select
               name="PoC select"
               aria-label="PoC select"
-              value={selectedThreshold.toExponential(0)}
+              value={displayExponential(selectedThreshold, 0)}
               options={thresholdOptions}
               onChange={onThresholdSelectChange}
             />

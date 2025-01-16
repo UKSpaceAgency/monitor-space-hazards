@@ -6,7 +6,7 @@ import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import Tag from '@/ui/tag/tag';
-import { getAbsoluteValue } from '@/utils/Math';
+import { displayExponential, getAbsoluteValue } from '@/utils/Math';
 
 type ConjunctionEventSummaryTableInformations = Pick<
   TypeEventSummaryOut,
@@ -40,7 +40,7 @@ const ConjunctionEventSummaryTableInformationsTable = ({ data }: ConjunctionEven
   }, {
     header: t('summary_list.probability_of_collision'),
     accessorKey: 'collisionProbability',
-    renderCell: row => row.collisionProbability?.toExponential(4),
+    renderCell: row => displayExponential(row.collisionProbability, 4),
   }, {
     header: t('summary_list.probability_of_collision_calc_method'),
     accessorKey: 'collisionProbabilityMethod',
