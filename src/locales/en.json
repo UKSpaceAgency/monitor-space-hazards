@@ -214,8 +214,8 @@
     },
     "table": {
       "organisation": "Organisaton",
-      "registered_users": "Number of registered satellites",
-      "registered_satellites": "Number of registered users",
+      "registered_users": "Number of registered users",
+      "registered_satellites": "Number of registered satellites",
       "date_added": "Date account added"
     }
   },
