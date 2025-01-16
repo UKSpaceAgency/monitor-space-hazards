@@ -30,8 +30,8 @@ export default async function ConjunctionPage({
 
   const { shortId } = await params;
   const { primaryObject, secondaryObject } = await getConjunctionEventsSatelliteEventShortId(shortId);
-  const event = await getConjunctionEvent({ eventId: shortId });
-  const isSpecial = event?.primaryObjectCdmType === 'Special owner/operator ephemeris';
+  const { event, spacetrack, uksa } = await getConjunctionEvent({ eventId: shortId });
+  const isSpecial = event.primaryObjectCdmType === 'Special owner/operator ephemeris';
 
   return (
     <>
@@ -42,13 +42,16 @@ export default async function ConjunctionPage({
           <ContentNavigation />
         </div>
         <div className="govuk-grid-column-three-quarters">
-          <ConjunctionEventSummary
-            shortId={shortId}
-            event={event}
-            primaryObject={primaryObject}
-            secondaryObject={secondaryObject}
-            isSpecial={isSpecial}
-          />
+          {spacetrack && (
+            <ConjunctionEventSummary
+              shortId={shortId}
+              spacetrack={spacetrack}
+              uksa={uksa}
+              primaryObject={primaryObject}
+              secondaryObject={secondaryObject}
+              isSpecial={isSpecial}
+            />
+          )}
           <ConjunctionAccordion
             shortId={shortId}
             event={event}

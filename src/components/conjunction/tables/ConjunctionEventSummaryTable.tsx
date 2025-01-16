@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl';
+import type { HTMLProps } from 'react';
 
 import type { TypeEventSummaryOut } from '@/__generated__/data-contracts';
 import type { InformationsTableRow } from '@/components/InformationsTable';
@@ -13,17 +14,21 @@ type ConjunctionEventSummaryTableInformations = Pick<
 >;
 
 type ConjunctionEventSummaryTableInformationsTableProps = {
-  object: ConjunctionEventSummaryTableInformations | ConjunctionEventSummaryTableInformations[];
+  data: ConjunctionEventSummaryTableInformations | ConjunctionEventSummaryTableInformations[];
 };
 
-const ConjunctionEventSummaryTableInformationsTable = ({ object }: ConjunctionEventSummaryTableInformationsTableProps) => {
+const ConjunctionEventSummaryTableInformationsTable = ({ data }: ConjunctionEventSummaryTableInformationsTableProps) => {
   const t = useTranslations('Tables.Conjunction');
 
+  const eventDetailsHeaders: HTMLProps<HTMLTableCellElement>[] = [{}, {
+    children: t('summary_list.space_track_cdm'),
+  }, ...(Array.isArray(data)
+    ? [{
+        children: t('summary_list.uksa_analysis'),
+      }]
+    : [])];
+
   const baseInformations: InformationsTableRow<ConjunctionEventSummaryTableInformations>[] = [{
-    header: '',
-    renderCell: () => <b className="w-2/5">{t('summary_list.space_track_cdm')}</b>,
-    accessorKey: 'cdmExternalId',
-  }, {
     header: t('summary_list.cdm_id'),
     accessorKey: 'cdmExternalId',
     renderCell: row => (
@@ -70,7 +75,7 @@ const ConjunctionEventSummaryTableInformationsTable = ({ object }: ConjunctionEv
     accessorKey: 'secondaryObjectSize',
   }];
 
-  return <InformationsTable rows={baseInformations} data={object} headerCellWidth="sm" />;
+  return <InformationsTable headers={eventDetailsHeaders} rows={baseInformations} data={data} headerCellWidth="sm" />;
 };
 
 export { ConjunctionEventSummaryTableInformationsTable };

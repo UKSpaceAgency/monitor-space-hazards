@@ -10,9 +10,16 @@ export async function getConjunctionEvent(
 
   const event = data.find(event => event.shortId === query.eventId);
 
+  const spacetrack = data.find(event => event.dataSource === 'Space-Track CDM');
+  const uksa = data.find(event => event.dataSource === 'UKSA Analysis');
+
   if (!event) {
     throw new Error('Event doesn\'t exist!');
   }
 
-  return event;
+  return {
+    event,
+    spacetrack,
+    uksa,
+  };
 }

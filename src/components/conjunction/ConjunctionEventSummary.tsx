@@ -13,13 +13,15 @@ type ConjunctionEventSummaryProps = {
   shortId: string;
   primaryObject: TypeSatelliteOut;
   secondaryObject: TypeSatelliteOut | null;
-  event: TypeEventSummaryOut;
   isSpecial: boolean;
+  spacetrack: TypeEventSummaryOut;
+  uksa?: TypeEventSummaryOut;
 };
 
 const ConjunctionEventSummary = async ({
   shortId,
-  event,
+  spacetrack,
+  uksa,
   primaryObject,
   secondaryObject,
   isSpecial,
@@ -64,7 +66,7 @@ const ConjunctionEventSummary = async ({
                 )}
           </li>
         </ul>
-        <ConjunctionEventSummaryTableInformationsTable object={event} />
+        <ConjunctionEventSummaryTableInformationsTable data={uksa ? [spacetrack, uksa] : spacetrack} />
         <Details summary={t('information_on_calculations.title')} data-pdf-ignore>
           {t.rich('information_on_calculations.content')}
         </Details>
