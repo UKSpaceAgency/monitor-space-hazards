@@ -12,7 +12,7 @@ const MonitoringAccordion = async () => {
 
   return (
     <>
-      <h2 className="govuk-heading-l">{t('title')}</h2>
+      <h2 className="govuk-heading-l" id="performanceAccordionTitle">{t('title')}</h2>
       <Accordion
         id="performance-monitoring-accordion"
         initialItems={[
