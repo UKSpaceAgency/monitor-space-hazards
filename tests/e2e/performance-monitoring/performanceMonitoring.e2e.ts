@@ -21,4 +21,14 @@ test.describe('Performance monitoring page', () => {
     await expect(page.locator('#notificationsSent')).toBeVisible();
     await expect(page.locator('#uksa')).toBeVisible();
   });
+
+  test('should initially set data range', async ({ page }) => {
+    await page.goto('/performance-monitoring');
+
+    await page.locator('#accordion-performance-monitoring-accordion').getByRole('button', { name: 'Show all sections' }).click();
+    await page.locator('#accordion-conjunction-event-accordion').getByRole('button', { name: 'Show all sections' }).click();
+
+    await expect(page.getByLabel('7 days')).toBeChecked();
+    await expect(page.locator('#content-cdmIngests').getByLabel('Linear')).toBeChecked();
+  });
 });
