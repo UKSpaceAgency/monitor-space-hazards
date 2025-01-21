@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 
 import type { TypeGetExternalDataPerformanceParams } from '@/__generated__/data-contracts';
 import { getExternalDataPerformance } from '@/actions/getExternalDataPerformance';
+import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import Details from '@/ui/details/details';
 
 import ObjectDataIngests from '../charts/object-data-ingests/ObjectDataIngests';
@@ -23,9 +24,11 @@ const MonitoringObjectDataIngests = async () => {
     limit: 1,
   });
 
+  const latestIngestDate = latestIngestArray[0]?.ingestionEnd ? dayjs(latestIngestArray[0]?.ingestionEnd).format(FORMAT_DATE_TIME) : t('unknown');
+
   return (
     <>
-      <ObjectDataIngests latestIngestDate={latestIngestArray[0]?.ingestionEnd} />
+      <ObjectDataIngests latestIngestDate={latestIngestDate} />
       <MonitoringDataPerformanceDataTable params={params} />
       <DownloadData type={t('object_data_ingests')} params={params} downloadAction={getExternalDataPerformance} />
       <Details summary={t('details.title')}>

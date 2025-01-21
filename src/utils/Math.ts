@@ -21,3 +21,11 @@ export const calcDistance = (lat1: number, lon1: number, lat2: number, lon2: num
   const d = R * c;
   return d;
 };
+
+export const displayExponential = (num: number | undefined | null, fractionDigits: number) => {
+  if (!num && num !== 0) {
+    return;
+  }
+
+  return num ? num.toExponential(fractionDigits) : 0;
+};
