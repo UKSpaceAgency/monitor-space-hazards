@@ -28,11 +28,18 @@ export default async function SetupPage() {
         </h3>
         {isCompleted && (
           <ButtonGroup>
-            <Link href="/">
+            <Link href="/account">
               <Button>
-                {t('notification.view_home')}
+                {t('notification.view_account_settings')}
               </Button>
             </Link>
+            {!isAdmin(session.user.role) && (
+              <Link href="/">
+                <Button className="govuk-button--secondary">
+                  {t('notification.view_home')}
+                </Button>
+              </Link>
+            )}
             {isAdmin(session.user.role) && (
               <Link
                 href="/account/add-new-user"

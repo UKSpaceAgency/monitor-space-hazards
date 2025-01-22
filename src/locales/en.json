@@ -256,6 +256,7 @@
       "completed": "You have completed account set up. You can now access the site.",
       "uncompleted": "You must review and complete all sections of account set up before you can access the service.",
       "view_home": "View home page",
+      "view_account_settings": "View account settings",
       "add_users": "Add users to organisation"
     }
   },
