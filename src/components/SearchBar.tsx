@@ -18,7 +18,7 @@ const SearchBar = ({ label, placeholder, paramName }: SearchBarProps) => {
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const [search, setSearch] = useState(searchParams.get('search_like')?.toString());
+  const [search, setSearch] = useState(searchParams.get('search_like')?.toString() || '');
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     const param = paramName || 'search_like';
