@@ -9,7 +9,7 @@ import type { TypeEphemerisOut } from '@/__generated__/data-contracts';
 import { deleteEphemeris } from '@/actions/deleteEphemeris';
 import { getEphemeris } from '@/actions/getEphemeris';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
-import { createCSV } from '@/libs/File';
+import { createTXT } from '@/libs/File';
 import Button from '@/ui/button/button';
 import NotificationBanner from '@/ui/notification-banner/notification-banner';
 import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
@@ -21,24 +21,20 @@ type EphemerisesTableProps = {
 
 const EphemerisesTable = ({ data }: EphemerisesTableProps) => {
   const t = useTranslations('Tables.Ephemerises');
-  const [ephemerisToDelete, setEphemerisToDelete] = useState<{ id?: string; fileName: string } | null>(null);
+  const [ephemerisToDelete, setEphemerisToDelete] = useState<{ id: string; fileName: string } | null>(null);
 
   const { mutate, isIdle, isSuccess, isPending } = useMutation({
     mutationKey: ['delete-ephemeris'],
-    mutationFn: async (id?: string) => {
-      if (id) {
-        await deleteEphemeris(id);
-      }
+    mutationFn: async (id: string) => {
+      await deleteEphemeris(id);
     },
   });
 
-  const downloadFile = async (id?: string) => {
-    if (id) {
-      const data = await getEphemeris(id);
-      if (data) {
-        const file = createCSV(data);
-        saveAs(file, `${id}.csv`);
-      }
+  const downloadFile = async (id: string, fileName: string) => {
+    const data = await getEphemeris(id);
+    if (data) {
+      const file = createTXT(data);
+      saveAs(file, fileName);
     }
   };
 
@@ -50,9 +46,11 @@ const EphemerisesTable = ({ data }: EphemerisesTableProps) => {
           heading={t('Confirm_banner.title', { fileName: ephemerisToDelete.fileName })}
         >
           <div className="govuk-button-group">
-            <Button className="govuk-button--warning" onClick={() => mutate(ephemerisToDelete.id)}>
-              {t('Confirm_banner.yes')}
-            </Button>
+            {ephemerisToDelete.id && (
+              <Button className="govuk-button--warning" onClick={() => mutate(ephemerisToDelete.id)}>
+                {t('Confirm_banner.yes')}
+              </Button>
+            )}
             <Button className="govuk-button--secondary" onClick={() => setEphemerisToDelete(null)}>
               {t('Confirm_banner.no')}
             </Button>
@@ -85,9 +83,11 @@ const EphemerisesTable = ({ data }: EphemerisesTableProps) => {
             return (
               <TableRow key={id}>
                 <TableCell>
-                  <button type="button" className="govuk-link text-blue" onClick={() => downloadFile(id)}>
-                    {shortFileName}
-                  </button>
+                  {id && (
+                    <button type="button" className="govuk-link text-blue" onClick={() => downloadFile(id, shortFileName)}>
+                      {shortFileName}
+                    </button>
+                  )}
                 </TableCell>
                 <TableCell>
                   {dayjs(startTime).format(FORMAT_DATE_TIME)}
@@ -99,7 +99,7 @@ const EphemerisesTable = ({ data }: EphemerisesTableProps) => {
                   {!isActive
                     ? <Tag color="red">{t('deleted')}</Tag>
                     : (
-                        <button type="button" className="govuk-link text-blue" onClick={() => setEphemerisToDelete({ id, fileName: shortFileName })} disabled={isPending}>
+                        <button type="button" className="govuk-link text-blue" onClick={() => id && setEphemerisToDelete({ id, fileName: shortFileName })} disabled={isPending}>
                           {t('delete')}
                           <span className="govuk-visually-hidden">
                             {fileName}

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 
@@ -14,13 +15,14 @@ import { ScheduleBannerFormTime } from './ScheduleBannerFormTime';
 
 type ScheduleBannerFormProps = {
   templates: TypeBannerMessagesOut[];
-  startDate: Date;
-  handleForm: (data: TypeBannerScheduleIn) => void;
 };
 
-const ScheduleBannerForm = ({ templates, startDate, handleForm }: ScheduleBannerFormProps) => {
+const ScheduleBannerForm = ({ templates }: ScheduleBannerFormProps) => {
   const t = useTranslations('Forms.Schedule_banner');
   const tCommon = useTranslations('Common');
+  const { push } = useRouter();
+
+  const startDate = new Date();
 
   const { register, handleSubmit, setValue, watch, resetField } = useForm<TypeBannerScheduleIn>({
     defaultValues: {
@@ -30,8 +32,14 @@ const ScheduleBannerForm = ({ templates, startDate, handleForm }: ScheduleBanner
     },
   });
 
-  const onSubmit = (data: TypeBannerScheduleIn) => {
-    handleForm(data);
+  const onSubmit = ({ broadcastStart, broadcastEnd, messageId }: TypeBannerScheduleIn) => {
+    const params = new URLSearchParams({
+      broadcastStart,
+      broadcastEnd,
+      messageId,
+    });
+
+    push(`/account/incident-banner/schedule/confirm/?${params.toString()}`);
   };
 
   return (
@@ -46,7 +54,6 @@ const ScheduleBannerForm = ({ templates, startDate, handleForm }: ScheduleBanner
           <Button variant="secondary">{tCommon('return', { to: 'account page' })}</Button>
         </Link>
       </ButtonGroup>
-
     </form>
   );
 };
