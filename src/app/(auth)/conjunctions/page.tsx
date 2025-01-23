@@ -35,16 +35,14 @@ export default async function ConjunctionsPage(props: PageProps) {
       <h1 className="govuk-heading-xl">{t('title')}</h1>
       <Suspense key={params.search_like} fallback={<Spinner />}>
         <ConjunctionsSummaryTable />
-      </Suspense>
-      <Details summary={t('help1.title')}>
-        {t.rich('help1.content')}
-      </Details>
-      <h2 className="govuk-heading-m">{t('section_title')}</h2>
-      <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
-      <p className="govuk-body">{t('description')}</p>
-      <SearchBar label={t('search_bar.label')} placeholder={t('search_bar.placeholder')} />
-      <ConjunctionsEventsTableFilters params={params} />
-      <Suspense key={Object.values(params).toString()} fallback={<Spinner />}>
+        <Details summary={t('help1.title')}>
+          {t.rich('help1.content')}
+        </Details>
+        <h2 className="govuk-heading-m">{t('section_title')}</h2>
+        <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
+        <p className="govuk-body">{t('description')}</p>
+        <SearchBar label={t('search_bar.label')} placeholder={t('search_bar.placeholder')} />
+        <ConjunctionsEventsTableFilters params={params} />
         <ConjunctionsEventsTable params={params} />
       </Suspense>
       <Details summary={t('help2.title')}>
