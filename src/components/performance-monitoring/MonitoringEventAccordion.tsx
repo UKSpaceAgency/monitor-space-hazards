@@ -12,7 +12,7 @@ const MonitoringEventAccordion = async () => {
 
   return (
     <>
-      <h2 className="govuk-heading-l">{t('title')}</h2>
+      <h2 className="govuk-heading-l" id="conjunctionAccordionTitle">{t('title')}</h2>
       <Accordion
         id="conjunction-event-accordion"
         initialItems={[
