@@ -35,8 +35,8 @@ const options: Option[][] = [[
     value: Regions.BRITISH_OVERSEAS_TERRITORIES.id,
   },
   {
-    children: Regions.SHANWICK.name,
-    value: Regions.SHANWICK.id,
+    children: Regions.UK_AIRSPACE.name,
+    value: Regions.UK_AIRSPACE.id,
   },
   {
     children: Regions.NAVAREA.name,

@@ -9,7 +9,7 @@ import { useCallback, useEffect, useState } from 'react';
 import Map, { Layer, Source } from 'react-map-gl';
 
 import { env } from '@/libs/Env';
-import type { RegionsEnum } from '@/utils/Regions';
+import { RegionsEnum } from '@/utils/Regions';
 
 import { ReentryAlertAreasOfInterest } from './ReentryAlertAreasOfInterest';
 import { ReentryAlertMapCenterButton } from './ReentryAlertMapCenterButton';
@@ -82,24 +82,38 @@ const ReentryAlertMap = ({ overflightTime, flightpathCollection, fragmentsCollec
           onClick={handleClick}
           attributionControl={false}
         >
-          {regions.map(region => (
-            <Source
-              key={region}
-              id={region}
-              type="geojson"
-              data={RegionsGeoJson[region]}
-            >
-              <Layer
-                {...regionLayer(region)}
-                layout={{
-                  visibility: regions.includes(region)
-                    ? 'visible'
-                    : 'none',
-                }}
-                beforeId="airport-label"
-              />
-            </Source>
-          ))}
+          {regions.map(region => region === RegionsEnum.UK_AIRSPACE
+            ? (
+                (RegionsGeoJson[RegionsEnum.UK_AIRSPACE] as unknown[]).map((airspace: unknown, index: number) => {
+                  return (
+                    <Source
+                      // eslint-disable-next-line react/no-array-index-key
+                      key={`UK_AIRSPACE-${index}`}
+                      id={`UK_AIRSPACE-${index}`}
+                      type="geojson"
+                      data={airspace}
+                    >
+                      <Layer
+                        {...regionLayer(`UK_AIRSPACE-${index}`)}
+                        layout={{
+                          visibility: 'visible',
+                        }}
+                        beforeId="airport-label"
+                      />
+                    </Source>
+                  );
+                })
+              )
+            : (
+                <Source
+                  key={region}
+                  id={region}
+                  type="geojson"
+                  data={RegionsGeoJson[region]}
+                >
+                  <Layer {...regionLayer(region)} />
+                </Source>
+              ))}
           {flightpathCollection && (
             <Source key="FLIGHTPATH" type="geojson" data={flightpathCollection}>
               <Layer
@@ -127,7 +141,7 @@ const ReentryAlertMap = ({ overflightTime, flightpathCollection, fragmentsCollec
             </Source>
           )}
           {overflightCollection && overflightCollection.map((overflight, index) => (
-          // eslint-disable-next-line react/no-array-index-key
+            // eslint-disable-next-line react/no-array-index-key
             <Source key={`OVERFLIGHT-${index}`} type="geojson" data={overflight}>
               <Layer
                 {...overflightStyle(index)}

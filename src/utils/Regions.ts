@@ -96,6 +96,10 @@ export enum RegionsEnum {
   BRITISH_OVERSEAS_TERRITORIES = 'BRITISH_OVERSEAS_TERRITORIES',
   SHANWICK = 'SHANWICK',
   NAVAREA = 'NAVAREA',
+  LONDON_FIR = 'LONDON_FIR',
+  SCOTTISH_FIR = 'SCOTTISH_FIR',
+  SHANWICK_OCEANIC_FIR = 'SHANWICK_OCEANIC_FIR',
+  UK_AIRSPACE = 'UK_AIRSPACE',
   REST_OF_THE_WORLD = 'REST_OF_THE_WORLD',
 }
 
@@ -138,6 +142,22 @@ export const Regions: {
   [RegionsEnum.NAVAREA]: {
     id: RegionsEnum.NAVAREA,
     name: 'UK NAVAREA',
+  },
+  [RegionsEnum.LONDON_FIR]: {
+    id: RegionsEnum.LONDON_FIR,
+    name: 'London FIR',
+  },
+  [RegionsEnum.SCOTTISH_FIR]: {
+    id: RegionsEnum.SCOTTISH_FIR,
+    name: 'Scottish FIR',
+  },
+  [RegionsEnum.SHANWICK_OCEANIC_FIR]: {
+    id: RegionsEnum.SHANWICK_OCEANIC_FIR,
+    name: 'Shanwick Oceanic FIR',
+  },
+  [RegionsEnum.UK_AIRSPACE]: {
+    id: RegionsEnum.UK_AIRSPACE,
+    name: 'UK Airspace',
   },
   [RegionsEnum.REST_OF_THE_WORLD]: {
     id: RegionsEnum.REST_OF_THE_WORLD,
@@ -204,6 +224,9 @@ export const jsonRegionsMap: Record<string, string> = {
   guernsey: 'Guernsey',
   uk_navarea: 'UK NAVAREA',
   shanwick_airspace: 'Shanwick Airspace',
+  shanwick_oceanic_fir: 'Shanwick Oceanic FIR',
+  london_fir: 'London FIR',
+  scottish_fir: 'Scottish FIR',
 };
 
 export const countries = {

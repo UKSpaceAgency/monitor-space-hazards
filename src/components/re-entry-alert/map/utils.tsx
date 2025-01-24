@@ -4,9 +4,11 @@ import { RegionsEnum } from '@/utils/Regions';
 
 import EnglandGeojson from './regions/england.json';
 import IrelandGeojson from './regions/ireland.json';
+import LondonFirGeojson from './regions/london_fir.json';
 import NavareaGeojson from './regions/navarea.json';
 import OverseasGeojson from './regions/overseas.json';
 import ScotlandGeojson from './regions/scotland.json';
+import ScottishFirGeojson from './regions/scotland_fir.json';
 import ShanwickGeojson from './regions/shanwick.json';
 import WalesGeojson from './regions/wales.json';
 
@@ -18,11 +20,18 @@ export const RegionsGeoJson: Partial<Record<RegionsEnum, unknown>> = {
   [RegionsEnum.BRITISH_OVERSEAS_TERRITORIES]: OverseasGeojson,
   [RegionsEnum.SHANWICK]: ShanwickGeojson,
   [RegionsEnum.NAVAREA]: NavareaGeojson,
+  [RegionsEnum.LONDON_FIR]: LondonFirGeojson,
+  [RegionsEnum.SCOTTISH_FIR]: ScottishFirGeojson,
+  [RegionsEnum.UK_AIRSPACE]: [
+    ShanwickGeojson,
+    LondonFirGeojson,
+    ScottishFirGeojson,
+  ],
 };
 
 export const RegionColor = '#FFDD00';
 
-export const regionLayer = (region: RegionsEnum): FillLayerSpecification => ({
+export const regionLayer = (region: string): FillLayerSpecification => ({
   id: region,
   source: region,
   type: 'fill',
