@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { getSession } from 'next-auth/react';
 import { getTranslations } from 'next-intl/server';
 
 import getConjunctionUniqueEvent from '@/actions/getConjunctionUniqueEvent';
+import { getSession } from '@/actions/getSession';
 import { ConjunctionAlertPage } from '@/components/conjunction-alert/ConjunctionAlertPage';
 import NotificationBanner from '@/ui/notification-banner/notification-banner';
 

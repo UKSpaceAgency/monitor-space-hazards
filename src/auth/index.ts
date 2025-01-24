@@ -110,7 +110,10 @@ export const { handlers, signIn, signOut, auth, unstable_update: update } = Next
         return Response.redirect(new URL('/account/setup', request.nextUrl.origin));
       }
 
-      if (request.nextUrl.pathname === '/data-privacy-notice') {
+      if (request.nextUrl.pathname === '/data-privacy-notice'
+        || request.nextUrl.pathname === '/cookies'
+        || request.nextUrl.pathname === '/contact-analyst'
+      ) {
         return true;
       }
 
