@@ -8,11 +8,13 @@ import { displayExponential, getAbsoluteValue } from '@/utils/Math';
 export type ProbabilityUnitType = 'scientific' | 'percentage';
 
 type ConjunctionsDataTableColumns = {
+  haveAccessToAlerts: boolean;
   isAnalyst: boolean;
   probabilityUnit: ProbabilityUnitType;
 };
 
 export const getConjunctionEventsColumns = ({
+  haveAccessToAlerts,
   isAnalyst,
   probabilityUnit,
 }: ConjunctionsDataTableColumns): TranslatedColumnDef<TypeEventOut>[] => [
@@ -43,7 +45,7 @@ export const getConjunctionEventsColumns = ({
         cell: ({ getValue, row: { original: { reportNumber } } }) => {
           const value = getValue<string>();
 
-          const href = reportNumber && reportNumber > 0 && isAnalyst
+          const href = reportNumber && reportNumber > 0 && haveAccessToAlerts
             ? `/conjunctions/${value}/alert`
             : `/conjunctions/${value}`;
 

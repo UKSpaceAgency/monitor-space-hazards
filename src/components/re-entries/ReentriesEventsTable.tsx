@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import type { TypeGetReentryEventsParams } from '@/__generated__/data-contracts';
 import { getReentryEvents } from '@/actions/getReentryEvents';
 import { getSession } from '@/actions/getSession';
-import { isAgencyUser } from '@/utils/Roles';
+import { isAgencyUser, isGovUser } from '@/utils/Roles';
 
 import { SearchBar } from '../SearchBar';
 import { ReentriesDataTable } from './data-table/ReentriesDataTable';
@@ -31,7 +31,7 @@ const ReentriesEventsTable = async ({ initialParams }: ReentriesEventsTableProps
     <div>
       <SearchBar label={t('search_bar.label')} placeholder={t('search_bar.placeholder')} />
       <ReentriesEventsTableFilters />
-      <ReentriesDataTable params={params} initialData={initialData} haveAccessToAlerts={isAgencyUser(role)} />
+      <ReentriesDataTable params={params} initialData={initialData} haveAccessToAlerts={isAgencyUser(role) || isGovUser(role)} />
     </div>
   );
 };

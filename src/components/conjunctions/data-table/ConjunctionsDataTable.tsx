@@ -15,9 +15,10 @@ type ConjunctionsDataTableProps = {
   params: ConjunctionsPageSearchParams;
   conjunctions: TypeEventOut[];
   isAnalyst: boolean;
+  haveAccessToAlerts: boolean;
 };
 
-const ConjunctionsDataTable = ({ params, conjunctions, isAnalyst }: ConjunctionsDataTableProps) => {
+const ConjunctionsDataTable = ({ params, conjunctions, isAnalyst, haveAccessToAlerts }: ConjunctionsDataTableProps) => {
   const t = useTranslations('Tables');
 
   const [probabilityUnit, setProbabilityUnit] = useState<ProbabilityUnitType>('scientific');
@@ -29,6 +30,7 @@ const ConjunctionsDataTable = ({ params, conjunctions, isAnalyst }: Conjunctions
   const columns = getConjunctionEventsColumns({
     isAnalyst,
     probabilityUnit,
+    haveAccessToAlerts,
   });
 
   return (

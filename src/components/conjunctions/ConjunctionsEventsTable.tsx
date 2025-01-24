@@ -2,10 +2,10 @@ import { getTranslations } from 'next-intl/server';
 
 import { getCdmsLatest } from '@/actions/getCdmsLatest';
 import { getConjunctionEventsList } from '@/actions/getConjunctionEventsList';
-import { getUsersMe } from '@/actions/getUsersMe';
+import { getSession } from '@/actions/getSession';
 import type { ConjunctionsPageSearchParams } from '@/app/(auth)/conjunctions/page';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
-import { isAnalysist } from '@/utils/Roles';
+import { isAgencyUser, isAnalysist, isGovUser } from '@/utils/Roles';
 
 import { DownloadData } from '../DownloadData';
 import { ConjunctionsDataTable } from './data-table/ConjunctionsDataTable';
@@ -18,7 +18,8 @@ const ConjunctionsEventsTable = async ({ params }: ConjunctionsEventsTableProps)
   const t = await getTranslations('Tables');
 
   const latestCdms = await getCdmsLatest();
-  const user = await getUsersMe();
+  const session = await getSession();
+  const role = session?.user.role;
   const conjunctions = await getConjunctionEventsList(params);
 
   const downloadData = async () => {
@@ -30,8 +31,9 @@ const ConjunctionsEventsTable = async ({ params }: ConjunctionsEventsTableProps)
     <>
       <ConjunctionsDataTable
         conjunctions={conjunctions}
-        isAnalyst={isAnalysist(user.role)}
         params={params}
+        isAnalyst={isAnalysist(role)}
+        haveAccessToAlerts={isAgencyUser(role) || isGovUser(role)}
       />
       <DownloadData type={t('Download.types.conjunction_events')} params={params} downloadAction={downloadData} />
       <div className="govuk-inset-text">
