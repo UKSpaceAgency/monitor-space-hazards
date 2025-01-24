@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { getUsersMe } from '@/actions/getUsersMe';
 import { getUsersMeAlertSettings } from '@/actions/getUsersMeAlertSettings';
 import { AlertSettingsForm } from '@/components/account/alert-settings/AlertSettingsForm';
-import { isSatteliteUser } from '@/utils/Roles';
+import { isGovUser, isSatteliteUser } from '@/utils/Roles';
 import type { AlertSettingsSchema } from '@/validations/alertSettingsSchema';
 
 export const metadata: Metadata = {
@@ -15,7 +15,7 @@ export default async function AlertSettingsPage() {
   const user = await getUsersMe();
   const alertSettings = await getUsersMeAlertSettings();
 
-  if (isSatteliteUser(user.role) || !user.id) {
+  if (isSatteliteUser(user.role) || isGovUser(user.role) || !user.id) {
     notFound();
   }
 

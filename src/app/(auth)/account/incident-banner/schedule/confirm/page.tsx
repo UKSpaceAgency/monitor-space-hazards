@@ -1,12 +1,14 @@
 import type { Metadata } from 'next';
-import { redirect } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import type { TypeBannerScheduleIn } from '@/__generated__/data-contracts';
+import { getSession } from '@/actions/getSession';
 import { ScheduleBannerConfirm } from '@/components/account/incident-banners/schedule/confirm/ScheduleBannerConfirm';
 import Api from '@/libs/Api';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import SummaryList from '@/ui/summary-list/summary-list';
+import { isSuperAdmin } from '@/utils/Roles';
 
 export const metadata: Metadata = {
   title: 'Confirm schedule incident banners',
@@ -27,6 +29,12 @@ export default async function BannerConfirmSchedulePage(props: {
   }
 
   const t = await getTranslations('Incident_banners.Confirm');
+
+  const session = await getSession();
+
+  if (!isSuperAdmin(session?.user.role)) {
+    return notFound();
+  }
 
   return (
     <div>
