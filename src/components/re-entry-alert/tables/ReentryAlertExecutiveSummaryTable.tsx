@@ -8,7 +8,7 @@ import Tag from '@/ui/tag/tag';
 import { roundedPercent } from '@/utils/Math';
 import { getFullCountry } from '@/utils/Regions';
 
-type EventSummaryData = Pick<TypeReentryEventOut, 'ukReentryProbability' | 'probability' | 'timeWindowStart' | 'timeWindowEnd' | 'overflightTime' | 'survivabilityComment' | 'objectName' | 'estimatedMass' | 'licenseCountry'>;
+type EventSummaryData = Pick<TypeReentryEventOut, 'ukReentryProbability' | 'probability' | 'timeWindowStart' | 'timeWindowEnd' | 'overflightTime' | 'survivability' | 'survivabilityComment' | 'objectName' | 'estimatedMass' | 'licenseCountry'>;
 
 type ReentryAlertExecutiveSummaryTableProps = {
   event: TypeReentryEventOut;
@@ -52,6 +52,17 @@ const ReentryAlertExecutiveSummaryTable = ({ event }: ReentryAlertExecutiveSumma
   }, {
     header: t('survivability_comment'),
     accessorKey: 'survivabilityComment',
+    renderCell: ({ survivability, survivabilityComment }) => (
+      <span>
+        {survivability && (
+          <span className="mr-1">
+            {survivability}
+            .
+          </span>
+        )}
+        <span>{survivabilityComment}</span>
+      </span>
+    ),
   }, {
     header: t('object'),
     accessorKey: 'objectName',
