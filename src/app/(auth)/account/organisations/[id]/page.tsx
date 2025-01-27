@@ -1,14 +1,17 @@
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 
 import { getOrganisation } from '@/actions/getOrganisation';
+import { getSession } from '@/actions/getSession';
 import { OrganisationTable } from '@/components/account/organisations/organisation/OrganisationSatellitesTable';
 import { OrganisationSummary } from '@/components/account/organisations/organisation/OrganisationSummary';
 import { OrganisationUsersTable } from '@/components/account/organisations/organisation/OrganisationUsersTable';
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
 import Spinner from '@/ui/spinner/spinner';
+import { isOrgAdmin } from '@/utils/Roles';
 
 export async function generateMetadata({
   params,
@@ -29,6 +32,12 @@ export default async function OrganisationPage({
 }) {
   const t = await getTranslations('Organisation');
   const tCommon = await getTranslations('Common');
+
+  const session = await getSession();
+
+  if (!isOrgAdmin(session?.user.role)) {
+    return notFound();
+  }
 
   const { id } = await params;
   const organisation = await getOrganisation(id);

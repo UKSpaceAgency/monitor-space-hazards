@@ -1,10 +1,13 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
+import { getSession } from '@/actions/getSession';
 import { ScheduledBanners } from '@/components/account/incident-banners/ScheduledBanners';
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
+import { isSuperAdmin } from '@/utils/Roles';
 
 export const metadata: Metadata = {
   title: 'Manage incident banners',
@@ -13,6 +16,12 @@ export const metadata: Metadata = {
 export default async function IncidentBannersPage() {
   const t = await getTranslations('Incident_banners');
   const tCommon = await getTranslations('Common');
+
+  const session = await getSession();
+
+  if (!isSuperAdmin(session?.user.role)) {
+    return notFound();
+  }
 
   return (
     <div>

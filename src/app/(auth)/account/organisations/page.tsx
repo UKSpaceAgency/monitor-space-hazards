@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import { getOrganizations } from '@/actions/getOrganisations';
 import { auth } from '@/auth';
 import { OrganisationsSummary } from '@/components/account/organisations/OrganisationsSummary';
 import { OrganisationsTable } from '@/components/account/organisations/OrganisationsTable';
-import { isAnalysist } from '@/utils/Roles';
+import { isAnalysist, isSuperAdmin } from '@/utils/Roles';
 
 export const metadata: Metadata = {
   title: 'Organisations',
@@ -14,6 +15,10 @@ export const metadata: Metadata = {
 export default async function OrganisationsPage() {
   const t = await getTranslations('Organisations');
   const session = await auth();
+
+  if (!isSuperAdmin(session?.user.role)) {
+    return notFound();
+  }
 
   const organisations = await getOrganizations();
 

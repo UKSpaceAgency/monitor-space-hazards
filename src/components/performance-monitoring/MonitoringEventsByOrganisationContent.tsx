@@ -6,11 +6,11 @@ import { useMemo, useState } from 'react';
 
 import type { TypeGetStatsEventsByOrganizationParams } from '@/__generated__/data-contracts';
 import { getStatsEventsByOrganization } from '@/actions/getStatsEventsByOrganization';
-import { assertUnreachable } from '@/libs/assertUnreachable';
 import { FORMAT_API_DATE_TIME, TODAY_DATE_TIME } from '@/libs/Dayjs';
 import Select from '@/ui/select/select';
 import Spinner from '@/ui/spinner/spinner';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
+import { assertUnreachable } from '@/utils/Helpers';
 import { QUERY_KEYS } from '@/utils/QueryKeys';
 
 import EventsByOrganizationChart from '../charts/events-by-organisation/EventsByOrganisation';
