@@ -52,6 +52,7 @@ const ReentryAlertExecutiveSummaryTable = ({ event }: ReentryAlertExecutiveSumma
   }, {
     header: t('survivability_comment'),
     accessorKey: 'survivabilityComment',
+    renderCell: ({ survivability, survivabilityComment }) => `${survivability ? `${survivability}. ` : ''}${survivabilityComment}`,
   }, {
     header: t('object'),
     accessorKey: 'objectName',
