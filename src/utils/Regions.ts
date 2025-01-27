@@ -223,7 +223,7 @@ export const jsonRegionsMap: Record<string, string> = {
   jersey: 'Jersey',
   guernsey: 'Guernsey',
   uk_navarea: 'UK NAVAREA',
-  shanwick_airspace: 'Shanwick Airspace',
+  shanwick_airspace: 'Shanwick Oceanic FIR',
   shanwick_oceanic_fir: 'Shanwick Oceanic FIR',
   london_fir: 'London FIR',
   scotland_fir: 'Scotland FIR',

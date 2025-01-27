@@ -52,17 +52,6 @@ const ReentryAlertExecutiveSummaryTable = ({ event }: ReentryAlertExecutiveSumma
   }, {
     header: t('survivability_comment'),
     accessorKey: 'survivabilityComment',
-    renderCell: ({ survivability, survivabilityComment }) => (
-      <span>
-        {survivability && (
-          <span className="mr-1">
-            {survivability}
-            .
-          </span>
-        )}
-        <span>{survivabilityComment}</span>
-      </span>
-    ),
   }, {
     header: t('object'),
     accessorKey: 'objectName',
