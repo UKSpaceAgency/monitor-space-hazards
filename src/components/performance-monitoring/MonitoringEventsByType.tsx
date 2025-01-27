@@ -6,11 +6,11 @@ import { useState } from 'react';
 
 import type { TypeGetStatsEventsTypeParams } from '@/__generated__/data-contracts';
 import { getStatsEventsType } from '@/actions/getStatsEventsType';
-import { assertUnreachable } from '@/libs/assertUnreachable';
 import { FORMAT_API_DATE_TIME, TODAY_DATE_TIME } from '@/libs/Dayjs';
 import Details from '@/ui/details/details';
 import Spinner from '@/ui/spinner/spinner';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
+import { assertUnreachable } from '@/utils/Helpers';
 import { QUERY_KEYS } from '@/utils/QueryKeys';
 
 import EventsTypeChart from '../charts/events-type-chart/EventsTypeChart';

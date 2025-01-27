@@ -6,10 +6,10 @@ import { useState } from 'react';
 
 import type { TypeGetStatsNotificationsSentParams } from '@/__generated__/data-contracts';
 import { getStatsNotificationsSent, type NotificationsSentStatsType } from '@/actions/getStatsNotificationsSent';
-import { assertUnreachable } from '@/libs/assertUnreachable';
 import { FORMAT_API_DATE_TIME, TODAY_DATE_TIME } from '@/libs/Dayjs';
 import Spinner from '@/ui/spinner/spinner';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
+import { assertUnreachable } from '@/utils/Helpers';
 import { QUERY_KEYS } from '@/utils/QueryKeys';
 
 import NotificationsSentChart from '../charts/notifications-sent/NotificationsSent';
