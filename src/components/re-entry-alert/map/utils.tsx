@@ -21,7 +21,7 @@ export const RegionsGeoJson: Partial<Record<RegionsEnum, unknown>> = {
   [RegionsEnum.SHANWICK]: ShanwickGeojson,
   [RegionsEnum.NAVAREA]: NavareaGeojson,
   [RegionsEnum.LONDON_FIR]: LondonFirGeojson,
-  [RegionsEnum.SCOTTISH_FIR]: ScottishFirGeojson,
+  [RegionsEnum.SCOTLAND_FIR]: ScottishFirGeojson,
   [RegionsEnum.UK_AIRSPACE]: [
     ShanwickGeojson,
     LondonFirGeojson,
