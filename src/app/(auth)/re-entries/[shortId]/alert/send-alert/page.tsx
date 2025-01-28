@@ -1,9 +1,12 @@
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import { getReentryAlertLatest } from '@/actions/getReentryAlertLatest';
 import { getReentryEvent } from '@/actions/getReentryEvent';
+import { getSession } from '@/actions/getSession';
 import { EventAlertSend } from '@/components/event-alert-send/EventAlertSend';
+import { isAgencyApproverOrSuperuser } from '@/utils/Roles';
 
 type PageProps = {
   params: Promise<{ shortId: string }>;
@@ -25,6 +28,12 @@ export default async function ReentryAlertSend({
 }: PageProps) {
   const t = await getTranslations('Reentry_alert_send');
   const { shortId } = await params;
+
+  const session = await getSession();
+
+  if (!isAgencyApproverOrSuperuser(session?.user.role)) {
+    return notFound();
+  }
 
   const alert = await getReentryAlertLatest(shortId);
 

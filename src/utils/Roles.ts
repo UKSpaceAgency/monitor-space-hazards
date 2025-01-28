@@ -100,6 +100,15 @@ export const isAgencyApprover = (role: Nullable<TypeUserRole>): boolean => {
   return !!role && agencyApproverRoles.includes(role);
 };
 
+export const isAgencyApproverOrSuperuser = (role: Nullable<TypeUserRole>): boolean => {
+  const agencyApproverRoles: TypeUserRole[] = [
+    'AGENCY_SUPERUSER',
+    'AGENCY_APPROVER',
+  ];
+
+  return !!role && agencyApproverRoles.includes(role);
+};
+
 export const AccountType: Record<TypeUserRole, string> = {
   AGENCY_ADMIN: 'Agency Admin',
   AGENCY_ANALYST: 'Agency Analyst',
