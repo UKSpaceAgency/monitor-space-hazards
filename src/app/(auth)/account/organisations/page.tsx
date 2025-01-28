@@ -6,7 +6,7 @@ import { getOrganizations } from '@/actions/getOrganisations';
 import { auth } from '@/auth';
 import { OrganisationsSummary } from '@/components/account/organisations/OrganisationsSummary';
 import { OrganisationsTable } from '@/components/account/organisations/OrganisationsTable';
-import { isAnalysist, isSuperAdmin } from '@/utils/Roles';
+import { isAgencyApprover, isAnalysist } from '@/utils/Roles';
 
 export const metadata: Metadata = {
   title: 'Organisations',
@@ -16,7 +16,7 @@ export default async function OrganisationsPage() {
   const t = await getTranslations('Organisations');
   const session = await auth();
 
-  if (!isSuperAdmin(session?.user.role)) {
+  if (!isAgencyApprover(session?.user.role)) {
     return notFound();
   }
 

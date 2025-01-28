@@ -81,8 +81,8 @@ export default async function AccountPage() {
             <TaskList
               items={[
                 {
-                  title: t(`change_your_organisation_details.${isSuperAdmin(role) ? 'organisations' : 'organisation_information'}`),
-                  href: isSuperAdmin(role) ? '/account/organisations' : `/account/organisations/${data.organization_id}`,
+                  title: t(`change_your_organisation_details.${isAgencyApprover(role) ? 'organisations' : 'organisation_information'}`),
+                  href: isAgencyApprover(role) ? '/account/organisations' : `/account/organisations/${data.organization_id}`,
                 },
                 {
                   title: t('change_your_organisation_details.add_new_user'),
