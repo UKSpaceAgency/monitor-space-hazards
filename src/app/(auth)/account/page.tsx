@@ -45,35 +45,32 @@ export default async function AccountPage() {
             },
           ]}
         />
-        {!isGovUser(role) && (
-          <>
-            <div>
-              <h2 className="govuk-heading-m">
-                {t('change_your_notification_settings.title')}
-              </h2>
-            </div>
-            <TaskList
-              items={[
-                {
+        <div>
+          <h2 className="govuk-heading-m">
+            {t('change_your_notification_settings.title')}
+          </h2>
+        </div>
+        <TaskList
+          items={[
+            ...(!isGovUser(role)
+              ? [{
                   title: t('change_your_notification_settings.conjunction_event_notification_thresholds_settings'),
                   href: '/account/event-notification-thresholds-settings',
-                },
-                {
+                }, {
                   title: t('change_your_notification_settings.conjunction_event_notification_settings'),
                   href: '/account/notification-settings',
-                },
-                ...(!isSatteliteUser(role)
-                  ? [
-                      {
-                        title: t('change_your_notification_settings.alert_settings'),
-                        href: '/account/alert-settings',
-                      },
-                    ]
-                  : []),
-              ]}
-            />
-          </>
-        )}
+                }]
+              : []),
+            ...(!isSatteliteUser(role)
+              ? [
+                  {
+                    title: t('change_your_notification_settings.alert_settings'),
+                    href: '/account/alert-settings',
+                  },
+                ]
+              : []),
+          ]}
+        />
         {isOrgAdmin(role) && (
           <>
             <div>
@@ -84,8 +81,8 @@ export default async function AccountPage() {
             <TaskList
               items={[
                 {
-                  title: t(`change_your_organisation_details.${isSuperAdmin(role) ? 'organisations' : 'organisation_information'}`),
-                  href: isSuperAdmin(role) ? '/account/organisations' : `/account/organisations/${data.organization_id}`,
+                  title: t(`change_your_organisation_details.${isAgencyApprover(role) ? 'organisations' : 'organisation_information'}`),
+                  href: isAgencyApprover(role) ? '/account/organisations' : `/account/organisations/${data.organization_id}`,
                 },
                 {
                   title: t('change_your_organisation_details.add_new_user'),
