@@ -69,6 +69,15 @@ export const isSatteliteUser = (role: Nullable<TypeUserRole>): boolean => {
   return !!role && satteliteUserRoles.includes(role);
 };
 
+export const isSatteliteOperator = (role: Nullable<TypeUserRole>): boolean => {
+  const satteliteUserRoles: TypeUserRole[] = [
+    'SATELLITE_OPERATOR',
+    'SATELLITE_OPERATOR_ADMIN',
+  ];
+
+  return !!role && satteliteUserRoles.includes(role);
+};
+
 export const isAgencyUser = (role: Nullable<TypeUserRole>): boolean => {
   const agencyUserRoles: TypeUserRole[] = [
     'AGENCY_ADMIN',

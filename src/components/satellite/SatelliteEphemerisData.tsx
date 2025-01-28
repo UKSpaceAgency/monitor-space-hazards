@@ -9,15 +9,18 @@ import { EphemerisesTable } from './tables/EphemerisesTable';
 type SatelliteEphemerisDataProps = {
   noradId: string;
   ephemerises: TypeEphemerisOut[];
+  showUploadButton: boolean;
 };
 
-const SatelliteEphemerisData = ({ noradId, ephemerises }: SatelliteEphemerisDataProps) => {
+const SatelliteEphemerisData = ({ noradId, ephemerises, showUploadButton }: SatelliteEphemerisDataProps) => {
   const t = useTranslations('Satellite.Ephemeris_data');
   return (
     <div className="mb-12">
-      <Link href={`/satellites/${noradId}/ephemeris-upload`}>
-        <Button>{t('upload_button')}</Button>
-      </Link>
+      {showUploadButton && (
+        <Link href={`/satellites/${noradId}/ephemeris-upload`}>
+          <Button>{t('upload_button')}</Button>
+        </Link>
+      )}
       {ephemerises.length
         ? (
             <>
