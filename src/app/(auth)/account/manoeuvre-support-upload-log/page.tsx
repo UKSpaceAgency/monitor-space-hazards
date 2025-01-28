@@ -9,7 +9,7 @@ import { getUsersMe } from '@/actions/getUsersMe';
 import { ManoeuvreDataTable } from '@/components/account/manoeuvre-support-upload-log/ManoeuvreDataTable';
 import Details from '@/ui/details/details';
 import Spinner from '@/ui/spinner/spinner';
-import { isAgencyApprover } from '@/utils/Roles';
+import { isAnalysist } from '@/utils/Roles';
 
 export const metadata: Metadata = {
   title: 'Manoeuvre support uploads',
@@ -24,7 +24,7 @@ export default async function ManoeuvreSupportUploadLog(props: {
 
   const user = await getUsersMe();
 
-  if (!isAgencyApprover(user.role)) {
+  if (!isAnalysist(user.role)) {
     notFound();
   }
 
