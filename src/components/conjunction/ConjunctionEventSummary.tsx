@@ -5,7 +5,7 @@ import type { TypeEventSummaryOut, TypeSatelliteOut } from '@/__generated__/data
 import { getUsersMe } from '@/actions/getUsersMe';
 import Button from '@/ui/button/button';
 import Details from '@/ui/details/details';
-import { isAnalysist } from '@/utils/Roles';
+import { isAgencyApprover } from '@/utils/Roles';
 
 import { ConjunctionEventSummaryTableInformationsTable } from './tables/ConjunctionEventSummaryTable';
 
@@ -29,7 +29,7 @@ const ConjunctionEventSummary = async ({
   const t = await getTranslations('Tables.Conjunction');
 
   const user = await getUsersMe();
-  const isUserAnalysist = isAnalysist(user.role);
+  const isUserAnalysist = isAgencyApprover(user.role);
 
   return (
     <>

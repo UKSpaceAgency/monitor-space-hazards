@@ -1,7 +1,10 @@
+import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
+import { getSession } from '@/actions/getSession';
 import { ConjunctionAnalysisUploadForm } from '@/components/conjunction/forms/ConjunctionAnalysisUploadForm';
 import Details from '@/ui/details/details';
+import { isAgencyApprover } from '@/utils/Roles';
 
 export const metadata = {
   title: 'Upload your conjunction data',
@@ -14,6 +17,12 @@ export default async function ConjunctionAnalysisUpload({
 }) {
   const t = await getTranslations('Conjunction_analysis_upload');
   const { shortId } = await params;
+
+  const session = await getSession();
+
+  if (!isAgencyApprover(session?.user.role)) {
+    return notFound();
+  }
 
   return (
     <div>
