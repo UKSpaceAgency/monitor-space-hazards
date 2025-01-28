@@ -3,12 +3,14 @@ import { getTranslations } from 'next-intl/server';
 
 import { getEphemerises } from '@/actions/getEphemerises';
 import { getSatellite } from '@/actions/getSatellite';
+import { getSession } from '@/actions/getSession';
 import { ContentNavigation } from '@/components/ContentNavigation';
 import { SatelliteAdditionalInformations } from '@/components/satellite/SatelliteAdditionalInformation';
 import { SatelliteConjunctionEvents } from '@/components/satellite/SatelliteConjunctionEvents';
 import { SatelliteEphemerisData } from '@/components/satellite/SatelliteEphemerisData';
 import { SatelliteInformation } from '@/components/satellite/SatelliteInformation';
 import Button from '@/ui/button/button';
+import { isAgencyApprover, isSatteliteOperator } from '@/utils/Roles';
 
 type PageProps = {
   params: Promise<{ noradId: string }>;
@@ -30,6 +32,8 @@ export async function generateMetadata({
 
 export default async function Satellite(props: PageProps) {
   const t = await getTranslations('Common');
+  const session = await getSession();
+
   const { noradId } = await props.params;
   const { upcoming_search_like, previous_search_link } = await props.searchParams || {};
   const satellite = await getSatellite(noradId);
@@ -45,7 +49,7 @@ export default async function Satellite(props: PageProps) {
         <ContentNavigation />
         <div className="md:col-span-3">
           <SatelliteConjunctionEvents noradId={noradId} query={upcoming_search_like} epoch="future" />
-          <SatelliteEphemerisData noradId={noradId} ephemerises={ephemerises} />
+          <SatelliteEphemerisData noradId={noradId} ephemerises={ephemerises} showUploadButton={isAgencyApprover(session?.user.role) || isSatteliteOperator(session?.user.role)} />
           <SatelliteInformation object={satellite} />
           <SatelliteAdditionalInformations object={satellite} />
           <SatelliteConjunctionEvents noradId={noradId} query={previous_search_link} epoch="past" />
