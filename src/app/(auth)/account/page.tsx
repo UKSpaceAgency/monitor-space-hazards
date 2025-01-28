@@ -5,7 +5,7 @@ import { getTranslations } from 'next-intl/server';
 import { getSession } from '@/actions/getSession';
 import { getUsersMe } from '@/actions/getUsersMe';
 import TaskList from '@/ui/task-list/task-list';
-import { isAgencyApprover, isAgencyUser, isGovUser, isOrgAdmin, isSatteliteUser, isSuperAdmin } from '@/utils/Roles';
+import { isAgencyApprover, isAnalysist, isGovUser, isOrgAdmin, isSatteliteUser, isSuperAdmin } from '@/utils/Roles';
 
 export const metadata: Metadata = {
   title: 'Your account information',
@@ -121,7 +121,7 @@ export default async function AccountPage() {
             },
           ]}
         />
-        {isAgencyUser(role) && (
+        {isAnalysist(role) && (
           <>
             <div>
               <h2 className="govuk-heading-m">
