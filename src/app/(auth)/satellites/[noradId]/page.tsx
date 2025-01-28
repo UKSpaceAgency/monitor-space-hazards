@@ -49,7 +49,11 @@ export default async function Satellite(props: PageProps) {
         <ContentNavigation />
         <div className="md:col-span-3">
           <SatelliteConjunctionEvents noradId={noradId} query={upcoming_search_like} epoch="future" />
-          <SatelliteEphemerisData noradId={noradId} ephemerises={ephemerises} showUploadButton={isAgencyApprover(session?.user.role) || isSatteliteOperator(session?.user.role)} />
+          <SatelliteEphemerisData
+            noradId={noradId}
+            ephemerises={ephemerises}
+            showButtons={isAgencyApprover(session?.user.role) || isSatteliteOperator(session?.user.role)}
+          />
           <SatelliteInformation object={satellite} />
           <SatelliteAdditionalInformations object={satellite} />
           <SatelliteConjunctionEvents noradId={noradId} query={previous_search_link} epoch="past" />

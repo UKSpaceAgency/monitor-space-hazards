@@ -9,14 +9,14 @@ import { EphemerisesTable } from './tables/EphemerisesTable';
 type SatelliteEphemerisDataProps = {
   noradId: string;
   ephemerises: TypeEphemerisOut[];
-  showUploadButton: boolean;
+  showButtons: boolean;
 };
 
-const SatelliteEphemerisData = ({ noradId, ephemerises, showUploadButton }: SatelliteEphemerisDataProps) => {
+const SatelliteEphemerisData = ({ noradId, ephemerises, showButtons }: SatelliteEphemerisDataProps) => {
   const t = useTranslations('Satellite.Ephemeris_data');
   return (
     <div className="mb-12">
-      {showUploadButton && (
+      {showButtons && (
         <Link href={`/satellites/${noradId}/ephemeris-upload`}>
           <Button>{t('upload_button')}</Button>
         </Link>
@@ -26,7 +26,7 @@ const SatelliteEphemerisData = ({ noradId, ephemerises, showUploadButton }: Sate
             <>
               <h2 className="govuk-heading-l" data-anchor="ephemeris">{t('title')}</h2>
               <p className="govuk-body">{t('content')}</p>
-              <EphemerisesTable data={ephemerises} />
+              <EphemerisesTable data={ephemerises} showDeleteButton={showButtons} />
             </>
           )
         : null}
