@@ -8,7 +8,7 @@ import Details from '@/ui/details/details';
 import Radios from '@/ui/radios/radios';
 import Select from '@/ui/select/select';
 
-const ReentriesEventsTableFilters = () => {
+const ReentriesEventsTableFilters = ({ showFilterRadios }: { showFilterRadios: boolean }) => {
   const t = useTranslations('Tables.Reentries.filters');
 
   const searchParams = useSearchParams();
@@ -33,29 +33,33 @@ const ReentriesEventsTableFilters = () => {
 
   return (
     <Details id="applySummary" summary={t('summary')}>
-      <Radios
-        inline
-        items={[
-          {
-            id: 'viewAll',
-            children: t('option1'),
-            value: 'all',
-            name: 'report',
-            checked: !searchParams.get('report') || searchParams.get('report') === 'all',
-            onChange: handleRefreshParams,
-          },
-          {
-            id: 'viewOnly',
-            children: t('option2'),
-            value: 'present',
-            name: 'report',
-            checked: searchParams.get('report') === 'present',
-            onChange: handleRefreshParams,
-          },
-        ]}
-        id="hasReport"
-      />
-      <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
+      {showFilterRadios && (
+        <>
+          <Radios
+            inline
+            items={[
+              {
+                id: 'viewAll',
+                children: t('option1'),
+                value: 'all',
+                name: 'report',
+                checked: !searchParams.get('report') || searchParams.get('report') === 'all',
+                onChange: handleRefreshParams,
+              },
+              {
+                id: 'viewOnly',
+                children: t('option2'),
+                value: 'present',
+                name: 'report',
+                checked: searchParams.get('report') === 'present',
+                onChange: handleRefreshParams,
+              },
+            ]}
+            id="hasReport"
+          />
+          <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
+        </>
+      )}
       <Select
         name="epoch"
         id="epoch"

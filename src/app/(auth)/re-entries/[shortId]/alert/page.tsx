@@ -1,10 +1,12 @@
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import { getReentryEvent } from '@/actions/getReentryEvent';
 import { getSession } from '@/actions/getSession';
 import { ReentryAlertPage } from '@/components/re-entry-alert/ReentryAlertPage';
 import NotificationBanner from '@/ui/notification-banner/notification-banner';
+import { isAgencyApproverOrSuperuser, isSatteliteUser } from '@/utils/Roles';
 
 type PageProps = {
   params: Promise<{ shortId: string }>;
@@ -29,9 +31,13 @@ export default async function ReentryAlert({
   const role = session?.user.role;
   const { shortId } = await params;
 
+  if (isSatteliteUser(role)) {
+    return notFound();
+  }
+
   return (
     <div>
-      {(role === 'AGENCY_APPROVER' || role === 'AGENCY_SUPERUSER') && (
+      {isAgencyApproverOrSuperuser(role) && (
         <NotificationBanner heading={t.rich('notification_banner', {
           edit: chunks => <Link className="govuk-link" href={`/re-entries/${shortId}/alert/edit`}>{chunks}</Link>,
           send: chunks => <Link className="govuk-link" href={`/re-entries/${shortId}/alert/send-alert`}>{chunks}</Link>,

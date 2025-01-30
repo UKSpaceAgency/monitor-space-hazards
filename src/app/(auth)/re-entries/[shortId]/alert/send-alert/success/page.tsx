@@ -1,7 +1,10 @@
+import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import { getReentryEvent } from '@/actions/getReentryEvent';
+import { getSession } from '@/actions/getSession';
 import { EventAlertSendSuccess } from '@/components/event-alert-send/EventAlertSendSuccess';
+import { isAgencyApproverOrSuperuser } from '@/utils/Roles';
 
 type PageProps = {
   params: Promise<{ shortId: string }>;
@@ -21,6 +24,12 @@ export default async function ReentryAlertEditSuccess({
   params,
 }: PageProps) {
   const { shortId } = await params;
+
+  const session = await getSession();
+
+  if (!isAgencyApproverOrSuperuser(session?.user.role)) {
+    return notFound();
+  }
 
   return <EventAlertSendSuccess type="re-entry" shortId={shortId} />;
 }

@@ -11,9 +11,10 @@ import Select from '@/ui/select/select';
 
 type ConjunctionsEventsTableFiltersProps = {
   params: ConjunctionsPageSearchParams;
+  showFilterRadios: boolean;
 };
 
-const ConjunctionsEventsTableFilters = ({ params }: ConjunctionsEventsTableFiltersProps) => {
+const ConjunctionsEventsTableFilters = ({ params, showFilterRadios }: ConjunctionsEventsTableFiltersProps) => {
   const t = useTranslations('Tables');
 
   const { replace } = useRouter();
@@ -37,29 +38,33 @@ const ConjunctionsEventsTableFilters = ({ params }: ConjunctionsEventsTableFilte
 
   return (
     <Details id="applySummary" summary={t('Conjunctions.details.summary')}>
-      <Radios
-        inline
-        items={[
-          {
-            id: 'viewAll',
-            children: t('Conjunctions.details.option1'),
-            value: 'all',
-            name: 'report',
-            checked: params.report !== 'present',
-            onChange: handleRefreshParams,
-          },
-          {
-            id: 'viewOnly',
-            children: t('Conjunctions.details.option2'),
-            value: 'present',
-            name: 'report',
-            checked: params.report === 'present',
-            onChange: handleRefreshParams,
-          },
-        ]}
-        id="hasReport"
-      />
-      <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
+      {showFilterRadios && (
+        <>
+          <Radios
+            inline
+            items={[
+              {
+                id: 'viewAll',
+                children: t('Conjunctions.details.option1'),
+                value: 'all',
+                name: 'report',
+                checked: params.report !== 'present',
+                onChange: handleRefreshParams,
+              },
+              {
+                id: 'viewOnly',
+                children: t('Conjunctions.details.option2'),
+                value: 'present',
+                name: 'report',
+                checked: params.report === 'present',
+                onChange: handleRefreshParams,
+              },
+            ]}
+            id="hasReport"
+          />
+          <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
+        </>
+      )}
       <Select
         name="epoch"
         id="epoch"

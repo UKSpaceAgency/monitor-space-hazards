@@ -1,8 +1,11 @@
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import { getConjunctionAlertLatest } from '@/actions/getConjunctionAlertLatest';
+import { getSession } from '@/actions/getSession';
 import { EventAlertSend } from '@/components/event-alert-send/EventAlertSend';
+import { isAgencyApproverOrSuperuser } from '@/utils/Roles';
 
 type PageProps = {
   params: Promise<{ shortId: string }>;
@@ -24,6 +27,12 @@ export default async function ConjunctionAlertSend({
 }: PageProps) {
   const t = await getTranslations('Conjunction_alert_send');
   const { shortId } = await params;
+
+  const session = await getSession();
+
+  if (!isAgencyApproverOrSuperuser(session?.user.role)) {
+    return notFound();
+  }
 
   const alert = await getConjunctionAlertLatest(shortId);
 
