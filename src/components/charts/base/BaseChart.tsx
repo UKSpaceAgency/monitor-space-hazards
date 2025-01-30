@@ -137,7 +137,8 @@ export function BaseChart({
           data={data}
           options={{
             interaction: {
-              mode: 'x',
+              mode: 'index',
+              intersect: false,
             },
             elements: {
               line: {

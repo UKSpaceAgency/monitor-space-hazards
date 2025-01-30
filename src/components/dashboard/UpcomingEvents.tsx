@@ -12,7 +12,7 @@ type UpcomingEventsProps = {
 const UpcomingEvents = async ({ className, title, conjunctionTitle, highestPocTitle, reentryTitle }: UpcomingEventsProps) => {
   const conjunction = await Api.getStatsCountConjunctionEvents();
   const highestPOC = await Api.getStatsHighestCollisionProbability();
-  const reentry = await Api.getStatsCountReentryReports();
+  const reentry = await Api.getStatsCountReentryEvents();
 
   const items = [
     {
