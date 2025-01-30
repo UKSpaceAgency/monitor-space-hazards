@@ -17,9 +17,10 @@ import Tag from '@/ui/tag/tag';
 
 type EphemerisesTableProps = {
   data: TypeEphemerisOut[];
+  showDeleteButton: boolean;
 };
 
-const EphemerisesTable = ({ data }: EphemerisesTableProps) => {
+const EphemerisesTable = ({ data, showDeleteButton }: EphemerisesTableProps) => {
   const t = useTranslations('Tables.Ephemerises');
   const [ephemerisToDelete, setEphemerisToDelete] = useState<{ id: string; fileName: string } | null>(null);
 
@@ -99,12 +100,16 @@ const EphemerisesTable = ({ data }: EphemerisesTableProps) => {
                   {!isActive
                     ? <Tag color="red">{t('deleted')}</Tag>
                     : (
-                        <button type="button" className="govuk-link text-blue" onClick={() => id && setEphemerisToDelete({ id, fileName: shortFileName })} disabled={isPending}>
-                          {t('delete')}
-                          <span className="govuk-visually-hidden">
-                            {fileName}
-                          </span>
-                        </button>
+                        showDeleteButton
+                          ? (
+                              <button type="button" className="govuk-link text-blue" onClick={() => id && setEphemerisToDelete({ id, fileName: shortFileName })} disabled={isPending}>
+                                {t('delete')}
+                                <span className="govuk-visually-hidden">
+                                  {fileName}
+                                </span>
+                              </button>
+                            )
+                          : null
                       )}
                 </TableCell>
               </TableRow>
