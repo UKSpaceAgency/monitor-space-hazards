@@ -12,34 +12,34 @@ import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
 import Input from '@/ui/input/input';
 import NotificationBanner from '@/ui/notification-banner/notification-banner';
-import type { EmailUserSchema } from '@/validations/emailUserSchema';
-import { emailUserSchema } from '@/validations/emailUserSchema';
+import type { PhoneUserSchema } from '@/validations/phoneUserSchema';
+import { phoneUserSchema } from '@/validations/phoneUserSchema';
 
-type OrganisationUserEmailFormProps = {
+type OrganisationUserPhoneFormProps = {
   user: TypeUserOut;
 };
 
-const OrganisationUserEmailForm = ({ user }: OrganisationUserEmailFormProps) => {
-  const [isEmailChanged, setEmailChanged] = useState(false);
+const OrganisationUserPhoneForm = ({ user }: OrganisationUserPhoneFormProps) => {
+  const [isPhoneChanged, setPhoneChanged] = useState(false);
 
-  const t = useTranslations('Forms.User_email');
+  const t = useTranslations('Forms.User_phone');
   const tCommon = useTranslations('Common');
 
   const { handleSubmit, register, reset, formState: { errors } } = useForm({
-    defaultValues: { email: '' },
-    resolver: zodResolver(emailUserSchema),
+    defaultValues: { phone: '' },
+    resolver: zodResolver(phoneUserSchema),
   });
 
-  const onSubmit = async (data: EmailUserSchema) => {
-    await patchUsersUserId(user.id, { email: data.email });
+  const onSubmit = async (data: PhoneUserSchema) => {
+    await patchUsersUserId(user.id, { phone_number: data.phone });
 
     reset();
-    setEmailChanged(true);
+    setPhoneChanged(true);
   };
 
   return (
     <>
-      {isEmailChanged
+      {isPhoneChanged
         ? (
             <>
               <NotificationBanner status="success">
@@ -60,9 +60,9 @@ const OrganisationUserEmailForm = ({ user }: OrganisationUserEmailFormProps) => 
           )
         : null}
 
-      {!isEmailChanged && (
+      {!isPhoneChanged && (
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Input {...register('email')} id="email" label={t('label')} error={errors.email?.message} />
+          <Input {...register('phone')} id="phone" label={t('label')} error={errors.phone?.message} />
           <ButtonGroup>
             <Link
               href={`/account/organisations/${user.organizationId}/${user.id}`}
@@ -81,4 +81,4 @@ const OrganisationUserEmailForm = ({ user }: OrganisationUserEmailFormProps) => 
   );
 };
 
-export { OrganisationUserEmailForm };
+export { OrganisationUserPhoneForm };

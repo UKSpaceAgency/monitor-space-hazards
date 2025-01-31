@@ -254,9 +254,13 @@
     "user_type": "User Type",
     "delete_user": "Delete user",
     "edit": "Edit",
-    "email_page": {
+    "email_change": {
       "title": "Change user's email address",
       "users_current_address": "User's current email address is {email}"
+    },
+    "phone_change": {
+      "title": "Change user's phone number",
+      "users_current_address": "User's current phone number is {phone}"
     },
     "banner": {
       "title": "Are you sure you want to delete this user?",
@@ -1450,6 +1454,14 @@
       "label": "Enter new email address here:",
       "notification": {
         "success": "Email address changed"
+      }
+    },
+    "User_phone": {
+      "save": "Save",
+      "back": "Back",
+      "label": "Enter new phone number here:",
+      "notification": {
+        "success": "Phone number changed"
       }
     }
   },
