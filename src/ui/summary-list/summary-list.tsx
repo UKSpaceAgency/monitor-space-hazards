@@ -32,7 +32,7 @@ export function SummaryList({ className, rows }: SummaryListProps) {
           <dt className={clsx('govuk-summary-list__key', key.className)}>{key.children}</dt>
           <dd className={clsx('govuk-summary-list__value', value.className)}>{value.children}</dd>
           {actions && (
-            <ul className="govuk-summary-list__actions-list">
+            <ul className="govuk-summary-list__actions-list flex justify-end">
               {actions?.map((action, index) => (
                 <li
                   // eslint-disable-next-line react/no-array-index-key

@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 
+import { getSession } from '@/actions/getSession';
 import { getUsersByOrganisation } from '@/actions/getUsers';
 import { dayjs, FORMAT_SHORT_DATE } from '@/libs/Dayjs';
 import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
-import { AccountType } from '@/utils/Roles';
+import { AccountType, isOrgAdmin } from '@/utils/Roles';
 
 type OrganisationUsersTableProps = {
   organisationId: string;
@@ -12,6 +13,8 @@ type OrganisationUsersTableProps = {
 
 const OrganisationUsersTable = async ({ organisationId }: OrganisationUsersTableProps) => {
   const t = await getTranslations('Organisation.users_table');
+
+  const session = await getSession();
 
   const users = await getUsersByOrganisation(organisationId);
 
@@ -26,7 +29,7 @@ const OrganisationUsersTable = async ({ organisationId }: OrganisationUsersTable
             <TableCellHeader>{t('email')}</TableCellHeader>
             <TableCellHeader>{t('phone_number')}</TableCellHeader>
             <TableCellHeader>{t('registered')}</TableCellHeader>
-            <TableCellHeader></TableCellHeader>
+            {isOrgAdmin(session?.user.role) && <TableCellHeader></TableCellHeader>}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -37,14 +40,16 @@ const OrganisationUsersTable = async ({ organisationId }: OrganisationUsersTable
               <TableCell>{email}</TableCell>
               <TableCell>{phoneNumber || '-'}</TableCell>
               <TableCell>{accountDetailsConfirmedAt ? dayjs(accountDetailsConfirmedAt).format(FORMAT_SHORT_DATE) : '-'}</TableCell>
-              <TableCell>
-                <Link
-                  href={`/account/organisations/${organisationId}/${id}`}
-                  className="govuk-link"
-                >
-                  {t('edit')}
-                </Link>
-              </TableCell>
+              {isOrgAdmin(session?.user.role) && (
+                <TableCell>
+                  <Link
+                    href={`/account/organisations/${organisationId}/${id}`}
+                    className="govuk-link"
+                  >
+                    {t('edit')}
+                  </Link>
+                </TableCell>
+              )}
             </TableRow>
           ))}
         </TableBody>
