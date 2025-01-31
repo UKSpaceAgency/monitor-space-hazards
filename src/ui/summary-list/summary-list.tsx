@@ -12,7 +12,7 @@ type Row = {
     className?: string;
     children: ReactNode;
   };
-  actions?: LinkProps[];
+  actions?: (LinkProps & { children: ReactNode })[];
 };
 
 type SummaryListProps = {
@@ -39,7 +39,7 @@ export function SummaryList({ className, rows }: SummaryListProps) {
                   key={index}
                   className="govuk-summary-list__actions-list-item"
                 >
-                  <Link {...action} />
+                  <Link className="govuk-link" {...action} />
                 </li>
               ))}
             </ul>

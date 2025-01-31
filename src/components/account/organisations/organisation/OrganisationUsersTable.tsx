@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 
 import { getUsersByOrganisation } from '@/actions/getUsers';
@@ -25,6 +26,7 @@ const OrganisationUsersTable = async ({ organisationId }: OrganisationUsersTable
             <TableCellHeader>{t('email')}</TableCellHeader>
             <TableCellHeader>{t('phone_number')}</TableCellHeader>
             <TableCellHeader>{t('registered')}</TableCellHeader>
+            <TableCellHeader></TableCellHeader>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -35,6 +37,14 @@ const OrganisationUsersTable = async ({ organisationId }: OrganisationUsersTable
               <TableCell>{email}</TableCell>
               <TableCell>{phoneNumber || '-'}</TableCell>
               <TableCell>{accountDetailsConfirmedAt ? dayjs(accountDetailsConfirmedAt).format(FORMAT_SHORT_DATE) : '-'}</TableCell>
+              <TableCell>
+                <Link
+                  href={`/account/organisations/${organisationId}/${id}`}
+                  className="govuk-link"
+                >
+                  {t('edit')}
+                </Link>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
