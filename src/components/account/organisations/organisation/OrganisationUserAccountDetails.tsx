@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { type ReactNode, useCallback, useState } from 'react';
 
@@ -18,10 +19,13 @@ const OrganisationUserAccountDetails = ({ children, user }: OrganisationUserAcco
   const t = useTranslations('Common');
 
   const [confirmMessage, setConfirmMessage] = useState(false);
+  const { replace } = useRouter();
 
   const confirmDelete = useCallback(async () => {
     await deleteUser(user.id);
-  }, [user.id]);
+
+    replace(`/account/organisations/${user.organizationId}`);
+  }, [replace, user.id, user.organizationId]);
 
   return (
     <div>
