@@ -8,13 +8,13 @@ import { isOrgAdmin } from '@/utils/Roles';
 export async function generateMetadata({
   params,
 }: {
-  params: { userId: string };
+  params: Promise<{ userId: string }>;
 }) {
-  const userId = (await params).userId;
+  const { userId } = await params;
   const user = await getUsersById(userId);
 
   if (!isOrgAdmin(user.role)) {
-    return notFound();
+    notFound();
   }
 
   return {
@@ -27,7 +27,7 @@ export default async function OrganisationUserEmailPage({
 }: {
   params: Promise<{ userId: string; id: string }>;
 }) {
-  const t = await getTranslations('OrganisationUser.email_change');
+  const t = await getTranslations('Organisation_user.email_change');
 
   const { userId } = await params;
 

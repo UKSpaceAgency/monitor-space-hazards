@@ -11,12 +11,12 @@ import { AccountType, isOrgAdmin } from '@/utils/Roles';
 export async function generateMetadata({
   params,
 }: {
-  params: { userId: string };
+  params: Promise<{ userId: string }>;
 }) {
-  const userId = (await params).userId;
+  const { userId } = await params;
   const user = await getUsersById(userId);
   return {
-    title: user.role,
+    title: user.email,
   };
 }
 
@@ -25,7 +25,7 @@ export default async function OrganisationUserPage({
 }: {
   params: Promise<{ userId: string; id: string }>;
 }) {
-  const t = await getTranslations('OrganisationUser');
+  const t = await getTranslations('Organisation_user');
 
   const { userId, id } = await params;
 
@@ -39,64 +39,63 @@ export default async function OrganisationUserPage({
 
   return (
     <div>
-      <OrganisationUserAccountDetails user={user}>
-        <h1 className="govuk-heading-xl">{t('title')}</h1>
-        <p className="govuk-body">{t('description')}</p>
-        <SummaryList
-          rows={[
-            {
-              key: {
-                children: t('organisation'),
-              },
-              value: {
-                children: organisation.name,
-              },
+      <h1 className="govuk-heading-xl">{t('title')}</h1>
+      <p className="govuk-body">{t('description')}</p>
+      <SummaryList
+        rows={[
+          {
+            key: {
+              children: t('organisation'),
             },
-            {
-              key: {
-                children: t('user_type'),
-              },
-              value: {
-                children: AccountType[user.role || 'AGENCY_ADMIN'],
-              },
-              actions: [
-                {
-                  children: t('edit'),
-                  href: `/account/organisations/${id}/${userId}/type`,
-                },
-              ],
+            value: {
+              children: organisation.name,
             },
-            {
-              key: {
-                children: t('email'),
-              },
-              value: {
-                children: user.email,
-              },
-              actions: [
-                {
-                  children: t('edit'),
-                  href: `/account/organisations/${id}/${userId}/email`,
-                },
-              ],
+          },
+          {
+            key: {
+              children: t('user_type'),
             },
-            {
-              key: {
-                children: t('phone'),
-              },
-              value: {
-                children: user.phoneNumber,
-              },
-              actions: [
-                {
-                  children: t('edit'),
-                  href: `/account/organisations/${id}/${userId}/phone`,
-                },
-              ],
+            value: {
+              children: AccountType[user.role || 'AGENCY_ADMIN'],
             },
-          ]}
-        />
-      </OrganisationUserAccountDetails>
+            actions: [
+              {
+                children: t('edit'),
+                href: `/account/organisations/${id}/${userId}/type`,
+              },
+            ],
+          },
+          {
+            key: {
+              children: t('email'),
+            },
+            value: {
+              children: user.email,
+            },
+            actions: [
+              {
+                children: t('edit'),
+                href: `/account/organisations/${id}/${userId}/email`,
+              },
+            ],
+          },
+          {
+            key: {
+              children: t('phone'),
+            },
+            value: {
+              children: user.phoneNumber,
+            },
+            actions: [
+              {
+                children: t('edit'),
+                href: `/account/organisations/${id}/${userId}/phone`,
+              },
+            ],
+          },
+        ]}
+      />
+      <OrganisationUserAccountDetails user={user} />
     </div>
   );
 }

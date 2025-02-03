@@ -1,3 +1,5 @@
+import { pick } from 'lodash';
+
 import type { TypeUserRole } from '@/__generated__/data-contracts';
 
 export const isAnalysist = (role: Nullable<TypeUserRole>): boolean => {
@@ -120,4 +122,27 @@ export const AccountType: Record<TypeUserRole, string> = {
   SATELLITE_OPERATOR_ADMIN: 'Satellite Admin',
   SATELLITE_OPERATOR_USER: 'Satellite User',
   SATELLITE_OPERATOR: 'Satellite Operator',
+};
+
+export const UserRoles = {
+  AGENCY_SUPERUSER: AccountType,
+  AGENCY_APPROVER: AccountType,
+  AGENCY_ADMIN: pick<Record<TypeUserRole, string>, TypeUserRole>(AccountType, [
+    'AGENCY_ADMIN',
+    'AGENCY_USER',
+  ]),
+  AGENCY_ANALYST: pick<Record<TypeUserRole, string>, TypeUserRole>(AccountType, [
+    'AGENCY_ADMIN',
+    'AGENCY_ANALYST',
+    'AGENCY_USER',
+  ]),
+  GOVERNMENT_ADMIN: pick<Record<TypeUserRole, string>, TypeUserRole>(AccountType, [
+    'GOVERNMENT_ADMIN',
+    'GOVERNMENT_USER',
+  ]),
+  SATELLITE_OPERATOR_ADMIN: pick<Record<TypeUserRole, string>, TypeUserRole>(AccountType, [
+    'SATELLITE_OPERATOR_ADMIN',
+    'SATELLITE_OPERATOR',
+    'SATELLITE_OPERATOR_USER',
+  ]),
 };

@@ -2,7 +2,8 @@ import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import { getUsersById } from '@/actions/getUserById';
-import { OrganisationUserPhoneForm } from '@/components/account/organisations/organisation/OrganisationUserPhoneForm';
+import { OrganisationUserTypeForm } from '@/components/account/organisations/organisation/OrganisationUserTypeForm';
+import { WarningText } from '@/ui/warning-text/warning-text';
 import { isOrgAdmin } from '@/utils/Roles';
 
 export async function generateMetadata({
@@ -18,7 +19,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: user.role,
+    title: 'User role',
   };
 }
 
@@ -27,7 +28,7 @@ export default async function OrganisationUserPhonePage({
 }: {
   params: Promise<{ userId: string; id: string }>;
 }) {
-  const t = await getTranslations('Organisation_user.phone_change');
+  const t = await getTranslations('Organisation_user.type_change');
 
   const { userId } = await params;
 
@@ -36,8 +37,8 @@ export default async function OrganisationUserPhonePage({
   return (
     <div>
       <h1 className="govuk-heading-xl">{t('title')}</h1>
-      <p className="govuk-body">{t('users_current_address', { phone: user.phoneNumber })}</p>
-      <OrganisationUserPhoneForm user={user} />
+      <WarningText>{t('warning')}</WarningText>
+      <OrganisationUserTypeForm user={user} />
     </div>
   );
 }

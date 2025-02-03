@@ -245,7 +245,7 @@
     },
     "add_new_user": "Add new user"
   },
-  "OrganisationUser": {
+  "Organisation_user": {
     "title": "User account details",
     "description": "Update a user's information by editing the details below.",
     "phone": "Phone",
@@ -261,6 +261,11 @@
     "phone_change": {
       "title": "Change user's phone number",
       "users_current_address": "User's current phone number is {phone}"
+    },
+    "type_change": {
+      "title": "Change user's account type",
+      "warning": "Changing account type will change the permissions associated with this account.",
+      "hint": "Select an account type"
     },
     "banner": {
       "title": "Are you sure you want to delete this user?",
@@ -1448,21 +1453,18 @@
       "question": "Do you want to accept analytics cookies?",
       "button": "Save cookies settings"
     },
-    "User_email": {
+    "User_edit": {
       "save": "Save",
       "back": "Back",
-      "label": "Enter new email address here:",
-      "notification": {
-        "success": "Email address changed"
-      }
-    },
-    "User_phone": {
-      "save": "Save",
-      "back": "Back",
-      "label": "Enter new phone number here:",
-      "notification": {
-        "success": "Phone number changed"
-      }
+      "phone_label": "Enter new phone number here:",
+      "email_label": "Enter new email address here:",
+      "role_label": "Select new account type:",
+      "role_hint": "Select an account type",
+      "role_help": {
+        "title": "What can these accounts do?",
+        "content": "<p><bold>Admins</bold> can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site. Administrators can also view all user accounts for an organisation, and can add new users, and change or delete existing users.</p><p><bold>Operators</bold> can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site.</p><p><bold>Users</bold> can view information on their organisation's satellites and the upcoming conjunction events involving them.</p>"
+      },
+      "success": "Account details updated"
     }
   },
   "Components": {

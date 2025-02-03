@@ -2,20 +2,19 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { type ReactNode, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import type { TypeUserOut } from '@/__generated__/data-contracts';
 import { deleteUser } from '@/actions/deleteUser';
+import { TopNotificationBanner } from '@/components/TopNotificationBanner';
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
-import NotificationBanner from '@/ui/notification-banner/notification-banner';
 
 type OrganisationUserAccountDetailsProps = {
-  children: ReactNode;
   user: TypeUserOut;
 };
 
-const OrganisationUserAccountDetails = ({ children, user }: OrganisationUserAccountDetailsProps) => {
+const OrganisationUserAccountDetails = ({ user }: OrganisationUserAccountDetailsProps) => {
   const t = useTranslations('Common');
 
   const [confirmMessage, setConfirmMessage] = useState(false);
@@ -30,7 +29,7 @@ const OrganisationUserAccountDetails = ({ children, user }: OrganisationUserAcco
   return (
     <div>
       {confirmMessage && (
-        <NotificationBanner
+        <TopNotificationBanner
           status="error"
           heading={t('are_you_sure_delete', { email: user.email })}
         >
@@ -49,9 +48,8 @@ const OrganisationUserAccountDetails = ({ children, user }: OrganisationUserAcco
               {t('cancel')}
             </Button>
           </ButtonGroup>
-        </NotificationBanner>
+        </TopNotificationBanner>
       )}
-      {children}
       <ButtonGroup>
         <Button
           className="govuk-button--warning"
