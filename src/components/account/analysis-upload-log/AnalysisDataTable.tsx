@@ -102,10 +102,10 @@ const AnalysisDataTable = ({ data, params }: AnalysisDataTableProps) => {
   return (
     <>
       {fileToDelete && !isFileDeleted && (
-        <TopNotificationBanner status="error" heading={tCommon('areYouSureYouWantToDeleteJson', { fileToDelete })}>
+        <TopNotificationBanner status="error" heading={tCommon('are_you_sure_you_want_to_delete_json', { fileToDelete })}>
           <div className="govuk-button-group">
             <Button className="govuk-button--warning" onClick={confirmDelete}>
-              {tCommon('yesDelete')}
+              {tCommon('yes_delete')}
             </Button>
             <Button className="govuk-button--secondary" onClick={cancel}>
               {tCommon('cancel')}
@@ -116,7 +116,7 @@ const AnalysisDataTable = ({ data, params }: AnalysisDataTableProps) => {
       {fileToDelete && isFileDeleted && (
         <NotificationBanner status="success">
           {fileToDelete}
-          {tCommon('jsonHasBeenDeleted')}
+          {tCommon('json_has_been_deleted')}
         </NotificationBanner>
       )}
       <InfiniteTable<TypeAnalysisOut, TypeGetAnalysesParams>
