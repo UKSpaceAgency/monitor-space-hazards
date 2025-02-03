@@ -9,4 +9,6 @@ services:
         - ENV_NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN={NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
     ports:
       - '3000:3000'
+    environment:
+      - COREPACK_DEFAULT_TO_LATEST=0
     env_file: .env
