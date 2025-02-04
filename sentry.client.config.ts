@@ -17,7 +17,7 @@ if (env.NEXT_PUBLIC_SENTRY_DSN) {
     })],
 
     // Define how likely traces are sampled. Adjust this value in production, or use tracesSampler for greater control.
-    tracesSampleRate: 1,
+    tracesSampleRate: 0,
 
     // Define how likely Replay events are sampled.
     // This sets the sample rate to be 10%. You may want this to be 100% while
