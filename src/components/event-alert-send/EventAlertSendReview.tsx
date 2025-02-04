@@ -15,8 +15,7 @@ type EventAlertSendReviewProps = {
   type: 're-entry' | 'conjunction';
   shortId: string;
   data: EventAlertSearchParams;
-  action: (id: string, data: { alertType: 'manual-priority' | 'manual-normal'; additionalEmails?: string[] }) => Promise<void>;
-
+  action: (id: string, data: { alertType: ('standard' | 'priority')[]; additionalEmails: string[] }) => Promise<void>;
 };
 
 const EventAlertSendReview = ({ type, shortId, data, action }: EventAlertSendReviewProps) => {
@@ -30,7 +29,7 @@ const EventAlertSendReview = ({ type, shortId, data, action }: EventAlertSendRev
   const handleSubmit = () => {
     setLoading(true);
     action(shortId, {
-      alertType: data.isPriority === 'true' ? 'manual-priority' : 'manual-normal',
+      alertType: data.isPriority ? ['priority'] : ['standard'],
       additionalEmails: data.additionalRecipients ? data.additionalRecipients.split(/[,;]+/).map(r => r.trim()) : [],
     });
   };

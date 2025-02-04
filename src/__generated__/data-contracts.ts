@@ -643,12 +643,9 @@ export interface TypeConjunctionAlertSettings {
 /** ConjunctionEventAlertIn */
 export interface TypeConjunctionEventAlertIn {
   /** Alerttype */
-  alertType: "manual-normal" | "manual-priority" | null;
-  /**
-   * Additionalemails
-   * @default []
-   */
-  additionalEmails?: string[];
+  alertType: ("standard" | "priority")[];
+  /** Additionalemails */
+  additionalEmails: string[];
 }
 
 /** ConjunctionEventAlertOut */
@@ -661,11 +658,13 @@ export interface TypeConjunctionEventAlertOut {
    */
   conjunctionReportId: string;
   /** Alerttype */
-  alertType: "normal" | "auto-priority" | "manual-priority" | null;
+  alertType: ("standard" | "priority")[];
   /** Additionalrecipients */
   additionalRecipients: string[] | null;
-  /** Notificationsendingstatus */
-  notificationSendingStatus: "scheduled" | "in-progress" | "delivered";
+  /** Emailnotificationsendingstatus */
+  emailNotificationSendingStatus: "scheduled" | "in-progress" | "delivered";
+  /** Smsnotificationsendingstatus */
+  smsNotificationSendingStatus: "scheduled" | "in-progress" | "delivered";
 }
 
 /** ConjunctionEventCount */
@@ -709,6 +708,8 @@ export interface TypeConjunctionReportOut {
   reportTime?: string | null;
   /** Risk */
   risk: "Low" | "Medium" | "High";
+  /** Alerttype */
+  alertType: ("priority" | "standard")[];
   /** Tcatime */
   tcaTime?: string | null;
   /** Collisionprobability */
@@ -1521,7 +1522,7 @@ export type TypeReentryDirection = "ascending" | "descending";
 /** ReentryEventAlertIn */
 export interface TypeReentryEventAlertIn {
   /** Alerttype */
-  alertType: "manual-normal" | "manual-priority" | null;
+  alertType: ("standard" | "priority")[];
   /**
    * Additionalemails
    * @default []
@@ -1542,11 +1543,13 @@ export interface TypeReentryEventAlertOut {
    */
   reentryReportId: string;
   /** Alerttype */
-  alertType: "normal" | "auto-priority" | "manual-priority" | null;
+  alertType: ("standard" | "priority" | "uk_satellites_only")[];
   /** Additionalrecipients */
   additionalRecipients: string[] | null;
-  /** Notificationsendingstatus */
-  notificationSendingStatus: "scheduled" | "in-progress" | "delivered";
+  /** Emailnotificationsendingstatus */
+  emailNotificationSendingStatus: "scheduled" | "in-progress" | "delivered";
+  /** Smsnotificationsendingstatus */
+  smsNotificationSendingStatus: "scheduled" | "in-progress" | "delivered";
 }
 
 /** ReentryEventCount */
@@ -1711,6 +1714,8 @@ export interface TypeReentryEventReportOut {
   uncertaintyWindow?: number | null;
   /** Reportnumber */
   reportNumber: number;
+  /** Alerttype */
+  alertType: ("priority" | "standard" | "uk_satellites_only")[];
   /**
    * Reporttime
    * @format date-time
@@ -2317,7 +2322,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2024-12-27T14:32:50.840684"
+   * @default "2025-02-04T00:53:24.477286"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3333,7 +3338,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2025-01-01"
+   * @default "2025-03-01"
    */
   end_date?: string;
 }
@@ -3348,7 +3353,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2025-01-01"
+   * @default "2025-03-01"
    */
   end_date?: string;
 }
@@ -3363,7 +3368,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-01-01"
+   * @default "2025-03-01"
    */
   end_date?: string;
 }
@@ -3378,7 +3383,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-01-01"
+   * @default "2025-03-01"
    */
   end_date?: string;
 }
@@ -3393,7 +3398,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-01-01"
+   * @default "2025-03-01"
    */
   end_date?: string;
 }
@@ -3408,7 +3413,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2025-01-01"
+   * @default "2025-03-01"
    */
   end_date?: string;
 }
