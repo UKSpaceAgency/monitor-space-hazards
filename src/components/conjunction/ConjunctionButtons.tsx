@@ -1,11 +1,14 @@
 'use client';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
-import { generatePdf } from '@/libs/Pdf/Pdf';
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
+
+const PdfDownloadButton = dynamic(() => import('../PdfDownloadButton').then(mod => mod.PdfDownloadButton), {
+  ssr: false,
+});
 
 type ConjunctionButtonsProps = {
   title: string;
@@ -13,12 +16,6 @@ type ConjunctionButtonsProps = {
 
 const ConjunctionButtons = ({ title }: ConjunctionButtonsProps) => {
   const tCommon = useTranslations('Common');
-
-  const pathname = usePathname();
-
-  const handleDownloadPdf = () => {
-    generatePdf(title, pathname);
-  };
 
   return (
     <ButtonGroup>
@@ -29,10 +26,7 @@ const ConjunctionButtons = ({ title }: ConjunctionButtonsProps) => {
           {tCommon('return', { to: 'upcoming conjunction events page' })}
         </Button>
       </Link>
-
-      <Button onClick={handleDownloadPdf}>
-        {tCommon('download_event_as', { as: 'PDF' })}
-      </Button>
+      <PdfDownloadButton title={title} />
     </ButtonGroup>
   );
 };

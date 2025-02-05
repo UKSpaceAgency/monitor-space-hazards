@@ -1,11 +1,14 @@
 'use client';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
-import { generatePdf } from '@/libs/Pdf/Pdf';
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
+
+const PdfDownloadButton = dynamic(() => import('../PdfDownloadButton').then(mod => mod.PdfDownloadButton), {
+  ssr: false,
+});
 
 type ReentryButtonsProps = {
   title: string;
@@ -14,18 +17,9 @@ type ReentryButtonsProps = {
 const ReentryButtons = ({ title }: ReentryButtonsProps) => {
   const tCommon = useTranslations('Common');
 
-  const pathname = usePathname();
-
-  const handleDownloadPdf = () => {
-    generatePdf(title, pathname);
-  };
-
   return (
     <ButtonGroup>
-      <Button onClick={handleDownloadPdf}>
-        {tCommon('download_event_as', { as: 'PDF' })}
-      </Button>
-
+      <PdfDownloadButton title={title} />
       <Link
         href="/re-entries"
       >
