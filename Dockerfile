@@ -10,8 +10,10 @@ WORKDIR /app
 
 # Install dependencies
 COPY package.json pnpm-lock.yaml* ./
-RUN corepack enable && corepack prepare pnpm@9.15.5 --activate && pnpm i --frozen-lockfile
-
+RUN npm install -g corepack
+RUN corepack enable
+RUN corepack prepare pnpm@10.2.0 --activate
+RUN pnpm i --frozen-lockfile
 
 # Rebuild the source code only when needed
 FROM base AS builder
@@ -30,7 +32,8 @@ RUN --mount=type=secret,id=cosmic-slug \
     --mount=type=secret,id=mapbox-token \
     export COSMIC_BUCKET_SLUG=$(cat /run/secrets/cosmic-slug) && \
     export COSMIC_READ_KEY=$(cat /run/secrets/cosmic-key) && \
-    export NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=$(cat /run/secrets/mapbox-token) && SKIP_ENV_VALIDATION=1 pnpm run build
+    export NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=$(cat /run/secrets/mapbox-token) && \
+    corepack enable pnpm && SKIP_ENV_VALIDATION=1 pnpm run build
 
 # Production image, copy all the files and run next
 FROM base AS runner
@@ -40,6 +43,7 @@ WORKDIR /app
 ENV NODE_ENV production
 # Uncomment the following line in case you want to disable telemetry during runtime.
 # ENV NEXT_TELEMETRY_DISABLED 1
+ENV COREPACK_DEFAULT_TO_LATEST 0
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
