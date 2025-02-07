@@ -17,7 +17,8 @@ const ReentryAlertAdditionalObjectDetailsTable = ({ event, dataPdf }: ReentryAle
 
   const objectDetailsHeaders: HTMLProps<HTMLTableCellElement>[] = [{
     children: t('object_details'),
-  }, {}];
+    colSpan: 2,
+  }];
 
   const objectDetailsRows: InformationsTableRow<ObjectDetailsData>[] = [{
     header: t('international_designator'),
@@ -47,7 +48,8 @@ const ReentryAlertAdditionalObjectDetailsTable = ({ event, dataPdf }: ReentryAle
 
   const orbitDetailsHeaders: HTMLProps<HTMLTableCellElement>[] = [{
     children: t('orbit_details'),
-  }, {}];
+    colSpan: 2,
+  }];
 
   const orbitDetailsRows: InformationsTableRow<ObjectDetailsData>[] = [
     {
