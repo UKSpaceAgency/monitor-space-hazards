@@ -34,7 +34,7 @@ const generatePdfTable = (table: HTMLElement) => {
           </TR>
         )}
         {rows.map((row: { children: any }, rowIndex: Key | null | undefined) => (
-          <TR key={rowIndex}>
+          <TR key={rowIndex} style={{ flexWrap: 'wrap' }}>
             {[...row.children].map((cell: HTMLElement, cellIndex: number) => {
               const tagClassList = (cell.firstChild as HTMLElement)?.classList;
               const cellStyle = {
@@ -62,9 +62,13 @@ const generatePdfTable = (table: HTMLElement) => {
               if (cell.dataset.pdf === 'no') {
                 return null;
               }
+              const innerHTML = cell.innerHTML;
+              const textContent = innerHTML
+                .replace(/<br\s*\/?>/gi, '\n')
+                .replace(/<[^>]*>/g, '');
               return (
                 <TD key={cellIndex} style={cell.tagName === 'TH' ? pdfStyles.tableCellHeader : { ...cellStyle }}>
-                  {cell.textContent}
+                  {textContent}
                 </TD>
               );
             })}
