@@ -28,7 +28,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((
         className,
       )}
     >
-      {label && <Label htmlFor={props.id ?? id}>{label}</Label>}
+      {label && <Label htmlFor={props.id ?? id}><b>{label}</b></Label>}
       {hint && <Hint>{hint}</Hint>}
       {error && <ErrorMessage>{error}</ErrorMessage>}
       <div className="govuk-input__wrapper">

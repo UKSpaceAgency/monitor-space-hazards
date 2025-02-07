@@ -1,37 +1,73 @@
 import Link from 'next/link';
-import type { ReactNode } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
+import { forwardRef } from 'react';
 
-type BreakcrumbsProps = {
-  items: Array<{
-    text: ReactNode;
-    href?: string;
-  }>;
-};
+const Breadcrumb = forwardRef<
+  HTMLElement,
+  ComponentPropsWithoutRef<'nav'> & {
+    separator?: React.ReactNode;
+  }
+>(({ ...props }, ref) => <nav ref={ref} className="govuk-breadcrumbs" aria-label="breadcrumb" {...props} />);
+Breadcrumb.displayName = 'Breadcrumb';
 
-export function Breakcrumbs({ items }: BreakcrumbsProps) {
+const BreadcrumbList = forwardRef<
+  HTMLOListElement,
+  ComponentPropsWithoutRef<'ol'>
+>(({ className, ...props }, ref) => (
+  <ol
+    ref={ref}
+    className="govuk-breadcrumbs__list"
+    {...props}
+  />
+));
+BreadcrumbList.displayName = 'BreadcrumbList';
+
+const BreadcrumbItem = forwardRef<
+  HTMLLIElement,
+  ComponentPropsWithoutRef<'li'>
+>(({ className, ...props }, ref) => (
+  <li
+    ref={ref}
+    className="govuk-breadcrumbs__list-item"
+    {...props}
+  />
+));
+BreadcrumbItem.displayName = 'BreadcrumbItem';
+
+const BreadcrumbLink = forwardRef<
+  HTMLAnchorElement,
+  ComponentPropsWithoutRef<'a'>
+>(({ className, href = '#', ...props }, ref) => {
   return (
-    <nav className="govuk-breadcrumbs" aria-label="Breadcrumb">
-      <ol className="govuk-breadcrumbs__list">
-        {items.map(({ text, href }, index) => (
-          <li
-            // eslint-disable-next-line react/no-array-index-key
-            key={index}
-            className="govuk-breadcrumbs__list-item"
-          >
-            {href
-              ? (
-                  <Link href={href} className="govuk-breadcrumbs__link">
-                    {text}
-                  </Link>
-                )
-              : (
-                  text
-                )}
-          </li>
-        ))}
-      </ol>
-    </nav>
+    <Link
+      ref={ref}
+      className="govuk-breadcrumbs__link capitalize"
+      href={href}
+      {...props}
+    />
   );
-}
+});
+BreadcrumbLink.displayName = 'BreadcrumbLink';
 
-export default Breakcrumbs;
+const BreadcrumbPage = forwardRef<
+  HTMLSpanElement,
+  ComponentPropsWithoutRef<'span'>
+>(({ className, ...props }, ref) => (
+  <span
+    ref={ref}
+    role="link"
+    aria-disabled
+    aria-current="page"
+    className="capitalize"
+    {...props}
+  />
+));
+BreadcrumbPage.displayName = 'BreadcrumbPage';
+
+export {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+};

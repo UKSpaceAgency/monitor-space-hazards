@@ -8,9 +8,9 @@ import { useMessages, useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 export const Navigation = () => {
-  const t = useTranslations('BaseTemplate');
+  const t = useTranslations('Template');
   const messages = useMessages() as IntlMessages;
-  const keys = Object.keys(messages.BaseTemplate.navigation) as Array<keyof typeof messages['BaseTemplate']['navigation']>;
+  const keys = Object.keys(messages.Template.navigation) as Array<keyof typeof messages['Template']['navigation']>;
 
   const pathname = usePathname();
 
@@ -69,9 +69,9 @@ export const Navigation = () => {
               );
             })}
             <li
-              className="my-5 md:pl-0 md:my-0 md:mr-5 border-l-4 md:border-l-0 md:border-b-4 md:border-transparent"
+              className="my-5 md:pl-0 md:my-0 md:mr-5 border-l-4 border-l-transparent md:border-l-0 md:border-b-4 md:border-transparent"
             >
-              <button type="button" className="block font-bold md:text-lg text-blue hover:text-lightBlue md:py-4" onClick={() => signOut({ redirectTo: '/' })}>{t('sign_out')}</button>
+              <button type="button" className="block font-bold md:text-lg text-blue hover:text-lightBlue md:py-4" onClick={() => signOut({ redirectTo: '/api/auth/logout' })}>{t('sign_out')}</button>
             </li>
           </ul>
         </div>

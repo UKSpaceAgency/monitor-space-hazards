@@ -5,7 +5,10 @@ import type { Metadata } from 'next';
 import { SessionProvider } from 'next-auth/react';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
+import type { ReactNode } from 'react';
 
+import { getSession } from '@/actions/getSession';
+import { BaseTemplate } from '@/templates/BaseTemplate';
 import { AppConfig } from '@/utils/AppConfig';
 
 export const metadata: Metadata = {
@@ -17,20 +20,24 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({
+  breadcrumb,
   children,
-}: { children: React.ReactNode }) {
+}: { breadcrumb: ReactNode; children: ReactNode }) {
   const locale = await getLocale();
 
   // Providing all messages to the client
   // side is the easiest way to get started
   const messages = await getMessages();
+  const session = await getSession();
 
   return (
     <html lang={locale} className="font-sans">
       <body className="govuk-template__body" suppressHydrationWarning>
-        <NextIntlClientProvider messages={pick(messages, ['Tables', 'BaseTemplate', 'Common'])}>
+        <NextIntlClientProvider messages={pick(messages, ['Tables', 'Template', 'Forms', 'Common', 'OverflightMap', 'Charts'])}>
           <SessionProvider>
-            {children}
+            <BaseTemplate showNavigation={!!session} breadcrumb={breadcrumb}>
+              {children}
+            </BaseTemplate>
           </SessionProvider>
         </NextIntlClientProvider>
       </body>

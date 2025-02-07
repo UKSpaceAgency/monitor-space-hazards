@@ -1,43 +1,33 @@
-import { getTranslations } from 'next-intl/server';
+'use client';
+
+import { useTranslations } from 'next-intl';
 
 import type { TypeGetSatellitesWithMetadataParams, TypeSatelliteWithMetadataOut } from '@/__generated__/data-contracts';
 import { getSatellites } from '@/actions/getSatellites';
 import { DownloadData } from '@/components/DownloadData';
 import InfiniteTable from '@/components/InfiniteTable';
-import { LastIntegration } from '@/components/LastIntegration';
+import { QUERY_KEYS } from '@/utils/QueryKeys';
 
-import { columns } from './columns';
+import { satellitesColumns } from './SatellitesDataTableColumns';
 
 type SatellitesDataTableProps = {
-  query?: string;
-  downloadable?: true;
+  initialData: TypeSatelliteWithMetadataOut[];
+  params: TypeGetSatellitesWithMetadataParams;
 };
 
-const SatellitesDataTable = async ({ query }: SatellitesDataTableProps) => {
-  const t = await getTranslations('Tables');
-  const params: TypeGetSatellitesWithMetadataParams = {
-    search_like: query,
-    limit: 50,
-  };
-
-  const { data } = await getSatellites(params);
-
-  // We need to ask should we donwload with query or not
-  const downloadParams: TypeGetSatellitesWithMetadataParams = {
-    search_like: query,
-    limit: 9999999,
-  };
-
-  const downloadData = async () => {
-    'use server';
-    return await getSatellites(downloadParams);
-  };
+const SatellitesDataTable = ({ initialData, params }: SatellitesDataTableProps) => {
+  const t = useTranslations('Tables');
 
   return (
     <>
-      <InfiniteTable<TypeSatelliteWithMetadataOut, TypeGetSatellitesWithMetadataParams> initialData={data} params={params} columns={columns} fetcher={getSatellites} />
-      <DownloadData type={t('Download.types.satellites')} downloadData={downloadData} />
-      <LastIntegration />
+      <InfiniteTable<TypeSatelliteWithMetadataOut, TypeGetSatellitesWithMetadataParams>
+        initialData={initialData}
+        params={params}
+        columns={satellitesColumns}
+        fetcher={getSatellites}
+        queryKeys={[QUERY_KEYS.Satellites]}
+      />
+      <DownloadData type={t('Download.types.satellites')} params={params} downloadAction={getSatellites} />
     </>
   );
 };

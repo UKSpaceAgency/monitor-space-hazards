@@ -12,9 +12,8 @@ type UseSortingReturn<T extends string> = {
   sortBy?: T;
 };
 
-export function useSorting<T extends string>(): UseSortingReturn<T> {
-  const [sorting, setSorting] = useState<ColumnSort[]>([]);
-
+export function useSorting<T extends string>(initialSort: ColumnSort[]): UseSortingReturn<T> {
+  const [sorting, setSorting] = useState<ColumnSort[]>(initialSort);
   return {
     // 🔽 Table sorting state
     sorting,

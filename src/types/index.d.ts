@@ -24,3 +24,5 @@ type DisplayColumnDef<TData extends RowData, TValue = unknown> = ColumnDefBase<T
 type GroupColumnDef<TData extends RowData, TValue = unknown> = GroupColumnDefBase<TData, TValue> & ColumnIdentifiers<TData, TValue>;
 
 export type TranslatedColumnDef<TData extends RowData, TValue = unknown> = DisplayColumnDef<TData, TValue> | GroupColumnDef<TData, TValue> | AccessorColumnDef<TData, TValue>;
+
+export type DisplayUnit = 'scientific' | 'percentage';

@@ -1,96 +1,134 @@
+'use client';
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type AccordionProps = {
   id: string;
-  items: {
+  initialItems: {
+    id: string;
     heading: string;
-    summary?: ReactNode;
     content: ReactNode;
+    summary?: ReactNode;
     expanded?: boolean;
   }[];
 };
 
-export function Accordion({ id, items }: AccordionProps) {
-  const [selected, setSelected] = useState(new Set());
+export function Accordion({ initialItems, id }: AccordionProps) {
+  const [isAllItemsExpanded, setAllItemsExpanded] = useState(false);
+  const [items, setItems] = useState(initialItems);
 
-  const handleHeaderClick = (i: number) => {
-    setSelected((selected) => {
-      const active = new Set(selected);
-      if (active.has(i)) {
-        active.delete(i);
-      } else {
-        active.add(i);
-      }
-      return new Set(active);
-    });
+  const toggleAllItems = () => {
+    setAllItemsExpanded(prevState => !prevState);
   };
 
+  const toggleItem = (id: string) => {
+    const modifiedItems = items.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          expanded: !item.expanded,
+        };
+      }
+
+      return item;
+    });
+
+    setItems(modifiedItems);
+  };
+
+  useEffect(() => {
+    setItems(prevItems => prevItems.map(item => ({
+      ...item,
+      expanded: isAllItemsExpanded,
+    })));
+  }, [isAllItemsExpanded]);
+
   return (
-    <div id={id} className={clsx('govuk-accordion')}>
-      {/* <div className={classNames(styles['govuk-accordion__controls'])}>
-        <button
-          type="button"
-          class="govuk-accordion__show-all"
-          aria-expanded="false"
-        >
-          <span class="govuk-accordion-nav__chevron govuk-accordion-nav__chevron--down"></span>
-          <span class="govuk-accordion__show-all-text">Show all sections</span>
-        </button>
-      </div> */}
-      {items.map(({ heading, summary, content }, index) => (
-        <div
-          // eslint-disable-next-line react/no-array-index-key
-          key={`accordion-${index}`}
-        >
-          <div
-            className={clsx('govuk-accordion__section-header')}
+    <div id={`accordion-${id}`} className="govuk-frontend-supported">
+      <div className="govuk-accordion">
+        <div className="govuk-accordion__controls">
+          <button
+            type="button"
+            className="govuk-accordion__show-all"
+            onClick={toggleAllItems}
+            aria-expanded={isAllItemsExpanded}
           >
-            <h2
-              className={clsx('govuk-accordion__section-heading')}
+            <span className={clsx('govuk-accordion-nav__chevron', {
+              'govuk-accordion-nav__chevron--down': !isAllItemsExpanded,
+            })}
+            >
+            </span>
+            <span className="govuk-accordion__show-all-text">
+              {
+                isAllItemsExpanded ? 'Hide all sections' : 'Show all sections'
+              }
+            </span>
+          </button>
+        </div>
+        {items.map(({ heading, summary, content, expanded, id }) => (
+          <div
+            key={`accordion-${id}`}
+            id={id}
+          >
+            <div
+              className="govuk-accordion__section-header"
             >
               <button
                 type="button"
-                aria-controls={`${id}-content-${index}`}
-                className={clsx(
-                  'govuk-accordion__section-button',
-                )}
-                aria-expanded={selected.has(index)}
+                aria-controls={`content-${id}`}
+                aria-expanded={items.find(item => item.id === id)?.expanded}
                 aria-label={heading}
-                onClick={() => handleHeaderClick(index)}
+                className="govuk-accordion__section-button w-full text-start"
+                onClick={() => toggleItem(id)}
               >
                 <span
-                  className={clsx(
-                    'govuk-accordion__section-button',
-                  )}
-                  id={`${id}-heading-${index}`}
+                  className="govuk-accordion__section-heading-text"
+                  id={`heading-${id}`}
                 >
-                  {heading}
+                  <h2
+                    className="govuk-accordion__section-heading-text-focus"
+                    data-anchor={id}
+                  >
+                    {heading}
+                  </h2>
+                </span>
+                <span className="govuk-accordion__section-toggle">
+                  <span className="govuk-accordion__section-toggle-focus">
+                    <span className={clsx('govuk-accordion-nav__chevron', {
+                      'govuk-accordion-nav__chevron--down': !expanded,
+                    })}
+                    >
+                    </span>
+                    <span className="govuk-accordion__section-toggle-text">{expanded ? 'Hide' : 'Show'}</span>
+                  </span>
                 </span>
               </button>
-            </h2>
-            {summary && (
-              <div
-                className={clsx(
-                  'govuk-accordion__section-summary',
-                  'govuk-body',
-                )}
-                id={`${id}-summary-${index}`}
-              >
-                {summary}
-              </div>
-            )}
+
+              {summary && expanded && (
+                <div
+                  className={clsx(
+                    'govuk-accordion__section-summary',
+                    'govuk-body',
+                  )}
+                  id={`summary-${id}`}
+                >
+                  {summary}
+                </div>
+              )}
+            </div>
+            <div
+              id={`content-${id}`}
+              className={clsx({
+                'content-visibility-hidden': !expanded,
+              })}
+            >
+              {content}
+            </div>
           </div>
-          <div
-            id={`${id}-content-${index}`}
-            className={clsx('govuk-accordion__section-content',
-            )}
-          >
-            {content}
-          </div>
-        </div>
-      ))}
+        ),
+        )}
+      </div>
     </div>
   );
 }

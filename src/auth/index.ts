@@ -4,7 +4,7 @@ import type { JWT } from 'next-auth/jwt';
 import Auth0 from 'next-auth/providers/auth0';
 
 import type { TypeUserRole } from '@/__generated__/data-contracts';
-import fetchUser from '@/actions/getUser';
+import fetchUser from '@/auth/getUser';
 import { env } from '@/libs/Env';
 
 declare module 'next-auth' {
@@ -84,7 +84,7 @@ async function refreshAccessToken(token: JWT) {
   }
 }
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
+export const { handlers, signIn, signOut, auth, unstable_update: update } = NextAuth({
   providers: [
     Auth0({
       clientId: env.AUTH0_CLIENT_ID,
@@ -106,8 +106,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   callbacks: {
     authorized: async ({ request, auth }) => {
+      if (auth && !auth.user.setup_completed && !request.nextUrl.pathname.includes('account')) {
+        return Response.redirect(new URL('/account/setup', request.nextUrl.origin));
+      }
+
+      if (request.nextUrl.pathname === '/data-privacy-notice'
+        || request.nextUrl.pathname === '/cookies'
+        || request.nextUrl.pathname === '/contact-analyst'
+      ) {
+        return true;
+      }
+
       if (request.nextUrl.pathname === '/' && auth) {
-        return Response.redirect(new URL('/dashboard', request.nextUrl.origin));
+        return Response.redirect(new URL('/home', request.nextUrl.origin));
       }
       return !!auth;
     },

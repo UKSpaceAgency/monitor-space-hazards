@@ -21,6 +21,7 @@ export function Checkboxes({
   error,
   smaller,
   children,
+  ...rest
 }: CheckboxesProps) {
   return (
     <div className={clsx('govuk-form-group', className)}>
@@ -40,7 +41,7 @@ export function Checkboxes({
         >
           {items.map((checkbox, index) => (
             // eslint-disable-next-line react/no-array-index-key
-            <Checkbox key={index} {...checkbox} />
+            <Checkbox key={index} {...rest} {...checkbox} />
           ))}
         </div>
       </fieldset>

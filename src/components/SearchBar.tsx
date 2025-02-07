@@ -10,21 +10,23 @@ import Label from '@/ui/label/label';
 type SearchBarProps = {
   label: string;
   placeholder: string;
+  paramName?: string;
 };
 
-const SearchBar = ({ label, placeholder }: SearchBarProps) => {
+const SearchBar = ({ label, placeholder, paramName }: SearchBarProps) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const [search, setSearch] = useState(searchParams.get('search_like')?.toString());
+  const [search, setSearch] = useState(searchParams.get('search_like')?.toString() || '');
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const param = paramName || 'search_like';
     const params = new URLSearchParams(searchParams);
     if (search) {
-      params.set('search_like', search);
+      params.set(param, search);
     } else {
-      params.delete('search_like');
+      params.delete(param);
     }
     replace(`${pathname}?${params.toString()}`);
     e.preventDefault();
@@ -33,10 +35,10 @@ const SearchBar = ({ label, placeholder }: SearchBarProps) => {
   return (
     <div>
       <Label className="font-bold" htmlFor="search-input">{label}</Label>
-      <form className="flex gap-3" onSubmit={onSubmit}>
+      <form className="flex gap-3" onSubmit={handleSubmit}>
         <Input className="flex-1" id="search-input" placeholder={placeholder} value={search} onChange={e => setSearch(e.target.value)} />
         <div>
-          <Button element="button" type="submit">Search</Button>
+          <Button type="submit">Search</Button>
         </div>
       </form>
     </div>

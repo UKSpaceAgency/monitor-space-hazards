@@ -1,0 +1,70 @@
+name: Build and Deploy to AWS PROD WWW
+
+on:
+  push:
+    tags:
+      - 'PROD-[0-9]+.[0-9]+.[0-9]+'
+
+env:
+  AWS_REGION: eu-west-2
+  ECR_REPOSITORY: frontend
+
+jobs:
+  build_and_push_awsprod:
+    environment: prod
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/frontend_ecr_role
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+        with:
+          mask-password: 'true'
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/amd64
+          push: true
+          secrets: |
+            cosmic-slug=${{ secrets.COSMIC_BUCKET_SLUG }}
+            cosmic-key=${{ secrets.COSMIC_READ_KEY }}
+            mapbox-token=${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }}
+          tags: |
+            ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest-prod
+            ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy_awsprod:
+    name: Invoke deploy to AWS PROD workflow
+    needs: build_and_push_awsprod
+    runs-on: ubuntu-latest
+    steps:
+      - name: Invoke deploy workflow with inputs
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: deploy-to-aws.yml
+          repo: UKSpaceAgency/sst-beta-infra
+          ref: main
+          token: ${{ secrets.INFRA_REPO_TOKEN }}
+          inputs: '{ "invoker": "frontend", "env": "prod", "image-tag":"${{ github.sha }}"}'

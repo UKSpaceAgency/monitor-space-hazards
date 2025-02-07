@@ -8,7 +8,7 @@ import Button from '@/ui/button/button';
 import { AppConfig } from '@/utils/AppConfig';
 
 export default function IndexPage() {
-  const t = useTranslations('IndexPage');
+  const t = useTranslations('Index');
 
   return (
     <div>
@@ -21,7 +21,7 @@ export default function IndexPage() {
         </div>
       </div>
       <h2 className="govuk-heading-m">{t('nsoc.title')}</h2>
-      <p className="govuk-body">{t('nsoc.description')}</p>
+      <p className="govuk-body">{t('nsoc.content')}</p>
       <p className="govuk-body">{t('nsoc.list_title')}</p>
       <ul className="govuk-list govuk-list--bullet">
         <li>{t('nsoc.list_items.track_events')}</li>
@@ -33,11 +33,11 @@ export default function IndexPage() {
         action={async () => {
           'use server';
           await signIn('auth0', {
-            redirectTo: '/dashboard',
+            redirectTo: '/home',
           });
         }}
       >
-        <Button element="button" type="submit" isStartButton>{t('existing_users.button')}</Button>
+        <Button type="submit" isStartButton>{t('existing_users.button')}</Button>
       </form>
       <h2 className="govuk-heading-m">{t('new_users.title')}</h2>
       { t.rich('new_users.markup', {

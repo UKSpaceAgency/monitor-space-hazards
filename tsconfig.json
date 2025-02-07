@@ -50,8 +50,10 @@
     "**/*.mts"
   ],
   "exclude": [
+    ".next",
     "node_modules",
     "generate-api",
+    ".github",
     "**/*.spec.ts",
     "**/*.e2e.ts"
   ]

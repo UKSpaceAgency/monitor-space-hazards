@@ -4,7 +4,34 @@
 @tailwind components;
 @tailwind utilities;
 
+p {
+  @extend .govuk-body;
+}
+
 .govuk-notification-banner--error {
   border-color: $govuk-error-colour !important;
   background-color: $govuk-error-colour !important;
+}
+
+ol.govuk-list {
+  counter-reset: section;
+  list-style-type: none;
+  ol.govuk-list {
+    padding-left: 1em;
+  }
+  li {
+    counter-increment: section;
+    &::before {
+      content: counters(section, '.') '. ';
+    }
+  }
+}
+
+.govuk-hint {
+  p,
+  ul {
+    color: inherit;
+    font-size: inherit;
+    list-style: inherit;
+  }
 }

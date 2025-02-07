@@ -11,6 +11,7 @@ import {
   flexRender,
   getCoreRowModel,
   getExpandedRowModel,
+  getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
 import clsx from 'clsx';
@@ -32,9 +33,12 @@ export type DataTableProps<T extends RowData> = {
   renderSubComponent?: (props: { row: Row<T> }) => ReactNode;
   // Extra
   stickyHeader?: true;
+  largerText?: true;
+  emptyLabel?: string;
+  manualSorting?: boolean;
 };
 
-const DataTable = <T extends RowData>({ data, columns, stickyHeader, sorting, onSortingChange, renderSubComponent }: DataTableProps<T>) => {
+const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText, sorting, emptyLabel = 'No data', manualSorting = true, onSortingChange, renderSubComponent }: DataTableProps<T>) => {
   const t = useTranslations('Tables');
 
   const translatedColumns = useMemo(() => {
@@ -61,11 +65,12 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, sorting, on
     state: {
       sorting,
     },
+    manualSorting,
     onSortingChange,
-    manualSorting: true,
     getRowCanExpand: () => (!!renderSubComponent),
     getCoreRowModel: getCoreRowModel(),
     getExpandedRowModel: getExpandedRowModel(),
+    getSortedRowModel: getSortedRowModel(),
   });
 
   const renderHeaderCell = (header: Header<T, unknown>, stickyHeader?: true) => {
@@ -86,7 +91,7 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, sorting, on
             key={header.id}
             scope="col"
             colSpan={header.colSpan}
-            style={{ minWidth: header.column.columnDef.minSize, width: `${header.getSize()}px` }}
+            style={{ minWidth: header.column.columnDef.minSize, width: `${header.getSize()}px`, maxWidth: header.column.columnDef.maxSize }}
             className={clsx('govuk-table__header', {
               'border-0': stickyHeader,
             })}
@@ -125,8 +130,17 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, sorting, on
         );
   };
 
+  if (!data.length) {
+    return (
+      <p className="govuk-body" role="status">
+        <span className="govuk-visually-hidden">Alert: </span>
+        {emptyLabel}
+      </p>
+    );
+  }
+
   return (
-    <Table className="text-base">
+    <Table className={`${largerText ? 'govuk-table' : 'govuk-!-font-size-16'}`} data-type="data">
       <TableHead className={clsx({
         'sticky top-0 bg-white': stickyHeader,
       })}
@@ -148,7 +162,7 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, sorting, on
               ))}
             </TableRow>
             {row.getIsExpanded() && renderSubComponent && (
-              <TableRow>
+              <TableRow data-table-subcomponent>
                 {/* 2nd row is a custom 1 cell row */}
                 <TableCell colSpan={row.getVisibleCells().length}>
                   {renderSubComponent({ row })}

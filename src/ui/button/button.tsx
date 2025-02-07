@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ForwardedRef, InputHTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes, ForwardedRef } from 'react';
 import { forwardRef } from 'react';
 
 export type ButtonProps = {
@@ -8,20 +8,10 @@ export type ButtonProps = {
   isStartButton?: true;
   text?: string;
   disabled?: boolean;
-} & (
-  | (ButtonHTMLAttributes<HTMLButtonElement> & {
-    element: 'button';
-  })
-  | (AnchorHTMLAttributes<HTMLAnchorElement> & {
-    element: 'link';
-  })
-  | (InputHTMLAttributes<HTMLInputElement> & {
-    element: 'input';
-  })
-);
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button = forwardRef<HTMLElement, ButtonProps>((
-  { isStartButton, variant, ...props },
+  { isStartButton, variant, className, ...props },
   ref,
 ) => {
   const startIcon = (
@@ -38,53 +28,11 @@ export const Button = forwardRef<HTMLElement, ButtonProps>((
     </svg>
   );
 
-  const className = clsx('govuk-button', {
+  const classes = clsx('govuk-button', className, {
     'govuk-button--start': isStartButton,
     'govuk-button--secondary': variant === 'secondary',
     'govuk-button--warning': variant === 'warning',
   });
-
-  if (props.element === 'input') {
-    const {
-      href,
-      text,
-      disabled,
-      children,
-      ...rest
-    } = props;
-    return (
-      <input
-        ref={ref as ForwardedRef<HTMLInputElement>}
-        className={className}
-        value={text}
-        type="submit"
-        disabled={disabled}
-        aria-disabled={disabled}
-        {...rest}
-      />
-    );
-  }
-
-  if (props.element === 'link') {
-    const {
-      href,
-      children,
-      ...rest
-    } = props;
-    return (
-      <a
-        ref={ref as ForwardedRef<HTMLAnchorElement>}
-        className={className}
-        href={href ?? '#'}
-        role="button"
-        draggable="false"
-        {...rest}
-      >
-        {children}
-        {isStartButton && startIcon}
-      </a>
-    );
-  }
 
   const {
     disabled,
@@ -96,7 +44,7 @@ export const Button = forwardRef<HTMLElement, ButtonProps>((
     <button
       ref={ref as ForwardedRef<HTMLButtonElement>}
       type="button"
-      className={className}
+      className={classes}
       disabled={disabled}
       aria-disabled={disabled}
       {...rest}

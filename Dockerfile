@@ -1,11 +1,6 @@
-# syntax=docker/dockerfile:1
-FROM node:20-alpine AS base
+# syntax=docker/dockerfile:1.2
+FROM node:22-alpine AS base
 
-ARG ENV_COSMIC_BUCKET_SLUG
-ARG ENV_COSMIC_READ_KEY
-
-ENV COSMIC_BUCKET_SLUG=$ENV_COSMIC_BUCKET_SLUG
-ENV COSMIC_READ_KEY=$ENV_COSMIC_READ_KEY
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -15,7 +10,10 @@ WORKDIR /app
 
 # Install dependencies
 COPY package.json pnpm-lock.yaml* ./
-RUN corepack enable pnpm && pnpm --v && pnpm i --frozen-lockfile
+RUN npm install -g corepack
+RUN corepack enable
+RUN corepack prepare pnpm@10.2.0 --activate
+RUN pnpm i --frozen-lockfile
 
 # Rebuild the source code only when needed
 FROM base AS builder
@@ -27,16 +25,25 @@ COPY . .
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
+ENV COREPACK_DEFAULT_TO_LATEST 0
 
-RUN corepack enable pnpm && SKIP_ENV_VALIDATION=1 pnpm run build
+RUN --mount=type=secret,id=cosmic-slug \
+    --mount=type=secret,id=cosmic-key \
+    --mount=type=secret,id=mapbox-token \
+    export COSMIC_BUCKET_SLUG=$(cat /run/secrets/cosmic-slug) && \
+    export COSMIC_READ_KEY=$(cat /run/secrets/cosmic-key) && \
+    export NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=$(cat /run/secrets/mapbox-token) && \
+    corepack enable pnpm && SKIP_ENV_VALIDATION=1 pnpm run build
 
 # Production image, copy all the files and run next
 FROM base AS runner
+RUN apk add curl
 WORKDIR /app
 
 ENV NODE_ENV production
 # Uncomment the following line in case you want to disable telemetry during runtime.
 # ENV NEXT_TELEMETRY_DISABLED 1
+ENV COREPACK_DEFAULT_TO_LATEST 0
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs

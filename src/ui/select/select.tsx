@@ -5,6 +5,7 @@ import type {
   SelectHTMLAttributes,
 } from 'react';
 import {
+  forwardRef,
   useId,
 } from 'react';
 
@@ -20,14 +21,14 @@ export type SelectProps = {
   error?: string;
 } & SelectHTMLAttributes<HTMLSelectElement>;
 
-export function Select({
+export const Select = forwardRef<HTMLSelectElement, SelectProps>(({
   options,
   className,
   label,
   hint,
   error,
   ...props
-}: SelectProps) {
+}, ref) => {
   const id = useId();
 
   return (
@@ -41,19 +42,24 @@ export function Select({
       {label && <Label htmlFor={id}>{label}</Label>}
       {hint && <Hint>{hint}</Hint>}
       {error && <ErrorMessage>{error}</ErrorMessage>}
-      <select
-        className={clsx('govuk-select', {
-          'govuk-select--error': !!error,
-        })}
-        {...props}
-      >
-        {options.map((option, index) => (
+      <div className="govuk-input__wrapper">
+        <select
+          id={id}
+          ref={ref}
+          className={clsx('govuk-select', {
+            'govuk-select--error': !!error,
+          })}
+          {...props}
+        >
+          {options.map((option, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <option key={index} {...option} />
-        ))}
-      </select>
+            <option key={index} {...option} />
+          ))}
+        </select>
+      </div>
+
     </div>
   );
-}
+});
 
 export default Select;

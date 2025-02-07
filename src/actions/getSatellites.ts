@@ -5,5 +5,5 @@ import Api from '@/libs/Api';
 
 export async function getSatellites(params: TypeGetSatellitesWithMetadataParams) {
   const { data } = await Api.getSatellitesWithMetadata(params);
-  return { data };
+  return data;
 };

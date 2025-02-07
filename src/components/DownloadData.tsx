@@ -8,12 +8,13 @@ import { useState } from 'react';
 import { createCSV, createJSON } from '@/libs/File';
 import Tooltip from '@/ui/tooltip/tooltip';
 
-type DownloadDataProps = {
+type DownloadDataProps<T extends object> = {
   type: string;
-  downloadData: () => Promise<{ data: unknown }>;
+  params: T;
+  downloadAction: (params: T) => Promise<unknown>;
 };
 
-const DownloadData = ({ type, downloadData }: DownloadDataProps) => {
+const DownloadData = <T extends object>({ type, params, downloadAction, ...rest }: DownloadDataProps<T>) => {
   const t = useTranslations('Tables.Download');
   const [fetching, setFetching] = useState(false);
 
@@ -22,7 +23,7 @@ const DownloadData = ({ type, downloadData }: DownloadDataProps) => {
 
     setFetching(true);
 
-    const { data } = await downloadData();
+    const data = await downloadAction({ ...params, limit: 9999 });
     if (data) {
       const file
         = format === 'csv'
@@ -40,7 +41,7 @@ const DownloadData = ({ type, downloadData }: DownloadDataProps) => {
   };
 
   return (
-    <p className="govuk-body mt-6">
+    <p className="govuk-body mt-6" {...rest}>
       {fetching
         ? 'Your download is being prepared'
         : (

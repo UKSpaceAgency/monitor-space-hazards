@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import type { HTMLAttributes, ReactNode } from 'react';
 
-type NotificationBannerProps = {
+export type NotificationBannerProps = {
   heading?: ReactNode;
   status?: 'success' | 'error' | 'important';
 } & HTMLAttributes<HTMLDivElement>;
@@ -25,7 +25,7 @@ export function NotificationBanner({
         },
         className,
       )}
-      role={status !== 'important' ? 'alert' : 'role'}
+      role={status !== 'important' ? 'alert' : 'status'}
       aria-labelledby="govuk-notification-banner-title"
       {...props}
     >

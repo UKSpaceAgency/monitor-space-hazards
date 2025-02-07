@@ -1,38 +1,37 @@
 import clsx from 'clsx';
 import { isEmpty, pick } from 'lodash';
 import type { SyntheticEvent } from 'react';
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useMemo, useState } from 'react';
 import { z } from 'zod';
 
 import DateInput from '../date-input/date-input';
 
-const schema = z.object({
-  day: z.string({
-    required_error: 'Day is required',
+const dateSchema = z.object({
+  day: z.number({
+    invalid_type_error: 'Day is required',
+  }).min(1).max(31),
+  month: z.number({
+    invalid_type_error: 'Month is required',
+  }).min(1).max(12),
+  year: z.number({
+    invalid_type_error: 'Year is required',
   }),
-  month: z.string({
-    required_error: 'Month is required',
-
-  }),
-  year: z.string({
-    required_error: 'Year is required',
-
-  }),
-  hour: z.string({
-    required_error: 'Hour is required',
-
-  }),
-  minute: z.string({
-    required_error: 'Minute is required',
-  }),
+  hour: z.number({
+    invalid_type_error: 'Hour is required',
+  }).min(1).max(24),
+  minute: z.number({
+    invalid_type_error: 'Minute is required',
+  }).min(0).max(59),
 });
 
+export type DateSchema = z.infer<typeof dateSchema>;
+
 type DateState = {
-  day: string | null;
-  month: string | null;
-  year: string | null;
-  hour: string | null;
-  minute: string | null;
+  day: number | null;
+  month: number | null;
+  year: number | null;
+  hour: number | null;
+  minute: number | null;
 };
 
 type ErrorState = Partial<DateState>;
@@ -40,68 +39,69 @@ type ErrorState = Partial<DateState>;
 export type DatetimeInputProps = {
   dateLabel: string;
   timeLabel: string;
-  onChange: (value: Date | null) => void;
-  defaultValue: Date;
+  onChange: (value: string) => void;
+  value: string;
 };
 
 export function DatetimeInput({
   dateLabel,
   timeLabel,
   onChange,
-  defaultValue,
+  value,
 }: DatetimeInputProps) {
-  const [date, setDate] = useState<DateState>({
-    day: defaultValue.getDate().toString(),
-    month: (defaultValue.getMonth() + 1).toString(),
-    year: defaultValue.getFullYear().toString(),
-    hour: defaultValue.getHours().toString(),
-    minute:
-      defaultValue.getMinutes() < 10
-        ? `0${defaultValue.getMinutes()}`
-        : defaultValue.getMinutes().toString(),
-  });
+  const date = useMemo(() => {
+    const initialDate = new Date(value);
+    return {
+      day: initialDate.getDate(),
+      month: (initialDate.getMonth() + 1),
+      year: initialDate.getFullYear(),
+      hour: initialDate.getHours(),
+      minute: initialDate.getMinutes(),
+    };
+  }, [value]);
+
   const [errors, setErrors] = useState<ErrorState>({});
 
-  const onChangeHandler = (e: SyntheticEvent<HTMLInputElement>) => {
-    const newDate = { ...date };
+  const validateData = async (date: DateSchema) => {
+    setErrors({});
+    try {
+      dateSchema.parse(date);
+      const newDate = new Date(
+        date.year,
+        date.month - 1,
+        date.day,
+        date.hour,
+        date.minute,
+      );
+      return newDate.toJSON();
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const errors: Record<string, string> = {};
+        for (const issue of error.issues) {
+          const path = issue.path[0];
+          if (path && typeof path === 'string') {
+            errors[path] = issue.message;
+          }
+        }
+        setErrors(errors);
+      } else {
+        console.error('Unexpected error: ', error);
+      }
+    }
+  };
+
+  const onChangeHandler = async (e: SyntheticEvent<HTMLInputElement>) => {
+    const copyDate = { ...date };
     const name = e.currentTarget.name as keyof DateState;
     const value = e.currentTarget.value;
 
-    newDate[name] = value;
+    copyDate[name] = Number.parseInt(value);
 
-    setDate(newDate);
+    const newDate = await validateData(copyDate);
+    if (newDate) {
+      onChange(newDate);
+    }
   };
-
-  useEffect(() => {
-    const validateData = async () => {
-      setErrors({});
-      try {
-        await schema.parseAsync(date);
-        const newDate = new Date(
-          Number.parseInt(date.year as string),
-          Number.parseInt(date.month as string) - 1,
-          Number.parseInt(date.day as string),
-          Number.parseInt(date.hour as string),
-          Number.parseInt(date.minute as string),
-        );
-        onChange(newDate);
-      } catch (error) {
-        if (error instanceof z.ZodError) {
-          const errors: Record<string, string> = {};
-          for (const issue of error.issues) {
-            const path = issue.path[0];
-            if (path && typeof path === 'string') {
-              errors[path] = issue.message;
-            }
-          }
-          setErrors(errors);
-        } else {
-          console.error('Unexpected error: ', error);
-        }
-      }
-    };
-    validateData();
-  }, [date, onChange]);
 
   const dateErrors = pick(errors, ['day', 'month', 'year']);
   const timeErrors = pick(errors, ['hour', 'minute']);
@@ -112,11 +112,11 @@ export function DatetimeInput({
         errors={
           !isEmpty(dateErrors)
             ? Object.keys(dateErrors).map(key => (
-              <Fragment key={`error-${key}`}>
-                {errors[key as keyof ErrorState]}
-                <br />
-              </Fragment>
-            ))
+                <Fragment key={`error-${key}`}>
+                  {errors[key as keyof ErrorState]}
+                  <br />
+                </Fragment>
+              ))
             : null
         }
         legend={<b>{dateLabel}</b>}
@@ -128,7 +128,7 @@ export function DatetimeInput({
             }),
             name: 'day',
             type: 'number',
-            value: date.day || '',
+            defaultValue: date.day || '',
             label: 'Day',
           },
           {
@@ -136,7 +136,7 @@ export function DatetimeInput({
               'govuk-input--error': errors?.month,
             }),
             name: 'month',
-            value: date.month || '',
+            defaultValue: date.month || '',
             label: 'Month',
           },
           {
@@ -144,7 +144,7 @@ export function DatetimeInput({
               'govuk-input--error': errors?.year,
             }),
             name: 'year',
-            value: date.year || '',
+            defaultValue: date.year || '',
             label: 'Year',
           },
         ]}
@@ -154,11 +154,11 @@ export function DatetimeInput({
         errors={
           !isEmpty(timeErrors)
             ? Object.keys(timeErrors).map(key => (
-              <Fragment key={`error-${key}`}>
-                {errors[key as keyof ErrorState]}
-                <br />
-              </Fragment>
-            ))
+                <Fragment key={`error-${key}`}>
+                  {errors[key as keyof ErrorState]}
+                  <br />
+                </Fragment>
+              ))
             : null
         }
         legend={<b>{timeLabel}</b>}
@@ -169,7 +169,7 @@ export function DatetimeInput({
               'govuk-input--error': errors?.hour,
             }),
             name: 'hour',
-            value: date.hour || '',
+            defaultValue: date.hour || '',
             label: 'Hour',
           },
           {
@@ -177,7 +177,7 @@ export function DatetimeInput({
               'govuk-input--error': errors?.minute,
             }),
             name: 'minute',
-            value: date.minute !== null ? date.minute : '',
+            defaultValue: date.minute !== null ? date.minute : '',
             label: 'Minute',
           },
         ]}

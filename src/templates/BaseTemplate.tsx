@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import type { ReactNode } from 'react';
 
 import PhaseBanner from '@/ui/phase-banner/phase-banner';
 
@@ -8,15 +9,17 @@ import Header from './components/Header';
 import Navigation from './components/Navigation';
 
 type BaseTemplateProps = {
-  children: React.ReactNode;
-  showNavigation?: true;
+  breadcrumb: ReactNode;
+  children: ReactNode;
+  showNavigation?: boolean;
 };
 
 const BaseTemplate = ({
+  breadcrumb,
   children,
   showNavigation,
 }: BaseTemplateProps) => {
-  const t = useTranslations('BaseTemplate');
+  const t = useTranslations('Template');
 
   return (
     <>
@@ -29,7 +32,9 @@ const BaseTemplate = ({
       </PhaseBanner>
       {showNavigation && <Navigation />}
       <div className="govuk-width-container">
+        {breadcrumb}
         <main className="govuk-main-wrapper" id="main-content">
+          <div id="main-top-portal" />
           {children}
         </main>
       </div>

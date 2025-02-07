@@ -3,6 +3,7 @@ import { z } from 'zod';
 
 export const env = createEnv({
   server: {
+    API_URL: z.string(),
     NEXTAUTH_SECRET:
       process.env.NODE_ENV === 'production'
         ? z.string()
@@ -18,14 +19,14 @@ export const env = createEnv({
     AUTH0_AUDIENCE: z.string(),
     AUTH0_CLIENT_ID: z.string(),
     AUTH0_CLIENT_SECRET: z.string(),
-    COSMIC_BUCKET_SLUG: z.string(),
-    COSMIC_READ_KEY: z.string(),
+    COSMIC_BUCKET_SLUG: z.string().optional(),
+    COSMIC_READ_KEY: z.string().optional(),
+    FEEDBACK_URL: z.string(),
   },
   shared: {
     NODE_ENV: z
       .enum(['development', 'test', 'production'])
       .default('development'),
-    NEXT_PUBLIC_API_URL: z.string(),
   },
 
   client: {
@@ -44,10 +45,11 @@ export const env = createEnv({
     AUTH0_CLIENT_SECRET: process.env.AUTH0_CLIENT_SECRET,
     COSMIC_BUCKET_SLUG: process.env.COSMIC_BUCKET_SLUG,
     COSMIC_READ_KEY: process.env.COSMIC_READ_KEY,
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    API_URL: process.env.API_URL,
     NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
     NEXT_PUBLIC_PUBLIC_GA: process.env.NEXT_PUBLIC_PUBLIC_GA,
     NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN,
+    FEEDBACK_URL: process.env.FEEDBACK_URL,
   },
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
   emptyStringAsUndefined: true,

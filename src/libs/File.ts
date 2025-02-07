@@ -15,3 +15,10 @@ export const createJSON = (data: Record<string, any>): Blob => {
   });
   return blob;
 };
+
+export const createTXT = (data: string): Blob => {
+  const blob = new Blob([data], {
+    type: 'text/plain; charset=utf-8 ',
+  });
+  return blob;
+};

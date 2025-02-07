@@ -4,15 +4,15 @@ import { getTranslations } from 'next-intl/server';
 
 import { getSession } from '@/actions/getSession';
 import { getUsersMe } from '@/actions/getUsersMe';
-import { isAgencyUser, isGovUser, isOrgAdmin, isSuperAdmin } from '@/libs/Roles';
 import TaskList from '@/ui/task-list/task-list';
+import { isAgencyApprover, isAnalysist, isGovUser, isOrgAdmin, isSatteliteUser, isSuperAdmin } from '@/utils/Roles';
 
 export const metadata: Metadata = {
   title: 'Your account information',
 };
 
 export default async function AccountPage() {
-  const t = await getTranslations('AccountPage');
+  const t = await getTranslations('Account');
   const session = await getSession();
   const role = session?.user.role;
 
@@ -45,27 +45,32 @@ export default async function AccountPage() {
             },
           ]}
         />
-        {!isGovUser(role) && (
-          <>
-            <div>
-              <h2 className="govuk-heading-m">
-                {t('change_your_notification_settings.title')}
-              </h2>
-            </div>
-            <TaskList
-              items={[
-                {
+        <div>
+          <h2 className="govuk-heading-m">
+            {t('change_your_notification_settings.title')}
+          </h2>
+        </div>
+        <TaskList
+          items={[
+            ...(!isGovUser(role)
+              ? [{
                   title: t('change_your_notification_settings.conjunction_event_notification_thresholds_settings'),
                   href: '/account/event-notification-thresholds-settings',
-                },
-                {
+                }, {
                   title: t('change_your_notification_settings.conjunction_event_notification_settings'),
                   href: '/account/notification-settings',
-                },
-              ]}
-            />
-          </>
-        )}
+                }]
+              : []),
+            ...(!isSatteliteUser(role)
+              ? [
+                  {
+                    title: t('change_your_notification_settings.alert_settings'),
+                    href: '/account/alert-settings',
+                  },
+                ]
+              : []),
+          ]}
+        />
         {isOrgAdmin(role) && (
           <>
             <div>
@@ -76,17 +81,26 @@ export default async function AccountPage() {
             <TaskList
               items={[
                 {
-                  title: t(`change_your_organisation_details.${isSuperAdmin(role) ? 'organisations' : 'organisation_information'}`),
-                  href: isSuperAdmin(role) ? '/account/organisations' : `/account/organisations/${data.organization_id}`,
+                  title: t(`change_your_organisation_details.${isAgencyApprover(role) ? 'organisations' : 'organisation_information'}`),
+                  href: isAgencyApprover(role) ? '/account/organisations' : `/account/organisations/${data.organization_id}`,
                 },
                 {
                   title: t('change_your_organisation_details.add_new_user'),
                   href: '/account/add-new-user',
                 },
+                ...(isAgencyApprover(role)
+                  ? [
+                      {
+                        title: t('change_your_organisation_details.distribution_lists'),
+                        href: '/account/distribution-list',
+                      },
+                    ]
+                  : []),
               ]}
             />
           </>
         )}
+
         <div>
           <h2 className="govuk-heading-m">
             {t('view_terms_and_conditions.title')}
@@ -104,7 +118,7 @@ export default async function AccountPage() {
             },
           ]}
         />
-        {isAgencyUser(role) && (
+        {isAnalysist(role) && (
           <>
             <div>
               <h2 className="govuk-heading-m">
@@ -136,7 +150,7 @@ export default async function AccountPage() {
               items={[
                 {
                   title: t('manage_an_incident.manage_incident_banners'),
-                  href: '/account/analysis-upload-log',
+                  href: '/account/incident-banner',
                 },
               ]}
             />

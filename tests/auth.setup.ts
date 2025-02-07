@@ -21,7 +21,7 @@ setup('authenticate', async ({ page }) => {
   //
   // Sometimes login flow sets cookies in the process of several redirects.
   // Wait for the final URL to ensure that the cookies are actually set.
-  await page.waitForURL('/dashboard');
+  await page.waitForURL('/home');
 
   // End of authentication steps.
 

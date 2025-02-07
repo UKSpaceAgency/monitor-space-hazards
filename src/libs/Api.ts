@@ -5,7 +5,7 @@ import { env } from './Env';
 
 export const initialiseApi = (token?: string) => {
   return new MshService({
-    baseUrl: env.NEXT_PUBLIC_API_URL,
+    baseUrl: env.API_URL,
     securityWorker: async () => {
       let accessToken;
       if (token) {
