@@ -70,7 +70,7 @@ export const pdfStyles = StyleSheet.create({
     marginBottom: '20px',
     width: '100%',
     borderColor: '#e2e2e2',
-    fontSize: '12px',
+    fontSize: '10px',
   },
   tableCellHeader: {
     backgroundColor: '#f5f8f8',
