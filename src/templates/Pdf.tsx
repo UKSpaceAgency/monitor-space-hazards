@@ -4,8 +4,8 @@ import { kebabCase } from 'lodash';
 import type { ReactNode } from 'react';
 
 Font.register({ family: 'Arimo', fonts: [
-  { src: 'http://fonts.gstatic.com/s/arimo/v9/Gpeo80g-5ji2CcyXWnzh7g.ttf' },
-  { src: 'http://fonts.gstatic.com/s/arimo/v9/ZItXugREyvV9LnbY_gxAmw.ttf', fontWeight: 700 },
+  { src: 'https://fonts.gstatic.com/s/arimo/v9/Gpeo80g-5ji2CcyXWnzh7g.ttf' },
+  { src: 'https://fonts.gstatic.com/s/arimo/v9/ZItXugREyvV9LnbY_gxAmw.ttf', fontWeight: 700 },
 ] });
 
 // Create styles
