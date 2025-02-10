@@ -12,6 +12,7 @@ const PdfDownloadButton = ({ title }: { title: string }) => {
   const [instance, update] = usePDF({ document: <PdfTemplate title={title} sections={[]} /> });
 
   useEffect(() => {
+    update(<PdfTemplate title={title} sections={generatePdfSections()} />);
     const updateInterval = setInterval(() => {
       update(<PdfTemplate title={title} sections={generatePdfSections()} />);
     }, 5000);
