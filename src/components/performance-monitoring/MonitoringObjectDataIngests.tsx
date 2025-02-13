@@ -5,7 +5,7 @@ import { getExternalDataPerformance } from '@/actions/getExternalDataPerformance
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import Details from '@/ui/details/details';
 
-import ObjectDataIngests from '../charts/object-data-ingests/ObjectDataIngests';
+import IngestsChart from '../charts/ingests/ingests';
 import { DownloadData } from '../DownloadData';
 import { MonitoringDataPerformanceDataTable } from './data-table/MonitoringDataPerformanceDataTable';
 
@@ -28,9 +28,9 @@ const MonitoringObjectDataIngests = async () => {
 
   return (
     <>
-      <ObjectDataIngests latestIngestDate={latestIngestDate} />
+      <IngestsChart latestIngestDate={latestIngestDate} sourceType="Satellite" xAxisTitle={t('x_axis_title')} legend={t('legend')} />
       <MonitoringDataPerformanceDataTable params={params} />
-      <DownloadData type={t('object_data_ingests')} params={params} downloadAction={getExternalDataPerformance} />
+      <DownloadData type={t('legend')} params={params} downloadAction={getExternalDataPerformance} />
       <Details summary={t('details.title')}>
         {t.rich('details.content')}
       </Details>
