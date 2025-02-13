@@ -3,14 +3,14 @@
 import { useTranslations } from 'next-intl';
 import { useMemo, useState } from 'react';
 
-import type { OrganisationAndUsersStatsType } from '@/actions/getOrganisationsAndUsersStats';
+import type { StatsMonthlyOrganizationsType } from '@/actions/getStatsMonthlyOrganizations';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
 
 import { chartPalette } from '../base/theme';
 import BaseBar from '../base-bar/BaseBar';
 
 type OrganisationsAndUsersProps = {
-  data: OrganisationAndUsersStatsType[];
+  data: StatsMonthlyOrganizationsType[];
 };
 
 const OrganisationsAndUsersChart = ({ data }: OrganisationsAndUsersProps) => {

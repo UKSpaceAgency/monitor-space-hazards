@@ -1,7 +1,7 @@
-import type { OrganisationAndUsersStatsType } from '@/actions/getOrganisationsAndUsersStats';
+import type { StatsMonthlyOrganizationsType } from '@/actions/getStatsMonthlyOrganizations';
 import type { TranslatedColumnDef } from '@/types';
 
-export const usersAndOrganisationsColumns: TranslatedColumnDef<OrganisationAndUsersStatsType>[] = [
+export const usersAndOrganisationsColumns: TranslatedColumnDef<StatsMonthlyOrganizationsType>[] = [
   {
     accessorKey: 'month',
     id: 'month',

@@ -374,6 +374,13 @@
     }
   },
   "Charts": {
+    "Actions": {
+      "7_days": "7 days",
+      "30_days": "30 days",
+      "all_time": "All time",
+      "data_range": "Data range",
+      "12_months": "12 months"
+    },
     "Poc_chart": {
       "title": "Evolution of collision probability",
       "description": "<p>The changing probability of a conjunction event leading up to the time of closest approach (TCA). All available data is shown.</p>",
@@ -484,6 +491,11 @@
       "y_axis_title": "Number of organisations and users",
       "organisations": "Organisations",
       "users": "Users accounts"
+    },
+    "Monthly_analyses": {
+      "y_axis_title": "Number received",
+      "analyses": "Analyses Received",
+      "manoeuvre_support_plots": "Manoeuvre Support Plots Received"
     }
   },
   "Conjunctions": {
@@ -790,6 +802,7 @@
     "description": "This page shows both performance data for the Monitor Space Hazards service and more detailed information about the object and conjunction event data processed by the service. This data is broken down by organisation and by satellite.",
     "performance_monitoring": "Performance monitoring",
     "conjunction_event_and_organisation_data": "Conjunction events",
+    "service_usage": "Service usage",
     "performance_accordion": {
       "title": "Performance monitoring",
       "cdm_ingests": {
@@ -824,10 +837,12 @@
       "uksa": {
         "title": "UKSA conjunction event analysis and manoeuvre support",
         "unknown": "Unknown",
-        "details": {
+        "daily_title": "Daily count of analyses and manoeuvre support plots",
+        "daily_details": {
           "title": "Help with this table",
           "content": "This tables shows the number of analyses and manoeuvre support plots uploaded by a UKSA orbital analyst."
-        }
+        },
+        "monthly_title": "Monthly count of analyses and manoeuvre support plots"
       }
     },
     "service_usage_accordion": {
@@ -1214,6 +1229,7 @@
         "empty_label": "No ingests"
       },
       "notifications_sent": {
+        "title": "Notifications sent",
         "date": "Date",
         "sms": "SMS",
         "email": "Email",
@@ -1252,11 +1268,17 @@
         "numbers_of_manoeuvre": "Number of manoeuvre support plots received",
         "analysis_and_manoeuvre_support": "UKSA analysis and manoeuvre support"
       },
+      "analyses_and_manoeuvre_support_monthly": {
+        "month": "Month",
+        "analyses": "Analyses Received",
+        "manoeuvre_support_plots": "Manoeuvre Support Plots Received"
+      },
       "organisations_and_users": {
         "month": "Month",
         "organisations": "Number of organisations",
         "users": "Number of user accounts"
       }
+
     }
   },
   "Forms": {

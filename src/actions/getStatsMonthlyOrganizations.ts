@@ -3,13 +3,13 @@
 import type { TypeGetStatsMonthlyOrganizationsParams } from '@/__generated__/data-contracts';
 import Api from '@/libs/Api';
 
-export type OrganisationAndUsersStatsType = {
+export type StatsMonthlyOrganizationsType = {
   month: string;
   organisations: number;
   users: number;
 };
 
-export async function getOrganisationsAndUsersStats(query?: TypeGetStatsMonthlyOrganizationsParams): Promise<OrganisationAndUsersStatsType[]> {
+export async function getStatsMonthlyOrganizations(query?: TypeGetStatsMonthlyOrganizationsParams): Promise<StatsMonthlyOrganizationsType[]> {
   const { data: organisations } = await Api.getStatsMonthlyOrganizations(query);
   const { data: users } = await Api.getStatsMonthlyUsers(query);
 

@@ -7,6 +7,7 @@ import { useMemo, useState } from 'react';
 import { getStatsEventsBySatellite } from '@/actions/getStatsEventsBySatellite';
 import { DataTable } from '@/components/DataTable';
 import { DownloadData } from '@/components/DownloadData';
+import { Scrollable } from '@/components/Scrollable';
 import Select from '@/ui/select/select';
 import Spinner from '@/ui/spinner/spinner';
 import { QUERY_KEYS } from '@/utils/QueryKeys';
@@ -71,12 +72,12 @@ const MonitoringEventsBySatelliteDataTable = ({ isAnalysist }: MonitoringEventsB
           onChange={selectChange}
         />
       )}
-      <div className="overflow-auto max-h-[400px]">
+      <Scrollable>
         <DataTable
           columns={eventsBySatelliteColumns}
           data={tableData}
         />
-      </div>
+      </Scrollable>
       <DownloadData type={t('this_table')} params={{}} downloadAction={getStatsEventsBySatellite} />
     </>
   );
