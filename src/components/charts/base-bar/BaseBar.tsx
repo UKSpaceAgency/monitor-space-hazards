@@ -36,6 +36,7 @@ export type BaseBarProps = {
   actionButtons?: ReactNode;
   showTotal?: boolean;
   title?: React.ReactNode;
+  stacked?: boolean;
 } & InferChartLegendProps;
 
 export function BaseBar({
@@ -45,6 +46,7 @@ export function BaseBar({
   actionButtons,
   showTotal,
   title,
+  stacked = true,
   showLegend = false,
   legend,
 }: BaseBarProps) {
@@ -76,7 +78,15 @@ export function BaseBar({
             plugins: {
               tooltip: {
                 callbacks: {
-                  label: tooltipItem => tooltipItem.formattedValue,
+                  label: (tooltipItem) => {
+                    let label = tooltipItem.dataset.label || '';
+
+                    if (label) {
+                      label += `: `;
+                    }
+                    label += tooltipItem.formattedValue;
+                    return label;
+                  },
                   footer: showTotal
                     ? function (items) {
                       return (
@@ -92,10 +102,10 @@ export function BaseBar({
             },
             scales: {
               x: {
-                stacked: true,
+                stacked,
               },
               y: {
-                stacked: true,
+                stacked,
                 beginAtZero: true,
                 title: {
                   display: !!yAxisTitle,
@@ -110,6 +120,7 @@ export function BaseBar({
                 },
               },
             },
+
           }}
         />
       </div>
