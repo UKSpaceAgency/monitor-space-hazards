@@ -1,9 +1,87 @@
 /* eslint-disable react/no-array-index-key */
 import { Table, TD, TR } from '@ag-media/react-pdf-table';
-import { Image, Text, View } from '@react-pdf/renderer';
+import { Image, StyleSheet, Text, View } from '@react-pdf/renderer';
 import type { Key, ReactElement, ReactNode } from 'react';
 
-import { pdfStyles } from '@/templates/Pdf';
+export const pdfStyles = StyleSheet.create({
+  page: {
+    fontSize: '12px',
+    backgroundColor: '#ffffff',
+    fontFamily: 'Arimo',
+    padding: '40px 0',
+  },
+  headerContainer: {
+    margin: '-40px -20px 0 -20px',
+    backgroundColor: '#265c59',
+    padding: '20px 40px',
+  },
+  logoContainer: {
+    marginBottom: '10px',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  logo: {
+    width: '80px',
+    height: '40px',
+  },
+  headerTitle: {
+    color: '#ffffff',
+    fontSize: '24px',
+    fontWeight: 'bold',
+  },
+  contentsTitle: {
+    fontSize: '12px',
+    fontWeight: 'bold',
+    marginBottom: '5px',
+  },
+  contentsLink: {
+    fontSize: '12px',
+    padding: '2px 0',
+    color: '#000000',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    textDecoration: 'none',
+  },
+  section: {
+    margin: '20px',
+    fontSize: '12px',
+  },
+  sectionHeader: {
+    fontSize: '20px',
+    fontWeight: 'bold',
+    marginBottom: '20px',
+  },
+  subHeader: {
+    fontSize: '16px',
+    fontWeight: 'bold',
+    marginBottom: '10px',
+  },
+  paragraph: {
+    marginBottom: '10px',
+  },
+  table: {
+    marginBottom: '20px',
+    width: '100%',
+    borderColor: '#e2e2e2',
+    fontSize: '10px',
+  },
+  tableCellHeader: {
+    backgroundColor: '#f5f8f8',
+    fontWeight: 'bold',
+  },
+  bold: {
+    fontWeight: 'bold',
+  },
+  link: {
+    color: '#000000',
+  },
+  footer: {
+    margin: '20px',
+    gap: '7px',
+  },
+});
 
 const generatePdfTable = (table: HTMLElement) => {
   const headers = table.querySelector('.govuk-table__head tr')?.children ?? [];

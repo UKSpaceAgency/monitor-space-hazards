@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { useEffect } from 'react';
 
 import { generatePdfSections } from '@/libs/Pdf';
-import { PdfTemplate } from '@/templates/Pdf';
+import { PdfTemplate } from '@/templates/PdfTemplate';
 import Button from '@/ui/button/button';
 
 const PdfDownloadButton = ({ title }: { title: string }) => {
