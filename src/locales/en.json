@@ -476,6 +476,14 @@
       "last_1_month": "Last 1 month",
       "last_6_months": "Last 6 months",
       "all_organisations": "All organisations"
+    },
+    "Organisations_and_users": {
+      "data_range": "Data range",
+      "12_months": "12 months",
+      "all_time": "All time",
+      "y_axis_title": "Number of organisations and users",
+      "organisations": "Organisations",
+      "users": "Users accounts"
     }
   },
   "Conjunctions": {
@@ -819,6 +827,16 @@
         "details": {
           "title": "Help with this table",
           "content": "This tables shows the number of analyses and manoeuvre support plots uploaded by a UKSA orbital analyst."
+        }
+      }
+    },
+    "service_usage_accordion": {
+      "title": "Service usage",
+      "organisations_and_users": {
+        "title": "Organisations and users",
+        "details": {
+          "title": "Help with this table",
+          "content": "This table shows the number of users and organisations signed up to the service each month."
         }
       }
     },
@@ -1233,6 +1251,11 @@
         "numbers_of_analyses": "Number of analyses received",
         "numbers_of_manoeuvre": "Number of manoeuvre support plots received",
         "analysis_and_manoeuvre_support": "UKSA analysis and manoeuvre support"
+      },
+      "organisations_and_users": {
+        "month": "Month",
+        "organisations": "Number of organisations",
+        "users": "Number of user accounts"
       }
     }
   },
