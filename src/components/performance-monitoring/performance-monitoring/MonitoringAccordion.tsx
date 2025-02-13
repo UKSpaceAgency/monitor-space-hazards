@@ -2,11 +2,11 @@ import { getTranslations } from 'next-intl/server';
 
 import Accordion from '@/ui/accordion/accordion';
 
-import { MonitoringCdmIngests } from './MonitoringCdmIngests';
-import { MonitoringNotificationsSent } from './MonitoringNotificationsSent';
-import { MonitoringObjectDataIngests } from './MonitoringObjectDataIngests';
-import { MonitoringTipIngests } from './MonitoringTipIngests';
-import { MonitoringUksaEvent } from './MonitoringUksaEvent';
+import { CdmIngests } from './CdmIngests';
+import { NotificationsSent } from './NotificationsSent';
+import { ObjectDataIngests } from './ObjectDataIngests';
+import { TipIngests } from './TipIngests';
+import { UksaAnalyses } from './UksaAnalyses';
 
 const MonitoringAccordion = async () => {
   const t = await getTranslations('Performance_monitoring.performance_accordion');
@@ -20,27 +20,27 @@ const MonitoringAccordion = async () => {
           {
             id: 'cdmIngests',
             heading: t('cdm_ingests.title'),
-            content: <MonitoringCdmIngests />,
+            content: <CdmIngests />,
           },
           {
             id: 'tipIngests',
             heading: t('tip_ingests.title'),
-            content: <MonitoringTipIngests />,
+            content: <TipIngests />,
           },
           {
             id: 'objectDataIngests',
             heading: t('object_data_ingests.title'),
-            content: <MonitoringObjectDataIngests />,
+            content: <ObjectDataIngests />,
           },
           {
             id: 'notificationsSent',
             heading: t('notifications_sent.title'),
-            content: <MonitoringNotificationsSent />,
+            content: <NotificationsSent title={t('notifications_sent.title')} />,
           },
           {
             id: 'uksa',
             heading: t('uksa.title'),
-            content: <MonitoringUksaEvent />,
+            content: <UksaAnalyses />,
           },
         ]}
       />

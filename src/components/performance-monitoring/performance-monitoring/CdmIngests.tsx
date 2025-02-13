@@ -3,14 +3,14 @@ import { getTranslations } from 'next-intl/server';
 
 import type { TypeGetExternalDataPerformanceParams } from '@/__generated__/data-contracts';
 import { getExternalDataPerformance } from '@/actions/getExternalDataPerformance';
+import { DataPerformanceChart } from '@/components/charts/data-performance-chart/DataPerformanceChart';
+import { DownloadData } from '@/components/DownloadData';
 import { FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import Details from '@/ui/details/details';
 
-import IngestsChart from '../charts/ingests/ingests';
-import { DownloadData } from '../DownloadData';
-import { MonitoringDataPerformanceDataTable } from './data-table/MonitoringDataPerformanceDataTable';
+import { DataPerformanceDataTable } from './data-table/DataPerformanceDataTable';
 
-const MonitoringCdmIngests = async () => {
+const CdmIngests = async () => {
   const t = await getTranslations('Performance_monitoring.performance_accordion.cdm_ingests');
 
   const params: TypeGetExternalDataPerformanceParams = {
@@ -29,8 +29,8 @@ const MonitoringCdmIngests = async () => {
 
   return (
     <>
-      <IngestsChart latestIngestDate={latestIngestDate} sourceType="CDM" xAxisTitle={t('x_axis_title')} legend={t('legend')} />
-      <MonitoringDataPerformanceDataTable params={params} />
+      <DataPerformanceChart latestIngestDate={latestIngestDate} sourceType="CDM" xAxisTitle={t('x_axis_title')} legend={t('legend')} />
+      <DataPerformanceDataTable params={params} />
       <DownloadData type={t('title')} params={params} downloadAction={getExternalDataPerformance} />
       <Details summary={t('details.title')}>
         {t.rich('details.content')}
@@ -39,4 +39,4 @@ const MonitoringCdmIngests = async () => {
   );
 };
 
-export { MonitoringCdmIngests };
+export { CdmIngests };

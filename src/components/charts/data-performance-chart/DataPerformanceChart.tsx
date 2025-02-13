@@ -13,14 +13,14 @@ import { QUERY_KEYS } from '@/utils/QueryKeys';
 import BaseChart from '../base/BaseChart';
 import { chartPalette } from '../base/theme';
 
-type IngestsChartProps = {
+type DataPerformanceChartProps = {
   latestIngestDate: string;
   sourceType: TypeExternalDataType;
   xAxisTitle: string;
   legend: string;
 };
 
-export function IngestsChart({ latestIngestDate, sourceType, xAxisTitle, legend }: IngestsChartProps) {
+const DataPerformanceChart = ({ latestIngestDate, sourceType, xAxisTitle, legend }: DataPerformanceChartProps) => {
   const t = useTranslations('Charts.Ingests');
 
   const params: TypeGetExternalDataPerformanceAggregatedParams = {
@@ -116,6 +116,6 @@ export function IngestsChart({ latestIngestDate, sourceType, xAxisTitle, legend 
       />
     </div>
   );
-}
+};
 
-export default IngestsChart;
+export { DataPerformanceChart };
