@@ -1,10 +1,11 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
+import { camelCase } from 'lodash';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
-import type { TypeGetExternalDataPerformanceAggregatedParams } from '@/__generated__/data-contracts';
+import type { TypeExternalDataType, TypeGetExternalDataPerformanceAggregatedParams } from '@/__generated__/data-contracts';
 import { getExternalDataPerformanceAggregated } from '@/actions/getExternalDataPerformanceAggregated';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
 import { QUERY_KEYS } from '@/utils/QueryKeys';
@@ -12,8 +13,15 @@ import { QUERY_KEYS } from '@/utils/QueryKeys';
 import BaseChart from '../base/BaseChart';
 import { chartPalette } from '../base/theme';
 
-export function CdmIngestsChart({ latestIngestDate }: { latestIngestDate: string }) {
-  const t = useTranslations('Charts.Cdm_ingests');
+type IngestsChartProps = {
+  latestIngestDate: string;
+  sourceType: TypeExternalDataType;
+  xAxisTitle: string;
+  legend: string;
+};
+
+export function IngestsChart({ latestIngestDate, sourceType, xAxisTitle, legend }: IngestsChartProps) {
+  const t = useTranslations('Charts.Ingests');
 
   const params: TypeGetExternalDataPerformanceAggregatedParams = {
     limit: 9999,
@@ -33,25 +41,40 @@ export function CdmIngestsChart({ latestIngestDate }: { latestIngestDate: string
     refetchOnWindowFocus: false,
   });
 
-  const cdmChartData = (data || []).filter(item => item.sourceType === 'CDM');
+  const ingestsData = (data || []).filter(item => item.sourceType === sourceType);
+  const esaDiscosData = ingestsData.filter(item => item.sourceProvider === 'ESADiscos');
+  const spaceTrackData = ingestsData.filter(item => item.sourceProvider === 'SpaceTrack');
 
   const datasets = {
     datasets: [
       {
         label: t('space_track'),
-        data: cdmChartData.map(data => ({
+        data: spaceTrackData.map(data => ({
           x: data.ingestionDate as unknown as number,
           y: data.ingestionSum as number,
         })),
         borderColor: chartPalette.darkBlue,
         backgroundColor: chartPalette.darkBlue,
       },
+      ...(sourceType === 'Satellite'
+        ? [
+            {
+              label: t('esa_discos'),
+              data: esaDiscosData.map(data => ({
+                x: data.ingestionDate as unknown as number,
+                y: data.ingestionSum as number,
+              })),
+              borderColor: chartPalette.orange,
+              backgroundColor: chartPalette.orange,
+            },
+          ]
+        : []),
     ],
   };
 
   const actionButtons = (
     <ToggleButtons
-      name="cdm-ingests-days"
+      name={`${camelCase(sourceType)}-ingests-days`}
       items={[
         {
           title: '7d',
@@ -84,15 +107,15 @@ export function CdmIngestsChart({ latestIngestDate }: { latestIngestDate: string
           : 'loading...'}
       </p>
       <BaseChart
-        name="cdm-ingests-chart"
+        name={`${camelCase(sourceType)}-ingests-chart`}
         data={datasets}
-        yAxisTitle={t('number_of_cdms')}
+        yAxisTitle={xAxisTitle}
         actionButtons={actionButtons}
-        legend={{ title: t('conjunction_data_message') }}
+        legend={{ title: legend }}
         isDay
       />
     </div>
   );
 }
 
-export default CdmIngestsChart;
+export default IngestsChart;

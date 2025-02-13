@@ -5,6 +5,7 @@ import Accordion from '@/ui/accordion/accordion';
 import { MonitoringCdmIngests } from './MonitoringCdmIngests';
 import { MonitoringNotificationsSent } from './MonitoringNotificationsSent';
 import { MonitoringObjectDataIngests } from './MonitoringObjectDataIngests';
+import { MonitoringTipIngests } from './MonitoringTipIngests';
 import { MonitoringUksaEvent } from './MonitoringUksaEvent';
 
 const MonitoringAccordion = async () => {
@@ -20,6 +21,11 @@ const MonitoringAccordion = async () => {
             id: 'cdmIngests',
             heading: t('cdm_ingests.title'),
             content: <MonitoringCdmIngests />,
+          },
+          {
+            id: 'tipIngests',
+            heading: t('tip_ingests.title'),
+            content: <MonitoringTipIngests />,
           },
           {
             id: 'objectDataIngests',
