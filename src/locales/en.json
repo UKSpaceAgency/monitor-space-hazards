@@ -418,26 +418,15 @@
         "show_ephemeris": "Show <special>Special</special> ephemeris"
       }
     },
-    "Cdm_ingests": {
-      "space_track": "Space-Track",
-      "latest_ingest": "Latest ingest: ",
-      "data_range": "Data range",
-      "number_of_cdms": "Number of CDMs ingested",
-      "conjunction_data_message": "Conjunction Data Message (CDM) source",
-      "7_days": "7 days",
-      "30_days": "30 days",
-      "all_time": "All time"
-    },
-    "Object_data_ingests": {
+    "Ingests": {
       "space_track": "Space-Track",
       "esa_discos": "ESA-DISCOS",
       "latest_ingest": "Latest ingest: ",
       "data_range": "Data range",
-      "number_of_objects": "Number of objects ingested",
+      "number_of_ingests": "Number of {type}s ingested",
       "7_days": "7 days",
       "30_days": "30 days",
-      "all_time": "All time",
-      "object_ingests": "Object ingest"
+      "all_time": "All time"
     },
     "Notifications_sent": {
       "all_notifications": "All notifications",
@@ -798,15 +787,24 @@
       "cdm_ingests": {
         "title": "CDM ingests",
         "unknown": "Unknown",
+        "x_axis_title": "Number of CDMs ingested",
+        "legend": "Conjunction Data Message (CDM) source",
         "details": {
           "title": "Information on event history",
           "content": "<p>This table shows performance monitoring information for the external sources of CDMs that Monitor Space Hazards ingests.</p><list><item>Ingestion start and stop show the time the last data ingest started and finished</item><item>Number of items fetched shows how many items were retrieved</item></list>"
         }
       },
+      "tip_ingests": {
+        "title": "TIP ingests",
+        "unknown": "Unknown",
+        "x_axis_title": "Number of TIPs ingested",
+        "legend": "Tracking and Impact Prediction (TIP) source"
+      },
       "object_data_ingests": {
         "title": "Object data ingests",
-        "object_data_ingests": "object data ingests",
         "unknown": "Unknown",
+        "x_axis_title": "Number of objects ingested",
+        "legend": "Object ingest",
         "details": {
           "title": "Information on event history",
           "content": "<p>This table shows performance monitoring information for the external data sources of satellite information that Monitor Space Hazards ingests.</p><list><item>Ingestion start and stop show the time the last data ingest started and finished</item><item>Number of items fetched shows how many items were retrieved</item></list>"
