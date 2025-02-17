@@ -1,7 +1,7 @@
 import type { TypeStatisticsEventsType } from '@/__generated__/data-contracts';
 import type { TranslatedColumnDef } from '@/types';
 
-export const eventsByTypeColumns: TranslatedColumnDef<TypeStatisticsEventsType>[] = [
+export const eventsByTypeDailyColumns: TranslatedColumnDef<TypeStatisticsEventsType>[] = [
   {
     accessorKey: 'eventType',
     id: 'eventType',

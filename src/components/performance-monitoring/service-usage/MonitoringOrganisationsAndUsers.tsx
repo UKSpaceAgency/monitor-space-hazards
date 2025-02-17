@@ -3,10 +3,10 @@ import { getTranslations } from 'next-intl/server';
 import { getStatsMonthlyOrganizations } from '@/actions/getStatsMonthlyOrganizations';
 import Details from '@/ui/details/details';
 
-import { OrganisationsAndUsersChart } from '../charts/organisations-and-users/OrganisationsAndUsers';
-import { DataTable } from '../DataTable';
-import { DownloadData } from '../DownloadData';
-import { Scrollable } from '../Scrollable';
+import { OrganisationsAndUsersChart } from '../../charts/organisations-and-users/OrganisationsAndUsers';
+import { DataTable } from '../../DataTable';
+import { DownloadData } from '../../DownloadData';
+import { Scrollable } from '../../Scrollable';
 import { usersAndOrganisationsColumns } from './data-table/MonitoringOrganisationsAndUsersDataTableColumns';
 
 const MonitoringOrganisationsAndUsers = async () => {
