@@ -1,31 +1,28 @@
 'use client';
-import { useQuery } from '@tanstack/react-query';
-import { uniq } from 'lodash';
-import { useTranslations } from 'next-intl';
-import { useMemo, useState } from 'react';
 
-import type { TypeGetStatsEventsByOrganizationParams } from '@/__generated__/data-contracts';
-import { getStatsEventsByOrganization } from '@/actions/getStatsEventsByOrganization';
+import { useQuery } from '@tanstack/react-query';
+import { useTranslations } from 'next-intl';
+import { useState } from 'react';
+
+import type { TypeGetStatsEventsTypeParams } from '@/__generated__/data-contracts';
+import { getStatsEventsType } from '@/actions/getStatsEventsType';
+import EventsTypeChart from '@/components/charts/events-type-chart/EventsTypeChart';
+import { DataTable } from '@/components/DataTable';
+import { Scrollable } from '@/components/Scrollable';
 import { FORMAT_API_DATE_TIME, TODAY_DATE_TIME } from '@/libs/Dayjs';
-import Select from '@/ui/select/select';
 import Spinner from '@/ui/spinner/spinner';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
 import { assertUnreachable } from '@/utils/Helpers';
 import { QUERY_KEYS } from '@/utils/QueryKeys';
 
-import EventsByOrganizationChart from '../charts/events-by-organisation/EventsByOrganisation';
-import { MonitoringEventsByOrganisationDataTable } from './data-table/MonitoringEventsByOrganisationDataTable';
-
-type PerformanceMonitoringConjunctionEventsByOrganisationContentProps = {
-  isAnalysist: boolean;
-};
+import { eventsByTypeDailyColumns } from './data-table/MonitoringEventsByTypeDailyDataTableColumns';
 
 type DataRangeType = 'Upcoming events' | 'Last 7d' | 'Last 1 month' | 'Last 6 months';
 
-const MonitoringEventsByOrganisationContent = ({ isAnalysist }: PerformanceMonitoringConjunctionEventsByOrganisationContentProps) => {
-  const t = useTranslations('Charts.Events_by_organisation');
+const MonitoringEventsByTypeDaily = () => {
+  const t = useTranslations('Charts.Events_type');
 
-  const params: TypeGetStatsEventsByOrganizationParams = {
+  const params: TypeGetStatsEventsTypeParams = {
     start_date: TODAY_DATE_TIME.format(FORMAT_API_DATE_TIME),
   };
 
@@ -35,41 +32,16 @@ const MonitoringEventsByOrganisationContent = ({ isAnalysist }: PerformanceMonit
     endDate: params.end_date ?? '',
   });
 
-  const fetchParams = {
-    ...params,
-    start_date: dates.startDate,
-    end_date: dates.endDate,
-  };
-
   const { data, isFetching } = useQuery({
-    queryKey: [QUERY_KEYS.StatsEventByOrganisation, dates],
-    queryFn: () => getStatsEventsByOrganization(fetchParams),
+    queryKey: [QUERY_KEYS.StatsEventByType, dates],
+    queryFn: () => getStatsEventsType({
+      ...params,
+      start_date: dates.startDate,
+      end_date: dates.endDate,
+    }),
     refetchOnMount: false,
     refetchOnWindowFocus: false,
   });
-
-  const [organisation, setOrganisation] = useState('');
-
-  const organisations = useMemo(() => {
-    return uniq(
-      (data || []).filter(obj => obj.name !== 'Total')
-        .map(obj => obj.name),
-    )
-      .sort()
-      .map(organisationName => ({
-        children: organisationName,
-        value: organisationName,
-      }));
-  }, [data]);
-
-  const filteredData = useMemo(() => {
-    return [...(organisation ? (data || []).filter(obj => obj.name === organisation) : data || [])];
-  }, [organisation, data]);
-
-  const selectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = event.target.value;
-    setOrganisation(value);
-  };
 
   const handleDataRangeChange = (dataRange: DataRangeType) => {
     setDataRange(dataRange);
@@ -105,7 +77,7 @@ const MonitoringEventsByOrganisationContent = ({ isAnalysist }: PerformanceMonit
 
   const actionButtons = (
     <ToggleButtons
-      name="events-by-organization-days"
+      name="events-type-days"
       items={[
         {
           title: t('upcoming_events'),
@@ -130,11 +102,11 @@ const MonitoringEventsByOrganisationContent = ({ isAnalysist }: PerformanceMonit
       ]}
       active={dataRange}
       setActive={handleDataRangeChange}
-      title="Date range"
+      title={t('data_range')}
     />
   );
 
-  if (isFetching) {
+  if (isFetching || !data) {
     return (
       <div className="p-10">
         <Spinner />
@@ -144,25 +116,15 @@ const MonitoringEventsByOrganisationContent = ({ isAnalysist }: PerformanceMonit
 
   return (
     <div>
-      <p className="govuk-body">{t('description')}</p>
-      {isAnalysist && (
-        <Select
-          name="event-by-organisation-select"
-          value={organisation}
-          options={[
-            {
-              children: t('all_organisations'),
-              value: '',
-            },
-            ...organisations,
-          ]}
-          onChange={selectChange}
+      <EventsTypeChart data={data} actionButtons={actionButtons} />
+      <Scrollable>
+        <DataTable
+          columns={eventsByTypeDailyColumns}
+          data={data}
         />
-      )}
-      <EventsByOrganizationChart data={filteredData} actionButtons={actionButtons} />
-      <MonitoringEventsByOrganisationDataTable data={filteredData} params={fetchParams} />
+      </Scrollable>
     </div>
   );
 };
 
-export { MonitoringEventsByOrganisationContent };
+export { MonitoringEventsByTypeDaily };

@@ -2,7 +2,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { getStatsMonthlyAnalyses } from '@/actions/getStatsMonthlyAnalyses';
 import { chartPalette } from '@/components/charts/base/theme';
-import { MonthlyAnalysesChart } from '@/components/charts/monthly-bar/MonthlyBar';
+import { MonthlyBarChart } from '@/components/charts/monthly-bar/MonthlyBar';
 import { DataTable } from '@/components/DataTable';
 import { Scrollable } from '@/components/Scrollable';
 
@@ -32,7 +32,7 @@ const UksaAnalysesMonthly = async () => {
 
   return (
     <>
-      <MonthlyAnalysesChart data={datasets} yAxisTitle={t('y_axis_title')} />
+      <MonthlyBarChart data={datasets} yAxisTitle={t('y_axis_title')} />
       <Scrollable>
         <DataTable
           columns={uksaAnalysesMonthlyColumns}

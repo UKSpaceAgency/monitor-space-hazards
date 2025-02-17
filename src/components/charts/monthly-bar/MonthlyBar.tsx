@@ -10,10 +10,11 @@ import BaseBar from '../base-bar/BaseBar';
 
 type MonthlyAnalysesProps = {
   data: ChartData<'bar'>;
-  yAxisTitle: string;
+  yAxisTitle?: string;
+  stacked?: boolean;
 };
 
-const MonthlyAnalysesChart = ({ data, yAxisTitle }: MonthlyAnalysesProps) => {
+const MonthlyBarChart = ({ data, yAxisTitle, stacked = false }: MonthlyAnalysesProps) => {
   const t = useTranslations('Charts.Actions');
   const [showMonths, setShowMonths] = useState(0);
 
@@ -53,10 +54,10 @@ const MonthlyAnalysesChart = ({ data, yAxisTitle }: MonthlyAnalysesProps) => {
       actionButtons={actionButtons}
       yAxisTitle={yAxisTitle}
       data={datasets}
-      stacked={false}
+      stacked={stacked}
       showLegend
     />
   );
 };
 
-export { MonthlyAnalysesChart };
+export { MonthlyBarChart };
