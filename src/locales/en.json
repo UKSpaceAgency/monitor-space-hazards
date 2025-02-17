@@ -496,6 +496,12 @@
       "y_axis_title": "Number received",
       "analyses": "Analyses Received",
       "manoeuvre_support_plots": "Manoeuvre Support Plots Received"
+    },
+    "Monthly_conjunction_events": {
+      "debris": "Events with debris",
+      "satellite": "Events with another satellite",
+      "rocket_body": "Events with a two UK-licensed satellites",
+      "other": "Events with other objects"
     }
   },
   "Conjunctions": {
@@ -866,10 +872,13 @@
         "last_1_month": "Last 1 month",
         "last_6_months": "Last 6 months",
         "data_range": "Date range",
-        "details": {
+        "daily_title": "Total number of conjunction events monitored and a breakdown of their type.",
+        "daily_details": {
           "title": "Help with this table",
           "content": "This table shows the number of conjunction events between different object types."
-        }
+        },
+        "monthly_title": "Monthly number of conjunction events monitored and a breakdown of their type."
+
       },
       "objects_catalogued": {
         "title": "Objects catalogued",
@@ -1277,6 +1286,14 @@
         "month": "Month",
         "organisations": "Number of organisations",
         "users": "Number of user accounts"
+      },
+      "conjunction_events_by_type_monthly": {
+        "month": "Month",
+        "debris": "Events with debris",
+        "satellite": "Events with another satellite",
+        "rocket_body": "Events with a two UK-licensed satellites",
+        "other": "Events with other objects (unknown/object type)",
+        "total": "Total events"
       }
 
     }
