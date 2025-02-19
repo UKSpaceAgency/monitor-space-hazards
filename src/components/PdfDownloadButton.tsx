@@ -1,3 +1,5 @@
+'use client';
+
 import { usePDF } from '@react-pdf/renderer';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
@@ -12,13 +14,14 @@ const PdfDownloadButton = ({ title }: { title: string }) => {
   const [instance, update] = usePDF({ document: <PdfTemplate title={title} sections={[]} /> });
 
   useEffect(() => {
-    update(<PdfTemplate title={title} sections={generatePdfSections()} />);
-    const updateInterval = setInterval(() => {
+    if (update) {
       update(<PdfTemplate title={title} sections={generatePdfSections()} />);
-    }, 5000);
-    return () => clearInterval(updateInterval);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title]);
+      const updateInterval = setInterval(() => {
+        update(<PdfTemplate title={title} sections={generatePdfSections()} />);
+      }, 5000);
+      return () => clearInterval(updateInterval);
+    }
+  }, [title, update]);
 
   if (!instance.url) {
     return null;
