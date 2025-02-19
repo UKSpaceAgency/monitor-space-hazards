@@ -36,7 +36,7 @@ const UksaAnalysesMonthly = async () => {
       <Scrollable>
         <DataTable
           columns={uksaAnalysesMonthlyColumns}
-          data={data}
+          data={data.reverse()}
         />
       </Scrollable>
     </>

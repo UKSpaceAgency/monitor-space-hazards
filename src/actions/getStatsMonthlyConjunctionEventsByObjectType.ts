@@ -17,14 +17,18 @@ export async function getStatsMonthlyConjunctionEventsByObjectType(query?: TypeG
   const { data } = await Api.getStatsMonthlyConjunctionEventsByObjectType(query);
 
   const groupedByMonth = groupBy(data, 'month');
+
   const groupedData = Object.entries(groupedByMonth).map(([month, events]) => {
-    const byType = groupBy(events, 'objectType');
+    const DEBRIS = events.filter(event => event.objectType === 'DEBRIS').reduce((acc, event) => acc + event.count, 0);
+    const SATELLITE = events.filter(event => event.objectType === 'PAYLOAD').reduce((acc, event) => acc + event.count, 0);
+    const ROCKET_BODY = events.filter(event => event.objectType === 'ROCKET BODY').reduce((acc, event) => acc + event.count, 0);
+    const OTHER = events.filter(event => event.objectType === 'UNKNOWN').reduce((acc, event) => acc + event.count, 0);
     return {
       month,
-      DEBRIS: byType.DEBRIS?.[0]?.count ?? 0,
-      SATELLITE: byType.SATELLITE?.[0]?.count ?? 0,
-      ROCKET_BODY: byType.ROCKET_BODY?.[0]?.count ?? 0,
-      OTHER: byType.OTHER?.[0]?.count ?? 0,
+      DEBRIS,
+      SATELLITE,
+      ROCKET_BODY,
+      OTHER,
     };
   });
 

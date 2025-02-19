@@ -48,7 +48,7 @@ const MonitoringEventsByTypeMonthly = async () => {
       <Scrollable>
         <DataTable
           columns={eventsByTypeMonthlyColumns}
-          data={data}
+          data={data.reverse()}
         />
       </Scrollable>
     </>
