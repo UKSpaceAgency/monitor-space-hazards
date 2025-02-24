@@ -15,7 +15,7 @@ import { usersAndOrganisationsColumns } from './data-table/MonitoringOrganisatio
 const MonitoringOrganisationsAndUsersMonthly = ({ data }: { data: StatsMonthlyOrganizationsType[] }) => {
   const t = useTranslations('Charts.Organisations_and_users');
 
-  const [showMonths, setShowMonths] = useState(12);
+  const [showMonths, setShowMonths] = useState(13);
 
   const sliderData = data.slice(0, showMonths);
 
