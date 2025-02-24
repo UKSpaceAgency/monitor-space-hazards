@@ -4,6 +4,7 @@ import { groupBy } from 'lodash';
 
 import type { TypeGetStatsMonthlyOrganizationsParams } from '@/__generated__/data-contracts';
 import Api from '@/libs/Api';
+import { dayjs } from '@/libs/Dayjs';
 
 export type StatsMonthlyConjunctionEventsByObjectType = {
   month: string;
@@ -24,7 +25,7 @@ export async function getStatsMonthlyConjunctionEventsByObjectType(query?: TypeG
     const ROCKET_BODY = events.filter(event => event.objectType === 'ROCKET BODY').reduce((acc, event) => acc + event.count, 0);
     const OTHER = events.filter(event => event.objectType === 'UNKNOWN').reduce((acc, event) => acc + event.count, 0);
     return {
-      month,
+      month: dayjs(month).format('MM/YYYY'),
       DEBRIS,
       SATELLITE,
       ROCKET_BODY,

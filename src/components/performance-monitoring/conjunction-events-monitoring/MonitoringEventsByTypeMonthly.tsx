@@ -21,24 +21,24 @@ const MonitoringEventsByTypeMonthly = async () => {
         backgroundColor: chartPalette.darkBlue,
       },
       {
-        label: t('other'),
-        data: data.map(({ OTHER }) => OTHER),
+        label: t('satellite'),
+        data: data.map(({ SATELLITE }) => SATELLITE),
         borderColor: chartPalette.orange,
         backgroundColor: chartPalette.orange,
       },
       {
-        label: t('satellite'),
-        data: data.map(({ SATELLITE }) => SATELLITE),
-        borderColor: chartPalette.purple,
-        backgroundColor: chartPalette.purple,
+        label: t('other'),
+        data: data.map(({ OTHER }) => OTHER),
+        borderColor: chartPalette.darkPink,
+        backgroundColor: chartPalette.darkPink,
       },
+
       {
         label: t('rocket_body'),
         data: data.map(({ ROCKET_BODY }) => ROCKET_BODY),
         borderColor: chartPalette.lightPurple,
         backgroundColor: chartPalette.lightPurple,
       },
-
     ],
   };
 

@@ -2,6 +2,7 @@
 
 import type { TypeGetStatsMonthlyOrganizationsParams } from '@/__generated__/data-contracts';
 import Api from '@/libs/Api';
+import { dayjs } from '@/libs/Dayjs';
 
 export type StatsMonthlyAnalysesType = {
   month: string;
@@ -14,7 +15,7 @@ export async function getStatsMonthlyAnalyses(query?: TypeGetStatsMonthlyOrganiz
   const { data: manoeuvrePlots } = await Api.getStatsMonthlyManoeuvrePlots(query);
 
   const data = analyses.map((analysis, index) => ({
-    month: analysis.month,
+    month: dayjs(analysis.month).format('MM/YYYY'),
     analyses: analysis.count,
     manoeuvreSupportPlots: manoeuvrePlots?.[index]?.count ?? 0,
   }));

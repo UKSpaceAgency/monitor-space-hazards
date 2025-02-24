@@ -4,7 +4,6 @@ import type { ChartData } from 'chart.js';
 import { useTranslations } from 'next-intl';
 import { useMemo, useState } from 'react';
 
-import { dayjs } from '@/libs/Dayjs';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
 
 import BaseBar from '../base-bar/BaseBar';
@@ -42,7 +41,7 @@ const MonthlyBarChart = ({ data, yAxisTitle, stacked = false }: MonthlyAnalysesP
 
   const datasets = useMemo(() => {
     return {
-      labels: data.labels?.slice(-showMonths).map(label => dayjs(label as string).format('MM/YYYY')),
+      labels: data.labels?.slice(-showMonths),
       datasets: data.datasets.map(dataset => ({
         ...dataset,
         data: dataset.data.slice(-showMonths),

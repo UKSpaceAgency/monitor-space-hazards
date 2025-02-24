@@ -79,7 +79,10 @@ import {
   TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams,
   TypeGetStatsMonthlyConjunctionEventsParams,
   TypeGetStatsMonthlyManoeuvrePlotsParams,
+  TypeGetStatsMonthlyObjectsLaunchedParams,
   TypeGetStatsMonthlyOrganizationsParams,
+  TypeGetStatsMonthlyReentryEventsByObjectTypeParams,
+  TypeGetStatsMonthlyReentryEventsParams,
   TypeGetStatsMonthlyUsersParams,
   TypeGetStatsNotificationsSentParams,
   TypeGetTipsLatestParams,
@@ -104,9 +107,9 @@ import {
   TypeSatelliteUpdateIn,
   TypeSatelliteWithMetadataOut,
   TypeSatellitesCountByOrganizationOut,
-  TypeStatisticsConjunctionEventsByObjectTypeMonthlyCount,
   TypeStatisticsConjunctionEventsCount,
   TypeStatisticsConjunctionEventsMonthlyCount,
+  TypeStatisticsEventsByObjectTypeMonthlyCount,
   TypeStatisticsEventsByOrganization,
   TypeStatisticsEventsBySatellite,
   TypeStatisticsEventsType,
@@ -115,6 +118,7 @@ import {
   TypeStatisticsMonthlyRunningSum,
   TypeStatisticsNotificationsSent,
   TypeStatisticsReentryEventReportsCount,
+  TypeStatisticsReentryEventsAndAlertsMonthlyCount,
   TypeStatisticsReentryEventsCount,
   TypeStatisticsSatelliteTracked,
   TypeTIPOut,
@@ -1554,8 +1558,62 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
     query?: TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams,
     params: RequestParams = {},
   ) =>
-    this.request<TypeStatisticsConjunctionEventsByObjectTypeMonthlyCount[], void | TypeHTTPValidationError>({
+    this.request<TypeStatisticsEventsByObjectTypeMonthlyCount[], void | TypeHTTPValidationError>({
       path: `/v1/stats/monthly/conjunction-events-by-object-type`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets monthly number of Satellites by their launch date |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
+   *
+   * @tags stats
+   * @name GetStatsMonthlyObjectsLaunched
+   * @summary Get the number of Satellites launched each month in given date range
+   * @request GET:/v1/stats/monthly/objects-launched
+   * @secure
+   */
+  getStatsMonthlyObjectsLaunched = (query?: TypeGetStatsMonthlyObjectsLaunchedParams, params: RequestParams = {}) =>
+    this.request<TypeStatisticsMonthlyRunningSum[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/monthly/objects-launched`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Get monthly count of Reentry Events with corresponding Alerts, within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
+   *
+   * @tags stats
+   * @name GetStatsMonthlyReentryEvents
+   * @summary Get monthly count of Reentry Events with Alert count
+   * @request GET:/v1/stats/monthly/reentry-events
+   * @secure
+   */
+  getStatsMonthlyReentryEvents = (query?: TypeGetStatsMonthlyReentryEventsParams, params: RequestParams = {}) =>
+    this.request<TypeStatisticsReentryEventsAndAlertsMonthlyCount[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/monthly/reentry-events`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Get monthly count of Reentry Events with object type, within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
+   *
+   * @tags stats
+   * @name GetStatsMonthlyReentryEventsByObjectType
+   * @summary Get monthly count of Reentry Events with object type
+   * @request GET:/v1/stats/monthly/reentry-events-by-object-type
+   * @secure
+   */
+  getStatsMonthlyReentryEventsByObjectType = (
+    query?: TypeGetStatsMonthlyReentryEventsByObjectTypeParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeStatisticsEventsByObjectTypeMonthlyCount[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/monthly/reentry-events-by-object-type`,
       method: "GET",
       query: query,
       secure: true,

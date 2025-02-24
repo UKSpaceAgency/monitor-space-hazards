@@ -2,9 +2,10 @@
 
 import type { TypeGetStatsMonthlyOrganizationsParams } from '@/__generated__/data-contracts';
 import Api from '@/libs/Api';
+import { dayjs } from '@/libs/Dayjs';
 
 export type StatsMonthlyOrganizationsType = {
-  month: string;
+  month: Date;
   organisations: number;
   users: number;
 };
@@ -14,7 +15,7 @@ export async function getStatsMonthlyOrganizations(query?: TypeGetStatsMonthlyOr
   const { data: users } = await Api.getStatsMonthlyUsers(query);
 
   const data = organisations.map((org, index) => ({
-    month: org.month,
+    month: dayjs(org.month).toDate(),
     organisations: org.runningTotal,
     users: users?.[index]?.runningTotal ?? 0,
   }));

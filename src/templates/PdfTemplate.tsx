@@ -24,8 +24,8 @@ const PdfTemplate = ({ title, sections }: PdfTemplateProps) => {
       <Page size="A4" style={pdfStyles.page}>
         <View style={pdfStyles.headerContainer}>
           <View style={pdfStyles.logoContainer}>
-            <Image src="http://localhost:3000/nspoclogo_white.png" style={pdfStyles.logo} />
-            <Image src="http://localhost:3000/logo_white.png" style={pdfStyles.logo} />
+            <Image src="/nspoclogo_white.png" style={pdfStyles.logo} />
+            <Image src="/logo_white.png" style={pdfStyles.logo} />
           </View>
           <Text style={pdfStyles.headerTitle}>{title}</Text>
         </View>
