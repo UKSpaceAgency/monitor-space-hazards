@@ -1,26 +1,31 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import type { ReactNode } from 'react';
 import { useMemo } from 'react';
 
 import type { AnalysisAndManoeuvreSupportStatsType } from '@/actions/getStatsAnalysisAndManoeuvreSupport';
+import type { DataRangeType } from '@/hooks/useDataRange';
 
 import BaseChart from '../base/BaseChart';
 import { chartPalette } from '../base/theme';
+import { DateRange } from '../date-range/date-range';
 
 export type AnalysisAndManoeuvreSupportChartProps = {
   data: AnalysisAndManoeuvreSupportStatsType[];
-  actionButtons: ReactNode;
   latestIngestDate: string;
+  dataRange: DataRangeType;
+  handleDataRangeChange: (dataRange: DataRangeType) => void;
 };
 
 const AnalysisAndManoeuvreSupportChart = ({
   data,
-  actionButtons,
+  dataRange,
+  handleDataRangeChange,
   latestIngestDate,
 }: AnalysisAndManoeuvreSupportChartProps) => {
   const t = useTranslations('Charts.Analysis_and_manoeuvre_support');
+
+  const actionButtons = <DateRange dataRange={dataRange} handleDataRangeChange={handleDataRangeChange} />;
 
   const datasets = useMemo(
     () => ({

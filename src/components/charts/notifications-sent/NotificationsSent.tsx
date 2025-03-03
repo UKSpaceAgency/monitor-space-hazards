@@ -1,23 +1,28 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import type { ReactNode } from 'react';
 
 import type { NotificationsSentStatsType } from '@/actions/getStatsNotificationsSent';
+import type { DataRangeType } from '@/hooks/useDataRange';
 
 import BaseChart from '../base/BaseChart';
 import { chartPalette } from '../base/theme';
+import { DateRange } from '../date-range/date-range';
 
 export type NotificationsSentChartProps = {
   data: NotificationsSentStatsType[];
-  actionButtons: ReactNode;
+  dataRange: DataRangeType;
+  handleDataRangeChange: (dataRange: DataRangeType) => void;
 };
 
 export function NotificationsSentChart({
   data,
-  actionButtons,
+  dataRange,
+  handleDataRangeChange,
 }: NotificationsSentChartProps) {
   const t = useTranslations('Charts.Notifications_sent');
+
+  const actionButtons = <DateRange dataRange={dataRange} handleDataRangeChange={handleDataRangeChange} />;
 
   const datasets = {
     labels: data.map(({ date }) => date),

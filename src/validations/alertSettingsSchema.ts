@@ -27,6 +27,8 @@ export const alertSettingsSchema = z.object({
     'BRITISH_OVERSEAS_TERRITORIES',
     'SHANWICK',
     'NAVAREA',
+    'LONDON_FIR',
+    'SCOTLAND_FIR',
     'REST_OF_THE_WORLD',
   ])),
 });

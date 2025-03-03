@@ -11,13 +11,13 @@ import InfiniteTable from '@/components/InfiniteTable';
 import Spinner from '@/ui/spinner/spinner';
 import { QUERY_KEYS } from '@/utils/QueryKeys';
 
-import { dataPerformanceColumns } from './MonitoringDataPerformanceDataTableColumns';
+import { dataPerformanceColumns } from './DataPerformanceDataTableColumns';
 
-type MonitoringDataPerformanceDataTableProps = {
+type DataPerformanceDataTableProps = {
   params: TypeGetExternalDataPerformanceParams;
 };
 
-const MonitoringDataPerformanceDataTable = ({ params }: MonitoringDataPerformanceDataTableProps) => {
+const DataPerformanceDataTable = ({ params }: DataPerformanceDataTableProps) => {
   const t = useTranslations('Tables.Performance_monitoring.data_performance');
 
   const { data, isFetching } = useQuery({
@@ -53,4 +53,4 @@ const MonitoringDataPerformanceDataTable = ({ params }: MonitoringDataPerformanc
   );
 };
 
-export { MonitoringDataPerformanceDataTable };
+export { DataPerformanceDataTable };

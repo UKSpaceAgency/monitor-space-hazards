@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 type ContentNavigationProps = {
   title?: string;
   className?: string;
-  internalTitle?: { text: string; index: number };
+  internalTitle?: Array<{ text: string; index: number }>;
 };
 
 const ContentNavigation = ({ title, internalTitle, className }: ContentNavigationProps) => {
@@ -36,23 +36,24 @@ const ContentNavigation = ({ title, internalTitle, className }: ContentNavigatio
   return (
     <nav aria-label="Content navigation" className={className}>
       <h3 className="govuk-caption-m">{title || 'Contents'}</h3>
-      <ol className="list-none">
+      <div>
         {anchors.map((anchor, index) => {
           return (
             // eslint-disable-next-line react/no-array-index-key
             <div key={index}>
-              {internalTitle?.index === index && <h3 className="govuk-caption-m mt-[30px]">{internalTitle.text}</h3>}
-              <li className="relative pt-2 px-6">
+              {internalTitle?.find(item => item.index === index) && (
+                <h3 className="govuk-caption-m mt-[30px]">{internalTitle?.find(item => item.index === index)?.text}</h3>
+              )}
+              <div className="relative pt-2 px-6">
                 <span className="absolute left-0 w-5">—</span>
                 <a className="govuk-link govuk-link--no-underline" href={`#${anchor.anchor}`} onClick={handleClick}>
                   {anchor.text}
                 </a>
-              </li>
+              </div>
             </div>
           );
         })}
-
-      </ol>
+      </div>
     </nav>
   );
 };
