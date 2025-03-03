@@ -13,8 +13,8 @@
   },
   "Index": {
     "nsoc": {
-      "title": "National Space Operations Centre Warning and Protection Services",
-      "content": "National Space Operations Centre (NSpOC) Warning and Protection Services support UK and international partners to manage space risks and hazards.",
+      "title": "National Space Operations Centre Civil Warning and Protection Services",
+      "content": "National Space Operations Centre (NSpOC) Civil Warning and Protection Services support UK and international partners to manage space risks and hazards.",
       "list_title": "Use this service to:",
       "list_items": {
         "track_events": "Track conjunction events",
@@ -878,7 +878,6 @@
           "content": "This table shows the number of conjunction events between different object types."
         },
         "monthly_title": "Monthly number of conjunction events monitored and a breakdown of their type."
-
       },
       "objects_catalogued": {
         "title": "Objects catalogued",
@@ -1295,7 +1294,6 @@
         "other": "Events with other objects (unknown/object type)",
         "total": "Total events"
       }
-
     }
   },
   "Forms": {
