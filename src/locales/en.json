@@ -500,7 +500,7 @@
     "Monthly_conjunction_events": {
       "debris": "Events with debris",
       "satellite": "Events with another satellite",
-      "rocket_body": "Events with a two UK-licensed satellites",
+      "rocket_body": "Events with two UK-licensed satellites",
       "other": "Events with other objects"
     }
   },
@@ -1291,11 +1291,10 @@
         "month": "Month",
         "debris": "Events with debris",
         "satellite": "Events with another satellite",
-        "rocket_body": "Events with a two UK-licensed satellites",
+        "rocket_body": "Events with two UK-licensed satellites",
         "other": "Events with other objects (unknown/object type)",
         "total": "Total events"
       }
-
     }
   },
   "Forms": {
@@ -1602,6 +1601,8 @@
     "overflights": {
       "label": "Overflights and ground fragments:",
       "help": "Toggle overflights and ground fragments",
+      "show_flightpaths": "Show flightpaths",
+      "show_fragments": "Show ground fragments",
       "flightpath": "Flightpath",
       "fragments": "Potential ground fragments",
       "overflight": "Overflight {number}"
