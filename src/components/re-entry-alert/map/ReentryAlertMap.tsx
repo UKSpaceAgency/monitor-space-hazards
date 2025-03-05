@@ -61,7 +61,7 @@ const ReentryAlertMap = ({ overflightTime, flightpathCollection, fragmentsCollec
 
       const loadImage = () => {
         if (!map.hasImage('fragments-icon')) {
-          map.loadImage('http://localhost:3000/fragments.png', (error, image) => {
+          map.loadImage('/fragments.png', (error, image) => {
             if (error || !image) {
               throw error;
             }
