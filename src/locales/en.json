@@ -1403,7 +1403,7 @@
       }
     },
     "Ephemeris_upload": {
-      "label": "Upload .oem file:",
+      "label": "Upload OEM file:",
       "button": "Upload"
     },
     "Feedback": {
