@@ -9,12 +9,12 @@ import { createCSV, createJSON } from '@/libs/File';
 import Tooltip from '@/ui/tooltip/tooltip';
 
 type DownloadDataProps<T extends object> = {
-  type: string;
+  type?: string;
   params: T;
   downloadAction: (params: T) => Promise<unknown>;
 };
 
-const DownloadData = <T extends object>({ type, params, downloadAction, ...rest }: DownloadDataProps<T>) => {
+const DownloadData = <T extends object>({ type = 'this table', params, downloadAction, ...rest }: DownloadDataProps<T>) => {
   const t = useTranslations('Tables.Download');
   const [fetching, setFetching] = useState(false);
 

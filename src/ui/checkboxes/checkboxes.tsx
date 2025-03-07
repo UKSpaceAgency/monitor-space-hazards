@@ -11,6 +11,7 @@ export type CheckboxesProps = {
   hint?: ReactNode;
   error?: ReactNode;
   smaller?: boolean;
+  inline?: boolean;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export function Checkboxes({
@@ -20,6 +21,7 @@ export function Checkboxes({
   hint,
   error,
   smaller,
+  inline,
   children,
   ...rest
 }: CheckboxesProps) {
@@ -37,11 +39,12 @@ export function Checkboxes({
         <div
           className={clsx('govuk-checkboxes', {
             'govuk-checkboxes--small': smaller,
+            'flex grow gap-4': inline,
           })}
         >
           {items.map((checkbox, index) => (
             // eslint-disable-next-line react/no-array-index-key
-            <Checkbox key={index} {...rest} {...checkbox} />
+            <Checkbox key={index} {...rest} className="grow" {...checkbox} />
           ))}
         </div>
       </fieldset>

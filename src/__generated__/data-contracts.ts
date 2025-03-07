@@ -243,6 +243,8 @@ export type TypeAreaOfInterest =
   | "BRITISH_OVERSEAS_TERRITORIES"
   | "SHANWICK"
   | "NAVAREA"
+  | "LONDON_FIR"
+  | "SCOTLAND_FIR"
   | "REST_OF_THE_WORLD";
 
 /** BannerMessage */
@@ -2044,16 +2046,6 @@ export type TypeSatellitesSortBy = "norad_id" | "common_name" | "international_d
 /** SortOrder */
 export type TypeSortOrder = "asc" | "desc";
 
-/** StatisticsConjunctionEventsByObjectTypeMonthlyCount */
-export interface TypeStatisticsConjunctionEventsByObjectTypeMonthlyCount {
-  /** Objecttype */
-  objectType: string;
-  /** Month */
-  month?: string | null;
-  /** Count */
-  count: number;
-}
-
 /** StatisticsConjunctionEventsCount */
 export interface TypeStatisticsConjunctionEventsCount {
   /** Count */
@@ -2064,6 +2056,16 @@ export interface TypeStatisticsConjunctionEventsCount {
 export interface TypeStatisticsConjunctionEventsMonthlyCount {
   /** Collisionprobabilityrange */
   collisionProbabilityRange: string;
+  /** Month */
+  month?: string | null;
+  /** Count */
+  count: number;
+}
+
+/** StatisticsEventsByObjectTypeMonthlyCount */
+export interface TypeStatisticsEventsByObjectTypeMonthlyCount {
+  /** Objecttype */
+  objectType: string;
   /** Month */
   month?: string | null;
   /** Count */
@@ -2144,6 +2146,16 @@ export interface TypeStatisticsNotificationsSent {
 export interface TypeStatisticsReentryEventReportsCount {
   /** Count */
   count: number;
+}
+
+/** StatisticsReentryEventsAndAlertsMonthlyCount */
+export interface TypeStatisticsReentryEventsAndAlertsMonthlyCount {
+  /** Month */
+  month: string;
+  /** Count */
+  count: number;
+  /** Alertcount */
+  alertCount: number;
 }
 
 /** StatisticsReentryEventsCount */
@@ -2322,7 +2334,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2025-02-04T00:53:24.477286"
+   * @default "2025-02-20T15:39:52.165917"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3416,6 +3428,32 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
    * @default "2025-03-01"
    */
   end_date?: string;
+}
+
+export interface TypeGetStatsMonthlyObjectsLaunchedParams {
+  /** Start Date */
+  start_date?: string | null;
+  /** End Date */
+  end_date?: string | null;
+  /**
+   * Only Uk Licensed
+   * @default false
+   */
+  only_uk_licensed?: boolean;
+}
+
+export interface TypeGetStatsMonthlyReentryEventsParams {
+  /** Start Date */
+  start_date?: string | null;
+  /** End Date */
+  end_date?: string | null;
+}
+
+export interface TypeGetStatsMonthlyReentryEventsByObjectTypeParams {
+  /** Start Date */
+  start_date?: string | null;
+  /** End Date */
+  end_date?: string | null;
 }
 
 export interface TypePostTipsParams {

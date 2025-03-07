@@ -3,18 +3,17 @@ import { getTranslations } from 'next-intl/server';
 
 import type { TypeGetExternalDataPerformanceParams } from '@/__generated__/data-contracts';
 import { getExternalDataPerformance } from '@/actions/getExternalDataPerformance';
+import { DataPerformanceChart } from '@/components/charts/data-performance-chart/DataPerformanceChart';
+import { DownloadData } from '@/components/DownloadData';
 import { FORMAT_DATE_TIME } from '@/libs/Dayjs';
-import Details from '@/ui/details/details';
 
-import CdmIngestsChart from '../charts/cdm-ingests/CdmIngests';
-import { DownloadData } from '../DownloadData';
-import { MonitoringDataPerformanceDataTable } from './data-table/MonitoringDataPerformanceDataTable';
+import { DataPerformanceDataTable } from './data-table/DataPerformanceDataTable';
 
-const MonitoringCdmIngests = async () => {
-  const t = await getTranslations('Performance_monitoring.performance_accordion.cdm_ingests');
+const TipIngests = async () => {
+  const t = await getTranslations('Performance_monitoring.performance_accordion.tip_ingests');
 
   const params: TypeGetExternalDataPerformanceParams = {
-    source_type: ['CDM'],
+    source_type: ['Tracking and Impact Prediction'],
     sort_by: 'ingestion_start',
     limit: 50,
     sort_order: 'desc',
@@ -29,14 +28,11 @@ const MonitoringCdmIngests = async () => {
 
   return (
     <>
-      <CdmIngestsChart latestIngestDate={latestIngestDate} />
-      <MonitoringDataPerformanceDataTable params={params} />
+      <DataPerformanceChart latestIngestDate={latestIngestDate} sourceType="Tracking and Impact Prediction" xAxisTitle={t('x_axis_title')} legend={t('legend')} />
+      <DataPerformanceDataTable params={params} />
       <DownloadData type={t('title')} params={params} downloadAction={getExternalDataPerformance} />
-      <Details summary={t('details.title')}>
-        {t.rich('details.content')}
-      </Details>
     </>
   );
 };
 
-export { MonitoringCdmIngests };
+export { TipIngests };
