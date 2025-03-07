@@ -62,10 +62,24 @@ export const satteliteConjunctionColumns: TranslatedColumnDef<TypeEventOut>[] = 
     columns: [
       {
         accessorKey: `collisionProbability`,
-        header: 'Space-Track CDM',
+        header: 'Conjunctions.space_track',
         cell: ({ getValue }) => {
           const value = getValue<number | null>();
           return displayExponential(value, 3);
+        },
+      },
+      {
+        id: 'collisionProbabilityUksa',
+        accessorKey: 'additionalAnalysis',
+        header: 'Conjunctions.uksa',
+        cell: ({ getValue }) => {
+          const value = getValue<{ collisionProbability: number }>();
+          const { collisionProbability } = value ?? {};
+
+          if (!collisionProbability) {
+            return '';
+          }
+          return displayExponential(collisionProbability, 4);
         },
       },
     ],
