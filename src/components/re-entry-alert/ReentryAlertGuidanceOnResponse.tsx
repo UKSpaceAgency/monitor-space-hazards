@@ -18,6 +18,7 @@ const ReentryAlertGuidanceOnResponse = ({ immediateResponse, recoveryAndCleanUp,
         <Link
           href="https://www.gov.uk/government/publications/hydrazine-properties-and-incident-management"
           className="govuk-link"
+          target="_blank"
         >
           {chunks}
         </Link>
@@ -25,6 +26,7 @@ const ReentryAlertGuidanceOnResponse = ({ immediateResponse, recoveryAndCleanUp,
         <Link
           href="https://www.gov.uk/government/publications/kerosene-properties-incident-management-and-toxicology"
           className="govuk-link"
+          target="_blank"
         >
           {chunks}
         </Link>
