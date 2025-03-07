@@ -50,15 +50,6 @@
           }
         }
       },
-      "planned": {
-        "title": "Planned Services",
-        "items": {
-          "reentry_events": {
-            "title": "Track re-entry events",
-            "description": "Uncontrolled re-entry early warning."
-          }
-        }
-      },
       "satellite_directory_and_statistics": {
         "title": "Satellite Directory and Statistics",
         "items": {
