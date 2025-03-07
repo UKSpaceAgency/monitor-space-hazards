@@ -13,8 +13,8 @@
   },
   "Index": {
     "nsoc": {
-      "title": "National Space Operations Centre Warning and Protection Services",
-      "content": "National Space Operations Centre (NSpOC) Warning and Protection Services support UK and international partners to manage space risks and hazards.",
+      "title": "National Space Operations Centre Civil Warning and Protection Services",
+      "content": "National Space Operations Centre (NSpOC) Civil Warning and Protection Services support UK and international partners to manage space risks and hazards.",
       "list_title": "Use this service to:",
       "list_items": {
         "track_events": "Track conjunction events",
@@ -32,8 +32,8 @@
     }
   },
   "Dashboard": {
-    "title": "National Space Operations Centre Warning and Protection Services",
-    "content": "National Space Operations Centre (NSpOC) Warning and Protection Services support UK and international partners to manage space risks and hazards.",
+    "title": "National Space Operations Centre Civil Warning and Protection Services",
+    "content": "National Space Operations Centre (NSpOC) Civil Warning and Protection Services support UK and international partners to manage space risks and hazards.",
     "services": {
       "live": {
         "title": "Live Services",
@@ -155,7 +155,7 @@
   },
   "Contact_analyst": {
     "title": "Contact a UKSA orbital analyst",
-    "content": "<p>UKSA orbital analysts are available Monday to Sunday, 8am to 4pm (except public holidays). Your message will be triaged and an analyst will get back to you as soon as possible.</p><p>UKSA orbital analysts <bold>can</bold> provide:</p><list><item>Further detail on their calculations</item><item>An indication on whether further analysis of an event is possible</item></list><p>UKSA orbital analysts <bold>cannot</bold> provide:</p><list><item>Advice on how you should manoeuvre your satellite</item><item>Analysis on a planned manoeuvre</item></list>",
+    "content": "<p>UKSA orbital analysts are available Monday to Sunday, 8am to 4pm. Your message will be triaged and an analyst will get back to you as soon as possible.</p><p>UKSA orbital analysts <bold>can</bold> provide:</p><list><item>Further detail on their calculations</item><item>An indication on whether further analysis of an event is possible</item></list><p>UKSA orbital analysts <bold>cannot</bold> provide:</p><list><item>Advice on how you should manoeuvre your satellite</item><item>Analysis on a planned manoeuvre</item></list>",
     "event_id": "Conjunction event ID or Re-entry event ID",
     "email_address": "Your email address",
     "submit": "Submit",
@@ -335,15 +335,15 @@
       },
       "type": {
         "future": "Upcoming",
-        "past": "Previouse"
+        "past": "Previous"
       }
     }
   },
   "Satellite_ephemeris_upload": {
     "title": "Uploading your ephemeris data",
-    "content": "<p>If you would like updated UKSA analysis on this conjunction event using your ephemeris data, attach a file below.</p><p>If upload is successful, the file will be renamed with the timestamp of the creation date and made available from the Ephemeris table on the satellite information page.</p><p>Upload a CCSDS .oem file. The file must not exceed 20MB.</p>",
+    "content": "<p>If you would like updated UKSA analysis on this conjunction event using your ephemeris data, attach a file below.</p><p>If upload is successful, the file will be renamed with the timestamp of the creation date and made available from the Ephemeris table on the satellite information page.</p><p>Upload a CCSDS Orbit Ephemeris Message (OEM) file. The file must not exceed 20MB.</p>",
     "help_summary": "More information about sharing your ephemerises with the UKSA",
-    "help_content": "<p>Additional analysis will be provided by UKSA orbital analysts only on conjunction events that UKSA analysis determines breach a probability of collision ≥ 10-5</p><p>View the <link>terms and conditions</link> for data handling information</p>",
+    "help_content": "<p>Additional analysis will be provided by UKSA orbital analysts only on conjunction events that UKSA analysis determines breach a probability of collision ≥ 1e-5</p><p>View the <link>terms and conditions</link> for data handling information</p>",
     "Success": {
       "title": "Ephemeris upload complete",
       "content": "Your ephemeris for {noradId} has been successfully uploaded to Monitor Space Hazards"
@@ -491,7 +491,7 @@
     "Monthly_conjunction_events": {
       "debris": "Events with debris",
       "satellite": "Events with another satellite",
-      "rocket_body": "Events with a two UK-licensed satellites",
+      "rocket_body": "Events with two UK-licensed satellites",
       "other": "Events with other objects"
     }
   },
@@ -588,7 +588,7 @@
     "Next_update": {
       "title": "Next update",
       "content": "For Low Risk events, updates are only sent if the event breaches a higher risk threshold. For Medium and High Risk events, updates are sent as soon as new information is available. A close-down report will be sent in all cases.",
-      "contact_analyst": "Contact the UK Space Agency for more information"
+      "contact_analyst": "Contact a UKSA orbital analyst"
     },
     "Additional_event_details": {
       "predicted_miss_distance": "Predicted miss distance (m)",
@@ -693,7 +693,7 @@
     "Event_summary": {
       "title": "Re-entry event summary",
       "reentering_object": "Re-entering object:",
-      "contact_analyst": "Contact the UK Space Agency for more information"
+      "contact_analyst": "Contact a UKSA orbital analyst"
     },
     "Further_information": {
       "content": "To understand more about how this data was generated by the UKSA, see:",
@@ -721,7 +721,7 @@
     },
     "Executive_summary": {
       "title": "Executive summary",
-      "content": "The UK Space Agency is tracking the upcoming re-entry of an object from space into the Earth's atmosphere, posing a potential threat to life and property on the ground. All re-entered debris should be considered as hazardous until proven otherwise."
+      "content": "The UK Space Agency is tracking the upcoming re-entry of an object from space into the Earth's atmosphere, posing a potential risk to life and property on the ground. All re-entered debris should be considered as hazardous until proven otherwise."
     },
     "Map": {
       "see_further_information": "<p>See <link>Further information</link> for more detail on methodology used in this report and the organisations that have been sent this alert.</p>"
@@ -729,7 +729,7 @@
     "Next_update": {
       "title": "Next update",
       "content": "For Low Risk events, updates are only sent if the event breaches a higher risk threshold. For Medium and High Risk events, updates are sent as soon as new information is available. A close-down report will be sent in all cases.",
-      "contact_analyst": "Contact the UK Space Agency for more information"
+      "contact_analyst": "Contact a UKSA orbital analyst"
     },
     "Guidance_on_response": {
       "immediate_response": {
@@ -808,8 +808,8 @@
         "x_axis_title": "Number of CDMs ingested",
         "legend": "Conjunction Data Message (CDM) source",
         "details": {
-          "title": "Information on event history",
-          "content": "<p>This table shows performance monitoring information for the external sources of CDMs that Monitor Space Hazards ingests.</p><list><item>Ingestion start and stop show the time the last data ingest started and finished</item><item>Number of items fetched shows how many items were retrieved</item></list>"
+          "title": "Help with this table",
+          "content": "<p>This table shows performance monitoring information for the external sources of CDMs that Monitor Space Hazards ingests.</p><list><item>Ingestion start and stop show the time the data ingest started and finished</item><item>Number of items fetched shows how many items were retrieved</item></list>"
         }
       },
       "tip_ingests": {
@@ -824,8 +824,8 @@
         "x_axis_title": "Number of objects ingested",
         "legend": "Object ingest",
         "details": {
-          "title": "Information on event history",
-          "content": "<p>This table shows performance monitoring information for the external data sources of satellite information that Monitor Space Hazards ingests.</p><list><item>Ingestion start and stop show the time the last data ingest started and finished</item><item>Number of items fetched shows how many items were retrieved</item></list>"
+          "title": "Help with this table",
+          "content": "<p>This table shows performance monitoring information for the external data sources of satellite information that Monitor Space Hazards ingests.</p><list><item>Ingestion start and stop show the time the data ingest started and finished</item><item>Number of items fetched shows how many items were retrieved</item></list>"
         }
       },
       "notifications_sent": {
@@ -834,7 +834,7 @@
       "uksa": {
         "title": "UKSA conjunction event analysis and manoeuvre support",
         "unknown": "Unknown",
-        "daily_title": "Daily count of analyses and manoeuvre support plots",
+        "daily_title": "Help with this table",
         "daily_details": {
           "title": "Help with this table",
           "content": "This tables shows the number of analyses and manoeuvre support plots uploaded by a UKSA orbital analyst."
@@ -869,14 +869,13 @@
           "content": "This table shows the number of conjunction events between different object types."
         },
         "monthly_title": "Monthly number of conjunction events monitored and a breakdown of their type."
-
       },
       "objects_catalogued": {
         "title": "Objects catalogued",
         "heading": "Objects catalogued by Monitor Space Hazards",
         "details": {
           "title": "Help with this table",
-          "content": "This table shows the number of objects catalogued in Monitor Space Hazards to date and their breakdown by type."
+          "content": "This table shows the current number of objects catalogued in Monitor Space Hazards and their breakdown by type."
         }
       },
       "conjunction_events_by_organisation": {
@@ -1282,11 +1281,10 @@
         "month": "Month",
         "debris": "Events with debris",
         "satellite": "Events with another satellite",
-        "rocket_body": "Events with a two UK-licensed satellites",
+        "rocket_body": "Events with two UK-licensed satellites",
         "other": "Events with other objects (unknown/object type)",
         "total": "Total events"
       }
-
     }
   },
   "Forms": {
@@ -1396,7 +1394,7 @@
       }
     },
     "Ephemeris_upload": {
-      "label": "Upload .oem file:",
+      "label": "Upload OEM file:",
       "button": "Upload"
     },
     "Feedback": {
@@ -1593,6 +1591,8 @@
     "overflights": {
       "label": "Overflights and ground fragments:",
       "help": "Toggle overflights and ground fragments",
+      "show_flightpaths": "Show flightpaths",
+      "show_fragments": "Show ground fragments",
       "flightpath": "Flightpath",
       "fragments": "Potential ground fragments",
       "overflight": "Overflight {number}"

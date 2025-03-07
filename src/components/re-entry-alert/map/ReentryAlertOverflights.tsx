@@ -7,15 +7,17 @@ import Details from '@/ui/details/details';
 import Label from '@/ui/label/label';
 
 import type { OverflightType } from './utils';
-import { FlightpathColor, FragmentColor, OverflightColors } from './utils';
+import { FlightpathColor, OverflightColors } from './utils';
 
 type ReentryAlertOverflightsProps = {
+  types: OverflightType[];
+  setTypes: (value: OverflightType[]) => void;
   overflights: string[];
   selected: OverflightType[];
   onChange: (value: OverflightType[]) => void;
 };
 
-const ReentryAlertOverflights = ({ overflights, selected, onChange }: ReentryAlertOverflightsProps) => {
+const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onChange }: ReentryAlertOverflightsProps) => {
   const t = useTranslations('OverflightMap.overflights');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,6 +29,11 @@ const ReentryAlertOverflights = ({ overflights, selected, onChange }: ReentryAle
       selectedSet.add(value);
     }
     onChange([...selectedSet]);
+  };
+
+  const handleTypeChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value as OverflightType;
+    setTypes(types.includes(value) ? types.filter(type => type !== value) : [...types, value]);
   };
 
   const renderCheckbox = ({ value, label, date, color }: { value: OverflightType; label: string; date?: string; color?: string }) => {
@@ -46,10 +53,18 @@ const ReentryAlertOverflights = ({ overflights, selected, onChange }: ReentryAle
   return (
     <div>
       <Label className="font-bold">{t('label')}</Label>
+      <div className="grid md:grid-cols-2 gap-4 govuk-checkboxes govuk-checkboxes--small py-4 pl-[25px]">
+        <Checkbox full checked={types.includes('FLIGHTPATHS')} value="FLIGHTPATHS" onChange={handleTypeChange}>
+          {t('show_flightpaths')}
+        </Checkbox>
+        <Checkbox full checked={types.includes('FRAGMENTS')} value="FRAGMENTS" onChange={handleTypeChange}>
+          {t('show_fragments')}
+        </Checkbox>
+      </div>
       <Details summary={t('help')}>
-        <div className="grid md:grid-cols-2 alig gap-4 govuk-checkboxes govuk-checkboxes--small">
+        <div className="grid md:grid-cols-2 gap-4 govuk-checkboxes govuk-checkboxes--small">
           {renderCheckbox({ value: 'FLIGHTPATH', label: t('flightpath'), color: FlightpathColor })}
-          {renderCheckbox({ value: 'FRAGMENTS', label: t('fragments'), color: FragmentColor })}
+          {/* {renderCheckbox({ value: 'FRAGMENTS', label: t('fragments'), color: FragmentColor })} */}
           {overflights.map((overflight, index) => {
             return (
               <Fragment key={overflight}>

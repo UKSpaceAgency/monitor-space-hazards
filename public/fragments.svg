@@ -1,0 +1,8 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:m="https://www.mapbox.com">
+	<m:metadata>
+		<m:parameters>
+			<m:parameter m:type="color" m:name="fragment_color" m:value="#000000"/>
+		</m:parameters>
+	</m:metadata>
+	<polygon points="16,0 0,32 32,32" fill="#000000"/>
+</svg>

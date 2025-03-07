@@ -57,10 +57,11 @@ export async function getReentryAlertMapData(presignedUrl: string) {
     features: [],
   };
 
-  const fragmentsCollection: FeatureCollection<Point> = {
+  const fragmentsCollection: FeatureCollection<Point>[] = lastReport?.overflight_time.map((_, index) => ({
     type: 'FeatureCollection',
+    id: `fragments-${index}`,
     features: [],
-  };
+  })) || [];
 
   const overflightCollection: FeatureCollection<Point>[] = lastReport?.overflight_time.map((_, index) => ({
     type: 'FeatureCollection',
@@ -77,11 +78,12 @@ export async function getReentryAlertMapData(presignedUrl: string) {
       flightpathCollection.features.push(generateFeature(point));
     }
     if (point.pass !== null) {
-      overflightCollection[point.pass - 1]?.features.push(generateFeature(point));
-    }
-    if (point.fragments) {
-      for (const fragment of point.fragments) {
-        fragmentsCollection.features.push(generateFeature(fragment));
+      const index = point.pass - 1;
+      overflightCollection[index]?.features.push(generateFeature(point));
+      if (point.fragments.length > 0) {
+        for (const fragment of point.fragments) {
+          fragmentsCollection[index]?.features.push(generateFeature(fragment));
+        }
       }
     }
   }

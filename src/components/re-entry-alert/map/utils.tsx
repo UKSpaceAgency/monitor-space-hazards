@@ -1,4 +1,4 @@
-import type { CircleLayerSpecification, FillLayerSpecification } from 'mapbox-gl';
+import type { CircleLayerSpecification, FillLayerSpecification, SymbolLayerSpecification } from 'mapbox-gl';
 
 import { RegionsEnum } from '@/utils/Regions';
 
@@ -58,7 +58,7 @@ export const OverflightColors = [
 
 export type OverflightType = 'FLIGHTPATH' | 'FRAGMENTS' | string;
 
-export const flightpathStyle: CircleLayerSpecification = {
+export const flightpathStyle = (visible: boolean): CircleLayerSpecification => ({
   id: 'FLIGHTPATH',
   type: 'circle',
   source: 'FLIGHTPATH',
@@ -73,29 +73,39 @@ export const flightpathStyle: CircleLayerSpecification = {
       ],
     },
   },
-};
+  layout: {
+    visibility: visible ? 'visible' : 'none',
+  },
+});
 
-export const fragmentsStyle: CircleLayerSpecification = {
-  id: 'FRAGMENTS',
-  type: 'circle',
-  source: 'FRAGMENTS',
-  paint: {
-    'circle-color': FragmentColor,
-    'circle-opacity': 0.5,
-    'circle-radius': {
-      base: 10,
+export const fragmentsStyle = (index: number, visible: boolean): SymbolLayerSpecification => ({
+  id: `FRAGMENTS-${index}`,
+  type: 'symbol',
+  source: `FRAGMENTS-${index}`,
+  layout: {
+    'icon-image': 'fragments-icon',
+    'icon-size': {
+      base: 0.25,
       stops: [
-        [0, 1],
-        [3, 5],
+        [0, 0.1],
+        [3, 0.25],
       ],
     },
+    'icon-allow-overlap': true,
+    'visibility': visible ? 'visible' : 'none',
   },
-};
+  paint: {
+    'icon-color': OverflightColors[index],
+  },
+});
 
-export const overflightStyle = (index: number): CircleLayerSpecification => ({
+export const overflightStyle = (index: number, visible: boolean): CircleLayerSpecification => ({
   id: `OVERFLIGHT-${index}`,
   type: 'circle',
   source: `OVERFLIGHT-${index}`,
+  layout: {
+    visibility: visible ? 'visible' : 'none',
+  },
   paint: {
     'circle-color': OverflightColors[index],
     'circle-opacity': 0.5,
@@ -104,6 +114,7 @@ export const overflightStyle = (index: number): CircleLayerSpecification => ({
       stops: [
         [0, 2],
         [3, 10],
+        [10, 20],
       ],
     },
   },
