@@ -7,7 +7,6 @@ import { FORMAT_API_DATE_TIME, TODAY_DATE_TIME } from '@/libs/Dayjs';
 import Details from '@/ui/details/details';
 
 import { MonitoringEventsByTypeDaily } from './MonitoringEventsByTypeDaily';
-import { MonitoringEventsByTypeMonthly } from './MonitoringEventsByTypeMonthly';
 
 const MonitoringEventsByType = async () => {
   const t = await getTranslations('Performance_monitoring.conjunction_accordion.conjunction_event_by_type');
@@ -24,8 +23,8 @@ const MonitoringEventsByType = async () => {
       <Details summary={t('daily_details.title')}>
         {t('daily_details.content')}
       </Details>
-      <h3 className="govuk-heading-s">{t('monthly_title')}</h3>
-      <MonitoringEventsByTypeMonthly />
+      {/* <h3 className="govuk-heading-s">{t('monthly_title')}</h3>
+      <MonitoringEventsByTypeMonthly /> */}
     </>
   );
 };
