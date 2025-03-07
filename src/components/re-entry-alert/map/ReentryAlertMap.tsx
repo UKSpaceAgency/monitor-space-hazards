@@ -1,13 +1,11 @@
 'use client';
 
-import 'mapbox-gl/dist/mapbox-gl.css';
-
 import type { FeatureCollection, Point } from 'geojson';
 import type { MapMouseEvent } from 'mapbox-gl';
 import dynamic from 'next/dynamic';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { MapRef } from 'react-map-gl';
-import Map, { Layer, Source } from 'react-map-gl';
+import Map, { FullscreenControl, Layer, Source } from 'react-map-gl';
 
 import { env } from '@/libs/Env';
 import { RegionsEnum } from '@/utils/Regions';
@@ -106,6 +104,7 @@ const ReentryAlertMap = ({ overflightTime, flightpathCollection, fragmentsCollec
           onClick={handleClick}
           attributionControl={false}
         >
+          <FullscreenControl />
           {regions.map(region => region === RegionsEnum.UK_AIRSPACE
             ? (
                 (RegionsGeoJson[RegionsEnum.UK_AIRSPACE] as unknown[]).map((airspace: unknown, index: number) => {

@@ -64,7 +64,9 @@ export const flightpathStyle = (visible: boolean): CircleLayerSpecification => (
   source: 'FLIGHTPATH',
   paint: {
     'circle-color': FlightpathColor,
-    'circle-opacity': 0.5,
+    'circle-opacity': 1,
+    'circle-stroke-width': 1,
+    'circle-stroke-color': '#ffffff',
     'circle-radius': {
       base: 20,
       stops: [
@@ -96,6 +98,7 @@ export const fragmentsStyle = (index: number, visible: boolean): SymbolLayerSpec
   },
   paint: {
     'icon-color': OverflightColors[index],
+    'icon-opacity': 0.5,
   },
 });
 
@@ -108,7 +111,10 @@ export const overflightStyle = (index: number, visible: boolean): CircleLayerSpe
   },
   paint: {
     'circle-color': OverflightColors[index],
-    'circle-opacity': 0.5,
+    'circle-opacity': 1,
+    'circle-stroke-width': 1,
+    'circle-stroke-color': '#ffffff',
+    // 'circle-stroke-opacity': 0.5,
     'circle-radius': {
       base: 20,
       stops: [
