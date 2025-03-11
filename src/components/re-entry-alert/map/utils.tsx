@@ -56,7 +56,7 @@ export const OverflightColors = [
   '#85994b',
 ];
 
-export type OverflightType = 'FLIGHTPATH' | 'FRAGMENTS' | string;
+export type OverflightType = 'FLIGHTPATH' | 'FRAGMENT' | string;
 
 export const flightpathStyle = (visible: boolean): CircleLayerSpecification => ({
   id: 'FLIGHTPATH',
@@ -81,9 +81,9 @@ export const flightpathStyle = (visible: boolean): CircleLayerSpecification => (
 });
 
 export const fragmentsStyle = (index: number, visible: boolean): SymbolLayerSpecification => ({
-  id: `FRAGMENTS-${index}`,
+  id: `FRAGMENT-${index}`,
   type: 'symbol',
-  source: `FRAGMENTS-${index}`,
+  source: `FRAGMENT-${index}`,
   layout: {
     'icon-image': 'fragments-icon',
     'icon-size': {

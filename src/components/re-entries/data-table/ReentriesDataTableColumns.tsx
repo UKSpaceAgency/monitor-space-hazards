@@ -15,7 +15,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     enableSorting: false,
     columns: [
       {
-        id: 'ukReentryProbability',
+        id: 'uk_reentry_probability',
         accessorKey: 'ukReentryProbability',
         header: 'Reentries.table.risk',
         cell: ({ getValue }) => {
@@ -29,9 +29,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
             ? (
                 <Tag className={classes[value]}>{value}</Tag>
               )
-            : (
-                <Tag>N/A</Tag>
-              );
+            : '';
         },
       },
       {

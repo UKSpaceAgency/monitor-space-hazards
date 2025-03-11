@@ -1261,7 +1261,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Allows updates to satellite information. Internal database satellite ID is required to do so. Used by internal worker process to update Satellite data based on Space-Track. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|Update within Organisation| |Satellite operator admin|Update within Organisation| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Update| |Agency approver|Update| |Agency superuser|Update|
+   * @description ## Description Updates satellite organization bindings. Internal database satellite ID is required to do so. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Update|
    *
    * @tags satellites
    * @name PatchSatellitesSatelliteId

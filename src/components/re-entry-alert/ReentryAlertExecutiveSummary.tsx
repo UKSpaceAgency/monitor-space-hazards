@@ -4,6 +4,7 @@ import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
 
 import { Markdown } from '../Markdown';
 import { ReentryAlertExecutiveSummaryTable } from './tables/ReentryAlertExecutiveSummaryTable';
+import { ReentryAlertRiskProbabilitiesTable } from './tables/ReentryAlertRiskProbabilitiesTable';
 
 type ReentryAlertExecutiveSummaryProps = {
   event: TypeReentryEventOut;
@@ -22,6 +23,9 @@ const ReentryAlertExecutiveSummary = async ({ event, previewSummary }: ReentryAl
       <Markdown>
         {previewSummary ?? event?.execSummary}
       </Markdown>
+      <h3 className="govuk-heading-s">{t('risk_probabilities')}</h3>
+      <ReentryAlertRiskProbabilitiesTable event={event} />
+      <h3 className="govuk-heading-s">{t('event_summary')}</h3>
       <ReentryAlertExecutiveSummaryTable event={event} />
     </div>
   );

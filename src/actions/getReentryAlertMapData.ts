@@ -28,7 +28,7 @@ type ReportRespsponseData = {
   }[];
 };
 
-const generateFeature = (point: MapPoint): Feature<Point> => ({
+const generateFeature = (point: MapPoint, type: 'overflight' | 'fragments' | 'flightpath', pass: number | null): Feature<Point> => ({
   type: 'Feature',
   geometry: {
     type: 'Point',
@@ -44,6 +44,8 @@ const generateFeature = (point: MapPoint): Feature<Point> => ({
     overflight: point.overflight,
     longitude: point.longitude,
     latitude: point.latitude,
+    pass,
+    type,
   },
 });
 
@@ -75,14 +77,14 @@ export async function getReentryAlertMapData(presignedUrl: string) {
 
   for (const point of lastReport.map_points) {
     if (!point.pass) {
-      flightpathCollection.features.push(generateFeature(point));
+      flightpathCollection.features.push(generateFeature(point, 'flightpath', point.pass));
     }
     if (point.pass !== null) {
       const index = point.pass - 1;
-      overflightCollection[index]?.features.push(generateFeature(point));
+      overflightCollection[index]?.features.push(generateFeature(point, 'overflight', point.pass));
       if (point.fragments.length > 0) {
         for (const fragment of point.fragments) {
-          fragmentsCollection[index]?.features.push(generateFeature(fragment));
+          fragmentsCollection[index]?.features.push(generateFeature(fragment, 'fragments', point.pass));
         }
       }
     }

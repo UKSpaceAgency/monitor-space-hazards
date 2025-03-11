@@ -37,6 +37,15 @@ ol.govuk-list {
   }
 }
 
+.mapboxgl-ctrl-top-right {
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.mapboxgl-ctrl-top-right .mapboxgl-ctrl {
+  margin: 0;
+}
+
 .mapboxgl-ctrl {
   button.mapboxgl-ctrl-shrink,
   button.mapboxgl-ctrl-fullscreen {
