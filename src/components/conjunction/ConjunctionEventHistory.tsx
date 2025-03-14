@@ -11,11 +11,10 @@ import { ConjunctionEventHistoryTable } from './data-table/ConjunctionEventHisto
 
 type ConjunctionEventHistoryProps = {
   events: TypeEventSummaryOut[];
-  event: TypeEventSummaryOut;
   shortId: string;
 };
 
-const ConjunctionEventHistory = async ({ events, event, shortId }: ConjunctionEventHistoryProps) => {
+const ConjunctionEventHistory = async ({ events, shortId }: ConjunctionEventHistoryProps) => {
   const t = await getTranslations('Conjunction.Event_history');
 
   const dataSources = await getConjunctionEventsEventIdDataSources({ eventId: shortId });
@@ -29,7 +28,7 @@ const ConjunctionEventHistory = async ({ events, event, shortId }: ConjunctionEv
 
   return (
     <>
-      <ConjunctionEventHistoryTable events={events} event={event} dataSources={dataSources} dataPdf={t('title')} />
+      <ConjunctionEventHistoryTable events={events} dataSources={dataSources} dataPdf={t('title')} />
       <DownloadData type={t('download')} params={{}} downloadAction={handleDownloadData} />
       <Details summary={t('help.title')}>
         {t.rich('help.content', {

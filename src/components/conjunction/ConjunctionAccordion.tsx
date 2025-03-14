@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
-import type { TypeEventSummaryOut, TypeSatelliteOut } from '@/__generated__/data-contracts';
+import type { TypeSatelliteOut } from '@/__generated__/data-contracts';
 import { getConjunctionEventsEventIdSummary } from '@/actions/getConjunctionEventsEventIdSummary';
 import { getManoeuvrePlotShortId } from '@/actions/getManoeuvrePlotShortId';
 import Accordion from '@/ui/accordion/accordion';
@@ -14,7 +14,6 @@ import { ConjunctionObjectData } from './ConjunctionObjectData';
 
 type ConjunctionAccordionType = {
   shortId: string;
-  event: TypeEventSummaryOut;
   primaryObject: TypeSatelliteOut;
   secondaryObject: TypeSatelliteOut | null;
   isSpecial: boolean;
@@ -22,7 +21,6 @@ type ConjunctionAccordionType = {
 
 const ConjunctionAccordion = async ({
   shortId,
-  event,
   primaryObject,
   secondaryObject,
   isSpecial,
@@ -72,7 +70,6 @@ const ConjunctionAccordion = async ({
           content: (
             <ConjunctionEventHistory
               shortId={shortId}
-              event={event}
               events={events}
             />
           ),
