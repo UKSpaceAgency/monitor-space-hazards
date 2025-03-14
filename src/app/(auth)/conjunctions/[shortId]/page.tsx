@@ -54,7 +54,6 @@ export default async function ConjunctionPage({
           )}
           <ConjunctionAccordion
             shortId={shortId}
-            event={event}
             primaryObject={primaryObject}
             secondaryObject={secondaryObject}
             isSpecial={isSpecial}

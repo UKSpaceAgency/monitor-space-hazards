@@ -1,4 +1,5 @@
 'use client';
+
 import type { TypeDataSourcesOut, TypeEventSummaryOut } from '@/__generated__/data-contracts';
 import { DataTable } from '@/components/DataTable';
 
@@ -7,19 +8,18 @@ import { conjunctionEventHistoryColumns } from './ConjunctionEventHistoryDataTab
 
 type ConjunctionEventHistoryTableProps = {
   events: TypeEventSummaryOut[];
-  event: TypeEventSummaryOut;
   dataSources: TypeDataSourcesOut;
   dataPdf?: string;
 };
 
-const ConjunctionEventHistoryTable = ({ events, event, dataSources, dataPdf }: ConjunctionEventHistoryTableProps) => {
+const ConjunctionEventHistoryTable = ({ events, dataSources, dataPdf }: ConjunctionEventHistoryTableProps) => {
   return (
     <div className="overflow-auto" data-pdf={dataPdf}>
       <DataTable
         data={events}
         columns={conjunctionEventHistoryColumns}
-        renderSubComponent={() => renderConjunctionHistoryDetailAsSubcomponent({ object: {
-          ...event,
+        renderSubComponent={({ row }) => renderConjunctionHistoryDetailAsSubcomponent({ object: {
+          ...row.original,
           ...dataSources,
         } })}
       />

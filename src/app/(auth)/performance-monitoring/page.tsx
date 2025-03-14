@@ -4,7 +4,6 @@ import { getTranslations } from 'next-intl/server';
 import { ContentNavigation } from '@/components/ContentNavigation';
 import { MonitoringEventAccordion } from '@/components/performance-monitoring/conjunction-events-monitoring/MonitoringEventAccordion';
 import { MonitoringAccordion } from '@/components/performance-monitoring/performance-monitoring/MonitoringAccordion';
-import { MonitoringServiceUsageAccordion } from '@/components/performance-monitoring/service-usage/MonitoringServiceUsageAccordion';
 
 export const metadata: Metadata = {
   title: 'Performance monitoring and statistics',
@@ -33,7 +32,7 @@ export default async function PerformanceMonitoring() {
       />
 
       <MonitoringAccordion />
-      <MonitoringServiceUsageAccordion />
+      {/* <MonitoringServiceUsageAccordion /> */}
       <MonitoringEventAccordion />
     </div>
   );
