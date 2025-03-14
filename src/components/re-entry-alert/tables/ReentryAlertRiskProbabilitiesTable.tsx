@@ -11,31 +11,6 @@ type ReentryAlertExecutiveSummaryTableProps = {
   event: EventSummaryData;
 };
 
-// header: t('uk_reentry_probability'),
-// accessorKey: 'ukReentryProbability',
-// renderCell: ({ ukReentryProbability }) => {
-//   const classes = {
-//     Low: 'govuk-tag--green',
-//     Medium: 'govuk-tag--yellow',
-//     High: 'govuk-tag--red',
-//   };
-
-//   return ukReentryProbability
-//     ? (
-//         <Tag className={classes[ukReentryProbability as unknown as keyof typeof classes]}>
-//           {ukReentryProbability}
-//         </Tag>
-//       )
-//     : (
-//         <Tag>N/A</Tag>
-//       );
-// },
-// }, {
-// header: t('probability'),
-// accessorKey: 'probability',
-// renderCell: ({ probability }) => (probability ? roundedPercent(probability) : '-'),
-// },
-
 const ReentryAlertRiskProbabilitiesTable = ({ event }: ReentryAlertExecutiveSummaryTableProps) => {
   const t = useTranslations('Tables.Reentry_alert_risk_probabilities');
 
@@ -63,27 +38,39 @@ const ReentryAlertRiskProbabilitiesTable = ({ event }: ReentryAlertExecutiveSumm
         </TableRow>
       </TableHead>
       <TableBody>
-        <TableRow>
-          <TableCellHeader>{t('probability_of_atmospheric_entry')}</TableCellHeader>
-          <TableCell>{event.monteCarloProbability ? roundedPercent(event.monteCarloProbability) : '-'}</TableCell>
-          <TableCell>
-            {renderTag(event.monteCarloRisk)}
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCellHeader>{t('probability_of_fragmentation')}</TableCellHeader>
-          <TableCell>{event.fragmentsProbability ? roundedPercent(event.fragmentsProbability) : '-'}</TableCell>
-          <TableCell>
-            {renderTag(event.fragmentsRisk)}
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCellHeader>{t('probability_of_human_casualty')}</TableCellHeader>
-          <TableCell>{event.humanCasualtyProbability ? roundedPercent(event.humanCasualtyProbability) : '-'}</TableCell>
-          <TableCell>
-            {renderTag(event.humanCasualtyRisk)}
-          </TableCell>
-        </TableRow>
+        {event.monteCarloProbability
+          ? (
+              <TableRow>
+                <TableCellHeader>{t('probability_of_atmospheric_entry')}</TableCellHeader>
+                <TableCell>{event.monteCarloProbability ? roundedPercent(event.monteCarloProbability) : '-'}</TableCell>
+                <TableCell>
+                  {renderTag(event.monteCarloRisk)}
+                </TableCell>
+              </TableRow>
+            )
+          : null}
+        {event.fragmentsProbability
+          ? (
+              <TableRow>
+                <TableCellHeader>{t('probability_of_fragmentation')}</TableCellHeader>
+                <TableCell>{event.fragmentsProbability ? roundedPercent(event.fragmentsProbability) : '-'}</TableCell>
+                <TableCell>
+                  {renderTag(event.fragmentsRisk)}
+                </TableCell>
+              </TableRow>
+            )
+          : null}
+        {event.humanCasualtyProbability
+          ? (
+              <TableRow>
+                <TableCellHeader>{t('probability_of_human_casualty')}</TableCellHeader>
+                <TableCell>{event.humanCasualtyProbability ? roundedPercent(event.humanCasualtyProbability) : '-'}</TableCell>
+                <TableCell>
+                  {renderTag(event.humanCasualtyRisk)}
+                </TableCell>
+              </TableRow>
+            )
+          : null}
       </TableBody>
     </Table>
   );

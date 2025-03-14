@@ -14,6 +14,8 @@ type ReentryAlertExecutiveSummaryProps = {
 const ReentryAlertExecutiveSummary = async ({ event, previewSummary }: ReentryAlertExecutiveSummaryProps) => {
   const t = await getTranslations('Reentry_alert.Executive_summary');
 
+  const haveRiskProbabilities = event.monteCarloProbability || event.fragmentsProbability || event.humanCasualtyProbability;
+
   return (
     <div data-pdf={t('title')}>
       <h2 data-anchor="information" className="govuk-heading-l">{t('title')}</h2>
@@ -24,7 +26,7 @@ const ReentryAlertExecutiveSummary = async ({ event, previewSummary }: ReentryAl
         {previewSummary ?? event?.execSummary}
       </Markdown>
       <h3 className="govuk-heading-s">{t('risk_probabilities')}</h3>
-      <ReentryAlertRiskProbabilitiesTable event={event} />
+      {haveRiskProbabilities && <ReentryAlertRiskProbabilitiesTable event={event} />}
       <h3 className="govuk-heading-s">{t('event_summary')}</h3>
       <ReentryAlertExecutiveSummaryTable event={event} />
     </div>

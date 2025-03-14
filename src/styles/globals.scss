@@ -38,8 +38,10 @@ ol.govuk-list {
 }
 
 .mapboxgl-ctrl-top-right {
-  top: 0.5rem;
-  right: 0.5rem;
+  @apply top-auto bottom-2 right-2 md:top-2;
+  .mapboxgl-ctrl-fullscreen {
+    top: 0 !important;
+  }
 }
 
 .mapboxgl-ctrl-top-right .mapboxgl-ctrl {

@@ -8,6 +8,7 @@ import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import Details from '@/ui/details/details';
 
 import { UksaAnalysesDaily } from './UksaAnalysesDaily';
+import { UksaAnalysesMonthly } from './UksaAnalysesMonthly';
 
 const UksaAnalyses = async () => {
   const t = await getTranslations('Performance_monitoring.performance_accordion.uksa');
@@ -34,8 +35,8 @@ const UksaAnalyses = async () => {
       <Details summary={t('daily_title')}>
         {t('daily_details.content')}
       </Details>
-      {/* <h3 className="govuk-heading-s">{t('monthly_title')}</h3>
-      <UksaAnalysesMonthly /> */}
+      <h3 className="govuk-heading-s">{t('monthly_title')}</h3>
+      <UksaAnalysesMonthly />
     </>
   );
 };

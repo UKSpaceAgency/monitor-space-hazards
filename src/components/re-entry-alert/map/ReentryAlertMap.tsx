@@ -115,7 +115,7 @@ const ReentryAlertMap = ({ overflightTime, flightpathCollection, fragmentsCollec
                 (RegionsGeoJson[RegionsEnum.UK_AIRSPACE] as unknown[]).map((airspace: unknown, index: number) => {
                   return (
                     <Source
-                      // eslint-disable-next-line react/no-array-index-key
+                    // eslint-disable-next-line react/no-array-index-key
                       key={`UK_AIRSPACE-${index}`}
                       id={`UK_AIRSPACE-${index}`}
                       type="geojson"
@@ -160,7 +160,7 @@ const ReentryAlertMap = ({ overflightTime, flightpathCollection, fragmentsCollec
             </Source>
           ))}
           {overflightCollection && overflightCollection.map((overflight, index) => (
-          // eslint-disable-next-line react/no-array-index-key
+            // eslint-disable-next-line react/no-array-index-key
             <Source key={`OVERFLIGHT-${index}`} type="geojson" data={overflight}>
               <Layer
                 {...overflightStyle(index, types.includes('FLIGHTPATH') && overflights.includes(`OVERFLIGHT-${index}`))}

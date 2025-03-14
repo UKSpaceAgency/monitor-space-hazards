@@ -5,7 +5,7 @@ import { getTranslations } from 'next-intl/server';
 import { getSession } from '@/actions/getSession';
 import { getUsersMe } from '@/actions/getUsersMe';
 import TaskList from '@/ui/task-list/task-list';
-import { isAgencyApprover, isAnalysist, isGovUser, isOrgAdmin, isSuperAdmin } from '@/utils/Roles';
+import { isAgencyApprover, isAnalysist, isGovUser, isOrgAdmin, isSatteliteUser, isSuperAdmin } from '@/utils/Roles';
 
 export const metadata: Metadata = {
   title: 'Your account information',
@@ -61,14 +61,14 @@ export default async function AccountPage() {
                   href: '/account/notification-settings',
                 }]
               : []),
-            // ...(!isSatteliteUser(role)
-            //   ? [
-            //       {
-            //         title: t('change_your_notification_settings.alert_settings'),
-            //         href: '/account/alert-settings',
-            //       },
-            //     ]
-            //   : []),
+            ...(!isSatteliteUser(role)
+              ? [
+                  {
+                    title: t('change_your_notification_settings.alert_settings'),
+                    href: '/account/alert-settings',
+                  },
+                ]
+              : []),
           ]}
         />
         {isOrgAdmin(role) && (
