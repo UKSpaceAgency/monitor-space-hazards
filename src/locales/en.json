@@ -342,7 +342,7 @@
   "Satellite_ephemeris_upload": {
     "title": "Uploading your ephemeris data",
     "content": "<p>If you would like updated UKSA analysis on this conjunction event using your ephemeris data, attach a file below.</p><p>If upload is successful, the file will be renamed with the timestamp of the creation date and made available from the Ephemeris table on the satellite information page.</p><p>Upload a CCSDS Orbit Ephemeris Message (OEM) file. The file must not exceed 20MB.</p>",
-    "help_summary": "More information about sharing your ephemerises with the UKSA",
+    "help_summary": "More information about sharing your ephemerides with the UKSA",
     "help_content": "<p>Additional analysis will be provided by UKSA orbital analysts only on conjunction events that UKSA analysis determines breach a probability of collision ≥ 1e-5</p><p>View the <link>terms and conditions</link> for data handling information</p>",
     "Success": {
       "title": "Ephemeris upload complete",
