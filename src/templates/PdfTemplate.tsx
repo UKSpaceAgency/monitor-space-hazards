@@ -20,7 +20,7 @@ type PdfTemplateProps = {
 
 const PdfTemplate = ({ title, sections }: PdfTemplateProps) => {
   return (
-    <Document>
+    <Document title={title}>
       <Page size="A4" style={pdfStyles.page}>
         <View style={pdfStyles.headerContainer}>
           <View style={pdfStyles.logoContainer}>

@@ -19,11 +19,27 @@ const PdfDownloadButton = ({ title }: { title: string }) => {
   };
 
   useEffect(() => {
-    if (downloading && !instance.loading && instance.url) {
-      window.open(instance.url, '_blank');
+    if (downloading && !instance.loading && instance.blob) {
+      const link = document.createElement('a');
+      link.style.display = 'none';
+      link.href = URL.createObjectURL(instance.blob);
+      link.download = title;
+
+      // It needs to be added to the DOM so it can be clicked
+      document.body.appendChild(link);
+      link.click();
+
+      // To make this work on Firefox we need to wait
+      // a little while before removing it.
+      setTimeout(() => {
+        URL.revokeObjectURL(link.href);
+        if (link.parentNode) {
+          link.parentNode.removeChild(link);
+        }
+      }, 0);
       setDownloading(false);
     }
-  }, [instance, downloading]);
+  }, [instance, downloading, title]);
 
   if (!instance.url) {
     return null;
