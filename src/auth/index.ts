@@ -118,7 +118,8 @@ export const { handlers, signIn, signOut, auth, unstable_update: update } = Next
       }
 
       if (request.nextUrl.pathname === '/' && auth) {
-        return Response.redirect(new URL('/home', request.nextUrl.origin));
+        const callbackUrl = request.nextUrl.searchParams.get('callbackUrl') ?? '/home';
+        return Response.redirect(new URL(callbackUrl, request.nextUrl.origin));
       }
       return !!auth;
     },
