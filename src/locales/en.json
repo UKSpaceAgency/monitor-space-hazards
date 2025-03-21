@@ -1163,7 +1163,8 @@
         "object": "Object",
         "expected_survivability": "Expected survivability to the ground",
         "licensing_country": "Licensing country"
-      }
+      },
+      "reentries_events_as_of": "Re-entry events as of "
     },
     "Reentry_event_summary": {
       "tip_id": "TIP ID",
