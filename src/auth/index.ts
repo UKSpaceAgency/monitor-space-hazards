@@ -167,9 +167,9 @@ export const { handlers, signIn, signOut, auth, unstable_update: update } = Next
     },
     async redirect(params: { url: string; baseUrl: string }) {
       const { url, baseUrl } = params;
-      if (!url.startsWith('http')) {
-        return url;
-      }
+      // if (!url.startsWith('http')) {
+      //   return url;
+      // }
 
       const { pathname, search, hash } = new URL(url);
 
