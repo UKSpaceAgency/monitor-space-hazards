@@ -872,7 +872,11 @@
           "title": "Help with this table",
           "content": "This table shows the number of conjunction events between different object types."
         },
-        "monthly_title": "Monthly number of conjunction events monitored and a breakdown of their type."
+        "monthly_title": "Monthly number of conjunction events monitored and a breakdown of their type.",
+        "monthly_details": {
+          "title": "Help with this table",
+          "content": "This table shows the number of conjunction events between different object types per month."
+        }
       },
       "objects_catalogued": {
         "title": "Objects catalogued",

@@ -14,8 +14,6 @@ if (env.NEXT_PUBLIC_SENTRY_DSN) {
     integrations: [Sentry.replayIntegration({
       maskAllText: true,
       blockAllMedia: true,
-    }), Sentry.captureConsoleIntegration({
-      levels: ['error', 'log', 'warn'],
     })],
 
     // Define how likely traces are sampled. Adjust this value in production, or use tracesSampler for greater control.
