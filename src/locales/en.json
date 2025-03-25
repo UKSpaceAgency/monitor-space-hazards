@@ -566,7 +566,8 @@
     }
   },
   "Conjunction_alert": {
-    "title": "Conjunction event {shortId}: Alert",
+    "title": "Conjunction alert for {primaryObject} vs {secondaryObject}",
+    "pdf_title": "Conjunction alert for {primaryObject} vs {secondaryObject} - Report {reportNumber}",
     "notification_banner": "You are able to <edit>edit this alert</edit> or <send>send this alert to additional recipients</send>",
     "report_info": "<p><bold>Report {number}</bold> updated on {time} UTC</p>",
     "accordion": {
@@ -704,6 +705,7 @@
   "Reentry_alert": {
     "notification_banner": "You are able to <edit>edit this alert</edit> or <send>send this alert to additional recipients</send>",
     "title": "Re-entry alert for {objectName}",
+    "pdf_title": "Re-entry alert for {objectName} - Report {reportNumber}",
     "report_info": "<p><bold>Report {number}</bold> updated on {time} UTC</p>",
     "accordion": {
       "additional_object_details": "Additional object and orbit details",
