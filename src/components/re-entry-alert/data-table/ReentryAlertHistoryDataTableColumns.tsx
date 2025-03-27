@@ -81,7 +81,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();
-      return value[0] ? dayjs(value[0]).format(FORMAT_DATE_TIME) : 'Unknown';
+      return value[0] ? dayjs(value[0]).format(FORMAT_DATE_TIME) : '-';
     },
   },
 ];
