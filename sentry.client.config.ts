@@ -17,7 +17,7 @@ if (env.NEXT_PUBLIC_SENTRY_DSN) {
     })],
 
     // Define how likely traces are sampled. Adjust this value in production, or use tracesSampler for greater control.
-    tracesSampleRate: 0,
+    tracesSampleRate: 0.25,
 
     // Define how likely Replay events are sampled.
     // This sets the sample rate to be 10%. You may want this to be 100% while
@@ -25,7 +25,7 @@ if (env.NEXT_PUBLIC_SENTRY_DSN) {
     replaysSessionSampleRate: 0,
 
     // Define how likely Replay events are sampled when an error occurs.
-    replaysOnErrorSampleRate: 0.1,
+    replaysOnErrorSampleRate: 0,
 
     // Setting this option to true will print useful information to the console while you're setting up Sentry.
     debug: false,
