@@ -96,11 +96,11 @@ const generatePdfTable = (table: HTMLElement) => {
   const colWeight = 1 / colsNumber;
 
   return (
-    <>
+    <View>
       {captionObject}
       <Table style={pdfStyles.table} tdStyle={{ padding: '0.2cm' }} weightings={Array.from({ length: colsNumber }, () => colWeight)}>
         {headers.length > 0 && (
-          <TR>
+          <TR wrap={false}>
             {[...headers].map((header, index: number) => {
               const colSpan = header.getAttribute('colSpan');
               return (
@@ -112,7 +112,7 @@ const generatePdfTable = (table: HTMLElement) => {
           </TR>
         )}
         {rows.map((row: { children: any }, rowIndex: Key | null | undefined) => (
-          <TR key={rowIndex} style={{ flexWrap: 'wrap' }}>
+          <TR key={rowIndex} style={{ flexWrap: 'wrap' }} wrap={false}>
             {[...row.children].map((cell: HTMLElement, cellIndex: number) => {
               const tagClassList = (cell.firstChild as HTMLElement)?.classList;
               const cellStyle = {
@@ -153,7 +153,7 @@ const generatePdfTable = (table: HTMLElement) => {
           </TR>
         ))}
       </Table>
-    </>
+    </View>
   );
 };
 

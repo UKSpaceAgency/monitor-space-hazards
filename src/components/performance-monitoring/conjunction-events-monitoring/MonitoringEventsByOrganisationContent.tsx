@@ -63,7 +63,7 @@ const MonitoringEventsByOrganisationContent = ({ isAnalysist }: PerformanceMonit
   }, [data]);
 
   const filteredData = useMemo(() => {
-    return [...(organisation ? (data || []).filter(obj => obj.name === organisation) : data || [])];
+    return [...(organisation ? (data || []).filter(obj => obj.name === organisation) : data || [])].sort((a, b) => b.totalEvents - a.totalEvents);
   }, [organisation, data]);
 
   const selectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {

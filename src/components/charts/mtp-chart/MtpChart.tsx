@@ -6,7 +6,7 @@ import { useCallback, useMemo, useState } from 'react';
 import type { ManoeuvrePlot, ManoeuvrePlotPoint } from '@/actions/getManoeuvrePlot';
 import { DownloadData } from '@/components/DownloadData';
 import RichText from '@/components/RichText';
-import { dayjs } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import Details from '@/ui/details/details';
 import Select from '@/ui/select/select';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
@@ -77,7 +77,7 @@ export function MtpChart({
     }
     let datetime_label = t('chart.date_and_time');
     if (raw.x !== null) {
-      datetime_label += dayjs(raw.burn_datetime);
+      datetime_label += dayjs(raw.burn_datetime).format(FORMAT_DATE_TIME);
     }
     return [poc_label, dv_label, orbit_label, datetime_label];
   };

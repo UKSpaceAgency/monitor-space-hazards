@@ -1,5 +1,8 @@
 import '@/styles/globals.scss';
 
+import { env } from 'node:process';
+
+import { GoogleAnalytics } from '@next/third-parties/google';
 import pick from 'lodash/pick';
 import type { Metadata } from 'next';
 import { SessionProvider } from 'next-auth/react';
@@ -33,6 +36,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} className="font-sans">
       <body className="govuk-template__body" suppressHydrationWarning>
+        {env.NEXT_PUBLIC_PUBLIC_GA && <GoogleAnalytics gaId={env.NEXT_PUBLIC_PUBLIC_GA} />}
         <NextIntlClientProvider messages={pick(messages, ['Tables', 'Template', 'Forms', 'Common', 'OverflightMap', 'Charts'])}>
           <SessionProvider>
             <BaseTemplate showNavigation={!!session} breadcrumb={breadcrumb}>

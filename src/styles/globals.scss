@@ -1,3 +1,4 @@
+@import 'mapbox-gl/dist/mapbox-gl.css';
 @import 'node_modules/govuk-frontend/dist/govuk/all';
 
 @tailwind base;
@@ -33,5 +34,44 @@ ol.govuk-list {
     color: inherit;
     font-size: inherit;
     list-style: inherit;
+  }
+}
+
+.mapboxgl-ctrl-top-right {
+  @apply top-auto bottom-2 right-2 md:top-2;
+  .mapboxgl-ctrl-fullscreen {
+    top: 0 !important;
+  }
+}
+
+.mapboxgl-ctrl-top-right .mapboxgl-ctrl {
+  margin: 0;
+}
+
+.mapboxgl-ctrl {
+  button.mapboxgl-ctrl-shrink,
+  button.mapboxgl-ctrl-fullscreen {
+    @extend .govuk-button;
+    margin: 0;
+    height: auto;
+    &::before {
+      display: none;
+    }
+    &::after {
+      content: 'Full screen';
+    }
+    .mapboxgl-ctrl-icon {
+      display: none;
+    }
+  }
+  button.mapboxgl-ctrl-fullscreen {
+    &::after {
+      content: 'Full screen';
+    }
+  }
+  button.mapboxgl-ctrl-shrink {
+    &::after {
+      content: 'Exit map';
+    }
   }
 }

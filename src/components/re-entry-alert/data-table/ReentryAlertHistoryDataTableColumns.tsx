@@ -48,12 +48,12 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
   {
     header: 'Reentry_alert_history.risk',
     enableSorting: false,
-    cell: ({ row: { original: { probability } } }) => {
-      if (probability > 0.05) {
+    cell: ({ row: { original: { monteCarloProbability } } }) => {
+      if (monteCarloProbability > 0.05) {
         return (
           <Tag color="red">High</Tag>
         );
-      } else if (probability <= 0.05 && probability > 0.01) {
+      } else if (monteCarloProbability <= 0.05 && monteCarloProbability > 0.01) {
         return (
           <Tag color="yellow">
             Medium
@@ -68,7 +68,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
   },
   {
     header: 'Reentry_alert_history.probability',
-    accessorKey: 'probability',
+    accessorKey: 'monteCarloProbability',
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<number>();
@@ -81,7 +81,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();
-      return value[0] ? dayjs(value[0]).format(FORMAT_DATE_TIME) : 'Unknown';
+      return value[0] ? dayjs(value[0]).format(FORMAT_DATE_TIME) : '-';
     },
   },
 ];

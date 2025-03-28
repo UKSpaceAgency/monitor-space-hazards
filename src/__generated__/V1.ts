@@ -107,9 +107,9 @@ import {
   TypeSatelliteUpdateIn,
   TypeSatelliteWithMetadataOut,
   TypeSatellitesCountByOrganizationOut,
+  TypeStatisticsConjunctionEventsByObjectTypeMonthlyCount,
   TypeStatisticsConjunctionEventsCount,
   TypeStatisticsConjunctionEventsMonthlyCount,
-  TypeStatisticsEventsByObjectTypeMonthlyCount,
   TypeStatisticsEventsByOrganization,
   TypeStatisticsEventsBySatellite,
   TypeStatisticsEventsType,
@@ -119,6 +119,7 @@ import {
   TypeStatisticsNotificationsSent,
   TypeStatisticsReentryEventReportsCount,
   TypeStatisticsReentryEventsAndAlertsMonthlyCount,
+  TypeStatisticsReentryEventsByObjectTypeMonthlyCount,
   TypeStatisticsReentryEventsCount,
   TypeStatisticsSatelliteTracked,
   TypeTIPOut,
@@ -1261,7 +1262,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Allows updates to satellite information. Internal database satellite ID is required to do so. Used by internal worker process to update Satellite data based on Space-Track. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|Update within Organisation| |Satellite operator admin|Update within Organisation| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Update| |Agency approver|Update| |Agency superuser|Update|
+   * @description ## Description Updates satellite organization bindings. Internal database satellite ID is required to do so. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Update|
    *
    * @tags satellites
    * @name PatchSatellitesSatelliteId
@@ -1558,7 +1559,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
     query?: TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams,
     params: RequestParams = {},
   ) =>
-    this.request<TypeStatisticsEventsByObjectTypeMonthlyCount[], void | TypeHTTPValidationError>({
+    this.request<TypeStatisticsConjunctionEventsByObjectTypeMonthlyCount[], void | TypeHTTPValidationError>({
       path: `/v1/stats/monthly/conjunction-events-by-object-type`,
       method: "GET",
       query: query,
@@ -1612,7 +1613,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
     query?: TypeGetStatsMonthlyReentryEventsByObjectTypeParams,
     params: RequestParams = {},
   ) =>
-    this.request<TypeStatisticsEventsByObjectTypeMonthlyCount[], void | TypeHTTPValidationError>({
+    this.request<TypeStatisticsReentryEventsByObjectTypeMonthlyCount[], void | TypeHTTPValidationError>({
       path: `/v1/stats/monthly/reentry-events-by-object-type`,
       method: "GET",
       query: query,

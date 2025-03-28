@@ -1609,8 +1609,17 @@ export interface TypeReentryEventOut {
   tipExternalId: string;
   /** Reentryreportnumber */
   reentryReportNumber?: number | null;
-  /** Probability */
-  probability?: number | null;
+  /** Montecarloprobability */
+  monteCarloProbability?: number | null;
+  monteCarloRisk?: TypeReentryRisk | null;
+  /** Fragmentsprobability */
+  fragmentsProbability?: number | null;
+  fragmentsRisk?: TypeReentryRisk | null;
+  /** Fragmentsnumber */
+  fragmentsNumber?: number | null;
+  /** Humancasualtyprobability */
+  humanCasualtyProbability?: number | null;
+  humanCasualtyRisk?: TypeReentryRisk | null;
   /** Overflighttime */
   overflightTime: string[];
   survivability?: TypeReentrySurvivability | null;
@@ -1723,8 +1732,17 @@ export interface TypeReentryEventReportOut {
    * @format date-time
    */
   reportTime: string;
-  /** Probability */
-  probability: number;
+  /** Montecarloprobability */
+  monteCarloProbability: number;
+  monteCarloRisk?: TypeReentryRisk | null;
+  /** Fragmentsprobability */
+  fragmentsProbability?: number | null;
+  fragmentsRisk?: TypeReentryRisk | null;
+  /** Fragmentsnumber */
+  fragmentsNumber?: number | null;
+  /** Humancasualtyprobability */
+  humanCasualtyProbability?: number | null;
+  humanCasualtyRisk?: TypeReentryRisk | null;
   survivability: TypeReentrySurvivability;
   /** Survivabilitycomment */
   survivabilityComment?: string | null;
@@ -1776,7 +1794,7 @@ export type TypeReentryEventSortBy =
   | "license_country"
   | "norad_id"
   | "object_name"
-  | "probability"
+  | "monte_carlo_probability"
   | "short_id"
   | "survivability"
   | "time_window_end"
@@ -1791,6 +1809,9 @@ export type TypeReentryInterest = "low" | "high";
 
 /** ReentryReportSortBy */
 export type TypeReentryReportSortBy = "created_at" | "tip_external_id" | "report_number" | "updated_at";
+
+/** ReentryRisk */
+export type TypeReentryRisk = "Low" | "Medium" | "High";
 
 /** ReentrySurvivability */
 export type TypeReentrySurvivability = "Highly likely" | "Likely" | "Unlikely" | "Highly unlikely";
@@ -1911,50 +1932,8 @@ export interface TypeSatelliteOut {
 
 /** SatelliteUpdateIn */
 export interface TypeSatelliteUpdateIn {
-  /** Common Name */
-  common_name?: string | null;
-  /** Norad Id */
-  norad_id?: string | null;
-  /** International Designator */
-  international_designator?: string | null;
-  /** Object Type */
-  object_type?: string | null;
-  /** License Country */
-  license_country?: string | null;
-  /** Launch Date */
-  launch_date?: string | null;
-  /** Apogee */
-  apogee?: string | null;
-  /** Perigee */
-  perigee?: string | null;
-  /** Inclination */
-  inclination?: number | null;
-  /** Period */
-  period?: number | null;
   /** Organization Id */
   organization_id?: string | null;
-  /** Esa Discos Id */
-  esa_discos_id?: string | null;
-  /** Mass */
-  mass?: number | null;
-  /** Height */
-  height?: number | null;
-  /** Depth */
-  depth?: number | null;
-  /** Width */
-  width?: number | null;
-  /** Diameter */
-  diameter?: number | null;
-  /** Span */
-  span?: number | null;
-  /** Cross Section Min */
-  cross_section_min?: number | null;
-  /** Cross Section Avg */
-  cross_section_avg?: number | null;
-  /** Cross Section Max */
-  cross_section_max?: number | null;
-  /** Shape */
-  shape?: string | null;
 }
 
 /** SatelliteWithMetadataOut */
@@ -2046,6 +2025,16 @@ export type TypeSatellitesSortBy = "norad_id" | "common_name" | "international_d
 /** SortOrder */
 export type TypeSortOrder = "asc" | "desc";
 
+/** StatisticsConjunctionEventsByObjectTypeMonthlyCount */
+export interface TypeStatisticsConjunctionEventsByObjectTypeMonthlyCount {
+  /** Eventtype */
+  eventType?: string | null;
+  /** Month */
+  month?: string | null;
+  /** Count */
+  count: number;
+}
+
 /** StatisticsConjunctionEventsCount */
 export interface TypeStatisticsConjunctionEventsCount {
   /** Count */
@@ -2056,16 +2045,6 @@ export interface TypeStatisticsConjunctionEventsCount {
 export interface TypeStatisticsConjunctionEventsMonthlyCount {
   /** Collisionprobabilityrange */
   collisionProbabilityRange: string;
-  /** Month */
-  month?: string | null;
-  /** Count */
-  count: number;
-}
-
-/** StatisticsEventsByObjectTypeMonthlyCount */
-export interface TypeStatisticsEventsByObjectTypeMonthlyCount {
-  /** Objecttype */
-  objectType: string;
   /** Month */
   month?: string | null;
   /** Count */
@@ -2156,6 +2135,16 @@ export interface TypeStatisticsReentryEventsAndAlertsMonthlyCount {
   count: number;
   /** Alertcount */
   alertCount: number;
+}
+
+/** StatisticsReentryEventsByObjectTypeMonthlyCount */
+export interface TypeStatisticsReentryEventsByObjectTypeMonthlyCount {
+  /** Objecttype */
+  objectType?: string | null;
+  /** Month */
+  month?: string | null;
+  /** Count */
+  count: number;
 }
 
 /** StatisticsReentryEventsCount */
@@ -2334,7 +2323,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2025-02-20T15:39:52.165917"
+   * @default "2025-03-20T08:32:15.712658"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3350,7 +3339,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2025-03-01"
+   * @default "2025-04-01"
    */
   end_date?: string;
 }
@@ -3365,7 +3354,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2025-03-01"
+   * @default "2025-04-01"
    */
   end_date?: string;
 }
@@ -3380,7 +3369,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-03-01"
+   * @default "2025-04-01"
    */
   end_date?: string;
 }
@@ -3395,7 +3384,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-03-01"
+   * @default "2025-04-01"
    */
   end_date?: string;
 }
@@ -3410,7 +3399,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-03-01"
+   * @default "2025-04-01"
    */
   end_date?: string;
 }
@@ -3425,7 +3414,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2025-03-01"
+   * @default "2025-04-01"
    */
   end_date?: string;
 }
