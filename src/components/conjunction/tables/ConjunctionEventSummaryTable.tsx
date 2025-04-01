@@ -6,7 +6,7 @@ import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import Tag from '@/ui/tag/tag';
-import { displayExponential, getAbsoluteValue } from '@/utils/Math';
+import { displayExponential, getAbsoluteValue, rounded } from '@/utils/Math';
 
 type ConjunctionEventSummaryTableInformations = Pick<
   TypeEventSummaryOut,
@@ -70,9 +70,11 @@ const ConjunctionEventSummaryTableInformationsTable = ({ data }: ConjunctionEven
   }, {
     header: t('summary_list.primary_object_size'),
     accessorKey: 'primaryObjectSize',
+    renderCell: row => row.primaryObjectSize ? rounded(row.primaryObjectSize) : '-',
   }, {
     header: t('summary_list.secondary_object_size'),
     accessorKey: 'secondaryObjectSize',
+    renderCell: row => row.secondaryObjectSize ? rounded(row.secondaryObjectSize) : '-',
   }];
 
   return <InformationsTable headers={eventDetailsHeaders} rows={baseInformations} data={data} headerCellWidth="sm" />;
