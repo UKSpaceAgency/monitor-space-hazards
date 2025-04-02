@@ -1,3 +1,10 @@
+export const rounded = (value: number, decimalPlaces: number = 3) => {
+  return value.toLocaleString('en-US', {
+    maximumFractionDigits: decimalPlaces,
+    minimumFractionDigits: 0,
+  });
+};
+
 export const roundedPercent = (value: number, decimalPlaces: number = 3) => {
   return `${(value * 100).toFixed(decimalPlaces)}%`;
 };
