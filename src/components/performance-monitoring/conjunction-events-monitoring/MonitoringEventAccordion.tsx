@@ -15,6 +15,7 @@ const MonitoringEventAccordion = async () => {
       <h2 className="govuk-heading-l" id="conjunctionAccordionTitle">{t('title')}</h2>
       <Accordion
         id="conjunction-event-accordion"
+        dynamic
         initialItems={[
           {
             id: 'conjunctionEventsByType',
