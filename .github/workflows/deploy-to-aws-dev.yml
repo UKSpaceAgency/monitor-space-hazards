@@ -49,6 +49,7 @@ jobs:
             cosmic-slug=${{ secrets.COSMIC_BUCKET_SLUG }}
             cosmic-key=${{ secrets.COSMIC_READ_KEY }}
             mapbox-token=${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }}
+            public-ga=${{ secrets.NEXT_PUBLIC_PUBLIC_GA }}
           tags: |
             ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
             ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
