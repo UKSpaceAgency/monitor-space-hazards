@@ -97,7 +97,6 @@ export function BaseChart({
     () => getReferenceLine({ referenceLineTitle, referenceLineValue, isMobile }),
     [referenceLineValue, isMobile, referenceLineTitle],
   );
-
   useEffect(() => {
     if (chart.current) {
       defaults.font.size = isMobile ? 10 : 12;

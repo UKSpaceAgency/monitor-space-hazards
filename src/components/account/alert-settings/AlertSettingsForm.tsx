@@ -145,14 +145,12 @@ const AlertSettingsForm = ({ userId, defaultValues, selfEdit = true }: AlertSett
                   </Fieldset>
                   <AlertSettingsDetails type="conjunction" />
 
-                  {selfEdit && (
-                    <Option
-                      name="receiveConjunction"
-                      hint={t('select_one_option')}
-                      label={t('how_would_you_like_conjunction')}
-                      register={register}
-                    />
-                  )}
+                  <Option
+                    name="receiveConjunction"
+                    hint={t('select_one_option')}
+                    label={t('how_would_you_like_conjunction')}
+                    register={register}
+                  />
 
                   <Fieldset legend={{
                     text: t('re_entry_alerts'),
@@ -204,14 +202,12 @@ const AlertSettingsForm = ({ userId, defaultValues, selfEdit = true }: AlertSett
                     {t('notifications_for_re_entries')}
                   </p>
 
-                  {selfEdit && (
-                    <Option
-                      name="receiveReEntry"
-                      hint={t('select_one_option')}
-                      label={t('how_would_you_like_re_entry')}
-                      register={register}
-                    />
-                  )}
+                  <Option
+                    name="receiveReEntry"
+                    hint={t('select_one_option')}
+                    label={t('how_would_you_like_re_entry')}
+                    register={register}
+                  />
 
                   <div className="govuk-button-group">
                     <Button type="submit">

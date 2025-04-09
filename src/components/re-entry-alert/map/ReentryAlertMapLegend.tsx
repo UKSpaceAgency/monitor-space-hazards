@@ -30,7 +30,7 @@ const ReentryAlertMapLegend = () => {
   }, []);
 
   return (
-    <div className={clsx('absolute bottom-[60px] md:bottom-2 right-2 bg-white p-2', isFullScreen ? 'block' : 'hidden')}>
+    <div className={clsx('absolute bottom-[60px] md:bottom-2 right-2 bg-white p-2', isFullScreen ? 'block' : 'hidden')} data-pdf-ignore>
       <div className="flex flex-col gap-1">
         <h4 className="text-sm font-bold">Key</h4>
         <div className="flex items-center gap-2">

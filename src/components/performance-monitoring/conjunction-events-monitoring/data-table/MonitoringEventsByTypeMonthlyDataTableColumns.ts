@@ -16,14 +16,14 @@ export const eventsByTypeMonthlyColumns: TranslatedColumnDef<StatsMonthlyConjunc
     enableSorting: false,
   },
   {
-    accessorKey: 'SATELLITE',
-    id: 'SATELLITE',
+    accessorKey: 'ANOTHER_SATELLITE',
+    id: 'ANOTHER_SATELLITE',
     header: 'Performance_monitoring.conjunction_events_by_type_monthly.satellite',
     enableSorting: false,
   },
   {
-    accessorKey: 'ROCKET_BODY',
-    id: 'ROCKET_BODY',
+    accessorKey: 'WITH_UK_SATELLITES',
+    id: 'WITH_UK_SATELLITES',
     header: 'Performance_monitoring.conjunction_events_by_type_monthly.rocket_body',
     enableSorting: false,
   },
@@ -38,6 +38,6 @@ export const eventsByTypeMonthlyColumns: TranslatedColumnDef<StatsMonthlyConjunc
     id: 'TOTAL',
     header: 'Performance_monitoring.conjunction_events_by_type_monthly.total',
     enableSorting: false,
-    cell: ({ row }) => row.original.DEBRIS + row.original.SATELLITE + row.original.ROCKET_BODY + row.original.OTHER,
+    cell: ({ row }) => row.original.DEBRIS + row.original.ANOTHER_SATELLITE + row.original.WITH_UK_SATELLITES + row.original.OTHER,
   },
 ];

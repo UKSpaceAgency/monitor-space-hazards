@@ -107,9 +107,9 @@ import {
   TypeSatelliteUpdateIn,
   TypeSatelliteWithMetadataOut,
   TypeSatellitesCountByOrganizationOut,
+  TypeStatisticsConjunctionEventsByObjectTypeMonthlyCount,
   TypeStatisticsConjunctionEventsCount,
   TypeStatisticsConjunctionEventsMonthlyCount,
-  TypeStatisticsEventsByObjectTypeMonthlyCount,
   TypeStatisticsEventsByOrganization,
   TypeStatisticsEventsBySatellite,
   TypeStatisticsEventsType,
@@ -119,6 +119,7 @@ import {
   TypeStatisticsNotificationsSent,
   TypeStatisticsReentryEventReportsCount,
   TypeStatisticsReentryEventsAndAlertsMonthlyCount,
+  TypeStatisticsReentryEventsByObjectTypeMonthlyCount,
   TypeStatisticsReentryEventsCount,
   TypeStatisticsSatelliteTracked,
   TypeTIPOut,
@@ -1558,7 +1559,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
     query?: TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams,
     params: RequestParams = {},
   ) =>
-    this.request<TypeStatisticsEventsByObjectTypeMonthlyCount[], void | TypeHTTPValidationError>({
+    this.request<TypeStatisticsConjunctionEventsByObjectTypeMonthlyCount[], void | TypeHTTPValidationError>({
       path: `/v1/stats/monthly/conjunction-events-by-object-type`,
       method: "GET",
       query: query,
@@ -1612,7 +1613,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
     query?: TypeGetStatsMonthlyReentryEventsByObjectTypeParams,
     params: RequestParams = {},
   ) =>
-    this.request<TypeStatisticsEventsByObjectTypeMonthlyCount[], void | TypeHTTPValidationError>({
+    this.request<TypeStatisticsReentryEventsByObjectTypeMonthlyCount[], void | TypeHTTPValidationError>({
       path: `/v1/stats/monthly/reentry-events-by-object-type`,
       method: "GET",
       query: query,

@@ -2025,6 +2025,16 @@ export type TypeSatellitesSortBy = "norad_id" | "common_name" | "international_d
 /** SortOrder */
 export type TypeSortOrder = "asc" | "desc";
 
+/** StatisticsConjunctionEventsByObjectTypeMonthlyCount */
+export interface TypeStatisticsConjunctionEventsByObjectTypeMonthlyCount {
+  /** Eventtype */
+  eventType?: string | null;
+  /** Month */
+  month?: string | null;
+  /** Count */
+  count: number;
+}
+
 /** StatisticsConjunctionEventsCount */
 export interface TypeStatisticsConjunctionEventsCount {
   /** Count */
@@ -2035,16 +2045,6 @@ export interface TypeStatisticsConjunctionEventsCount {
 export interface TypeStatisticsConjunctionEventsMonthlyCount {
   /** Collisionprobabilityrange */
   collisionProbabilityRange: string;
-  /** Month */
-  month?: string | null;
-  /** Count */
-  count: number;
-}
-
-/** StatisticsEventsByObjectTypeMonthlyCount */
-export interface TypeStatisticsEventsByObjectTypeMonthlyCount {
-  /** Objecttype */
-  objectType: string;
   /** Month */
   month?: string | null;
   /** Count */
@@ -2135,6 +2135,16 @@ export interface TypeStatisticsReentryEventsAndAlertsMonthlyCount {
   count: number;
   /** Alertcount */
   alertCount: number;
+}
+
+/** StatisticsReentryEventsByObjectTypeMonthlyCount */
+export interface TypeStatisticsReentryEventsByObjectTypeMonthlyCount {
+  /** Objecttype */
+  objectType?: string | null;
+  /** Month */
+  month?: string | null;
+  /** Count */
+  count: number;
 }
 
 /** StatisticsReentryEventsCount */
@@ -2313,7 +2323,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2025-03-11T07:47:59.733189"
+   * @default "2025-03-20T08:32:15.712658"
    */
   updated_at?: string | null;
   /** Report Number */

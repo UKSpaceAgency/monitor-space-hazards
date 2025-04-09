@@ -16,6 +16,7 @@ const MonitoringAccordion = async () => {
       <h2 className="govuk-heading-l" id="performanceAccordionTitle">{t('title')}</h2>
       <Accordion
         id="performance-monitoring-accordion"
+        dynamic
         initialItems={[
           {
             id: 'cdmIngests',
@@ -35,7 +36,7 @@ const MonitoringAccordion = async () => {
           {
             id: 'notificationsSent',
             heading: t('notifications_sent.title'),
-            content: <NotificationsSent title={t('notifications_sent.title')} />,
+            content: <NotificationsSent />,
           },
           {
             id: 'uksa',

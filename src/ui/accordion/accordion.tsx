@@ -1,10 +1,13 @@
 'use client';
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
+
+import Spinner from '../spinner/spinner';
 
 type AccordionProps = {
   id: string;
+  dynamic?: boolean;
   initialItems: {
     id: string;
     heading: string;
@@ -14,7 +17,7 @@ type AccordionProps = {
   }[];
 };
 
-export function Accordion({ initialItems, id }: AccordionProps) {
+export function Accordion({ initialItems, id, dynamic = false }: AccordionProps) {
   const [isAllItemsExpanded, setAllItemsExpanded] = useState(false);
   const [items, setItems] = useState(initialItems);
 
@@ -123,7 +126,7 @@ export function Accordion({ initialItems, id }: AccordionProps) {
                 'content-visibility-hidden': !expanded,
               })}
             >
-              {content}
+              {dynamic ? expanded ? <Suspense fallback={<Spinner />}>{content}</Suspense> : null : content}
             </div>
           </div>
         ),

@@ -25,11 +25,13 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
   const t = await getTranslations('Reentry_alert');
   const event = await getReentryEvent(shortId);
   const reports = await getReentryReports({ shortId });
+  const title = t('title', { objectName: event.objectName });
+  const pdfTitle = t('pdf_title', { objectName: event.objectName, reportNumber: event.reentryReportNumber?.toString() });
 
   return (
     <div>
       <h1 className="govuk-heading-xl">
-        {t('title', { objectName: event.objectName })}
+        {title}
         <span className="block text-lg">{dayjs(event.decayEpoch).format(FORMAT_FULL_DATE)}</span>
       </h1>
       <div className="grid md:grid-cols-4 gap-7">
@@ -46,7 +48,7 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
           </Suspense>
           <ReentryAlertNextUpdate shortId={shortId} />
           <ReentryAlertAccordion event={event} reports={reports} searchParams={searchParams} />
-          {footer || <ReentryAlertButtons pdfTitle={t('title', { objectName: event.objectName })} />}
+          {footer || <ReentryAlertButtons pdfTitle={pdfTitle} />}
         </div>
       </div>
     </div>

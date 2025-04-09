@@ -22,9 +22,15 @@ const MonitoringEventsByTypeMonthly = async () => {
       },
       {
         label: t('satellite'),
-        data: data.map(({ SATELLITE }) => SATELLITE),
+        data: data.map(({ ANOTHER_SATELLITE }) => ANOTHER_SATELLITE),
         borderColor: chartPalette.orange,
         backgroundColor: chartPalette.orange,
+      },
+      {
+        label: t('rocket_body'),
+        data: data.map(({ WITH_UK_SATELLITES }) => WITH_UK_SATELLITES),
+        borderColor: chartPalette.lightPurple,
+        backgroundColor: chartPalette.lightPurple,
       },
       {
         label: t('other'),
@@ -32,19 +38,12 @@ const MonitoringEventsByTypeMonthly = async () => {
         borderColor: chartPalette.darkPink,
         backgroundColor: chartPalette.darkPink,
       },
-
-      {
-        label: t('rocket_body'),
-        data: data.map(({ ROCKET_BODY }) => ROCKET_BODY),
-        borderColor: chartPalette.lightPurple,
-        backgroundColor: chartPalette.lightPurple,
-      },
     ],
   };
 
   return (
     <>
-      <MonthlyBarChart data={datasets} stacked />
+      <MonthlyBarChart data={datasets} stacked yAxisTitle={t('y_axis_title')} />
       <Scrollable>
         <DataTable
           columns={eventsByTypeMonthlyColumns}

@@ -5,7 +5,7 @@ import type { ReactNode } from 'react';
 import type { TypeUniqueEventUpdateTextFieldsIn } from '@/__generated__/data-contracts';
 import { getConjunctionReports } from '@/actions/getConjunctionReports';
 import getConjunctionUniqueEvent from '@/actions/getConjunctionUniqueEvent';
-import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME, FORMAT_FULL_DATE } from '@/libs/Dayjs';
 
 import { ContentNavigation } from '../ContentNavigation';
 import { ConjunctionAlertAccordion } from './ConjunctionAlertAccordion';
@@ -24,6 +24,8 @@ const ConjunctionAlertPage = async ({ shortId, searchParams, footer }: Conjuncti
   const event = await getConjunctionUniqueEvent(shortId);
   const reports = await getConjunctionReports({ shortId });
   const lastReport = reports[reports.length - 1];
+  const title = t('title', { primaryObject: event.primaryObjectCommonName, secondaryObject: event.secondaryObjectCommonName });
+  const pdfTitle = t('pdf_title', { primaryObject: event.primaryObjectCommonName, secondaryObject: event.secondaryObjectCommonName, reportNumber: lastReport?.reportNumber ?? '' });
 
   if (!lastReport) {
     notFound();
@@ -32,7 +34,8 @@ const ConjunctionAlertPage = async ({ shortId, searchParams, footer }: Conjuncti
   return (
     <div>
       <h1 className="govuk-heading-xl">
-        {t('title', { shortId })}
+        {title}
+        <span className="block text-lg">{dayjs(event.tca).format(FORMAT_FULL_DATE)}</span>
       </h1>
       <div className="grid md:grid-cols-4 gap-7">
         <ContentNavigation />
@@ -41,7 +44,7 @@ const ConjunctionAlertPage = async ({ shortId, searchParams, footer }: Conjuncti
           <ConjunctionAlertExecutiveSummary event={event} report={lastReport} execSummaryAddition={searchParams?.exec_summary_addition ?? event.execSummaryAddition} manoeuvreAddition={searchParams?.manoeuvre_addition ?? event.manoeuvreAddition} />
           <ConjunctionAlertNextUpdate shortId={shortId} />
           <ConjunctionAlertAccordion event={event} report={lastReport} reports={reports} searchParams={searchParams} />
-          {footer || <ConjunctionAlertPageButtons pdfTitle={t('title', { shortId })} />}
+          {footer || <ConjunctionAlertPageButtons pdfTitle={pdfTitle} />}
         </div>
       </div>
     </div>

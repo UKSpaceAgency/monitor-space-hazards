@@ -12,6 +12,7 @@ const MonitoringServiceUsageAccordion = async () => {
       <h2 className="govuk-heading-l" id="serviceUsageAccordionTitle">{t('title')}</h2>
       <Accordion
         id="service-usage-accordion"
+        dynamic
         initialItems={[
           {
             id: 'organisationsAndUsers',

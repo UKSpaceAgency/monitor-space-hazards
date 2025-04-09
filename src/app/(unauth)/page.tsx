@@ -32,9 +32,7 @@ export default function IndexPage() {
       <form
         action={async () => {
           'use server';
-          await signIn('auth0', {
-            redirectTo: '/home',
-          });
+          await signIn('auth0');
         }}
       >
         <Button type="submit" isStartButton>{t('existing_users.button')}</Button>
