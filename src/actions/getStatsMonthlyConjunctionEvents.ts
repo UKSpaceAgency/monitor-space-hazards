@@ -35,7 +35,7 @@ export async function getStatsMonthlyConjunctionEvents({ months }: StatsMonthlyC
       const medium = events.find(event => event.collisionProbabilityRange === '1e-3 .. 1e-5')?.count ?? 0;
       const low = events.find(event => event.collisionProbabilityRange === '< 1e-5')?.count ?? 0;
       return {
-        month,
+        month: dayjs(month).format('MM/YYYY'),
         high,
         medium,
         low,

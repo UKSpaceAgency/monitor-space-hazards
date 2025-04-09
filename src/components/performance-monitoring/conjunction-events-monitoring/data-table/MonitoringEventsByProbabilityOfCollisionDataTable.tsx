@@ -1,7 +1,5 @@
 'use client';
 
-import { sortBy } from 'lodash';
-
 import type { StatsMonthlyConjunctionEvent } from '@/actions/getStatsMonthlyConjunctionEvents';
 import { DataTable } from '@/components/DataTable';
 
@@ -12,11 +10,10 @@ type MonitoringEventsByProbabilityOfCollisionDataTableProps = {
 };
 
 const MonitoringEventsByProbabilityOfCollisionDataTable = ({ data }: MonitoringEventsByProbabilityOfCollisionDataTableProps) => {
-  const sortedData = sortBy(data, 'month').reverse();
   return (
     <DataTable
       columns={eventsByProbabilityOfCollisionColumns}
-      data={sortedData}
+      data={[...data].reverse()}
     />
   );
 };
