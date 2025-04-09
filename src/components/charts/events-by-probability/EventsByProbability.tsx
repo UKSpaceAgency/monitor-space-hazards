@@ -23,8 +23,8 @@ export function EventsByProbabilityOfCollisionChart({
       {
         label: t('low'),
         data: data.map(({ low }) => low ?? 0),
-        borderColor: chartPalette.brightBlue,
-        backgroundColor: chartPalette.brightBlue,
+        borderColor: chartPalette.darkBlue,
+        backgroundColor: chartPalette.darkBlue,
       },
       {
         label: t('medium'),
@@ -35,8 +35,8 @@ export function EventsByProbabilityOfCollisionChart({
       {
         label: t('high'),
         data: data.map(({ high }) => high ?? 0),
-        borderColor: chartPalette.darkBlue,
-        backgroundColor: chartPalette.darkBlue,
+        borderColor: chartPalette.brightBlue,
+        backgroundColor: chartPalette.brightBlue,
       },
     ],
   };

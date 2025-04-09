@@ -72,6 +72,10 @@ const OrganisationsAndUsersChart = ({ data }: OrganisationsAndUsersProps) => {
       name="organisations-and-users-chart"
       actionButtons={actionButtons}
       yAxisTitle={t('y_axis_title')}
+      showLegend
+      legend={{
+        title: t('legend_title'),
+      }}
     />
   );
 };

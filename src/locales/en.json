@@ -453,7 +453,7 @@
       "last_7d": "Last 7d",
       "last_1_month": "Last 1 month",
       "last_6_months": "Last 6 months",
-      "data_range": "Date range",
+      "data_range": "Data range",
       "total_events": "Total events across all organisations",
       "event_type": "Event type",
       "details": {
@@ -480,20 +480,20 @@
       "data_range": "Data range",
       "12_months": "12 months",
       "all_time": "All time",
-      "low": "PoC <1e-5",
-      "medium": "1e-5 < PoC < 1e-3",
-      "high": "PoC > 1e-3",
-      "legend_title": "Number of events with",
+      "low": "<1e-5",
+      "medium": "<1e-3 and >1e-5",
+      "high": ">1e-3",
+      "legend_title": "Probability of collision",
       "y_axis_title": "Number of events"
     },
     "Organisations_and_users": {
       "data_range": "Data range",
       "12_months": "12 months",
       "all_time": "All time",
-      "y_axis_title": "Number received",
+      "y_axis_title": "Number of accounts",
       "organisations": "Organisations",
       "users": "Users accounts",
-      "legend_title": "Number of events with"
+      "legend_title": "Account type"
     },
     "Monthly_analyses": {
       "y_axis_title": "Number received",
@@ -502,6 +502,7 @@
     },
     "Monthly_conjunction_events": {
       "y_axis_title": "Number of events",
+      "legend_title": "Events type",
       "debris": "Events with debris",
       "satellite": "Events with another satellite",
       "rocket_body": "Events with two UK-licensed satellites",
