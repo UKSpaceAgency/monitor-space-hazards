@@ -47,6 +47,7 @@ export function EventsByProbabilityOfCollisionChart({
       actionButtons={actionButtons}
       showTotal={false}
       showLegend
+      yAxisTitle={t('y_axis_title')}
       legend={{ title: t('legend_title') }}
     />
   );

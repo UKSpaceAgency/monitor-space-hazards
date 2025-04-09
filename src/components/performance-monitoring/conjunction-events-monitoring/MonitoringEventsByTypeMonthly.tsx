@@ -43,7 +43,7 @@ const MonitoringEventsByTypeMonthly = async () => {
 
   return (
     <>
-      <MonthlyBarChart data={datasets} stacked />
+      <MonthlyBarChart data={datasets} stacked yAxisTitle={t('y_axis_title')} />
       <Scrollable>
         <DataTable
           columns={eventsByTypeMonthlyColumns}

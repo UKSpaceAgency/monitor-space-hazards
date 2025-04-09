@@ -483,15 +483,17 @@
       "low": "PoC <1e-5",
       "medium": "1e-5 < PoC < 1e-3",
       "high": "PoC > 1e-3",
-      "legend_title": "Number of events with"
+      "legend_title": "Number of events with",
+      "y_axis_title": "Number of events"
     },
     "Organisations_and_users": {
       "data_range": "Data range",
       "12_months": "12 months",
       "all_time": "All time",
-      "y_axis_title": "Number of organisations and users",
+      "y_axis_title": "Number received",
       "organisations": "Organisations",
-      "users": "Users accounts"
+      "users": "Users accounts",
+      "legend_title": "Number of events with"
     },
     "Monthly_analyses": {
       "y_axis_title": "Number received",
@@ -499,6 +501,7 @@
       "manoeuvre_support_plots": "Manoeuvre Support Plots Received"
     },
     "Monthly_conjunction_events": {
+      "y_axis_title": "Number of events",
       "debris": "Events with debris",
       "satellite": "Events with another satellite",
       "rocket_body": "Events with two UK-licensed satellites",
@@ -1296,6 +1299,7 @@
         "conjunction_events": "Conjunctions events",
         "low": "<1e-5",
         "medium": "<1e-3 and >1e-5",
+        "high": ">1e-3",
         "this_table": "this table"
       },
       "conjunction_events_by_satellite": {
