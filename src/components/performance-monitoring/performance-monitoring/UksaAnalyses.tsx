@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import type { TypeGetExternalDataPerformanceParams } from '@/__generated__/data-contracts';
 import { getExternalDataPerformance } from '@/actions/getExternalDataPerformance';
 import { getStatsAnalysisAndManoeuvreSupport } from '@/actions/getStatsAnalysisAndManoeuvreSupport';
+import { getStatsMonthlyAnalyses } from '@/actions/getStatsMonthlyAnalyses';
 import { DownloadData } from '@/components/DownloadData';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import Details from '@/ui/details/details';
@@ -37,6 +38,10 @@ const UksaAnalyses = async () => {
       </Details>
       <h3 className="govuk-heading-s">{t('monthly_title')}</h3>
       <UksaAnalysesMonthly />
+      <DownloadData type={t('monthly_title')} params={{}} downloadAction={getStatsMonthlyAnalyses} />
+      <Details summary={t('monthly_details.title')}>
+        {t('monthly_details.content')}
+      </Details>
     </>
   );
 };

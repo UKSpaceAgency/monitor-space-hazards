@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import Accordion from '@/ui/accordion/accordion';
 
 import { MonitoringEventsByOrganisation } from './MonitoringEventsByOrganisation';
+import { MonitoringEventsByProbabilityOfCollision } from './MonitoringEventsByProbabilityOfCollision';
 import { MonitoringEventsBySatellite } from './MonitoringEventsBySatellite';
 import { MonitoringEventsByType } from './MonitoringEventsByType';
 import { MonitoringObjectsCatalogued } from './MonitoringObjectsCatalogued';
@@ -21,6 +22,11 @@ const MonitoringEventAccordion = async () => {
             id: 'conjunctionEventsByType',
             heading: t('conjunction_event_by_type.title'),
             content: <MonitoringEventsByType />,
+          },
+          {
+            id: 'conjunctionEventsByProbablityOfColliision',
+            heading: t('conjunction_events_by_probability_of_collision.title'),
+            content: <MonitoringEventsByProbabilityOfCollision />,
           },
           {
             id: 'objectsCatalogued',

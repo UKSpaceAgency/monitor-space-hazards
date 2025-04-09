@@ -29,7 +29,7 @@ type AddNewUserFormProps = {
 
 const AddNewUserForm = ({ defaultValues, organizations, role }: AddNewUserFormProps) => {
   const t = useTranslations('Forms.Add_new_user');
-  const [createdUser, setCreatedUser] = useState<{ user_id: string; organization_id: string } | null>(null);
+  const [createdUser, setCreatedUser] = useState<{ user_id: string; organization_id: string; role: TypeUserRole } | null>(null);
 
   const { register, handleSubmit, setError, reset, formState: { isSubmitting, isSubmitSuccessful, errors } } = useForm<AddNewUserSchema>({
     defaultValues,
@@ -41,6 +41,7 @@ const AddNewUserForm = ({ defaultValues, organizations, role }: AddNewUserFormPr
       setCreatedUser({
         user_id: success.user_id,
         organization_id: data.organization_id,
+        role: data.role,
       });
       reset();
     }
@@ -67,13 +68,13 @@ const AddNewUserForm = ({ defaultValues, organizations, role }: AddNewUserFormPr
                 organisation: organizations.find(({ id }) => id === createdUser?.organization_id)?.name,
               }) }
             </RichText>
-            {(isGovUser(role) || isAgencyUser(role)) && (
+            {(isGovUser(createdUser.role) || isAgencyUser(createdUser.role)) && (
               <RichText>
                 {tags => t.rich('success_message_only_admins', tags) }
               </RichText>
             ) }
             <ButtonGroup>
-              {(isGovUser(role) || isAgencyUser(role))
+              {(isGovUser(createdUser.role) || isAgencyUser(createdUser.role))
               && (
                 <Link
                   href={`/account/alert-settings/${createdUser?.user_id}`}
