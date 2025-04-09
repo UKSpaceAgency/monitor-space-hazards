@@ -863,7 +863,7 @@
         "daily_title": "Help with this table",
         "daily_details": {
           "title": "Help with this table",
-          "content": "This tables shows the number of analyses and manoeuvre support plots uploaded by a UKSA orbital analyst."
+          "content": "This table shows the number of analyses and manoeuvre support plots uploaded by a UKSA orbital analyst."
         },
         "monthly_title": "Monthly count of analyses and manoeuvre support plots",
         "monthly_details": {
@@ -910,7 +910,7 @@
         "this_table": "this table",
         "details": {
           "title": "Help with this table",
-          "content": "This table shows the number of conjunction events between different object types per month."
+          "content": "This table shows the total number and probability of conjunction events per month."
         }
       },
       "objects_catalogued": {
@@ -1338,9 +1338,9 @@
       },
       "conjunction_events_by_probability_of_collision_monthly": {
         "month": "Month",
-        "low": "Probability of collision < 1e-5",
-        "medium": "1e-5 < Probability of collision < 1e-3",
-        "high": "Probability of collision > 1e-3",
+        "low": "<1e-5",
+        "medium": "<1e-3 and >1e-5",
+        "high": ">1e-3",
         "total": "Total"
       }
     }
