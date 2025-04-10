@@ -453,7 +453,7 @@
       "last_7d": "Last 7d",
       "last_1_month": "Last 1 month",
       "last_6_months": "Last 6 months",
-      "data_range": "Date range",
+      "data_range": "Data range",
       "total_events": "Total events across all organisations",
       "event_type": "Event type",
       "details": {
@@ -475,13 +475,25 @@
       "last_6_months": "Last 6 months",
       "all_organisations": "All organisations"
     },
+    "Events_by_probability_of_collision": {
+      "description": "Total number of conjunction events monitored between different probability of collision (PoC) thresholds by month.",
+      "data_range": "Data range",
+      "12_months": "12 months",
+      "all_time": "All time",
+      "low": "<1e-5",
+      "medium": "<1e-3 and >1e-5",
+      "high": ">1e-3",
+      "legend_title": "Probability of collision",
+      "y_axis_title": "Number of events"
+    },
     "Organisations_and_users": {
       "data_range": "Data range",
       "12_months": "12 months",
       "all_time": "All time",
-      "y_axis_title": "Number of organisations and users",
+      "y_axis_title": "Number of accounts",
       "organisations": "Organisations",
-      "users": "Users accounts"
+      "users": "Users accounts",
+      "legend_title": "Account type"
     },
     "Monthly_analyses": {
       "y_axis_title": "Number received",
@@ -489,6 +501,8 @@
       "manoeuvre_support_plots": "Manoeuvre Support Plots Received"
     },
     "Monthly_conjunction_events": {
+      "y_axis_title": "Number of events",
+      "legend_title": "Events type",
       "debris": "Events with debris",
       "satellite": "Events with another satellite",
       "rocket_body": "Events with two UK-licensed satellites",
@@ -820,7 +834,11 @@
         "title": "TIP ingests",
         "unknown": "Unknown",
         "x_axis_title": "Number of TIPs ingested",
-        "legend": "Tracking and Impact Prediction (TIP) source"
+        "legend": "Tracking and Impact Prediction (TIP) source",
+        "details": {
+          "title": "Help with this table",
+          "content": "<p>This table shows performance monitoring information for the external sources of TIPs that Monitor Space Hazards ingests.</p><list><item>Ingestion start and stop show the time the data ingest started and finished</item><item>Number of items fetched shows how many items were retrieved</item></list>"
+        }
       },
       "object_data_ingests": {
         "title": "Object data ingests",
@@ -833,7 +851,11 @@
         }
       },
       "notifications_sent": {
-        "title": "Notifications sent"
+        "title": "Notifications sent",
+        "details": {
+          "title": "Help with this table",
+          "content": "<p>This table shows performance monitoring information for the external sources of TIPs that Monitor Space Hazards ingests.</p><list><item>Ingestion start and stop show the time the data ingest started and finished</item><item>Number of items fetched shows how many items were retrieved</item></list>"
+        }
       },
       "uksa": {
         "title": "UKSA conjunction event analysis and manoeuvre support",
@@ -841,9 +863,13 @@
         "daily_title": "Help with this table",
         "daily_details": {
           "title": "Help with this table",
-          "content": "This tables shows the number of analyses and manoeuvre support plots uploaded by a UKSA orbital analyst."
+          "content": "This table shows the number of analyses and manoeuvre support plots uploaded by a UKSA orbital analyst."
         },
-        "monthly_title": "Monthly count of analyses and manoeuvre support plots"
+        "monthly_title": "Monthly count of analyses and manoeuvre support plots",
+        "monthly_details": {
+          "title": "Help with this table",
+          "content": "This table shows the number of analyses and manoeuvre support plots uploaded by a UKSA orbital analyst per month."
+        }
       }
     },
     "service_usage_accordion": {
@@ -876,6 +902,15 @@
         "monthly_details": {
           "title": "Help with this table",
           "content": "This table shows the number of conjunction events between different object types per month."
+        }
+      },
+      "conjunction_events_by_probability_of_collision": {
+        "title": "Conjunction events by probability of collision",
+        "probability_of_collision": "Probability of collision",
+        "this_table": "this table",
+        "details": {
+          "title": "Help with this table",
+          "content": "This table shows the total number and probability of conjunction events per month."
         }
       },
       "objects_catalogued": {
@@ -1300,6 +1335,13 @@
         "rocket_body": "Events with two UK-licensed satellites",
         "other": "Events with other objects (unknown/object type)",
         "total": "Total events"
+      },
+      "conjunction_events_by_probability_of_collision_monthly": {
+        "month": "Month",
+        "low": "<1e-5",
+        "medium": "<1e-3 and >1e-5",
+        "high": ">1e-3",
+        "total": "Total"
       }
     }
   },

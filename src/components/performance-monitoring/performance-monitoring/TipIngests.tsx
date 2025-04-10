@@ -6,6 +6,7 @@ import { getExternalDataPerformance } from '@/actions/getExternalDataPerformance
 import { DataPerformanceChart } from '@/components/charts/data-performance-chart/DataPerformanceChart';
 import { DownloadData } from '@/components/DownloadData';
 import { FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import Details from '@/ui/details/details';
 
 import { DataPerformanceDataTable } from './data-table/DataPerformanceDataTable';
 
@@ -31,6 +32,9 @@ const TipIngests = async () => {
       <DataPerformanceChart latestIngestDate={latestIngestDate} sourceType="Tracking and Impact Prediction" xAxisTitle={t('x_axis_title')} legend={t('legend')} />
       <DataPerformanceDataTable params={params} />
       <DownloadData type={t('title')} params={params} downloadAction={getExternalDataPerformance} />
+      <Details summary={t('details.title')}>
+        {t.rich('details.content')}
+      </Details>
     </>
   );
 };

@@ -35,7 +35,7 @@ export const ChartLegend = ({
 
   return (
     <div className="flex items-start justify-center gap-2 font-sans text-xs md:mx-2 md:text-base" data-pdf-ignore>
-      {title && <p className="m-0 p-1 font-bold">{title}</p>}
+      {title && <p className="m-0 p-1 font-bold text-nowrap">{title}</p>}
       <ul className="flex flex-wrap items-center m-0 p-0 gap-x-2 list-none justify-center">
         {items.map(({ label, backgroundColor, borderColor }, index) => (
           // eslint-disable-next-line react/no-array-index-key

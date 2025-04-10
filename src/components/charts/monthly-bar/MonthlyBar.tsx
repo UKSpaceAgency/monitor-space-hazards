@@ -12,9 +12,10 @@ type MonthlyAnalysesProps = {
   data: ChartData<'bar'>;
   yAxisTitle?: string;
   stacked?: boolean;
+  legend?: string;
 };
 
-const MonthlyBarChart = ({ data, yAxisTitle, stacked = false }: MonthlyAnalysesProps) => {
+const MonthlyBarChart = ({ data, yAxisTitle, stacked = false, legend }: MonthlyAnalysesProps) => {
   const t = useTranslations('Charts.Actions');
   const [showMonths, setShowMonths] = useState(12);
 
@@ -56,6 +57,9 @@ const MonthlyBarChart = ({ data, yAxisTitle, stacked = false }: MonthlyAnalysesP
       data={datasets}
       stacked={stacked}
       showLegend
+      legend={{
+        title: legend,
+      }}
     />
   );
 };
