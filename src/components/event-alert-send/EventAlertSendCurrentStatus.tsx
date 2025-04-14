@@ -18,7 +18,7 @@ type EventAlertSendCurrentStatusProps = {
 const EventAlertSendCurrentStatus = ({ type, detailsSummary, detailsContent, data }: EventAlertSendCurrentStatusProps) => {
   const t = useTranslations('Forms.Send_alert.Distribution_status');
 
-  const { isPriority, additionalRecipients } = data;
+  const { isPriority, isStandard, isUkSatellitesOnly, additionalRecipients } = data;
 
   return (
     <div>
@@ -41,7 +41,7 @@ const EventAlertSendCurrentStatus = ({ type, detailsSummary, detailsContent, dat
               {t('all_alerts', { type })}
             </TableCellHeader>
             <TableCell>
-              <Tag className="max-w-none">{t('sent_to_distribution_list')}</Tag>
+              {isStandard ? <Tag className="max-w-none">{t('sent_to_distribution_list')}</Tag> : <Tag color="grey" className="max-w-none">{t('not_sent to distribution list')}</Tag>}
             </TableCell>
           </TableRow>
           {type === 're-entry' && (
@@ -50,7 +50,7 @@ const EventAlertSendCurrentStatus = ({ type, detailsSummary, detailsContent, dat
                 {t('alert_for_uk', { type: capitalized(type) })}
               </TableCellHeader>
               <TableCell>
-                <Tag className="max-w-none">{t('sent_to_distribution_list')}</Tag>
+                {isUkSatellitesOnly ? <Tag className="max-w-none">{t('sent_to_distribution_list')}</Tag> : <Tag color="grey" className="max-w-none">{t('not_sent to distribution list')}</Tag>}
               </TableCell>
             </TableRow>
           )}

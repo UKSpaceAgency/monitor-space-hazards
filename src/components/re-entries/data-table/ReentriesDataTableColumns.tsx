@@ -51,8 +51,8 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
         },
       },
       {
-        id: 'probability',
-        accessorKey: 'probability',
+        id: 'monte_carlo_probability',
+        accessorKey: 'monteCarloProbability',
         header: 'Reentries.table.probability_of_reentry',
         cell: ({ getValue }) => {
           const value = getValue<number>();

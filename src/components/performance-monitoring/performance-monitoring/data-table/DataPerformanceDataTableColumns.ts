@@ -26,7 +26,7 @@ export const dataPerformanceColumns: TranslatedColumnDef<TypeExternalDataPerform
     cell: ({ getValue }) => {
       const date = getValue<Date>();
 
-      return dayjs(date).format(FORMAT_DATE_TIME);
+      return date ? dayjs(date).format(FORMAT_DATE_TIME) : '-';
     },
     enableSorting: false,
   },
@@ -37,7 +37,7 @@ export const dataPerformanceColumns: TranslatedColumnDef<TypeExternalDataPerform
     cell: ({ getValue }) => {
       const date = getValue<Date>();
 
-      return dayjs(date).format(FORMAT_DATE_TIME);
+      return date ? dayjs(date).format(FORMAT_DATE_TIME) : '-';
     },
     enableSorting: false,
   },

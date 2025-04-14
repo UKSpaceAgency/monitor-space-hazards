@@ -15,6 +15,8 @@ import type { EventAlertData, EventAlertType } from './EventAlertTypes';
 
 type FormData = {
   isPriority: boolean;
+  isStandard: boolean;
+  isUkSatellitesOnly: boolean;
   additionalRecipients: string;
   haveAdditionalRecipients: boolean;
 };
@@ -34,6 +36,8 @@ const EventAlertSendForm = ({ type, defaultValues }: EventAlertSendFormProps) =>
   const { handleSubmit, register, reset, watch } = useForm<FormData>({
     defaultValues: {
       isPriority: defaultValues.isPriority,
+      isStandard: defaultValues.isStandard,
+      isUkSatellitesOnly: defaultValues.isUkSatellitesOnly,
       additionalRecipients: defaultValues.additionalRecipients || '',
       haveAdditionalRecipients: !!defaultValues.additionalRecipients?.length,
     },
@@ -68,6 +72,10 @@ const EventAlertSendForm = ({ type, defaultValues }: EventAlertSendFormProps) =>
       <h3 className="govuk-heading-m">{t('Change_distribution.title')}</h3>
       <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
       <p className="govuk-body">{t('Change_distribution.hint')}</p>
+      <Checkbox {...register('isStandard')}>{t('Distribution_status.all_alerts', { type })}</Checkbox>
+      {type === 're-entry' && (
+        <Checkbox {...register('isUkSatellitesOnly')}>{t('Distribution_status.alert_for_uk', { type })}</Checkbox>
+      )}
       <Checkbox {...register('isPriority')}>{t('Distribution_status.priority_alert', { type })}</Checkbox>
       <Checkboxes items={[{
         ...register('haveAdditionalRecipients'),
