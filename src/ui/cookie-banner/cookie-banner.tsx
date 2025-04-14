@@ -39,6 +39,7 @@ export function CookieBanner(props: CookieBannerProps) {
               'govuk-width-container',
               className,
             )}
+            hidden={!visible}
             {...rest}
           >
             <div className="govuk-grid-row">
