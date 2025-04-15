@@ -1542,6 +1542,8 @@
         "title": "Review your alert before sending",
         "hint": "Ensure that all the appropriate individuals and government agencies have been selected before sending alerts. The button below will send alerts automatically.",
         "make_this_priority": "Make this a priority {type} alert:",
+        "make_this_standard": "Make this a standard {type} alert:",
+        "make_this_uk_satellites_only": "Make this a UK satellites only {type} alert:",
         "send_alerts_to_selected_users": "Send alerts to selected users:",
         "change": "Change",
         "send_alerts": "Send alerts",
