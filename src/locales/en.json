@@ -738,7 +738,7 @@
     "Executive_summary": {
       "title": "Executive summary",
       "content": "The UK Space Agency is tracking the upcoming re-entry of an object from space into the Earth's atmosphere, posing a potential risk to life and property on the ground. All re-entered debris should be considered as hazardous until proven otherwise.",
-      "risk_probabilities": "Risk probabilities",
+      "risk_probabilities": "UK risk probabilities",
       "event_summary": "Event summary"
     },
     "Map": {
@@ -1239,7 +1239,7 @@
       "risk": "Risk",
       "probability_of_atmospheric_entry": "Probability of atmospheric re-entry over the UK",
       "probability_of_fragmentation": "Probability of fragments on the ground in the UK",
-      "probability_of_human_casualty": "Probability of human casualty"
+      "probability_of_human_casualty": "Probability of human casualty in the UK"
     },
     "Reentry_alert_additional_object_details": {
       "object_details": "Object details",
