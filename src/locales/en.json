@@ -591,7 +591,7 @@
       "additional_risk": "Additional risk to UK objects",
       "operator_view": "Operator view",
       "conjunction_event_history": "Conjunction event history",
-      "alert_thresholds": "Alert thresholds",
+      "alert_thresholds": "Alerting procedure",
       "risk_thresholds": "Risk thresholds",
       "further_information": "Further information"
     },
@@ -645,7 +645,7 @@
       "content": "<p>The satellite operator of the UK-licensed object has been notified of the conjunction event via the Monitor space hazards platform. <link>Click to see the information that operators have received.</link></p>"
     },
     "Alert_thresholds": {
-      "content": "<p>There are various criteria which determine if alerts are produced about conjunction events. These criteria vary by type of object.</p><p><bold>For UK-licensed objects:</bold></p><p>Less than 5 days until Time of Closest Approach, with:</p><list><item>More than 0.1% probability of collision</item><item>OR press interest</item></list><p><bold>For non-UK objects:</bold></p><p>Less than 5 days until Time of Closest Approach, with:</p><list><item>Low risk or higher</item><item>AND no manoeuvre expected</item></list><p><bold>For all objects:</bold></p><p>If nominated for escalation by the National Space Operations Centre</p>"
+      "content": "<p><bold>Standard conjunction alert:</bold> If this report is classified as a standard conjunction alert, then it has been distributed only to key UK government organisations (UKSA, Ministry of Defence, Cabinet Office) and international partners.</p><p><bold>Priority conjunction alert:</bold> If this report is classified as a priority conjunction alert, then it has been distributed distributed more widely across UK devolved and central government department.</p>\n\n<p>There are various criteria which determine if alerts are produced about conjunction events. These criteria vary by type of object.</p><p><bold>For UK-licensed objects:</bold></p><p>Less than 5 days until Time of Closest Approach, with:</p><list><item>More than 0.1% probability of collision</item><item>OR press interest</item></list><p><bold>For non-UK objects:</bold></p><p>Less than 5 days until Time of Closest Approach, with:</p><list><item>Low risk or higher</item><item>AND no manoeuvre expected</item></list><p><bold>For all objects:</bold></p><p>If nominated for escalation by the National Space Operations Centre</p>"
     },
     "Risk_thresholds": {
       "content": "<p>Risk thresholds are calculated accounting for the probability of the collision between the two objects (as calculated by the US), and the average number of additional conjunction events that the collision would create for UK satellites.</p><p>Any event with an expected maneouvre is automatically categorised as `Low risk`.</p>",
@@ -734,7 +734,7 @@
     "Executive_summary": {
       "title": "Executive summary",
       "content": "The UK Space Agency is tracking the upcoming re-entry of an object from space into the Earth's atmosphere, posing a potential risk to life and property on the ground. All re-entered debris should be considered as hazardous until proven otherwise.",
-      "risk_probabilities": "Risk probabilities",
+      "risk_probabilities": "UK risk probabilities",
       "event_summary": "Event summary"
     },
     "Map": {
@@ -775,11 +775,11 @@
     "Alerting_procedure": {
       "standard_alert": {
         "title": "Standard re-entry alert",
-        "content": "<p>If this report is classified as a standard re-entry alert, then it has been distributed only to key UK government organisations (UK Space Agency, Ministry of Defence, Cabinet Office, Civil Aviation Authority) and international partners.</p><p><bold>The criteria for producing a standard re-entry alert is less than 36 hours until re-entry and one of the following:</bold></p><list><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories</item><item>Any UK-licensed object (except designed for demise)</item><item>Press interest</item><item>Nominated for escalation by the National Space Operations Centre</item></list>"
+        "content": "<p>If this report is classified as a standard re-entry alert, then it has been distributed only to key UK government organisations (UK Space Agency, Ministry of Defence, Cabinet Office, Civil Aviation Authority) and international partners.</p><p>The criteria for producing a standard re-entry alert is less than 36 hours until re-entry and one of the following:</p><list><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories</item><item>Any UK-licensed object (except designed for demise)</item><item>Press interest</item><item>Nominated for escalation by the National Space Operations Centre</item></list>"
       },
       "priority_alert": {
         "title": "Priority re-entry alert",
-        "content": "<p>If this report is classified as a priority re-entry alert, then it has been distributed more widely across UK devolved and central government departments.</p><p><bold>The criteria for producing a priority re-entry alert is debris likely to survive to the ground and one of the following:</bold></p><list><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis)</item><item>UK-licensed object</item><item>Significant press interest</item></list>"
+        "content": "<p>If this report is classified as a priority re-entry alert, then it has been distributed more widely across UK devolved and central government departments.</p><p>The criteria for producing a priority re-entry alert is debris likely to survive to the ground and one of the following:</p><list><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis)</item><item>UK-licensed object</item><item>Significant press interest</item></list>"
       }
     },
     "Further_information": {
@@ -1235,7 +1235,7 @@
       "risk": "Risk",
       "probability_of_atmospheric_entry": "Probability of atmospheric re-entry over the UK",
       "probability_of_fragmentation": "Probability of fragments on the ground in the UK",
-      "probability_of_human_casualty": "Probability of human casualty"
+      "probability_of_human_casualty": "Probability of human casualty in the UK"
     },
     "Reentry_alert_additional_object_details": {
       "object_details": "Object details",
