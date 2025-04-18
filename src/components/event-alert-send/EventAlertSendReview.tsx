@@ -30,9 +30,9 @@ const EventAlertSendReview = ({ type, shortId, data, action }: EventAlertSendRev
     setLoading(true);
 
     const alertType = [
-      data.isStandard ? 'standard' : null,
-      data.isUkSatellitesOnly ? 'uk_satellites_only' : null,
-      data.isPriority ? 'priority' : null,
+      data.isStandard === 'true' ? 'standard' : null,
+      data.isUkSatellitesOnly === 'true' ? 'uk_satellites_only' : null,
+      data.isPriority === 'true' ? 'priority' : null,
     ].filter(Boolean) as ('standard' | 'priority' | 'uk_satellites_only' | 'closedown')[];
 
     action(shortId, {
@@ -50,19 +50,19 @@ const EventAlertSendReview = ({ type, shortId, data, action }: EventAlertSendRev
         <TableBody>
           <TableRow>
             <TableCellHeader className="w-1/3">{t('make_this_standard', { type })}</TableCellHeader>
-            <TableCell>{data.isStandard}</TableCell>
+            <TableCell>{data.isStandard === 'true' ? 'Yes' : 'No'}</TableCell>
             <TableCell className="w-20 text-right"><Link className="govuk-link" href={prevPageUrl}>{t('change')}</Link></TableCell>
           </TableRow>
           {type === 're-entry' && (
             <TableRow>
               <TableCellHeader className="w-1/3">{t('make_this_uk_satellites_only', { type })}</TableCellHeader>
-              <TableCell>{data.isUkSatellitesOnly}</TableCell>
+              <TableCell>{data.isUkSatellitesOnly === 'true' ? 'Yes' : 'No'}</TableCell>
               <TableCell className="w-20 text-right"><Link className="govuk-link" href={prevPageUrl}>{t('change')}</Link></TableCell>
             </TableRow>
           )}
           <TableRow>
             <TableCellHeader className="w-1/3">{t('make_this_priority', { type })}</TableCellHeader>
-            <TableCell>{data.isPriority}</TableCell>
+            <TableCell>{data.isPriority === 'true' ? 'Yes' : 'No'}</TableCell>
             <TableCell className="w-20 text-right"><Link className="govuk-link" href={prevPageUrl}>{t('change')}</Link></TableCell>
           </TableRow>
           <TableRow>
