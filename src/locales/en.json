@@ -670,7 +670,7 @@
     }
   },
   "Conjunction_alert_edit": {
-    "title": "Edit conjunction event {shortId}",
+    "title": "Edit conjunction event for {primaryObject} vs {secondaryObject}",
     "content": "<p>If edits or additions are needed to the automatically generated report, these can be made through free text inputs in the boxes below. Once published, these edits will automatically be added to the relevant event page, and users on the appropriate distribution lists will be notified of the update.</p><p>The below boxes can only process <bold>plain text</bold>. Do not include images or text formatting.</p>",
     "review_description": "Free text edits to conjunction event {shortId}",
     "preview": {
@@ -1144,7 +1144,8 @@
       "object_type": "Object type",
       "mass": "Mass (kg)",
       "manoeuvrable": "Manoeuvrable?",
-      "norad_id": "NORAD ID"
+      "norad_id": "NORAD ID",
+      "object_mission": "Object mission"
     },
     "Conjunction_alert_additional_event_details": {
       "predicted_miss_distance": "Predicted miss distance (m)",

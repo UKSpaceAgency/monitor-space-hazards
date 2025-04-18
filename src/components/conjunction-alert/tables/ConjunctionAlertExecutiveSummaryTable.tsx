@@ -46,7 +46,7 @@ const ConjunctionAlertExecutiveSummaryTable = ({ report, manoeuvreAddition }: Co
     renderCell: ({ collisionProbability }) => collisionProbability ? roundedPercent(collisionProbability) : '-',
   }, {
     header: t('manoeuvre_expected'),
-    renderCell: () => manoeuvreAddition,
+    renderCell: () => manoeuvreAddition || '-',
   }, {
     header: t('primary_object'),
     renderCell: ({ primaryObjectCommonName, primaryObjectNoradId }) => (
@@ -75,6 +75,10 @@ const ConjunctionAlertExecutiveSummaryTable = ({ report, manoeuvreAddition }: Co
     cellProps: { className: 'indent-10' },
     accessorKey: 'primaryObjectNoradId',
   }, {
+    header: t('object_mission'),
+    cellProps: { className: 'indent-10' },
+    accessorKey: 'primaryObjectMission',
+  }, {
     header: t('secondary_object'),
     renderCell: ({ secondaryObjectCommonName, secondaryObjectNoradId }) => (
       <Link className="govuk-link" href={`/satellites/${secondaryObjectNoradId}`}>
@@ -101,6 +105,10 @@ const ConjunctionAlertExecutiveSummaryTable = ({ report, manoeuvreAddition }: Co
     header: t('norad_id'),
     cellProps: { className: 'indent-10' },
     accessorKey: 'secondaryObjectNoradId',
+  }, {
+    header: t('object_mission'),
+    cellProps: { className: 'indent-10' },
+    accessorKey: 'secondaryObjectMission',
   }];
 
   return <InformationsTable rows={rows} data={report} />;
