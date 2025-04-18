@@ -29,14 +29,7 @@ const ReentryAlertMapTooltip = ({ latitude, longitude, regions, overflight, type
   const distance = calcDistance(latitude, longitude, city.latitude, city.longitude);
 
   const color = useMemo(() => {
-    switch (type) {
-      case 'flightpath':
-        return FlightpathColor;
-      case 'overflight':
-        return OverflightColors[pass ? pass - 1 : 0];
-      default:
-        return OverflightColors[0];
-    }
+    return (type === 'flightpath') ? FlightpathColor : OverflightColors[pass ? pass - 1 : 0];
   }, [type, pass]);
 
   const icon = useMemo(() => {
