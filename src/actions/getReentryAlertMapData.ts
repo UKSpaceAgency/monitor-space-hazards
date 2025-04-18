@@ -89,6 +89,7 @@ export async function getReentryAlertMapData(presignedUrl: string) {
       }
     }
   }
+
   return {
     overflightTime: lastReport.overflight_time,
     flightpathCollection,

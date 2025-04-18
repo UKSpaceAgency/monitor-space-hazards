@@ -28,6 +28,8 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
   const title = t('title', { objectName: event.objectName });
   const pdfTitle = t('pdf_title', { objectName: event.objectName, reportNumber: event.reentryReportNumber?.toString() });
 
+  const lastReport = reports[reports.length - 1];
+
   return (
     <div>
       <h1 className="govuk-heading-xl">
@@ -42,8 +44,8 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
             <ReentryAlertExecutiveSummary event={event} previewSummary={searchParams?.exec_summary} />
           </Suspense>
           <Suspense fallback={<Spinner />}>
-            {reports[0]?.presignedUrl && (
-              <ReentryAlertMapContainer presignedUrl={reports[0].presignedUrl} />
+            {lastReport?.presignedUrl && (
+              <ReentryAlertMapContainer presignedUrl={lastReport.presignedUrl} />
             )}
           </Suspense>
           <ReentryAlertNextUpdate shortId={shortId} />

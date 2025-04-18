@@ -64,7 +64,7 @@ export const flightpathStyle = (visible: boolean): CircleLayerSpecification => (
   source: 'FLIGHTPATH',
   paint: {
     'circle-color': FlightpathColor,
-    'circle-opacity': 1,
+    'circle-opacity': 0.5,
     'circle-stroke-width': 1,
     'circle-stroke-color': '#ffffff',
     'circle-radius': {
