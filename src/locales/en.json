@@ -634,7 +634,8 @@
         "content": "<p>The UK Space Agency are the leads for conjunction reporting and have reached out to the operator to confirm they are aware of the event and that they intend to manoeuvre.</p>"
       },
       "press_attention": {
-        "title": "Press attention"
+        "title": "Press attention",
+        "empty": "We have not seen any press attention on this event."
       },
       "see_press_lines": "See <link>UK Space Agency press lines</link>."
     },
