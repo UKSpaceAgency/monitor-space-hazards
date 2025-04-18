@@ -16,22 +16,30 @@ const ReentryAlertRiskThresholds = ({ dataPdf }: ReentryAlertRiskThresholdsProps
       <Table className="text-base">
         <TableHead>
           <TableRow>
-            <TableCellHeader className="w-1/2">{t('risk_level')}</TableCellHeader>
-            <TableCellHeader>{t('probability_of_reentry')}</TableCellHeader>
+            <TableCellHeader className="w-28">{t('risk_level')}</TableCellHeader>
+            <TableCellHeader>{t('probability_of_atmospheric')}</TableCellHeader>
+            <TableCellHeader>{t('probability_of_ground')}</TableCellHeader>
+            <TableCellHeader>{t('probability_of_human_casualty')}</TableCellHeader>
           </TableRow>
         </TableHead>
         <TableBody>
           <TableRow>
             <TableCell><Tag color="green">Low</Tag></TableCell>
-            <TableCell>{t('risk.low')}</TableCell>
+            <TableCell>{t('risk.low', { value: 1 })}</TableCell>
+            <TableCell>{t('risk.low', { value: 2 })}</TableCell>
+            <TableCell>{t('risk.low', { value: 0.1 })}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell><Tag color="yellow">Medium</Tag></TableCell>
-            <TableCell>{t('risk.medium')}</TableCell>
+            <TableCell>{t('risk.medium', { from: 1, to: 5 })}</TableCell>
+            <TableCell>{t('risk.medium', { from: 2, to: 10 })}</TableCell>
+            <TableCell>{t('risk.medium', { from: 0.1, to: 1 })}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell><Tag color="red">High</Tag></TableCell>
-            <TableCell>{t('risk.high')}</TableCell>
+            <TableCell>{t('risk.high', { value: 5 })}</TableCell>
+            <TableCell>{t('risk.high', { value: 10 })}</TableCell>
+            <TableCell>{t('risk.high', { value: 1 })}</TableCell>
           </TableRow>
         </TableBody>
       </Table>

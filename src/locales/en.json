@@ -766,11 +766,13 @@
     "Risk_thresholds": {
       "content": "Risk thresholds are calculated according to the probability of the object re-entering over the UK.",
       "risk_level": "Risk level",
-      "probability_of_reentry": "Probability of re-entry over the UK (%)",
+      "probability_of_atmospheric": "Probability of atmospheric re-entry over the UK (%)",
+      "probability_of_ground": "Probability of fragments on the ground in the UK (%)",
+      "probability_of_human_casualty": "Probability of human casualty in the UK (%)",
       "risk": {
-        "low": "Less than 1%",
-        "medium": "1% - 5%",
-        "high": "More than 5%"
+        "low": "Less than {value}%",
+        "medium": "{from}% - {to}%",
+        "high": "More than {value}%"
       }
     },
     "Alerting_procedure": {
