@@ -141,7 +141,7 @@ export const getConjunctionEventsColumns = ({
         cell: ({ getValue }) => {
           const collisionProbability = getValue<number>();
           if (collisionProbability === undefined) {
-            return '';
+            return '-';
           }
 
           if (probabilityUnit === 'percentage') {
@@ -159,7 +159,7 @@ export const getConjunctionEventsColumns = ({
           const { collisionProbability } = value ?? {};
 
           if (collisionProbability === undefined) {
-            return '';
+            return '-';
           }
 
           if (probabilityUnit === 'percentage') {

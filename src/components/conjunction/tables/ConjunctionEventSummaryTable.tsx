@@ -40,7 +40,7 @@ const ConjunctionEventSummaryTableInformationsTable = ({ data }: ConjunctionEven
   }, {
     header: t('summary_list.probability_of_collision'),
     accessorKey: 'collisionProbability',
-    renderCell: row => displayExponential(row.collisionProbability, 4),
+    renderCell: row => displayExponential(row.collisionProbability, 4) ?? '-',
   }, {
     header: t('summary_list.probability_of_collision_calc_method'),
     accessorKey: 'collisionProbabilityMethod',
