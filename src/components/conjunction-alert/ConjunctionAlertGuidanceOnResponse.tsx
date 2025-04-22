@@ -17,8 +17,16 @@ const ConjunctionAlertGuidanceOnResponse = ({ ukResponseAddition, pressAttention
       {t.rich('uk_response.content')}
       {ukResponseAddition && <Markdown>{ukResponseAddition}</Markdown>}
       <h4 className="govuk-heading-m">{t('press_attention.title')}</h4>
-      {pressAttentionAddition ? <Markdown>{pressAttentionAddition}</Markdown> : <p className="govuk-body">{t('press_attention.empty')}</p>}
-      <p className="govuk-body">{t.rich('see_press_lines', { link: chunks => <Link className="govuk-link" href="/page/definitions">{chunks}</Link> })}</p>
+      {pressAttentionAddition
+        ? (
+            <>
+              <Markdown>{pressAttentionAddition}</Markdown>
+              <p className="govuk-body">{t.rich('see_press_lines', { link: chunks => <Link className="govuk-link" href="/page/definitions">{chunks}</Link> })}</p>
+            </>
+          )
+        : (
+            <p className="govuk-body">{t('press_attention.empty')}</p>
+          )}
     </div>
   );
 };
