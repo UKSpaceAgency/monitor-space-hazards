@@ -49,7 +49,7 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
             )}
           </Suspense>
           <ReentryAlertNextUpdate shortId={shortId} />
-          <ReentryAlertAccordion event={event} reports={reports} searchParams={searchParams} />
+          <ReentryAlertAccordion event={event} reports={reports} lastReport={lastReport} searchParams={searchParams} />
           {footer || <ReentryAlertButtons pdfTitle={pdfTitle} />}
         </div>
       </div>

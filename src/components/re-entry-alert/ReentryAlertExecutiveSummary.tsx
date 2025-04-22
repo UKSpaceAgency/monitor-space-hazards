@@ -14,7 +14,7 @@ type ReentryAlertExecutiveSummaryProps = {
 const ReentryAlertExecutiveSummary = async ({ event, previewSummary }: ReentryAlertExecutiveSummaryProps) => {
   const t = await getTranslations('Reentry_alert.Executive_summary');
 
-  const haveRiskProbabilities = event.monteCarloProbability || event.fragmentsProbability || event.humanCasualtyProbability;
+  const haveRiskProbabilities = !!(event.monteCarloProbability || event.fragmentsProbability || event.humanCasualtyProbability);
 
   return (
     <div data-pdf={t('title')}>
