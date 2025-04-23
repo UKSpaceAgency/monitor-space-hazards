@@ -52,25 +52,26 @@ const ReentryAlertMap = ({ overflightTime, flightpathCollection, fragmentsCollec
     setOverflights(overflights => [...new Set([...overflights, ...overflightTime.map((_, index) => `OVERFLIGHT-${index}`)])]);
   }, [overflightTime]);
 
-  const mapRefCallback = useCallback((ref: MapRef | null) => {
-    if (ref !== null) {
-      // Set the actual ref we use elsewhere
-      mapRef.current = ref;
-      const map = ref;
-
-      const loadImage = () => {
-        if (!map.hasImage('fragments-icon')) {
-          map.loadImage('/fragments.png', (error, image) => {
-            if (error || !image) {
-              throw error;
-            }
-            map.addImage('fragments-icon', image, { sdf: true });
-          });
+  const loadImage = useCallback((map: MapRef) => {
+    if (!map.hasImage('fragments-icon')) {
+      map.loadImage('/fragments.png', (error, image) => {
+        if (error || !image) {
+          throw error;
         }
-      };
-      loadImage();
+        map.addImage('fragments-icon', image, { sdf: true });
+      });
     }
   }, []);
+
+  const mapRefCallback = useCallback((ref: MapRef | null) => {
+    if (ref !== null) {
+      mapRef.current = ref;
+      // Add event listener for style.load
+      ref.on('style.load', () => {
+        loadImage(ref);
+      });
+    }
+  }, [loadImage]);
 
   const handleClick = useCallback((event: MapMouseEvent) => {
     const {
@@ -107,8 +108,10 @@ const ReentryAlertMap = ({ overflightTime, flightpathCollection, fragmentsCollec
             return acc;
           }, [] as string[])]}
           fog={{
+            'color': '#ffffff',
+            'horizon-blend': 0.05,
             'high-color': 'rgba(0, 0, 0, 0)',
-            'space-color': '#000000',
+            'space-color': 'rgb(54, 75, 105)',
             'star-intensity': 0.5,
           }}
           onClick={handleClick}
@@ -120,7 +123,7 @@ const ReentryAlertMap = ({ overflightTime, flightpathCollection, fragmentsCollec
                 (RegionsGeoJson[RegionsEnum.UK_AIRSPACE] as unknown[]).map((airspace: unknown, index: number) => {
                   return (
                     <Source
-                    // eslint-disable-next-line react/no-array-index-key
+                      // eslint-disable-next-line react/no-array-index-key
                       key={`UK_AIRSPACE-${index}`}
                       id={`UK_AIRSPACE-${index}`}
                       type="geojson"
