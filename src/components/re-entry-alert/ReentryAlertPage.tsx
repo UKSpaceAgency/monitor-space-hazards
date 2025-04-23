@@ -7,6 +7,7 @@ import { getReentryEvent } from '@/actions/getReentryEvent';
 import { getReentryReports } from '@/actions/getReentryReports';
 import { FORMAT_DATE_TIME, FORMAT_FULL_DATE } from '@/libs/Dayjs';
 import Spinner from '@/ui/spinner/spinner';
+import Tag from '@/ui/tag/tag';
 
 import { ContentNavigation } from '../ContentNavigation';
 import { ReentryAlertMapContainer } from './map/ReentryAlertMapContainer';
@@ -29,9 +30,11 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
   const pdfTitle = t('pdf_title', { objectName: event.objectName, reportNumber: event.reentryReportNumber?.toString() });
 
   const lastReport = reports[reports.length - 1];
+  const isClosed = lastReport?.alertType.includes('closedown');
 
   return (
     <div>
+      {isClosed && <Tag>{t('closed')}</Tag>}
       <h1 className="govuk-heading-xl">
         {title}
         <span className="block text-lg">{dayjs(event.decayEpoch).format(FORMAT_FULL_DATE)}</span>

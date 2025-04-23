@@ -714,6 +714,7 @@
     }
   },
   "Reentry_alert": {
+    "closed": "Closed",
     "notification_banner": "You are able to <edit>edit this alert</edit> or <send>send this alert to additional recipients</send>",
     "title": "Re-entry alert for {objectName}",
     "pdf_title": "Re-entry alert for {objectName} - Report {reportNumber}",
