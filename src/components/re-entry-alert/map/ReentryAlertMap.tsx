@@ -91,7 +91,7 @@ const ReentryAlertMap = ({ overflightTime, flightpathCollection, fragmentsCollec
       </div>
       <ReentryAlertAreasOfInterest selected={regions} onChange={setRegions} />
       <ReentryAlertOverflights types={types} setTypes={setTypes} overflights={overflightTime} selected={overflights} onChange={setOverflights} />
-      <div className="relative w-full h-[500px]" data-type="map">
+      <div className="relative w-full h-[500px] bg-[#364B69]" data-type="map">
         <Map
           ref={mapRefCallback}
           mapboxAccessToken={env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
