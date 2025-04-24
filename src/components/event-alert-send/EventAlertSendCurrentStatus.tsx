@@ -37,7 +37,7 @@ const EventAlertSendCurrentStatus = ({ type, detailsSummary, detailsContent, dat
         </TableHead>
         <TableBody>
           <TableRow>
-            <TableCellHeader className="indent-10">
+            <TableCellHeader className="pl-10">
               {t('all_alerts', { type })}
             </TableCellHeader>
             <TableCell>
@@ -46,7 +46,7 @@ const EventAlertSendCurrentStatus = ({ type, detailsSummary, detailsContent, dat
           </TableRow>
           {type === 're-entry' && (
             <TableRow>
-              <TableCellHeader className="indent-10">
+              <TableCellHeader className="pl-10">
                 {t('alert_for_uk', { type: capitalized(type) })}
               </TableCellHeader>
               <TableCell>
@@ -55,7 +55,7 @@ const EventAlertSendCurrentStatus = ({ type, detailsSummary, detailsContent, dat
             </TableRow>
           )}
           <TableRow>
-            <TableCellHeader className="indent-10">
+            <TableCellHeader className="pl-10">
               {t('priority_alert', { type })}
             </TableCellHeader>
             <TableCell>
@@ -68,7 +68,7 @@ const EventAlertSendCurrentStatus = ({ type, detailsSummary, detailsContent, dat
             </TableCellHeader>
           </TableRow>
           <TableRow>
-            <TableCellHeader className="indent-10">
+            <TableCellHeader className="pl-10">
               {t('individually_selected_recipients')}
             </TableCellHeader>
             <TableCell>

@@ -37,6 +37,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
                 </Link>
               )
             : report}
+          {`\n`}
           {isClosed && <Tag className="text-sm mt-2 ml-6">Closed</Tag>}
         </>
       );

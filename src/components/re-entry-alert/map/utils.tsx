@@ -45,6 +45,7 @@ export const regionLayer = (region: string): FillLayerSpecification => ({
 export const FlightpathColor = '#f46a25';
 export const FragmentColor = '#801650';
 export const OverflightColors = [
+  FlightpathColor,
   '#28A197',
   '#12436D',
   '#A285D1',
@@ -58,19 +59,25 @@ export const OverflightColors = [
 
 export type OverflightType = 'FLIGHTPATH' | 'FRAGMENT' | string;
 
-export const flightpathStyle = (visible: boolean): CircleLayerSpecification => ({
-  id: 'FLIGHTPATH',
+export const flightpathStyle = (index: number, visible: boolean): CircleLayerSpecification => ({
+  id: `FLIGHTPATH-${index}`,
   type: 'circle',
-  source: 'FLIGHTPATH',
+  source: `FLIGHTPATH-${index}`,
   paint: {
-    'circle-color': FlightpathColor,
+    'circle-color': OverflightColors[index] ?? '#fff',
     'circle-opacity': 0.5,
     'circle-radius': {
       base: 20,
-      stops: [
-        [0, 2],
-        [3, 10],
-      ],
+      stops: index === 0
+        ? [
+            [0, 2],
+            [3, 10],
+          ]
+        : [
+            [0, 2],
+            [3, 10],
+            [10, 20],
+          ],
     },
   },
   layout: {
@@ -95,28 +102,7 @@ export const fragmentsStyle = (index: number, visible: boolean): SymbolLayerSpec
     'visibility': visible ? 'visible' : 'none',
   },
   paint: {
-    'icon-color': OverflightColors[index],
+    'icon-color': OverflightColors[index] ?? '#fff',
     'icon-opacity': 0.5,
-  },
-});
-
-export const overflightStyle = (index: number, visible: boolean): CircleLayerSpecification => ({
-  id: `OVERFLIGHT-${index}`,
-  type: 'circle',
-  source: `OVERFLIGHT-${index}`,
-  layout: {
-    visibility: visible ? 'visible' : 'none',
-  },
-  paint: {
-    'circle-color': OverflightColors[index],
-    'circle-opacity': 0.5,
-    'circle-radius': {
-      base: 20,
-      stops: [
-        [0, 2],
-        [3, 10],
-        [10, 20],
-      ],
-    },
   },
 });
