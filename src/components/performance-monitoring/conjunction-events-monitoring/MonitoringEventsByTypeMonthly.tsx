@@ -29,14 +29,14 @@ const MonitoringEventsByTypeMonthly = async () => {
       {
         label: t('rocket_body'),
         data: data.map(({ WITH_UK_SATELLITES }) => WITH_UK_SATELLITES),
-        borderColor: chartPalette.lightPurple,
-        backgroundColor: chartPalette.lightPurple,
+        borderColor: chartPalette.darkPink,
+        backgroundColor: chartPalette.darkPink,
       },
       {
         label: t('other'),
         data: data.map(({ OTHER }) => OTHER),
-        borderColor: chartPalette.darkPink,
-        backgroundColor: chartPalette.darkPink,
+        borderColor: chartPalette.lightPurple,
+        backgroundColor: chartPalette.lightPurple,
       },
     ],
   };

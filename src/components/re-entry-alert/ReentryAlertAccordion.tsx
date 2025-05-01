@@ -19,17 +19,19 @@ import { ReentryAlertAdditionalObjectDetailsTable } from './tables/ReentryAlertA
 type ReentryAlertAccordionProps = {
   event: TypeReentryEventOut;
   reports?: TypeReentryEventReportOut[];
+  lastReport?: TypeReentryEventReportOut;
   searchParams?: TypeReentryEventPatch;
 };
 
 const ReentryAlertAccordion = ({
   event,
   reports,
+  lastReport,
   searchParams,
 }: ReentryAlertAccordionProps) => {
   const t = useTranslations('Reentry_alert.accordion');
 
-  const impacts = reports && reports[0]?.impact;
+  const impacts = lastReport?.impact;
 
   return (
     <Accordion

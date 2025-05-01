@@ -47,7 +47,6 @@ export default async function Reentry({
             <ReentryEventSummary event={event} shortId={shortId} object={satellite} />
           </Suspense>
           <ReentryAccordion object={satellite} noradId={event.noradId} />
-
           <ReentryButtons title={t('title', { objectName: satellite.commonName })} />
         </div>
       </div>

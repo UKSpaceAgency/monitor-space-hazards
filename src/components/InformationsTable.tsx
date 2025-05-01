@@ -40,7 +40,7 @@ const InformationsTable = <T extends object>({ rows, data, headers, caption, hea
     reducedFont?: true;
   }) => (
     <TableCell key={key} className={`${reducedFont ? 'text-base' : ''}`}>
-      {renderCell ? renderCell(data) : accessorKey ? data[accessorKey] as ReactNode : '-'}
+      {renderCell ? renderCell(data) : accessorKey ? data[accessorKey] as ReactNode || '-' : '-'}
     </TableCell>
   );
 

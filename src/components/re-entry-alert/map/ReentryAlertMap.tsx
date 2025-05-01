@@ -14,13 +14,10 @@ import { ReentryAlertAreasOfInterest } from './ReentryAlertAreasOfInterest';
 import { ReentryAlertMapCenterButton } from './ReentryAlertMapCenterButton';
 import { ReentryAlertMapLegend } from './ReentryAlertMapLegend';
 import type { MapTooltipInfo } from './ReentryAlertMapTooltip';
-import type { MapType } from './ReentryAlertMapType';
-import { ReentryAlertMapType } from './ReentryAlertMapType';
-import type { MapView } from './ReentryAlertMapView';
-import { ReentryAlertMapView } from './ReentryAlertMapView';
+import { type MapType, ReentryAlertMapType } from './ReentryAlertMapType';
+import { type MapView, ReentryAlertMapView } from './ReentryAlertMapView';
 import { ReentryAlertOverflights } from './ReentryAlertOverflights';
-import type { OverflightType } from './utils';
-import { flightpathStyle, fragmentsStyle, overflightStyle, regionLayer, RegionsGeoJson } from './utils';
+import { flightpathStyle, fragmentsStyle, type OverflightType, regionLayer, RegionsGeoJson } from './utils';
 
 const ReentryAlertMapTooltip = dynamic(() => import('./ReentryAlertMapTooltip').then(mod => mod.ReentryAlertMapTooltip), {
   ssr: false,
@@ -34,43 +31,43 @@ const initialViewState = {
 
 type ReentryAlertMapProps = {
   overflightTime: string[];
-  flightpathCollection: FeatureCollection<Point>;
-  fragmentsCollection: FeatureCollection<Point>[];
-  overflightCollection?: FeatureCollection<Point>[];
+  flightpathsCollection: Map<number, FeatureCollection<Point>>;
+  fragmentsCollection: Map<number, FeatureCollection<Point>>;
 };
 
-const ReentryAlertMap = ({ overflightTime, flightpathCollection, fragmentsCollection, overflightCollection }: ReentryAlertMapProps) => {
+const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsCollection }: ReentryAlertMapProps) => {
   const mapRef = useRef<MapRef | null>(null);
   const [mapType, setMapType] = useState<MapType>('streets-v12');
   const [mapView, setMapView] = useState<MapView>('globe');
   const [regions, setRegions] = useState<RegionsEnum[]>([]);
   const [types, setTypes] = useState<OverflightType[]>(['FLIGHTPATH', 'FRAGMENT']);
-  const [overflights, setOverflights] = useState<OverflightType[]>(['FLIGHTPATH']);
+  const [flightpaths, setFlightpaths] = useState<number[]>([0]);
   const [hoverInfo, setHoverInfo] = useState<MapTooltipInfo | null>(null);
 
   useEffect(() => {
-    setOverflights(overflights => [...new Set([...overflights, ...overflightTime.map((_, index) => `OVERFLIGHT-${index}`)])]);
+    setFlightpaths(flightpaths => [...new Set([...flightpaths, ...overflightTime.map((_, index) => index + 1)])]);
   }, [overflightTime]);
+
+  const loadImage = useCallback((map: MapRef) => {
+    if (!map.hasImage('fragments-icon')) {
+      map.loadImage('/fragments.png', (error, image) => {
+        if (error || !image) {
+          throw error;
+        }
+        map.addImage('fragments-icon', image, { sdf: true });
+      });
+    }
+  }, []);
 
   const mapRefCallback = useCallback((ref: MapRef | null) => {
     if (ref !== null) {
-      // Set the actual ref we use elsewhere
       mapRef.current = ref;
-      const map = ref;
-
-      const loadImage = () => {
-        if (!map.hasImage('fragments-icon')) {
-          map.loadImage('/fragments.png', (error, image) => {
-            if (error || !image) {
-              throw error;
-            }
-            map.addImage('fragments-icon', image, { sdf: true });
-          });
-        }
-      };
-      loadImage();
+      // Add event listener for style.load
+      ref.on('style.load', () => {
+        loadImage(ref);
+      });
     }
-  }, []);
+  }, [loadImage]);
 
   const handleClick = useCallback((event: MapMouseEvent) => {
     const {
@@ -89,8 +86,8 @@ const ReentryAlertMap = ({ overflightTime, flightpathCollection, fragmentsCollec
         <ReentryAlertMapView value={mapView} onChange={setMapView} />
       </div>
       <ReentryAlertAreasOfInterest selected={regions} onChange={setRegions} />
-      <ReentryAlertOverflights types={types} setTypes={setTypes} overflights={overflightTime} selected={overflights} onChange={setOverflights} />
-      <div className="relative w-full h-[500px]" data-type="map">
+      <ReentryAlertOverflights types={types} setTypes={setTypes} overflights={overflightTime} selected={flightpaths} onChange={setFlightpaths} />
+      <div className="relative w-full h-[500px] bg-[#364B69]" data-type="map">
         <Map
           ref={mapRefCallback}
           mapboxAccessToken={env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
@@ -100,12 +97,16 @@ const ReentryAlertMap = ({ overflightTime, flightpathCollection, fragmentsCollec
           }}
           preserveDrawingBuffer
           initialViewState={initialViewState}
-          interactiveLayerIds={['land', ...overflights.reduce((acc, curr) => {
-            if (curr.includes('OVERFLIGHT')) {
-              return [...acc, curr, curr.replace('OVERFLIGHT', 'FRAGMENT')];
-            }
-            return acc;
+          interactiveLayerIds={['land', ...flightpaths.reduce((acc, curr) => {
+            return [...acc, `FLIGHTPATH-${curr}`, `FRAGMENT-${curr}`];
           }, [] as string[])]}
+          fog={{
+            'color': '#ffffff',
+            'horizon-blend': 0.05,
+            'high-color': 'rgba(0, 0, 0, 0)',
+            'space-color': 'rgb(54, 75, 105)',
+            'star-intensity': 0.5,
+          }}
           onClick={handleClick}
           attributionControl={false}
         >
@@ -115,7 +116,7 @@ const ReentryAlertMap = ({ overflightTime, flightpathCollection, fragmentsCollec
                 (RegionsGeoJson[RegionsEnum.UK_AIRSPACE] as unknown[]).map((airspace: unknown, index: number) => {
                   return (
                     <Source
-                    // eslint-disable-next-line react/no-array-index-key
+                      // eslint-disable-next-line react/no-array-index-key
                       key={`UK_AIRSPACE-${index}`}
                       id={`UK_AIRSPACE-${index}`}
                       type="geojson"
@@ -142,28 +143,19 @@ const ReentryAlertMap = ({ overflightTime, flightpathCollection, fragmentsCollec
                   <Layer {...regionLayer(region)} />
                 </Source>
               ))}
-          {flightpathCollection && (
-            <Source key="FLIGHTPATH" type="geojson" data={flightpathCollection}>
+
+          {flightpathsCollection && Array.from(flightpathsCollection.entries()).map(([index, flightpath]) => (
+            <Source key={`FLIGHTPATH-${index}`} type="geojson" data={flightpath}>
               <Layer
-                {...flightpathStyle(types.includes('FLIGHTPATH') && overflights.includes('FLIGHTPATH'))}
-                beforeId="airport-label"
-              />
-            </Source>
-          )}
-          {fragmentsCollection && fragmentsCollection.map((fragments, index) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <Source key={`FRAGMENT-${index}`} type="geojson" data={fragments}>
-              <Layer
-                {...fragmentsStyle(index, types.includes('FRAGMENT') && overflights.includes(`OVERFLIGHT-${index}`))}
+                {...flightpathStyle(index, types.includes('FLIGHTPATH') && flightpaths.includes(index))}
                 beforeId="airport-label"
               />
             </Source>
           ))}
-          {overflightCollection && overflightCollection.map((overflight, index) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <Source key={`OVERFLIGHT-${index}`} type="geojson" data={overflight}>
+          {fragmentsCollection && Array.from(fragmentsCollection.entries()).map(([index, fragments]) => (
+            <Source key={`FRAGMENT-${index}`} type="geojson" data={fragments}>
               <Layer
-                {...overflightStyle(index, types.includes('FLIGHTPATH') && overflights.includes(`OVERFLIGHT-${index}`))}
+                {...fragmentsStyle(index, types.includes('FRAGMENT') && flightpaths.includes(index))}
                 beforeId="airport-label"
               />
             </Source>

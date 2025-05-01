@@ -27,7 +27,7 @@ const ReentryEventSummaryTable = ({ tip }: ReentryEventSummaryTableProps) => {
   }, {
     header: t('direction_of_travel'),
     accessorKey: 'direction',
-    renderCell: row => row.direction.toUpperCase(),
+    renderCell: row => row.direction.toUpperCase() ?? '-',
   }, {
     header: t('latitude'),
     accessorKey: 'latitude',

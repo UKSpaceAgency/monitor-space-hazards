@@ -1,4 +1,4 @@
-import { round } from 'lodash';
+import { isNumber, round } from 'lodash';
 import Link from 'next/link';
 
 import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
@@ -51,12 +51,12 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
         },
       },
       {
-        id: 'probability',
-        accessorKey: 'probability',
+        id: 'monte_carlo_probability',
+        accessorKey: 'monteCarloProbability',
         header: 'Reentries.table.probability_of_reentry',
         cell: ({ getValue }) => {
           const value = getValue<number>();
-          return value ? `${round(value * 100, 3)}%` : '-';
+          return isNumber(value) ? `${round(value * 100, 3)}%` : '-';
         },
       },
       {

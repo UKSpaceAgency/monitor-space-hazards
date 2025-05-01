@@ -41,6 +41,7 @@ export default async function ConjunctionAlertSend({
   });
 
   const defaultValues = {
+    isStandard: alert.alertType.includes('standard'),
     isPriority: alert.alertType.includes('priority'),
     additionalRecipients: alert.additionalRecipients?.join('; ') || '',
   };

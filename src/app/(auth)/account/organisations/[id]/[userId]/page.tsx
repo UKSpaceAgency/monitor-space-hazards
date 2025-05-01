@@ -72,12 +72,6 @@ export default async function OrganisationUserPage({
             value: {
               children: user.email,
             },
-            actions: [
-              {
-                children: t('edit'),
-                href: `/account/organisations/${id}/${userId}/email`,
-              },
-            ],
           },
           {
             key: {

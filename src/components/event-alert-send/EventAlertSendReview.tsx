@@ -15,7 +15,7 @@ type EventAlertSendReviewProps = {
   type: 're-entry' | 'conjunction';
   shortId: string;
   data: EventAlertSearchParams;
-  action: (id: string, data: { alertType: ('standard' | 'priority')[]; additionalEmails: string[] }) => Promise<void>;
+  action: (id: string, data: { alertType: any[]; additionalEmails: string[] }) => Promise<void>;
 };
 
 const EventAlertSendReview = ({ type, shortId, data, action }: EventAlertSendReviewProps) => {
@@ -28,8 +28,15 @@ const EventAlertSendReview = ({ type, shortId, data, action }: EventAlertSendRev
 
   const handleSubmit = () => {
     setLoading(true);
+
+    const alertType = [
+      data.isStandard === 'true' ? 'standard' : null,
+      data.isUkSatellitesOnly === 'true' ? 'uk_satellites_only' : null,
+      data.isPriority === 'true' ? 'priority' : null,
+    ].filter(Boolean) as ('standard' | 'priority' | 'uk_satellites_only' | 'closedown')[];
+
     action(shortId, {
-      alertType: data.isPriority ? ['priority'] : ['standard'],
+      alertType,
       additionalEmails: data.additionalRecipients ? data.additionalRecipients.split(/[,;]+/).map(r => r.trim()) : [],
     });
   };
@@ -42,8 +49,20 @@ const EventAlertSendReview = ({ type, shortId, data, action }: EventAlertSendRev
       <Table>
         <TableBody>
           <TableRow>
+            <TableCellHeader className="w-1/3">{t('make_this_standard', { type })}</TableCellHeader>
+            <TableCell>{data.isStandard === 'true' ? 'Yes' : 'No'}</TableCell>
+            <TableCell className="w-20 text-right"><Link className="govuk-link" href={prevPageUrl}>{t('change')}</Link></TableCell>
+          </TableRow>
+          {type === 're-entry' && (
+            <TableRow>
+              <TableCellHeader className="w-1/3">{t('make_this_uk_satellites_only', { type })}</TableCellHeader>
+              <TableCell>{data.isUkSatellitesOnly === 'true' ? 'Yes' : 'No'}</TableCell>
+              <TableCell className="w-20 text-right"><Link className="govuk-link" href={prevPageUrl}>{t('change')}</Link></TableCell>
+            </TableRow>
+          )}
+          <TableRow>
             <TableCellHeader className="w-1/3">{t('make_this_priority', { type })}</TableCellHeader>
-            <TableCell>{data.isPriority}</TableCell>
+            <TableCell>{data.isPriority === 'true' ? 'Yes' : 'No'}</TableCell>
             <TableCell className="w-20 text-right"><Link className="govuk-link" href={prevPageUrl}>{t('change')}</Link></TableCell>
           </TableRow>
           <TableRow>

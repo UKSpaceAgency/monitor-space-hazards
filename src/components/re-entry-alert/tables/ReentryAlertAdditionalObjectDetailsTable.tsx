@@ -34,7 +34,7 @@ const ReentryAlertAdditionalObjectDetailsTable = ({ event, dataPdf }: ReentryAle
     },
   }, {
     header: t('object_dimensions'),
-    renderCell: ({ objectHeight, objectSpan }) => `${t('height')} ${objectHeight}m x ${t('span')} ${objectSpan}m`,
+    renderCell: ({ objectHeight, objectSpan }) => objectHeight && objectSpan ? `${t('height')} ${objectHeight}m x ${t('span')} ${objectSpan}m` : '-',
     cellProps: {
       className: 'pl-10',
     },

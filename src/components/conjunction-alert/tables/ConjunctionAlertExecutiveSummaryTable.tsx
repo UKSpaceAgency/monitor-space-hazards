@@ -46,7 +46,7 @@ const ConjunctionAlertExecutiveSummaryTable = ({ report, manoeuvreAddition }: Co
     renderCell: ({ collisionProbability }) => collisionProbability ? roundedPercent(collisionProbability) : '-',
   }, {
     header: t('manoeuvre_expected'),
-    renderCell: () => manoeuvreAddition,
+    renderCell: () => manoeuvreAddition || '-',
   }, {
     header: t('primary_object'),
     renderCell: ({ primaryObjectCommonName, primaryObjectNoradId }) => (
@@ -56,24 +56,28 @@ const ConjunctionAlertExecutiveSummaryTable = ({ report, manoeuvreAddition }: Co
     ),
   }, {
     header: t('licensing_country'),
-    cellProps: { className: 'indent-10' },
+    cellProps: { className: 'pl-10' },
     renderCell: ({ primaryObjectLicensingCountry }) => getFullCountry(primaryObjectLicensingCountry),
   }, {
     header: t('object_type'),
-    cellProps: { className: 'indent-10' },
+    cellProps: { className: 'pl-10' },
     accessorKey: 'primaryObjectType',
   }, {
     header: t('mass'),
-    cellProps: { className: 'indent-10' },
+    cellProps: { className: 'pl-10' },
     accessorKey: 'primaryObjectMass',
   }, {
     header: t('manoeuvrable'),
-    cellProps: { className: 'indent-10' },
+    cellProps: { className: 'pl-10' },
     accessorKey: 'primaryObjectManoeuvrable',
   }, {
     header: t('norad_id'),
-    cellProps: { className: 'indent-10' },
+    cellProps: { className: 'pl-10' },
     accessorKey: 'primaryObjectNoradId',
+  }, {
+    header: t('object_mission'),
+    cellProps: { className: 'pl-10' },
+    accessorKey: 'primaryObjectMission',
   }, {
     header: t('secondary_object'),
     renderCell: ({ secondaryObjectCommonName, secondaryObjectNoradId }) => (
@@ -83,24 +87,28 @@ const ConjunctionAlertExecutiveSummaryTable = ({ report, manoeuvreAddition }: Co
     ),
   }, {
     header: t('licensing_country'),
-    cellProps: { className: 'indent-10' },
+    cellProps: { className: 'pl-10' },
     renderCell: ({ secondaryObjectLicensingCountry }) => getFullCountry(secondaryObjectLicensingCountry),
   }, {
     header: t('object_type'),
-    cellProps: { className: 'indent-10' },
+    cellProps: { className: 'pl-10' },
     accessorKey: 'secondaryObjectType',
   }, {
     header: t('mass'),
-    cellProps: { className: 'indent-10' },
+    cellProps: { className: 'pl-10' },
     accessorKey: 'secondaryObjectMass',
   }, {
     header: t('manoeuvrable'),
-    cellProps: { className: 'indent-10' },
+    cellProps: { className: 'pl-10' },
     accessorKey: 'secondaryObjectManoeuvrable',
   }, {
     header: t('norad_id'),
-    cellProps: { className: 'indent-10' },
+    cellProps: { className: 'pl-10' },
     accessorKey: 'secondaryObjectNoradId',
+  }, {
+    header: t('object_mission'),
+    cellProps: { className: 'pl-10' },
+    accessorKey: 'secondaryObjectMission',
   }];
 
   return <InformationsTable rows={rows} data={report} />;

@@ -16,24 +16,31 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
     cell: ({ row }) => {
       const { reportNumber, shortId, presignedUrl } = row.original;
       const report = `Report ${reportNumber}`;
+      const isClosed = row.original.alertType.includes('closedown');
 
-      return presignedUrl
-        ? (
-            <Link
-              href={presignedUrl}
-              className="govuk-link flex items-center gap-2"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Download04Icon />
-              <span>
-                {shortId}
-                <br />
-                {report}
-              </span>
-            </Link>
-          )
-        : report;
+      return (
+        <>
+          {presignedUrl
+            ? (
+                <Link
+                  href={presignedUrl}
+                  className="govuk-link flex items-center gap-2"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Download04Icon />
+                  <span>
+                    {shortId}
+                    <br />
+                    {report}
+                  </span>
+                </Link>
+              )
+            : report}
+          {`\n`}
+          {isClosed && <Tag className="text-sm mt-2 ml-6">Closed</Tag>}
+        </>
+      );
     },
   },
   {

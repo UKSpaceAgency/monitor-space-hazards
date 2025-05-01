@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
@@ -8,7 +10,7 @@ import CookieBanner from '../cookie-banner/cookie-banner';
 export function Cookies() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [cookieConsent, setCookieConsent] = useState<
-  'granted' | 'denied' | undefined
+    'granted' | 'denied' | undefined
   >();
 
   useEffect(() => {
@@ -73,7 +75,7 @@ export function Cookies() {
                 },
               ],
               children:
-            'Your cookie preferences have been saved. You have accepted cookies.',
+              <p className="govuk-body">Your cookie preferences have been saved. You have accepted cookies.</p>,
               visible: cookieConsent === 'granted',
               role: 'alert',
             },
@@ -85,7 +87,7 @@ export function Cookies() {
                 },
               ],
               children:
-            'Your cookie preferences have been saved. You have rejected cookies.',
+              <p className="govuk-body">Your cookie preferences have been saved. You have rejected cookies.</p>,
               visible: cookieConsent === 'denied',
               role: 'alert',
             },

@@ -9,6 +9,16 @@
  * ---------------------------------------------------------------
  */
 
+/** AlertDryRunOut */
+export interface TypeAlertDryRunOut {
+  /** Emailrecipients */
+  emailRecipients: TypeUserOut[];
+  /** Smsrecipients */
+  smsRecipients: TypeUserOut[];
+  /** Additionalemails */
+  additionalEmails: string[];
+}
+
 /** AlertSettingsDistributionList */
 export interface TypeAlertSettingsDistributionList {
   /**
@@ -1524,7 +1534,7 @@ export type TypeReentryDirection = "ascending" | "descending";
 /** ReentryEventAlertIn */
 export interface TypeReentryEventAlertIn {
   /** Alerttype */
-  alertType: ("standard" | "priority")[];
+  alertType: ("standard" | "priority" | "uk_satellites_only" | "closedown")[];
   /**
    * Additionalemails
    * @default []
@@ -1545,7 +1555,7 @@ export interface TypeReentryEventAlertOut {
    */
   reentryReportId: string;
   /** Alerttype */
-  alertType: ("standard" | "priority" | "uk_satellites_only")[];
+  alertType: ("standard" | "priority" | "uk_satellites_only" | "closedown")[];
   /** Additionalrecipients */
   additionalRecipients: string[] | null;
   /** Emailnotificationsendingstatus */
@@ -1726,7 +1736,7 @@ export interface TypeReentryEventReportOut {
   /** Reportnumber */
   reportNumber: number;
   /** Alerttype */
-  alertType: ("priority" | "standard" | "uk_satellites_only")[];
+  alertType: ("priority" | "standard" | "uk_satellites_only" | "closedown")[];
   /**
    * Reporttime
    * @format date-time
@@ -1932,6 +1942,11 @@ export interface TypeSatelliteOut {
 
 /** SatelliteUpdateIn */
 export interface TypeSatelliteUpdateIn {
+  /**
+   * Id
+   * @format uuid
+   */
+  id: string;
   /** Organization Id */
   organization_id?: string | null;
 }
@@ -2323,7 +2338,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2025-03-20T08:32:15.712658"
+   * @default "2025-04-14T07:07:45.410660"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3339,7 +3354,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2025-04-01"
+   * @default "2025-05-01"
    */
   end_date?: string;
 }
@@ -3354,7 +3369,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2025-04-01"
+   * @default "2025-05-01"
    */
   end_date?: string;
 }
@@ -3369,7 +3384,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-04-01"
+   * @default "2025-05-01"
    */
   end_date?: string;
 }
@@ -3384,7 +3399,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-04-01"
+   * @default "2025-05-01"
    */
   end_date?: string;
 }
@@ -3399,7 +3414,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-04-01"
+   * @default "2025-05-01"
    */
   end_date?: string;
 }
@@ -3414,7 +3429,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2025-04-01"
+   * @default "2025-05-01"
    */
   end_date?: string;
 }

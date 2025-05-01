@@ -10,6 +10,7 @@
  */
 
 import {
+  TypeAlertDryRunOut,
   TypeAlertSettingsDistributionList,
   TypeAlertSettingsIn,
   TypeAlertSettingsOut,
@@ -434,6 +435,28 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
   ) =>
     this.request<any, void | TypeHTTPValidationError>({
       path: `/v1/conjunction-events/${shortId}/alerts/latest`,
+      method: "PUT",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    }); /**
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|Put| |Agency superuser|Put|
+   *
+   * @tags conjunction-events
+   * @name PutConjunctionEventsShortIdAlertsLatestDryRun
+   * @summary Put Latest Conjunction Event Alert Dry Run
+   * @request PUT:/v1/conjunction-events/{short_id}/alerts/latest/dry-run
+   * @secure
+   */
+  putConjunctionEventsShortIdAlertsLatestDryRun = (
+    shortId: string,
+    data: TypeConjunctionEventAlertIn,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeAlertDryRunOut, void | TypeHTTPValidationError>({
+      path: `/v1/conjunction-events/${shortId}/alerts/latest/dry-run`,
       method: "PUT",
       body: data,
       secure: true,
@@ -937,6 +960,28 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
   putReentryEventsShortIdAlertsLatest = (shortId: string, data: TypeReentryEventAlertIn, params: RequestParams = {}) =>
     this.request<any, void | TypeHTTPValidationError>({
       path: `/v1/reentry-events/${shortId}/alerts/latest`,
+      method: "PUT",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    }); /**
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|Put| |Agency superuser|Put|
+   *
+   * @tags reentry-events
+   * @name PutReentryEventsShortIdAlertsLatestDryRun
+   * @summary Put Latest Reentry Event Alert Dry Run
+   * @request PUT:/v1/reentry-events/{short_id}/alerts/latest/dry-run
+   * @secure
+   */
+  putReentryEventsShortIdAlertsLatestDryRun = (
+    shortId: string,
+    data: TypeReentryEventAlertIn,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeAlertDryRunOut, void | TypeHTTPValidationError>({
+      path: `/v1/reentry-events/${shortId}/alerts/latest/dry-run`,
       method: "PUT",
       body: data,
       secure: true,
