@@ -3,22 +3,21 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { signOut, useSession } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 import { useMessages, useTranslations } from 'next-intl';
 import { useState } from 'react';
-
-import { isSatteliteUser } from '@/utils/Roles';
 
 export const Navigation = () => {
   const t = useTranslations('Template');
   const messages = useMessages() as IntlMessages;
-  const { data: session } = useSession();
-  const keys = Object.keys(messages.Template.navigation).filter((key) => {
-    if (key === 're-entries' && isSatteliteUser(session?.user?.role)) {
-      return false;
-    }
-    return true;
-  }) as Array<keyof typeof messages['Template']['navigation']>;
+  // const { data: session } = useSession();
+  // const keys = Object.keys(messages.Template.navigation).filter((key) => {
+  //   if (key === 're-entries' && isSatteliteUser(session?.user?.role)) {
+  //     return false;
+  //   }
+  //   return true;
+  // }) as Array<keyof typeof messages['Template']['navigation']>;
+  const keys = (Object.keys(messages.Template.navigation) as Array<keyof typeof messages['Template']['navigation']>).filter(key => key !== 're-entries');
 
   const pathname = usePathname();
 
