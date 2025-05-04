@@ -1287,7 +1287,7 @@
         "data_range": "Data range",
         "7d": "7d",
         "30d": "30d",
-        "all": "All"
+        "all": "All time"
       },
       "conjunction_events_by_type": {
         "type": "Type",
@@ -1313,8 +1313,8 @@
       "analyses_and_manoeuvre_support": {
         "source": "Source",
         "date": "Date",
-        "numbers_of_analyses": "Number of analyses received",
-        "numbers_of_manoeuvre": "Number of manoeuvre support plots received",
+        "numbers_of_analyses": "Analyses received",
+        "numbers_of_manoeuvre": "Manoeuvre support plots received",
         "analysis_and_manoeuvre_support": "UKSA analysis and manoeuvre support"
       },
       "analyses_and_manoeuvre_support_monthly": {
