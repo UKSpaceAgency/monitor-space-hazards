@@ -1,3 +1,4 @@
+import { isNumber } from 'lodash';
 import { useTranslations } from 'next-intl';
 
 import type { TypeReentryEventOut, TypeReentryRisk } from '@/__generated__/data-contracts';
@@ -38,33 +39,33 @@ const ReentryAlertRiskProbabilitiesTable = ({ event }: ReentryAlertExecutiveSumm
         </TableRow>
       </TableHead>
       <TableBody>
-        {event.monteCarloProbability
-          ? (
-              <TableRow>
-                <TableCellHeader>{t('probability_of_atmospheric_entry')}</TableCellHeader>
-                <TableCell>{event.monteCarloProbability ? roundedPercent(event.monteCarloProbability) : '-'}</TableCell>
-                <TableCell>
-                  {renderTag(event.monteCarloRisk)}
-                </TableCell>
-              </TableRow>
-            )
-          : null}
-        {event.fragmentsProbability
+        {isNumber(event.fragmentsProbability)
           ? (
               <TableRow>
                 <TableCellHeader>{t('probability_of_fragmentation')}</TableCellHeader>
-                <TableCell>{event.fragmentsProbability ? roundedPercent(event.fragmentsProbability) : '-'}</TableCell>
+                <TableCell>{roundedPercent(event.fragmentsProbability)}</TableCell>
                 <TableCell>
                   {renderTag(event.fragmentsRisk)}
                 </TableCell>
               </TableRow>
             )
           : null}
-        {event.humanCasualtyProbability
+        {isNumber(event.monteCarloProbability)
+          ? (
+              <TableRow>
+                <TableCellHeader>{t('probability_of_atmospheric_entry')}</TableCellHeader>
+                <TableCell>{roundedPercent(event.monteCarloProbability)}</TableCell>
+                <TableCell>
+                  {renderTag(event.monteCarloRisk)}
+                </TableCell>
+              </TableRow>
+            )
+          : null}
+        {isNumber(event.humanCasualtyProbability)
           ? (
               <TableRow>
                 <TableCellHeader>{t('probability_of_human_casualty')}</TableCellHeader>
-                <TableCell>{event.humanCasualtyProbability ? roundedPercent(event.humanCasualtyProbability) : '-'}</TableCell>
+                <TableCell>{roundedPercent(event.humanCasualtyProbability)}</TableCell>
                 <TableCell>
                   {renderTag(event.humanCasualtyRisk)}
                 </TableCell>

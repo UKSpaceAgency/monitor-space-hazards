@@ -1344,6 +1344,24 @@
         "high": ">1e-3",
         "total": "Total"
       }
+    },
+    "Organisation_satellites": {
+      "registered_satellites": "Registered satellites",
+      "common_name": "Common name",
+      "norad_id": "NORAD ID",
+      "international_designator": "International designator",
+      "country": "Country",
+      "launch_site": "Launch site",
+      "launch_date": "Launch date"
+    },
+    "Organisation_users": {
+      "registered_users": "Registered users",
+      "name": "Name",
+      "account_type": "Account type",
+      "email": "Email",
+      "phone_number": "Phone number",
+      "registered": "Registered",
+      "edit": "Edit"
     }
   },
   "Forms": {

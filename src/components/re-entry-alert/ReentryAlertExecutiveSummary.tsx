@@ -1,3 +1,4 @@
+import { isNumber } from 'lodash';
 import { getTranslations } from 'next-intl/server';
 
 import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
@@ -14,7 +15,7 @@ type ReentryAlertExecutiveSummaryProps = {
 const ReentryAlertExecutiveSummary = async ({ event, previewSummary }: ReentryAlertExecutiveSummaryProps) => {
   const t = await getTranslations('Reentry_alert.Executive_summary');
 
-  const haveRiskProbabilities = !!(event.monteCarloProbability || event.fragmentsProbability || event.humanCasualtyProbability);
+  const haveRiskProbabilities = isNumber(event.monteCarloProbability) || isNumber(event.fragmentsProbability) || isNumber(event.humanCasualtyProbability);
 
   return (
     <div data-pdf={t('title')}>
