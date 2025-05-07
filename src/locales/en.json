@@ -726,6 +726,7 @@
       "potential_impact_overseas_territory": "Potential impact by British Overseas Territories and Crown Dependencies",
       "potential_impact_airspace_and_maritime": "Potential impact by Airspace and Maritime",
       "guidance_on_response": "Guidance on response",
+      "guidance_if_object_impacts_uk_interests": "Guidance if object impacts UK interests",
       "liability_for_damages": "Liability for damages",
       "press_attention": "Press attention",
       "alert_history": "Re-entry event history",
@@ -748,13 +749,20 @@
       "contact_analyst": "Contact a UKSA orbital analyst"
     },
     "Guidance_on_response": {
-      "immediate_response": {
-        "title": "Immediate response",
-        "content": "<p>All re-entered debris should be considered as hazardous until proven otherwise. The most commonly used hazardous materials used on spacecraft are:</p><list><item><hydrazine>Hydrazine</hydrazine></item><item><kerosene>Kerosene</kerosene></item></list><p>Debris objects should not be disposed of nor made available to the public. An appropriate hazmat response (i.e testing by fire service) should take place first.</p><p>The UK Space Agency is responsible for the monitoring of re-entry of objects from space into Earth's atmosphere, providing warnings and alerts across HM Government. UKSA will act as subject matter experts, providing advice and guidance on how to deal with the incident. This includes coordinating public communications about the event.</p><p>In the event of debris from the re-entry surviving to the ground, local authorities are responsible for any incident response and should follow standard response activities for the damage caused using existing Chemical, Biological, Radiological and Nuclear (CBRN) and/or plane crash policies.</p><p>Cabinet Office will take on the lead for incident response coordination if the impacts are significant or are across multiple sectors.</p>"
+      "risk": {
+        "low": "<p>This event is assessed as low risk.</p><p>This means it may happen and could have a negative impact on UK interests, but the overall likelihood is low.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, no significant action is required at this stage. Stakeholders should stay engaged with the National Space Operations Centre and consider any future updates before taking further action.</p>",
+        "medium": "<p>This event is assessed as medium risk.</p><p>TThis means there is a higher-than-usual chance it could negatively affect UK interests. However, it is still more likely than not to pass without incident.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, no immediate significant action is needed, but stakeholders may consider raising awareness internally. Stakeholders should stay engaged with the National Space Operations Centre for updates.</p>",
+        "high": "<p>This event is assessed as high risk.</p><p>This means there is a significantly higher-than-usual chance it could negatively affect UK interests. However, it is still more likely than not to pass without incident.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, stakeholders should ensure internal awareness, review response plans and stay engaged with the National Space Operations Centre for updates.</p>"
+      }
+    },
+    "Guidance_if_object_impacts_uk_interests": {
+      "handling_space_debris": {
+        "title": "Handling Space Debris",
+        "content": "<p>If space debris survives to the ground, it should be considered hazardous until proven otherwise. Debris must not be disposed of or given to the public. Standard hazardous materials (hazmat) response procedures, such as testing by the fire service, should be followed. Existing local plans for a Chemical, Biological, Radiological and Nuclear (CBRN) incident or a plane crash should also be implemented.</p><p>The most well-known hazardous substances found in rockets and satellites include:</p><list><item><hydrazine>Hydrazine</hydrazine></item><item><kerosene>Kerosene</kerosene></item></list><p>The UK Space Agency must be informed immediately of any space debris sightings via:</p><list><item><email>NSpOCIncidents@ukspaceagency.gov.uk</email></item><item><email>Resilience@ukspaceagency.gov.uk</email></item><item><email>OrbitalAnalysts@ukspaceagency.gov.uk</email></item></list>"
       },
-      "recovery_and_clean_up": {
-        "title": "Recovery and clean up",
-        "content": "<p><bold>Decontamination:</bold> If the object is contaminated with hazardous material, it should be decontaminated. Decontamination is led by Defra who are the Lead Government Department for decontamination in England, in liaison with local authorities.</p><p><bold>Storage:</bold> The object should be sent to storage by a specialist supplier in the local area, as agreed and organised by Defra.</p><p><bold>Release:</bold> If the object has been declared safe (by Defra), UKSA will direct it's release to either: MOD Defence Intelligence if the object is of Chinese or Russian origin; the owner of the object or the state liable for the object, organised via the Foreign, Commonwealth and Development Office; or the Air Accident Investigation Bureau or the Civil Aviation Authority if the object is UK-licensed.</p><p><bold>Disposal:</bold> If the object cannot be declared safe or decontaminated, it should disposed of as per standard procedures held by Defra.</p><p><bold>Incident close down:</bold> When departments agree that recovery can be handled through Business As Usual structures, the incident can be closed down. The UK Space Agency and Cabinet Office will confirm close down of the event to all parties involved.</p>"
+      "public_guidance_on_space_debris": {
+        "title": "Public Guidance on Space Debris",
+        "content": "<p>Space debris can be hazardous and may contain materials that pose a serious risk to health. If you come across an object that you believe to be space debris, follow these steps:</p><list><item>Do not touch the object</item><item>Note the location of the object</item><item>If possible, take a photograph of the object without touching it</item><item>Do not stay close to the object</item><item>Notify the authorities by calling 111 (or the relevant number outside the UK)</item></list><p>Space debris remains the property of the spacecraft owner.</p><p>If you have already handled an object you believe to be space debris, place it in a safe location where others will not touch it and inform the authorities immediately.</p>"
       }
     },
     "Liability_for_damages": {
