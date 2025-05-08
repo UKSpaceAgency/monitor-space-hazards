@@ -38,8 +38,8 @@ export const organisationUsersTableColumns: TranslatedColumnDef<TypeUserOut>[] =
       row.original.accountDetailsConfirmedAt ? dayjs(row.original.accountDetailsConfirmedAt).format(FORMAT_SHORT_DATE) : '-',
   },
   {
-    id: 'user_id',
-    accessorKey: `user_id`,
+    id: 'id',
+    accessorKey: `id`,
     enableSorting: false,
     header: () => <span style={{ visibility: 'hidden' }}></span>,
     cell: ({ getValue }) => (

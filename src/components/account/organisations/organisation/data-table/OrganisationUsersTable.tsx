@@ -14,7 +14,11 @@ type OrganisationUsersTableProps = {
 const OrganisationUsersTable = ({ users, emptyLabel = 'No users registered' }: OrganisationUsersTableProps) => {
   const { sorting, onSortingChange } = useSorting([]);
 
-  return <DataTable columns={organisationUsersTableColumns} data={users} manualSorting={false} sorting={sorting} onSortingChange={onSortingChange} emptyLabel={emptyLabel} />;
+  return (
+    <div className="overflow-x-auto">
+      <DataTable columns={organisationUsersTableColumns} data={users} manualSorting={false} sorting={sorting} onSortingChange={onSortingChange} emptyLabel={emptyLabel} />
+    </div>
+  );
 };
 
 export { OrganisationUsersTable };

@@ -14,7 +14,11 @@ type OrganisationSatellitesTableProps = {
 const OrganisationSatellitesTable = ({ satellites, emptyLabel = 'No satellites registered' }: OrganisationSatellitesTableProps) => {
   const { sorting, onSortingChange } = useSorting([]);
 
-  return <DataTable columns={organisationSatellitesTableColumns} data={satellites} manualSorting={false} sorting={sorting} onSortingChange={onSortingChange} emptyLabel={emptyLabel} />;
+  return (
+    <div className="overflow-x-auto">
+      <DataTable columns={organisationSatellitesTableColumns} data={satellites} manualSorting={false} sorting={sorting} onSortingChange={onSortingChange} emptyLabel={emptyLabel} />
+    </div>
+  );
 };
 
 export { OrganisationSatellitesTable };
