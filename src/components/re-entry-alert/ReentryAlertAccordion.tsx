@@ -6,6 +6,7 @@ import Accordion from '@/ui/accordion/accordion';
 import { ReentryFurtherInformation } from '../re-entry/ReentryFurhterInformation';
 import { ReentryAlertHistoryDataTable } from './data-table/ReentryAlertHistoryDataTable';
 import { ReentryAlertAlertingProcedure } from './ReentryAlertAlertingProcedure';
+import { ReentryAlertGuidanceIfObjectImpactsUkInterests } from './ReentryAlertGuidanceIfObjectImpactsUkInterests';
 import { ReentryAlertGuidanceOnResponse } from './ReentryAlertGuidanceOnResponse';
 import { ReentryAlertImpactAirspaceAndMaritime } from './ReentryAlertImpactAirspaceAndMaritime';
 import { ReentryAlertImpactNation } from './ReentryAlertImpactNation';
@@ -19,17 +20,19 @@ import { ReentryAlertAdditionalObjectDetailsTable } from './tables/ReentryAlertA
 type ReentryAlertAccordionProps = {
   event: TypeReentryEventOut;
   reports?: TypeReentryEventReportOut[];
+  lastReport?: TypeReentryEventReportOut;
   searchParams?: TypeReentryEventPatch;
 };
 
 const ReentryAlertAccordion = ({
   event,
   reports,
+  lastReport,
   searchParams,
 }: ReentryAlertAccordionProps) => {
   const t = useTranslations('Reentry_alert.accordion');
 
-  const impacts = reports && reports[0]?.impact;
+  const impacts = lastReport?.impact;
 
   return (
     <Accordion
@@ -79,7 +82,12 @@ const ReentryAlertAccordion = ({
         {
           id: 'guidance_on_response',
           heading: t('guidance_on_response'),
-          content: <ReentryAlertGuidanceOnResponse immediateResponse={searchParams?.immediate_response ?? event.immediateResponse} recoveryAndCleanUp={searchParams?.recovery_and_clean_up ?? event.recoveryAndCleanUp} dataPdf={t('guidance_on_response')} />,
+          content: <ReentryAlertGuidanceOnResponse risk={lastReport?.monteCarloRisk} dataPdf={t('guidance_on_response')} />,
+        },
+        {
+          id: 'guidance_if_object_impacts_uk_interests',
+          heading: t('guidance_if_object_impacts_uk_interests'),
+          content: <ReentryAlertGuidanceIfObjectImpactsUkInterests dataPdf={t('guidance_if_object_impacts_uk_interests')} />,
         },
         {
           id: 'liability_for_damages',

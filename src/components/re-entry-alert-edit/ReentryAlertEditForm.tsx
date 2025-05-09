@@ -26,28 +26,6 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
       </div>
     ),
   }, {
-    id: 'immediate_response',
-    name: tForm('type.immediate_response'),
-    defaultValue: event.immediateResponse,
-    type: 'text',
-    help: (
-      <div>
-        <p>{tForm('hint')}</p>
-        {tReentryAlert.rich('Guidance_on_response.immediate_response.content', { hydrazine: chunks => chunks, kerosene: chunks => chunks })}
-      </div>
-    ),
-  }, {
-    id: 'recovery_and_clean_up',
-    name: tForm('type.recovery_and_clean_up'),
-    defaultValue: event.recoveryAndCleanUp,
-    type: 'text',
-    help: (
-      <div>
-        <p>{tForm('hint')}</p>
-        {tReentryAlert.rich('Guidance_on_response.recovery_and_clean_up.content')}
-      </div>
-    ),
-  }, {
     id: 'damages_liability',
     name: tForm('type.damages_liability'),
     defaultValue: event.damagesLiability,

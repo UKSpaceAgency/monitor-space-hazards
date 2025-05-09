@@ -13,27 +13,28 @@ const OrganisationsTable = ({ organisations }: OrganisationsSummaryProps) => {
   const t = useTranslations('Organisations.table');
 
   return (
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableCellHeader>{t('organisation')}</TableCellHeader>
-          <TableCellHeader>{t('registered_satellites')}</TableCellHeader>
-          <TableCellHeader>{t('registered_users')}</TableCellHeader>
-          <TableCellHeader>{t('date_added')}</TableCellHeader>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {organisations.map(({ id, name, satellitesCount, accountsCount, createdAt }) => (
-          <TableRow key={id}>
-            <TableCell><Link className="govuk-link" href={`/account/organisations/${id}`}>{name}</Link></TableCell>
-            <TableCell>{satellitesCount}</TableCell>
-            <TableCell>{accountsCount}</TableCell>
-            <TableCell>{dayjs(createdAt).format(FORMAT_SHORT_DATE)}</TableCell>
+    <div className="overflow-x-auto">
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCellHeader>{t('organisation')}</TableCellHeader>
+            <TableCellHeader>{t('registered_satellites')}</TableCellHeader>
+            <TableCellHeader>{t('registered_users')}</TableCellHeader>
+            <TableCellHeader>{t('date_added')}</TableCellHeader>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-
+        </TableHead>
+        <TableBody>
+          {organisations.map(({ id, name, satellitesCount, accountsCount, createdAt }) => (
+            <TableRow key={id}>
+              <TableCell><Link className="govuk-link" href={`/account/organisations/${id}`}>{name}</Link></TableCell>
+              <TableCell>{satellitesCount}</TableCell>
+              <TableCell>{accountsCount}</TableCell>
+              <TableCell>{dayjs(createdAt).format(FORMAT_SHORT_DATE)}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
   );
 };
 

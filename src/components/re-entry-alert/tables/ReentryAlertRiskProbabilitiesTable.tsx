@@ -1,6 +1,8 @@
+import { isNumber } from 'lodash';
 import { useTranslations } from 'next-intl';
 
 import type { TypeReentryEventOut, TypeReentryRisk } from '@/__generated__/data-contracts';
+import Details from '@/ui/details/details';
 import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
 import Tag from '@/ui/tag/tag';
 import { roundedPercent } from '@/utils/Math';
@@ -29,50 +31,55 @@ const ReentryAlertRiskProbabilitiesTable = ({ event }: ReentryAlertExecutiveSumm
     : '-';
 
   return (
-    <Table className="text-base">
-      <TableHead>
-        <TableRow>
-          <TableCellHeader />
-          <TableCellHeader>{t('probability')}</TableCellHeader>
-          <TableCellHeader>{t('risk')}</TableCellHeader>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {event.monteCarloProbability
-          ? (
-              <TableRow>
-                <TableCellHeader>{t('probability_of_atmospheric_entry')}</TableCellHeader>
-                <TableCell>{event.monteCarloProbability ? roundedPercent(event.monteCarloProbability) : '-'}</TableCell>
-                <TableCell>
-                  {renderTag(event.monteCarloRisk)}
-                </TableCell>
-              </TableRow>
-            )
-          : null}
-        {event.fragmentsProbability
-          ? (
-              <TableRow>
-                <TableCellHeader>{t('probability_of_fragmentation')}</TableCellHeader>
-                <TableCell>{event.fragmentsProbability ? roundedPercent(event.fragmentsProbability) : '-'}</TableCell>
-                <TableCell>
-                  {renderTag(event.fragmentsRisk)}
-                </TableCell>
-              </TableRow>
-            )
-          : null}
-        {event.humanCasualtyProbability
-          ? (
-              <TableRow>
-                <TableCellHeader>{t('probability_of_human_casualty')}</TableCellHeader>
-                <TableCell>{event.humanCasualtyProbability ? roundedPercent(event.humanCasualtyProbability) : '-'}</TableCell>
-                <TableCell>
-                  {renderTag(event.humanCasualtyRisk)}
-                </TableCell>
-              </TableRow>
-            )
-          : null}
-      </TableBody>
-    </Table>
+    <div>
+      <Table className="text-base">
+        <TableHead>
+          <TableRow>
+            <TableCellHeader />
+            <TableCellHeader>{t('probability')}</TableCellHeader>
+            <TableCellHeader>{t('risk')}</TableCellHeader>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {isNumber(event.fragmentsProbability)
+            ? (
+                <TableRow>
+                  <TableCellHeader>{t('probability_of_fragmentation')}</TableCellHeader>
+                  <TableCell>{roundedPercent(event.fragmentsProbability)}</TableCell>
+                  <TableCell>
+                    {renderTag(event.fragmentsRisk)}
+                  </TableCell>
+                </TableRow>
+              )
+            : null}
+          {isNumber(event.monteCarloProbability)
+            ? (
+                <TableRow>
+                  <TableCellHeader>{t('probability_of_atmospheric_entry')}</TableCellHeader>
+                  <TableCell>{roundedPercent(event.monteCarloProbability)}</TableCell>
+                  <TableCell>
+                    {renderTag(event.monteCarloRisk)}
+                  </TableCell>
+                </TableRow>
+              )
+            : null}
+          {isNumber(event.humanCasualtyProbability)
+            ? (
+                <TableRow>
+                  <TableCellHeader>{t('probability_of_human_casualty')}</TableCellHeader>
+                  <TableCell>{roundedPercent(event.humanCasualtyProbability)}</TableCell>
+                  <TableCell>
+                    {renderTag(event.humanCasualtyRisk)}
+                  </TableCell>
+                </TableRow>
+              )
+            : null}
+        </TableBody>
+      </Table>
+      <Details summary={t('help.title')}>
+        {t.rich('help.content')}
+      </Details>
+    </div>
   );
 };
 

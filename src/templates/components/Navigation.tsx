@@ -10,7 +10,14 @@ import { useState } from 'react';
 export const Navigation = () => {
   const t = useTranslations('Template');
   const messages = useMessages() as IntlMessages;
-  const keys = Object.keys(messages.Template.navigation) as Array<keyof typeof messages['Template']['navigation']>;
+  // const { data: session } = useSession();
+  // const keys = Object.keys(messages.Template.navigation).filter((key) => {
+  //   if (key === 're-entries' && isSatteliteUser(session?.user?.role)) {
+  //     return false;
+  //   }
+  //   return true;
+  // }) as Array<keyof typeof messages['Template']['navigation']>;
+  const keys = (Object.keys(messages.Template.navigation) as Array<keyof typeof messages['Template']['navigation']>).filter(key => key !== 're-entries');
 
   const pathname = usePathname();
 

@@ -13,8 +13,8 @@ type ReentryAlertOverflightsProps = {
   types: OverflightType[];
   setTypes: (value: OverflightType[]) => void;
   overflights: string[];
-  selected: OverflightType[];
-  onChange: (value: OverflightType[]) => void;
+  selected: number[];
+  onChange: (value: number[]) => void;
 };
 
 const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onChange }: ReentryAlertOverflightsProps) => {
@@ -22,7 +22,7 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedSet = new Set(selected);
-    const value = e.target.value as OverflightType;
+    const value = Number.parseInt(e.target.value, 10);
     if (selectedSet.has(value)) {
       selectedSet.delete(value);
     } else {
@@ -36,7 +36,7 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
     setTypes(types.includes(value) ? types.filter(type => type !== value) : [...types, value]);
   };
 
-  const renderCheckbox = ({ value, label, date, color }: { value: OverflightType; label: string; date?: string; color?: string }) => {
+  const renderCheckbox = ({ value, label, date, color }: { value: number; label: string; date?: string; color?: string }) => {
     return (
       <Checkbox className="content-baseline mb-0" value={value} checked={selected.includes(value)} onChange={handleChange} full>
         <div className="flex w-full justify-between items-center">
@@ -63,12 +63,12 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
       </div>
       <Details summary={t('help')}>
         <div className="grid md:grid-cols-2 gap-4 govuk-checkboxes govuk-checkboxes--small">
-          {renderCheckbox({ value: 'FLIGHTPATH', label: t('flightpath'), color: FlightpathColor })}
-          {/* {renderCheckbox({ value: 'FRAGMENTS', label: t('fragments'), color: FragmentColor })} */}
+          {renderCheckbox({ value: 0, label: t('flightpath'), color: FlightpathColor })}
           {overflights.map((overflight, index) => {
+            const number = index + 1;
             return (
               <Fragment key={overflight}>
-                {renderCheckbox({ value: `OVERFLIGHT-${index}`, label: t('overflight', { number: index + 1 }), date: overflight, color: OverflightColors[index] })}
+                {renderCheckbox({ value: number, label: t('overflight', { number }), date: overflight, color: OverflightColors[number] ?? '#fff' })}
               </Fragment>
             );
           })}

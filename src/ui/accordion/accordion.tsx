@@ -122,7 +122,7 @@ export function Accordion({ initialItems, id, dynamic = false }: AccordionProps)
             </div>
             <div
               id={`content-${id}`}
-              className={clsx({
+              className={clsx('w-[calc(100vw-30px)] md:w-full', {
                 'content-visibility-hidden': !expanded,
               })}
             >

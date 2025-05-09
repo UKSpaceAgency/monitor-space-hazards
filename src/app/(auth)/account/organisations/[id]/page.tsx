@@ -5,9 +5,9 @@ import { Suspense } from 'react';
 
 import { getOrganisation } from '@/actions/getOrganisation';
 import { getSession } from '@/actions/getSession';
-import { OrganisationTable } from '@/components/account/organisations/organisation/OrganisationSatellitesTable';
+import { OrganisationSatellites } from '@/components/account/organisations/organisation/OrganisationSatellites';
 import { OrganisationSummary } from '@/components/account/organisations/organisation/OrganisationSummary';
-import { OrganisationUsersTable } from '@/components/account/organisations/organisation/OrganisationUsersTable';
+import { OrganisationUsers } from '@/components/account/organisations/organisation/OrganisationUsers';
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
 import Spinner from '@/ui/spinner/spinner';
@@ -47,8 +47,8 @@ export default async function OrganisationPage({
       <h1 className="govuk-heading-xl">{organisation.name}</h1>
       <OrganisationSummary satellites={organisation.satellitesCount} users={organisation.accountsCount} />
       <Suspense fallback={<Spinner />}>
-        <OrganisationTable organisationId={organisation.id as string} />
-        <OrganisationUsersTable organisationId={organisation.id as string} />
+        <OrganisationSatellites organisationId={organisation.id as string} />
+        <OrganisationUsers organisationId={organisation.id as string} />
       </Suspense>
       <ButtonGroup>
         <Link href={{
