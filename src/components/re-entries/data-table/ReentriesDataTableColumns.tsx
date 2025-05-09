@@ -1,16 +1,16 @@
-import { isNumber, round } from 'lodash';
+import { isNumber } from 'lodash';
 import Link from 'next/link';
 
 import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
+import { roundedPercentage } from '@/utils/Math';
 import { getFullCountry } from '@/utils/Regions';
 
 export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumnDef<TypeReentryEventOut>[] => [
   {
     id: 'eventInformation',
-    accessorKey: 'eventInformation',
     header: 'Reentries.table.event_details',
     enableSorting: false,
     columns: [
@@ -51,15 +51,6 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
         },
       },
       {
-        id: 'monte_carlo_probability',
-        accessorKey: 'monteCarloProbability',
-        header: 'Reentries.table.probability_of_reentry',
-        cell: ({ getValue }) => {
-          const value = getValue<number>();
-          return isNumber(value) ? `${round(value * 100, 3)}%` : '-';
-        },
-      },
-      {
         id: 'timeWindowStart',
         accessorKey: 'timeWindowStart',
         header: 'Reentries.table.re-entry_time_window',
@@ -91,18 +82,46 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
         cell: ({ getValue }) => getValue() ?? '-',
       },
       {
-        id: 'survivability',
-        accessorKey: 'survivability',
-        header: 'Reentries.table.expected_survivability',
-        cell: ({ getValue }) => getValue() ?? '-',
-      },
-      {
         id: 'licenseCountry',
         accessorKey: 'licenseCountry',
         header: 'Reentries.table.licensing_country',
         cell: ({ getValue }) => {
           const value = getValue<string>();
           return value ? getFullCountry(value) : '-';
+        },
+      },
+    ],
+  },
+  {
+    id: 'riskLikelihood',
+    header: 'Reentries.table.risk_likelihood',
+    enableSorting: false,
+    columns: [
+      {
+        id: 'fragmentsProbability',
+        accessorKey: 'fragmentsProbability',
+        header: 'Reentries.table.probability_of_fragmentation',
+        cell: ({ getValue }) => {
+          const value = getValue<number>();
+          return isNumber(value) ? `${roundedPercentage(value)}` : '-';
+        },
+      },
+      {
+        id: 'monteCarloProbability',
+        accessorKey: 'monteCarloProbability',
+        header: 'Reentries.table.probability_of_atmospheric_entry',
+        cell: ({ getValue }) => {
+          const value = getValue<number>();
+          return isNumber(value) ? `${roundedPercentage(value)}` : '-';
+        },
+      },
+      {
+        id: 'humanCasualtyProbability',
+        accessorKey: 'humanCasualtyProbability',
+        header: 'Reentries.table.probability_of_human_casualty',
+        cell: ({ getValue }) => {
+          const value = getValue<number>();
+          return isNumber(value) ? `${roundedPercentage(value)}` : '-';
         },
       },
     ],

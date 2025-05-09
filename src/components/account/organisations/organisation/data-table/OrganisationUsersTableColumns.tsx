@@ -42,9 +42,9 @@ export const organisationUsersTableColumns: TranslatedColumnDef<TypeUserOut>[] =
     accessorKey: `id`,
     enableSorting: false,
     header: () => <span style={{ visibility: 'hidden' }}></span>,
-    cell: ({ getValue }) => (
+    cell: ({ row }) => (
       <Link
-        href={`/account/alert-settings/${getValue<string>()}`}
+        href={`/account/organisations/${row.original.organizationId}/${row.original.id}`}
         className="govuk-link"
       >
         Edit
