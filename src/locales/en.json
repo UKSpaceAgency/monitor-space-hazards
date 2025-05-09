@@ -775,9 +775,9 @@
     "Risk_thresholds": {
       "content": "Risk thresholds are calculated according to the probability of the object re-entering over the UK.",
       "risk_level": "Risk level",
-      "probability_of_atmospheric": "Probability of atmospheric re-entry over the UK (%)",
-      "probability_of_ground": "Probability of fragments on the ground in the UK (%)",
-      "probability_of_human_casualty": "Probability of human casualty in the UK (%)",
+      "probability_of_atmospheric": "Probability of re-entry over UK",
+      "probability_of_ground": "Probability of debris impact in UK",
+      "probability_of_human_casualty": "Probability of UK casualty risk",
       "risk": {
         "low": "Less than {value}%",
         "medium": "{from}% - {to}%",
@@ -1254,7 +1254,7 @@
       "probability_of_human_casualty": "UK casualty risk",
       "help": {
         "title": "Help with this table",
-        "content": "<p>This table shows the chance that a re-entering object will cause different risks to the UK:</p><list><item>Re-entry over UK - Chance the object enters atmosphere over UK</item><item>Debris impact in UK - Chance fragments reach the ground within UK territory</item><item>UK casualty risk - Chance of human casualty occurring within the UK</item></list>"
+        "content": "<p>This table shows the chance that a re-entering object will cause different risks to the UK:</p><item><bold>Debris impact in UK:</bold> Chance fragments reach the ground within UK </item><list><item><bold>Re-entry over UK:</bold> Chance the object enters atmosphere over UK</item><item><bold>UK casualty risk:</bold> Chance of human casualty occurring within the UK</item></list>"
       }
     },
     "Reentry_alert_additional_object_details": {
