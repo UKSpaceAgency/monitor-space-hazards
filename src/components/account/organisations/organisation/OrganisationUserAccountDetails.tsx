@@ -9,6 +9,7 @@ import { deleteUser } from '@/actions/deleteUser';
 import { TopNotificationBanner } from '@/components/TopNotificationBanner';
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
+import { isAgencyUser, isGovUser } from '@/utils/Roles';
 
 type OrganisationUserAccountDetailsProps = {
   user: TypeUserOut;
@@ -57,6 +58,15 @@ const OrganisationUserAccountDetails = ({ user }: OrganisationUserAccountDetails
         >
           {t('delete_user')}
         </Button>
+        {(isAgencyUser(user.role) || isGovUser(user.role)) && (
+          <Link
+            href={`/account/alert-settings/${user.id}`}
+          >
+            <Button>
+              {t('edit_alert_settings')}
+            </Button>
+          </Link>
+        )}
         <Link
           href={`/account/organisations/${user.organizationId}`}
         >
