@@ -782,6 +782,10 @@
         "low": "Less than {value}%",
         "medium": "{from}% - {to}%",
         "high": "More than {value}%"
+      },
+      "details": {
+        "title": "Help with this table",
+        "content": "<p>This table shows the chance that a re-entering object will cause different risks to the UK:</p><list><item><bold>Debris impact in UK:</bold> Chance fragments reach the ground within UK</item><item><bold>Re-entry over UK:</bold> Chance the object enters atmosphere over UK</item><item><bold>UK casualty risk:</bold> Chance of human casualty occurring within the UK</item></list>"
       }
     },
     "Alerting_procedure": {
@@ -1212,6 +1216,7 @@
         "uk_overflight": "UK overflight time(s) (UTC)",
         "object": "Object",
         "expected_survivability": "Expected survivability to the ground",
+        "risk_likelihood": "Risk likelihood",
         "probability_of_fragmentation": "Debris impact in UK",
         "probability_of_atmospheric_entry": "Re-entry over UK",
         "probability_of_human_casualty": "UK casualty risk",
@@ -1630,7 +1635,8 @@
     "download_event_as": "Download event {as}",
     "if_you_delete": "If you delete this account, this user will no longer have access to Monitor space hazards.",
     "are_you_sure_delete": "Are you sure you want to delete {email}?",
-    "delete_user": "Delete user"
+    "delete_user": "Delete user",
+    "edit_alert_settings": "Edit alert settings"
   },
   "Breadcrumb": {
     "account": "Account",
