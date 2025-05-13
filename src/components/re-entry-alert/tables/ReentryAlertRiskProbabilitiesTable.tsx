@@ -1,11 +1,11 @@
 import { isNumber } from 'lodash';
 import { useTranslations } from 'next-intl';
 
-import type { TypeReentryEventOut, TypeReentryRisk } from '@/__generated__/data-contracts';
+import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
 import Details from '@/ui/details/details';
 import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
-import Tag from '@/ui/tag/tag';
 import { roundedPercent } from '@/utils/Math';
+import { renderRiskTag } from '@/utils/Risk';
 
 type EventSummaryData = Pick<TypeReentryEventOut, 'fragmentsProbability' | 'fragmentsRisk' | 'monteCarloProbability' | 'monteCarloRisk' | 'humanCasualtyProbability' | 'humanCasualtyRisk'>;
 
@@ -15,20 +15,6 @@ type ReentryAlertExecutiveSummaryTableProps = {
 
 const ReentryAlertRiskProbabilitiesTable = ({ event }: ReentryAlertExecutiveSummaryTableProps) => {
   const t = useTranslations('Tables.Reentry_alert_risk_probabilities');
-
-  const classes = {
-    Low: 'govuk-tag--green',
-    Medium: 'govuk-tag--yellow',
-    High: 'govuk-tag--red',
-  };
-
-  const renderTag = (risk: TypeReentryRisk | null | undefined) => risk
-    ? (
-        <Tag className={classes[risk as unknown as keyof typeof classes]}>
-          {risk}
-        </Tag>
-      )
-    : '-';
 
   return (
     <div>
@@ -47,7 +33,7 @@ const ReentryAlertRiskProbabilitiesTable = ({ event }: ReentryAlertExecutiveSumm
                   <TableCellHeader>{t('probability_of_fragmentation')}</TableCellHeader>
                   <TableCell>{roundedPercent(event.fragmentsProbability)}</TableCell>
                   <TableCell>
-                    {renderTag(event.fragmentsRisk)}
+                    {renderRiskTag(event.fragmentsRisk)}
                   </TableCell>
                 </TableRow>
               )
@@ -58,7 +44,7 @@ const ReentryAlertRiskProbabilitiesTable = ({ event }: ReentryAlertExecutiveSumm
                   <TableCellHeader>{t('probability_of_atmospheric_entry')}</TableCellHeader>
                   <TableCell>{roundedPercent(event.monteCarloProbability)}</TableCell>
                   <TableCell>
-                    {renderTag(event.monteCarloRisk)}
+                    {renderRiskTag(event.monteCarloRisk)}
                   </TableCell>
                 </TableRow>
               )
@@ -69,7 +55,7 @@ const ReentryAlertRiskProbabilitiesTable = ({ event }: ReentryAlertExecutiveSumm
                   <TableCellHeader>{t('probability_of_human_casualty')}</TableCellHeader>
                   <TableCell>{roundedPercent(event.humanCasualtyProbability)}</TableCell>
                   <TableCell>
-                    {renderTag(event.humanCasualtyRisk)}
+                    {renderRiskTag(event.humanCasualtyRisk)}
                   </TableCell>
                 </TableRow>
               )
