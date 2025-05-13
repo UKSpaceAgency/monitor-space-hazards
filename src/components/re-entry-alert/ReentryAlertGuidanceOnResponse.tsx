@@ -1,6 +1,7 @@
 import { useTranslations } from 'next-intl';
 
 import type { TypeReentryRisk } from '@/__generated__/data-contracts';
+import { renderRiskTag } from '@/utils/Risk';
 
 type ReentryAlertGuidanceOnResponseProps = {
   risk?: TypeReentryRisk | null;
@@ -10,9 +11,13 @@ type ReentryAlertGuidanceOnResponseProps = {
 const ReentryAlertGuidanceOnResponse = ({ risk, dataPdf }: ReentryAlertGuidanceOnResponseProps) => {
   const t = useTranslations('Reentry_alert.Guidance_on_response');
 
+  const riskLevel = risk?.toLowerCase() as 'low' | 'medium' | 'high' || 'low';
+
   return (
     <div data-pdf={dataPdf}>
-      {t.rich(`risk.${risk?.toLowerCase() as 'low' | 'medium' | 'high' || 'low'}`)}
+      {t.rich(`risk.${riskLevel}`, {
+        tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
+      })}
     </div>
   );
 };
