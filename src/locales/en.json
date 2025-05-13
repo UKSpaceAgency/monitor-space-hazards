@@ -719,6 +719,7 @@
     "title": "Re-entry alert for {objectName}",
     "pdf_title": "Re-entry alert for {objectName} - Report {reportNumber}",
     "report_info": "<p><bold>Report {number}</bold> updated on {time} UTC</p>",
+    "closed_report": "The UK Space Agency has completed tracking of the re-entry event involving {commonName}, which occurred on {date} UTC. The event was assessed as <tag>{riskLevel}</tag> risk, with a {riskProbability}% probability of re-entry over UK. The {licensingCountry} is liable for any damages and associated response or recovery costs.",
     "accordion": {
       "additional_object_details": "Additional object and orbit details",
       "potential_impact_uk_nation": "Potential impact by UK nation",
@@ -750,9 +751,9 @@
     },
     "Guidance_on_response": {
       "risk": {
-        "low": "<p>This event is assessed as low risk.</p><p>This means it may happen and could have a negative impact on UK interests, but the overall likelihood is low.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, no significant action is required at this stage. Stakeholders should stay engaged with the National Space Operations Centre and consider any future updates before taking further action.</p>",
-        "medium": "<p>This event is assessed as medium risk.</p><p>TThis means there is a higher-than-usual chance it could negatively affect UK interests. However, it is still more likely than not to pass without incident.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, no immediate significant action is needed, but stakeholders may consider raising awareness internally. Stakeholders should stay engaged with the National Space Operations Centre for updates.</p>",
-        "high": "<p>This event is assessed as high risk.</p><p>This means there is a significantly higher-than-usual chance it could negatively affect UK interests. However, it is still more likely than not to pass without incident.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, stakeholders should ensure internal awareness, review response plans and stay engaged with the National Space Operations Centre for updates.</p>"
+        "low": "<p>This event is assessed as <tag>Low</tag></p><p>This means it may happen and could have a negative impact on UK interests, but the overall likelihood is low.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, no significant action is required at this stage. Stakeholders should stay engaged with the National Space Operations Centre and consider any future updates before taking further action.</p>",
+        "medium": "<p>This event is assessed as <tag>Medium</tag></p><p>This means there is a higher-than-usual chance it could negatively affect UK interests. However, it is still more likely than not to pass without incident.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, no immediate significant action is needed, but stakeholders may consider raising awareness internally. Stakeholders should stay engaged with the National Space Operations Centre for updates.</p>",
+        "high": "<p>This event is assessed as <tag>High</tag></p><p>This means there is a significantly higher-than-usual chance it could negatively affect UK interests. However, it is still more likely than not to pass without incident.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, stakeholders should ensure internal awareness, review response plans and stay engaged with the National Space Operations Centre for updates.</p>"
       }
     },
     "Guidance_if_object_impacts_uk_interests": {
