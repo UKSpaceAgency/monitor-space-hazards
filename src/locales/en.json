@@ -719,7 +719,6 @@
     "title": "Re-entry alert for {objectName}",
     "pdf_title": "Re-entry alert for {objectName} - Report {reportNumber}",
     "report_info": "<p><bold>Report {number}</bold> updated on {time} UTC</p>",
-    "closed_report": "The UK Space Agency has completed tracking of the re-entry event involving {commonName} rocket body, which occurred on {date} UTC. The event was assessed as <tag>{riskLevel}</tag> risk, with a {riskProbability}% probability of re-entry over UK. The {licensingCountry} is liable for any damages and associated response or recovery costs.",
     "accordion": {
       "additional_object_details": "Additional object and orbit details",
       "potential_impact_uk_nation": "Potential impact by UK nation",
@@ -738,6 +737,7 @@
     "Executive_summary": {
       "title": "Executive summary",
       "content": "The UK Space Agency is tracking the upcoming re-entry of an object from space into the Earth's atmosphere, posing a potential risk to life and property on the ground. All re-entered debris should be considered as hazardous until proven otherwise.",
+      "closed_report": "The UK Space Agency has completed tracking of the re-entry event involving {commonName} rocket body, which occurred on {date} UTC. The event was assessed as <tag>{riskLevel}</tag> risk, with a {riskProbability}% probability of re-entry over UK. The {licensingCountry} is liable for any damages and associated response or recovery costs.",
       "risk_probabilities": "UK risk probabilities",
       "event_summary": "Event summary"
     },

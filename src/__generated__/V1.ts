@@ -26,6 +26,7 @@ import {
   TypeBannerSchedulesOut,
   TypeBodyCreateAnalysisV1AnalysesPost,
   TypeBodyCreateEphemerisV1EphemerisPost,
+  TypeBodyPostFragmentationEventReportV1FragmentationReportsPost,
   TypeBodyUploadConjunctionReportV1ConjunctionReportsPost,
   TypeBodyUploadManoeuvrePlotFileV1ManoeuvrePlotsPost,
   TypeBodyUploadReentryEventReportV1ReentryEventReportsPost,
@@ -45,6 +46,8 @@ import {
   TypeEventSummaryOut,
   TypeExternalDataPerformanceAggregateOut,
   TypeExternalDataPerformanceOut,
+  TypeFragmentationEvent,
+  TypeFragmentationReport,
   TypeGetAnalysesParams,
   TypeGetBannersMessagesCurrentParams,
   TypeGetBannersMessagesParams,
@@ -62,6 +65,9 @@ import {
   TypeGetEphemerisParams,
   TypeGetExternalDataPerformanceAggregatedParams,
   TypeGetExternalDataPerformanceParams,
+  TypeGetFragmentationEventsParams,
+  TypeGetFragmentationReportsFragmentationEventShortIdParams,
+  TypeGetFragmentationReportsParams,
   TypeGetManoeuvrePlotsByEventEventShortIdParams,
   TypeGetManoeuvrePlotsParams,
   TypeGetReentryEventReportsReentryEventShortIdParams,
@@ -86,6 +92,7 @@ import {
   TypeGetStatsMonthlyReentryEventsParams,
   TypeGetStatsMonthlyUsersParams,
   TypeGetStatsNotificationsSentParams,
+  TypeGetStatsReentryEventsParams,
   TypeGetTipsLatestParams,
   TypeGetTipsNoradIdParams,
   TypeHTTPValidationError,
@@ -119,6 +126,7 @@ import {
   TypeStatisticsMonthlyRunningSum,
   TypeStatisticsNotificationsSent,
   TypeStatisticsReentryEventReportsCount,
+  TypeStatisticsReentryEventsAndAlertsCount,
   TypeStatisticsReentryEventsAndAlertsMonthlyCount,
   TypeStatisticsReentryEventsByObjectTypeMonthlyCount,
   TypeStatisticsReentryEventsCount,
@@ -137,7 +145,7 @@ import { ContentType, HttpClient, RequestParams } from "./http-client";
 
 export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
   /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|View| |Agency user|-| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|View| |Agency superuser|View|
    *
    * @tags alerts
    * @name GetAlerts
@@ -153,7 +161,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|Update| |Agency user|-| |Agency admin|Update| |Agency analyst|Update| |Agency approver|Update| |Agency superuser|Update|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|Update| |Agency superuser|Update|
    *
    * @tags alerts
    * @name PatchAlertsUserUserId
@@ -171,7 +179,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|View| |Agency user|-| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|View| |Agency superuser|View|
    *
    * @tags alerts
    * @name GetAlertsUserUserId
@@ -668,6 +676,161 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       path: `/v1/external-data-performance/aggregated`,
       method: "GET",
       query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets Fragmentation Event list. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags fragmentation-events
+   * @name GetFragmentationEvents
+   * @summary Gets Fragmentation Events list
+   * @request GET:/v1/fragmentation-events/
+   * @secure
+   */
+  getFragmentationEvents = (query?: TypeGetFragmentationEventsParams, params: RequestParams = {}) =>
+    this.request<TypeFragmentationEvent[], void | TypeHTTPValidationError>({
+      path: `/v1/fragmentation-events/`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets Fragmentation Events schema. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
+   *
+   * @tags fragmentation-events
+   * @name GetFragmentationEventsSchema
+   * @summary Gets Fragmentation Events schema
+   * @request GET:/v1/fragmentation-events/schema
+   * @secure
+   */
+  getFragmentationEventsSchema = (params: RequestParams = {}) =>
+    this.request<object, void>({
+      path: `/v1/fragmentation-events/schema`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Uploads Fragmentation Event Report. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create|
+   *
+   * @tags fragmentation-reports
+   * @name PostFragmentationReports
+   * @summary Uploads Fragmentation Event Report
+   * @request POST:/v1/fragmentation-reports/
+   * @secure
+   */
+  postFragmentationReports = (
+    data: TypeBodyPostFragmentationEventReportV1FragmentationReportsPost,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeFragmentationReport, void | TypeHTTPValidationError>({
+      path: `/v1/fragmentation-reports/`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.FormData,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets Fragmentation Event Reports list. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags fragmentation-reports
+   * @name GetFragmentationReports
+   * @summary Gets Fragmentation Event Reports list
+   * @request GET:/v1/fragmentation-reports/
+   * @secure
+   */
+  getFragmentationReports = (query?: TypeGetFragmentationReportsParams, params: RequestParams = {}) =>
+    this.request<TypeFragmentationReport[], void | TypeHTTPValidationError>({
+      path: `/v1/fragmentation-reports/`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets Fragmentation Event Report schema. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
+   *
+   * @tags fragmentation-reports
+   * @name GetFragmentationReportsSchema
+   * @summary Gets Fragmentation Event Report schema
+   * @request GET:/v1/fragmentation-reports/schema
+   * @secure
+   */
+  getFragmentationReportsSchema = (params: RequestParams = {}) =>
+    this.request<object, void>({
+      path: `/v1/fragmentation-reports/schema`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets Fragmentation Event Report by database ID. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags fragmentation-reports
+   * @name GetFragmentationReportsFragmentationReportId
+   * @summary Gets Fragmentation Event Report by database ID
+   * @request GET:/v1/fragmentation-reports/{fragmentation_report_id}
+   * @secure
+   */
+  getFragmentationReportsFragmentationReportId = (fragmentationReportId: string, params: RequestParams = {}) =>
+    this.request<TypeFragmentationReport | null, void | TypeHTTPValidationError>({
+      path: `/v1/fragmentation-reports/${fragmentationReportId}`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Deletes Fragmentation Event Report by database ID |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|-|
+   *
+   * @tags fragmentation-reports
+   * @name DeleteFragmentationReportsFragmentationReportId
+   * @summary Deletes Fragmentation Event Report by database ID
+   * @request DELETE:/v1/fragmentation-reports/{fragmentation_report_id}
+   * @secure
+   */
+  deleteFragmentationReportsFragmentationReportId = (fragmentationReportId: string, params: RequestParams = {}) =>
+    this.request<any, void | TypeHTTPValidationError>({
+      path: `/v1/fragmentation-reports/${fragmentationReportId}`,
+      method: "DELETE",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets Fragmentation Event Report for a given Fragmentation Event short ID. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags fragmentation-reports
+   * @name GetFragmentationReportsFragmentationEventShortId
+   * @summary Gets Fragmentation Event Report for a given Fragmentation Event short ID
+   * @request GET:/v1/fragmentation-reports/fragmentation-event/{short_id}
+   * @secure
+   */
+  getFragmentationReportsFragmentationEventShortId = (
+    { shortId, ...query }: TypeGetFragmentationReportsFragmentationEventShortIdParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeFragmentationReport[], void | TypeHTTPValidationError>({
+      path: `/v1/fragmentation-reports/fragmentation-event/${shortId}`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets the latest Fragmentation Event Report for a given Fragmentation Event short ID. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags fragmentation-reports
+   * @name GetFragmentationReportsFragmentationEventShortIdLatest
+   * @summary Gets latest Fragmentation Event Report for a given Fragmentation Event short ID
+   * @request GET:/v1/fragmentation-reports/fragmentation-event/{short_id}/latest
+   * @secure
+   */
+  getFragmentationReportsFragmentationEventShortIdLatest = (shortId: string, params: RequestParams = {}) =>
+    this.request<TypeFragmentationReport | null, void | TypeHTTPValidationError>({
+      path: `/v1/fragmentation-reports/fragmentation-event/${shortId}/latest`,
+      method: "GET",
       secure: true,
       format: "json",
       ...params,
@@ -1660,6 +1823,23 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
   ) =>
     this.request<TypeStatisticsReentryEventsByObjectTypeMonthlyCount[], void | TypeHTTPValidationError>({
       path: `/v1/stats/monthly/reentry-events-by-object-type`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Get count of Reentry Events with object type within a date range. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
+   *
+   * @tags stats
+   * @name GetStatsReentryEvents
+   * @summary Get count of Reentry Events with object type within a date range.
+   * @request GET:/v1/stats/reentry-events
+   * @secure
+   */
+  getStatsReentryEvents = (query?: TypeGetStatsReentryEventsParams, params: RequestParams = {}) =>
+    this.request<TypeStatisticsReentryEventsAndAlertsCount[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/reentry-events`,
       method: "GET",
       query: query,
       secure: true,

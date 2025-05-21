@@ -9,6 +9,9 @@
  * ---------------------------------------------------------------
  */
 
+/** AffectedRegime */
+export type TypeAffectedRegime = "GEO" | "LEO" | "MEO" | "Lunar";
+
 /** AlertDryRunOut */
 export interface TypeAlertDryRunOut {
   /** Emailrecipients */
@@ -564,6 +567,15 @@ export interface TypeBodyCreateEphemerisV1EphemerisPost {
   file: File;
 }
 
+/** Body_post_fragmentation_event_report_v1_fragmentation_reports__post */
+export interface TypeBodyPostFragmentationEventReportV1FragmentationReportsPost {
+  /**
+   * File
+   * @format binary
+   */
+  file: File;
+}
+
 /** Body_upload_conjunction_report_v1_conjunction_reports__post */
 export interface TypeBodyUploadConjunctionReportV1ConjunctionReportsPost {
   /**
@@ -643,7 +655,7 @@ export interface TypeConjunctionAlertSettings {
    */
   alert_type?: "conjunction";
   /** Chosen Option */
-  chosen_option: "all" | "priority" | "none";
+  chosen_option: "all" | "priority" | "uk-licensed" | "none";
   /**
    * Notification Types
    * @uniqueItems true
@@ -655,7 +667,7 @@ export interface TypeConjunctionAlertSettings {
 /** ConjunctionEventAlertIn */
 export interface TypeConjunctionEventAlertIn {
   /** Alerttype */
-  alertType: ("standard" | "priority")[];
+  alertType: ("standard" | "priority" | "uk-licensed")[];
   /** Additionalemails */
   additionalEmails: string[];
 }
@@ -670,7 +682,7 @@ export interface TypeConjunctionEventAlertOut {
    */
   conjunctionReportId: string;
   /** Alerttype */
-  alertType: ("standard" | "priority")[];
+  alertType: ("standard" | "priority" | "uk-licensed")[];
   /** Additionalrecipients */
   additionalRecipients: string[] | null;
   /** Emailnotificationsendingstatus */
@@ -721,7 +733,7 @@ export interface TypeConjunctionReportOut {
   /** Risk */
   risk: "Low" | "Medium" | "High";
   /** Alerttype */
-  alertType: ("priority" | "standard")[];
+  alertType: ("priority" | "standard" | "uk-licensed")[];
   /** Tcatime */
   tcaTime?: string | null;
   /** Collisionprobability */
@@ -1055,6 +1067,9 @@ export interface TypeEventForAnalysisOut {
   secondary_object_cross_section_max?: number | null;
 }
 
+/** EventLevel */
+export type TypeEventLevel = "Event" | "Alert";
+
 /** EventOut */
 export interface TypeEventOut {
   /**
@@ -1303,7 +1318,169 @@ export type TypeExternalDataType =
   | "Manoeuvre Trade Space Plot"
   | "Tracking and Impact Prediction"
   | "Reentry Event Report"
-  | "Conjunction Report";
+  | "Conjunction Report"
+  | "Fragmentation Report";
+
+/** FragmentationEvent */
+export interface TypeFragmentationEvent {
+  /**
+   * Id
+   * @format uuid
+   */
+  id?: string;
+  /**
+   * Created At
+   * @format date-time
+   */
+  created_at?: string;
+  /**
+   * Updated At
+   * @format date-time
+   */
+  updated_at?: string;
+  /** Short Id */
+  short_id: string;
+  /**
+   * Event Epoch
+   * @format date-time
+   */
+  event_epoch: string;
+  /** Conjunction Commentary */
+  conjunction_commentary?: string | null;
+  /** Object History */
+  object_history?: string | null;
+  /** Risk */
+  risk?: string | null;
+  /** Primary Object Common Name */
+  primary_object_common_name?: string | null;
+  /** Primary Object Norad Id */
+  primary_object_norad_id: string;
+  /** Secondary Object Common Name */
+  secondary_object_common_name?: string | null;
+  /** Secondary Object Norad Id */
+  secondary_object_norad_id?: string | null;
+}
+
+/** FragmentationEventsSortBy */
+export type TypeFragmentationEventsSortBy =
+  | "created_at"
+  | "updated_at"
+  | "event_epoch"
+  | "primary_object_norad_id"
+  | "short_id"
+  | "primary_object_common_name";
+
+/** FragmentationReport */
+export interface TypeFragmentationReport {
+  /**
+   * Id
+   * @format uuid
+   */
+  id?: string;
+  /**
+   * Created At
+   * @format date-time
+   */
+  created_at?: string;
+  /**
+   * Updated At
+   * @format date-time
+   */
+  updated_at?: string;
+  /** Short Id */
+  short_id: string | null;
+  /** Report Number */
+  report_number: number;
+  /**
+   * Event Epoch
+   * @format date-time
+   */
+  event_epoch: string;
+  /** Modelled Fragments */
+  modelled_fragments?: number | null;
+  /** Known Fragments */
+  known_fragments?: number | null;
+  /** Fragmentation Type Comment */
+  fragmentation_type_comment?: string | null;
+  fragmentation_type: TypeFragmentationType;
+  affected_regime: TypeAffectedRegime;
+  /** Conjunction Event Id */
+  conjunction_event_id?: string | null;
+  /** Conjunction Commentary */
+  conjunction_commentary?: string | null;
+  /** Object History */
+  object_history?: string | null;
+  /** Risk */
+  risk?: string | null;
+  /** Primary Object Common Name */
+  primary_object_common_name?: string | null;
+  /** Primary Object Norad Id */
+  primary_object_norad_id: string;
+  /** Primary Object Licensing Country */
+  primary_object_licensing_country?: string | null;
+  /** Primary Object Type */
+  primary_object_type?: string | null;
+  /** Primary Object Mass */
+  primary_object_mass?: number | null;
+  /** Primary Object International Designator */
+  primary_object_international_designator?: string | null;
+  /** Primary Object Launching Year */
+  primary_object_launching_year?: number | null;
+  /** Primary Object Apogee */
+  primary_object_apogee?: number | null;
+  /** Primary Object Perigee */
+  primary_object_perigee?: number | null;
+  /** Primary Object Inclination */
+  primary_object_inclination?: number | null;
+  /** Secondary Object Common Name */
+  secondary_object_common_name?: string | null;
+  /** Secondary Object Norad Id */
+  secondary_object_norad_id?: string | null;
+  /** Secondary Object Licensing Country */
+  secondary_object_licensing_country?: string | null;
+  /** Secondary Object Type */
+  secondary_object_type?: string | null;
+  /** Secondary Object Mass */
+  secondary_object_mass?: number | null;
+  /** Secondary Object International Designator */
+  secondary_object_international_designator?: string | null;
+  /** Secondary Object Launching Year */
+  secondary_object_launching_year?: number | null;
+  /** Secondary Object Apogee */
+  secondary_object_apogee?: number | null;
+  /** Secondary Object Perigee */
+  secondary_object_perigee?: number | null;
+  /** Secondary Object Inclination */
+  secondary_object_inclination?: number | null;
+  /** Uploaded By Id */
+  uploaded_by_id?: string | null;
+  /** Deleted By Id */
+  deleted_by_id?: string | null;
+  /** File Name */
+  file_name: string;
+}
+
+/** FragmentationReportSortBy */
+export type TypeFragmentationReportSortBy =
+  | "created_at"
+  | "updated_at"
+  | "event_epoch"
+  | "primary_object_norad_id"
+  | "report_number"
+  | "short_id"
+  | "primary_object_common_name";
+
+/** FragmentationType */
+export type TypeFragmentationType =
+  | "Propulsion"
+  | "Collision"
+  | "Small Impactor"
+  | "Electrical"
+  | "Accidental"
+  | "Aerodynamics"
+  | "Deliberate"
+  | "Unknown"
+  | "Anomalous";
 
 /** HTTPValidationError */
 export interface TypeHTTPValidationError {
@@ -1513,7 +1690,7 @@ export interface TypeReentryAlertSettings {
    */
   alert_type?: "reentry";
   /** Chosen Option */
-  chosen_option: "all" | "priority" | "uk_satellites_only" | "none";
+  chosen_option: "all" | "priority" | "uk-licensed" | "none";
   /**
    * Areas Of Interest
    * @uniqueItems true
@@ -1534,7 +1711,7 @@ export type TypeReentryDirection = "ascending" | "descending";
 /** ReentryEventAlertIn */
 export interface TypeReentryEventAlertIn {
   /** Alerttype */
-  alertType: ("standard" | "priority" | "uk_satellites_only" | "closedown")[];
+  alertType: ("standard" | "priority" | "uk-licensed" | "closedown")[];
   /**
    * Additionalemails
    * @default []
@@ -1555,7 +1732,7 @@ export interface TypeReentryEventAlertOut {
    */
   reentryReportId: string;
   /** Alerttype */
-  alertType: ("standard" | "priority" | "uk_satellites_only" | "closedown")[];
+  alertType: ("standard" | "priority" | "uk-licensed" | "closedown")[];
   /** Additionalrecipients */
   additionalRecipients: string[] | null;
   /** Emailnotificationsendingstatus */
@@ -1736,7 +1913,7 @@ export interface TypeReentryEventReportOut {
   /** Reportnumber */
   reportNumber: number;
   /** Alerttype */
-  alertType: ("priority" | "standard" | "uk_satellites_only" | "closedown")[];
+  alertType: ("priority" | "standard" | "uk-licensed" | "closedown")[];
   /**
    * Reporttime
    * @format date-time
@@ -1811,6 +1988,8 @@ export type TypeReentryEventSortBy =
   | "time_window_start"
   | "tip_external_id"
   | "uk_reentry_probability"
+  | "human_casualty_probability"
+  | "fragments_probability"
   | "overflight_time"
   | "updated_at";
 
@@ -2142,6 +2321,14 @@ export interface TypeStatisticsReentryEventReportsCount {
   count: number;
 }
 
+/** StatisticsReentryEventsAndAlertsCount */
+export interface TypeStatisticsReentryEventsAndAlertsCount {
+  /** Objecttype */
+  objectType: string;
+  /** Count */
+  count: number;
+}
+
 /** StatisticsReentryEventsAndAlertsMonthlyCount */
 export interface TypeStatisticsReentryEventsAndAlertsMonthlyCount {
   /** Month */
@@ -2338,7 +2525,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2025-04-14T07:07:45.410660"
+   * @default "2025-05-15T21:30:46.565234"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -2798,6 +2985,84 @@ export interface TypeGetExternalDataPerformanceAggregatedParams {
    * @default "asc"
    */
   sort_order?: TypeSortOrder;
+}
+
+export interface TypeGetFragmentationEventsParams {
+  /**
+   * Epoch
+   * @default "future"
+   */
+  epoch?: TypeEpoch;
+  /** Search Query */
+  search_query?: string | null;
+  /**
+   * Sort By
+   * @default "event_epoch"
+   */
+  sort_by?: TypeFragmentationEventsSortBy;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+}
+
+export interface TypeGetFragmentationReportsParams {
+  /**
+   * Sort By
+   * @default "event_epoch"
+   */
+  sort_by?: TypeFragmentationReportSortBy;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeGetFragmentationReportsFragmentationEventShortIdParams {
+  /**
+   * Sort By
+   * @default "event_epoch"
+   */
+  sort_by?: TypeFragmentationReportSortBy;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+  /** Short Id */
+  shortId: string;
 }
 
 export interface TypeGetManoeuvrePlotsParams {
@@ -3354,7 +3619,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2025-05-01"
+   * @default "2025-06-01"
    */
   end_date?: string;
 }
@@ -3369,7 +3634,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2025-05-01"
+   * @default "2025-06-01"
    */
   end_date?: string;
 }
@@ -3384,7 +3649,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-05-01"
+   * @default "2025-06-01"
    */
   end_date?: string;
 }
@@ -3399,7 +3664,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-05-01"
+   * @default "2025-06-01"
    */
   end_date?: string;
 }
@@ -3414,7 +3679,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-05-01"
+   * @default "2025-06-01"
    */
   end_date?: string;
 }
@@ -3429,7 +3694,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2025-05-01"
+   * @default "2025-06-01"
    */
   end_date?: string;
 }
@@ -3458,6 +3723,18 @@ export interface TypeGetStatsMonthlyReentryEventsByObjectTypeParams {
   start_date?: string | null;
   /** End Date */
   end_date?: string | null;
+}
+
+export interface TypeGetStatsReentryEventsParams {
+  /** Start Date */
+  start_date?: string | null;
+  /** End Date */
+  end_date?: string | null;
+  /**
+   * Reentry Level
+   * @default "Event"
+   */
+  reentry_level?: TypeEventLevel;
 }
 
 export interface TypePostTipsParams {
