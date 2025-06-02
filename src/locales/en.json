@@ -651,7 +651,7 @@
     "Risk_thresholds": {
       "content": "<p>Risk thresholds are calculated accounting for the probability of the collision between the two objects (as calculated by the US), and the average number of additional conjunction events that the collision would create for UK satellites.</p><p>Any event with an expected maneouvre is automatically categorised as `Low risk`.</p>",
       "probability_of_collision": {
-        "title": "Predicted additional conjunction events for UK objects",
+        "title": "Probability of collision",
         "low": "<5%",
         "medium": "5% - 10%",
         "high": "More than 10%"
