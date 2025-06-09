@@ -24,8 +24,7 @@ const PdfTemplate = ({ title, sections }: PdfTemplateProps) => {
       <Page size="A4" style={pdfStyles.page}>
         <View style={pdfStyles.headerContainer}>
           <View style={pdfStyles.logoContainer}>
-            <Image src="/nspoclogo_white.png" style={pdfStyles.logo} />
-            <Image src="/logo_white.png" style={pdfStyles.logo} />
+            <Image src="/nspoclogo2.png" style={pdfStyles.nspocLogo} />
           </View>
           <Text style={pdfStyles.headerTitle}>{title}</Text>
         </View>
@@ -52,7 +51,6 @@ const PdfTemplate = ({ title, sections }: PdfTemplateProps) => {
             </View>
           ))}
         </View>
-
         <View style={pdfStyles.footer}>
           <Text>
             Produced by
@@ -68,6 +66,9 @@ const PdfTemplate = ({ title, sections }: PdfTemplateProps) => {
             .
           </Text>
           <Text>All content is available under the Open Government Licence v3.0, except where otherwise stated.</Text>
+          <View style={pdfStyles.uksaLogoContainer}>
+            <Image src="/uksa.png" style={pdfStyles.uksaLogo} />
+          </View>
         </View>
       </Page>
     </Document>

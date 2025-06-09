@@ -17,7 +17,7 @@ import type { MapTooltipInfo } from './ReentryAlertMapTooltip';
 import { type MapType, ReentryAlertMapType } from './ReentryAlertMapType';
 import { type MapView, ReentryAlertMapView } from './ReentryAlertMapView';
 import { ReentryAlertOverflights } from './ReentryAlertOverflights';
-import { flightpathStyle, fragmentsStyle, type OverflightType, regionLayer, RegionsGeoJson } from './utils';
+import { flightpathStyle, fragmentsHeatmapStyle, fragmentsStyle, type OverflightType, regionLayer, RegionsGeoJson } from './utils';
 
 const ReentryAlertMapTooltip = dynamic(() => import('./ReentryAlertMapTooltip').then(mod => mod.ReentryAlertMapTooltip), {
   ssr: false,
@@ -143,7 +143,6 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
                   <Layer {...regionLayer(region)} />
                 </Source>
               ))}
-
           {flightpathsCollection && Array.from(flightpathsCollection.entries()).map(([index, flightpath]) => (
             <Source key={`FLIGHTPATH-${index}`} type="geojson" data={flightpath}>
               <Layer
@@ -156,6 +155,10 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
             <Source key={`FRAGMENT-${index}`} type="geojson" data={fragments}>
               <Layer
                 {...fragmentsStyle(index, types.includes('FRAGMENT') && flightpaths.includes(index))}
+                beforeId="airport-label"
+              />
+              <Layer
+                {...fragmentsHeatmapStyle(index, types.includes('FRAGMENT') && flightpaths.includes(index))}
                 beforeId="airport-label"
               />
             </Source>

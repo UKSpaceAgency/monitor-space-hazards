@@ -81,7 +81,9 @@ export async function getReentryAlertMapData(presignedUrl: string) {
     });
   });
 
-  for (const point of lastReport.map_points) {
+  const sortedPoints = lastReport.map_points.sort((a, b) => Date.parse(b.overflight) - Date.parse(a.overflight));
+
+  for (const point of sortedPoints) {
     if (point.pass) {
       flightpathsCollection.get(point.pass)?.features.push(generateFeature(point, 'overflight'));
     } else {

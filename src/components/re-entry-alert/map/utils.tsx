@@ -1,4 +1,4 @@
-import type { CircleLayerSpecification, FillLayerSpecification, SymbolLayerSpecification } from 'mapbox-gl';
+import type { CircleLayerSpecification, FillLayerSpecification, HeatmapLayerSpecification, SymbolLayerSpecification } from 'mapbox-gl';
 
 import { RegionsEnum } from '@/utils/Regions';
 
@@ -66,18 +66,14 @@ export const flightpathStyle = (index: number, visible: boolean): CircleLayerSpe
   paint: {
     'circle-color': OverflightColors[index] ?? '#fff',
     'circle-opacity': 0.6,
+    'circle-blur': 1,
     'circle-radius': {
-      base: 20,
-      stops: index === 0
-        ? [
-            [0, 2],
-            [3, 10],
-          ]
-        : [
-            [0, 2],
-            [3, 10],
-            [10, 20],
-          ],
+      base: index === 0 ? 1 : 1.75,
+      stops: [
+        [0, 2],
+        [5, 10],
+        [10, 180],
+      ],
     },
   },
   layout: {
@@ -104,5 +100,45 @@ export const fragmentsStyle = (index: number, visible: boolean): SymbolLayerSpec
   paint: {
     'icon-color': OverflightColors[index] ?? '#fff',
     'icon-opacity': 0.6,
+  },
+});
+
+export const fragmentsHeatmapStyle = (index: number, visible: boolean): HeatmapLayerSpecification => ({
+  id: `FRAGMENT-HEATMAP-${index}`,
+  type: 'heatmap',
+  source: `FRAGMENT-${index}`,
+  layout: {
+    visibility: visible ? 'visible' : 'none',
+  },
+  paint: {
+    'heatmap-intensity': [
+      'interpolate',
+      ['linear'],
+      ['zoom'],
+      0,
+      1,
+      9,
+      3,
+    ],
+    'heatmap-radius': [
+      'interpolate',
+      ['linear'],
+      ['zoom'],
+      0,
+      2,
+      9,
+      20,
+    ],
+    'heatmap-color': [
+      'interpolate',
+      ['linear'],
+      ['heatmap-density'],
+      0,
+      'transparent',
+      1,
+      OverflightColors[index],
+    ],
+    'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 7, 1, 9, 0],
+    'heatmap-weight': 1,
   },
 });
