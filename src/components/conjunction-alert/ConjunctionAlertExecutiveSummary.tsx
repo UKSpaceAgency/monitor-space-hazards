@@ -4,6 +4,7 @@ import { getTranslations } from 'next-intl/server';
 
 import type { TypeConjunctionReportOut, TypeReentryRisk } from '@/__generated__/data-contracts';
 import InsetText from '@/ui/inset-text/inset-text';
+import { roundedPercent } from '@/utils/Math';
 import { renderRiskTag } from '@/utils/Risk';
 
 import { Markdown } from '../Markdown';
@@ -25,7 +26,7 @@ const ConjunctionAlertExecutiveSummary = async ({ report, execSummaryAddition, m
     primaryObjectUrl: chunks => <Link href={`/satellites/${report.primaryObjectNoradId}`}>{chunks}</Link>,
     secondaryObjectUrl: chunks => <Link href={`/satellites/${report.secondaryObjectNoradId}`}>{chunks}</Link>,
     risk: report.risk,
-    collisionProbability: report.collisionProbability,
+    collisionProbability: roundedPercent(report.collisionProbability),
     tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
   };
 
