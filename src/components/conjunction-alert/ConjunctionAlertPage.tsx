@@ -23,9 +23,11 @@ const ConjunctionAlertPage = async ({ shortId, searchParams, footer }: Conjuncti
   const t = await getTranslations('Conjunction_alert');
   const event = await getConjunctionUniqueEvent(shortId);
   const reports = await getConjunctionReports({ shortId });
-  const lastReport = reports[reports.length - 1];
   const title = t('title', { primaryObject: event.primaryObjectCommonName, secondaryObject: event.secondaryObjectCommonName });
-  const pdfTitle = t('pdf_title', { primaryObject: event.primaryObjectCommonName, secondaryObject: event.secondaryObjectCommonName, reportNumber: lastReport?.reportNumber ?? '' });
+  const pdfTitle = t('pdf_title', { primaryObject: event.primaryObjectCommonName, secondaryObject: event.secondaryObjectCommonName, reportNumber: event.reportNumber });
+
+  const lastReport = reports[reports.length - 1];
+  const isClosed = lastReport?.alertType.includes('closedown');
 
   if (!lastReport) {
     notFound();
@@ -41,7 +43,7 @@ const ConjunctionAlertPage = async ({ shortId, searchParams, footer }: Conjuncti
         <ContentNavigation />
         <div className="md:col-span-3">
           {t.rich('report_info', { number: lastReport.reportNumber.toString(), time: dayjs(lastReport.reportTime).format(FORMAT_DATE_TIME) })}
-          <ConjunctionAlertExecutiveSummary event={event} report={lastReport} execSummaryAddition={searchParams?.exec_summary_addition ?? event.execSummaryAddition} manoeuvreAddition={searchParams?.manoeuvre_addition ?? event.manoeuvreAddition} />
+          <ConjunctionAlertExecutiveSummary report={lastReport} execSummaryAddition={searchParams?.exec_summary_addition ?? event.execSummaryAddition} manoeuvreAddition={searchParams?.manoeuvre_addition ?? event.manoeuvreAddition} isClosed={isClosed} />
           <ConjunctionAlertNextUpdate shortId={shortId} />
           <ConjunctionAlertAccordion event={event} report={lastReport} reports={reports} searchParams={searchParams} />
           {footer || <ConjunctionAlertPageButtons pdfTitle={pdfTitle} />}

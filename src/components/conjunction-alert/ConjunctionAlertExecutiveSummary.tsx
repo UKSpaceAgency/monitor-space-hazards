@@ -1,31 +1,48 @@
 import Link from 'next/link';
+import type { RichTranslationValues } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
-import type { TypeConjunctionReportOut, TypeUniqueEventOut } from '@/__generated__/data-contracts';
+import type { TypeConjunctionReportOut, TypeReentryRisk } from '@/__generated__/data-contracts';
+import InsetText from '@/ui/inset-text/inset-text';
+import { renderRiskTag } from '@/utils/Risk';
 
 import { Markdown } from '../Markdown';
 import { ConjunctionAlertExecutiveSummaryTable } from './tables/ConjunctionAlertExecutiveSummaryTable';
 
 type ConjunctionAlertExecutiveSummaryProps = {
-  event: TypeUniqueEventOut;
   report: TypeConjunctionReportOut;
   execSummaryAddition?: string | null;
   manoeuvreAddition?: string | null;
+  isClosed?: boolean;
 };
 
-const ConjunctionAlertExecutiveSummary = async ({ report, execSummaryAddition, manoeuvreAddition }: ConjunctionAlertExecutiveSummaryProps) => {
+const ConjunctionAlertExecutiveSummary = async ({ report, execSummaryAddition, manoeuvreAddition, isClosed }: ConjunctionAlertExecutiveSummaryProps) => {
   const t = await getTranslations('Conjunction_alert.Executive_summary');
+
+  const contentVariables: RichTranslationValues = {
+    primaryObject: report.primaryObjectCommonName,
+    secondaryObject: report.secondaryObjectCommonName,
+    primaryObjectUrl: chunks => <Link href={`/satellites/${report.primaryObjectNoradId}`}>{chunks}</Link>,
+    secondaryObjectUrl: chunks => <Link href={`/satellites/${report.secondaryObjectNoradId}`}>{chunks}</Link>,
+    risk: report.risk,
+    collisionProbability: report.collisionProbability,
+    tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
+  };
+
   return (
     <div data-pdf={t('title')}>
       <h2 data-anchor="information" className="govuk-heading-l">{t('title')}</h2>
-      <p className="govuk-body">
-        {t.rich('content', {
-          primaryObject: report.primaryObjectCommonName,
-          secondaryObject: report.secondaryObjectCommonName,
-          primaryObjectUrl: chunks => <Link href={`/satellites/${report.primaryObjectNoradId}`}>{chunks}</Link>,
-          secondaryObjectUrl: chunks => <Link href={`/satellites/${report.secondaryObjectNoradId}`}>{chunks}</Link>,
-        })}
-      </p>
+      {isClosed
+        ? (
+            <InsetText>
+              {t.rich('closed_report', contentVariables)}
+            </InsetText>
+          )
+        : (
+            <p className="govuk-body">
+              {t.rich('content', contentVariables)}
+            </p>
+          )}
       <Markdown>
         {execSummaryAddition}
       </Markdown>

@@ -30,7 +30,7 @@ const ReentryAlertExecutiveSummary = async ({ event, previewSummary, isClosed }:
         ? (
             <InsetText>
               {t.rich('closed_report', {
-                commonName: event.objectName,
+                commonName: event.objectName ?? 'Unknown',
                 date: dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME),
                 riskLevel: event?.monteCarloRisk,
                 riskProbability: event?.monteCarloProbability,

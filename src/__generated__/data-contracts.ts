@@ -567,8 +567,8 @@ export interface TypeBodyCreateEphemerisV1EphemerisPost {
   file: File;
 }
 
-/** Body_post_fragmentation_event_report_v1_fragmentation_reports__post */
-export interface TypeBodyPostFragmentationEventReportV1FragmentationReportsPost {
+/** Body_post_conjunction_report_v1_conjunction_reports__post */
+export interface TypeBodyPostConjunctionReportV1ConjunctionReportsPost {
   /**
    * File
    * @format binary
@@ -576,8 +576,8 @@ export interface TypeBodyPostFragmentationEventReportV1FragmentationReportsPost 
   file: File;
 }
 
-/** Body_upload_conjunction_report_v1_conjunction_reports__post */
-export interface TypeBodyUploadConjunctionReportV1ConjunctionReportsPost {
+/** Body_post_fragmentation_event_report_v1_fragmentation_reports__post */
+export interface TypeBodyPostFragmentationEventReportV1FragmentationReportsPost {
   /**
    * File
    * @format binary
@@ -733,7 +733,7 @@ export interface TypeConjunctionReportOut {
   /** Risk */
   risk: "Low" | "Medium" | "High";
   /** Alerttype */
-  alertType: ("priority" | "standard" | "uk-licensed")[];
+  alertType: ("priority" | "standard" | "uk-licensed" | "closedown")[];
   /** Tcatime */
   tcaTime?: string | null;
   /** Collisionprobability */
@@ -1359,6 +1359,13 @@ export interface TypeFragmentationEvent {
   secondary_object_common_name?: string | null;
   /** Secondary Object Norad Id */
   secondary_object_norad_id?: string | null;
+  /**
+   * Is Active
+   * @default true
+   */
+  is_active?: boolean;
+  /** Report Number */
+  report_number?: number | null;
 }
 
 /** FragmentationEventsSortBy */
@@ -1452,6 +1459,11 @@ export interface TypeFragmentationReport {
   secondary_object_perigee?: number | null;
   /** Secondary Object Inclination */
   secondary_object_inclination?: number | null;
+  /**
+   * Is Active
+   * @default true
+   */
+  is_active?: boolean;
   /** Uploaded By Id */
   uploaded_by_id?: string | null;
   /** Deleted By Id */
@@ -2279,6 +2291,32 @@ export interface TypeStatisticsEventsType {
   count: number;
 }
 
+/** StatisticsFragmentationEventsAndAlertsCount */
+export interface TypeStatisticsFragmentationEventsAndAlertsCount {
+  /** Objecttype */
+  objectType: string;
+  /** Count */
+  count: number;
+}
+
+/** StatisticsFragmentationEventsByObjectTypeMonthlyCount */
+export interface TypeStatisticsFragmentationEventsByObjectTypeMonthlyCount {
+  /** Objecttype */
+  objectType?: string | null;
+  /** Month */
+  month?: string | null;
+  /** Count */
+  count: number;
+}
+
+/** StatisticsFragmentationEventsMonthlyCount */
+export interface TypeStatisticsFragmentationEventsMonthlyCount {
+  /** Month */
+  month: string;
+  /** Count */
+  count: number;
+}
+
 /** StatisticsHighestUpcomingCollisionProbability */
 export interface TypeStatisticsHighestUpcomingCollisionProbability {
   /** Collisionprobability */
@@ -2525,7 +2563,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2025-05-15T21:30:46.565234"
+   * @default "2025-06-09T13:48:02.448636"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3046,6 +3084,11 @@ export interface TypeGetFragmentationReportsFragmentationEventShortIdParams {
    * @default "event_epoch"
    */
   sort_by?: TypeFragmentationReportSortBy;
+  /**
+   * Show Only Active
+   * @default false
+   */
+  show_only_active?: boolean;
   /**
    * Limit
    * @default 100
@@ -3619,7 +3662,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2025-06-01"
+   * @default "2025-07-01"
    */
   end_date?: string;
 }
@@ -3634,7 +3677,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2025-06-01"
+   * @default "2025-07-01"
    */
   end_date?: string;
 }
@@ -3649,7 +3692,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-06-01"
+   * @default "2025-07-01"
    */
   end_date?: string;
 }
@@ -3664,7 +3707,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-06-01"
+   * @default "2025-07-01"
    */
   end_date?: string;
 }
@@ -3679,7 +3722,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-06-01"
+   * @default "2025-07-01"
    */
   end_date?: string;
 }
@@ -3694,7 +3737,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2025-06-01"
+   * @default "2025-07-01"
    */
   end_date?: string;
 }
@@ -3735,6 +3778,27 @@ export interface TypeGetStatsReentryEventsParams {
    * @default "Event"
    */
   reentry_level?: TypeEventLevel;
+}
+
+export interface TypeGetStatsFragmentationEventsParams {
+  /** Start Date */
+  start_date?: string | null;
+  /** End Date */
+  end_date?: string | null;
+}
+
+export interface TypeGetStatsMonthlyFragmentationEventsParams {
+  /** Start Date */
+  start_date?: string | null;
+  /** End Date */
+  end_date?: string | null;
+}
+
+export interface TypeGetStatsMonthlyFragmentationEventsByObjectTypeParams {
+  /** Start Date */
+  start_date?: string | null;
+  /** End Date */
+  end_date?: string | null;
 }
 
 export interface TypePostTipsParams {

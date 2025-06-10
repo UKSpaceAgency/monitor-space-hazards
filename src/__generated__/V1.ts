@@ -26,8 +26,8 @@ import {
   TypeBannerSchedulesOut,
   TypeBodyCreateAnalysisV1AnalysesPost,
   TypeBodyCreateEphemerisV1EphemerisPost,
+  TypeBodyPostConjunctionReportV1ConjunctionReportsPost,
   TypeBodyPostFragmentationEventReportV1FragmentationReportsPost,
-  TypeBodyUploadConjunctionReportV1ConjunctionReportsPost,
   TypeBodyUploadManoeuvrePlotFileV1ManoeuvrePlotsPost,
   TypeBodyUploadReentryEventReportV1ReentryEventReportsPost,
   TypeBodyUploadTrackingAndImpactPredictionFileV1TipsPost,
@@ -82,9 +82,12 @@ import {
   TypeGetStatsEventsByOrganizationParams,
   TypeGetStatsEventsBySatelliteParams,
   TypeGetStatsEventsTypeParams,
+  TypeGetStatsFragmentationEventsParams,
   TypeGetStatsMonthlyAnalysesParams,
   TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams,
   TypeGetStatsMonthlyConjunctionEventsParams,
+  TypeGetStatsMonthlyFragmentationEventsByObjectTypeParams,
+  TypeGetStatsMonthlyFragmentationEventsParams,
   TypeGetStatsMonthlyManoeuvrePlotsParams,
   TypeGetStatsMonthlyObjectsLaunchedParams,
   TypeGetStatsMonthlyOrganizationsParams,
@@ -121,6 +124,9 @@ import {
   TypeStatisticsEventsByOrganization,
   TypeStatisticsEventsBySatellite,
   TypeStatisticsEventsType,
+  TypeStatisticsFragmentationEventsAndAlertsCount,
+  TypeStatisticsFragmentationEventsByObjectTypeMonthlyCount,
+  TypeStatisticsFragmentationEventsMonthlyCount,
   TypeStatisticsHighestUpcomingCollisionProbability,
   TypeStatisticsMonthlyCount,
   TypeStatisticsMonthlyRunningSum,
@@ -497,7 +503,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   postConjunctionReports = (
-    data: TypeBodyUploadConjunctionReportV1ConjunctionReportsPost,
+    data: TypeBodyPostConjunctionReportV1ConjunctionReportsPost,
     query?: TypePostConjunctionReportsParams,
     params: RequestParams = {},
   ) =>
@@ -697,6 +703,22 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
+   * @description ## Description Gets Fragmentation Event by short ID.. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags fragmentation-events
+   * @name GetFragmentationEventsShortId
+   * @summary Gets Fragmentation Event by short ID
+   * @request GET:/v1/fragmentation-events/{short_id}
+   * @secure
+   */
+  getFragmentationEventsShortId = (shortId: string, params: RequestParams = {}) =>
+    this.request<TypeFragmentationEvent, void | TypeHTTPValidationError>({
+      path: `/v1/fragmentation-events/${shortId}`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
    * @description ## Description Gets Fragmentation Events schema. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
    *
    * @tags fragmentation-events
@@ -783,7 +805,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Deletes Fragmentation Event Report by database ID |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|-|
+   * @description ## Description Deletes Fragmentation Event Report by database ID |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete|
    *
    * @tags fragmentation-reports
    * @name DeleteFragmentationReportsFragmentationReportId
@@ -1840,6 +1862,63 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
   getStatsReentryEvents = (query?: TypeGetStatsReentryEventsParams, params: RequestParams = {}) =>
     this.request<TypeStatisticsReentryEventsAndAlertsCount[], void | TypeHTTPValidationError>({
       path: `/v1/stats/reentry-events`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Get count of Fragmentation Events with object type within a date range. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
+   *
+   * @tags stats
+   * @name GetStatsFragmentationEvents
+   * @summary Get count of Fragmentation Events with object type within a date range.
+   * @request GET:/v1/stats/fragmentation-events
+   * @secure
+   */
+  getStatsFragmentationEvents = (query?: TypeGetStatsFragmentationEventsParams, params: RequestParams = {}) =>
+    this.request<TypeStatisticsFragmentationEventsAndAlertsCount[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/fragmentation-events`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Get monthly count of Fragmentation Events within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
+   *
+   * @tags stats
+   * @name GetStatsMonthlyFragmentationEvents
+   * @summary Get monthly count of Fragmentation Events
+   * @request GET:/v1/stats/monthly/fragmentation-events
+   * @secure
+   */
+  getStatsMonthlyFragmentationEvents = (
+    query?: TypeGetStatsMonthlyFragmentationEventsParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeStatisticsFragmentationEventsMonthlyCount[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/monthly/fragmentation-events`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Get monthly count of Fragmentation Events with object type, within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
+   *
+   * @tags stats
+   * @name GetStatsMonthlyFragmentationEventsByObjectType
+   * @summary Get monthly count of Fragmentation Events with object type
+   * @request GET:/v1/stats/monthly/fragmentation-events-by-object-type
+   * @secure
+   */
+  getStatsMonthlyFragmentationEventsByObjectType = (
+    query?: TypeGetStatsMonthlyFragmentationEventsByObjectTypeParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeStatisticsFragmentationEventsByObjectTypeMonthlyCount[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/monthly/fragmentation-events-by-object-type`,
       method: "GET",
       query: query,
       secure: true,
