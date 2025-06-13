@@ -30,7 +30,7 @@ const ReentryAlertExecutiveSummary = async ({ event, previewSummary, isClosed }:
     objectType: event?.objectType,
     date: dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME),
     riskLevel: event?.monteCarloRisk ?? 'Low',
-    riskProbability: event?.monteCarloProbability ? roundedPercentage(event.monteCarloProbability) : 'Unknown',
+    riskProbability: roundedPercentage(event?.monteCarloProbability ?? 0),
     licensingCountry: getFullCountry(event.licenseCountry),
     tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
   };

@@ -93,7 +93,8 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
           mapboxAccessToken={env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
           mapStyle={`mapbox://styles/mapbox/${mapType}`}
           projection={{
-            name: mapView,
+            name: 'equalEarth',
+            parallels: [0, 0],
           }}
           preserveDrawingBuffer
           initialViewState={initialViewState}
