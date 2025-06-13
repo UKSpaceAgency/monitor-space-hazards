@@ -6,6 +6,7 @@ import { getTranslations } from 'next-intl/server';
 import type { TypeReentryEventOut, TypeReentryRisk } from '@/__generated__/data-contracts';
 import { FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 import InsetText from '@/ui/inset-text/inset-text';
+import { roundedPercentage } from '@/utils/Math';
 import { getFullCountry } from '@/utils/Regions';
 import { renderRiskTag } from '@/utils/Risk';
 
@@ -29,7 +30,7 @@ const ReentryAlertExecutiveSummary = async ({ event, previewSummary, isClosed }:
     objectType: event?.objectType,
     date: dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME),
     riskLevel: event?.monteCarloRisk ?? 'Low',
-    riskProbability: event?.monteCarloProbability,
+    riskProbability: event?.monteCarloProbability ? roundedPercentage(event.monteCarloProbability) : 'Unknown',
     licensingCountry: getFullCountry(event.licenseCountry),
     tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
   };
