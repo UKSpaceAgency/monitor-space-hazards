@@ -85,7 +85,6 @@ export const fragmentsStyle = (index: number, visible: boolean): SymbolLayerSpec
   id: `FRAGMENT-${index}`,
   type: 'symbol',
   source: `FRAGMENT-${index}`,
-  filter: ['has', 'point_count'],
   layout: {
     'icon-image': 'fragments-icon',
     'icon-size': {
