@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import { isNumber } from 'lodash';
+import type { RichTranslationValues } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
 import type { TypeReentryEventOut, TypeReentryRisk } from '@/__generated__/data-contracts';
@@ -23,25 +24,28 @@ const ReentryAlertExecutiveSummary = async ({ event, previewSummary, isClosed }:
 
   const haveRiskProbabilities = isNumber(event.monteCarloProbability) || isNumber(event.fragmentsProbability) || isNumber(event.humanCasualtyProbability);
 
+  const contentVariables: RichTranslationValues = {
+    commonName: event?.objectName ?? 'Unknown',
+    objectType: event?.objectType,
+    date: dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME),
+    riskLevel: event?.monteCarloRisk ?? 'Low',
+    riskProbability: event?.monteCarloProbability,
+    licensingCountry: getFullCountry(event.licenseCountry),
+    tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
+  };
+
   return (
     <div data-pdf={t('title')}>
       <h2 data-anchor="information" className="govuk-heading-l">{t('title')}</h2>
       {isClosed
         ? (
             <InsetText>
-              {t.rich('closed_report', {
-                commonName: event.objectName ?? 'Unknown',
-                date: dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME),
-                riskLevel: event?.monteCarloRisk,
-                riskProbability: event?.monteCarloProbability,
-                licensingCountry: getFullCountry(event.licenseCountry),
-                tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
-              })}
+              {t.rich('closed_report', contentVariables)}
             </InsetText>
           )
         : (
             <p className="govuk-body">
-              {t('content')}
+              {t.rich('content', contentVariables)}
             </p>
           )}
       <Markdown>

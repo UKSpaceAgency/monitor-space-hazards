@@ -33,7 +33,7 @@ const ThresholdsSettingsFormContent = ({ isSubmitting, register, errors }: Thres
         <TableBody>
           <TableRow>
             <TableCell className="align-center"><Label className="font-bold mb-0" htmlFor="poc_field">{t('PROBABILITY_OF_COLLISION')}</Label></TableCell>
-            <TableCell><Input id="poc_field" {...register('PROBABILITY_OF_COLLISION', { valueAsNumber: true })} className="mb-0" type="number" suffix="%" step={0.001} error={errors.PROBABILITY_OF_COLLISION?.message} /></TableCell>
+            <TableCell><Input id="poc_field" {...register('PROBABILITY_OF_COLLISION', { valueAsNumber: true })} className="mb-0" type="number" suffix="%" step={0.0000001} error={errors.PROBABILITY_OF_COLLISION?.message} /></TableCell>
           </TableRow>
           <TableRow>
             <TableCell className="align-center"><Label className="font-bold mb-0" htmlFor="total_miss_distance">{t('TOTAL_MISS_DISTANCE')}</Label></TableCell>
