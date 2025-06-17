@@ -598,7 +598,7 @@
     "Executive_summary": {
       "title": "Executive summary",
       "content": "The UK Space Agency is tracking the close approach of two objects, <primaryObjectUrl>{primaryObject}</primaryObjectUrl> and <secondaryObjectUrl>{secondaryObject}</secondaryObjectUrl>. A potential collision could damage the objects involved, limiting or eliminating their capability, as well as releasing new fragments, which would increase the risk of future collisions for other objects. This event is assessed as <tag>{risk}</tag> risk, with a {collisionProbability} probability of collision (PoC).",
-      "closed_report": "The UK Space Agency has completed tracking of the conjunction event involving <primaryObjectUrl>{primaryObject}</primaryObjectUrl> and <secondaryObjectUrl>{secondaryObject}</secondaryObjectUrl>, which occurred on {date} UTC. The event was assessed as <tag>{risk}</tag> risk, with a {collisionProbability}% probability of collision (PoC).",
+      "closed_report": "The UK Space Agency has completed tracking of the conjunction event involving <primaryObjectUrl>{primaryObject}</primaryObjectUrl> and <secondaryObjectUrl>{secondaryObject}</secondaryObjectUrl>, which occurred on {date} UTC. The event was assessed as <tag>{risk}</tag> risk, with a {collisionProbability} probability of collision (PoC).",
       "see_further_information": "<p>See <link>Further information</link> for more detail on methodology used in this report and the organisations that have been sent this alert.</p>"
     },
     "Next_update": {
@@ -738,7 +738,7 @@
     "Executive_summary": {
       "title": "Executive summary",
       "content": "The UK Space Agency is tracking the upcoming re-entry event involving {commonName} from space into Earth's atmosphere, posing a potential risk to life and property on the ground. The event is assessed as <tag>{riskLevel}</tag> risk, with a {riskProbability} probability of re-entry over the UK. {licensingCountry} is liable for any damages and associated response or recovery costs. All re-entered debris should be considered as hazardous until proven otherwise.",
-      "closed_report": "The UK Space Agency has completed tracking of the re-entry event involving {commonName}, which occurred on {date} UTC. The event was assessed as <tag>{riskLevel}</tag> risk, with a {riskProbability}% probability of re-entry over the UK.  {licensingCountry} is liable for any damages and associated response or recovery costs.",
+      "closed_report": "The UK Space Agency has completed tracking of the re-entry event involving {commonName}, which occurred on {date} UTC. The event was assessed as <tag>{riskLevel}</tag> risk, with a {riskProbability} probability of re-entry over the UK.  {licensingCountry} is liable for any damages and associated response or recovery costs.",
       "risk_probabilities": "UK risk probabilities",
       "event_summary": "Event summary"
     },
@@ -1543,7 +1543,7 @@
         "expected": "Expected",
         "not_expected": "Not expected",
         "na": "N/A",
-        "hint": "Is a manoeuvre expected from either object?"
+        "hint": "This text will next to 'Manoeuvre expected?' if you want to add a comment."
       },
       "add_to": "Add to `{name}`",
       "hint": "This text will appear under paragraphs which read:",
