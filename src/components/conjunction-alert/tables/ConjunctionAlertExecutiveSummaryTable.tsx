@@ -46,7 +46,7 @@ const ConjunctionAlertExecutiveSummaryTable = ({ report, manoeuvreAddition }: Co
     renderCell: ({ collisionProbability }) => collisionProbability ? roundedPercent(collisionProbability) : '-',
   }, {
     header: t('manoeuvre_expected'),
-    renderCell: () => manoeuvreAddition || '-',
+    renderCell: ({ manoeuvreExpected }) => `${manoeuvreExpected ? `${manoeuvreExpected}. ` : ''}${manoeuvreAddition}`,
   }, {
     header: t('primary_object'),
     renderCell: ({ primaryObjectCommonName, primaryObjectNoradId }) => (

@@ -1,16 +1,19 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
-import type { TypeUniqueEventOut } from '@/__generated__/data-contracts';
+import type { TypeConjunctionReportOut, TypeReentryRisk, TypeUniqueEventOut } from '@/__generated__/data-contracts';
+import { roundedPercent } from '@/utils/Math';
+import { renderRiskTag } from '@/utils/Risk';
 
 import type { EventAlertFormField } from '../event-alert-edit/EventAlertEditForm';
 import { EventAlertEditForm } from '../event-alert-edit/EventAlertEditForm';
 
 type ConjunctionAlertEditFormProps = {
   event: TypeUniqueEventOut;
+  report: TypeConjunctionReportOut;
 };
 
-const ConjunctionAlertEditForm = ({ event }: ConjunctionAlertEditFormProps) => {
+const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormProps) => {
   const t = useTranslations('Conjunction_alert');
   const tForm = useTranslations('Forms.Edit_alert');
 
@@ -23,10 +26,13 @@ const ConjunctionAlertEditForm = ({ event }: ConjunctionAlertEditFormProps) => {
       <div>
         <p>{tForm('hint')}</p>
         {t.rich('Executive_summary.content', {
-          primaryObject: event.primaryObjectCommonName,
-          secondaryObject: event.secondaryObjectCommonName,
-          primaryObjectUrl: chunks => <Link href={`/satellites/${event.primaryObjectNoradId}`}>{chunks}</Link>,
-          secondaryObjectUrl: chunks => <Link href={`/satellites/${event.secondaryObjectNoradId}`}>{chunks}</Link>,
+          primaryObject: report.primaryObjectCommonName || 'Unknown',
+          secondaryObject: report.secondaryObjectCommonName || 'Unknown',
+          primaryObjectUrl: chunks => <Link href={`/satellites/${report.primaryObjectNoradId}`}>{chunks}</Link>,
+          secondaryObjectUrl: chunks => <Link href={`/satellites/${report.secondaryObjectNoradId}`}>{chunks}</Link>,
+          risk: report.risk,
+          collisionProbability: roundedPercent(report.collisionProbability),
+          tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
         })}
       </div>
     ),
@@ -34,26 +40,15 @@ const ConjunctionAlertEditForm = ({ event }: ConjunctionAlertEditFormProps) => {
     id: 'manoeuvre_addition',
     name: tForm('type.manoeuvre_addition'),
     defaultValue: event.manoeuvreAddition || '',
-    type: 'radio',
-    items: [
-      {
-        children: tForm('manoeuvrable.unknown'),
-        value: tForm('manoeuvrable.unknown'),
-      },
-      {
-        children: tForm('manoeuvrable.expected'),
-        value: tForm('manoeuvrable.expected'),
-      },
-      {
-        children: tForm('manoeuvrable.not_expected'),
-        value: tForm('manoeuvrable.not_expected'),
-      },
-      {
-        children: tForm('manoeuvrable.na'),
-        value: tForm('manoeuvrable.na'),
-      },
-    ],
-    hint: tForm('manoeuvrable.hint'),
+    type: 'text',
+    help: (
+      <div>
+        <p>{tForm('hint')}</p>
+        {t.rich('Operator_view.content', {
+          link: chunks => <Link className="govuk-link" href={`/conjunctions/${event.shortId}`}>{chunks}</Link>,
+        })}
+      </div>
+    ),
   }, {
     id: 'immediate_impact_addition',
     name: tForm('type.immediate_impact'),
