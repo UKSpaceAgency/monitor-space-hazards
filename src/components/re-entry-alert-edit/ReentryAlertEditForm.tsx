@@ -1,5 +1,4 @@
 import dayjs from 'dayjs';
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 import type { TypeReentryEventOut, TypeReentryRisk } from '@/__generated__/data-contracts';
@@ -26,7 +25,7 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     type: 'text',
     help: (
       <div>
-        <p>{tForm('hint')}</p>
+        <p className="govuk-body">{tForm('hint')}</p>
         {tReentryAlert.rich('Executive_summary.content', {
           commonName: event?.objectName ?? 'Unknown',
           objectType: event?.objectType,
@@ -45,24 +44,8 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     type: 'text',
     help: (
       <div>
-        <p>{tForm('hint')}</p>
-        {tReentryAlert.rich('Guidance_on_response.immediate_response.content', { hydrazine: chunks => (
-          <Link
-            href="https://www.gov.uk/government/publications/hydrazine-properties-and-incident-management"
-            className="govuk-link"
-            target="_blank"
-          >
-            {chunks}
-          </Link>
-        ), kerosene: chunks => (
-          <Link
-            href="https://www.gov.uk/government/publications/kerosene-properties-incident-management-and-toxicology"
-            className="govuk-link"
-            target="_blank"
-          >
-            {chunks}
-          </Link>
-        ) })}
+        <p className="govuk-body">{tForm('hint')}</p>
+        {tReentryAlert.rich(`Guidance_on_response.risk.${event?.monteCarloRisk?.toLowerCase() as 'low' | 'medium' | 'high' ?? 'low'}`, { tag: chunks => renderRiskTag(chunks as TypeReentryRisk) })}
       </div>
     ),
   }, {
@@ -72,8 +55,8 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     type: 'text',
     help: (
       <div>
-        <p>{tForm('hint')}</p>
-        {tReentryAlert.rich('Guidance_on_response.recovery_and_clean_up.content')}
+        <p className="govuk-body">{tForm('hint')}</p>
+        {tReentryAlert.rich('Guidance_if_object_impacts_uk_interests.public_guidance_on_space_debris.content')}
       </div>
     ),
   }, {
@@ -83,7 +66,7 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     type: 'text',
     help: (
       <div>
-        <p>{tForm('hint')}</p>
+        <p className="govuk-body">{tForm('hint')}</p>
         {tReentryAlert.rich('Liability_for_damages.content', { licenseCountry: getFullCountry(event.licenseCountry) })}
       </div>
     ),

@@ -1,11 +1,14 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
+import { Markdown } from '../Markdown';
+
 type ReentryAlertGuidanceIfObjectImpactsUkInterestsProps = {
+  recoveryAndCleanUp?: string | null;
   dataPdf?: string;
 };
 
-const ReentryAlertGuidanceIfObjectImpactsUkInterests = ({ dataPdf }: ReentryAlertGuidanceIfObjectImpactsUkInterestsProps) => {
+const ReentryAlertGuidanceIfObjectImpactsUkInterests = ({ recoveryAndCleanUp, dataPdf }: ReentryAlertGuidanceIfObjectImpactsUkInterestsProps) => {
   const t = useTranslations('Reentry_alert.Guidance_if_object_impacts_uk_interests');
 
   return (
@@ -40,7 +43,7 @@ const ReentryAlertGuidanceIfObjectImpactsUkInterests = ({ dataPdf }: ReentryAler
         ),
       })}
       <h4 className="govuk-heading-m">{t('public_guidance_on_space_debris.title')}</h4>
-      {t.rich('public_guidance_on_space_debris.content')}
+      {recoveryAndCleanUp ? <Markdown>{recoveryAndCleanUp}</Markdown> : t.rich('public_guidance_on_space_debris.content')}
     </div>
   );
 };

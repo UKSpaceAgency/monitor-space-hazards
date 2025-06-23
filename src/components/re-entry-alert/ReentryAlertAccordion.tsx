@@ -82,12 +82,12 @@ const ReentryAlertAccordion = ({
         {
           id: 'guidance_on_response',
           heading: t('guidance_on_response'),
-          content: <ReentryAlertGuidanceOnResponse risk={lastReport?.monteCarloRisk} dataPdf={t('guidance_on_response')} />,
+          content: <ReentryAlertGuidanceOnResponse risk={lastReport?.monteCarloRisk} immediateResponse={searchParams?.immediate_response} dataPdf={t('guidance_on_response')} />,
         },
         {
           id: 'guidance_if_object_impacts_uk_interests',
           heading: t('guidance_if_object_impacts_uk_interests'),
-          content: <ReentryAlertGuidanceIfObjectImpactsUkInterests dataPdf={t('guidance_if_object_impacts_uk_interests')} />,
+          content: <ReentryAlertGuidanceIfObjectImpactsUkInterests recoveryAndCleanUp={searchParams?.recovery_and_clean_up} dataPdf={t('guidance_if_object_impacts_uk_interests')} />,
         },
         {
           id: 'liability_for_damages',
