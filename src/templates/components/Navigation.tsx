@@ -17,7 +17,7 @@ export const Navigation = () => {
   //   }
   //   return true;
   // }) as Array<keyof typeof messages['Template']['navigation']>;
-  const keys = (Object.keys(messages.Template.navigation) as Array<keyof typeof messages['Template']['navigation']>).filter(key => key !== 're-entries');
+  const keys = Object.keys(messages.Template.navigation) as Array<keyof typeof messages['Template']['navigation']>;
 
   const pathname = usePathname();
 

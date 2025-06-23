@@ -43,7 +43,7 @@ const ConjunctionAlertPage = async ({ shortId, searchParams, footer }: Conjuncti
         <ContentNavigation />
         <div className="md:col-span-3">
           {t.rich('report_info', { number: lastReport.reportNumber.toString(), time: dayjs(lastReport.reportTime).format(FORMAT_DATE_TIME) })}
-          <ConjunctionAlertExecutiveSummary report={lastReport} execSummaryAddition={searchParams?.exec_summary_addition ?? event.execSummaryAddition} manoeuvreAddition={searchParams?.manoeuvre_addition ?? lastReport.manoeuvreExpected} isClosed={isClosed} />
+          <ConjunctionAlertExecutiveSummary report={lastReport} execSummaryAddition={searchParams?.exec_summary_addition ?? event.execSummaryAddition} manoeuvreAddition={searchParams?.manoeuvre_addition ?? lastReport.manoeuvreAddition} isClosed={isClosed} />
           <ConjunctionAlertNextUpdate shortId={shortId} />
           <ConjunctionAlertAccordion event={event} report={lastReport} reports={reports} searchParams={searchParams} />
           {footer || <ConjunctionAlertPageButtons pdfTitle={pdfTitle} />}
