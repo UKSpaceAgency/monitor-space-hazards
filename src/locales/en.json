@@ -647,7 +647,7 @@
       "content": "<p>The satellite operator of the UK-licensed object has been notified of the conjunction event via the Monitor space hazards platform. <link>Click to see the information that operators have received.</link></p>"
     },
     "Alert_thresholds": {
-      "content": "<p><bold>Standard conjunction alert:</bold> If this report is classified as a standard conjunction alert, then it has been distributed only to key UK government organisations (UKSA, Ministry of Defence, Cabinet Office) and international partners.</p><p><bold>Priority conjunction alert:</bold> If this report is classified as a priority conjunction alert, then it has been distributed distributed more widely across UK devolved and central government department.</p>\n\n<p>There are various criteria which determine if alerts are produced about conjunction events. These criteria vary by type of object.</p><p><bold>For UK-licensed objects:</bold></p><p>Less than 5 days until Time of Closest Approach, with:</p><list><item>More than 0.1% probability of collision</item><item>OR press interest</item></list><p><bold>For non-UK objects:</bold></p><p>Less than 5 days until Time of Closest Approach, with:</p><list><item>Low risk or higher</item><item>AND no manoeuvre expected</item></list><p><bold>For all objects:</bold></p><p>If nominated for escalation by the National Space Operations Centre</p>"
+      "content": "<p><bold>Standard conjunction alert:</bold> If this report is classified as a standard conjunction alert, then it has been distributed only to key UK government organisations (UKSA, Ministry of Defence, Cabinet Office) and international partners.</p><p><bold>Priority conjunction alert:</bold> If this report is classified as a priority conjunction alert, then it has been distributed more widely across UK devolved and central government department.</p>\n\n<p>There are various criteria which determine if alerts are produced about conjunction events. These criteria vary by type of object.</p><p><bold>For UK-licensed objects:</bold></p><p>Less than 5 days until Time of Closest Approach, with:</p><list><item>More than 0.1% probability of collision</item><item>OR press interest</item></list><p><bold>For non-UK objects:</bold></p><p>Less than 5 days until Time of Closest Approach, with:</p><list><item>Low risk or higher</item><item>AND no manoeuvre expected</item></list><p><bold>For all objects:</bold></p><p>If nominated for escalation by the National Space Operations Centre</p>"
     },
     "Risk_thresholds": {
       "content": "<p>Risk thresholds are calculated accounting for the probability of the collision between the two objects (as calculated by the US), and the average number of additional conjunction events that the collision would create for UK satellites.</p><p>Any event with an expected maneouvre is automatically categorised as `Low risk`.</p>",
@@ -658,7 +658,7 @@
         "high": "More than 10%"
       },
       "predicted_conjunctions": {
-        "title": "Predicted additional conjunction events for UK objects",
+        "title": "Additional conjunction events",
         "low": "Less than 5",
         "medium": "5 - 50",
         "high": "More than 50"
@@ -751,6 +751,14 @@
       "contact_analyst": "Contact a UKSA orbital analyst"
     },
     "Guidance_on_response": {
+      "immediate_response": {
+        "title": "Immediate response",
+        "content": "<p>All re-entered debris should be considered as hazardous until proven otherwise. The most commonly used hazardous materials used on spacecraft are:</p><list><item><hydrazine>Hydrazine</hydrazine></item><item><kerosene>Kerosene</kerosene></item></list><p>Debris objects should not be disposed of nor made available to the public. An appropriate hazmat response (i.e testing by fire service) should take place first.</p><p>The UK Space Agency is responsible for the monitoring of re-entry of objects from space into Earth's atmosphere, providing warnings and alerts across HM Government. UKSA will act as subject matter experts, providing advice and guidance on how to deal with the incident. This includes coordinating public communications about the event.</p><p>In the event of debris from the re-entry surviving to the ground, local authorities are responsible for any incident response and should follow standard response activities for the damage caused using existing Chemical, Biological, Radiological and Nuclear (CBRN) and/or plane crash policies.</p><p>Cabinet Office will take on the lead for incident response coordination if the impacts are significant or are across multiple sectors.</p>"
+      },
+      "recovery_and_clean_up": {
+        "title": "Recovery and clean up",
+        "content": "<p><bold>Decontamination:</bold> If the object is contaminated with hazardous material, it should be decontaminated. Decontamination is led by Defra who are the Lead Government Department for decontamination in England, in liaison with local authorities.</p><p><bold>Storage:</bold> The object should be sent to storage by a specialist supplier in the local area, as agreed and organised by Defra.</p><p><bold>Release:</bold> If the object has been declared safe (by Defra), UKSA will direct it's release to either: MOD Defence Intelligence if the object is of Chinese or Russian origin; the owner of the object or the state liable for the object, organised via the Foreign, Commonwealth and Development Office; or the Air Accident Investigation Bureau or the Civil Aviation Authority if the object is UK-licensed.</p><p><bold>Disposal:</bold> If the object cannot be declared safe or decontaminated, it should disposed of as per standard procedures held by Defra.</p><p><bold>Incident close down:</bold> When departments agree that recovery can be handled through Business As Usual structures, the incident can be closed down. The UK Space Agency and Cabinet Office will confirm close down of the event to all parties involved.</p>"
+      },
       "risk": {
         "low": "<p>This event is assessed as <tag>Low</tag> risk.</p><p>This means it may happen and could have a negative impact on UK interests, but the overall likelihood is low.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, no significant action is required at this stage. Stakeholders should stay engaged with the National Space Operations Centre and consider any future updates before taking further action.</p>",
         "medium": "<p>This event is assessed as <tag>Medium</tag> risk.</p><p>This means there is a higher-than-usual chance it could negatively affect UK interests. However, it is still more likely than not to pass without incident.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, no immediate significant action is needed, but stakeholders may consider raising awareness internally. Stakeholders should stay engaged with the National Space Operations Centre for updates.</p>",
@@ -1546,7 +1554,7 @@
         "hint": "This text will next to 'Manoeuvre expected?' if you want to add a comment."
       },
       "add_to": "Add to `{name}`",
-      "hint": "This text will appear under paragraphs which read:",
+      "hint": "This text will appear instead of the paragraphs which read:",
       "press_attention_hint": "<p>Include details of any press attention related to this event. Leave blank if there has been no press attention.</p><p>This text will appear alongside a link to standard UK Space Agency press lines.</p>",
       "clear": "Clear `{name}` text box",
       "review": "Review edit",
