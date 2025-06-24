@@ -623,15 +623,15 @@
     "Potential_impact_of_event": {
       "immediate_impact": {
         "title": "Immediate impact",
-        "content": "<p>Should the collision occur, it would likely result in a full breakup of both objects. In this worst-case scenario, an estimation of the number of fragments greater than 10cm is 223.</p>"
+        "content": "<p>Should the collision occur, it would likely result in a full breakup of both objects. In this worst-case scenario, an estimation of the number of fragments greater than 10cm is {predictedFragments}.</p>"
       },
       "short_term_impact": {
         "title": "Short term impact",
-        "content": "<p>Should the collision occur, the debris would generate an increased risk to satellites. We are predicting that the event would result in an 3.76% increase in potential collisions across all UK satellites.</p>"
+        "content": "<p>Should the collision occur, the debris would generate an increased risk to satellites. We are predicting that the event would result in an {increaseInFutureCollisions}% increase in potential collisions across all UK satellites.</p>"
       },
       "long_term_impact": {
         "title": "Long term impact",
-        "content": "<p>The collision would occur at an altitude of 1202.64 km. The risk from the resulting debris would be sustained for significant periods of time and could eventually impact a broad range of satellites and missions including human spaceflight.</p>"
+        "content": "<p>The collision would occur at an altitude of {altitude} km. The risk from the resulting debris would be sustained for significant periods of time and could eventually impact a broad range of satellites and missions including human spaceflight.</p>"
       }
     },
     "Guidance_on_response": {

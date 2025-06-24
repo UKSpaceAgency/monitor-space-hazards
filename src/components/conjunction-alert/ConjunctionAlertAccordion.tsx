@@ -43,7 +43,7 @@ const ConjunctionAlertAccordion = ({
           id: 'potential_impact_of_event',
           heading: t('potential_impact_of_event'),
           content: (
-            <ConjunctionAlertPotentialImpact immediateImpactAddition={searchParams?.immediate_impact_addition ?? event.immediateImpactAddition} shortTermImpactAddition={searchParams?.short_term_impact_addition ?? event.shortTermImpactAddition} longTermImpactAddition={searchParams?.long_term_impact_addition ?? event.longTermImpactAddition} dataPdf={t('potential_impact_of_event')} />
+            <ConjunctionAlertPotentialImpact report={report} immediateImpactAddition={searchParams?.immediate_impact_addition ?? event.immediateImpactAddition} shortTermImpactAddition={searchParams?.short_term_impact_addition ?? event.shortTermImpactAddition} longTermImpactAddition={searchParams?.long_term_impact_addition ?? event.longTermImpactAddition} dataPdf={t('potential_impact_of_event')} />
           ),
         },
         {

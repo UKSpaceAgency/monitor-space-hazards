@@ -57,7 +57,9 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
     help: (
       <div>
         <p>{tForm('hint')}</p>
-        {t.rich('Potential_impact_of_event.immediate_impact.content')}
+        {t.rich('Potential_impact_of_event.immediate_impact.content', {
+          predictedFragments: report.predictedFragments,
+        })}
       </div>
     ),
   }, {
@@ -68,7 +70,9 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
     help: (
       <div>
         <p>{tForm('hint')}</p>
-        {t.rich('Potential_impact_of_event.short_term_impact.content')}
+        {t.rich('Potential_impact_of_event.short_term_impact.content', {
+          increaseInFutureCollisions: report.increaseInFutureCollisions,
+        })}
       </div>
     ),
   }, {
@@ -79,7 +83,9 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
     help: (
       <div>
         <p>{tForm('hint')}</p>
-        {t.rich('Potential_impact_of_event.long_term_impact.content')}
+        {t.rich('Potential_impact_of_event.long_term_impact.content', {
+          altitude: report.altitude,
+        })}
       </div>
     ),
   }, {
