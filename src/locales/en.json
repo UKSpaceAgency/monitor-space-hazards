@@ -43,6 +43,11 @@
             "description": "In-space collision avoidance.",
             "link": "/conjunctions"
           },
+          "track_reentries": {
+            "title": "Track re-entry events",
+            "description": "Uncontrolled re-entry early warning.",
+            "link": "/re-entries"
+          },
           "check_weather": {
             "title": "Check space weather activity",
             "description": "Space weather forecast and notifications.",
