@@ -7,9 +7,9 @@ import type { SubmitHandler, UseFormRegister } from 'react-hook-form';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import type { TypeAlertSettingsIn } from '@/__generated__/data-contracts';
+import Accordion from '@/ui/accordion/accordion';
 import Button from '@/ui/button/button';
 import Checkboxes from '@/ui/checkboxes/checkboxes';
-import Fieldset from '@/ui/fieldset/fieldset';
 import Panel from '@/ui/panel/panel';
 import Radios from '@/ui/radios/radios';
 import WarningText from '@/ui/warning-text/warning-text';
@@ -114,100 +114,108 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                 <form
                   onSubmit={handleSubmit(onSubmit)}
                 >
-                  <Fieldset legend={{
-                    text: t('conjunction_alerts'),
-                  }}
-                  >
-                    <Radios
-                      id="conjunctionAlerts"
-                      label={t(
-                        `${selfEdit ? 'self_which' : 'their_which'}`,
-                        { type: 'conjunction' },
-                      )}
-                      hint={t('select_one_option')}
-                      items={[{
-                        value: 'none',
-                        children: t('no_conjunction_alerts'),
-                        ...register('conjunctionAlerts'),
-                      }, {
-                        value: 'all',
-                        children: t('receive_all_conjunction_alerts'),
-                        hint: t('recommended_for'),
-                        ...register('conjunctionAlerts'),
-                      }, {
-                        value: 'priority',
-                        children: t('only_priority_conjunction_alerts'),
-                        hint: t('recommended_for_all_other'),
-                        ...register('conjunctionAlerts'),
-                      }]}
-                    />
-                  </Fieldset>
-                  <AlertSettingsDetails type="conjunction" />
+                  <Accordion
+                    id="alert-settings"
+                    initialItems={[
+                      {
+                        id: 'conjunction_alerts',
+                        heading: t('conjunction_alerts'),
+                        content: (
+                          <>
+                            <Radios
+                              id="conjunctionAlerts"
+                              label={t(
+                                `${selfEdit ? 'self_which' : 'their_which'}`,
+                                { type: 'conjunction' },
+                              )}
+                              hint={t('select_one_option')}
+                              items={[{
+                                value: 'none',
+                                children: t('no_conjunction_alerts'),
+                                ...register('conjunctionAlerts'),
+                              }, {
+                                value: 'all',
+                                children: t('receive_all_conjunction_alerts'),
+                                hint: t('recommended_for'),
+                                ...register('conjunctionAlerts'),
+                              }, {
+                                value: 'priority',
+                                children: t('only_priority_conjunction_alerts'),
+                                hint: t('recommended_for_all_other'),
+                                ...register('conjunctionAlerts'),
+                              }]}
+                            />
+                            <AlertSettingsDetails type="conjunction" />
+                            <Option
+                              name="receiveConjunction"
+                              hint={t('select_one_option')}
+                              label={t('how_would_you_like_conjunction')}
+                              register={register}
+                            />
+                          </>
+                        ),
+                      },
+                      {
+                        id: 're_entry_alerts',
+                        heading: t('re_entry_alerts'),
+                        content: (
+                          <>
+                            <Radios
+                              id="reEntryAlerts"
+                              label={t(
+                                `${selfEdit ? 'self_which' : 'their_which'}`,
+                                { type: 're-entry' },
+                              )}
+                              hint={t('select_one_option')}
+                              items={[{
+                                value: 'none',
+                                children: t('no_re_entry_alerts'),
+                                ...register('reEntryAlerts'),
+                              }, {
+                                value: 'all',
+                                children: t('all_re_entry_alerts', { whose: selfEdit ? 'your' : 'user\'s' }),
+                                hint: t('recommended_for_uk'),
+                                ...register('reEntryAlerts'),
+                              }, {
+                                value: 'uk_satellites_only',
+                                children: t('re_entry_alerts_for_uk'),
+                                hint: t('recommended_for_foreign'),
+                                ...register('reEntryAlerts'),
+                              }, {
+                                value: 'priority',
+                                children: t('only_priority_re_entry', { whose: selfEdit ? 'your' : 'user\'s' }),
+                                hint: t('recommended_for_all_other'),
+                                ...register('reEntryAlerts'),
+                              }]}
+                            />
+                            <AlertSettingsDetails type="re-entry" />
 
-                  <Option
-                    name="receiveConjunction"
-                    hint={t('select_one_option')}
-                    label={t('how_would_you_like_conjunction')}
-                    register={register}
+                            <p className="govuk-body">
+                              <b>
+                                {t(
+                                  'select_the_areas_of_interest',
+                                  { whose: selfEdit ? 'your' : 'user\'s' },
+                                )}
+                              </b>
+                            </p>
+
+                            <RegionsTable name="areasOfInterest" />
+
+                            <p className="govuk-body">
+                              {t('notifications_for_re_entries')}
+                            </p>
+
+                            <Option
+                              name="receiveReEntry"
+                              hint={t('select_one_option')}
+                              label={t('how_would_you_like_re_entry')}
+                              register={register}
+                            />
+                          </>
+                        ),
+                      },
+                    ]}
                   />
-
-                  <Fieldset legend={{
-                    text: t('re_entry_alerts'),
-                  }}
-                  >
-                    <Radios
-                      id="reEntryAlerts"
-                      label={t(
-                        `${selfEdit ? 'self_which' : 'their_which'}`,
-                        { type: 're-entry' },
-                      )}
-                      hint={t('select_one_option')}
-                      items={[{
-                        value: 'none',
-                        children: t('no_re_entry_alerts'),
-                        ...register('reEntryAlerts'),
-                      }, {
-                        value: 'all',
-                        children: t('all_re_entry_alerts', { whose: selfEdit ? 'your' : 'user\'s' }),
-                        hint: t('recommended_for_uk'),
-                        ...register('reEntryAlerts'),
-                      }, {
-                        value: 'uk_satellites_only',
-                        children: t('re_entry_alerts_for_uk'),
-                        hint: t('recommended_for_foreign'),
-                        ...register('reEntryAlerts'),
-                      }, {
-                        value: 'priority',
-                        children: t('only_priority_re_entry', { whose: selfEdit ? 'your' : 'user\'s' }),
-                        hint: t('recommended_for_all_other'),
-                        ...register('reEntryAlerts'),
-                      }]}
-                    />
-                  </Fieldset>
-                  <AlertSettingsDetails type="re-entry" />
-
-                  <p className="govuk-body">
-                    <b>
-                      {t(
-                        'select_the_areas_of_interest',
-                        { whose: selfEdit ? 'your' : 'user\'s' },
-                      )}
-                    </b>
-                  </p>
-
-                  <RegionsTable name="areasOfInterest" />
-
-                  <p className="govuk-body">
-                    {t('notifications_for_re_entries')}
-                  </p>
-
-                  <Option
-                    name="receiveReEntry"
-                    hint={t('select_one_option')}
-                    label={t('how_would_you_like_re_entry')}
-                    register={register}
-                  />
-
                   <div className="govuk-button-group">
                     <Button type="submit">
                       {tCommon('save_and_continue')}
