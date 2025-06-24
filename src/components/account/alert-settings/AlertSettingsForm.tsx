@@ -7,7 +7,6 @@ import type { SubmitHandler, UseFormRegister } from 'react-hook-form';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import type { TypeAlertSettingsIn } from '@/__generated__/data-contracts';
-import { patchAlertsUserUserId } from '@/actions/patchAlertsUserUserId';
 import Button from '@/ui/button/button';
 import Checkboxes from '@/ui/checkboxes/checkboxes';
 import Fieldset from '@/ui/fieldset/fieldset';
@@ -50,12 +49,12 @@ function Option({
 }
 
 type AlertSettingsFormProps = {
-  userId: string;
   defaultValues: AlertSettingsSchema;
   selfEdit?: boolean;
+  onSubmit: (data: TypeAlertSettingsIn) => Promise<void>;
 };
 
-const AlertSettingsForm = ({ userId, defaultValues, selfEdit = true }: AlertSettingsFormProps) => {
+const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitAction }: AlertSettingsFormProps) => {
   const t = useTranslations('Forms.Alert_settings');
   const tCommon = useTranslations('Common');
 
@@ -80,7 +79,7 @@ const AlertSettingsForm = ({ userId, defaultValues, selfEdit = true }: AlertSett
       },
     };
 
-    await patchAlertsUserUserId(userId, payload);
+    await onSubmitAction(payload);
 
     setAlertUpdated(true);
   };

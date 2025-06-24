@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import type { TypeAlertSettingsIn } from '@/__generated__/data-contracts';
 import { getUsersMe } from '@/actions/getUsersMe';
 import { getUsersMeAlertSettings } from '@/actions/getUsersMeAlertSettings';
+import { postMeAlertSettings } from '@/actions/postMeAlertSettings';
 import { AlertSettingsForm } from '@/components/account/alert-settings/AlertSettingsForm';
 import { isSatteliteUser } from '@/utils/Roles';
 import type { AlertSettingsSchema } from '@/validations/alertSettingsSchema';
@@ -27,11 +29,16 @@ export default async function AlertSettingsPage() {
     areasOfInterest: alertSettings.reentry_alert_settings?.areas_of_interest || [],
   };
 
+  const onSubmit = async (data: TypeAlertSettingsIn) => {
+    'use server';
+    await postMeAlertSettings(data);
+  };
+
   return (
     <div>
       <AlertSettingsForm
-        userId={user.id}
         defaultValues={defaultValues}
+        onSubmit={onSubmit}
       />
     </div>
   );
