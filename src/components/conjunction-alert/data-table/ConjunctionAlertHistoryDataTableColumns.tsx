@@ -82,7 +82,7 @@ export const conjunctionAlertHistoryColumns: TranslatedColumnDef<TypeConjunction
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();
-      return value[0] ? dayjs(value[0]).format(FORMAT_DATE_TIME) : 'Unknown';
+      return value ? dayjs(value).format(FORMAT_DATE_TIME) : 'Unknown';
     },
   },
 ];
