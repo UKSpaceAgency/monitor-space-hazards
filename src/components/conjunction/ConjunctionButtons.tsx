@@ -19,6 +19,7 @@ const ConjunctionButtons = ({ title }: ConjunctionButtonsProps) => {
 
   return (
     <ButtonGroup>
+      <PdfDownloadButton title={title} />
       <Link
         href="/conjunctions"
       >
@@ -26,7 +27,6 @@ const ConjunctionButtons = ({ title }: ConjunctionButtonsProps) => {
           {tCommon('return', { to: 'upcoming conjunction events page' })}
         </Button>
       </Link>
-      <PdfDownloadButton title={title} />
     </ButtonGroup>
   );
 };

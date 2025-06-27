@@ -9,7 +9,7 @@ export async function getConjunctionEventsList(
   params: RequestParams = {},
 ) {
   let query = queryParams;
-  if (queryParams?.epoch === 'past') {
+  if (queryParams?.epoch === 'past' && !queryParams?.sort_by) {
     query = {
       ...query,
       epoch: 'past',

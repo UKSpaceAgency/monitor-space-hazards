@@ -20,7 +20,6 @@ const ConjunctionAlertPageButtons = ({ pdfTitle }: ConjunctionAlertPageButtonsPr
   return (
     <ButtonGroup>
       <PdfDownloadButton title={pdfTitle} />
-
       <Link href="/conjunctions">
         <Button variant="secondary">{t('return', { to: 'previous page' })}</Button>
       </Link>
