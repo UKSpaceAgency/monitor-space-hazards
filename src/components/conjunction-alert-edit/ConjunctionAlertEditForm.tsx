@@ -78,7 +78,7 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
   }, {
     id: 'long_term_impact_addition',
     name: tForm('type.long_term_impact'),
-    defaultValue: event.shortTermImpactAddition,
+    defaultValue: event.longTermImpactAddition,
     type: 'text',
     help: (
       <div>
@@ -91,7 +91,7 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
   }, {
     id: 'uk_response_addition',
     name: tForm('type.uk_response_addition'),
-    defaultValue: event.shortTermImpactAddition,
+    defaultValue: event.ukResponseAddition,
     type: 'text',
     help: (
       <div>
@@ -102,7 +102,7 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
   }, {
     id: 'press_attention_addition',
     name: tForm('type.press_attention_addition'),
-    defaultValue: event.shortTermImpactAddition,
+    defaultValue: event.pressAttentionAddition,
     type: 'text',
     help: (
       <div>
