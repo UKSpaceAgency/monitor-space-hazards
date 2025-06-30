@@ -4,7 +4,6 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useCallback } from 'react';
 
-import Details from '@/ui/details/details';
 import Radios from '@/ui/radios/radios';
 import Select from '@/ui/select/select';
 
@@ -32,7 +31,7 @@ const ReentriesEventsTableFilters = ({ showFilterRadios }: { showFilterRadios: b
   );
 
   return (
-    <Details id="applySummary" summary={t('summary')}>
+    <div>
       {showFilterRadios && (
         <>
           <Radios
@@ -81,7 +80,7 @@ const ReentriesEventsTableFilters = ({ showFilterRadios }: { showFilterRadios: b
         ]}
         onChange={handleRefreshParams}
       />
-    </Details>
+    </div>
   );
 };
 

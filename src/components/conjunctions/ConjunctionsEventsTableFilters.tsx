@@ -5,7 +5,6 @@ import { useTranslations } from 'next-intl';
 import { useCallback } from 'react';
 
 import type { ConjunctionsPageSearchParams } from '@/app/(auth)/conjunctions/page';
-import Details from '@/ui/details/details';
 import Radios from '@/ui/radios/radios';
 import Select from '@/ui/select/select';
 
@@ -37,7 +36,7 @@ const ConjunctionsEventsTableFilters = ({ params, showFilterRadios }: Conjunctio
   );
 
   return (
-    <Details id="applySummary" summary={t('Conjunctions.details.summary')}>
+    <div>
       {showFilterRadios && (
         <>
           <Radios
@@ -87,7 +86,7 @@ const ConjunctionsEventsTableFilters = ({ params, showFilterRadios }: Conjunctio
         ]}
         onChange={handleRefreshParams}
       />
-    </Details>
+    </div>
   );
 };
 
