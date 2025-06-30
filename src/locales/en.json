@@ -18,6 +18,7 @@
       "list_title": "Use this service to:",
       "list_items": {
         "track_events": "Track conjunction events",
+        "track_reentries": "Track re-entry events",
         "satelite_history": "View and download satellite history",
         "statistics": "Explore key statistics for UK space hazards"
       }
