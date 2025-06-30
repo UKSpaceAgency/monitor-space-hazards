@@ -704,6 +704,7 @@
   },
   "Reentry": {
     "title": "Re-entry event for {objectName}",
+    "notification_banner": "There is an alert on this event. <preview>View the alert</preview>.",
     "accordion": {
       "object_data": "Object data",
       "history": "Re-entry event history",
