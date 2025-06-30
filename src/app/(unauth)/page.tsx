@@ -25,6 +25,7 @@ export default function IndexPage() {
       <p className="govuk-body">{t('nsoc.list_title')}</p>
       <ul className="govuk-list govuk-list--bullet">
         <li>{t('nsoc.list_items.track_events')}</li>
+        <li>{t('nsoc.list_items.track_reentries')}</li>
         <li>{t('nsoc.list_items.satelite_history')}</li>
         <li>{t('nsoc.list_items.statistics')}</li>
       </ul>
