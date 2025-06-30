@@ -13,7 +13,7 @@ const ReentryAlertNextUpdate = ({ shortId }: ReentryAlertNextUpdateProps) => {
     <div>
       <h3 className="govuk-heading-m">{t('title')}</h3>
       <p className="govuk-body">{t('content')}</p>
-      <Link href={`/contact-analyst?id=${shortId}&callback=/re-entries/${shortId}/alert`}><Button variant="secondary">{t('contact_analyst')}</Button></Link>
+      <Link href={`/contact-analyst?id=${shortId}&callback=/re-entries/${shortId}/alert`}><Button>{t('contact_analyst')}</Button></Link>
     </div>
   );
 };
