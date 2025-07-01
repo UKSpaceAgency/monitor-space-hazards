@@ -32,10 +32,12 @@ const ReentriesEventsTableFilters = ({ showFilterRadios }: { showFilterRadios: b
 
   return (
     <div>
-      {showFilterRadios && (
-        <>
+      <h4 className="govuk-heading-s mb-0">{t.rich('summary')}</h4>
+      <div className="flex flex-col md:flex-row gap-4 justify-between md:items-center border-b border-midGrey mb-4">
+        {showFilterRadios && (
           <Radios
             inline
+            className="m-0"
             items={[
               {
                 id: 'viewAll',
@@ -56,30 +58,29 @@ const ReentriesEventsTableFilters = ({ showFilterRadios }: { showFilterRadios: b
             ]}
             id="hasReport"
           />
-          <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
-        </>
-      )}
-      <Select
-        name="epoch"
-        id="epoch"
-        label={t('select_label')}
-        defaultValue={searchParams.get('epoch') ?? 'all'}
-        options={[
-          {
-            children: t('all'),
-            value: 'all',
-          },
-          {
-            children: t('upcoming'),
-            value: 'future',
-          },
-          {
-            children: t('past'),
-            value: 'past',
-          },
-        ]}
-        onChange={handleRefreshParams}
-      />
+        )}
+        <Select
+          name="epoch"
+          id="epoch"
+          label={t('select_label')}
+          defaultValue={searchParams.get('epoch') ?? 'all'}
+          options={[
+            {
+              children: t('all'),
+              value: 'all',
+            },
+            {
+              children: t('upcoming'),
+              value: 'future',
+            },
+            {
+              children: t('past'),
+              value: 'past',
+            },
+          ]}
+          onChange={handleRefreshParams}
+        />
+      </div>
     </div>
   );
 };

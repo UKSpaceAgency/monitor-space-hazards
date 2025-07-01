@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 
 import { getReentryEvent } from '@/actions/getReentryEvent';
+import { getReentryReports } from '@/actions/getReentryReports';
 import { getSatellite } from '@/actions/getSatellite';
 import { getSession } from '@/actions/getSession';
 import { ContentNavigation } from '@/components/ContentNavigation';
@@ -38,10 +39,11 @@ export default async function Reentry({
   const { shortId } = await params;
   const event = await getReentryEvent(shortId);
   const satellite = await getSatellite(event.noradId);
+  const reports = await getReentryReports({ shortId });
 
   return (
     <div>
-      {event.reentryReportNumber && event.reentryReportNumber > 0 && !isSatteliteUser(session?.user.role) && (
+      {reports.length > 0 && !isSatteliteUser(session?.user.role) && (
         <NotificationBanner heading={t.rich('notification_banner', {
           preview: chunks => <Link className="govuk-link" href={`/re-entries/${shortId}/alert`}>{chunks}</Link>,
         })}

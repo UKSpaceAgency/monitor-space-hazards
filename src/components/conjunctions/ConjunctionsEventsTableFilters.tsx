@@ -37,8 +37,9 @@ const ConjunctionsEventsTableFilters = ({ params, showFilterRadios }: Conjunctio
 
   return (
     <div>
-      {showFilterRadios && (
-        <>
+      <h4 className="govuk-heading-s mb-0">{t.rich('Conjunctions.details.summary')}</h4>
+      <div className="flex flex-col md:flex-row gap-4 justify-between md:items-center border-b border-midGrey mb-4">
+        {showFilterRadios && (
           <Radios
             inline
             items={[
@@ -60,32 +61,31 @@ const ConjunctionsEventsTableFilters = ({ params, showFilterRadios }: Conjunctio
               },
             ]}
             id="hasReport"
+            className="m-0"
           />
-          <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
-        </>
-      )}
-      <Select
-        name="epoch"
-        id="epoch"
-        className="w-1/4"
-        label={t('Conjunctions.details.select_label')}
-        value={params.epoch ?? 'future'}
-        options={[
-          {
-            children: t('Conjunctions.details.all'),
-            value: 'all',
-          },
-          {
-            children: t('Conjunctions.details.upcoming'),
-            value: 'future',
-          },
-          {
-            children: t('Conjunctions.details.past'),
-            value: 'past',
-          },
-        ]}
-        onChange={handleRefreshParams}
-      />
+        )}
+        <Select
+          name="epoch"
+          id="epoch"
+          label={t('Conjunctions.details.select_label')}
+          value={params.epoch ?? 'future'}
+          options={[
+            {
+              children: t('Conjunctions.details.all'),
+              value: 'all',
+            },
+            {
+              children: t('Conjunctions.details.upcoming'),
+              value: 'future',
+            },
+            {
+              children: t('Conjunctions.details.past'),
+              value: 'past',
+            },
+          ]}
+          onChange={handleRefreshParams}
+        />
+      </div>
     </div>
   );
 };
