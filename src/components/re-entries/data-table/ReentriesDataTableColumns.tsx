@@ -2,7 +2,7 @@ import { isNumber } from 'lodash';
 import Link from 'next/link';
 
 import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
-import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
 import { roundedPercentage } from '@/utils/Math';
@@ -54,8 +54,8 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
         id: 'timeWindowStart',
         accessorKey: 'timeWindowStart',
         header: 'Reentries.table.re-entry_time_window',
-        cell: ({ row: { original: { timeWindowStart, timeWindowEnd } } }) => {
-          return `${dayjs(timeWindowStart).format(FORMAT_DATE_TIME)} to ${dayjs(timeWindowEnd).format(FORMAT_DATE_TIME)}`;
+        cell: ({ row: { original: { decayEpoch, uncertaintyWindow } } }) => {
+          return `${dayjs(decayEpoch).format(FORMAT_FULL_DATE_TIME)} +/- ${uncertaintyWindow}`;
         },
       },
       {

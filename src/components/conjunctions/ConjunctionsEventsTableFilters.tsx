@@ -14,7 +14,7 @@ type ConjunctionsEventsTableFiltersProps = {
 };
 
 const ConjunctionsEventsTableFilters = ({ params, showFilterRadios }: ConjunctionsEventsTableFiltersProps) => {
-  const t = useTranslations('Tables');
+  const t = useTranslations('Tables.Conjunctions.details');
 
   const { replace } = useRouter();
   const pathname = usePathname();
@@ -37,7 +37,7 @@ const ConjunctionsEventsTableFilters = ({ params, showFilterRadios }: Conjunctio
 
   return (
     <div>
-      <h4 className="govuk-heading-s mb-0">{t.rich('Conjunctions.details.summary')}</h4>
+      <h4 className="govuk-heading-s mb-0">{t.rich('summary')}</h4>
       <div className="flex flex-col md:flex-row gap-4 justify-between md:items-center border-b border-midGrey mb-4">
         {showFilterRadios && (
           <Radios
@@ -45,7 +45,7 @@ const ConjunctionsEventsTableFilters = ({ params, showFilterRadios }: Conjunctio
             items={[
               {
                 id: 'viewAll',
-                children: t('Conjunctions.details.option1'),
+                children: t('option1'),
                 value: 'all',
                 name: 'report',
                 checked: params.report !== 'present',
@@ -53,7 +53,7 @@ const ConjunctionsEventsTableFilters = ({ params, showFilterRadios }: Conjunctio
               },
               {
                 id: 'viewOnly',
-                children: t('Conjunctions.details.option2'),
+                children: t('option2'),
                 value: 'present',
                 name: 'report',
                 checked: params.report === 'present',
@@ -67,19 +67,19 @@ const ConjunctionsEventsTableFilters = ({ params, showFilterRadios }: Conjunctio
         <Select
           name="epoch"
           id="epoch"
-          label={t('Conjunctions.details.select_label')}
+          label={t('select_label')}
           value={params.epoch ?? 'future'}
           options={[
             {
-              children: t('Conjunctions.details.all'),
+              children: t('all'),
               value: 'all',
             },
             {
-              children: t('Conjunctions.details.upcoming'),
+              children: t('upcoming'),
               value: 'future',
             },
             {
-              children: t('Conjunctions.details.past'),
+              children: t('past'),
               value: 'past',
             },
           ]}

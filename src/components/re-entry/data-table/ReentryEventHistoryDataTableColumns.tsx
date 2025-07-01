@@ -1,6 +1,6 @@
 'use client';
 import type { TypeTIPOut } from '@/__generated__/data-contracts';
-import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import ExpandedButton from '@/ui/button/expanded-button';
 
@@ -42,7 +42,7 @@ export const reentryEventHistoryColumns: TranslatedColumnDef<TypeTIPOut>[] = [
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();
-      return dayjs(value).format(FORMAT_DATE_TIME);
+      return dayjs(value).format(FORMAT_FULL_DATE_TIME);
     },
   },
   {

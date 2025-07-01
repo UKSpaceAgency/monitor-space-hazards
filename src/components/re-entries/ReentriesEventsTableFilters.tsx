@@ -63,7 +63,7 @@ const ReentriesEventsTableFilters = ({ showFilterRadios }: { showFilterRadios: b
           name="epoch"
           id="epoch"
           label={t('select_label')}
-          defaultValue={searchParams.get('epoch') ?? 'all'}
+          defaultValue={searchParams.get('epoch') ?? 'future'}
           options={[
             {
               children: t('all'),
