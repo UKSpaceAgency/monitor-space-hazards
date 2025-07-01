@@ -456,7 +456,7 @@
       "description": "Total number of conjunction events monitored between different object types.",
       "this_table": "this table",
       "upcoming_events": "Upcoming events",
-      "last_7d": "Last 7d",
+      "last_7d": "Last 7 days",
       "last_1_month": "Last 1 month",
       "last_6_months": "Last 6 months",
       "data_range": "Data range",
@@ -476,7 +476,7 @@
       "y_axis": "Number of events",
       "legend_title": "Probability of collision",
       "upcoming_events": "Upcoming events",
-      "last_7d": "Last 7d",
+      "last_7d": "Last 7 days",
       "last_1_month": "Last 1 month",
       "last_6_months": "Last 6 months",
       "all_organisations": "All organisations"
@@ -918,7 +918,7 @@
         "description": "Total number of conjunction events monitored between different object types.",
         "this_table": "this table",
         "upcoming_events": "Upcoming events",
-        "last_7d": "Last 7d",
+        "last_7d": "Last 7 days",
         "last_1_month": "Last 1 month",
         "last_6_months": "Last 6 months",
         "data_range": "Date range",
@@ -1324,8 +1324,8 @@
         "this_table": "this table",
         "empty_label": "No Notifications Sent",
         "data_range": "Data range",
-        "7d": "7d",
-        "30d": "30d",
+        "7d": "7 days",
+        "30d": "30 days",
         "all": "All"
       },
       "conjunction_events_by_type": {
