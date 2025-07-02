@@ -889,7 +889,7 @@
       "uksa": {
         "title": "NSpOC conjunction event analysis and manoeuvre support",
         "unknown": "Unknown",
-        "daily_title": "Help with this table",
+        "daily_title": "Daily count of analyses and manoeuvre support plots",
         "daily_details": {
           "title": "Help with this table",
           "content": "This table shows the number of analyses and manoeuvre support plots uploaded by a NSpOC orbital analyst."
