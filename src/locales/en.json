@@ -883,7 +883,7 @@
         "title": "Notifications sent",
         "details": {
           "title": "Help with this table",
-          "content": "<p>This table shows performance monitoring information for the external sources of TIPs that Monitor Space Hazards ingests.</p><list><item>Ingestion start and stop show the time the data ingest started and finished</item><item>Number of items fetched shows how many items were retrieved</item></list>"
+          "content": "<p>This table shows the number and type of alert notifications sent  to users of Monitor Space Hazards.</p>"
         }
       },
       "uksa": {
