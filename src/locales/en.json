@@ -534,6 +534,7 @@
   },
   "Conjunction": {
     "title": "Conjunction event {id}",
+    "notification_banner": "There is an alert on this event. <preview>View the alert</preview>.",
     "Poc_chart": {
       "title": "Evolution of collision probability",
       "help": {
@@ -1078,7 +1079,7 @@
     },
     "Conjunctions": {
       "details": {
-        "summary": "Apply filters to this table",
+        "summary": "Apply filters to this table:",
         "option1": "View all events and alerts",
         "option2": "Only view conjunction alerts",
         "all": "All",
@@ -1214,7 +1215,7 @@
         "placeholder": "Search by event ID, object ID or object name"
       },
       "filters": {
-        "summary": "Apply filters to this table",
+        "summary": "Apply filters to this table:",
         "option1": "View all events and alerts",
         "option2": "Only view re-entry alerts",
         "all": "All",
