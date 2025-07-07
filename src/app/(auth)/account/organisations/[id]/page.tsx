@@ -11,7 +11,7 @@ import { OrganisationUsers } from '@/components/account/organisations/organisati
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
 import Spinner from '@/ui/spinner/spinner';
-import { isOrgAdmin } from '@/utils/Roles';
+import { isGovUser, isOrgAdmin } from '@/utils/Roles';
 
 export async function generateMetadata({
   params,
@@ -34,6 +34,8 @@ export default async function OrganisationPage({
   const tCommon = await getTranslations('Common');
 
   const session = await getSession();
+
+  const isGovAdmin = isGovUser(session?.user.role);
 
   if (!isOrgAdmin(session?.user.role)) {
     return notFound();
@@ -60,8 +62,8 @@ export default async function OrganisationPage({
         >
           <Button>{t('add_new_user')}</Button>
         </Link>
-        <Link href="/account/organisations">
-          <Button variant="secondary">{tCommon('return', { to: 'organisation page' })}</Button>
+        <Link href={isGovAdmin ? '/account' : '/account/organisations'}>
+          <Button variant="secondary">{tCommon('return', { to: isGovAdmin ? 'account page' : 'organisations page' })}</Button>
         </Link>
       </ButtonGroup>
     </div>

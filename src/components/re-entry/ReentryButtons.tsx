@@ -24,7 +24,7 @@ const ReentryButtons = ({ title }: ReentryButtonsProps) => {
         href="/re-entries"
       >
         <Button className="govuk-button--secondary">
-          {tCommon('return', { to: 'previous page' })}
+          {tCommon('return', { to: 'upcoming re-entry events page' })}
         </Button>
       </Link>
     </ButtonGroup>

@@ -55,7 +55,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
         accessorKey: 'timeWindowStart',
         header: 'Reentries.table.re-entry_time_window',
         cell: ({ row: { original: { decayEpoch, uncertaintyWindow } } }) => {
-          return `${dayjs(decayEpoch).format(FORMAT_FULL_DATE_TIME)} +/- ${uncertaintyWindow}`;
+          return `${dayjs(decayEpoch).format(FORMAT_FULL_DATE_TIME)} +/- ${uncertaintyWindow} minute(s)`;
         },
       },
       {

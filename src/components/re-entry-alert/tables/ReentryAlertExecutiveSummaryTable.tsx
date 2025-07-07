@@ -18,7 +18,7 @@ const ReentryAlertExecutiveSummaryTable = ({ event }: ReentryAlertExecutiveSumma
   const rows: InformationsTableRow<EventSummaryData>[] = [{
     header: t('time_window_world'),
     accessorKey: 'decayEpoch',
-    renderCell: ({ decayEpoch, uncertaintyWindow }) => `${dayjs(decayEpoch).format(FORMAT_FULL_DATE_TIME)} +/- ${uncertaintyWindow}`,
+    renderCell: ({ decayEpoch, uncertaintyWindow }) => `${dayjs(decayEpoch).format(FORMAT_FULL_DATE_TIME)} +/- ${uncertaintyWindow} minute(s)`,
   }, {
     header: t('overflight_time'),
     accessorKey: 'overflightTime',
