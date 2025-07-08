@@ -604,6 +604,7 @@
     },
     "Executive_summary": {
       "title": "Executive summary",
+      "email_title": "Event Information:",
       "content": "The National Space Operations Centre is tracking the close approach of two objects, <primaryObjectUrl>{primaryObject}</primaryObjectUrl> and <secondaryObjectUrl>{secondaryObject}</secondaryObjectUrl>. A potential collision could damage the objects involved, limiting or eliminating their capability, as well as releasing new fragments, which would increase the risk of future collisions for other objects. This event is assessed as <tag>{risk}</tag> risk, with a {collisionProbability} probability of collision (PoC).",
       "closed_report": "The National Space Operations Centre has completed tracking of the conjunction event involving <primaryObjectUrl>{primaryObject}</primaryObjectUrl> and <secondaryObjectUrl>{secondaryObject}</secondaryObjectUrl>, which occurred on {date} UTC. The event was assessed as <tag>{risk}</tag> risk, with a {collisionProbability} probability of collision (PoC).",
       "see_further_information": "<p>See <link>Further information</link> for more detail on methodology used in this report and the organisations that have been sent this alert.</p>"
@@ -744,6 +745,7 @@
       "further_information": "Further information"
     },
     "Executive_summary": {
+      "email_title": "Event Information:",
       "title": "Executive summary",
       "content": "The National Space Operations Centre is tracking the upcoming re-entry event involving {commonName} from space into Earth's atmosphere, posing a potential risk to life and property on the ground. The event is assessed as <tag>{riskLevel}</tag> risk, with a {riskProbability} probability of re-entry over the UK. {licensingCountry} is liable for any damages and associated response or recovery costs. All re-entered debris should be considered as hazardous until proven otherwise.",
       "closed_report": "The National Space Operations Centre has completed tracking of the re-entry event involving {commonName}, which occurred on {date} UTC. The event was assessed as <tag>{riskLevel}</tag> risk, with a {riskProbability} probability of re-entry over the UK.  {licensingCountry} is liable for any damages and associated response or recovery costs.",
@@ -788,6 +790,7 @@
       "licenseCountryEmpty": "It is unknown who"
     },
     "Press_attention": {
+      "title": "Press attention",
       "empty": "We have not seen any press attention on this event."
     },
     "Risk_thresholds": {
@@ -1723,6 +1726,12 @@
       "longitude": "Longitude:",
       "latitude": "Latitude:",
       "date": "Date and time:"
+    }
+  },
+  "Emails": {
+    "Footer": {
+      "title": "Support and Assistance",
+      "content": "<p>For urgent queries about this event, email <link>NSPOCincidents@ukspaceagency.gov.uk</link>.</p><p>Additional contact details are available via Monitor Space Hazards (for registered users).</p><p>We welcome your feedback and ideas to improve future reports. If you're not signed up to Monitor Space Hazards and would like access to the service, please contact us.</p><p>Monitor Space Hazards is a service provided by the UK Space Agency via the National Space Operations Centre.</p>"
     }
   }
 }
