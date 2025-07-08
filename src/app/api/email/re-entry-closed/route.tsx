@@ -1,16 +1,18 @@
-import { pretty, render } from '@react-email/render';
+import { render } from '@react-email/render';
 
-import type { TypeReentryEventOut, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
 import ReEntryEmail from '@/emails/re-entry-closedown';
 
-export async function GET(
+export async function POST(
   request: Request,
-  { params }: { params: Promise<{ event: TypeReentryEventOut; report: TypeReentryEventReportOut }> },
 ) {
   try {
-    const { event, report } = await params;
+    const { event, report } = await request.json();
 
-    const html = await pretty(await render(<ReEntryEmail event={event} report={report} />));
+    if (!event || !report) {
+      return Response.json({ error: 'Invalid request' }, { status: 400, statusText: 'Invalid request' });
+    }
+
+    const html = await render(<ReEntryEmail event={event} report={report} withPlaceholders />);
 
     return Response.json({
       html,

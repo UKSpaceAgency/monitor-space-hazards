@@ -7,7 +7,11 @@ import { Link } from './link';
 import { Section } from './section';
 import { Text } from './text';
 
-export const Footer = () => {
+type FooterProps = {
+  withPlaceholders: boolean;
+};
+
+export const Footer = ({ withPlaceholders }: FooterProps) => {
   const t = createTranslator({
     locale: 'en',
     namespace: 'Emails.Footer',
@@ -22,7 +26,7 @@ export const Footer = () => {
       })}
       <Row className="pb-4">
         <Column className="w-[30%]">
-          <Img src="https://www.dev.monitor-space-hazards.service.gov.uk/uksa.png" alt="UK Space Agency Logo" className="w-full h-auto" />
+          <Img src={withPlaceholders ? '{{UKSA_LOGO}}' : 'https://www.dev.monitor-space-hazards.service.gov.uk/uksa.png'} alt="UK Space Agency Logo" className="w-full h-auto" />
         </Column>
         <Column />
       </Row>

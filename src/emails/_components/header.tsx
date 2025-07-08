@@ -5,15 +5,16 @@ import { Separator } from './separator';
 type HeaderProps = {
   title: string;
   subtitle: string;
+  withPlaceholders: boolean;
 };
 
-export const Header = ({ title, subtitle }: HeaderProps) => {
+export const Header = ({ title, subtitle, withPlaceholders }: HeaderProps) => {
   return (
     <Section>
       <Row className="pb-4">
         <Column className="w-[20%]">
           <Img
-            src="https://www.dev.monitor-space-hazards.service.gov.uk/nspoclogo2.png"
+            src={withPlaceholders ? '{{NSPOC_LOGO}}' : 'https://www.dev.monitor-space-hazards.service.gov.uk/nspoclogo2.png'}
             className="w-full h-auto"
           />
         </Column>

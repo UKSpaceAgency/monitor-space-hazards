@@ -1,18 +1,6 @@
-import {
-  Body,
-  Container,
-  Head,
-  Html,
-  Preview,
-  Tailwind,
-} from '@react-email/components';
-import { createTranslator } from 'next-intl';
-
 import type { TypeReentryEventOut, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
-import messages from '@/locales/en.json';
 
-import { Footer } from './_components/footer';
-import { Header } from './_components/header';
+import { Layout } from './_components/layout';
 import { Map } from './_components/map';
 import { AffectedRegions } from './_components/re-entry-closedown/affected-regions';
 import { EventInformation } from './_components/re-entry-closedown/event-information';
@@ -24,41 +12,27 @@ import { Subheader } from './_components/subheader';
 type ReEntryEmailProps = {
   event: TypeReentryEventOut;
   report: TypeReentryEventReportOut;
+  withPlaceholders: boolean;
 };
 
-function ReEntryEmail({ event, report }: ReEntryEmailProps) {
-  const t = createTranslator({
-    locale: 'en',
-    namespace: 'Reentry',
-    messages,
-  });
-
+function ReEntryEmail({ event, report, withPlaceholders }: ReEntryEmailProps) {
   return (
-    <Tailwind>
-      <Html>
-        <Head />
-        <Body className="bg-white font-sans p-4">
-          <Preview>{t('title', { objectName: 'Reentry' })}</Preview>
-          <Container>
-            <Header
-              title="Re-entry Close Down Alert"
-              subtitle="Rocket BODY Satellite"
-            />
-            <Subheader />
-            <Section title="Event Summary">
-              <EventSummary event={event} className="mb-4" />
-              <Map src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google" className="mb-4" />
-              <AffectedRegions report={report} className="mb-4" />
-            </Section>
-            <Section title="Additional Information">
-              <EventInformation event={event} />
-              <PressAttention pressAttention={event.pressAttention} />
-            </Section>
-            <Footer />
-          </Container>
-        </Body>
-      </Html>
-    </Tailwind>
+    <Layout
+      title="Re-entry Close Down Alert"
+      subtitle="Rocket BODY Satellite"
+      withPlaceholders={withPlaceholders}
+    >
+      <Subheader />
+      <Section title="Event Summary">
+        <EventSummary event={event} className="mb-4" />
+        <Map src="{{MAP_URL}}" alt="Google" className="mb-4" />
+        <AffectedRegions report={report} className="mb-4" />
+      </Section>
+      <Section title="Additional Information">
+        <EventInformation event={event} />
+        <PressAttention pressAttention={event.pressAttention} />
+      </Section>
+    </Layout>
   );
 }
 
@@ -90,6 +64,7 @@ ReEntryEmail.PreviewProps = {
       },
     },
   },
+  withPlaceholders: false,
 };
 
 export default ReEntryEmail;
