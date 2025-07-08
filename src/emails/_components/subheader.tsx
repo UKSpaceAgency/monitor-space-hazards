@@ -19,7 +19,7 @@ export const Subheader = ({ risk }: SubheaderProps) => {
   const style = risk ? riskColours[risk] : styles.closedown;
 
   return (
-    <Section className="my-6">
+    <Section className="py-6">
       <Section
         className="text-center p-2"
         style={style}

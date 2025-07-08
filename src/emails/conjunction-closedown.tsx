@@ -35,7 +35,7 @@ function ConjunctionClosedownEmail({ report, withPlaceholders }: ConjunctionClos
     >
       <Subheader />
       <Section title={t('event_summary_title')}>
-        <ConjunctionEventSummary eventUrl={eventLink} report={report} closedown className="mb-6" />
+        <ConjunctionEventSummary eventUrl={eventLink} report={report} closedown className="pb-6" />
       </Section>
       <Section title={t('potential_impact_title')}>
         <ConjunctionPotentialImpact report={report} />

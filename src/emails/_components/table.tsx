@@ -28,7 +28,7 @@ export const Table = ({ data, ...props }: TableProps) => {
             return (
               <Column
                 key={index}
-                className={clsx('px-2 py-1 text-sm', {
+                className={clsx('p-2 text-sm', {
                   'w-[30%]': isFirstColumn,
                   'font-bold': isFirstColumn || isRisk,
                   'text-center': !isFirstColumn,

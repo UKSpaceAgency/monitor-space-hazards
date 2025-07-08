@@ -36,10 +36,10 @@ function ConjunctionEmail({ report, withPlaceholders }: ConjunctionEmailProps) {
     >
       <Subheader risk={report.risk} />
       <Section title={t('event_summary_title')}>
-        <ConjunctionEventSummary eventUrl={eventLink} report={report} className="mb-6" />
+        <ConjunctionEventSummary eventUrl={eventLink} report={report} className="pb-6" />
       </Section>
       <Section title={t('additional_event_details_title')}>
-        <ConjunctionAdditionalEventDetails report={report} className="mb-6" />
+        <ConjunctionAdditionalEventDetails report={report} className="pb-6" />
       </Section>
       <Section title={t('potential_impact_title')}>
         <ConjunctionPotentialImpact report={report} />

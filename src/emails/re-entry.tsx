@@ -40,16 +40,16 @@ function ReEntryEmail({ event, report, withPlaceholders }: ReEntryEmailProps) {
     >
       <Subheader risk={event.monteCarloRisk} />
       <Section title={t('risk_probabilities_title')}>
-        <ReentryRiskProbabilities event={event} className="mb-6" />
+        <ReentryRiskProbabilities event={event} className="pb-6" />
       </Section>
       <Section title={t('event_summary_title')}>
-        <ReentryEventSummary event={event} className="mb-6" />
-        <Map src="{{MAP_URL}}" alt="Google" className="mb-6" />
-        <Map src="{{WORLD_MAP_URL}}" alt="Google" className="mb-6" />
-        <ReentryAffectedRegions report={report} className="mb-6" />
+        <ReentryEventSummary event={event} className="pb-6" />
+        <Map src="{{MAP_URL}}" className="pb-6" />
+        <Map src="{{WORLD_MAP_URL}}" className="pb-6" />
+        <ReentryAffectedRegions report={report} className="pb-6" />
       </Section>
       <Section title={t('event_details_title')}>
-        <ReentryEventDetails event={event} report={report} className="mb-6" />
+        <ReentryEventDetails event={event} report={report} className="pb-6" />
       </Section>
       <Section title={t('additional_information_title')}>
         <ReentryEventInformation event={event} />

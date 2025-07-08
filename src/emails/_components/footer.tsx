@@ -1,4 +1,4 @@
-import { Column, Img, Row } from '@react-email/components';
+import { Img, Section as EmailSection } from '@react-email/components';
 import { createTranslator } from 'next-intl';
 
 import messages from '@/locales/en.json';
@@ -24,12 +24,14 @@ export const Footer = ({ withPlaceholders }: FooterProps) => {
         p: chunks => <Text className="text-sm mt-0">{chunks}</Text>,
         link: chunks => <Link href="mailto:NSPOCincidents@ukspaceagency.gov.uk">{chunks}</Link>,
       })}
-      <Row className="pb-4">
-        <Column className="w-[30%]">
-          <Img src={withPlaceholders ? '{{UKSA_LOGO}}' : 'https://www.dev.monitor-space-hazards.service.gov.uk/uksa.png'} alt="UK Space Agency Logo" className="w-full h-auto" />
-        </Column>
-        <Column />
-      </Row>
+      <EmailSection className="pb-4">
+        <Img
+          src={withPlaceholders ? '{{UKSA_LOGO}}' : 'https://www.dev.monitor-space-hazards.service.gov.uk/uksa.png'}
+          alt="UK Space Agency Logo"
+          width="113"
+          height="31"
+        />
+      </EmailSection>
       <Link href="mailto:monitorspacehazards@ukspaceagency.gov.uk?subject=Unsubscribe" className="text-sm">Unsubscribe</Link>
     </Section>
   );

@@ -1,4 +1,4 @@
-import { Column, Heading, Img, Row, Section } from '@react-email/components';
+import { Heading, Img, Section } from '@react-email/components';
 
 import { Separator } from './separator';
 
@@ -11,15 +11,13 @@ type HeaderProps = {
 export const Header = ({ title, subtitle, withPlaceholders }: HeaderProps) => {
   return (
     <Section>
-      <Row className="pb-4">
-        <Column className="w-[20%]">
-          <Img
-            src={withPlaceholders ? '{{NSPOC_LOGO}}' : 'https://www.dev.monitor-space-hazards.service.gov.uk/nspoclogo2.png'}
-            className="w-full h-auto"
-          />
-        </Column>
-        <Column />
-      </Row>
+      <Section className="pb-4">
+        <Img
+          src={withPlaceholders ? '{{NSPOC_LOGO}}' : 'https://www.dev.monitor-space-hazards.service.gov.uk/nspoclogo2.png'}
+          width="113"
+          height="50"
+        />
+      </Section>
       <Heading className="text-base m-0">
         {title}
       </Heading>
