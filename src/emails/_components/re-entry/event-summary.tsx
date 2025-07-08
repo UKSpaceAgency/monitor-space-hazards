@@ -7,22 +7,22 @@ import messages from '@/locales/en.json';
 
 import { Table } from '../table';
 
-type EventSummaryProps = {
+type ReentryEventSummaryProps = {
   event: TypeReentryEventOut;
 } & ComponentProps<'table'>;
 
-export const EventSummary = ({ event, ...props }: EventSummaryProps) => {
+export const ReentryEventSummary = ({ event, ...props }: ReentryEventSummaryProps) => {
   const t = createTranslator({
     locale: 'en',
-    namespace: 'Tables.Reentry_alert_executive_summary',
+    namespace: 'Emails.Reentry_alert.Event_summary',
     messages,
   });
 
   const data = [
-    [t('object'), event.objectName],
+    [t('object_type'), event.objectName],
     [t('estimated_mass'), event.estimatedMass],
-    [t('time_window_world'), `${dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME)} +/- ${event.uncertaintyWindow} minute(s)`],
-    [t('overflight_time'), event.overflightTime[0] ? dayjs(event.overflightTime[0]).format(FORMAT_FULL_DATE_TIME) : '-'],
+    [t('re_entry_time'), `${dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME)} +/- ${event.uncertaintyWindow} minute(s)`],
+    [t('uk_overflight_time'), event.overflightTime ? event.overflightTime.map(time => dayjs(time).format(FORMAT_FULL_DATE_TIME)).join(', ') : '-'],
   ];
 
   return <Table data={data} {...props} />;

@@ -7,10 +7,12 @@ import messages from '@/locales/en.json';
 import { Layout } from './_components/layout';
 import { Map } from './_components/map';
 import { ReentryAffectedRegions } from './_components/re-entry/affected-regions';
-import { ReentryEventInformationClosed } from './_components/re-entry/event-information-closed';
+import { ReentryEventDetails } from './_components/re-entry/event-details';
+import { ReentryEventInformation } from './_components/re-entry/event-information';
 import { ReentryEventSummary } from './_components/re-entry/event-summary';
 import { ReentryHandlingSpaceDebris } from './_components/re-entry/handling-space-debris';
 import { ReentryPressAttention } from './_components/re-entry/press-attention';
+import { ReentryRiskProbabilities } from './_components/re-entry/risk-probabilities';
 import { Section } from './_components/section';
 import { SignIn } from './_components/sign_in';
 import { Subheader } from './_components/subheader';
@@ -21,7 +23,7 @@ type ReEntryEmailProps = {
   withPlaceholders: boolean;
 };
 
-function ReEntryClosedownEmail({ event, report, withPlaceholders }: ReEntryEmailProps) {
+function ReEntryEmail({ event, report, withPlaceholders }: ReEntryEmailProps) {
   const t = createTranslator({
     locale: 'en',
     namespace: 'Emails.Reentry_alert',
@@ -32,18 +34,25 @@ function ReEntryClosedownEmail({ event, report, withPlaceholders }: ReEntryEmail
 
   return (
     <Layout
-      title="Re-entry Close Down Alert"
-      subtitle="Rocket BODY Satellite"
+      title={t('title', { risk: event.monteCarloRisk })}
+      subtitle={`${event.objectName} ${event.objectType}`}
       withPlaceholders={withPlaceholders}
     >
-      <Subheader />
+      <Subheader risk={event.monteCarloRisk} />
+      <Section title={t('risk_probabilities_title')}>
+        <ReentryRiskProbabilities event={event} className="mb-6" />
+      </Section>
       <Section title={t('event_summary_title')}>
-        <ReentryEventSummary event={event} className="mb-4" />
-        <Map src="{{MAP_URL}}" alt="Google" className="mb-4" />
-        <ReentryAffectedRegions report={report} className="mb-4" />
+        <ReentryEventSummary event={event} className="mb-6" />
+        <Map src="{{MAP_URL}}" alt="Google" className="mb-6" />
+        <Map src="{{WORLD_MAP_URL}}" alt="Google" className="mb-6" />
+        <ReentryAffectedRegions report={report} className="mb-6" />
+      </Section>
+      <Section title={t('event_details_title')}>
+        <ReentryEventDetails event={event} report={report} className="mb-6" />
       </Section>
       <Section title={t('additional_information_title')}>
-        <ReentryEventInformationClosed event={event} />
+        <ReentryEventInformation event={event} />
         <ReentryHandlingSpaceDebris />
         <ReentryPressAttention pressAttention={event.pressAttention} />
         <SignIn link={eventLink} />
@@ -52,7 +61,7 @@ function ReEntryClosedownEmail({ event, report, withPlaceholders }: ReEntryEmail
   );
 }
 
-ReEntryClosedownEmail.PreviewProps = {
+ReEntryEmail.PreviewProps = {
   event: {
     objectName: 'Falcon 9 Second Stage',
     objectType: 'Rocket Body',
@@ -85,4 +94,4 @@ ReEntryClosedownEmail.PreviewProps = {
   withPlaceholders: false,
 };
 
-export default ReEntryClosedownEmail;
+export default ReEntryEmail;

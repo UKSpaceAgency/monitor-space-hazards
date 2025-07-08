@@ -1,18 +1,18 @@
 import { render } from '@react-email/render';
 
-import ReEntryEmail from '@/emails/re-entry';
+import ConjunctionEmail from '@/emails/conjunction';
 
 export async function POST(
   request: Request,
 ) {
   try {
-    const { event, report } = await request.json();
+    const { report } = await request.json();
 
-    if (!event || !report) {
+    if (!report) {
       return Response.json({ error: 'Invalid request' }, { status: 400, statusText: 'Invalid request' });
     }
 
-    const html = await render(<ReEntryEmail event={event} report={report} withPlaceholders />);
+    const html = await render(<ConjunctionEmail report={report} withPlaceholders />);
 
     return Response.json({
       html,

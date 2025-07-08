@@ -1,10 +1,12 @@
 /* eslint-disable react/no-array-index-key */
 import { Column, Row, Section } from '@react-email/components';
 import clsx from 'clsx';
-import type { ComponentProps } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
+
+import { riskColours } from '../_utils/utils';
 
 type TableProps = {
-  data: (string | number | null | undefined)[][];
+  data: ReactNode[][];
 } & ComponentProps<'table'>;
 
 export const Table = ({ data, ...props }: TableProps) => {
@@ -17,18 +19,26 @@ export const Table = ({ data, ...props }: TableProps) => {
             'bg-[#f0f0f0]': index % 2 === 0,
           })}
         >
-          {row.map((cell, index) => (
-            <Column
-              key={index}
-              className={clsx('p-1.5 text-sm', {
-                'w-[30%]': index === 0,
-                'font-bold': index === 0,
-                'text-center': index !== 0,
-              })}
-            >
-              {cell}
-            </Column>
-          ))}
+          {row.map((cell, index) => {
+            const isFirstColumn = index === 0;
+            const isRisk = cell === 'High' || cell === 'Medium' || cell === 'Low';
+
+            const riskStyle = isRisk ? riskColours[cell as keyof typeof riskColours] : {};
+
+            return (
+              <Column
+                key={index}
+                className={clsx('px-2 py-1 text-sm', {
+                  'w-[30%]': isFirstColumn,
+                  'font-bold': isFirstColumn || isRisk,
+                  'text-center': !isFirstColumn,
+                })}
+                style={{ ...riskStyle }}
+              >
+                {cell}
+              </Column>
+            );
+          })}
         </Row>
       ))}
     </Section>
