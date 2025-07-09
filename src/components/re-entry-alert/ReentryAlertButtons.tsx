@@ -22,7 +22,7 @@ const ReentryAlertButtons = ({ pdfTitle }: ReentryAlertButtonsProps) => {
     <ButtonGroup>
       <PdfDownloadButton title={pdfTitle} />
       <Link href="/re-entries">
-        <Button variant="secondary">{t('return', { to: 'upcoming re-entry events page' })}</Button>
+        <Button variant="secondary">{t('return', { to: 'track re-entry events' })}</Button>
       </Link>
     </ButtonGroup>
   );

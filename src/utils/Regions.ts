@@ -178,7 +178,7 @@ export const jsonRegionsMap: Record<string, string> = {
   south_east: 'South East',
   south_west: 'South West',
   west_midlands: 'West Midlands',
-  yorkshire_and_north_humber: 'Yorkshire and North Humber',
+  yorkshire_and_north_humber: 'Yorkshire and Humber',
   antrim_and_newtownabbey: 'Antrim and Newtownabbey',
   ards_and_north_down: 'Ards and North Down',
   armagh_city_banbridge_and_craigavon: 'Armagh City, Banbridge and Craigavon',
