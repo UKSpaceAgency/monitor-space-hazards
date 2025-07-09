@@ -39,7 +39,7 @@ function ReEntryClosedownEmail({ event, report, withPlaceholders }: ReEntryEmail
       <Subheader />
       <Section title={t('event_summary_title')}>
         <ReentryEventSummary event={event} className="pb-4" />
-        <Map src="{{MAP_URL}}" className="pb-4" width="580" />
+        <Map src="{{MAP.src}}" className="pb-4" width="580" />
         <ReentryAffectedRegions report={report} className="pb-4" />
       </Section>
       <Section title={t('additional_information_title')}>

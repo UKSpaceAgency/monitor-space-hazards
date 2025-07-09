@@ -1,6 +1,7 @@
-import { Img, Section as EmailSection } from '@react-email/components';
+import { Button, Img, Section as EmailSection } from '@react-email/components';
 import { createTranslator } from 'next-intl';
 
+import { env } from '@/libs/Env';
 import messages from '@/locales/en.json';
 
 import { Link } from './link';
@@ -9,9 +10,10 @@ import { Text } from './text';
 
 type FooterProps = {
   withPlaceholders: boolean;
+  isNotification?: boolean;
 };
 
-export const Footer = ({ withPlaceholders }: FooterProps) => {
+export const Footer = ({ withPlaceholders, isNotification }: FooterProps) => {
   const t = createTranslator({
     locale: 'en',
     namespace: 'Emails.Footer',
@@ -20,13 +22,17 @@ export const Footer = ({ withPlaceholders }: FooterProps) => {
 
   return (
     <Section title={t('title')}>
-      {t.rich('content', {
+      {t.rich(isNotification ? 'content_notification' : 'content', {
         p: chunks => <Text className="text-sm mt-0">{chunks}</Text>,
-        link: chunks => <Link href="mailto:NSPOCincidents@ukspaceagency.gov.uk">{chunks}</Link>,
+        nspocemail: chunks => <Link href="mailto:NSPOCincidents@ukspaceagency.gov.uk">{chunks}</Link>,
+        orbitalemail: chunks => <Link href="mailto:OrbitalAnalysts@ukspaceagency.gov.uk">{chunks}</Link>,
+        link: chunks => <Link href={env.NEXTAUTH_URL}>{chunks}</Link>,
+        contact: chunks => <Link href={`${env.NEXTAUTH_URL}/contact`}>{chunks}</Link>,
+        button: chunks => <Text className="text-sm mt-0"><Button className="bg-[#006ebb] p-2 text-white rounded" href="mailto:NSPOCincidents@ukspaceagency.gov.uk">{chunks}</Button></Text>,
       })}
       <EmailSection className="pb-4">
         <Img
-          src={withPlaceholders ? '{{UKSA_LOGO}}' : 'https://www.dev.monitor-space-hazards.service.gov.uk/uksa.png'}
+          src={withPlaceholders ? '{{UKSA_LOGO.src}}' : 'https://www.dev.monitor-space-hazards.service.gov.uk/uksa.png'}
           alt="UK Space Agency Logo"
           width="113"
           height="31"

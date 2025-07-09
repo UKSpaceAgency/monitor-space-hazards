@@ -1837,9 +1837,39 @@
         "empty": "We have not seen any press attention on this event."
       }
     },
+    "Conjunction_notification_table": {
+      "objects": "Primary and Secondary Object",
+      "tca": "Time of Closest Approach (UTC)",
+      "poc": "NSpOC Probability of Collision"
+    },
+    "Analysis_upload": {
+      "title": "New UKSA analysis uploaded",
+      "content": "<p>The National Space Operations Centre (NSpOC) has uploaded new analysis for the following conjunction events involving your satellites. For full information on each event please visit Monitor Space Hazards via the event link.</p>"
+    },
+    "Conjunction_notification": {
+      "title": "New conjunction event(s)",
+      "content": "<p>The UK Space Agency's Monitor Space Hazards service has identified new conjunction events involving your satellites and crossing your thresholds. The links to the events and their time of closest approach are listed below.</p>",
+      "objects": "Primary and Secondary Object",
+      "tca": "Time of Closest Approach (UTC)",
+      "poc": "NSpOC Probability of Collision"
+    },
+    "Conjunction_new_ephemeris": {
+      "title": "Satellite {{ name }} : New ephemeris data uploaded",
+      "content": "<p>A satellite operator has uploaded ephemeris data for satellite <link>{commonName}</link> (NORAD ID: {noradId}).</p><p>Sign in to <link>Monitor Space Hazards</link> to view this ephemeris data.</p>"
+    },
+    "Conjunction_notification_updated": {
+      "title": "Updated conjunction event(s)",
+      "content": "<p>One or more conjunction events crossing your thresholds has been updated. The links to the events and their time of closest approach are listed below.</p>"
+    },
+    "Conjunction_notification_new_and_updated": {
+      "title": "New and updated conjunction event(s)",
+      "content": "<p>The UK Space Agency's Monitor Space Hazards service has identified new conjunction events involving your satellites and crossing your thresholds. Additionally, one or more conjunction events crossing your thresholds has been updated. The links to the events and their time of closest approach are listed below.</p>",
+      "updated": "Updated event(s)"
+    },
     "Footer": {
       "title": "Support and Assistance",
-      "content": "<p>For urgent queries about this event, email <link>NSPOCincidents@ukspaceagency.gov.uk</link>.</p><p>Additional contact details are available via Monitor Space Hazards (for registered users).</p><p>We welcome your feedback and ideas to improve future reports. If you're not signed up to Monitor Space Hazards and would like access to the service, please contact us.</p><p>Monitor Space Hazards is a service provided by the UK Space Agency via the National Space Operations Centre.</p>"
+      "content": "<p>For urgent queries about this event, email <nspocemail>NSPOCincidents@ukspaceagency.gov.uk</nspocemail>.</p><p>Additional contact details are available via Monitor Space Hazards (for registered users).</p><p>We welcome your feedback and ideas to improve future reports. If you're not signed up to <link>Monitor Space Hazards</link> and would like access to the service, please contact us.</p><p>Monitor Space Hazards is a service provided by the UK Space Agency via the National Space Operations Centre.</p>",
+      "content_notification": "<p>For assistance in managing an incident, or for more information, please do not hesitate to contact our Operations, Analysis and Response Team:</p><button>Operations Support</button><p>Or email us: <nspocemail>NSPOCincidents@ukspaceagency.gov.uk</nspocemail> and <orbitalemail>OrbitalAnalysts@ukspaceagency.gov.uk</orbitalemail></p><p>Additional contact details are available via <contact>Monitor Space Hazards</contact>. Monitor Space Hazards is a service provided by the UK Space Agency via the National Space Operations Centre</p>"
     }
   }
 }

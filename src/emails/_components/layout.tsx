@@ -5,15 +5,19 @@ import { Footer } from './footer';
 import { Header } from './header';
 
 export type LayoutProps = {
-  title: string;
-  subtitle: string;
+  title?: string;
+  subtitle?: string;
   withPlaceholders: boolean;
+  isNotification?: boolean;
 } & ComponentProps<'div'>;
 
-export function Layout({ title, subtitle, withPlaceholders, children }: LayoutProps) {
+export function Layout({ title, subtitle, withPlaceholders, children, isNotification }: LayoutProps) {
   return (
     <Tailwind config={{
       theme: {
+        fontFamily: {
+          sans: ['Calibri', 'Arial', 'sans-serif'],
+        },
         fontSize: {
           'xs': ['12px', { lineHeight: '16px' }],
           'sm': ['14px', { lineHeight: '20px' }],
@@ -79,7 +83,7 @@ export function Layout({ title, subtitle, withPlaceholders, children }: LayoutPr
               withPlaceholders={withPlaceholders}
             />
             {children}
-            <Footer withPlaceholders={withPlaceholders} />
+            <Footer withPlaceholders={withPlaceholders} isNotification={isNotification} />
           </Container>
         </Body>
       </Html>

@@ -44,8 +44,8 @@ function ReEntryEmail({ event, report, withPlaceholders }: ReEntryEmailProps) {
       </Section>
       <Section title={t('event_summary_title')}>
         <ReentryEventSummary event={event} className="pb-6" />
-        <Map src="{{MAP_URL}}" className="pb-6" />
-        <Map src="{{WORLD_MAP_URL}}" className="pb-6" />
+        <Map src="{{MAP.src}}" className="pb-6" />
+        <Map src="{{WORLD_MAP.src}}" className="pb-6" />
         <ReentryAffectedRegions report={report} className="pb-6" />
       </Section>
       <Section title={t('event_details_title')}>
