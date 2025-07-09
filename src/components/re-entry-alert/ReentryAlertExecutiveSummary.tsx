@@ -35,6 +35,8 @@ const ReentryAlertExecutiveSummary = async ({ event, previewSummary, isClosed }:
     fragmentsProbability: roundedPercentage(event?.fragmentsProbability ?? 0),
     humanCasualtyRisk: event?.humanCasualtyRisk ?? 'Low',
     humanCasualtyProbability: roundedPercentage(event?.humanCasualtyProbability ?? 0),
+    riskLevel: event?.fragmentsRisk ?? 'Low',
+    riskProbability: roundedPercentage(event?.fragmentsProbability ?? 0),
     licensingCountry: getFullCountry(event.licenseCountry),
     tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
   };

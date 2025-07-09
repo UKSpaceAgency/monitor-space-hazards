@@ -18,11 +18,10 @@ const ReentryAlertGuidanceOnResponse = ({ risk, immediateResponse, dataPdf }: Re
 
   return (
     <div data-pdf={dataPdf}>
-      {immediateResponse
-        ? <Markdown>{immediateResponse}</Markdown>
-        : t.rich(`risk.${riskLevel}`, {
-            tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
-          })}
+      {t.rich(`risk.${riskLevel}`, {
+        tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
+      })}
+      {immediateResponse && <Markdown>{immediateResponse}</Markdown>}
     </div>
   );
 };

@@ -43,7 +43,8 @@ const ReentryAlertGuidanceIfObjectImpactsUkInterests = ({ recoveryAndCleanUp, da
         ),
       })}
       <h4 className="govuk-heading-m">{t('public_guidance_on_space_debris.title')}</h4>
-      {recoveryAndCleanUp ? <Markdown>{recoveryAndCleanUp}</Markdown> : t.rich('public_guidance_on_space_debris.content')}
+      {t.rich('public_guidance_on_space_debris.content')}
+      {recoveryAndCleanUp && <Markdown>{recoveryAndCleanUp}</Markdown>}
     </div>
   );
 };
