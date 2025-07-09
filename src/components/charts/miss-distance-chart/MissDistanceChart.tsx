@@ -6,7 +6,6 @@ import { useMemo, useState } from 'react';
 import type { TypeEventSummaryOut } from '@/__generated__/data-contracts';
 import RichText from '@/components/RichText';
 import Checkboxes from '@/ui/checkboxes/checkboxes';
-import { getAbsoluteValue } from '@/utils/Math';
 
 import BaseChart from '../base/BaseChart';
 import { getMissDistanceChartDatasets } from './getMissDistanceChartDatasets';
@@ -35,10 +34,10 @@ export function MissDistanceChart({ data, isSpecial }: MissDistanceChartProps) {
 
   const absoluteData: MissDistanceChartDataType = useMemo(() => data.map(item => ({
     ...item,
-    crosstrackMissDistance: getAbsoluteValue(item.crosstrackMissDistance),
-    intrackMissDistance: getAbsoluteValue(item.intrackMissDistance),
-    radialMissDistance: getAbsoluteValue(item.radialMissDistance),
-    missDistance: getAbsoluteValue(item.missDistance)!,
+    crosstrackMissDistance: item.crosstrackMissDistance,
+    intrackMissDistance: item.intrackMissDistance,
+    radialMissDistance: item.radialMissDistance,
+    missDistance: item.missDistance,
   })), [data]);
 
   const sortedData = useMemo(() => absoluteData.sort((a, b) => Date.parse(a.updateTime) - Date.parse(b.updateTime)), [absoluteData]);
