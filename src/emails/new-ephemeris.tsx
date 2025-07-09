@@ -25,7 +25,7 @@ function NewEphemerisEmail({ commonName, noradId, withPlaceholders }: NewEphemer
 
   return (
     <Layout withPlaceholders={withPlaceholders} isNotification>
-      <Section title={t('title')}>
+      <Section title={t('title', { commonName })}>
         {t.rich('content', {
           commonName,
           noradId,

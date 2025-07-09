@@ -30,6 +30,8 @@ export const ReentryEventInformation = ({ event }: ReentryEventInformationProps)
     date: `${dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME)} +/- ${event.uncertaintyWindow} minute(s)`,
     riskLevel: event?.monteCarloRisk ?? 'Low',
     riskProbability: roundedPercentage(event?.monteCarloProbability ?? 0),
+    fragmentsRisk: event?.fragmentsRisk ?? 'Low',
+    fragmentsProbability: roundedPercentage(event?.fragmentsProbability ?? 0),
     licensingCountry: getFullCountry(event.licenseCountry),
     objectUrl: chunks => <Link href={`${env.NEXTAUTH_URL}/satellites/${event.noradId}`}>{chunks}</Link>,
     tag: chunks => renderRiskTag(chunks as TypeReentryRisk),

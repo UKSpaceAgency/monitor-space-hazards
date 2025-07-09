@@ -1854,7 +1854,7 @@
       "poc": "NSpOC Probability of Collision"
     },
     "Conjunction_new_ephemeris": {
-      "title": "Satellite {{ name }} : New ephemeris data uploaded",
+      "title": "Satellite {commonName} : New ephemeris data uploaded",
       "content": "<p>A satellite operator has uploaded ephemeris data for satellite <link>{commonName}</link> (NORAD ID: {noradId}).</p><p>Sign in to <link>Monitor Space Hazards</link> to view this ephemeris data.</p>"
     },
     "Conjunction_notification_updated": {

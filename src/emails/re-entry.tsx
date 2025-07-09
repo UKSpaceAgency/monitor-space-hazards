@@ -71,6 +71,8 @@ ReEntryEmail.PreviewProps = {
     overflightTime: ['2024-01-20T09:30:00Z', '2024-01-20T10:30:00Z'],
     monteCarloRisk: 'High',
     monteCarloProbability: 0.85,
+    fragmentsRisk: 'High',
+    fragmentsProbability: 0.85,
     licensedCountry: 'United States',
     shortId: '1234567890',
     noradId: '1234567890',
