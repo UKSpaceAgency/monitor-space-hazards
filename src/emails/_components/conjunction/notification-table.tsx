@@ -23,7 +23,7 @@ const ConjunctionNotificationTable = ({ conjunctions }: ConjunctionNotificationT
   const url = `${env.NEXTAUTH_URL}/conjunctions`;
 
   const data = conjunctions.map(conjunction => [
-    <Link key={conjunction.shortId} href={`${url}/conjunctions/${conjunction.shortId}`}>
+    <Link key={conjunction.shortId} href={`${url}/${conjunction.shortId}`}>
       {conjunction.primaryObjectCommonName}
       {' '}
       vs
