@@ -55,12 +55,16 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
   {
     header: 'Reentry_alert_history.risk',
     enableSorting: false,
-    cell: ({ row: { original: { monteCarloProbability } } }) => {
-      if (monteCarloProbability > 0.05) {
+    cell: ({ row: { original: { fragmentsProbability } } }) => {
+      if (!fragmentsProbability) {
+        return <Tag color="green">Low</Tag>;
+      }
+
+      if (fragmentsProbability > 0.05) {
         return (
           <Tag color="red">High</Tag>
         );
-      } else if (monteCarloProbability <= 0.05 && monteCarloProbability > 0.01) {
+      } else if (fragmentsProbability <= 0.05 && fragmentsProbability > 0.01) {
         return (
           <Tag color="yellow">
             Medium
