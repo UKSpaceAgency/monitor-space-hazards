@@ -1,6 +1,6 @@
 import { render } from '@react-email/render';
 
-import ReEntryEmail from '@/emails/re-entry';
+import ReEntryClosedownEmail from '@/emails/re-entry-closedown';
 
 export async function POST(
   request: Request,
@@ -12,7 +12,7 @@ export async function POST(
       return Response.json({ error: 'Invalid request' }, { status: 400, statusText: 'Invalid request' });
     }
 
-    const html = await render(<ReEntryEmail event={event} report={report} withPlaceholders />);
+    const html = await render(<ReEntryClosedownEmail event={event} report={report} withPlaceholders />);
 
     return Response.json({
       html,
