@@ -748,7 +748,7 @@
       "email_title": "Event Information:",
       "title": "Executive summary",
       "content": "The National Space Operations Centre is tracking the upcoming re-entry event involving {commonName} from space into Earth's atmosphere, posing a potential risk to life and property on the ground. The event is assessed as <tag>{fragmentsRisk}</tag> risk, with a {fragmentsProbability} probability of debris impacting the UK. {licensingCountry} is liable for any damages and associated response or recovery costs. All re-entered debris should be considered as hazardous until proven otherwise.",
-      "closed_report": "The National Space Operations Centre has completed tracking of the re-entry event involving {commonName}, which occurred on {date} UTC. The event was assessed as <tag>{fragmentsRisk}</tag> risk, with a {fragmentsProbability} probability of debris impacting the UK.   {licensingCountry} is liable for any damages and associated response or recovery costs. All re-entered debris should be considered as hazardous until proven otherwise.",
+      "closed_report": "The National Space Operations Centre has completed tracking of the re-entry event involving {commonName}, which occurred on {date} UTC. The event was assessed as <tag>{fragmentsRisk}</tag> risk, with a {fragmentsProbability} probability of debris impacting the UK. {licensingCountry} is liable for any damages and associated response or recovery costs. All re-entered debris should be considered as hazardous until proven otherwise.",
       "risk_probabilities": "UK risk probabilities",
       "event_summary": "Event summary"
     },

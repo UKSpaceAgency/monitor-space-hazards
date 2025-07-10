@@ -6,9 +6,10 @@ export const Markdown = (props: MarkdownProps) => {
     <MarkdownEmail
       markdownCustomStyles={{
         p: {
-          fontSize: '0.875rem',
-          lineHeight: '1.25rem',
+          fontSize: '14px',
+          lineHeight: '20px',
           marginTop: '0',
+          marginBottom: '16px',
         },
       }}
       {...props}
