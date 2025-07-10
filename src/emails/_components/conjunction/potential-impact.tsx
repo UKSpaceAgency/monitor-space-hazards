@@ -21,26 +21,23 @@ export const ConjunctionPotentialImpact = ({ report }: ConjunctionPotentialImpac
   return (
     <Section>
       <Text className="m-0 font-bold">{t('immediate_impact.title')}</Text>
-      {report.immediateImpactAddition
-        ? <Markdown>{report.immediateImpactAddition}</Markdown>
-        : t.rich('immediate_impact.content', {
-            predictedFragments: report.predictedFragments,
-            p: chunks => <Text>{chunks}</Text>,
-          })}
+      {t.rich('immediate_impact.content', {
+        predictedFragments: report.predictedFragments,
+        p: chunks => <Text>{chunks}</Text>,
+      })}
+      {report.immediateImpactAddition && <Markdown>{report.immediateImpactAddition}</Markdown>}
       <Text className="m-0 font-bold">{t('short_term_impact.title')}</Text>
-      {report.shortTermImpactAddition
-        ? <Markdown>{report.shortTermImpactAddition}</Markdown>
-        : t.rich('short_term_impact.content', {
-            increaseInFutureCollisions: report.increaseInFutureCollisions,
-            p: chunks => <Text>{chunks}</Text>,
-          })}
+      {t.rich('short_term_impact.content', {
+        increaseInFutureCollisions: report.increaseInFutureCollisions,
+        p: chunks => <Text>{chunks}</Text>,
+      })}
+      {report.shortTermImpactAddition && <Markdown>{report.shortTermImpactAddition}</Markdown>}
       <Text className="m-0 font-bold">{t('long_term_impact.title')}</Text>
-      {report.longTermImpactAddition
-        ? <Markdown>{report.longTermImpactAddition}</Markdown>
-        : t.rich('long_term_impact.content', {
-            altitude: report.altitude,
-            p: chunks => <Text>{chunks}</Text>,
-          })}
+      {t.rich('long_term_impact.content', {
+        altitude: report.altitude,
+        p: chunks => <Text>{chunks}</Text>,
+      })}
+      {report.longTermImpactAddition && <Markdown>{report.longTermImpactAddition}</Markdown>}
     </Section>
   );
 };

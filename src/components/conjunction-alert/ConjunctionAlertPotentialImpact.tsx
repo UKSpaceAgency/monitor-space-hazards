@@ -19,27 +19,24 @@ const ConjunctionAlertPotentialImpact = ({ report, immediateImpactAddition, shor
     <div data-pdf={dataPdf}>
       <div>
         <h4 className="govuk-heading-m">{t('immediate_impact.title')}</h4>
-        {immediateImpactAddition
-          ? <Markdown>{immediateImpactAddition}</Markdown>
-          : t.rich('immediate_impact.content', {
-              predictedFragments: report.predictedFragments,
-            })}
+        {t.rich('immediate_impact.content', {
+          predictedFragments: report.predictedFragments,
+        })}
+        {immediateImpactAddition && <Markdown>{immediateImpactAddition}</Markdown>}
       </div>
       <div>
         <h4 className="govuk-heading-m">{t('short_term_impact.title')}</h4>
-        {shortTermImpactAddition
-          ? <Markdown>{shortTermImpactAddition}</Markdown>
-          : t.rich('short_term_impact.content', {
-              increaseInFutureCollisions: report.increaseInFutureCollisions,
-            })}
+        {t.rich('short_term_impact.content', {
+          increaseInFutureCollisions: report.increaseInFutureCollisions,
+        })}
+        {shortTermImpactAddition && <Markdown>{shortTermImpactAddition}</Markdown>}
       </div>
       <div>
         <h4 className="govuk-heading-m">{t('long_term_impact.title')}</h4>
-        {longTermImpactAddition
-          ? <Markdown>{longTermImpactAddition}</Markdown>
-          : t.rich('long_term_impact.content', {
-              altitude: report.altitude,
-            })}
+        {t.rich('long_term_impact.content', {
+          altitude: report.altitude,
+        })}
+        {longTermImpactAddition && <Markdown>{longTermImpactAddition}</Markdown>}
       </div>
     </div>
   );

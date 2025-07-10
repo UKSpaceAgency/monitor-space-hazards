@@ -24,7 +24,7 @@ const ConjunctionButtons = ({ title }: ConjunctionButtonsProps) => {
         href="/conjunctions"
       >
         <Button className="govuk-button--secondary">
-          {tCommon('return', { to: 'upcoming track conjunction events' })}
+          {tCommon('return', { to: 'track conjunction events' })}
         </Button>
       </Link>
     </ButtonGroup>

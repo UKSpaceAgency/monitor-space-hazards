@@ -32,6 +32,8 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
           date: dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME),
           riskLevel: event?.monteCarloRisk ?? 'Low',
           riskProbability: roundedPercentage(event?.monteCarloProbability ?? 0),
+          fragmentsRisk: event?.fragmentsRisk ?? 'Low',
+          fragmentsProbability: roundedPercentage(event?.fragmentsProbability ?? 0),
           licensingCountry: getFullCountry(event.licenseCountry),
           tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
         })}

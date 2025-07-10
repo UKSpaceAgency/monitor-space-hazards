@@ -43,10 +43,10 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
     type: 'text',
     help: (
       <div>
-        <p>{tForm('hint')}</p>
-        {t.rich('Operator_view.content', {
+        <p>{tForm('manoeuvrable.hint')}</p>
+        {/* {t.rich('Operator_view.content', {
           link: chunks => <Link className="govuk-link" href={`/conjunctions/${event.shortId}`}>{chunks}</Link>,
-        })}
+        })} */}
       </div>
     ),
   }, {
