@@ -1550,7 +1550,7 @@
         "press_attention": "Press attention",
         "press_attention_addition": "Press attention",
         "immediate_impact": "Immediate impact",
-        "manoeuvre_addition": "Manoeuvrable?",
+        "manoeuvre_addition": "Manoeuvre expected?",
         "short_term_impact": "Short term impact",
         "short_term_impact_addition": "Short term impact",
         "long_term_impact": "Long term impact",
@@ -1562,7 +1562,7 @@
         "expected": "Expected",
         "not_expected": "Not expected",
         "na": "N/A",
-        "hint": "This text will appear next to 'Manoeuvre expected?' If you want to add a comment."
+        "hint": "This text will appear next to 'Manoeuvre expected?' "
       },
       "add_to": "Add to `{name}`",
       "hint": "This text will appear below the paragraphs which read:",
