@@ -48,7 +48,7 @@ const ReentryAlertImpactTable = ({ caption, impact }: ReentryAlertImpactTablePro
                 {jsonRegionsMap[key] ?? key}
               </TableCellHeader>
               <TableCell>
-                {value.atmospheric_probability ? `${roundedPercent(value.atmospheric_probability)}` : '-'}
+                {value.fragments_probability ? `${roundedPercent(value.fragments_probability)}` : '-'}
               </TableCell>
             {...Array.from({ length: overflightsNumber }, (_, i) => (
               <TableCell key={key + i}>
