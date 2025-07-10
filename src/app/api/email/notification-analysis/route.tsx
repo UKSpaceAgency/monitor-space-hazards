@@ -1,5 +1,3 @@
-import { report } from 'node:process';
-
 import { render } from '@react-email/render';
 
 import AnalysisUploadEmail from '@/emails/analysis-upload';
@@ -10,7 +8,7 @@ export async function POST(
   try {
     const { conjunctions } = await request.json();
 
-    if (!report) {
+    if (!conjunctions) {
       return Response.json({ error: 'Invalid request' }, { status: 400, statusText: 'Invalid request' });
     }
 

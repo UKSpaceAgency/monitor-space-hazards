@@ -1,5 +1,3 @@
-import { report } from 'node:process';
-
 import { render } from '@react-email/render';
 
 import NewEphemerisEmail from '@/emails/new-ephemeris';
@@ -10,7 +8,7 @@ export async function POST(
   try {
     const { commonName, noradId } = await request.json();
 
-    if (!report) {
+    if (!commonName || !noradId) {
       return Response.json({ error: 'Invalid request' }, { status: 400, statusText: 'Invalid request' });
     }
 

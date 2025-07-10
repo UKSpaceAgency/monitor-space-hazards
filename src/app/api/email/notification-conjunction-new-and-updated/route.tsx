@@ -1,5 +1,3 @@
-import { report } from 'node:process';
-
 import { render } from '@react-email/render';
 
 import ConjunctionNotificationNewAndUpdatedEmail from '@/emails/conjunction-notification-new-and-updated';
@@ -10,7 +8,7 @@ export async function POST(
   try {
     const { newConjunctions, updatedConjunctions } = await request.json();
 
-    if (!report) {
+    if (!newConjunctions || !updatedConjunctions) {
       return Response.json({ error: 'Invalid request' }, { status: 400, statusText: 'Invalid request' });
     }
 
