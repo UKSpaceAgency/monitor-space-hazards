@@ -1241,7 +1241,7 @@
         "probability_of_atmospheric_entry": "Re-entry over UK",
         "probability_of_human_casualty": "UK casualty risk",
         "licensing_country": "Licensing country",
-        "probability_of_debris_impact": "Probability of debris impact in UK (%)"
+        "probability_of_re-entry": "Probability of debris impact in UK (%)"
       },
       "reentries_events_as_of": "Re-entry events as of "
     },
@@ -1302,13 +1302,13 @@
       "overseas_hint": "* For the purposes of this table, British Antarctic Territory has been limited to the areas surrounding populated facilities in the territory.",
       "extra_information": "UK Airspace comprises of London Flight Information Region, Scottish Flight Information Region and Shanwick Oceanic Flight Information Region.",
       "see_further_information": "<p>See <link>Further information</link> for more detail on methodology used in this report.</p>",
-      "probability_of_fragmentation": "Probability of debris impact in UK (%)"
+      "probability_of_reentry": "Probability of debris impact(%)"
     },
     "Reentry_alert_history": {
       "report_number": "Report number",
       "report_time": "Time of report (UTC)",
       "risk": "Risk",
-      "probability": "Probability of re-entry over the UK (%)",
+      "probability": "Probability of debris impact (%)",
       "overflight": "UK overflight time(s) (UTC)"
     },
     "Performance_monitoring": {
