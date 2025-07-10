@@ -19,9 +19,9 @@ export const ReentryAffectedRegions = ({ report, ...props }: ReentryAffectedRegi
   });
 
   const data = [
-    [t('uk_mainland'), toAffectedTerritories(report.impact?.by_nation)],
-    [t('maritime_and_airspace'), toAffectedTerritories(report.impact?.maritime_and_airspace)],
-    [t('overseas_territories_and_crown_dependencies'), toAffectedTerritories(report.impact?.overseas_territories_and_crown_dependencies)],
+    [t('uk_mainland'), report.impact?.by_nation ? toAffectedTerritories(report.impact?.by_nation) : '-'],
+    [t('maritime_and_airspace'), report.impact?.maritime_and_airspace ? toAffectedTerritories(report.impact?.maritime_and_airspace) : '-'],
+    [t('overseas_territories_and_crown_dependencies'), report.impact?.overseas_territories_and_crown_dependencies ? toAffectedTerritories(report.impact?.overseas_territories_and_crown_dependencies) : '-'],
   ];
   return <Table data={data} {...props} />;
 };
