@@ -1562,11 +1562,11 @@
         "expected": "Expected",
         "not_expected": "Not expected",
         "na": "N/A",
-        "hint": "This text will next to 'Manoeuvre expected?' if you want to add a comment."
+        "hint": "This text will appear next to 'Manoeuvre expected?' If you want to add a comment."
       },
       "add_to": "Add to `{name}`",
       "hint": "This text will appear below the paragraphs which read:",
-      "press_attention_hint": "<p>Include details of any press attention related to this event. Leave blank if there has been no press attention.</p><p>This text will appear alongside a link to standard National Space Operations Centre press lines.</p>",
+      "press_attention_hint": "<p>Include details of any press attention related to this event. Leave blank if there has been no press attention.</p>",
       "clear": "Clear `{name}` text box",
       "review": "Review edit",
       "change": "Change",
