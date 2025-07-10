@@ -7,6 +7,7 @@ import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
 import { roundedPercent } from '@/utils/Math';
+import { renderRiskTag } from '@/utils/Risk';
 
 export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventReportOut>[] = [
   {
@@ -55,31 +56,11 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
   {
     header: 'Reentry_alert_history.risk',
     enableSorting: false,
-    cell: ({ row: { original: { fragmentsProbability } } }) => {
-      if (!fragmentsProbability) {
-        return <Tag color="green">Low</Tag>;
-      }
-
-      if (fragmentsProbability > 0.05) {
-        return (
-          <Tag color="red">High</Tag>
-        );
-      } else if (fragmentsProbability <= 0.05 && fragmentsProbability > 0.01) {
-        return (
-          <Tag color="yellow">
-            Medium
-          </Tag>
-        );
-      } else {
-        return (
-          <Tag color="green">Low</Tag>
-        );
-      }
-    },
+    cell: ({ row: { original: { atmosphericRisk } } }) => renderRiskTag(atmosphericRisk),
   },
   {
     header: 'Reentry_alert_history.probability',
-    accessorKey: 'monteCarloProbability',
+    accessorKey: 'atmosphericProbability',
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<number>();

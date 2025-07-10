@@ -30,8 +30,8 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
           commonName: event?.objectName ?? 'Unknown',
           objectType: event?.objectType,
           date: dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME),
-          riskLevel: event?.monteCarloRisk ?? 'Low',
-          riskProbability: roundedPercentage(event?.monteCarloProbability ?? 0),
+          riskLevel: event?.atmosphericRisk ?? 'Low',
+          riskProbability: roundedPercentage(event?.atmosphericProbability ?? 0),
           fragmentsRisk: event?.fragmentsRisk ?? 'Low',
           fragmentsProbability: roundedPercentage(event?.fragmentsProbability ?? 0),
           licensingCountry: getFullCountry(event.licenseCountry),
@@ -47,7 +47,7 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     help: (
       <div>
         <p className="govuk-body">{tForm('hint')}</p>
-        {tReentryAlert.rich(`Guidance_on_response.risk.${event?.monteCarloRisk?.toLowerCase() as 'low' | 'medium' | 'high' ?? 'low'}`, { tag: chunks => renderRiskTag(chunks as TypeReentryRisk) })}
+        {tReentryAlert.rich(`Guidance_on_response.risk.${event?.atmosphericRisk?.toLowerCase() as 'low' | 'medium' | 'high' ?? 'low'}`, { tag: chunks => renderRiskTag(chunks as TypeReentryRisk) })}
       </div>
     ),
   }, {

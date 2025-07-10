@@ -7,7 +7,7 @@ import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } fro
 import { roundedPercent } from '@/utils/Math';
 import { renderRiskTag } from '@/utils/Risk';
 
-type EventSummaryData = Pick<TypeReentryEventOut, 'fragmentsProbability' | 'fragmentsRisk' | 'monteCarloProbability' | 'monteCarloRisk' | 'humanCasualtyProbability' | 'humanCasualtyRisk'>;
+type EventSummaryData = Pick<TypeReentryEventOut, 'fragmentsProbability' | 'fragmentsRisk' | 'atmosphericProbability' | 'atmosphericRisk' | 'humanCasualtyProbability' | 'humanCasualtyRisk'>;
 
 type ReentryAlertExecutiveSummaryTableProps = {
   event: EventSummaryData;
@@ -38,13 +38,13 @@ const ReentryAlertRiskProbabilitiesTable = ({ event }: ReentryAlertExecutiveSumm
                 </TableRow>
               )
             : null}
-          {isNumber(event.monteCarloProbability)
+          {isNumber(event.atmosphericProbability)
             ? (
                 <TableRow>
                   <TableCellHeader>{t('probability_of_atmospheric_entry')}</TableCellHeader>
-                  <TableCell>{roundedPercent(event.monteCarloProbability)}</TableCell>
+                  <TableCell>{roundedPercent(event.atmosphericProbability)}</TableCell>
                   <TableCell>
-                    {renderRiskTag(event.monteCarloRisk)}
+                    {renderRiskTag(event.atmosphericRisk)}
                   </TableCell>
                 </TableRow>
               )

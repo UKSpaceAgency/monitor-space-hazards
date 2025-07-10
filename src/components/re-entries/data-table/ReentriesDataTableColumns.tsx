@@ -107,8 +107,8 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
         },
       },
       {
-        id: 'monteCarloProbability',
-        accessorKey: 'monteCarloProbability',
+        id: 'atmosphericProbability',
+        accessorKey: 'atmosphericProbability',
         header: 'Reentries.table.probability_of_atmospheric_entry',
         cell: ({ getValue }) => {
           const value = getValue<number>();

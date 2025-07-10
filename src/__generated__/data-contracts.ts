@@ -1808,9 +1808,9 @@ export interface TypeReentryEventOut {
   tipExternalId: string;
   /** Reentryreportnumber */
   reentryReportNumber?: number | null;
-  /** Montecarloprobability */
-  monteCarloProbability?: number | null;
-  monteCarloRisk?: TypeReentryRisk | null;
+  /** Atmosphericprobability */
+  atmosphericProbability?: number | null;
+  atmosphericRisk?: TypeReentryRisk | null;
   /** Fragmentsprobability */
   fragmentsProbability?: number | null;
   fragmentsRisk?: TypeReentryRisk | null;
@@ -1931,9 +1931,9 @@ export interface TypeReentryEventReportOut {
    * @format date-time
    */
   reportTime: string;
-  /** Montecarloprobability */
-  monteCarloProbability: number;
-  monteCarloRisk?: TypeReentryRisk | null;
+  /** Atmosphericprobability */
+  atmosphericProbability: number;
+  atmosphericRisk?: TypeReentryRisk | null;
   /** Fragmentsprobability */
   fragmentsProbability?: number | null;
   fragmentsRisk?: TypeReentryRisk | null;
@@ -1993,7 +1993,7 @@ export type TypeReentryEventSortBy =
   | "license_country"
   | "norad_id"
   | "object_name"
-  | "monte_carlo_probability"
+  | "atmospheric_probability"
   | "short_id"
   | "survivability"
   | "time_window_end"
@@ -2563,7 +2563,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2025-06-09T13:48:02.448636"
+   * @default "2025-07-10T13:51:35.189384"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -2786,8 +2786,12 @@ export interface TypeAdditionalAnalysis {
 
 /** _OverflightProbability */
 export interface TypeOverflightProbability {
-  /** Probability */
-  probability: number;
+  /** Atmospheric Probability */
+  atmospheric_probability: number;
+  /** Fragments Probability */
+  fragments_probability: number;
+  /** Human Casualty Probability */
+  human_casualty_probability: number;
   /** Overflight Time */
   overflight_time?: string[] | null;
 }
@@ -3662,7 +3666,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2025-07-01"
+   * @default "2025-08-01"
    */
   end_date?: string;
 }
@@ -3677,7 +3681,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2025-07-01"
+   * @default "2025-08-01"
    */
   end_date?: string;
 }
@@ -3692,7 +3696,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-07-01"
+   * @default "2025-08-01"
    */
   end_date?: string;
 }
@@ -3707,7 +3711,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-07-01"
+   * @default "2025-08-01"
    */
   end_date?: string;
 }
@@ -3722,7 +3726,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-07-01"
+   * @default "2025-08-01"
    */
   end_date?: string;
 }
@@ -3737,7 +3741,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2025-07-01"
+   * @default "2025-08-01"
    */
   end_date?: string;
 }

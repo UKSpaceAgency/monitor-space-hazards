@@ -34,11 +34,11 @@ function ReEntryEmail({ event, report, withPlaceholders }: ReEntryEmailProps) {
 
   return (
     <Layout
-      title={t('title', { risk: event.monteCarloRisk })}
+      title={t('title', { risk: event.atmosphericRisk })}
       subtitle={`${event.objectName} ${event.objectType}`}
       withPlaceholders={withPlaceholders}
     >
-      <Subheader risk={event.monteCarloRisk} />
+      <Subheader risk={event.atmosphericRisk} />
       <Section title={t('risk_probabilities_title')}>
         <ReentryRiskProbabilities event={event} className="pb-6" />
       </Section>
@@ -69,8 +69,8 @@ ReEntryEmail.PreviewProps = {
     decayEpoch: '2024-01-20T10:00:00Z',
     uncertaintyWindow: 120,
     overflightTime: ['2024-01-20T09:30:00Z', '2024-01-20T10:30:00Z'],
-    monteCarloRisk: 'High',
-    monteCarloProbability: 0.85,
+    atmosphericRisk: 'High',
+    atmosphericProbability: 0.85,
     fragmentsRisk: 'High',
     fragmentsProbability: 0.85,
     licensedCountry: 'United States',

@@ -23,14 +23,14 @@ type ReentryAlertExecutiveSummaryProps = {
 const ReentryAlertExecutiveSummary = async ({ event, previewSummary, isClosed }: ReentryAlertExecutiveSummaryProps) => {
   const t = await getTranslations('Reentry_alert.Executive_summary');
 
-  const haveRiskProbabilities = isNumber(event.monteCarloProbability) || isNumber(event.fragmentsProbability) || isNumber(event.humanCasualtyProbability);
+  const haveRiskProbabilities = isNumber(event.atmosphericProbability) || isNumber(event.fragmentsProbability) || isNumber(event.humanCasualtyProbability);
 
   const contentVariables: RichTranslationValues = {
     commonName: event?.objectName ?? 'Unknown',
     objectType: event?.objectType,
     date: dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME),
-    monteCarloRisk: event?.monteCarloRisk ?? 'Low',
-    monteCarloProbability: roundedPercentage(event?.monteCarloProbability ?? 0),
+    atmosphericRisk: event?.atmosphericRisk ?? 'Low',
+    atmosphericProbability: roundedPercentage(event?.atmosphericProbability ?? 0),
     fragmentsRisk: event?.fragmentsRisk ?? 'Low',
     fragmentsProbability: roundedPercentage(event?.fragmentsProbability ?? 0),
     humanCasualtyRisk: event?.humanCasualtyRisk ?? 'Low',
