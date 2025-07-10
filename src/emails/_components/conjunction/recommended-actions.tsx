@@ -2,7 +2,7 @@ import { Section } from '@react-email/components';
 import { createTranslator } from 'next-intl';
 import type { ComponentProps } from 'react';
 
-import type { TypeConjunctionReportOut } from '@/__generated__/data-contracts';
+import type { TypeConjunctionReportOut, TypeUniqueEventOut } from '@/__generated__/data-contracts';
 import messages from '@/locales/en.json';
 
 import { Markdown } from '../markdown';
@@ -10,9 +10,10 @@ import { Text } from '../text';
 
 type ConjunctionRecommendedActionsProps = {
   report: TypeConjunctionReportOut;
+  event: TypeUniqueEventOut;
 } & ComponentProps<'table'>;
 
-export const ConjunctionRecommendedActions = ({ report, ...props }: ConjunctionRecommendedActionsProps) => {
+export const ConjunctionRecommendedActions = ({ report, event, ...props }: ConjunctionRecommendedActionsProps) => {
   const t = createTranslator({
     locale: 'en',
     namespace: 'Emails.Conjunction_alert.Recommended_actions',
@@ -25,7 +26,7 @@ export const ConjunctionRecommendedActions = ({ report, ...props }: ConjunctionR
       {t.rich('content', {
         p: chunks => <Text>{chunks}</Text>,
       })}
-      {report.ukResponseAddition && <Markdown>{report.ukResponseAddition}</Markdown>}
+      {event.ukResponseAddition && <Markdown>{event.ukResponseAddition}</Markdown>}
     </Section>
   );
 };

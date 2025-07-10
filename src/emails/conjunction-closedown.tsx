@@ -1,6 +1,6 @@
 import { createTranslator } from 'next-intl';
 
-import type { TypeConjunctionReportOut } from '@/__generated__/data-contracts';
+import type { TypeConjunctionReportOut, TypeUniqueEventOut } from '@/__generated__/data-contracts';
 import { env } from '@/libs/Env';
 import messages from '@/locales/en.json';
 
@@ -15,10 +15,11 @@ import { Subheader } from './_components/subheader';
 
 type ConjunctionClosedownEmailProps = {
   report: TypeConjunctionReportOut;
+  event: TypeUniqueEventOut;
   withPlaceholders: boolean;
 };
 
-function ConjunctionClosedownEmail({ report, withPlaceholders }: ConjunctionClosedownEmailProps) {
+function ConjunctionClosedownEmail({ report, event, withPlaceholders }: ConjunctionClosedownEmailProps) {
   const t = createTranslator({
     locale: 'en',
     namespace: 'Emails.Conjunction_alert',
@@ -38,8 +39,8 @@ function ConjunctionClosedownEmail({ report, withPlaceholders }: ConjunctionClos
         <ConjunctionEventSummary eventUrl={eventLink} report={report} closedown className="pb-6" />
       </Section>
       <Section title={t('potential_impact_title')}>
-        <ConjunctionPotentialImpact report={report} />
-        <ConjunctionRecommendedActions report={report} />
+        <ConjunctionPotentialImpact report={report} event={event} />
+        <ConjunctionRecommendedActions report={report} event={event} />
         <ConjunctionPressAttention pressAttention={report.pressAttentionAddition} />
       </Section>
       <SignIn link={eventLink} />

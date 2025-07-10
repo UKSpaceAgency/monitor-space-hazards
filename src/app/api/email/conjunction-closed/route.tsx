@@ -6,13 +6,13 @@ export async function POST(
   request: Request,
 ) {
   try {
-    const { report } = await request.json();
+    const { report, event } = await request.json();
 
-    if (!report) {
+    if (!report || !event) {
       return Response.json({ error: 'Invalid request' }, { status: 400, statusText: 'Invalid request' });
     }
 
-    const html = await render(<ConjunctionClosedownEmail report={report} withPlaceholders />);
+    const html = await render(<ConjunctionClosedownEmail report={report} event={event} withPlaceholders />);
 
     return Response.json({
       html,
