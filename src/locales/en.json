@@ -794,7 +794,7 @@
       "empty": "We have not seen any press attention on this event."
     },
     "Risk_thresholds": {
-      "content": "Risk thresholds are calculated based on the probability of the object re-entering in a way that could affect UK interests.",
+      "content": "Risk thresholds are calculated based on the probability of the debris from the re-entry of the object impacting the UK.",
       "risk_level": "Risk level",
       "probability_of_atmospheric": "Probability of re-entry over UK",
       "probability_of_ground": "Probability of debris impact in UK",
@@ -1232,7 +1232,6 @@
         "object_details": "Object details",
         "risk": "Risk to the UK",
         "event_id": "Event ID",
-        "probability_of_reentry": "Probability of re-entry over the UK (%)",
         "re-entry_time_window": "Re-entry time window worldwide (UTC)",
         "uk_overflight": "UK overflight time(s) (UTC)",
         "object": "Object",
@@ -1241,7 +1240,8 @@
         "probability_of_fragmentation": "Debris impact in UK",
         "probability_of_atmospheric_entry": "Re-entry over UK",
         "probability_of_human_casualty": "UK casualty risk",
-        "licensing_country": "Licensing country"
+        "licensing_country": "Licensing country",
+        "probability_of_debris_impact": "Probability of debris impact in UK (%)"
       },
       "reentries_events_as_of": "Re-entry events as of "
     },
@@ -1297,12 +1297,12 @@
       "inclination": "Inclination (°)"
     },
     "Reentry_alert_impact": {
-      "probability_of_reentry": "Probability of re-entry (%)",
       "time_of_overflight": "Time of overflight {number} (UTC)",
       "uk_nations_hint": "Only UK nations which are at risk from this re-entry are included in the table(s) above.",
       "overseas_hint": "* For the purposes of this table, British Antarctic Territory has been limited to the areas surrounding populated facilities in the territory.",
       "extra_information": "UK Airspace comprises of London Flight Information Region, Scottish Flight Information Region and Shanwick Oceanic Flight Information Region.",
-      "see_further_information": "<p>See <link>Further information</link> for more detail on methodology used in this report.</p>"
+      "see_further_information": "<p>See <link>Further information</link> for more detail on methodology used in this report.</p>",
+      "probability_of_fragmentation": "Probability of debris impact in UK (%)"
     },
     "Reentry_alert_history": {
       "report_number": "Report number",
