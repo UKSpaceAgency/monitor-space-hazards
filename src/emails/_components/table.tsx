@@ -29,9 +29,11 @@ export const Table = ({ data, ...props }: TableProps) => {
               <Column
                 key={index}
                 className={clsx('p-2 text-sm', {
-                  'w-[30%]': isFirstColumn,
+                  'w-1/3': isFirstColumn,
+                  'w-2/3': !isFirstColumn,
                   'font-bold': isFirstColumn || isRisk,
                   'text-center': !isFirstColumn,
+                  'text-left': isFirstColumn,
                 })}
                 style={{ ...riskStyle }}
               >

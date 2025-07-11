@@ -53,6 +53,11 @@ function ConjunctionEmail({ report, event, withPlaceholders }: ConjunctionEmailP
 }
 
 ConjunctionEmail.PreviewProps = {
+  event: {
+    pressAttentionAddition: 'This is a test press attention addition',
+    immediateImpactAddition: 'This is a test immediate impact addition',
+    ukResponseAddition: 'This is a test UK response addition',
+  },
   report: {
     id: '550e8400-e29b-41d4-a716-446655440000',
     createdAt: '2024-01-20T08:00:00Z',
