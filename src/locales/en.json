@@ -1840,7 +1840,7 @@
     "Conjunction_notification_table": {
       "objects": "Primary and Secondary Object",
       "tca": "Time of Closest Approach (UTC)",
-      "poc": "NSpOC Probability of Collision"
+      "poc": "Probability of Collision"
     },
     "Analysis_notification_table": {
       "objects": "Primary and Secondary Object",
@@ -1856,7 +1856,7 @@
       "content": "<p>The UK Space Agency's Monitor Space Hazards service has identified new conjunction events involving your satellites and crossing your thresholds. The links to the events and their time of closest approach are listed below.</p>",
       "objects": "Primary and Secondary Object",
       "tca": "Time of Closest Approach (UTC)",
-      "poc": "NSpOC Probability of Collision"
+      "poc": "Probability of Collision"
     },
     "Conjunction_new_ephemeris": {
       "title": "Satellite {commonName} : New ephemeris data uploaded",
