@@ -1,17 +1,17 @@
 import { createTranslator } from 'next-intl';
 
-import type { TypeEventOut } from '@/__generated__/data-contracts';
+import type { TypeUniqueEventOut } from '@/__generated__/data-contracts';
 import { env } from '@/libs/Env';
 import messages from '@/locales/en.json';
 
-import ConjunctionNotificationTable from './_components/conjunction/notification-table';
+import AnalysisNotificationTable from './_components/conjunction/analysis-notification-table';
 import { Layout } from './_components/layout';
 import { Section } from './_components/section';
 import { SignIn } from './_components/sign_in';
 import { Text } from './_components/text';
 
 type AnalysisUploadEmailProps = {
-  conjunctions: TypeEventOut[];
+  conjunctions: TypeUniqueEventOut[];
   withPlaceholders: boolean;
 };
 
@@ -30,7 +30,7 @@ function AnalysisUploadEmail({ conjunctions, withPlaceholders }: AnalysisUploadE
         {t.rich('content', {
           p: chunks => <Text>{chunks}</Text>,
         })}
-        <ConjunctionNotificationTable conjunctions={conjunctions} isAnalysis />
+        <AnalysisNotificationTable conjunctions={conjunctions} />
         <SignIn link={url} />
       </Section>
     </Layout>
