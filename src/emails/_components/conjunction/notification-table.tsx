@@ -11,12 +11,13 @@ import { Link } from '../link';
 
 type ConjunctionNotificationTableProps = {
   conjunctions: TypeEventOut[];
+  isAnalysis?: boolean;
 };
 
-const ConjunctionNotificationTable = ({ conjunctions }: ConjunctionNotificationTableProps) => {
+const ConjunctionNotificationTable = ({ conjunctions, isAnalysis }: ConjunctionNotificationTableProps) => {
   const t = createTranslator({
     locale: 'en',
-    namespace: 'Emails.Conjunction_notification_table',
+    namespace: isAnalysis ? 'Emails.Analysis_notification_table' : 'Emails.Conjunction_notification_table',
     messages,
   });
 

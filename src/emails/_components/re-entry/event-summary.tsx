@@ -19,10 +19,10 @@ export const ReentryEventSummary = ({ event, ...props }: ReentryEventSummaryProp
   });
 
   const data = [
-    [t('object_type'), event.objectName],
+    [t('object_type'), event.objectType],
     [t('estimated_mass'), event.estimatedMass],
     [t('re_entry_time'), `${dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME)} +/- ${event.uncertaintyWindow} minute(s)`],
-    [t('uk_overflight_time'), event.overflightTime ? event.overflightTime.map(time => dayjs(time).format(FORMAT_FULL_DATE_TIME)).join(', ') : '-'],
+    [t('uk_overflight_time'), event.overflightTime.length > 0 ? event.overflightTime.map(time => dayjs(time).format(FORMAT_FULL_DATE_TIME)).join(', ') : '-'],
   ];
 
   return <Table data={data} {...props} />;

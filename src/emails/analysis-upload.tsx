@@ -30,7 +30,7 @@ function AnalysisUploadEmail({ conjunctions, withPlaceholders }: AnalysisUploadE
         {t.rich('content', {
           p: chunks => <Text>{chunks}</Text>,
         })}
-        <ConjunctionNotificationTable conjunctions={conjunctions} />
+        <ConjunctionNotificationTable conjunctions={conjunctions} isAnalysis />
         <SignIn link={url} />
       </Section>
     </Layout>
