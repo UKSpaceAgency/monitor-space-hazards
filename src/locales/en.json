@@ -1302,7 +1302,7 @@
       "overseas_hint": "* For the purposes of this table, British Antarctic Territory has been limited to the areas surrounding populated facilities in the territory.",
       "extra_information": "UK Airspace comprises of London Flight Information Region, Scottish Flight Information Region and Shanwick Oceanic Flight Information Region.",
       "see_further_information": "<p>See <link>Further information</link> for more detail on methodology used in this report.</p>",
-      "probability_of_reentry": "Probability of debris impact(%)"
+      "probability_of_reentry": "Probability of debris impact (%)"
     },
     "Reentry_alert_history": {
       "report_number": "Report number",
@@ -1838,6 +1838,11 @@
       }
     },
     "Conjunction_notification_table": {
+      "objects": "Primary and Secondary Object",
+      "tca": "Time of Closest Approach (UTC)",
+      "poc": "Probability of Collision"
+    },
+    "Analysis_notification_table": {
       "objects": "Primary and Secondary Object",
       "tca": "Time of Closest Approach (UTC)",
       "poc": "Probability of Collision"
