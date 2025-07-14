@@ -1840,12 +1840,12 @@
     "Conjunction_notification_table": {
       "objects": "Primary and Secondary Object",
       "tca": "Time of Closest Approach (UTC)",
-      "poc": "Probability of Collision"
+      "poc": "Space-Track Probability of Collision"
     },
     "Analysis_notification_table": {
       "objects": "Primary and Secondary Object",
       "tca": "Time of Closest Approach (UTC)",
-      "poc": "Probability of Collision"
+      "poc": "NSpOC Probability of Collision"
     },
     "Analysis_upload": {
       "title": "New UKSA analysis uploaded",
