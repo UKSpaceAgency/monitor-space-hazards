@@ -1778,7 +1778,7 @@
       },
       "Handling_space_debris": {
         "title": "Handling Space Debris",
-        "content": "<p>Space debris can be hazardous and may contain materials that pose a serious risk to health. All re-entred debris should be considered as hazardous until proven otherwise. This most well-known hazardous substances found in rockets and satellites include <hydrozineLink>Hydrozine</hydrozineLink> and <keroseneLink>Kerosene</keroseneLink>.</p><p>If space debris survives to the ground, it should be considered hazardous until proven otherwise. Debris must not be disposed of or given to the public. Standard hazardous materials (hazmat) response procedures, such as testing by the fire service, should be followed.</p>"
+        "content": "<p>Space debris can be hazardous and may contain materials that pose a serious risk to health. All re-entred debris should be considered as hazardous until proven otherwise. This most well-known hazardous substances found in rockets and satellites include <hydrozineLink>Hydrazine</hydrozineLink> and <keroseneLink>Kerosene</keroseneLink>.</p><p>If space debris survives to the ground, it should be considered hazardous until proven otherwise. Debris must not be disposed of or given to the public. Standard hazardous materials (hazmat) response procedures, such as testing by the fire service, should be followed.</p>"
       },
       "Press_attention": {
         "title": "Press Attention",
