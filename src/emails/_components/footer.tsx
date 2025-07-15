@@ -28,7 +28,7 @@ export const Footer = ({ withPlaceholders, isNotification }: FooterProps) => {
         orbitalemail: chunks => <Link href="mailto:OrbitalAnalysts@ukspaceagency.gov.uk">{chunks}</Link>,
         link: chunks => <Link href={env.NEXTAUTH_URL}>{chunks}</Link>,
         contact: chunks => <Link href={`${env.NEXTAUTH_URL}/contact`}>{chunks}</Link>,
-        button: chunks => <Text className="text-sm mt-0"><Button className="bg-[#006ebb] p-2 text-white rounded" href="mailto:NSPOCincidents@ukspaceagency.gov.uk">{chunks}</Button></Text>,
+        button: chunks => <Text className="text-sm mt-0"><Button className="bg-[#006ebb] p-2 text-white rounded" href="https://www.monitor-space-hazards.service.gov.uk/contact-analyst">{chunks}</Button></Text>,
       })}
       <EmailSection className="pb-4">
         <Img
