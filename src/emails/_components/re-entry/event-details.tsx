@@ -1,7 +1,9 @@
+import dayjs from 'dayjs';
 import { createTranslator } from 'next-intl';
 import type { ComponentProps } from 'react';
 
 import type { TypeReentryEventOut, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
+import { FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 import messages from '@/locales/en.json';
 import { getFullCountry } from '@/utils/Regions';
 
@@ -20,7 +22,7 @@ export const ReentryEventDetails = ({ event, report, ...props }: ReentryEventDet
   });
 
   const data = [
-    [t('re_entry_time'), event.decayEpoch],
+    [t('re_entry_time'), dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME)],
     [t('object_type'), event.objectType],
     [t('norad_id'), event.noradId],
     [t('estimated_mass'), event.estimatedMass],

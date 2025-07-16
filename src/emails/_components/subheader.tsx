@@ -22,10 +22,11 @@ export const Subheader = ({ risk }: SubheaderProps) => {
     <Section className="py-6 !w-full">
       <Section
         className="text-center p-2 !w-full"
-        style={{ backgroundColor: style.background, color: style.text }}
+        style={{ backgroundColor: style.background }}
       >
         <Text
           className="text-sm font-bold m-0"
+          style={{ color: style.text }}
         >
           {risk ? `${risk} Risk` : 'Closed'}
         </Text>
