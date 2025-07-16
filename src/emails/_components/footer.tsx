@@ -36,6 +36,7 @@ export const Footer = ({ withPlaceholders, isNotification }: FooterProps) => {
           alt="UK Space Agency Logo"
           width="113"
           height="31"
+          className="w-[113px] h-[31px]"
         />
       </EmailSection>
       <Link href="mailto:monitorspacehazards@ukspaceagency.gov.uk?subject=Unsubscribe" className="text-sm">Unsubscribe</Link>
