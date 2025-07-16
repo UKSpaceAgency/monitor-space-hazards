@@ -48,6 +48,7 @@ export const conjunctionAlertHistoryColumns: TranslatedColumnDef<TypeConjunction
   {
     header: 'Conjunction_alert_history.risk',
     accessorKey: 'risk',
+    enableSorting: false,
     cell: ({ getValue }) => {
       const risk = getValue<string>();
       const classes = {
