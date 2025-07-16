@@ -37,7 +37,7 @@ export const Table = ({ data, ...props }: TableProps) => {
                 })}
                 style={{ ...riskStyle }}
               >
-                {cell}
+                {cell ?? '-'}
               </Column>
             );
           })}

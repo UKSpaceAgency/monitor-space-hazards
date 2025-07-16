@@ -34,7 +34,7 @@ export const DataTable = ({ headers, data, ...props }: DataTableProps) => {
                 className={clsx('p-2 text-sm text-center')}
                 width={`${100 / length}%`}
               >
-                {cell}
+                {cell ?? '-'}
               </Column>
             );
           })}
