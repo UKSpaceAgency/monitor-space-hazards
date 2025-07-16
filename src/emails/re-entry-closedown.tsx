@@ -32,8 +32,8 @@ function ReEntryClosedownEmail({ event, report, withPlaceholders }: ReEntryEmail
 
   return (
     <Layout
-      title="Re-entry Close Down Alert"
-      subtitle="Rocket BODY Satellite"
+      title={t('title_closed')}
+      subtitle={`${event.objectName} ${event.objectType}`}
       withPlaceholders={withPlaceholders}
     >
       <Subheader />
