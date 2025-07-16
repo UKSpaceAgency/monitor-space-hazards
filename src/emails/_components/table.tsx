@@ -11,11 +11,11 @@ type TableProps = {
 
 export const Table = ({ data, ...props }: TableProps) => {
   return (
-    <Section {...props}>
+    <Section className="!w-full" {...props}>
       {data.map((row, index) => (
         <Row
           key={index}
-          className={clsx({
+          className={clsx('!w-full', {
             'bg-[#f0f0f0]': index % 2 === 0,
           })}
         >

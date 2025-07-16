@@ -30,7 +30,7 @@ export const Footer = ({ withPlaceholders, isNotification }: FooterProps) => {
         contact: chunks => <Link href={`${env.NEXTAUTH_URL}/contact`}>{chunks}</Link>,
         button: chunks => <Text className="text-sm mt-0"><Button className="bg-[#006ebb] p-2 text-white rounded" href="https://www.monitor-space-hazards.service.gov.uk/contact-analyst">{chunks}</Button></Text>,
       })}
-      <EmailSection className="pb-4">
+      <EmailSection className="pb-4 !w-full">
         <Img
           src={withPlaceholders ? '{{UKSA_LOGO.src}}' : 'https://www.dev.monitor-space-hazards.service.gov.uk/uksa.png'}
           alt="UK Space Agency Logo"

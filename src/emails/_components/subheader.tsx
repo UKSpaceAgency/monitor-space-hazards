@@ -6,8 +6,8 @@ import { riskColours } from '../_utils/utils';
 
 const styles = {
   closedown: {
-    backgroundColor: '#e5e6e7',
-    color: '#282d30',
+    background: '#e5e6e7',
+    text: '#282d30',
   },
 };
 
@@ -19,10 +19,10 @@ export const Subheader = ({ risk }: SubheaderProps) => {
   const style = risk ? riskColours[risk] : styles.closedown;
 
   return (
-    <Section className="py-6 w-full">
+    <Section className="py-6 !w-full">
       <Section
-        className="text-center p-2 w-full"
-        style={style}
+        className="text-center p-2 !w-full"
+        style={{ backgroundColor: style.background, color: style.text }}
       >
         <Text
           className="text-sm font-bold m-0"
