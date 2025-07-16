@@ -28,6 +28,7 @@ const ConjunctionAlertExecutiveSummary = async ({ report, execSummaryAddition, m
     risk: report.risk,
     collisionProbability: roundedPercent(report.collisionProbability),
     tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
+    date: report.tcaTime,
   };
 
   return (

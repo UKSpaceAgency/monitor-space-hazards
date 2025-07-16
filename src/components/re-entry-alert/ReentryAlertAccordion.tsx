@@ -82,7 +82,7 @@ const ReentryAlertAccordion = ({
         {
           id: 'guidance_on_response',
           heading: t('guidance_on_response'),
-          content: <ReentryAlertGuidanceOnResponse risk={lastReport?.atmosphericRisk} immediateResponse={searchParams?.immediate_response ?? event.immediateResponse} dataPdf={t('guidance_on_response')} />,
+          content: <ReentryAlertGuidanceOnResponse risk={lastReport?.fragmentsRisk} immediateResponse={searchParams?.immediate_response ?? event.immediateResponse} dataPdf={t('guidance_on_response')} />,
         },
         {
           id: 'guidance_if_object_impacts_uk_interests',

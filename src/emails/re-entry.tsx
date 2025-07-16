@@ -38,7 +38,7 @@ function ReEntryEmail({ event, report, withPlaceholders }: ReEntryEmailProps) {
       subtitle={`${event.objectName} ${event.objectType}`}
       withPlaceholders={withPlaceholders}
     >
-      <Subheader risk={event.atmosphericRisk} />
+      <Subheader risk={event.fragmentsRisk} />
       <Section title={t('risk_probabilities_title')}>
         <ReentryRiskProbabilities event={event} className="pb-6" />
       </Section>

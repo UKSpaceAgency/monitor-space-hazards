@@ -7,12 +7,12 @@ export const riskColours = {
     text: '#005a30',
   },
   Medium: {
-    background: '#594d00',
-    text: '#fff7bf',
+    background: '#fcf7de',
+    text: '#595000',
   },
   High: {
-    background: '#f4cdc6',
-    text: '#2a0b06',
+    background: '#f4ccc6',
+    text: '#2a0a06',
   },
 };
 
