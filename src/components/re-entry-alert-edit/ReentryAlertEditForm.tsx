@@ -30,10 +30,8 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
           commonName: event?.objectName ?? 'Unknown',
           objectType: event?.objectType,
           date: dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME),
-          riskLevel: event?.atmosphericRisk ?? 'Low',
-          riskProbability: roundedPercentage(event?.atmosphericProbability ?? 0),
-          fragmentsRisk: event?.fragmentsRisk ?? 'Low',
-          fragmentsProbability: roundedPercentage(event?.fragmentsProbability ?? 0),
+          riskLevel: event?.fragmentsRisk ?? 'Low',
+          riskProbability: roundedPercentage(event?.fragmentsProbability ?? 0),
           licensingCountry: getFullCountry(event.licenseCountry),
           tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
         })}
