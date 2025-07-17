@@ -34,7 +34,7 @@ function ReEntryEmail({ event, report, withPlaceholders }: ReEntryEmailProps) {
 
   return (
     <Layout
-      title={t('title', { risk: event.atmosphericRisk })}
+      title={t('title', { risk: event.fragmentsRisk })}
       subtitle={`${event.objectName} ${event.objectType}`}
       withPlaceholders={withPlaceholders}
     >
