@@ -1810,7 +1810,7 @@
         "predicted_miss_distance": "Predicted Miss Distance (m)",
         "impact_speed": "Impact Speed (km/s)",
         "altitude": "Altitude (km)",
-        "approximate_latlong": "Approximate Latitude/Longitude",
+        "approximate_latlong": "Approximate Latitutde/Longitude",
         "predicted_number_of_fragments": "Predicted Number of Fragments Generated > 10cm",
         "potential_increase": "Potential Increase in Future Collisions for UK Objects (%)"
       },
