@@ -1738,11 +1738,11 @@
       "additional_information_title": "Additional Information",
       "event_details_title": "Event Details",
       "Risk_probabilities": {
-        "probability": "Probability(%)",
+        "probability": "Probability (%)",
         "risk": "Risk",
         "debris_impact": "Debris Impact in UK",
         "reentry_over_uk": "Re-entry over UK",
-        "uk_casuality_risk": "UK Casuality risk"
+        "uk_casuality_risk": "UK Casualty risk"
       },
       "Event_summary": {
         "object_type": "Object Type",
@@ -1769,7 +1769,7 @@
       "Event_information": {
         "title": "Event Information",
         "content": "<p>The National Space Operations Centre is tracking the upcoming re-entry event involving <objectUrl>{commonName}</objectUrl> from space into Earth's atmosphere, posing a potential risk to life and property on the ground.</p>\n<p>The object is expected to re-enter on <b>{date} UTC.</b> The object has a <b>{riskProbability} probability of debris impacting the UK.</b></p>\n<p>The event is assessed as <tag>{fragmentsRisk}</tag> risk. <b> {licensingCountry}</b> is liable for any damages and associated response or recovery costs.</p><p>All re-entered debris should be considered as hazardous until proven otherwise.</p>",
-        "content_closed": "<p>The National Space Operations Centre has completed tracking of the re-entry event involving <objectUrl>{commonName}</objectUrl>, which occurred on {date} UTC. The event was assessed as <tag>{riskLevel}</tag> risk, with a {riskProbability} probability of re-entry over the UK. {licensingCountry} is liable for any damages and associated response or recovery costs.</p>",
+        "content_closed": "<p>The National Space Operations Centre has completed tracking of the re-entry event involving <objectUrl>{commonName}</objectUrl>, which occurred on {date} UTC. The event was assessed as <tag>{riskLevel}</tag> risk, with a {riskProbability} probability of debris impacting the UK. {licensingCountry} is liable for any damages and associated response or recovery costs.</p>",
         "risk": {
           "low": "<p>This event is assessed as <tag>Low</tag> risk.</p><p>This means it may happen and could have a negative impact on UK interests, but the overall likelihood is low.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, no significant action is required at this stage. Stakeholders should stay engaged with the National Space Operations Centre and consider any future updates before taking further action.</p>",
           "medium": "<p>This event is assessed as <tag>Medium</tag> risk.</p><p>This means there is a higher-than-usual chance it could negatively affect UK interests. However, it is still more likely than not to pass without incident.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, no immediate significant action is needed, but stakeholders may consider raising awareness internally. Stakeholders should stay engaged with the National Space Operations Centre for updates.</p>",
@@ -1808,9 +1808,9 @@
       },
       "Additional_event_details": {
         "predicted_miss_distance": "Predicted Miss Distance (m)",
-        "impact_speed": "Impact Speed (m/s)",
-        "altitude": "Altitude (m)",
-        "approximate_latlong": "Approximate Lat/Long",
+        "impact_speed": "Impact Speed (km/s)",
+        "altitude": "Altitude (km)",
+        "approximate_latlong": "Approximate Latitutde/Longitude",
         "predicted_number_of_fragments": "Predicted Number of Fragments Generated > 10cm",
         "potential_increase": "Potential Increase in Future Collisions for UK Objects (%)"
       },
