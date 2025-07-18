@@ -44,7 +44,7 @@ function ReEntryClosedownEmail({ event, report, withPlaceholders }: ReEntryEmail
       </Section>
       <Section title={t('additional_information_title')}>
         <ReentryEventInformationClosed event={event} />
-        <ReentryHandlingSpaceDebris />
+        <ReentryHandlingSpaceDebris event={event} />
         <ReentryPressAttention pressAttention={event.pressAttention} />
         <SignIn link={eventLink} />
       </Section>
@@ -65,6 +65,9 @@ ReEntryClosedownEmail.PreviewProps = {
     licensedCountry: 'United States',
     shortId: '1234567890',
     noradId: '1234567890',
+    recoveryAndCleanUp: 'Recovery and clean up',
+    pressAttention: 'Press attention',
+    execSummary: 'Exec summary',
   },
   report: {
     impact: {

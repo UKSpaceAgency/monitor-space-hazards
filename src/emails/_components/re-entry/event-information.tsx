@@ -11,6 +11,7 @@ import { roundedPercentage } from '@/utils/Math';
 import { getFullCountry } from '@/utils/Regions';
 
 import { Link } from '../link';
+import { Markdown } from '../markdown';
 import { Text } from '../text';
 
 type ReentryEventInformationProps = {
@@ -43,6 +44,12 @@ export const ReentryEventInformation = ({ event }: ReentryEventInformationProps)
     <Section>
       <Text className="text-sm m-0 font-bold">{t('title')}</Text>
       {t.rich('content', contentVariables)}
+      {event?.execSummary
+      && (
+        <Markdown>
+          {event.execSummary}
+        </Markdown>
+      )}
     </Section>
   );
 };

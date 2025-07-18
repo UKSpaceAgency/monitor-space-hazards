@@ -22,7 +22,7 @@ type ConjunctionAlertPageProps = {
 const ConjunctionAlertPage = async ({ shortId, searchParams, footer }: ConjunctionAlertPageProps) => {
   const t = await getTranslations('Conjunction_alert');
   const event = await getConjunctionUniqueEvent(shortId);
-  const reports = await getConjunctionReports({ shortId });
+  const reports = await getConjunctionReports({ shortId, show_only_active: false });
   const title = t('title', { primaryObject: event.primaryObjectCommonName, secondaryObject: event.secondaryObjectCommonName });
   const pdfTitle = t('pdf_title', { primaryObject: event.primaryObjectCommonName, secondaryObject: event.secondaryObjectCommonName, reportNumber: event.reportNumber });
 
