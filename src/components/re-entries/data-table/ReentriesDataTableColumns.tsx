@@ -16,7 +16,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     columns: [
       {
         id: 'uk_reentry_probability',
-        accessorKey: 'ukReentryProbability',
+        accessorKey: 'fragmentsRisk',
         header: 'Reentries.table.risk',
         cell: ({ getValue }) => {
           const classes = {

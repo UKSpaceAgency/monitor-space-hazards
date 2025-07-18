@@ -1,5 +1,3 @@
-import console from 'node:console';
-
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import type { ReactNode } from 'react';
@@ -8,6 +6,7 @@ import type { TypeUniqueEventUpdateTextFieldsIn } from '@/__generated__/data-con
 import { getConjunctionReports } from '@/actions/getConjunctionReports';
 import getConjunctionUniqueEvent from '@/actions/getConjunctionUniqueEvent';
 import { dayjs, FORMAT_DATE_TIME, FORMAT_FULL_DATE } from '@/libs/Dayjs';
+import Tag from '@/ui/tag/tag';
 
 import { ContentNavigation } from '../ContentNavigation';
 import { ConjunctionAlertAccordion } from './ConjunctionAlertAccordion';
@@ -35,10 +34,9 @@ const ConjunctionAlertPage = async ({ shortId, searchParams, footer }: Conjuncti
     notFound();
   }
 
-  console.log(reports);
-
   return (
     <div>
+      {isClosed && <Tag>{t('closed')}</Tag>}
       <h1 className="govuk-heading-xl">
         {title}
         <span className="block text-lg">{dayjs(event.tca).format(FORMAT_FULL_DATE)}</span>

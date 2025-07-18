@@ -7,7 +7,7 @@ import type { ComponentProps } from 'react';
 import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
 import { riskColours } from '@/emails/_utils/utils';
 import messages from '@/locales/en.json';
-import { roundedPercent } from '@/utils/Math';
+import { rounded } from '@/utils/Math';
 
 type ReentryRiskProbabilitiesProps = {
   event: TypeReentryEventOut;
@@ -36,6 +36,15 @@ export const ReentryRiskProbabilities = ({ event, ...props }: ReentryRiskProbabi
 
   return (
     <Section {...props}>
+      <Row
+        className="text-sm"
+      >
+        <Column className="w-1/3 p-2">&nbsp;</Column>
+        <Column className="font-bold text-center w-1/3 p-2">{t('probability')}</Column>
+        <Column className="w-1/3 font-bold text-center p-2">
+          {t('risk')}
+        </Column>
+      </Row>
       {data.map(({ type, probability, risk = 'Low' }, index) => {
         const riskStyle = riskColours[risk ?? 'Low'];
 
@@ -48,7 +57,7 @@ export const ReentryRiskProbabilities = ({ event, ...props }: ReentryRiskProbabi
           >
             <Column className="font-bold w-1/3 p-2">{type}</Column>
             <Column className="w-1/3 text-center p-2">
-              {isNumber(probability) ? roundedPercent(probability) : '-'}
+              {isNumber(probability) ? rounded(probability) : '-'}
             </Column>
             <Column style={{ backgroundColor: riskStyle.background, color: riskStyle.text }} className="w-1/3 text-center p-2">{risk}</Column>
           </Row>

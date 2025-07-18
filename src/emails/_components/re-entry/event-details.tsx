@@ -22,7 +22,7 @@ export const ReentryEventDetails = ({ event, report, ...props }: ReentryEventDet
   });
 
   const data = [
-    [t('re_entry_time'), dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME)],
+    [t('re_entry_time'), `${dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME)} +/- ${event.uncertaintyWindow} minute(s)`],
     [t('object_type'), event.objectType],
     [t('norad_id'), event.noradId],
     [t('estimated_mass'), event.estimatedMass],

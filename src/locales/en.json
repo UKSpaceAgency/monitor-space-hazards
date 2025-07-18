@@ -587,6 +587,7 @@
     }
   },
   "Conjunction_alert": {
+    "closed": "Closed",
     "title": "Conjunction alert for {primaryObject} vs {secondaryObject}",
     "pdf_title": "Conjunction alert for {primaryObject} vs {secondaryObject} - Report {reportNumber}",
     "notification_banner": "You are able to <edit>edit this alert</edit> or <send>send this alert to additional recipients</send>",
