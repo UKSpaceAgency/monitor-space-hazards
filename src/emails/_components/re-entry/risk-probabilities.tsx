@@ -50,7 +50,7 @@ export const ReentryRiskProbabilities = ({ event, ...props }: ReentryRiskProbabi
             <Column className="w-1/3 text-center p-2">
               {isNumber(probability) ? roundedPercent(probability) : '-'}
             </Column>
-            <Column style={{ backgroundColor: riskStyle.background, color: riskStyle.text }} className="w-1/3 text-center p-2 font-bold">{risk}</Column>
+            <Column style={{ backgroundColor: riskStyle.background, color: riskStyle.text }} className="w-1/3 text-center p-2">{risk}</Column>
           </Row>
         );
       })}

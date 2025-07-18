@@ -25,7 +25,7 @@ export const Subheader = ({ risk }: SubheaderProps) => {
         style={{ backgroundColor: style.background }}
       >
         <Text
-          className="text-sm font-bold m-0"
+          className="text-sm m-0"
           style={{ color: style.text }}
         >
           {risk ? `${risk} Risk` : 'Closed'}

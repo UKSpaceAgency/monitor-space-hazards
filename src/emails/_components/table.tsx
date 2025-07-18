@@ -23,7 +23,12 @@ export const Table = ({ data, ...props }: TableProps) => {
             const isFirstColumn = index === 0;
             const isRisk = cell === 'High' || cell === 'Medium' || cell === 'Low';
 
-            const riskStyle = isRisk ? riskColours[cell as keyof typeof riskColours] : {};
+            const riskStyle = isRisk
+              ? {
+                  backgroundColor: riskColours[cell as keyof typeof riskColours].background,
+                  color: riskColours[cell as keyof typeof riskColours].text,
+                }
+              : {};
 
             return (
               <Column
@@ -31,7 +36,7 @@ export const Table = ({ data, ...props }: TableProps) => {
                 className={clsx('p-2 text-sm', {
                   'w-1/3': isFirstColumn,
                   'w-2/3': !isFirstColumn,
-                  'font-bold': isFirstColumn || isRisk,
+                  'font-bold': isFirstColumn,
                   'text-center': !isFirstColumn,
                   'text-left': isFirstColumn,
                 })}

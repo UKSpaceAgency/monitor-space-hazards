@@ -1,3 +1,5 @@
+import console from 'node:console';
+
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import type { ReactNode } from 'react';
@@ -32,6 +34,8 @@ const ConjunctionAlertPage = async ({ shortId, searchParams, footer }: Conjuncti
   if (!lastReport) {
     notFound();
   }
+
+  console.log(reports);
 
   return (
     <div>

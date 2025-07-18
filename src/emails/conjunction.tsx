@@ -37,7 +37,7 @@ function ConjunctionEmail({ report, event, withPlaceholders }: ConjunctionEmailP
     >
       <Subheader risk={report.risk} />
       <Section title={t('event_summary_title')}>
-        <ConjunctionEventSummary eventUrl={eventLink} report={report} className="pb-6" />
+        <ConjunctionEventSummary eventUrl={eventLink} event={event} report={report} className="pb-6" />
       </Section>
       <Section title={t('additional_event_details_title')}>
         <ConjunctionAdditionalEventDetails report={report} className="pb-6" />
