@@ -6,7 +6,7 @@ import type { TypeConjunctionReportOut, TypeReentryRisk, TypeUniqueEventOut } fr
 import { renderRiskTag } from '@/emails/_utils/utils';
 import { dayjs, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 import messages from '@/locales/en.json';
-import { roundedPercent } from '@/utils/Math';
+import { rounded, roundedPercent } from '@/utils/Math';
 import { getFullCountry } from '@/utils/Regions';
 
 import { Link } from '../link';
@@ -31,7 +31,7 @@ export const ConjunctionEventSummary = ({ eventUrl, report, event, closedown, ..
   const data = [
     [t('risk'), report.risk],
     [t('predicted_time_of_closest_approach'), report.tcaTime ? dayjs(report.tcaTime).format(FORMAT_FULL_DATE_TIME) : '-'],
-    [t('probability_of_collision'), roundedPercent(report.collisionProbability ?? 0)],
+    [t('probability_of_collision'), rounded(report.collisionProbability ?? 0)],
     [t('manoeuvre_expected'), `${report.manoeuvreExpected ? `${report.manoeuvreExpected}. ` : ''}${event.manoeuvreAddition}`],
     [t('primary_object'), report.primaryObjectCommonName],
     [t('norad_id'), report.primaryObjectNoradId],

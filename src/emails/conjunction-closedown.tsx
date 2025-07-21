@@ -41,7 +41,7 @@ function ConjunctionClosedownEmail({ report, event, withPlaceholders }: Conjunct
       <Section title={t('potential_impact_title')}>
         <ConjunctionPotentialImpact report={report} event={event} />
         <ConjunctionRecommendedActions report={report} event={event} />
-        <ConjunctionPressAttention pressAttention={report.pressAttentionAddition} />
+        <ConjunctionPressAttention pressAttention={event.pressAttentionAddition} />
       </Section>
       <SignIn link={eventLink} />
     </Layout>

@@ -23,12 +23,12 @@ export const ReentryEventDetails = ({ event, report, ...props }: ReentryEventDet
 
   const data = [
     [t('re_entry_time'), `${dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME)} +/- ${event.uncertaintyWindow} minute(s)`],
-    [t('object_type'), event.objectType],
+    [t('object_type'), `${event.objectName} ${event.objectType ? `(${event.objectType})` : ''}`],
     [t('norad_id'), event.noradId],
-    [t('estimated_mass'), event.estimatedMass],
-    [t('height'), event.objectHeight],
-    [t('width'), event.objectWidth],
-    [t('licensing_country'), getFullCountry(event.licenseCountry)],
+    [t('estimated_mass'), event.estimatedMass ?? '-'],
+    [t('height'), event.objectHeight ?? '-'],
+    [t('width'), event.objectWidth ?? '-'],
+    [t('licensing_country'), getFullCountry(event.licenseCountry) ?? '-'],
     [t('expected_survivability'), `${event.survivability ? `${event.survivability}. ` : ''}${event.survivabilityComment}`],
     [t('report_number'), report.reportNumber],
   ];
