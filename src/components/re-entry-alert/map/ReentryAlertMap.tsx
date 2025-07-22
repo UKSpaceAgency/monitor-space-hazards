@@ -109,6 +109,7 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
           }}
           onClick={handleClick}
           attributionControl={false}
+          renderWorldCopies={false}
         >
           <FullscreenControl />
           {regions.map(region => region === RegionsEnum.UK_AIRSPACE
