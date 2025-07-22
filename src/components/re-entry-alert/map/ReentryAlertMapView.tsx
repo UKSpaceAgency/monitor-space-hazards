@@ -4,7 +4,7 @@ import type { ChangeEvent } from 'react';
 import Label from '@/ui/label/label';
 import Radios from '@/ui/radios/radios';
 
-export type MapView = 'globe' | 'mercator';
+export type MapView = 'globe' | 'equirectangular';
 
 type ReentryAlertMapViewProps = {
   value: MapView;
@@ -30,8 +30,8 @@ const ReentryAlertMapView = ({ value, onChange }: ReentryAlertMapViewProps) => {
           onChange: handleChange,
         }, {
           children: 'Map',
-          value: 'mercator',
-          checked: value === 'mercator',
+          value: 'equirectangular',
+          checked: value === 'equirectangular',
           onChange: handleChange,
         }]}
       />

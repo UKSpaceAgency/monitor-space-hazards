@@ -38,7 +38,7 @@ type ReentryAlertMapProps = {
 const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsCollection }: ReentryAlertMapProps) => {
   const mapRef = useRef<MapRef | null>(null);
   const [mapType, setMapType] = useState<MapType>('streets-v12');
-  const [mapView, setMapView] = useState<MapView>('globe');
+  const [mapView, setMapView] = useState<MapView>('equirectangular');
   const [regions, setRegions] = useState<RegionsEnum[]>([]);
   const [types, setTypes] = useState<OverflightType[]>(['FLIGHTPATH', 'FRAGMENT']);
   const [flightpaths, setFlightpaths] = useState<number[]>([0]);
