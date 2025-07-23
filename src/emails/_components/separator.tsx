@@ -5,7 +5,7 @@ export const Separator = () => {
     <Section className="py-1.5">
       <table
         style={{
-          width: '100%',
+          width: '100% !important',
           borderCollapse: 'collapse',
           padding: '0',
           margin: '0',

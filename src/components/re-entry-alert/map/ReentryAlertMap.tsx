@@ -24,9 +24,9 @@ const ReentryAlertMapTooltip = dynamic(() => import('./ReentryAlertMapTooltip').
 });
 
 const initialViewState = {
-  longitude: -4.801161,
-  latitude: 53.22865,
-  zoom: 1,
+  longitude: -2,
+  latitude: 54,
+  zoom: 4,
 } as const;
 
 type ReentryAlertMapProps = {
@@ -38,7 +38,7 @@ type ReentryAlertMapProps = {
 const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsCollection }: ReentryAlertMapProps) => {
   const mapRef = useRef<MapRef | null>(null);
   const [mapType, setMapType] = useState<MapType>('streets-v12');
-  const [mapView, setMapView] = useState<MapView>('equirectangular');
+  const [mapView, setMapView] = useState<MapView>('globe');
   const [regions, setRegions] = useState<RegionsEnum[]>([]);
   const [types, setTypes] = useState<OverflightType[]>(['FLIGHTPATH', 'FRAGMENT']);
   const [flightpaths, setFlightpaths] = useState<number[]>([0]);
@@ -87,7 +87,7 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
       </div>
       <ReentryAlertAreasOfInterest selected={regions} onChange={setRegions} />
       <ReentryAlertOverflights types={types} setTypes={setTypes} overflights={overflightTime} selected={flightpaths} onChange={setFlightpaths} />
-      <div className="relative w-full h-[500px] bg-[#364B69]" data-type="map">
+      <div className="relative w-full aspect-[2/1] bg-[#364B69]" data-type="map">
         <Map
           ref={mapRefCallback}
           mapboxAccessToken={env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}

@@ -3,7 +3,7 @@ import type { RichTranslationValues } from 'next-intl';
 import { createTranslator } from 'next-intl';
 
 import type { TypeReentryEventOut, TypeReentryRisk } from '@/__generated__/data-contracts';
-import { renderRiskTag } from '@/emails/_utils/utils';
+import { objectTypeIndex, renderRiskTag } from '@/emails/_utils/utils';
 import { dayjs, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 import { env } from '@/libs/Env';
 import messages from '@/locales/en.json';
@@ -27,7 +27,7 @@ export const ReentryEventInformation = ({ event }: ReentryEventInformationProps)
 
   const contentVariables: RichTranslationValues = {
     commonName: event?.objectName ?? 'Unknown',
-    objectType: event?.objectType,
+    objectType: event?.objectType ? `${event.objectName} ${objectTypeIndex[event.objectType as keyof typeof objectTypeIndex] ?? ''}` : '',
     date: `${dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME)} +/- ${event.uncertaintyWindow} minute(s)`,
     riskLevel: event?.atmosphericRisk ?? 'Low',
     riskProbability: roundedPercentage(event?.atmosphericProbability ?? 0),

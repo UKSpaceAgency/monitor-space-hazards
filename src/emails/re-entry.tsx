@@ -16,6 +16,7 @@ import { ReentryRiskProbabilities } from './_components/re-entry/risk-probabilit
 import { Section } from './_components/section';
 import { SignIn } from './_components/sign_in';
 import { Subheader } from './_components/subheader';
+import { objectTypeIndex } from './_utils/utils';
 
 type ReEntryEmailProps = {
   event: TypeReentryEventOut;
@@ -35,7 +36,7 @@ function ReEntryEmail({ event, report, withPlaceholders }: ReEntryEmailProps) {
   return (
     <Layout
       title={t('title', { risk: event.fragmentsRisk })}
-      subtitle={`${event.objectName} ${event.objectType}`}
+      subtitle={`${event.objectName} ${objectTypeIndex[event.objectType as keyof typeof objectTypeIndex] ?? ''}`}
       withPlaceholders={withPlaceholders}
     >
       <Subheader risk={event.fragmentsRisk} />

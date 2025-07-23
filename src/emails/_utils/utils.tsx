@@ -34,3 +34,10 @@ export const toAffectedTerritories = (value: Record<string, Record<string, any>>
     .map(k => jsonRegionsMap[k])
     .join(', ');
 };
+
+export const objectTypeIndex = {
+  PAYLOAD: 'Satellite',
+  ROCKET_BODY: 'Rocket Body',
+  DEBRIS: 'Debris',
+  UNKNOWN: 'Unknown Object Type',
+};

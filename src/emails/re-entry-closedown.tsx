@@ -14,6 +14,7 @@ import { ReentryPressAttention } from './_components/re-entry/press-attention';
 import { Section } from './_components/section';
 import { SignIn } from './_components/sign_in';
 import { Subheader } from './_components/subheader';
+import { objectTypeIndex } from './_utils/utils';
 
 type ReEntryEmailProps = {
   event: TypeReentryEventOut;
@@ -33,7 +34,7 @@ function ReEntryClosedownEmail({ event, report, withPlaceholders }: ReEntryEmail
   return (
     <Layout
       title={t('title_closed')}
-      subtitle={`${event.objectName} ${event.objectType}`}
+      subtitle={`${event.objectName} ${objectTypeIndex[event.objectType as keyof typeof objectTypeIndex] ?? ''}`}
       withPlaceholders={withPlaceholders}
     >
       <Subheader />
