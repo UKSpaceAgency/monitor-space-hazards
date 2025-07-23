@@ -604,7 +604,7 @@
       "further_information": "Further information"
     },
     "Executive_summary": {
-      "title": "Executive summary",
+      "title": "Conjunction alert summary",
       "email_title": "Event Information:",
       "content": "The National Space Operations Centre is tracking the close approach of two objects, <primaryObjectUrl>{primaryObject}</primaryObjectUrl> and <secondaryObjectUrl>{secondaryObject}</secondaryObjectUrl>. A potential collision could damage the objects involved, limiting or eliminating their capability, as well as releasing new fragments, which would increase the risk of future collisions for other objects. This event is assessed as <tag>{risk}</tag> risk, with a {collisionProbability} probability of collision (PoC).",
       "closed_report": "The National Space Operations Centre has completed tracking of the conjunction event involving <primaryObjectUrl>{primaryObject}</primaryObjectUrl> and <secondaryObjectUrl>{secondaryObject}</secondaryObjectUrl>, which occurred on {date} UTC. The event was assessed as <tag>{risk}</tag> risk, with a {collisionProbability} probability of collision (PoC).",
@@ -747,7 +747,7 @@
     },
     "Executive_summary": {
       "email_title": "Event Information:",
-      "title": "Executive summary",
+      "title": "Re-entry alert summary",
       "content": "The National Space Operations Centre is tracking the upcoming re-entry event involving {commonName} from space into Earth's atmosphere, posing a potential risk to life and property on the ground. The event is assessed as <tag>{fragmentsRisk}</tag> risk, with a {fragmentsProbability} probability of debris impacting the UK. {licensingCountry} is liable for any damages and associated response or recovery costs. All re-entered debris should be considered as hazardous until proven otherwise.",
       "closed_report": "The National Space Operations Centre has completed tracking of the re-entry event involving {commonName}, which occurred on {date} UTC. The event was assessed as <tag>{fragmentsRisk}</tag> risk, with a {fragmentsProbability} probability of debris impacting the UK. {licensingCountry} is liable for any damages and associated response or recovery costs. All re-entered debris should be considered as hazardous until proven otherwise.",
       "risk_probabilities": "UK risk probabilities",
@@ -1746,7 +1746,7 @@
         "uk_casuality_risk": "UK Casualty risk"
       },
       "Event_summary": {
-        "object_type": "Object Type",
+        "object_type": "Object (Object Type)",
         "estimated_mass": "Estimated Mass (kg)",
         "re_entry_time": "Re-entry time window worldwide (UTC)",
         "uk_overflight_time": "UK overflight time(s) (UTC)"
