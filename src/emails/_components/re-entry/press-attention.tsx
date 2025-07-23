@@ -18,7 +18,7 @@ export const ReentryPressAttention = ({ pressAttention }: ReentryPressAttentionP
   });
 
   return (
-    <Section>
+    <Section className="!w-full">
       <Text className="text-sm m-0 font-bold">{t('title')}</Text>
       {pressAttention
         ? (

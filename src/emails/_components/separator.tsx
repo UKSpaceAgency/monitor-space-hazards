@@ -2,7 +2,7 @@ import { Section } from '@react-email/components';
 
 export const Separator = () => {
   return (
-    <Section className="py-1.5">
+    <Section className="py-1.5 !w-full">
       <table
         style={{
           width: '100% !important',
