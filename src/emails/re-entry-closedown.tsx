@@ -56,7 +56,7 @@ function ReEntryClosedownEmail({ event, report, withPlaceholders }: ReEntryEmail
 ReEntryClosedownEmail.PreviewProps = {
   event: {
     objectName: 'Falcon 9 Second Stage',
-    objectType: 'Rocket Body',
+    objectType: 'R/B',
     estimatedMass: 4000,
     decayEpoch: '2024-01-20T10:00:00Z',
     uncertaintyWindow: 120,

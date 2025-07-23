@@ -37,7 +37,7 @@ export const toAffectedTerritories = (value: Record<string, Record<string, any>>
 
 export const objectTypeIndex = {
   'PAYLOAD': 'Satellite',
-  'ROCKET_BODY': 'Rocket Body',
+  'ROCKET BODY': 'Rocket Body',
   'DEBRIS': 'Debris',
   'UNKNOWN': 'Unknown Object Type',
   'R/B': 'Rocket Body',
