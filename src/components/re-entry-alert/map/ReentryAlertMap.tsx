@@ -66,6 +66,11 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
       ref.on('style.load', () => {
         loadImage(ref);
       });
+      ref.on('resize', () => {
+        if (document.fullscreenElement) {
+          ref.setZoom(5);
+        }
+      });
     }
   }, [loadImage]);
 
