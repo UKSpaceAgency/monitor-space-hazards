@@ -7,7 +7,7 @@ import type { ComponentProps } from 'react';
 import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
 import { riskColours } from '@/emails/_utils/utils';
 import messages from '@/locales/en.json';
-import { rounded } from '@/utils/Math';
+import { roundedFixed } from '@/utils/Math';
 
 type ReentryRiskProbabilitiesProps = {
   event: TypeReentryEventOut;
@@ -57,7 +57,7 @@ export const ReentryRiskProbabilities = ({ event, ...props }: ReentryRiskProbabi
           >
             <Column className="font-bold w-1/3 p-2">{type}</Column>
             <Column className="w-1/3 text-center p-2">
-              {isNumber(probability) ? rounded(probability) : '-'}
+              {isNumber(probability) ? roundedFixed(probability) : '-'}
             </Column>
             <Column style={{ backgroundColor: riskStyle.background, color: riskStyle.text }} className="w-1/3 text-center p-2">{risk}</Column>
           </Row>

@@ -24,9 +24,10 @@ const ReentryAlertMapTooltip = dynamic(() => import('./ReentryAlertMapTooltip').
 });
 
 const initialViewState = {
-  longitude: -2,
-  latitude: 54,
-  zoom: 4,
+  bounds: [
+    [-8.649357, 49.863518], // Southwest corner of UK
+    [1.76896, 60.860699], // Northeast corner of UK (including Shetland)
+  ],
 } as const;
 
 type ReentryAlertMapProps = {
@@ -92,7 +93,7 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
       </div>
       <ReentryAlertAreasOfInterest selected={regions} onChange={setRegions} />
       <ReentryAlertOverflights types={types} setTypes={setTypes} overflights={overflightTime} selected={flightpaths} onChange={setFlightpaths} />
-      <div className="relative w-full aspect-[2/1] bg-[#364B69]" data-type="map">
+      <div className="relative w-full aspect-[1/1] md:aspect-[2/1] bg-[#364B69]" data-type="map">
         <Map
           ref={mapRefCallback}
           mapboxAccessToken={env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
@@ -101,10 +102,10 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
             name: mapView,
           }}
           preserveDrawingBuffer
-          initialViewState={initialViewState}
-          interactiveLayerIds={['land', ...flightpaths.reduce((acc, curr) => {
+          initialViewState={initialViewState as any}
+          interactiveLayerIds={['land', ...flightpaths.reduce<string[]>((acc, curr) => {
             return [...acc, `FLIGHTPATH-${curr}`, `FRAGMENT-${curr}`];
-          }, [] as string[])]}
+          }, [])]}
           fog={{
             'color': '#ffffff',
             'horizon-blend': 0.05,

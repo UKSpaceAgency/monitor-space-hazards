@@ -53,7 +53,7 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
   return (
     <div>
       <Label className="font-bold">{t('label')}</Label>
-      <div className="grid md:grid-cols-2 gap-4 govuk-checkboxes govuk-checkboxes--small py-4 pl-[25px]">
+      <div className="grid md:grid-cols-2 md:gap-4 govuk-checkboxes govuk-checkboxes--small md:py-4 md:pl-[25px]">
         <Checkbox full checked={types.includes('FLIGHTPATH')} value="FLIGHTPATH" onChange={handleTypeChange}>
           {t('show_flightpaths')}
         </Checkbox>
