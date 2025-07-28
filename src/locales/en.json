@@ -1749,7 +1749,8 @@
         "object_type": "Object (Object Type)",
         "estimated_mass": "Estimated Mass (kg)",
         "re_entry_time": "Re-entry time window worldwide (UTC)",
-        "uk_overflight_time": "UK overflight time(s) (UTC)"
+        "uk_overflight_time": "UK overflight time(s) (UTC)",
+        "no_overflights": "No overflights"
       },
       "Affected_regions": {
         "uk_mainland": "UK Mainland",
