@@ -7,7 +7,7 @@ import { objectTypeIndex, renderRiskTag } from '@/emails/_utils/utils';
 import { dayjs, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 import { env } from '@/libs/Env';
 import messages from '@/locales/en.json';
-import { roundedPercentage } from '@/utils/Math';
+import { roundedPercent } from '@/utils/Math';
 import { getFullCountry } from '@/utils/Regions';
 
 import { Link } from '../link';
@@ -30,9 +30,9 @@ export const ReentryEventInformation = ({ event }: ReentryEventInformationProps)
     objectType: event?.objectType ? `${event.objectName} ${objectTypeIndex[event.objectType as keyof typeof objectTypeIndex] ?? ''}` : '',
     date: `${dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME)} +/- ${event.uncertaintyWindow} minute(s)`,
     riskLevel: event?.atmosphericRisk ?? 'Low',
-    riskProbability: roundedPercentage(event?.atmosphericProbability ?? 0),
+    riskProbability: roundedPercent(event?.atmosphericProbability ?? 0),
     fragmentsRisk: event?.fragmentsRisk ?? 'Low',
-    fragmentsProbability: roundedPercentage(event?.fragmentsProbability ?? 0),
+    fragmentsProbability: roundedPercent(event?.fragmentsProbability ?? 0),
     licensingCountry: getFullCountry(event.licenseCountry),
     objectUrl: chunks => <Link href={`${env.NEXTAUTH_URL}/satellites/${event.noradId}`}>{chunks}</Link>,
     tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
