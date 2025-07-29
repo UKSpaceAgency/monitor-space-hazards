@@ -26,8 +26,8 @@ export const ReentryRiskProbabilities = ({ event, ...props }: ReentryRiskProbabi
     risk: event.fragmentsRisk,
   }, {
     type: t('reentry_over_uk'),
-    probability: event.humanCasualtyProbability,
-    risk: event.humanCasualtyRisk,
+    probability: event.atmosphericProbability,
+    risk: event.atmosphericRisk,
   }, {
     type: t('uk_casuality_risk'),
     probability: event.humanCasualtyProbability,
