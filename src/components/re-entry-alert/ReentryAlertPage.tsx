@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { type ReactNode, Suspense } from 'react';
 
@@ -31,6 +32,10 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
 
   const lastReport = reports[reports.length - 1];
   const isClosed = lastReport?.alertType.includes('closedown');
+
+  if (!lastReport) {
+    return redirect(`/re-entries/${shortId}`);
+  }
 
   return (
     <div>

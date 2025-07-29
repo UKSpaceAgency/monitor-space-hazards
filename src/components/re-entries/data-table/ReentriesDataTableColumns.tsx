@@ -2,7 +2,7 @@ import { isNumber } from 'lodash';
 import Link from 'next/link';
 
 import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
-import { dayjs, FORMAT_DATE_TIME, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
 import { roundedPercentage } from '@/utils/Math';
@@ -65,7 +65,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
         cell: ({ getValue }) => {
           const [value] = getValue<string[]>();
 
-          return value ? dayjs(value).format(FORMAT_DATE_TIME) : '-';
+          return value ? dayjs(value).format(FORMAT_FULL_DATE_TIME) : '-';
         },
       },
     ],
