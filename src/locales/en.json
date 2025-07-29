@@ -1760,7 +1760,7 @@
       },
       "Event_details": {
         "re_entry_time": "Re-entry time window worldwide (UTC)",
-        "object_type": "Object",
+        "object_type": "Object (Object Type)",
         "norad_id": "NORAD ID",
         "estimated_mass": "Estimated Mass (kg)",
         "height": "Height (m)",
