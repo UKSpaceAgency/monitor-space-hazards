@@ -3,6 +3,7 @@ import type { RichTranslationValues } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
 import type { TypeConjunctionReportOut, TypeReentryRisk } from '@/__generated__/data-contracts';
+import { dayjs, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 import InsetText from '@/ui/inset-text/inset-text';
 import { roundedPercent } from '@/utils/Math';
 import { renderRiskTag } from '@/utils/Risk';
@@ -28,7 +29,7 @@ const ConjunctionAlertExecutiveSummary = async ({ report, execSummaryAddition, m
     risk: report.risk,
     collisionProbability: roundedPercent(report.collisionProbability),
     tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
-    date: report.tcaTime,
+    date: dayjs(report.tcaTime).format(FORMAT_FULL_DATE_TIME),
   };
 
   return (
