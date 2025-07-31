@@ -5,7 +5,7 @@ import { getTranslations } from 'next-intl/server';
 import { getSession } from '@/actions/getSession';
 import { getUsersMe } from '@/actions/getUsersMe';
 import TaskList from '@/ui/task-list/task-list';
-import { isAgencyApprover, isAgencyUser, isAnalysist, isGovUser, isOrgAdmin, isSuperAdmin } from '@/utils/Roles';
+import { isAgencyApprover, isAgencyUser, isAnalysist, isOrgAdmin, isSuperAdmin } from '@/utils/Roles';
 
 export const metadata: Metadata = {
   title: 'Your account information',
@@ -52,15 +52,14 @@ export default async function AccountPage() {
         </div>
         <TaskList
           items={[
-            ...(!isGovUser(role)
-              ? [{
-                  title: t('change_your_notification_settings.conjunction_event_notification_thresholds_settings'),
-                  href: '/account/event-notification-thresholds-settings',
-                }, {
-                  title: t('change_your_notification_settings.conjunction_event_notification_settings'),
-                  href: '/account/notification-settings',
-                }]
-              : []),
+            {
+              title: t('change_your_notification_settings.conjunction_event_notification_thresholds_settings'),
+              href: '/account/event-notification-thresholds-settings',
+            },
+            {
+              title: t('change_your_notification_settings.conjunction_event_notification_settings'),
+              href: '/account/notification-settings',
+            },
             ...(isAgencyUser(role)
               ? [
                   {
