@@ -30,7 +30,7 @@ export const toAffectedTerritories = (value: Record<string, Record<string, any>>
   }
 
   return Object.keys(value)
-    .filter(k => value[k]?.atmospheric_probability > 0.0)
+    .filter(k => value[k]?.fragments_probability > 0)
     .map(k => jsonRegionsMap[k])
     .join(', ');
 };

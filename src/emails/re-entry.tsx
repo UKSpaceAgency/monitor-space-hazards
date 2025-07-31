@@ -84,16 +84,16 @@ ReEntryEmail.PreviewProps = {
   report: {
     impact: {
       by_nation: {
-        england_nation: { probability: 0.6, overflight_time: ['2024-01-20T09:30:00Z'] },
-        scotland_nation: { probability: 0.3, overflight_time: ['2024-01-20T09:45:00Z'] },
-        wales_nation: { probability: 0.2, overflight_time: ['2024-01-20T10:00:00Z'] },
+        england_nation: { fragments_probability: 0.6, overflight_time: ['2024-01-20T09:30:00Z'] },
+        scotland_nation: { fragments_probability: 0.3, overflight_time: ['2024-01-20T09:45:00Z'] },
+        wales_nation: { fragments_probability: 0.2, overflight_time: ['2024-01-20T10:00:00Z'] },
       },
       overseas_territories_and_crown_dependencies: {
-        gibraltar: { probability: 0.05, overflight_time: ['2024-01-20T08:30:00Z'] },
+        gibraltar: { fragments_probability: 0.05, overflight_time: ['2024-01-20T08:30:00Z'] },
       },
       maritime_and_airspace: {
-        south_georgia_and_the_south_sandwich_islands: { probability: 0.8, overflight_time: ['2024-01-20T09:20:00Z'] },
-        turks_and_caicos_islands: { probability: 0.6, overflight_time: ['2024-01-20T09:25:00Z'] },
+        south_georgia_and_the_south_sandwich_islands: { fragments_probability: 0.8, overflight_time: ['2024-01-20T09:20:00Z'] },
+        turks_and_caicos_islands: { fragments_probability: 0.6, overflight_time: ['2024-01-20T09:25:00Z'] },
       },
     },
   },
