@@ -1,4 +1,5 @@
 import { render } from '@react-email/render';
+import * as Sentry from '@sentry/nextjs';
 
 import ReEntryClosedownEmail from '@/emails/re-entry-closedown';
 
@@ -11,6 +12,8 @@ export async function POST(
     if (!event || !report) {
       return Response.json({ error: 'Invalid request' }, { status: 400, statusText: 'Invalid request' });
     }
+
+    Sentry.captureMessage(JSON.stringify({ event, report }));
 
     const html = await render(<ReEntryClosedownEmail event={event} report={report} withPlaceholders />);
 
