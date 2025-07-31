@@ -7,14 +7,14 @@ import { signOut, useSession } from 'next-auth/react';
 import { useMessages, useTranslations } from 'next-intl';
 import { useState } from 'react';
 
-import { isSatteliteUser } from '@/utils/Roles';
+import { isAgencyUser } from '@/utils/Roles';
 
 export const Navigation = () => {
   const t = useTranslations('Template');
   const messages = useMessages() as IntlMessages;
   const { data: session } = useSession();
   const keys = Object.keys(messages.Template.navigation).filter((key) => {
-    if (key === 're-entries' && isSatteliteUser(session?.user?.role)) {
+    if (key === 're-entries' && !isAgencyUser(session?.user?.role)) {
       return false;
     }
     return true;

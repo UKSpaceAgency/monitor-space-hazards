@@ -8,7 +8,7 @@ import { ObjectsTracked } from '@/components/dashboard/ObjectsTracked';
 import { UpcomingEvents } from '@/components/dashboard/UpcomingEvents';
 import nsocLogo from '@/public/nspoclogo2.png';
 import { AppConfig } from '@/utils/AppConfig';
-import { isSatteliteUser } from '@/utils/Roles';
+import { isAgencyUser } from '@/utils/Roles';
 
 export default async function DashboardPage() {
   const t = await getTranslations('Dashboard');
@@ -39,7 +39,7 @@ export default async function DashboardPage() {
             <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
               {Object.keys(items).filter((key) => {
-                if (key === 'track_reentries' && isSatteliteUser(session?.user?.role)) {
+                if (key === 'track_reentries' && !isAgencyUser(session?.user?.role)) {
                   return false;
                 }
                 return true;
