@@ -655,7 +655,7 @@ export interface TypeConjunctionAlertSettings {
    */
   alert_type?: "conjunction";
   /** Chosen Option */
-  chosen_option: "all" | "priority" | "uk-licensed" | "none";
+  chosen_option: "all" | "priority" | "uk-licensed" | "closedown" | "none";
   /**
    * Notification Types
    * @uniqueItems true
@@ -667,7 +667,7 @@ export interface TypeConjunctionAlertSettings {
 /** ConjunctionEventAlertIn */
 export interface TypeConjunctionEventAlertIn {
   /** Alerttype */
-  alertType: ("standard" | "priority" | "uk-licensed")[];
+  alertType: ("standard" | "priority" | "uk-licensed" | "closedown")[];
   /** Additionalemails */
   additionalEmails: string[];
 }
@@ -682,7 +682,7 @@ export interface TypeConjunctionEventAlertOut {
    */
   conjunctionReportId: string;
   /** Alerttype */
-  alertType: ("standard" | "priority" | "uk-licensed")[];
+  alertType: ("standard" | "priority" | "uk-licensed" | "closedown")[];
   /** Additionalrecipients */
   additionalRecipients: string[] | null;
   /** Emailnotificationsendingstatus */
@@ -1702,7 +1702,7 @@ export interface TypeReentryAlertSettings {
    */
   alert_type?: "reentry";
   /** Chosen Option */
-  chosen_option: "all" | "priority" | "uk-licensed" | "none";
+  chosen_option: "all" | "priority" | "uk-licensed" | "closedown" | "none";
   /**
    * Areas Of Interest
    * @uniqueItems true
@@ -2563,7 +2563,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2025-07-10T17:59:00.300579"
+   * @default "2025-08-03T22:42:57.202809"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3666,7 +3666,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2025-08-01"
+   * @default "2025-09-01"
    */
   end_date?: string;
 }
@@ -3681,7 +3681,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2025-08-01"
+   * @default "2025-09-01"
    */
   end_date?: string;
 }
@@ -3696,7 +3696,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-08-01"
+   * @default "2025-09-01"
    */
   end_date?: string;
 }
@@ -3711,7 +3711,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-08-01"
+   * @default "2025-09-01"
    */
   end_date?: string;
 }
@@ -3726,7 +3726,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-08-01"
+   * @default "2025-09-01"
    */
   end_date?: string;
 }
@@ -3741,7 +3741,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2025-08-01"
+   * @default "2025-09-01"
    */
   end_date?: string;
 }

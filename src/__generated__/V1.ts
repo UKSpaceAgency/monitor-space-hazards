@@ -2099,6 +2099,21 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
+   *
+   * @tags users
+   * @name GetUsersMeLogout
+   * @summary Logout logged in User
+   * @request GET:/v1/users/me/logout
+   * @secure
+   */
+  getUsersMeLogout = (params: RequestParams = {}) =>
+    this.request<void, any>({
+      path: `/v1/users/me/logout`,
+      method: "GET",
+      secure: true,
+      ...params,
+    }); /**
    * @description ## Description Generate client credentials. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
    *
    * @tags users
