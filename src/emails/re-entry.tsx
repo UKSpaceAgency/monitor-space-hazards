@@ -45,7 +45,7 @@ function ReEntryEmail({ event, report, withPlaceholders }: ReEntryEmailProps) {
       </Section>
       <Section title={t('event_summary_title')}>
         <ReentryEventSummary event={event} className="pb-6" />
-        <Map src="{{MAP.src}}" className="pb-6" />
+        {event.overflightTime.length > 0 && <Map src="{{MAP.src}}" className="pb-6" />}
         <Map src="{{WORLD_MAP.src}}" className="pb-6" />
         <ReentryAffectedRegions report={report} className="pb-6" />
       </Section>
@@ -88,9 +88,7 @@ ReEntryEmail.PreviewProps = {
         scotland_nation: { fragments_probability: 0.3, overflight_time: ['2024-01-20T09:45:00Z'] },
         wales_nation: { fragments_probability: 0.2, overflight_time: ['2024-01-20T10:00:00Z'] },
       },
-      overseas_territories_and_crown_dependencies: {
-        gibraltar: { fragments_probability: 0.05, overflight_time: ['2024-01-20T08:30:00Z'] },
-      },
+      overseas_territories_and_crown_dependencies: {},
       maritime_and_airspace: {
         south_georgia_and_the_south_sandwich_islands: { fragments_probability: 0.8, overflight_time: ['2024-01-20T09:20:00Z'] },
         turks_and_caicos_islands: { fragments_probability: 0.6, overflight_time: ['2024-01-20T09:25:00Z'] },

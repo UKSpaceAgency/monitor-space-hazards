@@ -25,7 +25,7 @@ export const renderRiskTag = (risk: TypeReentryRisk | null | undefined) => risk
   : '-';
 
 export const toAffectedTerritories = (value: Record<string, Record<string, any>> | undefined): string => {
-  if (!value) {
+  if (!value || !Object.keys(value).length) {
     return 'No regions affected';
   }
 
