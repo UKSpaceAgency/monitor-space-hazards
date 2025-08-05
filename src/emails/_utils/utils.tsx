@@ -29,10 +29,11 @@ export const toAffectedTerritories = (value: Record<string, Record<string, any>>
     return 'No regions affected';
   }
 
-  return Object.keys(value)
+  const regions = Object.keys(value)
     .filter(k => value[k]?.fragments_probability > 0)
-    .map(k => jsonRegionsMap[k])
-    .join(', ');
+    .map(k => jsonRegionsMap[k]);
+
+  return regions.length > 0 ? regions.join(', ') : 'No regions affected';
 };
 
 export const objectTypeIndex = {
