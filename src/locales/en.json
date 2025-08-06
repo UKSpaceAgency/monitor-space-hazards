@@ -1732,8 +1732,8 @@
   "Emails": {
     "sign_in_to_monitor_space_hazards": "Sign in to <link>Monitor Space Hazards</link> to view analysis and additional information.",
     "Reentry_alert": {
-      "title": "{risk} Risk Uncontrolled Re-Entry Alert",
-      "title_closed": "Re-entry Close Down Alert",
+      "title": "{risk} Risk Uncontrolled Re-Entry Alert - Report {reportNumber}",
+      "title_closed": "Re-entry Close Down Alert - Report {reportNumber}",
       "risk_probabilities_title": "UK Risk Probabilities",
       "event_summary_title": "Event Summary",
       "additional_information_title": "Additional Information",
@@ -1746,7 +1746,8 @@
         "uk_casuality_risk": "UK Casualty risk"
       },
       "Event_summary": {
-        "object_type": "Object (Object Type)",
+        "object_name": "Object",
+        "object_type": "Object Type",
         "estimated_mass": "Estimated Mass",
         "re_entry_time": "Re-entry time window worldwide",
         "uk_overflight_time": "UK overflight time(s)",
@@ -1760,7 +1761,8 @@
       },
       "Event_details": {
         "re_entry_time": "Re-entry time window worldwide",
-        "object_type": "Object (Object Type)",
+        "object_name": "Object",
+        "object_type": "Object Type",
         "norad_id": "NORAD ID",
         "estimated_mass": "Estimated Mass",
         "height": "Height",
@@ -1783,17 +1785,22 @@
         "title": "Handling Space Debris",
         "content": "<p>Space debris can be hazardous and may contain materials that pose a serious risk to health. All re-entred debris should be considered as hazardous until proven otherwise. This most well-known hazardous substances found in rockets and satellites include <hydrozineLink>Hydrazine</hydrozineLink> and <keroseneLink>Kerosene</keroseneLink>.</p><p>If space debris survives to the ground, it should be considered hazardous until proven otherwise. Debris must not be disposed of or given to the public. Standard hazardous materials (hazmat) response procedures, such as testing by the fire service, should be followed.</p>"
       },
+      "Public_guidance_on_space_debris": {
+        "title": "Public Guidance on Space Debris",
+        "content": "<p>Space debris can be hazardous and may contain materials that pose a serious risk to health. If you come across an object that you believe to be space debris, follow these steps:</p><ul><li>Do not touch the object</li><li>Note the location of the object</li><li>If possible, take a photograph of the object without touching it</li><li>Do not stay close to the object</li><li>Notify the authorities by calling 111 (or the relevant number outside the UK)</li><li>Space debris remains the property of the spacecraft owner.</li><li>If you have already handled an object you believe to be space debris, place it in a safe location where others will not touch it and inform the authorities immediately.</li></ul><p>Space debris remains the property of the spacecraft owner.</p><p>If you have already handled an object you believe to be space debris, place it in a safe location where others will not touch it and inform the authorities immediately.</p>"
+      },
       "Press_attention": {
         "title": "Press Attention",
         "empty": "We are not currently aware of substantive press interest in this event."
       }
     },
     "Conjunction_alert": {
-      "title": "{risk} Risk Conjunction Alert",
-      "title_closed": "Conjunction Close Down Alert",
+      "title": "{risk} Risk Conjunction Alert - Report {reportNumber}",
+      "title_closed": "Conjunction Close Down Alert - Report {reportNumber}",
       "risk_probabilities_title": "UK Risk Probabilities",
       "event_summary_title": "Event Summary",
       "additional_event_details_title": "Additional Event Details",
+      "additional_informations_title": "Additional Informations",
       "event_details_title": "Event Details",
       "potential_impact_title": "Potential impact of event",
       "Event_summary": {
@@ -1801,6 +1808,8 @@
         "predicted_time_of_closest_approach": "Predicted Time of Closest Approach",
         "probability_of_collision": "Probability of Collision",
         "manoeuvre_expected": "Manoeuvre Expected?",
+        "object_type": "Object Type",
+        "object_name": "Object",
         "primary_object": "Primary Object",
         "secondary_object": "Secondary Object",
         "norad_id": "NORAD ID",
@@ -1813,11 +1822,11 @@
         "predicted_miss_distance": "Predicted Miss Distance",
         "impact_speed": "Impact Speed",
         "altitude": "Altitude",
-        "approximate_latlong": "Approximate Latitude/Longitude",
-        "predicted_number_of_fragments": "Predicted Number of Fragments Generated greater than 10cm",
-        "potential_increase": "Potential Increase in Future Collisions for UK Objects"
+        "approximate_latlong": "Approximate Latitude/Longitude"
       },
       "Potential_impact_of_event": {
+        "predicted_number_of_fragments": "Predicted Number of Fragments Generated greater than 10cm",
+        "potential_increase": "Potential Increase in Future Collisions for UK Objects",
         "immediate_impact": {
           "title": "Immediate impact",
           "content": "<p>Should the collision occur, it would likely result in a full breakup of both objects. In this worst-case scenario, an estimation of the number of fragments greater than 10cm is {predictedFragments}.</p>"
