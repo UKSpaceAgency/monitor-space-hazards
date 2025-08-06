@@ -30,7 +30,7 @@ function ConjunctionClosedownEmail({ report, event, withPlaceholders }: Conjunct
 
   return (
     <Layout
-      title={t('title_closed')}
+      title={t('title_closed', { reportNumber: report.reportNumber })}
       subtitle={`${report.primaryObjectCommonName} vs ${report.secondaryObjectCommonName}`}
       withPlaceholders={withPlaceholders}
     >
@@ -39,7 +39,9 @@ function ConjunctionClosedownEmail({ report, event, withPlaceholders }: Conjunct
         <ConjunctionEventSummary eventUrl={eventLink} event={event} report={report} closedown className="pb-6" />
       </Section>
       <Section title={t('potential_impact_title')}>
-        <ConjunctionPotentialImpact report={report} event={event} />
+        <ConjunctionPotentialImpact report={report} event={event} className="pb-6" />
+      </Section>
+      <Section title={t('additional_informations_title')}>
         <ConjunctionRecommendedActions report={report} event={event} />
         <ConjunctionPressAttention pressAttention={event.pressAttentionAddition} />
       </Section>

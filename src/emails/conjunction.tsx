@@ -31,7 +31,7 @@ function ConjunctionEmail({ report, event, withPlaceholders }: ConjunctionEmailP
 
   return (
     <Layout
-      title={t('title', { risk: report.risk })}
+      title={t('title', { risk: report.risk, reportNumber: report.reportNumber })}
       subtitle={`${report.primaryObjectCommonName} vs ${report.secondaryObjectCommonName}`}
       withPlaceholders={withPlaceholders}
     >
@@ -43,7 +43,9 @@ function ConjunctionEmail({ report, event, withPlaceholders }: ConjunctionEmailP
         <ConjunctionAdditionalEventDetails report={report} className="pb-6" />
       </Section>
       <Section title={t('potential_impact_title')}>
-        <ConjunctionPotentialImpact report={report} event={event} />
+        <ConjunctionPotentialImpact report={report} event={event} className="pb-6" />
+      </Section>
+      <Section title={t('additional_informations_title')}>
         <ConjunctionRecommendedActions report={report} event={event} />
         <ConjunctionPressAttention pressAttention={event.pressAttentionAddition} />
       </Section>

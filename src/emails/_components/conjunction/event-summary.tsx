@@ -29,22 +29,23 @@ export const ConjunctionEventSummary = ({ eventUrl, report, event, closedown, ..
   });
 
   const data = [
-    [t('risk'), report.risk],
-    [t('predicted_time_of_closest_approach'), report.tcaTime ? dayjs(report.tcaTime).format(FORMAT_FULL_DATE_TIME) : '-'],
-    [t('probability_of_collision'), roundedFixed(report.collisionProbability ?? 0)],
-    [t('manoeuvre_expected'), `${report.manoeuvreExpected ? `${report.manoeuvreExpected}. ` : ''}${event.manoeuvreAddition}`],
-    [t('primary_object'), report.primaryObjectCommonName],
-    [t('norad_id'), report.primaryObjectNoradId],
-    [t('licensing_country'), getFullCountry(report.primaryObjectLicensingCountry)],
-    [t('secondary_object'), report.secondaryObjectCommonName],
-    [t('norad_id'), report.secondaryObjectNoradId],
-    [t('licensing_country'), getFullCountry(report.secondaryObjectLicensingCountry)],
     [t('report_number'), report.reportNumber],
+    [t('predicted_time_of_closest_approach'), report.tcaTime ? dayjs(report.tcaTime).format(FORMAT_FULL_DATE_TIME) : 'Unknown'],
+    [t('probability_of_collision'), `${roundedFixed(report.collisionProbability ?? 0)}%`],
+    [t('manoeuvre_expected'), report.manoeuvreExpected],
+  ];
+
+  const objectData = [
+    [t('object_name'), report.primaryObjectCommonName, report.secondaryObjectCommonName],
+    [t('object_type'), report.primaryObjectType, report.secondaryObjectType],
+    [t('norad_id'), report.primaryObjectNoradId, report.secondaryObjectNoradId],
+    [t('licensing_country'), getFullCountry(report.primaryObjectLicensingCountry), getFullCountry(report.secondaryObjectLicensingCountry)],
   ];
 
   return (
     <Section {...props}>
-      <Table data={data} className="mb-4" />
+      <Table data={data} className="mb-6" />
+      <Table data={objectData} className="mb-4" />
       {t.rich(closedown ? 'content_closed' : 'content', {
         primaryObject: report.primaryObjectCommonName,
         secondaryObject: report.secondaryObjectCommonName,

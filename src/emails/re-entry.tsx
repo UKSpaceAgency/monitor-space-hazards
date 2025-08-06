@@ -35,7 +35,7 @@ function ReEntryEmail({ event, report, withPlaceholders }: ReEntryEmailProps) {
 
   return (
     <Layout
-      title={t('title', { risk: event.fragmentsRisk })}
+      title={t('title', { risk: event.fragmentsRisk, reportNumber: report.reportNumber })}
       subtitle={`${event.objectName} ${objectTypeIndex[event.objectType as keyof typeof objectTypeIndex] ?? ''}`}
       withPlaceholders={withPlaceholders}
     >
@@ -65,7 +65,7 @@ function ReEntryEmail({ event, report, withPlaceholders }: ReEntryEmailProps) {
 ReEntryEmail.PreviewProps = {
   event: {
     objectName: 'Falcon 9 Second Stage',
-    objectType: 'Rocket Body',
+    objectType: 'ROCKET BODY',
     estimatedMass: 4000,
     decayEpoch: '2024-01-20T10:00:00Z',
     uncertaintyWindow: 120,

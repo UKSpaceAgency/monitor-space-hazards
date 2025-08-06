@@ -10,6 +10,7 @@ type TableProps = {
 } & ComponentProps<'table'>;
 
 export const Table = ({ data, ...props }: TableProps) => {
+  const cellsLength = data[0]?.length ?? 2;
   return (
     <Section className="!w-full" {...props}>
       {data.map((row, index) => (
@@ -33,16 +34,15 @@ export const Table = ({ data, ...props }: TableProps) => {
             return (
               <Column
                 key={index}
-                className={clsx('p-2 text-sm', {
-                  'w-1/3': isFirstColumn,
-                  'w-2/3': !isFirstColumn,
+                className={clsx('p-2 text-sm w-1/3', {
+                  'w-2/3': !isFirstColumn && cellsLength === 2,
                   'font-bold': isFirstColumn,
                   'text-center': !isFirstColumn,
                   'text-left': isFirstColumn,
                 })}
                 style={{ ...riskStyle }}
               >
-                {cell ?? '-'}
+                {cell ?? 'Unknown'}
               </Column>
             );
           })}

@@ -21,8 +21,8 @@ export const Separator = () => {
               margin: '0',
               height: '1px',
               backgroundColor: '#006ebb',
-              fontSize: '1px',
-              lineHeight: '1px',
+              fontSize: '0px',
+              lineHeight: '0px',
             }}
           >
           &nbsp;

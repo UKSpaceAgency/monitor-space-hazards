@@ -33,7 +33,7 @@ function ReEntryClosedownEmail({ event, report, withPlaceholders }: ReEntryEmail
 
   return (
     <Layout
-      title={t('title_closed')}
+      title={t('title_closed', { reportNumber: report.reportNumber })}
       subtitle={`${event.objectName} ${objectTypeIndex[event.objectType as keyof typeof objectTypeIndex] ?? ''}`}
       withPlaceholders={withPlaceholders}
     >

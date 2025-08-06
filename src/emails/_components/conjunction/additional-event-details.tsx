@@ -18,12 +18,10 @@ export const ConjunctionAdditionalEventDetails = ({ report, ...props }: Conjunct
   });
 
   const data = [
-    [t('predicted_miss_distance'), report.missDistance],
-    [t('impact_speed'), report.impactSpeed],
-    [t('altitude'), report.altitude],
-    [t('approximate_latlong'), `${report.latitude}, ${report.longitude}`],
-    [t('predicted_number_of_fragments'), report.predictedFragments],
-    [t('potential_increase'), report.increaseInFutureCollisions],
+    [t('predicted_miss_distance'), `${report.missDistance ?? 'Unknown'} km`],
+    [t('impact_speed'), `${report.impactSpeed ?? 'Unknown'} km/s`],
+    [t('altitude'), `${report.altitude ?? 'Unknown'} km`],
+    [t('approximate_latlong'), `${report.latitude ?? 'Unknown'}, ${report.longitude ?? 'Unknown'}`],
   ];
 
   return (
