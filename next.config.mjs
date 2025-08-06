@@ -23,6 +23,10 @@ const config = {
   poweredByHeader: false,
   reactStrictMode: true,
   output: 'standalone',
+  cacheMaxMemorySize: 0,
+  serverRuntimeConfig: {
+    maxPayloadSize: '100mb',
+  },
 };
 
 export default withSentryConfig(bundleAnalyzer(
