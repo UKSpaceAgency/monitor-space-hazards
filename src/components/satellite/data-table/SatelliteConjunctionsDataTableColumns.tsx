@@ -70,7 +70,7 @@ export const satteliteConjunctionColumns: TranslatedColumnDef<TypeEventOut>[] = 
       },
       {
         id: 'collisionProbabilityUksa',
-        accessorKey: 'additionalAnalysis',
+        accessorKey: 'collisionProbabilityUksa',
         header: 'Conjunctions.uksa',
         cell: ({ getValue }) => {
           const value = getValue<{ collisionProbability: number }>();

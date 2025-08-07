@@ -1135,6 +1135,8 @@ export interface TypeEventOut {
   additionalAnalysis?: TypeAdditionalAnalysis | null;
   /** Reportnumber */
   reportNumber?: number | null;
+  /** Collisionprobabilityuksa */
+  collisionProbabilityUksa?: number | null;
 }
 
 /** EventSatellitesOut */
@@ -2563,7 +2565,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2025-08-03T22:42:57.202809"
+   * @default "2025-08-07T08:18:51.093374"
    */
   updated_at?: string | null;
   /** Report Number */
