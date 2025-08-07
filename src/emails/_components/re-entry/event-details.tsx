@@ -4,7 +4,7 @@ import type { ComponentProps } from 'react';
 
 import type { TypeReentryEventOut, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
 import { objectTypeIndex } from '@/emails/_utils/utils';
-import { FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
+import { FORMAT_FULL_DATE_TIME_WITH_UTC } from '@/libs/Dayjs';
 import messages from '@/locales/en.json';
 import { getFullCountry } from '@/utils/Regions';
 
@@ -23,7 +23,7 @@ export const ReentryEventDetails = ({ event, report, ...props }: ReentryEventDet
   });
 
   const data = [
-    [t('re_entry_time'), `${dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME)} +/- ${event.uncertaintyWindow} minute(s)`],
+    [t('re_entry_time'), `${dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME_WITH_UTC)} +/- ${event.uncertaintyWindow} minute(s)`],
     [t('object_name'), event.objectName],
     [t('object_type'), `${event.objectType ? objectTypeIndex[event.objectType as keyof typeof objectTypeIndex] : 'Unknown'}`],
     [t('norad_id'), event.noradId],

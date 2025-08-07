@@ -4,7 +4,7 @@ import type { ComponentProps } from 'react';
 
 import type { TypeConjunctionReportOut, TypeReentryRisk, TypeUniqueEventOut } from '@/__generated__/data-contracts';
 import { renderRiskTag } from '@/emails/_utils/utils';
-import { dayjs, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_FULL_DATE_TIME_WITH_UTC } from '@/libs/Dayjs';
 import messages from '@/locales/en.json';
 import { roundedFixed, roundedPercent } from '@/utils/Math';
 import { getFullCountry } from '@/utils/Regions';
@@ -30,7 +30,7 @@ export const ConjunctionEventSummary = ({ eventUrl, report, event, closedown, ..
 
   const data = [
     [t('report_number'), report.reportNumber],
-    [t('predicted_time_of_closest_approach'), report.tcaTime ? dayjs(report.tcaTime).format(FORMAT_FULL_DATE_TIME) : 'Unknown'],
+    [t('predicted_time_of_closest_approach'), report.tcaTime ? dayjs(report.tcaTime).format(FORMAT_FULL_DATE_TIME_WITH_UTC) : 'Unknown'],
     [t('probability_of_collision'), `${roundedFixed(report.collisionProbability ?? 0)}%`],
     [t('manoeuvre_expected'), report.manoeuvreExpected],
   ];

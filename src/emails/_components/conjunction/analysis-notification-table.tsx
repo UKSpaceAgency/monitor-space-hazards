@@ -1,7 +1,7 @@
 import { createTranslator } from 'next-intl';
 
 import type { TypeUniqueEventOut } from '@/__generated__/data-contracts';
-import { dayjs, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_FULL_DATE_TIME_WITH_UTC } from '@/libs/Dayjs';
 import { env } from '@/libs/Env';
 import messages from '@/locales/en.json';
 import { displayExponential } from '@/utils/Math';
@@ -30,7 +30,7 @@ const AnalysisNotificationTable = ({ conjunctions }: AnalysisNotificationTablePr
       {' '}
       {conjunction.secondaryObjectCommonName}
     </Link>,
-    dayjs(conjunction.tca).format(FORMAT_FULL_DATE_TIME),
+    dayjs(conjunction.tca).format(FORMAT_FULL_DATE_TIME_WITH_UTC),
     conjunction.collisionProbabilityUksa ? displayExponential(conjunction.collisionProbabilityUksa, 4) : '-',
   ]);
   return <DataTable headers={[t('objects'), t('tca'), t('poc')]} data={data} className="pb-6" />;

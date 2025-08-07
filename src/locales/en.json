@@ -1425,7 +1425,7 @@
       "on_analysis_uploaded": "New NSpOC event analysis uploaded"
     },
     "Add_new_user": {
-      "success_message": "<p>User has been added to {organisation}.</p><p>They will be sent an invitation email to the address provided to finish setting up their account.</p>",
+      "success_message": "<p>{first_name} {last_name} has been added to {organisation}.</p><p>They will be sent an invitation email to the address provided to finish setting up their account.</p>",
       "success_message_only_admins": "<p>You can edit the new user's settings to select the notifications they receive.</p>",
       "success_message_edit_settings_button": "Edit user alert settings",
       "success_message_return_button": "Go to organisation",

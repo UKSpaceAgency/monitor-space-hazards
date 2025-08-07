@@ -29,7 +29,7 @@ type AddNewUserFormProps = {
 
 const AddNewUserForm = ({ defaultValues, organizations, role }: AddNewUserFormProps) => {
   const t = useTranslations('Forms.Add_new_user');
-  const [createdUser, setCreatedUser] = useState<{ user_id: string; organization_id: string; role: TypeUserRole } | null>(null);
+  const [createdUser, setCreatedUser] = useState<{ user_id: string; organization_id: string; role: TypeUserRole; first_name: string; last_name: string } | null>(null);
 
   const { register, handleSubmit, setError, reset, formState: { isSubmitting, isSubmitSuccessful, errors } } = useForm<AddNewUserSchema>({
     defaultValues,
@@ -40,6 +40,8 @@ const AddNewUserForm = ({ defaultValues, organizations, role }: AddNewUserFormPr
     if (success) {
       setCreatedUser({
         user_id: success.user_id,
+        first_name: data.first_name,
+        last_name: data.last_name,
         organization_id: data.organization_id,
         role: data.role,
       });
@@ -66,6 +68,8 @@ const AddNewUserForm = ({ defaultValues, organizations, role }: AddNewUserFormPr
               {tags => t.rich('success_message', {
                 ...tags,
                 organisation: organizations.find(({ id }) => id === createdUser?.organization_id)?.name,
+                first_name: createdUser.first_name,
+                last_name: createdUser.last_name,
               }) }
             </RichText>
             {(isGovUser(createdUser.role) || isAgencyUser(createdUser.role)) && (
