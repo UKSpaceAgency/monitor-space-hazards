@@ -3,11 +3,13 @@
 import type { FeatureCollection, Point } from 'geojson';
 import type { MapMouseEvent } from 'mapbox-gl';
 import dynamic from 'next/dynamic';
+import type { ReactNode } from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { MapRef } from 'react-map-gl';
 import Map, { FullscreenControl, Layer, Source } from 'react-map-gl';
 
 import { env } from '@/libs/Env';
+import Details from '@/ui/details/details';
 import { RegionsEnum } from '@/utils/Regions';
 
 import { ReentryAlertAreasOfInterest } from './ReentryAlertAreasOfInterest';
@@ -34,9 +36,11 @@ type ReentryAlertMapProps = {
   overflightTime: string[];
   flightpathsCollection: Map<number, FeatureCollection<Point>>;
   fragmentsCollection: Map<number, FeatureCollection<Point>>;
+  detailsTitle?: string;
+  detailsContent?: ReactNode;
 };
 
-const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsCollection }: ReentryAlertMapProps) => {
+const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsCollection, detailsTitle, detailsContent }: ReentryAlertMapProps) => {
   const mapRef = useRef<MapRef | null>(null);
   const [mapType, setMapType] = useState<MapType>('streets-v12');
   const [mapView, setMapView] = useState<MapView>('globe');
@@ -93,7 +97,7 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
       </div>
       <ReentryAlertAreasOfInterest selected={regions} onChange={setRegions} />
       <ReentryAlertOverflights types={types} setTypes={setTypes} overflights={overflightTime} selected={flightpaths} onChange={setFlightpaths} />
-      <div className="relative w-full aspect-[1/1] md:aspect-[2/1] bg-[#364B69]" data-type="map">
+      <div className="relative w-full aspect-[1/1] md:aspect-[2/1] bg-[#364B69] mb-4" data-type="map">
         <Map
           ref={mapRefCallback}
           mapboxAccessToken={env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
@@ -181,6 +185,12 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
           <ReentryAlertMapLegend />
         </Map>
       </div>
+      <Details
+        summary={detailsTitle}
+        className="mb-0"
+      >
+        {detailsContent}
+      </Details>
     </div>
   );
 };
