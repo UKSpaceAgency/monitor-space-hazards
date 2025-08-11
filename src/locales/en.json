@@ -1738,6 +1738,7 @@
       "event_summary_title": "Event Summary",
       "additional_information_title": "Additional Information",
       "event_details_title": "Event Details",
+      "utc_note": "* Coordinated Universal Time (UTC) is 1 hour behind British Summer Time (BST) and the same as Greenwich Mean Time (GMT).",
       "Risk_probabilities": {
         "probability": "Probability",
         "risk": "Risk",
