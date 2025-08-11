@@ -38,7 +38,7 @@ function ReEntryClosedownEmail({ event, report, withPlaceholders }: ReEntryEmail
       subtitle={`${event.objectName} ${objectTypeIndex[event.objectType as keyof typeof objectTypeIndex] ?? ''}`}
       withPlaceholders={withPlaceholders}
     >
-      <Subheader />
+      <Subheader comment={event.closedComment} />
       <Section title={t('event_summary_title')}>
         <ReentryEventSummary event={event} className="pb-4" />
         <Map src="{{WORLD_MAP.src}}" className="pb-4" width="580" />

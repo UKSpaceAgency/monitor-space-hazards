@@ -732,6 +732,8 @@ export interface TypeConjunctionReportOut {
   reportTime?: string | null;
   /** Risk */
   risk: "Low" | "Medium" | "High";
+  /** Closedcomment */
+  closedComment?: string | null;
   /** Alerttype */
   alertType: ("priority" | "standard" | "uk-licensed" | "closedown")[];
   /** Tcatime */
@@ -1368,6 +1370,8 @@ export interface TypeFragmentationEvent {
   is_active?: boolean;
   /** Report Number */
   report_number?: number | null;
+  /** Closed Comment */
+  closed_comment?: string | null;
 }
 
 /** FragmentationEventsSortBy */
@@ -1400,6 +1404,8 @@ export interface TypeFragmentationReport {
   short_id: string | null;
   /** Report Number */
   report_number: number;
+  /** Closed Comment */
+  closed_comment?: string | null;
   /**
    * Event Epoch
    * @format date-time
@@ -1810,6 +1816,8 @@ export interface TypeReentryEventOut {
   tipExternalId: string;
   /** Reentryreportnumber */
   reentryReportNumber?: number | null;
+  /** Closedcomment */
+  closedComment?: string | null;
   /** Atmosphericprobability */
   atmosphericProbability?: number | null;
   atmosphericRisk?: TypeReentryRisk | null;
@@ -1926,6 +1934,8 @@ export interface TypeReentryEventReportOut {
   uncertaintyWindow?: number | null;
   /** Reportnumber */
   reportNumber: number;
+  /** Closedcomment */
+  closedComment?: string | null;
   /** Alerttype */
   alertType: ("priority" | "standard" | "uk-licensed" | "closedown")[];
   /**
@@ -2559,13 +2569,15 @@ export interface TypeUniqueEventOut {
   cdmExternalId?: string | null;
   /** Cdmcreationdate */
   cdmCreationDate?: string | null;
+  /** Closedcomment */
+  closedComment?: string | null;
 }
 
 /** UniqueEventUpdateTextFieldsIn */
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2025-08-07T08:18:51.093374"
+   * @default "2025-08-11T12:45:47.931071"
    */
   updated_at?: string | null;
   /** Report Number */

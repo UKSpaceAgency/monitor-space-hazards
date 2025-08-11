@@ -13,9 +13,10 @@ const styles = {
 
 type SubheaderProps = {
   risk?: TypeReentryRisk | null;
+  comment?: string | null;
 };
 
-export const Subheader = ({ risk }: SubheaderProps) => {
+export const Subheader = ({ risk, comment }: SubheaderProps) => {
   const style = risk ? riskColours[risk] : styles.closedown;
 
   return (
@@ -30,6 +31,14 @@ export const Subheader = ({ risk }: SubheaderProps) => {
         >
           {risk ? `${risk} Risk` : 'Closed'}
         </Text>
+        {comment && (
+          <Text
+            className="text-sm m-0"
+            style={{ color: style.text }}
+          >
+            {comment}
+          </Text>
+        )}
       </Section>
 
     </Section>

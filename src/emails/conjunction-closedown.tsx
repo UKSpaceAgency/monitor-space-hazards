@@ -34,7 +34,7 @@ function ConjunctionClosedownEmail({ report, event, withPlaceholders }: Conjunct
       subtitle={`${report.primaryObjectCommonName} vs ${report.secondaryObjectCommonName}`}
       withPlaceholders={withPlaceholders}
     >
-      <Subheader />
+      <Subheader comment={event.closedComment} />
       <Section title={t('event_summary_title')}>
         <ConjunctionEventSummary eventUrl={eventLink} event={event} report={report} closedown className="pb-6" />
       </Section>
