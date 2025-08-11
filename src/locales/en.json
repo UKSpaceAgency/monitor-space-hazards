@@ -607,7 +607,7 @@
       "title": "Conjunction alert summary",
       "email_title": "Event Information:",
       "content": "The National Space Operations Centre is tracking the close approach of two objects, <primaryObjectUrl>{primaryObject}</primaryObjectUrl> and <secondaryObjectUrl>{secondaryObject}</secondaryObjectUrl>. A potential collision could damage the objects involved, limiting or eliminating their capability, as well as releasing new fragments, which would increase the risk of future collisions for other objects. This event is assessed as <tag>{risk}</tag> risk, with a {collisionProbability} probability of collision (PoC).",
-      "closed_report": "The National Space Operations Centre has completed tracking of the conjunction event involving <primaryObjectUrl>{primaryObject}</primaryObjectUrl> and <secondaryObjectUrl>{secondaryObject}</secondaryObjectUrl>, which occurred on {date} UTC. The event was assessed as <tag>{risk}</tag> risk, with a {collisionProbability} probability of collision (PoC).",
+      "closed_report": "The National Space Operations Centre has completed tracking of the conjunction event involving <primaryObjectUrl>{primaryObject}</primaryObjectUrl> and <secondaryObjectUrl>{secondaryObject}</secondaryObjectUrl>, which occurred on {date}. The event was assessed as <tag>{risk}</tag> risk, with a {collisionProbability} probability of collision (PoC).",
       "see_further_information": "<p>See <link>Further information</link> for more detail on methodology used in this report and the organisations that have been sent this alert.</p>"
     },
     "Next_update": {
@@ -749,7 +749,7 @@
       "email_title": "Event Information:",
       "title": "Re-entry alert summary",
       "content": "The National Space Operations Centre is tracking the upcoming re-entry event involving {commonName} from space into Earth's atmosphere, posing a potential risk to life and property on the ground. The event is assessed as <tag>{fragmentsRisk}</tag> risk, with a {fragmentsProbability} probability of debris impacting the UK. {licensingCountry} is liable for any damages and associated response or recovery costs. All re-entered debris should be considered as hazardous until proven otherwise.",
-      "closed_report": "The National Space Operations Centre has completed tracking of the re-entry event involving {commonName}, which occurred on {date} UTC. The event was assessed as <tag>{fragmentsRisk}</tag> risk, with a {fragmentsProbability} probability of debris impacting the UK. {licensingCountry} is liable for any damages and associated response or recovery costs. All re-entered debris should be considered as hazardous until proven otherwise.",
+      "closed_report": "The National Space Operations Centre has completed tracking of the re-entry event involving {commonName}, which occurred on {date}. The event was assessed as <tag>{fragmentsRisk}</tag> risk, with a {fragmentsProbability} probability of debris impacting the UK. {licensingCountry} is liable for any damages and associated response or recovery costs. All re-entered debris should be considered as hazardous until proven otherwise.",
       "risk_probabilities": "UK risk probabilities",
       "event_summary": "Event summary"
     },
@@ -1774,8 +1774,8 @@
       },
       "Event_information": {
         "title": "Event Information",
-        "content": "<p>The National Space Operations Centre is tracking the uncontrolled re-entry of <objectUrl>{commonName}</objectUrl>. This {objectType} presents a  <tag>{fragmentsRisk}</tag> risk to life and property on the ground.</p>\n<p><objectUrl>{commonName}</objectUrl> is expected to re-enter on <b>{date} UTC.</b> This {objectType} has a <b>{riskProbability} probability of debris impacting the UK.</b></p>\n<p><b> {licensingCountry}</b> is liable for any damages and associated response or recovery costs.</p>",
-        "content_closed": "<p>The National Space Operations Centre has completed tracking the uncontrolled re-entry of <objectUrl>{commonName}</objectUrl>, which occurred on {date} UTC. The event was assessed as <tag>{riskLevel}</tag> risk, with a {riskProbability} probability of debris impacting the UK. {licensingCountry} is liable for any damages and associated response or recovery costs.</p>",
+        "content": "<p>The National Space Operations Centre is tracking the uncontrolled re-entry of <objectUrl>{commonName}</objectUrl>. This {objectType} presents a  <tag>{fragmentsRisk}</tag> risk to life and property on the ground.</p>\n<p><objectUrl>{commonName}</objectUrl> is expected to re-enter on <b>{date}.</b> This {objectType} has a <b>{riskProbability} probability of debris impacting the UK.</b></p>\n<p><b> {licensingCountry}</b> is liable for any damages and associated response or recovery costs.</p>",
+        "content_closed": "<p>The National Space Operations Centre has completed tracking the uncontrolled re-entry of <objectUrl>{commonName}</objectUrl>, which occurred on {date}. The event was assessed as <tag>{riskLevel}</tag> risk, with a {riskProbability} probability of debris impacting the UK. {licensingCountry} is liable for any damages and associated response or recovery costs.</p>",
         "risk": {
           "low": "<p>This event is assessed as <tag>Low</tag> risk.</p><p>This means it may happen and could have a negative impact on UK interests, but the overall likelihood is low.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, no significant action is required at this stage. Stakeholders should stay engaged with the National Space Operations Centre and consider any future updates before taking further action.</p>",
           "medium": "<p>This event is assessed as <tag>Medium</tag> risk.</p><p>This means there is a higher-than-usual chance it could negatively affect UK interests. However, it is still more likely than not to pass without incident.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, no immediate significant action is needed, but stakeholders may consider raising awareness internally. Stakeholders should stay engaged with the National Space Operations Centre for updates.</p>",
@@ -1801,7 +1801,7 @@
       "risk_probabilities_title": "UK Risk Probabilities",
       "event_summary_title": "Event Summary",
       "additional_event_details_title": "Additional Event Details",
-      "additional_informations_title": "Additional Informations",
+      "additional_informations_title": "Additional Information",
       "event_details_title": "Event Details",
       "potential_impact_title": "Potential impact of event",
       "Event_summary": {
