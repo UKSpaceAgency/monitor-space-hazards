@@ -16,6 +16,7 @@ import { ReentryRiskProbabilities } from './_components/re-entry/risk-probabilit
 import { Section } from './_components/section';
 import { SignIn } from './_components/sign_in';
 import { Subheader } from './_components/subheader';
+import { Text } from './_components/text';
 import { objectTypeIndex } from './_utils/utils';
 
 type ReEntryEmailProps = {
@@ -50,7 +51,8 @@ function ReEntryEmail({ event, report, withPlaceholders }: ReEntryEmailProps) {
         <ReentryAffectedRegions report={report} className="pb-6" />
       </Section>
       <Section title={t('event_details_title')}>
-        <ReentryEventDetails event={event} report={report} className="pb-6" />
+        <ReentryEventDetails event={event} report={report} className="pb-4" />
+        <Text>{t('utc_note')}</Text>
       </Section>
       <Section title={t('additional_information_title')}>
         <ReentryEventInformation event={event} />

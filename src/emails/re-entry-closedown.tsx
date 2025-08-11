@@ -14,6 +14,7 @@ import { ReentryPressAttention } from './_components/re-entry/press-attention';
 import { Section } from './_components/section';
 import { SignIn } from './_components/sign_in';
 import { Subheader } from './_components/subheader';
+import { Text } from './_components/text';
 import { objectTypeIndex } from './_utils/utils';
 
 type ReEntryEmailProps = {
@@ -42,6 +43,7 @@ function ReEntryClosedownEmail({ event, report, withPlaceholders }: ReEntryEmail
         <ReentryEventSummary event={event} className="pb-4" />
         <Map src="{{WORLD_MAP.src}}" className="pb-4" width="580" />
         <ReentryAffectedRegions report={report} className="pb-4" />
+        <Text>{t('utc_note')}</Text>
       </Section>
       <Section title={t('additional_information_title')}>
         <ReentryEventInformationClosed event={event} />

@@ -13,7 +13,7 @@ const FORMAT_FULL_DATE = 'dddd DD MMMM YYYY';
 
 const FORMAT_FULL_DATE_TIME = 'dddd DD MMMM YYYY [at] HH:mm:ss UTC';
 
-const FORMAT_FULL_DATE_TIME_WITH_UTC = 'dddd DD MMMM YYYY [at] HH:mm:ss UTC';
+const FORMAT_FULL_DATE_TIME_WITH_UTC = 'dddd DD MMMM YYYY [at] HH:mm:ss UTC*';
 
 const FORMAT_API_DATE_TIME = 'YYYY-MM-DDTHH:mm:ss';
 
