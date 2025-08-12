@@ -36,7 +36,15 @@ const ConjunctionAlertPage = async ({ shortId, searchParams, footer }: Conjuncti
 
   return (
     <div>
-      {isClosed && <Tag>{t('closed')}</Tag>}
+      {isClosed
+      && (
+        <div className="flex items-center gap-4 mb-4">
+          <Tag>{t('closed')}</Tag>
+          {event.closedComment && (
+            <span>{event.closedComment}</span>
+          )}
+        </div>
+      )}
       <h1 className="govuk-heading-xl">
         {title}
         <span className="block text-lg">{dayjs(event.tca).format(FORMAT_FULL_DATE)}</span>
