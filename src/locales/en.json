@@ -1560,7 +1560,8 @@
         "short_term_impact_addition": "Short term impact",
         "long_term_impact": "Long term impact",
         "long_term_impact_addition": "Long term impact",
-        "uk_response_addition": "UK response"
+        "uk_response_addition": "UK response",
+        "closed_comment": "Closed comment"
       },
       "manoeuvrable": {
         "unknown": "Unknown",
@@ -1572,6 +1573,7 @@
       "add_to": "Add to `{name}`",
       "hint": "This text will appear below the paragraphs which read:",
       "press_attention_hint": "<p>Include details of any press attention related to this event. Leave blank if there has been no press attention.</p>",
+      "closed_comment_hint": "This text will appear alongside the 'Closed' label in emails.",
       "clear": "Clear `{name}` text box",
       "review": "Review edit",
       "change": "Change",
