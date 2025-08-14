@@ -1890,6 +1890,8 @@ export interface TypeReentryEventPatch {
   damages_liability?: string | null;
   /** Press Attention */
   press_attention?: string | null;
+  /** Closed Comment */
+  closed_comment?: string | null;
 }
 
 /** ReentryEventReportOut */
@@ -2577,11 +2579,13 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2025-08-11T12:45:47.931071"
+   * @default "2025-08-13T12:47:01.949721"
    */
   updated_at?: string | null;
   /** Report Number */
   report_number?: number | null;
+  /** Closed Comment */
+  closed_comment?: string | null;
   /** Exec Summary Addition */
   exec_summary_addition?: string | null;
   /** Manoeuvre Addition */

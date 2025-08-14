@@ -19,6 +19,12 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
   const tForm = useTranslations('Forms.Edit_alert');
 
   const formFields: EventAlertFormField[] = [{
+    id: 'closed_comment',
+    name: tForm('type.closed_comment'),
+    defaultValue: event.closedComment ?? '',
+    type: 'text',
+    help: tForm.rich('closed_comment_hint'),
+  }, {
     id: 'exec_summary',
     name: tForm('type.exec_summary'),
     defaultValue: event.execSummary,

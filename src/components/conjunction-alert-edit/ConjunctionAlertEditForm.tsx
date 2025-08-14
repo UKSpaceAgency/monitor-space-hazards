@@ -18,6 +18,12 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
   const tForm = useTranslations('Forms.Edit_alert');
 
   const formFields: EventAlertFormField[] = [{
+    id: 'closed_comment',
+    name: tForm('type.closed_comment'),
+    defaultValue: event.closedComment ?? '',
+    type: 'text',
+    help: tForm.rich('closed_comment_hint'),
+  }, {
     id: 'exec_summary_addition',
     name: tForm('type.exec_summary_addition'),
     defaultValue: event.execSummaryAddition,

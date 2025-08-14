@@ -32,6 +32,7 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
 
   const lastReport = reports[reports.length - 1];
   const isClosed = lastReport?.alertType.includes('closedown');
+  const closedComment = searchParams?.closed_comment ?? event.closedComment;
 
   if (!lastReport) {
     return redirect(`/re-entries/${shortId}`);
@@ -43,8 +44,8 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
       && (
         <div className="flex items-center gap-4 mb-4">
           <Tag>{t('closed')}</Tag>
-          {event.closedComment && (
-            <span>{event.closedComment}</span>
+          {closedComment && (
+            <span>{closedComment}</span>
           )}
         </div>
       )}
