@@ -13,6 +13,7 @@ import { Layout } from './_components/layout';
 import { Section } from './_components/section';
 import { SignIn } from './_components/sign_in';
 import { Subheader } from './_components/subheader';
+import { Text } from './_components/text';
 
 type ConjunctionEmailProps = {
   report: TypeConjunctionReportOut;
@@ -38,6 +39,7 @@ function ConjunctionEmail({ report, event, withPlaceholders }: ConjunctionEmailP
       <Subheader risk={report.risk} />
       <Section title={t('event_summary_title')}>
         <ConjunctionEventSummary eventUrl={eventLink} event={event} report={report} className="pb-6" />
+        <Text>{t('utc_note')}</Text>
       </Section>
       <Section title={t('additional_event_details_title')}>
         <ConjunctionAdditionalEventDetails report={report} className="pb-6" />

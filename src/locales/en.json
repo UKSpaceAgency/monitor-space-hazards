@@ -1806,10 +1806,13 @@
       "title_closed": "Conjunction Close Down Alert - Report {reportNumber}",
       "risk_probabilities_title": "UK Risk Probabilities",
       "event_summary_title": "Event Summary",
+      "event_overview_title": "Event Overview",
       "additional_event_details_title": "Additional Event Details",
       "additional_informations_title": "Additional Information",
+      "support_and_assistance_title": "Support and Assistance",
       "event_details_title": "Event Details",
       "potential_impact_title": "Potential impact of event",
+      "utc_note": "* Coordinated Universal Time (UTC) is 1 hour behind British Summer Time (BST) and the same as Greenwich Mean Time (GMT).",
       "Event_summary": {
         "risk": "Risk",
         "predicted_time_of_closest_approach": "Predicted Time of Closest Approach",
@@ -1824,6 +1827,12 @@
         "report_number": "Report number",
         "content": "<p>The National Space Operations Centre is monitoring the conjunction event <eventUrl>{primaryObject} vs {secondaryObject}</eventUrl>. A potential collision could damage the objects involved, limiting or eliminating their capability, as well as releasing new fragments, which would increase the risk of future collisions for other objects. This event is assessed as <tag>{risk}</tag> risk, with a {probability} probability of collision (PoC).</p>",
         "content_closed": "<p>The National Space Operations Centre has completed monitoring the conjunction event <eventUrl>{primaryObject} vs {secondaryObject}</eventUrl>. A potential collision could have damaged the objects involved, limiting or eliminating their capability, as well as releasing new fragments, which would increase the risk of future collisions for other objects. This event was assessed as <tag>{risk}</tag> risk, with a {probability} probability of collision (PoC).</p>"
+      },
+      "Event_details": {
+        "details": "Details",
+        "event_summary": "Event Summary",
+        "details_content": "Log into <link>Monitor Space Hazards</link> for more informations about this event.",
+        "event_summary_content": "<p>The National Space Operations Centre is monitoring the conjunction event <eventUrl>{primaryObject} vs {secondaryObject}</eventUrl>. A potential collision could damage the objects involved, limiting or eliminating their capability, as well as releasing new fragments, which would increase the risk of future collisions for other objects. This event is assessed as <tag>{risk}</tag> risk, with a {probability} probability of collision (PoC).</p>"
       },
       "Additional_event_details": {
         "predicted_miss_distance": "Predicted Miss Distance",
@@ -1893,7 +1902,8 @@
     "Footer": {
       "title": "Support and Assistance",
       "content": "<p>For urgent enquiries about this event, email <nspocemail>NSPOCincidents@ukspaceagency.gov.uk</nspocemail>.</p><p><contact>Additional contact details</contact> are available via Monitor Space Hazards (for registered users).</p><p>We welcome your feedback and ideas to improve future reports. If you're not signed up to <link>Monitor Space Hazards</link> and would like access to the service, please contact us.</p><p>Monitor Space Hazards is a service provided by the UK Space Agency via the National Space Operations Centre.</p>",
-      "content_notification": "<p>For assistance in managing an incident, or for more information, please contact our Operations, Analysis and Response Team:</p><button>Operations Support</button><p>Or email us: <nspocemail>NSPOCincidents@ukspaceagency.gov.uk</nspocemail> and <orbitalemail>OrbitalAnalysts@ukspaceagency.gov.uk</orbitalemail>.</p><p><contact>Additional contact details</contact> are available via <contact>Monitor Space Hazards</contact>. Monitor Space Hazards is a service provided by the UK Space Agency via the National Space Operations Centre.</p>"
+      "content_notification": "<p>For assistance in managing an incident, or for more information, please contact our Operations, Analysis and Response Team:</p><button>Operations Support</button><p>Or email us: <nspocemail>NSPOCincidents@ukspaceagency.gov.uk</nspocemail> and <orbitalemail>OrbitalAnalysts@ukspaceagency.gov.uk</orbitalemail>.</p><p><contact>Additional contact details</contact> are available via <contact>Monitor Space Hazards</contact>. Monitor Space Hazards is a service provided by the UK Space Agency via the National Space Operations Centre.</p>",
+      "content_short": "<p>Please direct any questions about this event to <nspocemail>nspoc@ukspaceagency.gov.uk</nspocemail></p><p>Monitor Space Hazards is a service provided by the UK Space Agency through the National Space Operations Centre.</p>"
     }
   }
 }

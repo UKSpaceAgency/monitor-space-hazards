@@ -57,6 +57,7 @@ function ReEntryClosedownEmail({ event, report, withPlaceholders }: ReEntryEmail
 
 ReEntryClosedownEmail.PreviewProps = {
   event: {
+    closedComment: 'Closed comment',
     objectName: 'Falcon 9 Second Stage',
     objectType: 'R/B',
     estimatedMass: 4000,

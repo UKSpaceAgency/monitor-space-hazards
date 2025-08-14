@@ -11,18 +11,21 @@ import { Text } from './text';
 type FooterProps = {
   withPlaceholders: boolean;
   isNotification?: boolean;
+  isShort?: boolean;
 };
 
-export const Footer = ({ withPlaceholders, isNotification }: FooterProps) => {
+export const Footer = ({ withPlaceholders, isNotification, isShort }: FooterProps) => {
   const t = createTranslator({
     locale: 'en',
     namespace: 'Emails.Footer',
     messages,
   });
 
+  const key = isShort ? 'content_short' : isNotification ? 'content_notification' : 'content';
+
   return (
     <Section title={t('title')}>
-      {t.rich(isNotification ? 'content_notification' : 'content', {
+      {t.rich(key, {
         p: chunks => <Text className="text-sm mt-0">{chunks}</Text>,
         nspocemail: chunks => <Link href="mailto:NSPOCincidents@ukspaceagency.gov.uk">{chunks}</Link>,
         orbitalemail: chunks => <Link href="mailto:OrbitalAnalysts@ukspaceagency.gov.uk">{chunks}</Link>,

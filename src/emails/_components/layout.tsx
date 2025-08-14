@@ -9,9 +9,10 @@ export type LayoutProps = {
   subtitle?: string;
   withPlaceholders: boolean;
   isNotification?: boolean;
+  isShort?: boolean;
 } & ComponentProps<'div'>;
 
-export function Layout({ title, subtitle, withPlaceholders, children, isNotification }: LayoutProps) {
+export function Layout({ title, subtitle, withPlaceholders, children, isNotification, isShort }: LayoutProps) {
   return (
     <Tailwind config={{
       theme: {
@@ -83,7 +84,7 @@ export function Layout({ title, subtitle, withPlaceholders, children, isNotifica
               withPlaceholders={withPlaceholders}
             />
             {children}
-            <Footer withPlaceholders={withPlaceholders} isNotification={isNotification} />
+            <Footer withPlaceholders={withPlaceholders} isNotification={isNotification} isShort={isShort} />
           </Container>
         </Body>
       </Html>

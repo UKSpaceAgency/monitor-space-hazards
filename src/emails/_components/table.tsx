@@ -7,9 +7,10 @@ import { riskColours } from '../_utils/utils';
 
 type TableProps = {
   data: ReactNode[][];
+  forceAlignLeft?: boolean;
 } & ComponentProps<'table'>;
 
-export const Table = ({ data, ...props }: TableProps) => {
+export const Table = ({ data, forceAlignLeft, ...props }: TableProps) => {
   const cellsLength = data[0]?.length ?? 2;
   return (
     <Section className="!w-full" {...props}>
@@ -38,7 +39,7 @@ export const Table = ({ data, ...props }: TableProps) => {
                   'w-2/3': !isFirstColumn && cellsLength === 2,
                   'font-bold': isFirstColumn,
                   'text-center': !isFirstColumn,
-                  'text-left': isFirstColumn,
+                  'text-left': isFirstColumn || forceAlignLeft,
                 })}
                 style={{ ...riskStyle }}
               >

@@ -4,14 +4,13 @@ import type { TypeConjunctionReportOut, TypeUniqueEventOut } from '@/__generated
 import { env } from '@/libs/Env';
 import messages from '@/locales/en.json';
 
-import { ConjunctionEventSummary } from './_components/conjunction/event-summary';
-import { ConjunctionPotentialImpact } from './_components/conjunction/potential-impact';
-import { ConjunctionPressAttention } from './_components/conjunction/press-attention';
-import { ConjunctionRecommendedActions } from './_components/conjunction/recommended-actions';
+import { ConjunctionEventDetails } from './_components/conjunction/event-details';
+import { ConjunctionEventOverview } from './_components/conjunction/event-overview';
 import { Layout } from './_components/layout';
 import { Section } from './_components/section';
 import { SignIn } from './_components/sign_in';
 import { Subheader } from './_components/subheader';
+import { Text } from './_components/text';
 
 type ConjunctionClosedownEmailProps = {
   report: TypeConjunctionReportOut;
@@ -33,17 +32,15 @@ function ConjunctionClosedownEmail({ report, event, withPlaceholders }: Conjunct
       title={t('title_closed', { reportNumber: report.reportNumber })}
       subtitle={`${report.primaryObjectCommonName} vs ${report.secondaryObjectCommonName}`}
       withPlaceholders={withPlaceholders}
+      isShort
     >
       <Subheader comment={event.closedComment} />
-      <Section title={t('event_summary_title')}>
-        <ConjunctionEventSummary eventUrl={eventLink} event={event} report={report} closedown className="pb-6" />
+      <Section title={t('event_overview_title')}>
+        <ConjunctionEventOverview eventUrl={eventLink} event={event} report={report} closedown className="pb-6" />
+        <Text>{t('utc_note')}</Text>
       </Section>
-      <Section title={t('potential_impact_title')}>
-        <ConjunctionPotentialImpact report={report} event={event} className="pb-6" />
-      </Section>
-      <Section title={t('additional_informations_title')}>
-        <ConjunctionRecommendedActions report={report} event={event} />
-        <ConjunctionPressAttention pressAttention={event.pressAttentionAddition} />
+      <Section title={t('event_details_title')}>
+        <ConjunctionEventDetails eventUrl={eventLink} event={event} report={report} closedown className="pb-6" />
       </Section>
       <SignIn link={eventLink} />
     </Layout>

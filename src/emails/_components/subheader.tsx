@@ -30,17 +30,16 @@ export const Subheader = ({ risk, comment }: SubheaderProps) => {
           style={{ color: style.text }}
         >
           {risk ? `${risk} Risk` : 'Closed'}
+          {comment && (
+            <>
+              {' '}
+              -
+              {' '}
+              {comment}
+            </>
+          )}
         </Text>
-        {comment && (
-          <Text
-            className="text-sm m-0"
-            style={{ color: style.text }}
-          >
-            {comment}
-          </Text>
-        )}
       </Section>
-
     </Section>
   );
 };
