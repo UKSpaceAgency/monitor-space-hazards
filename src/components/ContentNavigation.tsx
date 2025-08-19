@@ -35,25 +35,24 @@ const ContentNavigation = ({ title, internalTitle, className }: ContentNavigatio
 
   return (
     <nav aria-label="Content navigation" className={className}>
-      <h3 className="govuk-caption-m">{title || 'Contents'}</h3>
-      <div>
+      <ul>
+        <li><h3 className="govuk-caption-m">{title || 'Contents'}</h3></li>
         {anchors.map((anchor, index) => {
           return (
             // eslint-disable-next-line react/no-array-index-key
-            <div key={index}>
+            <li key={index}>
               {internalTitle?.find(item => item.index === index) && (
                 <h3 className="govuk-caption-m mt-[30px]">{internalTitle?.find(item => item.index === index)?.text}</h3>
               )}
               <div className="relative pt-2 px-6">
-                <span className="absolute left-0 w-5">—</span>
                 <a className="govuk-link govuk-link--no-underline" href={`#${anchor.anchor}`} onClick={handleClick}>
                   {anchor.text}
                 </a>
               </div>
-            </div>
+            </li>
           );
         })}
-      </div>
+      </ul>
     </nav>
   );
 };

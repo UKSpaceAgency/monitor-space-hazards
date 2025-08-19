@@ -19,7 +19,7 @@ type TaskListProps = {
 
 export function TaskList({ className, items }: TaskListProps) {
   return (
-    <div className={clsx('govuk-task-list', className)}>
+    <ul className={clsx('govuk-task-list', className)}>
       {items.map(({ title, hint, href, status }, index) => (
         <li
           // eslint-disable-next-line react/no-array-index-key
@@ -48,7 +48,7 @@ export function TaskList({ className, items }: TaskListProps) {
           {status && <Tag {...status}>{status.text}</Tag>}
         </li>
       ))}
-    </div>
+    </ul>
   );
 }
 
