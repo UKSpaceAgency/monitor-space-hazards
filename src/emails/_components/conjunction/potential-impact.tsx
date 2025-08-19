@@ -21,7 +21,7 @@ export const ConjunctionPotentialImpact = ({ report, ...props }: ConjunctionPote
 
   const data = [
     [t('predicted_number_of_fragments'), report.predictedFragments],
-    [t('potential_increase'), report.increaseInFutureCollisions],
+    [t('potential_increase'), `${report.increaseInFutureCollisions}%`],
   ];
 
   return (

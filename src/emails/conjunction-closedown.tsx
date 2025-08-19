@@ -10,7 +10,6 @@ import { Layout } from './_components/layout';
 import { Section } from './_components/section';
 import { SignIn } from './_components/sign_in';
 import { Subheader } from './_components/subheader';
-import { Text } from './_components/text';
 
 type ConjunctionClosedownEmailProps = {
   report: TypeConjunctionReportOut;
@@ -37,7 +36,6 @@ function ConjunctionClosedownEmail({ report, event, withPlaceholders }: Conjunct
       <Subheader comment={event.closedComment} />
       <Section title={t('event_overview_title')}>
         <ConjunctionEventOverview eventUrl={eventLink} event={event} report={report} closedown className="pb-6" />
-        <Text>{t('utc_note')}</Text>
       </Section>
       <Section title={t('event_details_title')}>
         <ConjunctionEventDetails eventUrl={eventLink} event={event} report={report} closedown className="pb-6" />
