@@ -8,7 +8,6 @@ import { ConjunctionEventDetails } from './_components/conjunction/event-details
 import { ConjunctionEventOverview } from './_components/conjunction/event-overview';
 import { Layout } from './_components/layout';
 import { Section } from './_components/section';
-import { SignIn } from './_components/sign_in';
 import { Subheader } from './_components/subheader';
 
 type ConjunctionClosedownEmailProps = {
@@ -40,7 +39,6 @@ function ConjunctionClosedownEmail({ report, event, withPlaceholders }: Conjunct
       <Section title={t('event_details_title')}>
         <ConjunctionEventDetails eventUrl={eventLink} event={event} report={report} closedown className="pb-6" />
       </Section>
-      <SignIn link={eventLink} />
     </Layout>
   );
 }
