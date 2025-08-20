@@ -34,11 +34,12 @@ export type DataTableProps<T extends RowData> = {
   // Extra
   stickyHeader?: true;
   largerText?: true;
+  focusable?: true;
   emptyLabel?: string;
   manualSorting?: boolean;
 };
 
-const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText, sorting, emptyLabel = 'No data', manualSorting = true, onSortingChange, renderSubComponent }: DataTableProps<T>) => {
+const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText, sorting, emptyLabel = 'No data', focusable, manualSorting = true, onSortingChange, renderSubComponent }: DataTableProps<T>) => {
   const t = useTranslations('Tables');
 
   const translatedColumns = useMemo(() => {
@@ -112,13 +113,13 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText,
                     <span className="absolute top-0 right-0 h-full flex items-center">
                       {{
                         clear: (
-                          <span className="flex flex-col text-xxs">
+                          <span className="flex flex-col text-xxs" aria-hidden="true">
                             <span>▲</span>
                             <span>▼</span>
                           </span>
                         ),
-                        asc: <span className="text-xs">▲</span>,
-                        desc: <span className="text-xs">▼</span>,
+                        asc: <span className="text-xs" aria-hidden="true">▲</span>,
+                        desc: <span className="text-xs" aria-hidden="true">▼</span>,
                       }[header.column.getIsSorted() as string || 'clear']}
                     </span>
                   </button>
@@ -140,7 +141,7 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText,
   }
 
   return (
-    <Table className={`${largerText ? 'govuk-table' : 'govuk-!-font-size-16'}`} data-type="data">
+    <Table className={`${largerText ? 'govuk-table' : 'govuk-!-font-size-16'}`} data-type="data" tabIndex={focusable ? 0 : undefined}>
       <TableHead className={clsx({
         'sticky top-0 bg-white': stickyHeader,
       })}

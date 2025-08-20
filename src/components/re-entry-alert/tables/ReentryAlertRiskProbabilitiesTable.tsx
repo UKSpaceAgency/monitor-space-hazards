@@ -21,7 +21,7 @@ const ReentryAlertRiskProbabilitiesTable = ({ event }: ReentryAlertExecutiveSumm
       <Table className="text-base">
         <TableHead>
           <TableRow>
-            <TableCellHeader />
+            <TableCellHeader aria-hidden="true" />
             <TableCellHeader>{t('probability')}</TableCellHeader>
             <TableCellHeader>{t('risk')}</TableCellHeader>
           </TableRow>

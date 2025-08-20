@@ -70,6 +70,7 @@ const ConjunctionsDataTable = ({ params, conjunctions, isAnalyst, haveAccessToAl
         fetcher={getConjunctionEventsList}
         queryKeys={[QUERY_KEYS.Conjunctions]}
         emptyLabel={t('Conjunctions.empty_list_info')}
+        focusable
       />
     </>
   );
