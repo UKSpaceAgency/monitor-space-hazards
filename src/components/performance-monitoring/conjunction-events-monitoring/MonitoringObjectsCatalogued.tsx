@@ -11,16 +11,16 @@ const MonitoringObjectsCatalogued = async () => {
   return (
     <div>
       <h3 className="govuk-heading-l">{t('heading')}</h3>
-      <div className="flex justify-between flex-col md:flex-row">
+      <ul className="flex justify-between flex-col md:flex-row">
         {data.map(item => (
-          <div key={item.objectType}>
-            <h4 className="govuk-heading-l govuk-!-margin-bottom-2">
+          <li key={item.objectType}>
+            <p className="govuk-heading-l govuk-!-margin-bottom-2">
               {item.count}
-            </h4>
+            </p>
             <p className="govuk-body">{item.objectType}</p>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
       <Details summary={t('details.title')}>
         {t('details.content')}
       </Details>

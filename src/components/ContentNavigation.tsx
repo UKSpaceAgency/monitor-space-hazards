@@ -1,7 +1,7 @@
 'use client';
 
 import type { MouseEvent } from 'react';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
 type ContentNavigationProps = {
   title?: string;
@@ -35,25 +35,24 @@ const ContentNavigation = ({ title, internalTitle, className }: ContentNavigatio
 
   return (
     <nav aria-label="Content navigation" className={className}>
-      <h3 className="govuk-caption-m">{title || 'Contents'}</h3>
-      <div>
+      <ul>
+        <li><h3 className="govuk-caption-m">{title || 'Contents'}</h3></li>
         {anchors.map((anchor, index) => {
           return (
             // eslint-disable-next-line react/no-array-index-key
-            <div key={index}>
+            <Fragment key={index}>
               {internalTitle?.find(item => item.index === index) && (
-                <h3 className="govuk-caption-m mt-[30px]">{internalTitle?.find(item => item.index === index)?.text}</h3>
+                <li><h3 className="govuk-caption-m mt-[30px]">{internalTitle?.find(item => item.index === index)?.text}</h3></li>
               )}
-              <div className="relative pt-2 px-6">
-                <span className="absolute left-0 w-5">—</span>
+              <li className="relative pt-2 before:content-['—'] before:w-5 before:mr-1">
                 <a className="govuk-link govuk-link--no-underline" href={`#${anchor.anchor}`} onClick={handleClick}>
                   {anchor.text}
                 </a>
-              </div>
-            </div>
+              </li>
+            </Fragment>
           );
         })}
-      </div>
+      </ul>
     </nav>
   );
 };
