@@ -16,6 +16,7 @@ export const reentryEventHistoryColumns: TranslatedColumnDef<TypeTIPOut>[] = [
             <ExpandedButton
               isExpanded={row.getIsExpanded()}
               onClick={row.getToggleExpandedHandler()}
+              aria-expanded={row.getIsExpanded()}
             >
               <span>
                 {`${source} TIP: ID ${externalId}`}
