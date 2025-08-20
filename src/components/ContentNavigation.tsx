@@ -36,13 +36,13 @@ const ContentNavigation = ({ title, internalTitle, className }: ContentNavigatio
   return (
     <nav aria-label="Content navigation" className={className}>
       <ul>
-        <li><h3 className="govuk-caption-m">{title || 'Contents'}</h3></li>
+        <li><h2 className="govuk-caption-m">{title || 'Contents'}</h2></li>
         {anchors.map((anchor, index) => {
           return (
             // eslint-disable-next-line react/no-array-index-key
             <Fragment key={index}>
               {internalTitle?.find(item => item.index === index) && (
-                <li><h3 className="govuk-caption-m mt-[30px]">{internalTitle?.find(item => item.index === index)?.text}</h3></li>
+                <li><h2 className="govuk-caption-m mt-[30px]">{internalTitle?.find(item => item.index === index)?.text}</h2></li>
               )}
               <li className="relative pt-2 before:content-['—'] before:w-5 before:mr-1">
                 <a className="govuk-link govuk-link--no-underline" href={`#${anchor.anchor}`} onClick={handleClick}>

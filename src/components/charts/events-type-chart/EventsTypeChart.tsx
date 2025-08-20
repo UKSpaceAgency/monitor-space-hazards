@@ -26,7 +26,7 @@ export function EventsTypeChart({ data, actionButtons }: EventsTypeChartProps) {
     ],
   };
 
-  return <BasePie data={datasets} actionButtons={actionButtons} legend={{ title: t('event_type') }} />;
+  return <BasePie data={datasets} actionButtons={actionButtons} legend={{ title: t('event_type') }} ariaLabel="Conjunctions events by type" />;
 }
 
 export default EventsTypeChart;

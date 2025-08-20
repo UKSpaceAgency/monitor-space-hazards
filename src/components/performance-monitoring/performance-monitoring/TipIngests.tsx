@@ -29,7 +29,7 @@ const TipIngests = async () => {
 
   return (
     <>
-      <DataPerformanceChart latestIngestDate={latestIngestDate} sourceType="Tracking and Impact Prediction" xAxisTitle={t('x_axis_title')} legend={t('legend')} />
+      <DataPerformanceChart latestIngestDate={latestIngestDate} sourceType="Tracking and Impact Prediction" xAxisTitle={t('x_axis_title')} legend={t('legend')} ariaLabel="Tracking and Impact Prediction" />
       <DataPerformanceDataTable params={params} ariaLabel="Information on TIP ingests" />
       <DownloadData type={t('title')} params={params} downloadAction={getExternalDataPerformance} />
       <Details summary={t('details.title')}>

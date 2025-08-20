@@ -71,6 +71,7 @@ export type BaseChartProps = {
   tickYCallback?: (value: number) => number | string;
   actionButtons?: ReactNode;
   isDay?: boolean;
+  ariaLabel?: string;
 } & InferChartLegendProps;
 
 export function BaseChart({
@@ -86,6 +87,7 @@ export function BaseChart({
   isDay,
   showLegend = true,
   legend,
+  ariaLabel,
 }: BaseChartProps) {
   const chart = useRef<ChartJS>({} as ChartJS);
   const [isMobile] = useInViewport();
@@ -113,6 +115,7 @@ export function BaseChart({
         <ToggleButtons
           dataPdfIgnore
           name={name}
+          ariaLabel={ariaLabel}
           items={[
             {
               title: 'Linear',
@@ -132,7 +135,7 @@ export function BaseChart({
       </div>
       <div className="relative w-auto my-4">
         <Chart
-          aria-label="Base chart"
+          aria-label={`${ariaLabel} Chart`}
           id={id}
           ref={chart}
           type="line"

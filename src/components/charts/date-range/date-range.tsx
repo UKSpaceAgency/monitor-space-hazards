@@ -3,12 +3,13 @@ import { useTranslations } from 'next-intl';
 import type { DataRangeType } from '@/hooks/useDataRange';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
 
-const DateRange = ({ dataRange, handleDataRangeChange }: { dataRange: DataRangeType; handleDataRangeChange: (dataRange: DataRangeType) => void }) => {
+const DateRange = ({ dataRange, handleDataRangeChange, ariaLabel }: { dataRange: DataRangeType; ariaLabel?: string; handleDataRangeChange: (dataRange: DataRangeType) => void }) => {
   const t = useTranslations('Charts.Actions');
 
   return (
     <ToggleButtons
       name="notifications-send-days"
+      ariaLabel={ariaLabel}
       items={[
         {
           title: t('7_days'),

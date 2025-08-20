@@ -73,6 +73,7 @@ export function EventsByOrganizationChart({
       yAxisTitle={t('y_axis')}
       title={title}
       data={datasets}
+      ariaLabel="Conjunction events by organisation"
       actionButtons={actionButtons}
       showTotal={!isSingle}
       showLegend={!isSingle}
