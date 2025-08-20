@@ -44,7 +44,7 @@ const ContentNavigation = ({ title, internalTitle, className }: ContentNavigatio
               {internalTitle?.find(item => item.index === index) && (
                 <h3 className="govuk-caption-m mt-[30px]">{internalTitle?.find(item => item.index === index)?.text}</h3>
               )}
-              <div className="relative pt-2 px-6">
+              <div className="relative pt-2 before:content-['—'] before:w-5 before:mr-1">
                 <a className="govuk-link govuk-link--no-underline" href={`#${anchor.anchor}`} onClick={handleClick}>
                   {anchor.text}
                 </a>
