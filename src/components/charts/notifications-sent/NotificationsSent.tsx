@@ -22,7 +22,7 @@ export function NotificationsSentChart({
 }: NotificationsSentChartProps) {
   const t = useTranslations('Charts.Notifications_sent');
 
-  const actionButtons = <DateRange dataRange={dataRange} handleDataRangeChange={handleDataRangeChange} />;
+  const actionButtons = <DateRange dataRange={dataRange} handleDataRangeChange={handleDataRangeChange} ariaLabel="Notifications sent" />;
 
   const datasets = {
     labels: data.map(({ date }) => date),
@@ -58,6 +58,7 @@ export function NotificationsSentChart({
         yAxisTitle={t('number_of_notifications')}
         xAxisTitle={t('date')}
         isDay
+        ariaLabel="Notifications sent"
         legend={{ title: t('notification_type') }}
       />
     </div>

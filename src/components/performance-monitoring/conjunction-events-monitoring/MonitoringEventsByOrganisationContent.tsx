@@ -106,6 +106,7 @@ const MonitoringEventsByOrganisationContent = ({ isAnalysist }: PerformanceMonit
   const actionButtons = (
     <ToggleButtons
       name="events-by-organization-days"
+      ariaLabel="Conjunction events by organisation"
       items={[
         {
           title: t('upcoming_events'),

@@ -13,15 +13,17 @@ type MonthlyAnalysesProps = {
   yAxisTitle?: string;
   stacked?: boolean;
   legend?: string;
+  ariaLabel?: string;
 };
 
-const MonthlyBarChart = ({ data, yAxisTitle, stacked = false, legend }: MonthlyAnalysesProps) => {
+const MonthlyBarChart = ({ data, yAxisTitle, stacked = false, legend, ariaLabel }: MonthlyAnalysesProps) => {
   const t = useTranslations('Charts.Actions');
   const [showMonths, setShowMonths] = useState(12);
 
   const actionButtons = (
     <ToggleButtons
       name="organisations-and-users-data-range"
+      ariaLabel={ariaLabel}
       items={[
         {
           title: t('12_months'),
@@ -57,6 +59,7 @@ const MonthlyBarChart = ({ data, yAxisTitle, stacked = false, legend }: MonthlyA
       data={datasets}
       stacked={stacked}
       showLegend
+      ariaLabel={ariaLabel}
       legend={{
         title: legend,
       }}

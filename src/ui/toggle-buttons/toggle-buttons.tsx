@@ -14,6 +14,7 @@ export type ToggleButtonsProps = {
   setActive: SetStateAction<any>;
   title?: string;
   dataPdfIgnore?: true;
+  ariaLabel?: string;
 };
 
 export function ToggleButtons({
@@ -23,13 +24,17 @@ export function ToggleButtons({
   active,
   setActive,
   dataPdfIgnore,
+  ariaLabel,
 }: ToggleButtonsProps) {
   return (
-    <div className={styles.root} data-pdf-ignore={dataPdfIgnore}>
+    <fieldset className={styles.root} data-pdf-ignore={dataPdfIgnore}>
       {title && (
-        <h4 className={`govuk-heading-s govuk-!-margin-bottom-1 govuk-!-margin-right-4 ${styles.heading}`}>
+        <label
+          className={`govuk-heading-s govuk-!-margin-bottom-1 govuk-!-margin-right-4 ${styles.heading}`}
+          aria-label={`${ariaLabel} ${title}`}
+        >
           {title}
-        </h4>
+        </label>
       )}
       <Radios
         className={styles['button-group']}
@@ -43,7 +48,7 @@ export function ToggleButtons({
           checked: active === value,
         }))}
       />
-    </div>
+    </fieldset>
   );
 }
 

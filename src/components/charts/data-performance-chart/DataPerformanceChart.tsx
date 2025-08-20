@@ -18,9 +18,10 @@ type DataPerformanceChartProps = {
   sourceType: TypeExternalDataType;
   xAxisTitle: string;
   legend: string;
+  ariaLabel?: string;
 };
 
-const DataPerformanceChart = ({ latestIngestDate, sourceType, xAxisTitle, legend }: DataPerformanceChartProps) => {
+const DataPerformanceChart = ({ latestIngestDate, sourceType, xAxisTitle, legend, ariaLabel }: DataPerformanceChartProps) => {
   const t = useTranslations('Charts.Ingests');
 
   const params: TypeGetExternalDataPerformanceAggregatedParams = {
@@ -75,6 +76,7 @@ const DataPerformanceChart = ({ latestIngestDate, sourceType, xAxisTitle, legend
   const actionButtons = (
     <ToggleButtons
       name={`${camelCase(sourceType)}-ingests-days`}
+      ariaLabel={ariaLabel}
       items={[
         {
           title: '7d',
@@ -112,6 +114,7 @@ const DataPerformanceChart = ({ latestIngestDate, sourceType, xAxisTitle, legend
         yAxisTitle={xAxisTitle}
         actionButtons={actionButtons}
         legend={{ title: legend }}
+        ariaLabel={ariaLabel}
         isDay
       />
     </div>

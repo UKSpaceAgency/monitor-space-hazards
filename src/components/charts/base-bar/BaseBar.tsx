@@ -37,6 +37,7 @@ export type BaseBarProps = {
   showTotal?: boolean;
   title?: React.ReactNode;
   stacked?: boolean;
+  ariaLabel?: string;
 } & InferChartLegendProps;
 
 export function BaseBar({
@@ -49,6 +50,7 @@ export function BaseBar({
   stacked = true,
   showLegend = false,
   legend,
+  ariaLabel,
 }: BaseBarProps) {
   const chart = useRef<ChartJS<'bar'>>({} as ChartJS<'bar'>);
   const [isMobile] = useInViewport();
@@ -66,7 +68,7 @@ export function BaseBar({
       {title}
       <div className="relative w-full">
         <Bar
-          aria-label="Bar chart"
+          aria-label={`${ariaLabel} Bar chart`}
           id={id}
           ref={chart}
           data={data}

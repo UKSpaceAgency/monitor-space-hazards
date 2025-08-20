@@ -18,6 +18,7 @@ const MonitoringEventsByProbabilityOfCollisionContent = () => {
   const actionButtons = (
     <ToggleButtons
       name="organisations-and-users-data-range"
+      ariaLabel="Conjunction events by probability of collision"
       items={[
         {
           title: t('12_months'),

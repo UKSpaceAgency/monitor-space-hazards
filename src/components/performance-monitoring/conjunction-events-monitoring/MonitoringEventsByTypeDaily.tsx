@@ -78,6 +78,7 @@ const MonitoringEventsByTypeDaily = () => {
   const actionButtons = (
     <ToggleButtons
       name="events-type-days"
+      ariaLabel="Conjunctions events by type"
       items={[
         {
           title: t('upcoming_events'),

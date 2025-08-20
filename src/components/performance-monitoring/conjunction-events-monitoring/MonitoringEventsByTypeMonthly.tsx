@@ -46,6 +46,7 @@ const MonitoringEventsByTypeMonthly = async () => {
       <MonthlyBarChart
         data={datasets}
         stacked
+        ariaLabel="Conjunction events by type monthly"
         yAxisTitle={t('y_axis_title')}
         legend={t('legend_title')}
       />

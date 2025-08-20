@@ -25,7 +25,7 @@ const AnalysisAndManoeuvreSupportChart = ({
 }: AnalysisAndManoeuvreSupportChartProps) => {
   const t = useTranslations('Charts.Analysis_and_manoeuvre_support');
 
-  const actionButtons = <DateRange dataRange={dataRange} handleDataRangeChange={handleDataRangeChange} />;
+  const actionButtons = <DateRange dataRange={dataRange} handleDataRangeChange={handleDataRangeChange} ariaLabel="NSpOC conjunction event analysis and manoeuvre support" />;
 
   const datasets = useMemo(
     () => ({
@@ -64,6 +64,7 @@ const AnalysisAndManoeuvreSupportChart = ({
         data={datasets}
         actionButtons={actionButtons}
         isDay
+        ariaLabel="NSpOC conjunction event analysis and manoeuvre support"
         legend={{ title: t('file_type') }}
         yAxisTitle={t('number_received')}
       />

@@ -46,10 +46,7 @@ export function CookieBanner(props: CookieBannerProps) {
               <div className="govuk-grid-column-two-thirds">
                 {heading && (
                   <h2
-                    className={clsx(
-                      'govuk-cookie-banner__heading',
-                      'govuk-heading-m',
-                    )}
+                    className="govuk-heading-m"
                   >
                     {heading}
                   </h2>

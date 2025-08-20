@@ -32,6 +32,7 @@ defaults.plugins.tooltip.footerColor = chartPalette.black;
 export type BasePieProps = {
   data: ChartData<'pie'>;
   actionButtons?: ReactNode;
+  ariaLabel?: string;
 } & InferChartLegendProps;
 
 export function BasePie({
@@ -39,6 +40,7 @@ export function BasePie({
   actionButtons,
   showLegend = true,
   legend,
+  ariaLabel,
 }: BasePieProps) {
   const chart = useRef<ChartJS<'pie'>>({} as ChartJS<'pie'>);
   const [isMobile] = useInViewport();
@@ -56,7 +58,7 @@ export function BasePie({
       <div className="relative mx-0 my-auto">
         <Pie
           ref={chart}
-          aria-label="Pie chart"
+          aria-label={`${ariaLabel} Pie chart`}
           data={data}
           options={{
             responsive: true,
