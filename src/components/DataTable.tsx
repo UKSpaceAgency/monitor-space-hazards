@@ -112,13 +112,13 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText,
                     <span className="absolute top-0 right-0 h-full flex items-center">
                       {{
                         clear: (
-                          <span className="flex flex-col text-xxs" aria-hidden>
+                          <span className="flex flex-col text-xxs" aria-hidden="true">
                             <span>▲</span>
                             <span>▼</span>
                           </span>
                         ),
-                        asc: <span className="text-xs" aria-hidden>▲</span>,
-                        desc: <span className="text-xs" aria-hidden>▼</span>,
+                        asc: <span className="text-xs" aria-hidden="true">▲</span>,
+                        desc: <span className="text-xs" aria-hidden="true">▼</span>,
                       }[header.column.getIsSorted() as string || 'clear']}
                     </span>
                   </button>
