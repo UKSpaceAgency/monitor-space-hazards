@@ -121,6 +121,7 @@ const MonitoringEventsByTypeDaily = () => {
         <DataTable
           columns={eventsByTypeDailyColumns}
           data={data}
+          ariaLabel="Information on Events by type Daily"
         />
       </Scrollable>
     </div>

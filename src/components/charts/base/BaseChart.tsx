@@ -116,10 +116,12 @@ export function BaseChart({
           items={[
             {
               title: 'Linear',
+              ariaLabel: 'Linear',
               value: 'linear',
             },
             {
               title: 'Log',
+              ariaLabel: 'Log',
               value: 'logarithmic',
             },
           ]}

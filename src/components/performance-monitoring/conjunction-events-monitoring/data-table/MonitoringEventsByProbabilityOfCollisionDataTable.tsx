@@ -14,6 +14,7 @@ const MonitoringEventsByProbabilityOfCollisionDataTable = ({ data }: MonitoringE
     <DataTable
       columns={eventsByProbabilityOfCollisionColumns}
       data={[...data].reverse()}
+      ariaLabel="Information on Events by probability of collision"
     />
   );
 };
