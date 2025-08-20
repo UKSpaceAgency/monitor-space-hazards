@@ -15,6 +15,7 @@ const MonitoringOrganisationsAndUsersMonthly = ({ data }: { data: StatsMonthlyOr
         <DataTable
           columns={usersAndOrganisationsColumns}
           data={data}
+          ariaLabel="Information on Organisations and Users"
         />
       </Scrollable>
     </>

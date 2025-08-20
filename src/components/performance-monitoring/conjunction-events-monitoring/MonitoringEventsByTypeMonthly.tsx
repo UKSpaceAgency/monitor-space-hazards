@@ -53,6 +53,7 @@ const MonitoringEventsByTypeMonthly = async () => {
         <DataTable
           columns={eventsByTypeMonthlyColumns}
           data={data.reverse()}
+          ariaLabel="Information on Events by type Monthly"
         />
       </Scrollable>
     </>

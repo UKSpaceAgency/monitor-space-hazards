@@ -36,10 +36,11 @@ export type DataTableProps<T extends RowData> = {
   largerText?: true;
   focusable?: true;
   emptyLabel?: string;
+  ariaLabel?: string;
   manualSorting?: boolean;
 };
 
-const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText, sorting, emptyLabel = 'No data', focusable, manualSorting = true, onSortingChange, renderSubComponent }: DataTableProps<T>) => {
+const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText, sorting, emptyLabel = 'No data', focusable, ariaLabel, manualSorting = true, onSortingChange, renderSubComponent }: DataTableProps<T>) => {
   const t = useTranslations('Tables');
 
   const translatedColumns = useMemo(() => {
@@ -141,7 +142,7 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText,
   }
 
   return (
-    <Table className={`${largerText ? 'govuk-table' : 'govuk-!-font-size-16'}`} data-type="data" tabIndex={focusable ? 0 : undefined}>
+    <Table className={`${largerText ? 'govuk-table' : 'govuk-!-font-size-16'}`} data-type="data" aria-label={ariaLabel} tabIndex={focusable ? 0 : undefined}>
       <TableHead className={clsx({
         'sticky top-0 bg-white': stickyHeader,
       })}

@@ -37,6 +37,7 @@ const UksaAnalysesMonthly = async () => {
         <DataTable
           columns={uksaAnalysesMonthlyColumns}
           data={data.reverse()}
+          ariaLabel="Information on Uksa analyses Monthly"
         />
       </Scrollable>
     </>

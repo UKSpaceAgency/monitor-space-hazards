@@ -76,6 +76,7 @@ const MonitoringEventsBySatelliteDataTable = ({ isAnalysist }: MonitoringEventsB
         <DataTable
           columns={eventsBySatelliteColumns}
           data={tableData}
+          ariaLabel="Information on Events by satellite"
         />
       </Scrollable>
       <DownloadData type={t('this_table')} params={{}} downloadAction={getStatsEventsBySatellite} />
