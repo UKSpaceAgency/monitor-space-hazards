@@ -1,7 +1,7 @@
 'use client';
 
 import type { MouseEvent } from 'react';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
 type ContentNavigationProps = {
   title?: string;
@@ -40,16 +40,16 @@ const ContentNavigation = ({ title, internalTitle, className }: ContentNavigatio
         {anchors.map((anchor, index) => {
           return (
             // eslint-disable-next-line react/no-array-index-key
-            <li key={index}>
+            <Fragment key={index}>
               {internalTitle?.find(item => item.index === index) && (
-                <h3 className="govuk-caption-m mt-[30px]">{internalTitle?.find(item => item.index === index)?.text}</h3>
+                <li><h3 className="govuk-caption-m mt-[30px]">{internalTitle?.find(item => item.index === index)?.text}</h3></li>
               )}
-              <div className="relative pt-2 before:content-['—'] before:w-5 before:mr-1">
+              <li className="relative pt-2 before:content-['—'] before:w-5 before:mr-1">
                 <a className="govuk-link govuk-link--no-underline" href={`#${anchor.anchor}`} onClick={handleClick}>
                   {anchor.text}
                 </a>
-              </div>
-            </li>
+              </li>
+            </Fragment>
           );
         })}
       </ul>
