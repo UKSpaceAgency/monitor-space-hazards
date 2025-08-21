@@ -17,7 +17,7 @@ export type RadiosProps = {
   legendClass?: string;
   value?: string;
   name?: string;
-  hint?: ReactNode;
+  hint?: string;
   error?: string;
   inline?: true;
   small?: true;
@@ -26,6 +26,7 @@ export type RadiosProps = {
 export function Radios({ items, legend, value, hint, error, inline, small, legendClass, className, onChange }: RadiosProps) {
   return (
     <fieldset
+      aria-describedby={hint}
       className={clsx(
         'govuk-form-group',
         { 'govuk-form-group--error': !!error },
@@ -33,7 +34,7 @@ export function Radios({ items, legend, value, hint, error, inline, small, legen
       )}
     >
       {legend && <legend className={clsx('govuk-fieldset__legend govuk-fieldset__legend--s', legendClass)}><b>{legend}</b></legend>}
-      {hint && <Hint>{hint}</Hint>}
+      {hint && <Hint id={hint}>{hint}</Hint>}
       {error && <ErrorMessage>{error}</ErrorMessage>}
       <div
         className={clsx('govuk-radios', {
