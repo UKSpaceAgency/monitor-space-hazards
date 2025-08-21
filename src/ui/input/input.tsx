@@ -43,6 +43,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((
             'govuk-input--error': !!error,
           })}
           id={props.id ?? id}
+          aria-describedby={props.id ?? id}
           name={name}
           ref={ref}
         />
