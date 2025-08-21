@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 import Button from '@/ui/button/button';
@@ -13,7 +12,7 @@ const ConjunctionAlertNextUpdate = ({ shortId }: ConjunctionAlertNextUpdateProps
     <div>
       <h3 className="govuk-heading-m">{t('title')}</h3>
       <p className="govuk-body">{t('content')}</p>
-      <Link href={`/contact-analyst?id=${shortId}&callback=/conjunction/${shortId}/alert`}><Button>{t('contact_analyst')}</Button></Link>
+      <Button as="link" aria-label={t('contact_analyst')} href={`/contact-analyst?id=${shortId}&callback=/conjunction/${shortId}/alert`}>{t('contact_analyst')}</Button>
     </div>
   );
 };

@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 import type { TypeEphemerisOut } from '@/__generated__/data-contracts';
@@ -17,9 +16,7 @@ const SatelliteEphemerisData = ({ noradId, ephemerises, showButtons }: Satellite
   return (
     <div className="mb-12">
       {showButtons && (
-        <Link href={`/satellites/${noradId}/ephemeris-upload`}>
-          <Button>{t('upload_button')}</Button>
-        </Link>
+        <Button as="link" href={`/satellites/${noradId}/ephemeris-upload`}>{t('upload_button')}</Button>
       )}
       {ephemerises.length
         ? (

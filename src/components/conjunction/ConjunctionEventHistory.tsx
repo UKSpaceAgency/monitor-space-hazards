@@ -29,7 +29,7 @@ const ConjunctionEventHistory = async ({ events, shortId }: ConjunctionEventHist
   return (
     <>
       <ConjunctionEventHistoryTable events={events} dataSources={dataSources} dataPdf={t('title')} />
-      <DownloadData type={t('download')} params={{}} downloadAction={handleDownloadData} />
+      <DownloadData type={t('download')} params={{}} downloadAction={handleDownloadData} ariaLabel="Conjunction event history" />
       <Details summary={t('help.title')}>
         {t.rich('help.content', {
           link: chunks => <Link href="/page/definitions#data_sources" className="govuk-link">{chunks}</Link>,

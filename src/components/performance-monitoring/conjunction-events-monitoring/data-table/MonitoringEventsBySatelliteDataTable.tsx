@@ -79,7 +79,7 @@ const MonitoringEventsBySatelliteDataTable = ({ isAnalysist }: MonitoringEventsB
           ariaLabel="Information on Events by satellite"
         />
       </Scrollable>
-      <DownloadData type={t('this_table')} params={{}} downloadAction={getStatsEventsBySatellite} />
+      <DownloadData type={t('this_table')} params={{}} downloadAction={getStatsEventsBySatellite} ariaLabel="Conjunction events by satellite" />
     </>
   );
 };

@@ -1,5 +1,4 @@
 'use client';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useCallback, useState } from 'react';
@@ -39,12 +38,14 @@ const OrganisationUserAccountDetails = ({ user }: OrganisationUserAccountDetails
             <Button
               className="govuk-button--warning"
               onClick={confirmDelete}
+              aria-label="Delete user confirmation button"
             >
               {t('yes_delete')}
             </Button>
             <Button
               className="govuk-button--secondary"
               onClick={() => setConfirmMessage(false)}
+              aria-label="Delete user cancellation button"
             >
               {t('cancel')}
             </Button>
@@ -59,23 +60,17 @@ const OrganisationUserAccountDetails = ({ user }: OrganisationUserAccountDetails
           {t('delete_user')}
         </Button>
         {(isAgencyUser(user.role) || isGovUser(user.role)) && (
-          <Link
-            href={`/account/alert-settings/${user.id}`}
-          >
-            <Button>
-              {t('edit_alert_settings')}
-            </Button>
-          </Link>
-        )}
-        <Link
-          href={`/account/organisations/${user.organizationId}`}
-        >
-          <Button
-            className="govuk-button--secondary"
-          >
-            {t('return', { to: 'user accounts' })}
+          <Button as="link" href={`/account/alert-settings/${user.id}`}>
+            {t('edit_alert_settings')}
           </Button>
-        </Link>
+        )}
+        <Button
+          as="link"
+          href={`/account/organisations/${user.organizationId}`}
+          className="govuk-button--secondary"
+        >
+          {t('return', { to: 'user accounts' })}
+        </Button>
       </ButtonGroup>
     </div>
   );

@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import type { FieldPath, SubmitHandler } from 'react-hook-form';
@@ -80,21 +79,13 @@ const AddNewUserForm = ({ defaultValues, organizations, role }: AddNewUserFormPr
             <ButtonGroup>
               {(isGovUser(createdUser.role) || isAgencyUser(createdUser.role))
               && (
-                <Link
-                  href={`/account/alert-settings/${createdUser?.user_id}`}
-                >
-                  <Button>
-                    {t('success_message_edit_settings_button')}
-                  </Button>
-                </Link>
-              )}
-              <Link
-                href={`/account/organisations/${createdUser?.organization_id}`}
-              >
-                <Button className="govuk-button--secondary">
-                  {t('success_message_return_button')}
+                <Button as="link" href={`/account/alert-settings/${createdUser?.user_id}`}>
+                  {t('success_message_edit_settings_button')}
                 </Button>
-              </Link>
+              )}
+              <Button as="link" href={`/account/organisations/${createdUser?.organization_id}`} className="govuk-button--secondary">
+                {t('success_message_return_button')}
+              </Button>
             </ButtonGroup>
           </div>
         </TopNotificationBanner>

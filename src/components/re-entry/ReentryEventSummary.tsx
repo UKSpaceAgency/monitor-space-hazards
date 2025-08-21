@@ -27,7 +27,7 @@ const ReentryEventSummary = async ({ event, object, shortId }: ReentryEventSumma
         <Link href={`/satellites/${event.noradId}`} className="govuk-link">{object.commonName}</Link>
       </p>
       {data[0] && <ReentryEventSummaryTable tip={data[0]} />}
-      <Link href={`/contact-analyst?id=${shortId}&callback=/re-entries/${shortId}`}><Button>{t('contact_analyst')}</Button></Link>
+      <Button as="link" href={`/contact-analyst?id=${shortId}&callback=/re-entries/${shortId}`}>{t('contact_analyst')}</Button>
     </div>
   );
 };

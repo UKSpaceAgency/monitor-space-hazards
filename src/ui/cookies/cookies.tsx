@@ -40,12 +40,14 @@ export function Cookies() {
             {
               actions: [
                 {
-                  children: 'Yes, I\'m OK with analytics cookies',
-                  onClick: () => setCookieConsent('granted'),
+                  'children': 'Yes, I\'m OK with analytics cookies',
+                  'onClick': () => setCookieConsent('granted'),
+                  'aria-label': 'Yes, I\'m OK with analytics cookie',
                 },
                 {
-                  children: 'No, do not use analytics cookies',
-                  onClick: () => setCookieConsent('denied'),
+                  'children': 'No, do not use analytics cookies',
+                  'onClick': () => setCookieConsent('denied'),
+                  'aria-label': 'No, do not use analytics cookies',
                 },
               ],
               children: [
@@ -70,8 +72,9 @@ export function Cookies() {
             {
               actions: [
                 {
-                  children: 'Hide this message',
-                  onClick: closeConsentForm,
+                  'children': 'Hide this message',
+                  'onClick': closeConsentForm,
+                  'aria-label': 'Hide this message',
                 },
               ],
               children:
@@ -82,8 +85,9 @@ export function Cookies() {
             {
               actions: [
                 {
-                  children: 'Hide this message',
-                  onClick: closeConsentForm,
+                  'children': 'Hide this message',
+                  'onClick': closeConsentForm,
+                  'aria-label': 'Hide this message',
                 },
               ],
               children:
