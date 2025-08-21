@@ -63,7 +63,7 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
     help: (
       <div>
         <p>{tForm('hint_replace')}</p>
-        <p>{event.immediateImpactAddition}</p>
+        <p>{event.immediateImpactAddition ?? tForm('hint_empty')}</p>
       </div>
     ),
   }, {
@@ -74,7 +74,7 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
     help: (
       <div>
         <p>{tForm('hint_replace')}</p>
-        <p>{event.shortTermImpactAddition}</p>
+        <p>{event.shortTermImpactAddition ?? tForm('hint_empty')}</p>
       </div>
     ),
   }, {
@@ -85,7 +85,7 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
     help: (
       <div>
         <p>{tForm('hint_replace')}</p>
-        <p>{event.longTermImpactAddition}</p>
+        <p>{event.longTermImpactAddition ?? tForm('hint_empty')}</p>
       </div>
     ),
   }, {

@@ -1573,6 +1573,7 @@
       "add_to": "Add to `{name}`",
       "hint": "This text will appear below the paragraphs which read:",
       "hint_replace": "Editing this will replace the following text:",
+      "hint_empty": "No text",
       "press_attention_hint": "<p>Include details of any press attention related to this event. Leave blank if there has been no press attention.</p>",
       "closed_comment_hint": "This text will appear alongside the 'Closed' label in emails.",
       "clear": "Clear `{name}` text box",
