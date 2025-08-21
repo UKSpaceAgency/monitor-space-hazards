@@ -34,7 +34,7 @@ const SatelliteConjunctionsDataTable = async ({ params, initialData }: Satellite
         queryKeys={[QUERY_KEYS.Conjunctions]}
         initialSort={initialSort}
       />
-      <DownloadData type={t('Download.types.satellite_events', { epoch: params.epoch === 'future' ? 'upcoming' : 'previous' })} params={params} downloadAction={getConjunctions} />
+      <DownloadData type={t('Download.types.satellite_events', { epoch: params.epoch === 'future' ? 'upcoming' : 'previous' })} params={params} downloadAction={getConjunctions} ariaLabel="Satellite conjunctions" />
     </>
   );
 };

@@ -21,14 +21,14 @@ const MonitoringEventsByType = async () => {
     <>
       <h3 className="govuk-heading-s">{t('daily_title')}</h3>
       <MonitoringEventsByTypeDaily />
-      <DownloadData type={t('daily_title')} params={params} downloadAction={getStatsEventsType} />
-      <Details summary={t('daily_details.title')}>
+      <DownloadData type={t('daily_title')} params={params} downloadAction={getStatsEventsType} ariaLabel="Daily Conjunction events by type" />
+      <Details summary={t('daily_details.title')} aria-label="Daily Conjunction events by type details">
         {t('daily_details.content')}
       </Details>
       <h3 className="govuk-heading-s">{t('monthly_title')}</h3>
       <MonitoringEventsByTypeMonthly />
-      <DownloadData type={t('monthly_title')} params={{}} downloadAction={getStatsMonthlyConjunctionEventsByObjectType} />
-      <Details summary={t('monthly_details.title')}>
+      <DownloadData type={t('monthly_title')} params={{}} downloadAction={getStatsMonthlyConjunctionEventsByObjectType} ariaLabel="Monthly Conjunction events by type" />
+      <Details summary={t('monthly_details.title')} aria-label="Monthly Conjunction events by type details">
         {t('monthly_details.content')}
       </Details>
     </>

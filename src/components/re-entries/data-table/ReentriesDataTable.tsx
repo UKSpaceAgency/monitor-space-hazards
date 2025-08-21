@@ -39,7 +39,7 @@ const ReentriesDataTable = ({ initialData, params, haveAccessToAlerts }: Reentri
         emptyLabel={t('Reentries.table.empty_list_info')}
         focusable
       />
-      <DownloadData type={t('Download.types.reentry_events')} params={params} downloadAction={getReentryEvents} />
+      <DownloadData type={t('Download.types.reentry_events')} params={params} downloadAction={getReentryEvents} ariaLabel="Reentries events" />
     </>
   );
 };

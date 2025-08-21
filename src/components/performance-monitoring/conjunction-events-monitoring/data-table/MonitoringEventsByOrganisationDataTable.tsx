@@ -24,7 +24,7 @@ const MonitoringEventsByOrganisationDataTable = ({ data, params }: MonitoringEve
         data={data}
         ariaLabel="Information on Conjunction Events by organisation"
       />
-      <DownloadData type={t('this_table')} params={params} downloadAction={getStatsEventsByOrganization} />
+      <DownloadData type={t('this_table')} params={params} downloadAction={getStatsEventsByOrganization} ariaLabel="Conjunction events by organisation" />
     </>
   );
 };

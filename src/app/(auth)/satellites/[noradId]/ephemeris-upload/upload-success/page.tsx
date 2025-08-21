@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
@@ -29,9 +28,7 @@ export default async function EphemerisUploadSuccess({
   return (
     <div>
       <Panel heading={t('title')}>{t('content', { noradId })}</Panel>
-      <Link href={`/satellites/${noradId}`}>
-        <Button>{tCommon('return', { to: 'Satellite' })}</Button>
-      </Link>
+      <Button as="link" href={`/satellites/${noradId}`}>{tCommon('return', { to: 'Satellite' })}</Button>
     </div>
   );
 }

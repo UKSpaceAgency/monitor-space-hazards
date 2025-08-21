@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
@@ -53,18 +52,18 @@ export default async function OrganisationPage({
         <OrganisationUsers organisationId={organisation.id as string} />
       </Suspense>
       <ButtonGroup>
-        <Link href={{
-          pathname: '/account/add-new-user',
-          query: {
-            organization_id: organisation.id,
-          },
-        }}
+        <Button
+          as="link"
+          href={{
+            pathname: '/account/add-new-user',
+            query: {
+              organization_id: organisation.id,
+            },
+          }}
         >
-          <Button>{t('add_new_user')}</Button>
-        </Link>
-        <Link href={isGovAdmin ? '/account' : '/account/organisations'}>
-          <Button variant="secondary">{tCommon('return', { to: isGovAdmin ? 'account page' : 'organisations page' })}</Button>
-        </Link>
+          {t('add_new_user')}
+        </Button>
+        <Button as="link" href={isGovAdmin ? '/account' : '/account/organisations'} variant="secondary">{tCommon('return', { to: isGovAdmin ? 'account page' : 'organisations page' })}</Button>
       </ButtonGroup>
     </div>
   );

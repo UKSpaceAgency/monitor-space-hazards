@@ -1,6 +1,5 @@
 'use client';
 import dynamic from 'next/dynamic';
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 import Button from '@/ui/button/button';
@@ -19,14 +18,10 @@ const ConjunctionButtons = ({ title }: ConjunctionButtonsProps) => {
 
   return (
     <ButtonGroup>
-      <PdfDownloadButton title={title} />
-      <Link
-        href="/conjunctions"
-      >
-        <Button className="govuk-button--secondary">
-          {tCommon('return', { to: 'track conjunction events' })}
-        </Button>
-      </Link>
+      <PdfDownloadButton title={title} ariaLabel="Conjunctions Pdf download" />
+      <Button as="link" href="/conjunctions" className="govuk-button--secondary">
+        {tCommon('return', { to: 'track conjunction events' })}
+      </Button>
     </ButtonGroup>
   );
 };

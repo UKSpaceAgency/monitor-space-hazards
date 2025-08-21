@@ -28,7 +28,7 @@ const ReentryAlertHistoryDataTable = async ({ shortId, reports, dataPdf }: Reent
           data={reports ?? []}
         />
       </div>
-      <DownloadData type={t('Download.types.reentry_reports')} params={params} downloadAction={getReentryReports} data-pdf-ignore />
+      <DownloadData type={t('Download.types.reentry_reports')} params={params} downloadAction={getReentryReports} data-pdf-ignore ariaLabel="Reentry alert history" />
     </div>
 
   );

@@ -105,10 +105,10 @@ const ManoeuvreDataTable = ({ data, params }: ManoeuvreDataTableProps) => {
       {fileToDelete && !isFileDeleted && (
         <TopNotificationBanner status="error" heading={tCommon('are_you_sure_you_want_to_delete_json', { fileToDelete })}>
           <div className="govuk-button-group">
-            <Button className="govuk-button--warning" onClick={confirmDelete}>
+            <Button className="govuk-button--warning" onClick={confirmDelete} aria-label="File deletion confirmation button">
               {tCommon('yes_delete')}
             </Button>
-            <Button className="govuk-button--secondary" onClick={cancel}>
+            <Button className="govuk-button--secondary" onClick={cancel} aria-label="File deletion cancellation button">
               {tCommon('cancel')}
             </Button>
           </div>

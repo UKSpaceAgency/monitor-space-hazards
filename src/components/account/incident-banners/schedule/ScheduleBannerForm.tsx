@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
@@ -50,9 +49,7 @@ const ScheduleBannerForm = ({ templates }: ScheduleBannerFormProps) => {
         <Button type="submit">
           {t('confirm')}
         </Button>
-        <Link href="/account">
-          <Button variant="secondary">{tCommon('return', { to: 'account page' })}</Button>
-        </Link>
+        <Button as="link" href="/account" variant="secondary">{tCommon('return', { to: 'account page' })}</Button>
       </ButtonGroup>
     </form>
   );

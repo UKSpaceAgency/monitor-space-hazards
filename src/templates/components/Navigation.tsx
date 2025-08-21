@@ -37,7 +37,7 @@ export const Navigation = () => {
           data-label-for-hide="Hide service navigation menu"
           data-text-for-show="Menu"
           data-text-for-hide="Close"
-          aria-expanded="false"
+          aria-expanded={open}
           type="button"
           className="flex md:hidden items-center font-bold text-m text-blue py-2"
           onClick={() => setOpen(open => !open)}
@@ -73,14 +73,14 @@ export const Navigation = () => {
                     'pl-4': isActive,
                   })}
                 >
-                  <Link href={`/${key}`} className="block font-bold md:text-lg text-blue hover:text-lightBlue md:py-4">{t(`navigation.${key}`)}</Link>
+                  <Link href={`/${key}`} className="block font-bold md:text-lg text-blue hover:text-darkBlue md:py-4">{t(`navigation.${key}`)}</Link>
                 </li>
               );
             })}
             <li
               className="my-5 md:pl-0 md:my-0 md:mr-5 border-l-4 border-l-transparent md:border-l-0 md:border-b-4 md:border-transparent"
             >
-              <button type="button" className="block font-bold md:text-lg text-blue hover:text-lightBlue md:py-4" onClick={() => signOut({ redirectTo: '/api/auth/logout' })}>{t('sign_out')}</button>
+              <button type="button" className="block font-bold md:text-lg text-blue hover:text-darkBlue md:py-4" onClick={() => signOut({ redirectTo: '/api/auth/logout' })}>{t('sign_out')}</button>
             </li>
           </ul>
         </div>
