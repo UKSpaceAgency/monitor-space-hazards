@@ -65,6 +65,7 @@ export type BaseScatterProps = {
   tooltipConfig: TooltipOptions;
   showGrid?: boolean;
   min?: string;
+  ariaLabel?: string;
 } & InferChartLegendProps;
 
 export function BaseScatter({
@@ -79,6 +80,7 @@ export function BaseScatter({
   showLegend = true,
   legend,
   min,
+  ariaLabel,
 }: BaseScatterProps) {
   const chart = useRef<ChartJS>({} as ChartJS);
   const [isMobile] = useInViewport();
@@ -207,6 +209,7 @@ export function BaseScatter({
           chartRef={chart}
           items={legendItems}
           interactive={false}
+          ariaLabel={ariaLabel}
           {...legend}
         />
       )}

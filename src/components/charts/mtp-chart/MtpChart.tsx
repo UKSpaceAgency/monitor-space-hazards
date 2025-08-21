@@ -120,6 +120,7 @@ export function MtpChart({
             <ToggleButtons
               name="mtp-source-toggle"
               title={t('chart.buttons.title')}
+              ariaLabel="Mtp Chart"
               items={[
                 {
                   title: t('chart.buttons.space-track'),
@@ -151,6 +152,7 @@ export function MtpChart({
             referenceLineTitle={t('chart.tca')}
             legend={{ title: t('chart.legend_title') }}
             min={keys[keys.length - 1]}
+            ariaLabel="Mtp Chart"
           />
         </div>
         <DownloadData type={t('download')} params={{}} downloadAction={async () => data} data-pdf-ignore />
