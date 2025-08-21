@@ -4,7 +4,6 @@ import { type ChangeEvent, Fragment } from 'react';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import Checkbox from '@/ui/checkbox/checkbox';
 import Details from '@/ui/details/details';
-import Label from '@/ui/label/label';
 
 import type { OverflightType } from './utils';
 import { FlightpathColor, OverflightColors } from './utils';
@@ -52,15 +51,17 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
 
   return (
     <div>
-      <Label className="font-bold">{t('label')}</Label>
-      <div className="grid md:grid-cols-2 md:gap-4 govuk-checkboxes govuk-checkboxes--small md:py-4 md:pl-[25px]">
-        <Checkbox full checked={types.includes('FLIGHTPATH')} value="FLIGHTPATH" onChange={handleTypeChange}>
-          {t('show_flightpaths')}
-        </Checkbox>
-        <Checkbox full checked={types.includes('FRAGMENT')} value="FRAGMENT" onChange={handleTypeChange}>
-          {t('show_fragments')}
-        </Checkbox>
-      </div>
+      <fieldset>
+        <legend className="govuk-fieldset__legend govuk-fieldset__legend--s"><b>{t('label')}</b></legend>
+        <div className="grid md:grid-cols-2 md:gap-4 govuk-checkboxes govuk-checkboxes--small md:py-4 md:pl-[25px]">
+          <Checkbox full checked={types.includes('FLIGHTPATH')} value="FLIGHTPATH" onChange={handleTypeChange}>
+            {t('show_flightpaths')}
+          </Checkbox>
+          <Checkbox full checked={types.includes('FRAGMENT')} value="FRAGMENT" onChange={handleTypeChange}>
+            {t('show_fragments')}
+          </Checkbox>
+        </div>
+      </fieldset>
       <Details summary={t('help')}>
         <div className="grid md:grid-cols-2 gap-4 govuk-checkboxes govuk-checkboxes--small">
           {renderCheckbox({ value: 0, label: t('flightpath'), color: FlightpathColor })}

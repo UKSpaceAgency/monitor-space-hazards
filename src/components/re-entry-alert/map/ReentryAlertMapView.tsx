@@ -1,7 +1,6 @@
 import { useTranslations } from 'next-intl';
 import type { ChangeEvent } from 'react';
 
-import Label from '@/ui/label/label';
 import Radios from '@/ui/radios/radios';
 
 export type MapView = 'globe' | 'equirectangular';
@@ -19,23 +18,21 @@ const ReentryAlertMapView = ({ value, onChange }: ReentryAlertMapViewProps) => {
   };
 
   return (
-    <div>
-      <Label className="font-bold">{t('map_view')}</Label>
-      <Radios
-        small
-        items={[{
-          children: 'Globe',
-          value: 'globe',
-          checked: value === 'globe',
-          onChange: handleChange,
-        }, {
-          children: 'Map',
-          value: 'equirectangular',
-          checked: value === 'equirectangular',
-          onChange: handleChange,
-        }]}
-      />
-    </div>
+    <Radios
+      small
+      label={t('map_view')}
+      items={[{
+        children: 'Globe',
+        value: 'globe',
+        checked: value === 'globe',
+        onChange: handleChange,
+      }, {
+        children: 'Map',
+        value: 'equirectangular',
+        checked: value === 'equirectangular',
+        onChange: handleChange,
+      }]}
+    />
   );
 };
 
