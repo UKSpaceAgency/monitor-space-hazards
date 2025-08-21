@@ -62,10 +62,8 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
     type: 'text',
     help: (
       <div>
-        <p>{tForm('hint')}</p>
-        {t.rich('Potential_impact_of_event.immediate_impact.content', {
-          predictedFragments: report.predictedFragments,
-        })}
+        <p>{tForm('hint_replace')}</p>
+        <p>{event.immediateImpactAddition}</p>
       </div>
     ),
   }, {
@@ -75,10 +73,8 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
     type: 'text',
     help: (
       <div>
-        <p>{tForm('hint')}</p>
-        {t.rich('Potential_impact_of_event.short_term_impact.content', {
-          increaseInFutureCollisions: report.increaseInFutureCollisions,
-        })}
+        <p>{tForm('hint_replace')}</p>
+        <p>{event.shortTermImpactAddition}</p>
       </div>
     ),
   }, {
@@ -88,10 +84,8 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
     type: 'text',
     help: (
       <div>
-        <p>{tForm('hint')}</p>
-        {t.rich('Potential_impact_of_event.long_term_impact.content', {
-          altitude: report.altitude,
-        })}
+        <p>{tForm('hint_replace')}</p>
+        <p>{event.longTermImpactAddition}</p>
       </div>
     ),
   }, {
