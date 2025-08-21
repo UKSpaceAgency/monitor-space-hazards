@@ -22,7 +22,7 @@ const MonitoringEventsByOrganisationDataTable = ({ data, params }: MonitoringEve
       <DataTable
         columns={eventsByOrganisationColumns}
         data={data}
-        ariaLabel="Information on Events by organisation"
+        ariaLabel="Information on Conjunction Events by organisation"
       />
       <DownloadData type={t('this_table')} params={params} downloadAction={getStatsEventsByOrganization} />
     </>
