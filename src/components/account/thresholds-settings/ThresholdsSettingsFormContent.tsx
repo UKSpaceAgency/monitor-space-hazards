@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import type { FieldErrors, UseFormRegister } from 'react-hook-form';
 
@@ -51,9 +50,7 @@ const ThresholdsSettingsFormContent = ({ isSubmitting, register, errors }: Thres
       </Table>
       <ButtonGroup>
         <Button type="submit" disabled={isSubmitting}>{tCommon('save_and_continue')}</Button>
-        <Link href="/account">
-          <Button variant="secondary">{tCommon('return', { to: 'Account' })}</Button>
-        </Link>
+        <Button as="link" href="/account" variant="secondary">{tCommon('return', { to: 'Account' })}</Button>
       </ButtonGroup>
     </div>
   );

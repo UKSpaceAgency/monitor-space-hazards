@@ -77,7 +77,8 @@ const ConjunctionEventSummary = async ({
             <Button>{t('upload_analysis')}</Button>
           </Link>
         )} */}
-        <Link
+        <Button
+          as="link"
           href={{
             pathname: '/contact-analyst',
             query: {
@@ -86,10 +87,8 @@ const ConjunctionEventSummary = async ({
             },
           }}
         >
-          <Button>
-            {t('contact_analyst')}
-          </Button>
-        </Link>
+          {t('contact_analyst')}
+        </Button>
       </div>
     </>
   );

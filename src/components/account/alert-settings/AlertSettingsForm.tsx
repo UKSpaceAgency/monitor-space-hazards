@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import type { SubmitHandler, UseFormRegister } from 'react-hook-form';
@@ -94,11 +93,9 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
               >
                 {t('panel.description')}
               </Panel>
-              <Link href="/account">
-                <Button>
-                  {tCommon('return', { to: 'account page' })}
-                </Button>
-              </Link>
+              <Button as="link" href="/account">
+                {tCommon('return', { to: 'account page' })}
+              </Button>
             </>
           )
         : (

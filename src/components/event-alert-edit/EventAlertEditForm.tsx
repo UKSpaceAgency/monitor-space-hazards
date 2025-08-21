@@ -1,5 +1,4 @@
 'use client';
-import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { type ReactNode, useEffect } from 'react';
@@ -93,9 +92,7 @@ const EventAlertEditForm = ({ fields }: EventAlertEditFormProps) => {
       ))}
       <ButtonGroup>
         <Button type="submit">{t('review')}</Button>
-        <Link href={getBackUrl(pathname, 1)}>
-          <Button variant="secondary">{tCommon('return', { to: 'event' })}</Button>
-        </Link>
+        <Button as="link" href={getBackUrl(pathname, 1)} variant="secondary">{tCommon('return', { to: 'event' })}</Button>
       </ButtonGroup>
     </form>
   );

@@ -1,7 +1,6 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 
@@ -40,15 +39,13 @@ const OrganisationUserEmailForm = ({ user }: OrganisationUserEmailFormProps) => 
             {t('success')}
           </h3>
         </NotificationBanner>
-        <Link
+        <Button
+          as="link"
           href={`/account/organisations/${user.organizationId}/${user.id}`}
+          className="govuk-button--secondary"
         >
-          <Button
-            className="govuk-button--secondary"
-          >
-            {tCommon('return', { to: 'user account details' })}
-          </Button>
-        </Link>
+          {tCommon('return', { to: 'user account details' })}
+        </Button>
       </div>
     );
   }
@@ -57,15 +54,13 @@ const OrganisationUserEmailForm = ({ user }: OrganisationUserEmailFormProps) => 
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input {...register('email')} id="email" label={t('email_label')} error={errors.email?.message} />
       <ButtonGroup>
-        <Link
+        <Button
+          as="link"
           href={`/account/organisations/${user.organizationId}/${user.id}`}
+          className="govuk-button--secondary"
         >
-          <Button
-            className="govuk-button--secondary"
-          >
-            {t('back')}
-          </Button>
-        </Link>
+          {t('back')}
+        </Button>
         <Button type="submit">{t('save')}</Button>
       </ButtonGroup>
     </form>

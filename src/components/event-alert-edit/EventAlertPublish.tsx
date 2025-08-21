@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
@@ -56,9 +55,7 @@ const EventAlertPublish = ({ shortId, action }: EventAlertPublishProps) => {
       <Button onClick={() => setConfirm(true)}>
         {t('publish_edits')}
       </Button>
-      <Link href={prevPageUrl}>
-        <Button variant="secondary">{t('publish_return')}</Button>
-      </Link>
+      <Button as="link" href={prevPageUrl} variant="secondary">{t('publish_return')}</Button>
     </ButtonGroup>
   );
 };

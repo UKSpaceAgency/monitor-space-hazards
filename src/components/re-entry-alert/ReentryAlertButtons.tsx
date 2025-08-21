@@ -1,7 +1,6 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 import Button from '@/ui/button/button';
@@ -21,9 +20,7 @@ const ReentryAlertButtons = ({ pdfTitle }: ReentryAlertButtonsProps) => {
   return (
     <ButtonGroup>
       <PdfDownloadButton title={pdfTitle} />
-      <Link href="/re-entries">
-        <Button variant="secondary">{t('return', { to: 'track re-entry events' })}</Button>
-      </Link>
+      <Button as="link" href="/re-entries" variant="secondary">{t('return', { to: 'track re-entry events' })}</Button>
     </ButtonGroup>
   );
 };

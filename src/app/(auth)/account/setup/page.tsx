@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 
 import { getUsersMe } from '@/actions/getUsersMe';
@@ -28,26 +27,18 @@ export default async function SetupPage() {
         </h3>
         {isCompleted && (
           <ButtonGroup>
-            <Link href="/account">
-              <Button>
-                {t('notification.view_account_settings')}
-              </Button>
-            </Link>
+            <Button as="link" href="/account">
+              {t('notification.view_account_settings')}
+            </Button>
             {!isAdmin(session.user.role) && (
-              <Link href="/">
-                <Button className="govuk-button--secondary">
-                  {t('notification.view_home')}
-                </Button>
-              </Link>
+              <Button as="link" href="/" className="govuk-button--secondary">
+                {t('notification.view_home')}
+              </Button>
             )}
             {isAdmin(session.user.role) && (
-              <Link
-                href="/account/add-new-user"
-              >
-                <Button className="govuk-button--secondary">
-                  {t('notification.add_users')}
-                </Button>
-              </Link>
+              <Button as="link" href="/account/add-new-user" className="govuk-button--secondary">
+                {t('notification.add_users')}
+              </Button>
             )}
           </ButtonGroup>
         )}

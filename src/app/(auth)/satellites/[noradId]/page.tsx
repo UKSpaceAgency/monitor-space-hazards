@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 
 import { getEphemerises } from '@/actions/getEphemerises';
@@ -57,9 +56,7 @@ export default async function Satellite(props: PageProps) {
           <SatelliteInformation object={satellite} />
           <SatelliteAdditionalInformations object={satellite} />
           <SatelliteConjunctionEvents noradId={noradId} query={previous_search_link} epoch="past" />
-          <Link href="/satellites">
-            <Button variant="secondary">{t('return', { to: 'all satellites' })}</Button>
-          </Link>
+          <Button as="link" href="/satellites" variant="secondary">{t('return', { to: 'all satellites' })}</Button>
         </div>
       </div>
     </div>

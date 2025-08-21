@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 
 import Button from '@/ui/button/button';
@@ -18,9 +17,7 @@ export default async function ContactAnalystSend({ searchParams }: { searchParam
   return (
     <>
       <Panel heading={t('title')}>{t('content')}</Panel>
-      <Link href={callback}>
-        <Button>{tCommon('return', { to: 'Event' })}</Button>
-      </Link>
+      <Button as="link" href={callback}>{tCommon('return', { to: 'Event' })}</Button>
     </>
   );
 }
