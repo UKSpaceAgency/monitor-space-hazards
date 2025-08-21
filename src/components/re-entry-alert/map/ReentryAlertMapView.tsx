@@ -20,7 +20,7 @@ const ReentryAlertMapView = ({ value, onChange }: ReentryAlertMapViewProps) => {
   return (
     <Radios
       small
-      label={t('map_view')}
+      legend={t('map_view')}
       items={[{
         children: 'Globe',
         value: 'globe',

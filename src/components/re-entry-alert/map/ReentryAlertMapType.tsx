@@ -20,7 +20,7 @@ const ReentryAlertMapType = ({ value, onChange }: ReentryAlertMapTypeProps) => {
   return (
     <Radios
       small
-      label={t('map_type')}
+      legend={t('map_type')}
       value={value}
       items={[{
         children: 'Street',

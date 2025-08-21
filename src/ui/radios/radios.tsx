@@ -13,8 +13,8 @@ type RadioItem = {
 
 export type RadiosProps = {
   items: RadioItem[];
-  label?: ReactNode;
-  labelClass?: string;
+  legend?: ReactNode;
+  legendClass?: string;
   value?: string;
   name?: string;
   hint?: ReactNode;
@@ -23,7 +23,7 @@ export type RadiosProps = {
   small?: true;
 } & Omit<HTMLAttributes<HTMLDivElement>, 'defaultChecked'>;
 
-export function Radios({ items, label, value, hint, error, inline, small, labelClass, className, onChange }: RadiosProps) {
+export function Radios({ items, legend, value, hint, error, inline, small, legendClass, className, onChange }: RadiosProps) {
   return (
     <fieldset
       className={clsx(
@@ -32,7 +32,7 @@ export function Radios({ items, label, value, hint, error, inline, small, labelC
         className,
       )}
     >
-      {label && <legend className={clsx('govuk-fieldset__legend govuk-fieldset__legend--s', labelClass)}><b>{label}</b></legend>}
+      {legend && <legend className={clsx('govuk-fieldset__legend govuk-fieldset__legend--s', legendClass)}><b>{legend}</b></legend>}
       {hint && <Hint>{hint}</Hint>}
       {error && <ErrorMessage>{error}</ErrorMessage>}
       <div

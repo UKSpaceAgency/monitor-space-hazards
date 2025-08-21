@@ -54,7 +54,7 @@ const CookiesChange = () => {
         </NotificationBanner>
       )}
       <Radios
-        label={t('question')}
+        legend={t('question')}
         items={[
           {
             children: t('yes'),
