@@ -39,7 +39,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((
         )}
         <input
           {...props}
-          className={clsx('govuk-input', {
+          className={clsx('govuk-input placeholder-darkGrey', {
             'govuk-input--error': !!error,
           })}
           id={props.id ?? id}
