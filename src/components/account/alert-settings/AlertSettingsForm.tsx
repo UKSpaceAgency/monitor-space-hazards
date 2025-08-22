@@ -42,7 +42,7 @@ function Option({
         },
       ]}
     >
-      <p className="govuk-body"><b>{label}</b></p>
+      <legend className="govuk-fieldset__legend govuk-fieldset__legend--s mb-5"><b>{label}</b></legend>
     </Checkboxes>
   );
 }
@@ -121,7 +121,7 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                           <>
                             <Radios
                               id="conjunctionAlerts"
-                              label={t(
+                              legend={t(
                                 `${selfEdit ? 'self_which' : 'their_which'}`,
                                 { type: 'conjunction' },
                               )}
@@ -159,7 +159,7 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                           <>
                             <Radios
                               id="reEntryAlerts"
-                              label={t(
+                              legend={t(
                                 `${selfEdit ? 'self_which' : 'their_which'}`,
                                 { type: 're-entry' },
                               )}
@@ -187,16 +187,18 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                             />
                             <AlertSettingsDetails type="re-entry" />
 
-                            <p className="govuk-body">
-                              <b>
-                                {t(
-                                  'select_the_areas_of_interest',
-                                  { whose: selfEdit ? 'your' : 'user\'s' },
-                                )}
-                              </b>
-                            </p>
+                            <fieldset>
+                              <legend className="govuk-body">
+                                <b>
+                                  {t(
+                                    'select_the_areas_of_interest',
+                                    { whose: selfEdit ? 'your' : 'user\'s' },
+                                  )}
+                                </b>
+                              </legend>
 
-                            <RegionsTable name="areasOfInterest" />
+                              <RegionsTable name="areasOfInterest" />
+                            </fieldset>
 
                             <p className="govuk-body">
                               {t('notifications_for_re_entries')}

@@ -46,8 +46,8 @@ const FeedbackForm = () => {
       >
         <Radios
           id="satisfaction"
-          label={t('radios_label')}
-          labelClass="govuk-fieldset__legend--m"
+          legend={t('radios_label')}
+          legendClass="govuk-fieldset__legend--m"
           error={errors.satisfaction?.message}
           items={[{
             value: '5',

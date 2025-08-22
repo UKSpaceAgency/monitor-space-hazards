@@ -1,10 +1,8 @@
 import clsx from 'clsx';
 import type { HTMLAttributes, InputHTMLAttributes, ReactNode } from 'react';
-import { useId } from 'react';
 
 import ErrorMessage from '../error-message/error-message';
 import Hint from '../hint/hint';
-import Label from '../label/label';
 import Radio from '../radio/radio';
 
 type RadioItem = {
@@ -15,29 +13,28 @@ type RadioItem = {
 
 export type RadiosProps = {
   items: RadioItem[];
-  label?: ReactNode;
-  labelClass?: string;
+  legend?: ReactNode;
+  legendClass?: string;
   value?: string;
   name?: string;
-  hint?: ReactNode;
+  hint?: string;
   error?: string;
   inline?: true;
   small?: true;
 } & Omit<HTMLAttributes<HTMLDivElement>, 'defaultChecked'>;
 
-export function Radios({ items, label, value, hint, error, inline, small, labelClass, className, onChange }: RadiosProps) {
-  const id = useId();
-
+export function Radios({ items, legend, value, hint, error, inline, small, legendClass, className, onChange }: RadiosProps) {
   return (
-    <div
+    <fieldset
+      aria-describedby={hint}
       className={clsx(
         'govuk-form-group',
         { 'govuk-form-group--error': !!error },
         className,
       )}
     >
-      {label && <Label className={labelClass} htmlFor={id}><b>{label}</b></Label>}
-      {hint && <Hint>{hint}</Hint>}
+      {legend && <legend className={clsx('govuk-fieldset__legend govuk-fieldset__legend--s', legendClass)}><b>{legend}</b></legend>}
+      {hint && <Hint id={hint}>{hint}</Hint>}
       {error && <ErrorMessage>{error}</ErrorMessage>}
       <div
         className={clsx('govuk-radios', {
@@ -50,7 +47,7 @@ export function Radios({ items, label, value, hint, error, inline, small, labelC
           <Radio key={index} checked={value ? radio.value === value : radio.checked} onChange={onChange} {...radio} />
         ))}
       </div>
-    </div>
+    </fieldset>
   );
 }
 
