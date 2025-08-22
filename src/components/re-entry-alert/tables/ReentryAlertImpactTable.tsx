@@ -19,7 +19,11 @@ const ReentryAlertImpactTable = ({ caption, impact }: ReentryAlertImpactTablePro
   const overflightsNumber = useMemo(() => impact ? Object.values(impact).reduce((acc, value) => value.overflight_time && value.overflight_time.length > acc ? value.overflight_time.length : acc, 0) : 0, [impact]);
 
   const headers: HTMLProps<HTMLTableCellElement>[] = [{
-    children: t('probability_of_reentry'),
+    children: t('probability_of_fragmentation'),
+  }, {
+    children: t('probability_of_atmospheric_entry'),
+  }, {
+    children: t('probability_of_human_casualty'),
   }, ...Array.from({ length: overflightsNumber }, (_, i) => ({
     children: t('time_of_overflight', { number: i + 1 }),
   }))];
@@ -49,6 +53,12 @@ const ReentryAlertImpactTable = ({ caption, impact }: ReentryAlertImpactTablePro
               </TableCellHeader>
               <TableCell>
                 {value.fragments_probability ? `${roundedPercent(value.fragments_probability)}` : '-'}
+              </TableCell>
+              <TableCell>
+                {value.atmospheric_probability ? `${roundedPercent(value.atmospheric_probability)}` : '-'}
+              </TableCell>
+              <TableCell>
+                {value.human_casualty_probability ? `${roundedPercent(value.human_casualty_probability)}` : '-'}
               </TableCell>
             {...Array.from({ length: overflightsNumber }, (_, i) => (
               <TableCell key={key + i}>

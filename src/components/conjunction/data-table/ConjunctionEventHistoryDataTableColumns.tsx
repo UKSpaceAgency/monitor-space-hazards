@@ -3,7 +3,7 @@ import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import ExpandedButton from '@/ui/button/expanded-button';
 import Tag from '@/ui/tag/tag';
-import { displayExponential } from '@/utils/Math';
+import { displayExponential, getAbsoluteValue } from '@/utils/Math';
 
 export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummaryOut>[] = [
   {
@@ -67,11 +67,11 @@ export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummar
     accessorKey: 'radialMissDistance',
     id: 'radialMissDistance',
     header: 'Conjunction.event_history.radial_miss_distance',
-    // cell: ({ getValue }) => {
-    //   const value = getValue<number>();
+    cell: ({ getValue }) => {
+      const value = getValue<number>();
 
-    //   return getAbsoluteValue(value);
-    // },
+      return getAbsoluteValue(value);
+    },
     enableSorting: false,
   },
   {
