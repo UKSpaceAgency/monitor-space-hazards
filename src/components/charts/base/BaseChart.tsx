@@ -265,6 +265,7 @@ export function BaseChart({
         <ChartLegend
           chartRef={chart}
           items={legendItems}
+          ariaLabel={ariaLabel}
           {...legend}
         />
       )}

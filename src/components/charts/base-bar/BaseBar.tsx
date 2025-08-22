@@ -130,6 +130,7 @@ export function BaseBar({
         <ChartLegend
           chartRef={chart}
           items={data.datasets}
+          ariaLabel={ariaLabel}
           {...legend}
         />
       )}

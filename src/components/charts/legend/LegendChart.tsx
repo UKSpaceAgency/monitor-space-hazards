@@ -6,6 +6,7 @@ import { useCallback, useState } from 'react';
 export type ChartLegendOptions = {
   interactive?: boolean;
   title?: string;
+  ariaLabel?: string;
 };
 
 export type ChartLegendProps = {
@@ -23,6 +24,7 @@ export const ChartLegend = ({
   interactive = true,
   items,
   title,
+  ariaLabel,
 }: ChartLegendProps) => {
   const [legendStatusMap, setLegendStatus] = useState<boolean[]>(Array(items.length).fill(true));
 
@@ -34,8 +36,8 @@ export const ChartLegend = ({
   }, [chartRef]);
 
   return (
-    <div className="flex items-start justify-center gap-2 font-sans text-xs md:mx-2 md:text-base" data-pdf-ignore>
-      {title && <p className="m-0 p-1 font-bold text-nowrap">{title}</p>}
+    <fieldset className="flex items-start justify-center gap-2 font-sans text-xs md:mx-2 md:text-base" aria-label={`${ariaLabel} Legend`} data-pdf-ignore>
+      {title && <div><legend className="govuk-fieldset__legend m-0 p-1 font-bold text-nowrap">{title}</legend></div>}
       <ul className="flex flex-wrap items-center m-0 p-0 gap-x-2 list-none justify-center">
         {items.map(({ label, backgroundColor, borderColor }, index) => (
           // eslint-disable-next-line react/no-array-index-key
@@ -60,6 +62,6 @@ export const ChartLegend = ({
           </li>
         ))}
       </ul>
-    </div>
+    </fieldset>
   );
 };

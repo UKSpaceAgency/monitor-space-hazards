@@ -29,12 +29,14 @@ export function ToggleButtons({
   return (
     <fieldset className={styles.root} data-pdf-ignore={dataPdfIgnore}>
       {title && (
-        <label
-          className={`govuk-heading-s govuk-!-margin-bottom-1 govuk-!-margin-right-4 ${styles.heading}`}
-          aria-label={`${ariaLabel} ${title}`}
-        >
-          {title}
-        </label>
+        <div>
+          <legend
+            className={`govuk-fieldset__legend govuk-!-font-weight-bold govuk-!-margin-bottom-1 govuk-!-margin-right-4 ${styles.heading}`}
+            aria-label={`${ariaLabel} ${title}`}
+          >
+            {title}
+          </legend>
+        </div>
       )}
       <Radios
         className={styles['button-group']}
