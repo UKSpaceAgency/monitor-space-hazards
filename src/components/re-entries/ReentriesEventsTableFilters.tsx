@@ -32,7 +32,7 @@ const ReentriesEventsTableFilters = ({ showFilterRadios }: { showFilterRadios: b
 
   return (
     <div>
-      <h4 className="govuk-heading-s mb-0">{t.rich('summary')}</h4>
+      <label className="govuk-label font-bold mb-0">{t.rich('summary')}</label>
       <div className="flex flex-col md:flex-row gap-4 justify-between md:items-center border-b border-midGrey mb-4">
         {showFilterRadios && (
           <Radios
