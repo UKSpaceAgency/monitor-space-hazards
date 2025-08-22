@@ -41,7 +41,7 @@ export const ChartLegend = ({
       <ul className="flex flex-wrap items-center m-0 p-0 gap-x-2 list-none justify-center">
         {items.map(({ label, backgroundColor, borderColor }, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <li key={`${index}-${label}`} className="block" aria-label={`Show/hide ${ariaLabel} ${label} chart`}>
+          <li key={`${index}-${label}`} className="block" aria-label={`Show/hide ${ariaLabel} ${label} data`}>
             <label className={clsx('flex items-center gap-1 m-0 p-1 pointer-events-none', {
               'pointer-events-auto cursor-pointer': interactive,
             })}
