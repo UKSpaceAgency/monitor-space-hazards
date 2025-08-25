@@ -1,75 +1,244 @@
+'use client';
+
 import clsx from 'clsx';
 import { useTranslations } from 'next-intl';
-import { type HTMLProps, useMemo } from 'react';
+import type { ChangeEvent, HTMLProps } from 'react';
+import { useMemo, useState } from 'react';
 
 import type { TypeOverflightProbability } from '@/__generated__/data-contracts';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import Button from '@/ui/button/button';
+import Checkboxes from '@/ui/checkboxes/checkboxes';
+import Details from '@/ui/details/details';
+import Select from '@/ui/select/select';
 import { Table, TableBody, TableCaption, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
 import { roundedPercent } from '@/utils/Math';
 import { jsonRegionsMap } from '@/utils/Regions';
 
+// Types
 type ReentryAlertImpactTableProps = {
   caption?: string;
   impact: Record<string, TypeOverflightProbability>;
 };
 
+type ProbabilityType = 'fragments_probability' | 'atmospheric_probability' | 'human_casualty_probability';
+
+type HeaderConfig = HTMLProps<HTMLTableCellElement> & {
+  id: string;
+  children: React.ReactNode;
+};
+
+// Constants
+const ALL_PROBABILITY_TYPES: ProbabilityType[] = [
+  'fragments_probability',
+  'atmospheric_probability',
+  'human_casualty_probability',
+];
+
+const ALL_OVERFLIGHTS_OPTION = 0;
+
+// Helper functions
+const formatProbability = (value: number | null | undefined): string => {
+  return value ? `${roundedPercent(value)}` : '-';
+};
+
+const formatOverflightTime = (overflightTime: string[] | null | undefined, index: number): string => {
+  return overflightTime && overflightTime[index]
+    ? dayjs(overflightTime[index]).format(FORMAT_DATE_TIME)
+    : '-';
+};
+
+const getRegionDisplayName = (key: string): string => {
+  return jsonRegionsMap[key] ?? key;
+};
+
 const ReentryAlertImpactTable = ({ caption, impact }: ReentryAlertImpactTableProps) => {
   const t = useTranslations('Tables.Reentry_alert_impact');
 
-  const overflightsNumber = useMemo(() => impact ? Object.values(impact).reduce((acc, value) => value.overflight_time && value.overflight_time.length > acc ? value.overflight_time.length : acc, 0) : 0, [impact]);
+  // State
+  const [selectedProbabilityTypes, setSelectedProbabilityTypes] = useState<ProbabilityType[]>(ALL_PROBABILITY_TYPES);
+  const [selectedOverflightIndex, setSelectedOverflightIndex] = useState<number>(ALL_OVERFLIGHTS_OPTION);
 
-  const headers: HTMLProps<HTMLTableCellElement>[] = [{
-    children: t('probability_of_fragmentation'),
-  }, {
-    children: t('probability_of_atmospheric_entry'),
-  }, {
-    children: t('probability_of_human_casualty'),
-  }, ...Array.from({ length: overflightsNumber }, (_, i) => ({
-    children: t('time_of_overflight', { number: i + 1 }),
-  }))];
+  // Computed values
+  const maxOverflightCount = useMemo(() => {
+    if (!impact) {
+      return 0;
+    }
+
+    return Object.values(impact).reduce((maxCount, value) => {
+      const overflightCount = value.overflight_time?.length || 0;
+      return Math.max(maxCount, overflightCount);
+    }, 0);
+  }, [impact]);
+
+  // Event handlers
+  const handleOverflightChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedOverflightIndex(Number(e.currentTarget.value));
+  };
+
+  const handleProbabilityChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const probabilityType = e.currentTarget.value as ProbabilityType;
+    setSelectedProbabilityTypes(prev =>
+      prev.includes(probabilityType)
+        ? prev.filter(type => type !== probabilityType)
+        : [...prev, probabilityType],
+    );
+  };
+
+  const handleClearFilters = () => {
+    setSelectedProbabilityTypes(ALL_PROBABILITY_TYPES);
+    setSelectedOverflightIndex(ALL_OVERFLIGHTS_OPTION);
+  };
+
+  // Header configuration
+  const tableHeaders = useMemo((): HeaderConfig[] => {
+    const probabilityHeaders: HeaderConfig[] = [
+      {
+        id: 'fragments_probability',
+        children: t('probability_of_fragmentation'),
+      },
+      {
+        id: 'atmospheric_probability',
+        children: t('probability_of_atmospheric_entry'),
+      },
+      {
+        id: 'human_casualty_probability',
+        children: t('probability_of_human_casualty'),
+      },
+    ];
+
+    const overflightHeaders: HeaderConfig[] = Array.from(
+      { length: maxOverflightCount },
+      (_, index) => ({
+        id: `overflight_${index + 1}`,
+        children: t('time_of_overflight', { number: index + 1 }),
+      }),
+    );
+
+    return [...probabilityHeaders, ...overflightHeaders];
+  }, [t, maxOverflightCount]);
+
+  // Filter visible headers
+  const visibleHeaders = useMemo(() => {
+    return tableHeaders.filter((header) => {
+      if (header.id.includes('probability')) {
+        return selectedProbabilityTypes.includes(header.id as ProbabilityType);
+      }
+      if (header.id.includes('overflight')) {
+        const overflightNumber = Number(header.id.split('_')[1]);
+        return selectedOverflightIndex === ALL_OVERFLIGHTS_OPTION || selectedOverflightIndex === overflightNumber;
+      }
+      return true;
+    });
+  }, [tableHeaders, selectedProbabilityTypes, selectedOverflightIndex]);
+
+  // Render probability cell
+  const renderProbabilityCell = (value: TypeOverflightProbability, probabilityType: ProbabilityType) => {
+    if (!selectedProbabilityTypes.includes(probabilityType)) {
+      return null;
+    }
+
+    return (
+      <TableCell key={probabilityType}>
+        {formatProbability(value[probabilityType])}
+      </TableCell>
+    );
+  };
+
+  // Render overflight cells
+  const renderOverflightCells = (value: TypeOverflightProbability, regionKey: string) => {
+    if (selectedOverflightIndex === ALL_OVERFLIGHTS_OPTION) {
+      return Array.from({ length: maxOverflightCount }, (_, index) => (
+        <TableCell key={`${regionKey}-overflight-${index}`}>
+          {formatOverflightTime(value.overflight_time, index)}
+        </TableCell>
+      ));
+    }
+
+    return (
+      <TableCell>
+        {formatOverflightTime(value.overflight_time, selectedOverflightIndex - 1)}
+      </TableCell>
+    );
+  };
+
+  // Select options
+  const overflightOptions = useMemo(() => [
+    { children: 'All', value: ALL_OVERFLIGHTS_OPTION },
+    ...Array.from({ length: maxOverflightCount }, (_, index) => ({
+      children: `Overflight ${index + 1}`,
+      value: index + 1,
+    })),
+  ], [maxOverflightCount]);
+
+  const probabilityCheckboxItems = useMemo(() =>
+    tableHeaders
+      .filter(header => header.id.includes('probability'))
+      .map(header => ({
+        children: header.children,
+        value: header.id,
+        checked: selectedProbabilityTypes.includes(header.id as ProbabilityType),
+      })), [tableHeaders, selectedProbabilityTypes]);
 
   return (
-    <div className="w-full overflow-x-auto">
-      <Table>
-        {caption && <TableCaption className="govuk-heading-m mb-0">{caption}</TableCaption>}
-        {headers && (
+    <div>
+      <Details summary={t('details.summary')}>
+        <div className="mb-4 flex items-center justify-between gap-2">
+          <div className="flex-1">
+            <Checkboxes
+              className="mb-0"
+              smaller
+              items={probabilityCheckboxItems}
+              onChange={handleProbabilityChange}
+            />
+          </div>
+          <div className="flex items-end gap-2">
+            <Select
+              label={<b>{t('choose_overflight')}</b>}
+              options={overflightOptions}
+              onChange={handleOverflightChange}
+            />
+            <Button onClick={handleClearFilters}>
+              {t('clear_filters')}
+            </Button>
+          </div>
+        </div>
+      </Details>
+
+      <div className="w-full overflow-x-auto">
+        <Table>
+          {caption && (
+            <TableCaption className="govuk-heading-m mb-0">
+              {caption}
+            </TableCaption>
+          )}
+
           <TableHead>
             <TableRow>
               <TableCell />
-              {headers.map((header, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-                <TableCellHeader key={index} {...header} />
+              {visibleHeaders.map((header, index) => (
+                <TableCellHeader key={`${header.id}-${index}`} {...header} />
               ))}
             </TableRow>
           </TableHead>
-        )}
-        <TableBody>
-          {Object.entries(impact).map(([key, value]) => (
-            <TableRow key={key}>
-              <TableCellHeader
-                className={clsx('w-6/12')}
-              >
-                {jsonRegionsMap[key] ?? key}
-              </TableCellHeader>
-              <TableCell>
-                {value.fragments_probability ? `${roundedPercent(value.fragments_probability)}` : '-'}
-              </TableCell>
-              <TableCell>
-                {value.atmospheric_probability ? `${roundedPercent(value.atmospheric_probability)}` : '-'}
-              </TableCell>
-              <TableCell>
-                {value.human_casualty_probability ? `${roundedPercent(value.human_casualty_probability)}` : '-'}
-              </TableCell>
-            {...Array.from({ length: overflightsNumber }, (_, i) => (
-              <TableCell key={key + i}>
-                {value.overflight_time && value?.overflight_time[i] ? dayjs(value.overflight_time[i]).format(FORMAT_DATE_TIME) : '-'}
-              </TableCell>
+
+          <TableBody>
+            {Object.entries(impact).map(([regionKey, value]) => (
+              <TableRow key={regionKey}>
+                <TableCellHeader className={clsx('w-6/12')}>
+                  {getRegionDisplayName(regionKey)}
+                </TableCellHeader>
+
+                {renderProbabilityCell(value, 'fragments_probability')}
+                {renderProbabilityCell(value, 'atmospheric_probability')}
+                {renderProbabilityCell(value, 'human_casualty_probability')}
+
+                {renderOverflightCells(value, regionKey)}
+              </TableRow>
             ))}
-            </TableRow>
-          ),
-          )}
-        </TableBody>
-      </Table>
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 };
