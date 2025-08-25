@@ -52,7 +52,7 @@ const OrganisationUserEmailForm = ({ user }: OrganisationUserEmailFormProps) => 
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Input {...register('email')} id="email" label={t('email_label')} error={errors.email?.message} />
+      <Input {...register('email')} id="email" label={t('email_label')} error={errors.email?.message} aria-label="Email" />
       <ButtonGroup>
         <Button
           as="link"

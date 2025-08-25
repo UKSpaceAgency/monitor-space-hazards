@@ -32,7 +32,7 @@ const SatelliteConjunctionEvents = async ({ noradId, query, epoch }: SatelliteCo
   return (
     <div className="mb-12">
       <h2 className="govuk-heading-l" data-anchor={`${epoch}-conjunction-events`}>{t('title', { type })}</h2>
-      <SearchBar label={searchBarLabel} placeholder={t('search_bar.placeholder')} paramName={searchParamName} />
+      <SearchBar label={searchBarLabel} placeholder={t('search_bar.placeholder')} paramName={searchParamName} aria-label="Conjunction Events Search Bar" />
       <SatelliteConjunctionsDataTable params={params} initialData={initialData} />
     </div>
   );

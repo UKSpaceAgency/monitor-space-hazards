@@ -8,9 +8,9 @@ export const addNewUserSchema = z.object({
   organization_id: z.string({
     invalid_type_error: 'Field is required.',
   }),
-  email: z.string().email('Must be correct email format'),
   first_name: z.string().min(1, 'Field is required.'),
   last_name: z.string().min(1, 'Field is required.'),
+  email: z.string().email('Must be correct email format'),
   role: getZodEnumFromObjectKeys<typeof AccountType>(AccountType, {
     invalid_type_error: 'Field is required.',
   }),

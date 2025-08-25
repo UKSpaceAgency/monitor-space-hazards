@@ -49,6 +49,7 @@ const FeedbackForm = () => {
           legend={t('radios_label')}
           legendClass="govuk-fieldset__legend--m"
           error={errors.satisfaction?.message}
+          required
           items={[{
             value: '5',
             children: t('very_satisfied'),
@@ -78,6 +79,8 @@ const FeedbackForm = () => {
         label={t('textarea_label')}
         labelClass="govuk-fieldset__legend--m"
         hint={t('textarea_hint')}
+        required
+        aria-label="Details"
         error={errors.details?.message}
       />
       <Button type="submit" disabled={loading}>{t('submit')}</Button>

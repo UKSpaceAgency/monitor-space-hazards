@@ -61,7 +61,7 @@ export default async function ConjunctionsPage(props: PageProps) {
         <h2 className="govuk-heading-m">{t('section_title')}</h2>
         <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
         <p className="govuk-body">{t('description')}</p>
-        <SearchBar label={searchBarLabel} placeholder={t('search_bar.placeholder')} />
+        <SearchBar label={searchBarLabel} placeholder={t('search_bar.placeholder')} aria-label="Conjunctions Search Bar" />
         <ConjunctionsEventsTableFilters params={params} showFilterRadios={!isSatteliteUser(session?.user.role)} />
         <ConjunctionsEventsTable params={params} />
       </Suspense>
