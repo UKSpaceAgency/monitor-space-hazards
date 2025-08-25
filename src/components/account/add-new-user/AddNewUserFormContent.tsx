@@ -60,10 +60,10 @@ const AddNewUserFormContent = ({ organizations, isSubmitting, register, role, er
           label: name,
         }))}
       />
-      <Input {...register('first_name')} required id="first_name" label={t('first_name')} error={errors.first_name?.message} aria-label="First Name" />
-      <Input {...register('last_name')} required id="last_name" label={t('last_name')} error={errors.last_name?.message} aria-label="Last Name" />
-      <Input {...register('email')} required id="email" label={t('email')} type="email" error={errors.email?.message} aria-label="Email" />
-      <Input {...register('phone_number')} required id="phone_number" label={t('phone_number')} type="tel" error={errors.phone_number?.message} aria-label="Phone Number" />
+      <Input {...register('first_name')} required id="first_name" label={t('first_name')} error={errors.first_name?.message} aria-label="First Name" autoComplete="first_name" />
+      <Input {...register('last_name')} required id="last_name" label={t('last_name')} error={errors.last_name?.message} aria-label="Last Name" autoComplete="last_name" />
+      <Input {...register('email')} required id="email" label={t('email')} type="email" error={errors.email?.message} aria-label="Email" autoComplete="email" />
+      <Input {...register('phone_number')} required id="phone_number" label={t('phone_number')} type="tel" error={errors.phone_number?.message} aria-label="Phone Number" autoComplete="phone_number" />
       <Fieldset legend={{
         text: t('select_account_type'),
       }}
