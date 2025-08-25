@@ -67,7 +67,7 @@ export function Cookies() {
                 </p>,
               ],
               visible: cookieConsent === null,
-              heading: 'Can we use cookies in our services?',
+              heading: 'Cookies on Monitor Space Hazards',
             },
             {
               actions: [

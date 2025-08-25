@@ -90,12 +90,12 @@ export function Accordion({ initialItems, id, dynamic = false, addAnchor = true 
                   className="govuk-accordion__section-heading-text"
                   id={`heading-${id}`}
                 >
-                  <h2
+                  <h3
                     className="govuk-accordion__section-heading-text-focus"
                     data-anchor={addAnchor ? id : undefined}
                   >
                     {heading}
-                  </h2>
+                  </h3>
                 </span>
                 <span className="govuk-accordion__section-toggle">
                   <span className="govuk-accordion__section-toggle-focus">
