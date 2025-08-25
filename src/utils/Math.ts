@@ -17,7 +17,7 @@ export const roundedPercent = (value: number, decimalPlaces: number = 3) => {
 
 export const getAbsoluteValue = (num: number | undefined | null) => {
   if (!num && num !== 0) {
-    return;
+    return 0;
   }
 
   return Math.abs(num);

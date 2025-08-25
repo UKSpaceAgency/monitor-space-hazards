@@ -6,6 +6,7 @@ import { useMemo, useState } from 'react';
 import type { TypeEventSummaryOut } from '@/__generated__/data-contracts';
 import RichText from '@/components/RichText';
 import Checkboxes from '@/ui/checkboxes/checkboxes';
+import { getAbsoluteValue } from '@/utils/Math';
 
 import BaseChart from '../base/BaseChart';
 import { getMissDistanceChartDatasets } from './getMissDistanceChartDatasets';
@@ -32,13 +33,17 @@ export function MissDistanceChart({ data, isSpecial }: MissDistanceChartProps) {
 
   const [showSpecial, setShowSpecial] = useState(true);
 
-  const absoluteData: MissDistanceChartDataType = useMemo(() => data.map(item => ({
-    ...item,
-    crosstrackMissDistance: item.crosstrackMissDistance,
-    intrackMissDistance: item.intrackMissDistance,
-    radialMissDistance: item.radialMissDistance,
-    missDistance: item.missDistance,
-  })), [data]);
+  const absoluteData: MissDistanceChartDataType = useMemo(
+    () =>
+      data.map(item => ({
+        ...item,
+        crosstrackMissDistance: getAbsoluteValue(item.crosstrackMissDistance ?? 0),
+        intrackMissDistance: getAbsoluteValue(item.intrackMissDistance ?? 0),
+        radialMissDistance: getAbsoluteValue(item.radialMissDistance ?? 0),
+        missDistance: getAbsoluteValue(item.missDistance ?? 0),
+      })),
+    [data],
+  );
 
   const sortedData = useMemo(() => absoluteData.sort((a, b) => Date.parse(a.updateTime) - Date.parse(b.updateTime)), [absoluteData]);
   const sortedDataWithoutEphemerises = useMemo(() => sortedData.filter(data => !isSpecial && data.dataSource === 'Space-Track CDM'), [isSpecial, sortedData]);
