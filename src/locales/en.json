@@ -1313,7 +1313,12 @@
       "see_further_information": "<p>See <link>Further information</link> for more detail on methodology used in this report.</p>",
       "probability_of_atmospheric_entry": "Probability of re-entry over UK (%)",
       "probability_of_fragmentation": "Probability of debris impact (%)",
-      "probability_of_human_casualty": "Probability of UK casualty risk (%)"
+      "probability_of_human_casualty": "Probability of UK casualty risk (%)",
+      "choose_overflight": "Choose overflight",
+      "clear_filters": "Clear filters",
+      "details": {
+        "summary": "Toggle risk probabilities and overflights"
+      }
     },
     "Reentry_alert_history": {
       "report_number": "Report number",
