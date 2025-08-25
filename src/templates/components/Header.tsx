@@ -28,9 +28,6 @@ export const Header = () => (
           </span>
         </Link>
       </div>
-      {/* <div className="govuk-header__content">
-        <Link className="govuk-header__link govuk-header__service-name" href="/">{AppConfig.name}</Link>
-      </div> */}
     </div>
   </header>
 );
