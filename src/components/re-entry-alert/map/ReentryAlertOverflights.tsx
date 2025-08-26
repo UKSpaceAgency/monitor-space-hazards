@@ -62,7 +62,7 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
           </Checkbox>
         </div>
       </div>
-      <Details summary={t('help')}>
+      <Details summary={t('help')} initiallyOpen>
         <div className="grid md:grid-cols-2 gap-4 govuk-checkboxes govuk-checkboxes--small">
           {renderCheckbox({ value: 0, label: t('flightpath'), color: FlightpathColor })}
           {overflights.map((overflight, index) => {

@@ -65,7 +65,7 @@ const ReentryAlertAreasOfInterest = ({ selected, onChange }: ReentryAlertAreasOf
   return (
     <fieldset>
       <legend className="govuk-fieldset__legend govuk-fieldset__legend--s">{t('legend')}</legend>
-      <Details summary={t('help')}>
+      <Details summary={t('help')} initiallyOpen>
         <div className="grid grid-cols-2 gap-4">
           {options.map((group, index) => (
             // eslint-disable-next-line react/no-array-index-key
