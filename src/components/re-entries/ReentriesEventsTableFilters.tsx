@@ -40,7 +40,7 @@ const ReentriesEventsTableFilters = ({ showFilterRadios }: { showFilterRadios: b
             className="m-0"
             items={[
               {
-                id: 'viewAll',
+                id: 'view_all',
                 children: t('option1'),
                 value: 'all',
                 name: 'report',
@@ -48,7 +48,7 @@ const ReentriesEventsTableFilters = ({ showFilterRadios }: { showFilterRadios: b
                 onChange: handleRefreshParams,
               },
               {
-                id: 'viewOnly',
+                id: 'view_only',
                 children: t('option2'),
                 value: 'present',
                 name: 'report',

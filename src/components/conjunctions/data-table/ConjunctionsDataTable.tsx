@@ -47,12 +47,14 @@ const ConjunctionsDataTable = ({ params, conjunctions, isAnalyst, haveAccessToAl
           small
           items={[
             {
+              id: 'scientific',
               children: 'Scientific',
               value: 'scientific',
               checked: probabilityUnit === 'scientific',
               onChange: handleProbabilityUnitChange,
             },
             {
+              id: 'percentage',
               children: 'Percentage',
               value: 'percentage',
               checked: probabilityUnit === 'percentage',

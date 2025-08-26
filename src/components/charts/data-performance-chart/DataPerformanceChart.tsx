@@ -79,16 +79,19 @@ const DataPerformanceChart = ({ latestIngestDate, sourceType, xAxisTitle, legend
       ariaLabel={ariaLabel}
       items={[
         {
+          id: '7d',
           title: '7d',
           ariaLabel: t('7_days'),
           value: 7,
         },
         {
+          id: '30d',
           title: '30d',
           ariaLabel: t('30_days'),
           value: 31,
         },
         {
+          id: 'all_time',
           title: 'All',
           ariaLabel: t('all_time'),
           value: 0,

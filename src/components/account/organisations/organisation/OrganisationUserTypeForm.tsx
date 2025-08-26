@@ -60,6 +60,7 @@ const OrganisationUserTypeForm = ({ user }: OrganisationUserTypeFormProps) => {
         hint={t('role_hint')}
         error={errors.role?.message}
         items={Object.entries(AccountType).map(([key, value]) => ({
+          id: 'role',
           value: key,
           children: value,
           ...register('role'),

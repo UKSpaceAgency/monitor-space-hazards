@@ -17,7 +17,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       <div className={clsx('govuk-checkboxes__item', className)}>
         <input
           {...props}
-          id={props.id ?? id}
+          id={`${props.id ?? id}-cb`}
           aria-describedby={props.id ?? id}
           className="govuk-checkboxes__input"
           type="checkbox"

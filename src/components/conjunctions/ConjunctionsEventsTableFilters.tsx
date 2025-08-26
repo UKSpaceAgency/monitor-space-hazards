@@ -44,7 +44,7 @@ const ConjunctionsEventsTableFilters = ({ params, showFilterRadios }: Conjunctio
             inline
             items={[
               {
-                id: 'viewAll',
+                id: 'view_all',
                 children: t('option1'),
                 value: 'all',
                 name: 'report',
@@ -52,7 +52,7 @@ const ConjunctionsEventsTableFilters = ({ params, showFilterRadios }: Conjunctio
                 onChange: handleRefreshParams,
               },
               {
-                id: 'viewOnly',
+                id: 'view_only',
                 children: t('option2'),
                 value: 'present',
                 name: 'report',

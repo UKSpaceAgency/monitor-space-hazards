@@ -31,6 +31,7 @@ const ScheduleBannerFormTemplate = ({ register, templates }: BannerTemplateProps
       </h2>
       <Radios
         items={templates.map(template => ({
+          id: 'message_id',
           value: template.id,
           className: 'w-full',
           children: renderTemplate(template),

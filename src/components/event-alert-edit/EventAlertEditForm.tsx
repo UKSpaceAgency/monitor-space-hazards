@@ -69,6 +69,7 @@ const EventAlertEditForm = ({ fields }: EventAlertEditFormProps) => {
   const renderRadioField = ({ id, name, items, ...props }: Omit<RadioFormField, 'type'>) => (
     <Radios
       items={items.map(item => ({
+        id: item.id,
         value: item.value,
         children: item.children,
         ...register(id),

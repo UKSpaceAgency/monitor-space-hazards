@@ -23,12 +23,15 @@ const ReentryAlertMapType = ({ value, onChange }: ReentryAlertMapTypeProps) => {
       legend={t('map_type')}
       value={value}
       items={[{
+        id: 'street',
         children: 'Street',
         value: 'streets-v12',
       }, {
+        id: 'map',
         children: 'Map',
         value: 'light-v11',
       }, {
+        id: 'satellite',
         children: 'Satellite',
         value: 'satellite-streets-v12',
       }]}

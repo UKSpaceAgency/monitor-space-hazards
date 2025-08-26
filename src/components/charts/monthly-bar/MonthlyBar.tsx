@@ -26,11 +26,13 @@ const MonthlyBarChart = ({ data, yAxisTitle, stacked = false, legend, ariaLabel 
       ariaLabel={ariaLabel}
       items={[
         {
+          id: '12_months',
           title: t('12_months'),
           ariaLabel: t('12_months'),
           value: 12,
         },
         {
+          id: 'all_time',
           title: t('all_time'),
           ariaLabel: t('all_time'),
           value: 0,

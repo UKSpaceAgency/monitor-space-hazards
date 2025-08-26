@@ -123,11 +123,13 @@ export function MtpChart({
               ariaLabel="Mtp Chart"
               items={[
                 {
+                  id: 'space-track',
                   title: t('chart.buttons.space-track'),
                   ariaLabel: t('chart.buttons.space-track'),
                   value: 'ST_collision_probability',
                 },
                 {
+                  id: 'uksa',
                   title: t('chart.buttons.uksa'),
                   ariaLabel: t('chart.buttons.uksa'),
                   value: 'UKSA_collision_probability',

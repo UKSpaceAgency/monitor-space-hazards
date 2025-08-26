@@ -22,11 +22,13 @@ const ReentryAlertMapView = ({ value, onChange }: ReentryAlertMapViewProps) => {
       small
       legend={t('map_view')}
       items={[{
+        id: 'globe',
         children: 'Globe',
         value: 'globe',
         checked: value === 'globe',
         onChange: handleChange,
       }, {
+        id: 'map',
         children: 'Map',
         value: 'equirectangular',
         checked: value === 'equirectangular',
