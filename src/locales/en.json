@@ -336,7 +336,8 @@
     "Conjunction_events": {
       "title": "{type} conjunction events",
       "search_bar": {
-        "label": "Find a conjunction event:",
+        "previousLabel": "Find a previous upcoming conjunction event:",
+        "upcomingLabel": "Find a upcoming conjunction event:",
         "placeholder": "Search by event or object ID"
       },
       "type": {
@@ -520,7 +521,9 @@
     "section_title": "Conjunction events",
     "description": "This table shows upcoming conjunction events involving UK-licensed satellites by default. You can apply filters to view past events.",
     "search_bar": {
-      "label": "Find a conjunction event:",
+      "upcomingLabel": "Find a upcoming conjunction event:",
+      "previousLabel": "Find a previous conjunction event:",
+      "allLabel": "Find a conjunction event:",
       "placeholder": "Search by event or object ID"
     },
     "help1": {
@@ -1223,7 +1226,9 @@
     },
     "Reentries": {
       "search_bar": {
-        "label": "Find a re-entry event:",
+        "allLabel": "Find a re-entry event:",
+        "upcomingLabel": "Find a upcoming re-entry event:",
+        "previousLabel": "Find a previous re-entry event:",
         "placeholder": "Search by event ID, object ID or object name"
       },
       "filters": {
