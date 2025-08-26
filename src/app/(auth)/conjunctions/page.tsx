@@ -12,6 +12,21 @@ import Details from '@/ui/details/details';
 import Spinner from '@/ui/spinner/spinner';
 import { isSatteliteUser } from '@/utils/Roles';
 
+const getSearchBarLabel = async (epoch: TypeEpoch | undefined): Promise<string> => {
+  const t = await getTranslations('Conjunctions');
+
+  switch (epoch) {
+    case 'all':
+      return t('search_bar.allLabel');
+    case 'future':
+      return t('search_bar.upcomingLabel');
+    case 'past':
+      return t('search_bar.previousLabel');
+    default:
+      return t('search_bar.allLabel');
+  }
+};
+
 export const metadata: Metadata = {
   title: 'Track conjunction events (Monitor your satellites)',
 };
@@ -33,6 +48,8 @@ export default async function ConjunctionsPage(props: PageProps) {
   const searchParams = await props.searchParams;
   const params: ConjunctionsPageSearchParams = searchParams || {};
 
+  const searchBarLabel = await getSearchBarLabel(params.epoch);
+
   return (
     <div>
       <h1 className="govuk-heading-xl">{t('title')}</h1>
@@ -44,7 +61,7 @@ export default async function ConjunctionsPage(props: PageProps) {
         <h2 className="govuk-heading-m">{t('section_title')}</h2>
         <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
         <p className="govuk-body">{t('description')}</p>
-        <SearchBar label={t('search_bar.label')} placeholder={t('search_bar.placeholder')} />
+        <SearchBar label={searchBarLabel} placeholder={t('search_bar.placeholder')} aria-label="Conjunctions Search Bar" />
         <ConjunctionsEventsTableFilters params={params} showFilterRadios={!isSatteliteUser(session?.user.role)} />
         <ConjunctionsEventsTable params={params} />
       </Suspense>

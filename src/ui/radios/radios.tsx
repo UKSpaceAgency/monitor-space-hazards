@@ -21,11 +21,13 @@ export type RadiosProps = {
   error?: string;
   inline?: true;
   small?: true;
+  required?: true;
 } & Omit<HTMLAttributes<HTMLDivElement>, 'defaultChecked'>;
 
-export function Radios({ items, legend, value, hint, error, inline, small, legendClass, className, onChange }: RadiosProps) {
+export function Radios({ items, legend, value, hint, error, inline, small, legendClass, className, id, required, 'aria-label': ariaLabel, onChange }: RadiosProps) {
   return (
     <fieldset
+      aria-label={`${ariaLabel} ${required ? 'required' : 'optional'} field`}
       aria-describedby={hint}
       className={clsx(
         'govuk-form-group',
@@ -37,6 +39,7 @@ export function Radios({ items, legend, value, hint, error, inline, small, legen
       {hint && <Hint id={hint}>{hint}</Hint>}
       {error && <ErrorMessage>{error}</ErrorMessage>}
       <div
+        id={id}
         className={clsx('govuk-radios', {
           'govuk-radios--small': small,
           'govuk-radios--inline': inline,

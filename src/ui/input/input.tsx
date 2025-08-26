@@ -15,7 +15,7 @@ export type InputProps = {
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((
-  { name, className, label, hint, error, prefix, suffix, ...props },
+  { name, className, label, hint, error, prefix, suffix, required, 'aria-label': ariaLabel, ...props },
   ref,
 ) => {
   const id = useId();
@@ -28,7 +28,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((
         className,
       )}
     >
-      {label && <Label htmlFor={props.id ?? id}><b>{label}</b></Label>}
+      {label && (
+        <Label htmlFor={props.id ?? id}><b>{label}</b></Label>
+      )}
       {hint && <Hint>{hint}</Hint>}
       {error && <ErrorMessage>{error}</ErrorMessage>}
       <div className="govuk-input__wrapper">
@@ -39,10 +41,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((
         )}
         <input
           {...props}
-          className={clsx('govuk-input', {
+          className={clsx('govuk-input placeholder-darkGrey', {
             'govuk-input--error': !!error,
           })}
           id={props.id ?? id}
+          aria-label={`${ariaLabel} ${required ? 'required' : 'optional'} field`}
           aria-describedby={props.id ?? id}
           name={name}
           ref={ref}

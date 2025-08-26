@@ -52,7 +52,7 @@ const OrganisationUserPhoneForm = ({ user }: OrganisationUserPhoneFormProps) => 
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Input {...register('phone')} id="phone" label={t('phone_label')} error={errors.phone?.message} />
+      <Input {...register('phone')} required id="phone" label={t('phone_label')} error={errors.phone?.message} aria-label="Phone" autoComplete="phone_number" />
       <ButtonGroup>
         <Button
           as="link"
