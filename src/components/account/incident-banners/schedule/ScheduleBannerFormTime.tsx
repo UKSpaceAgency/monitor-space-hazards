@@ -54,6 +54,7 @@ const ScheduleBannerFormTime = ({ setValue, watch, resetField }: ScheduleBannerF
       <Radios
         items={[
           {
+            id: 'activate_now',
             name: 'activateTime',
             children: t('activate_now'),
             conditional: (
@@ -66,6 +67,7 @@ const ScheduleBannerFormTime = ({ setValue, watch, resetField }: ScheduleBannerF
             onChange: onActivateTimeHandler,
           },
           {
+            id: 'activate_later',
             name: 'activateTime',
             children: t('activate_later'),
             conditional: (

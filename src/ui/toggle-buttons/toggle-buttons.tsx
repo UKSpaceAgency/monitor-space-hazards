@@ -8,6 +8,7 @@ export type ToggleButtonsProps = {
   items: Array<{
     title: string;
     value: string | number;
+    id: string;
     ariaLabel?: string;
   }>;
   active: string | number;
@@ -43,7 +44,8 @@ export function ToggleButtons({
         small
         inline
         name={name}
-        items={items.map(({ title, value }) => ({
+        items={items.map(({ title, value, id }) => ({
+          id,
           children: title,
           value,
           onChange: () => setActive(value),

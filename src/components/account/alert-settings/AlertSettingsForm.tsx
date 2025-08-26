@@ -127,15 +127,18 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                               )}
                               hint={t('select_one_option')}
                               items={[{
+                                id: 'no_conjunction_alerts',
                                 value: 'none',
                                 children: t('no_conjunction_alerts'),
                                 ...register('conjunctionAlerts'),
                               }, {
+                                id: 'receive_all_conjunction_alerts',
                                 value: 'all',
                                 children: t('receive_all_conjunction_alerts'),
                                 hint: t('recommended_for'),
                                 ...register('conjunctionAlerts'),
                               }, {
+                                id: 'only_priority_conjunction_alerts',
                                 value: 'priority',
                                 children: t('only_priority_conjunction_alerts'),
                                 hint: t('recommended_for_all_other'),
@@ -165,20 +168,24 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                               )}
                               hint={t('select_one_option')}
                               items={[{
+                                id: 'no_re_entry_alerts',
                                 value: 'none',
                                 children: t('no_re_entry_alerts'),
                                 ...register('reEntryAlerts'),
                               }, {
+                                id: 'all_re_entry_alerts',
                                 value: 'all',
                                 children: t('all_re_entry_alerts', { whose: selfEdit ? 'your' : 'user\'s' }),
                                 hint: t('recommended_for_uk'),
                                 ...register('reEntryAlerts'),
                               }, {
+                                id: 're_entry_alerts_for_uk',
                                 value: 'uk_satellites_only',
                                 children: t('re_entry_alerts_for_uk'),
                                 hint: t('recommended_for_foreign'),
                                 ...register('reEntryAlerts'),
                               }, {
+                                id: 'only_priority_re_entry',
                                 value: 'priority',
                                 children: t('only_priority_re_entry', { whose: selfEdit ? 'your' : 'user\'s' }),
                                 hint: t('recommended_for_all_other'),
