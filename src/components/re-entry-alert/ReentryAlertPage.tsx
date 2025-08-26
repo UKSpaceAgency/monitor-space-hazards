@@ -11,6 +11,7 @@ import Spinner from '@/ui/spinner/spinner';
 import Tag from '@/ui/tag/tag';
 
 import { ContentNavigation } from '../ContentNavigation';
+import { ReentryAlertMapContainer } from './map/ReentryAlertMapContainer';
 import { ReentryAlertAccordion } from './ReentryAlertAccordion';
 import { ReentryAlertButtons } from './ReentryAlertButtons';
 import { ReentryAlertExecutiveSummary } from './ReentryAlertExecutiveSummary';
@@ -60,11 +61,11 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
           <Suspense fallback={<Spinner />}>
             <ReentryAlertExecutiveSummary event={event} previewSummary={searchParams?.exec_summary} isClosed={isClosed} />
           </Suspense>
-          {/* <Suspense fallback={<Spinner />}>
+          <Suspense fallback={<Spinner />}>
             {lastReport?.presignedUrl && (
               <ReentryAlertMapContainer presignedUrl={lastReport.presignedUrl} />
             )}
-          </Suspense> */}
+          </Suspense>
           <ReentryAlertNextUpdate shortId={shortId} />
           <ReentryAlertAccordion event={event} reports={reports} lastReport={lastReport} searchParams={searchParams} />
           {footer || <ReentryAlertButtons pdfTitle={pdfTitle} />}
