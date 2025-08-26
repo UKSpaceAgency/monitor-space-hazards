@@ -29,12 +29,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((
       )}
     >
       {label && (
-        <Label htmlFor={props.id ?? id}>
-          <b>
-            {label}
-            {required && '*'}
-          </b>
-        </Label>
+        <Label htmlFor={props.id ?? id}><b>{label}</b></Label>
       )}
       {hint && <Hint>{hint}</Hint>}
       {error && <ErrorMessage>{error}</ErrorMessage>}
