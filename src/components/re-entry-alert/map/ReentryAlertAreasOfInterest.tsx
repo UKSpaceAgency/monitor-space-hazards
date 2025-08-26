@@ -3,7 +3,6 @@ import type { ChangeEvent } from 'react';
 
 import Checkbox, { type CheckboxProps } from '@/ui/checkbox/checkbox';
 import Details from '@/ui/details/details';
-import Label from '@/ui/label/label';
 import type { RegionsEnum } from '@/utils/Regions';
 import { Regions } from '@/utils/Regions';
 
@@ -64,8 +63,8 @@ const ReentryAlertAreasOfInterest = ({ selected, onChange }: ReentryAlertAreasOf
   };
 
   return (
-    <div>
-      <Label className="font-bold">{t('label')}</Label>
+    <fieldset>
+      <legend className="govuk-fieldset__legend govuk-fieldset__legend--s">{t('legend')}</legend>
       <Details summary={t('help')}>
         <div className="grid grid-cols-2 gap-4">
           {options.map((group, index) => (
@@ -76,7 +75,7 @@ const ReentryAlertAreasOfInterest = ({ selected, onChange }: ReentryAlertAreasOf
           ))}
         </div>
       </Details>
-    </div>
+    </fieldset>
   );
 };
 
