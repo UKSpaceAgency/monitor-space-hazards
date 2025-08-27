@@ -35,7 +35,7 @@ const BaseTemplate = ({
         <Header />
         <PhaseBanner tag="Beta">
           {t.rich('phase_banner', {
-            feedback: chunks => <Link className="govuk-link" href="/feedback">{chunks}</Link>,
+            feedback: chunks => <Link className="govuk-link" href="/feedback" target="_blank">{chunks}</Link>,
           })}
         </PhaseBanner>
         {showNavigation && <Navigation />}
