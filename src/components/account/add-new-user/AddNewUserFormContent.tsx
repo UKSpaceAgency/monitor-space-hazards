@@ -72,6 +72,7 @@ const AddNewUserFormContent = ({ organizations, isSubmitting, register, role, er
           <Radios
             id="role"
             required
+            aria-label="Role"
             hint={t('select_account_type_hint')}
             error={errors.role?.message}
             items={Object.keys(roles[role as keyof typeof roles]).map(key => ({

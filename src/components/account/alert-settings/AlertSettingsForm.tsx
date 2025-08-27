@@ -121,6 +121,8 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                           <>
                             <Radios
                               id="conjunctionAlerts"
+                              required
+                              aria-label="Conjunction Alerts"
                               legend={t(
                                 `${selfEdit ? 'self_which' : 'their_which'}`,
                                 { type: 'conjunction' },
@@ -162,6 +164,8 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                           <>
                             <Radios
                               id="reEntryAlerts"
+                              required
+                              aria-label="Re-entry Alerts"
                               legend={t(
                                 `${selfEdit ? 'self_which' : 'their_which'}`,
                                 { type: 're-entry' },

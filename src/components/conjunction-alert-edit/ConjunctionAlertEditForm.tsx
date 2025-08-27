@@ -19,12 +19,14 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
 
   const formFields: EventAlertFormField[] = [{
     id: 'closed_comment',
+    ariaLabel: 'Closed comment',
     name: tForm('type.closed_comment'),
     defaultValue: event.closedComment ?? '',
     type: 'text',
     help: tForm.rich('closed_comment_hint'),
   }, {
     id: 'exec_summary_addition',
+    ariaLabel: 'Exec summary',
     name: tForm('type.exec_summary_addition'),
     defaultValue: event.execSummaryAddition,
     type: 'text',
@@ -44,6 +46,7 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
     ),
   }, {
     id: 'manoeuvre_addition',
+    ariaLabel: 'Manoeuvre addition',
     name: tForm('type.manoeuvre_addition'),
     defaultValue: event.manoeuvreAddition || '',
     type: 'text',
@@ -57,6 +60,7 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
     ),
   }, {
     id: 'immediate_impact_addition',
+    ariaLabel: 'Immediate impact addition',
     name: tForm('type.immediate_impact'),
     defaultValue: event.immediateImpactAddition,
     type: 'text',
@@ -68,6 +72,7 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
     ),
   }, {
     id: 'short_term_impact_addition',
+    ariaLabel: 'Short term impact addition',
     name: tForm('type.short_term_impact'),
     defaultValue: event.shortTermImpactAddition,
     type: 'text',
@@ -79,6 +84,7 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
     ),
   }, {
     id: 'long_term_impact_addition',
+    ariaLabel: 'Long term impact addition',
     name: tForm('type.long_term_impact'),
     defaultValue: event.longTermImpactAddition,
     type: 'text',
@@ -90,6 +96,7 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
     ),
   }, {
     id: 'uk_response_addition',
+    ariaLabel: 'UK response addition',
     name: tForm('type.uk_response_addition'),
     defaultValue: event.ukResponseAddition,
     type: 'text',
@@ -101,6 +108,7 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
     ),
   }, {
     id: 'press_attention_addition',
+    ariaLabel: 'Press attention addition',
     name: tForm('type.press_attention_addition'),
     defaultValue: event.pressAttentionAddition,
     type: 'text',
