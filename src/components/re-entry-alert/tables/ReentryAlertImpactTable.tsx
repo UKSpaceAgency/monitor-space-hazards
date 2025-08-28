@@ -11,7 +11,7 @@ import Button from '@/ui/button/button';
 import Checkboxes from '@/ui/checkboxes/checkboxes';
 import Details from '@/ui/details/details';
 import Select from '@/ui/select/select';
-import { Table, TableBody, TableCaption, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
+import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
 import { roundedPercent } from '@/utils/Math';
 import { jsonRegionsMap } from '@/utils/Regions';
 
@@ -182,6 +182,11 @@ const ReentryAlertImpactTable = ({ caption, impact }: ReentryAlertImpactTablePro
 
   return (
     <div>
+      {caption && (
+        <h4 className="govuk-heading-m">
+          {caption}
+        </h4>
+      )}
       <Details summary={t('details.summary')}>
         <div className="mb-4 flex items-center justify-between gap-2">
           <div className="flex-1">
@@ -204,15 +209,8 @@ const ReentryAlertImpactTable = ({ caption, impact }: ReentryAlertImpactTablePro
           </div>
         </div>
       </Details>
-
       <div className="w-full overflow-x-auto">
         <Table>
-          {caption && (
-            <TableCaption className="govuk-heading-m mb-0">
-              {caption}
-            </TableCaption>
-          )}
-
           <TableHead>
             <TableRow>
               <TableCell />
