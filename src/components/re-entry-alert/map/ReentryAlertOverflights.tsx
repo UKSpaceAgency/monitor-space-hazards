@@ -50,9 +50,9 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
   };
 
   return (
-    <div>
-      <fieldset>
-        <legend className="govuk-fieldset__legend govuk-fieldset__legend--s"><b>{t('label')}</b></legend>
+    <fieldset>
+      <div>
+        <legend className="govuk-fieldset__legend govuk-fieldset__legend--s">{t('legend')}</legend>
         <div className="grid md:grid-cols-2 md:gap-4 govuk-checkboxes govuk-checkboxes--small md:py-4 md:pl-[25px]">
           <Checkbox full checked={types.includes('FLIGHTPATH')} value="FLIGHTPATH" onChange={handleTypeChange}>
             {t('show_flightpaths')}
@@ -61,8 +61,8 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
             {t('show_fragments')}
           </Checkbox>
         </div>
-      </fieldset>
-      <Details summary={t('help')}>
+      </div>
+      <Details summary={t('help')} initiallyOpen>
         <div className="grid md:grid-cols-2 gap-4 govuk-checkboxes govuk-checkboxes--small">
           {renderCheckbox({ value: 0, label: t('flightpath'), color: FlightpathColor })}
           {overflights.map((overflight, index) => {
@@ -75,7 +75,7 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
           })}
         </div>
       </Details>
-    </div>
+    </fieldset>
   );
 };
 

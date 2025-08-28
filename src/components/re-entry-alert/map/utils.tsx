@@ -42,6 +42,7 @@ export const regionLayer = (region: string): FillLayerSpecification => ({
   },
 });
 
+// here is flightpath color
 export const FlightpathColor = '#f46a25';
 export const FragmentColor = '#801650';
 export const OverflightColors = [

@@ -1731,11 +1731,11 @@
     "map_view": "Map view:",
     "center_button": "Zoom to UK",
     "area_of_interest": {
-      "label": "Areas of interest:",
+      "legend": "Areas of interest:",
       "help": "Toggle areas of interest"
     },
     "overflights": {
-      "label": "Overflights and ground fragments:",
+      "legend": "Overflights and ground fragments:",
       "help": "Toggle overflights and ground fragments",
       "show_flightpaths": "Show flightpaths",
       "show_fragments": "Show ground fragments",
