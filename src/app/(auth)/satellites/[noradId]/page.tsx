@@ -47,7 +47,7 @@ export default async function Satellite(props: PageProps) {
       <div className="grid md:grid-cols-4 gap-7">
         <ContentNavigation />
         <div className="md:col-span-3">
-          <SatelliteConjunctionEvents noradId={noradId} query={upcoming_search_like} epoch="future" />
+          <SatelliteConjunctionEvents noradId={noradId} query={upcoming_search_like} epoch="future" id="future_search_bar" />
           <SatelliteEphemerisData
             noradId={noradId}
             ephemerises={ephemerises}
@@ -55,7 +55,7 @@ export default async function Satellite(props: PageProps) {
           />
           <SatelliteInformation object={satellite} />
           <SatelliteAdditionalInformations object={satellite} />
-          <SatelliteConjunctionEvents noradId={noradId} query={previous_search_link} epoch="past" />
+          <SatelliteConjunctionEvents noradId={noradId} query={previous_search_link} epoch="past" id="past_search_bar" />
           <Button as="link" href="/satellites" variant="secondary">{t('return', { to: 'all satellites' })}</Button>
         </div>
       </div>
