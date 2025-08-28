@@ -43,6 +43,7 @@ const ConjunctionsDataTable = ({ params, conjunctions, isAnalyst, haveAccessToAl
         </legend>
         <Radios
           className="govuk-!-margin-0"
+          aria-label="Probability of collision"
           inline
           small
           items={[

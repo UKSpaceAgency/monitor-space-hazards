@@ -30,6 +30,9 @@ const ScheduleBannerFormTemplate = ({ register, templates }: BannerTemplateProps
         {t('select_banner')}
       </h2>
       <Radios
+        id="message_id"
+        required
+        aria-label="Message Id"
         items={templates.map(template => ({
           id: 'message_id',
           value: template.id,

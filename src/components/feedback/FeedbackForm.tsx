@@ -46,6 +46,7 @@ const FeedbackForm = () => {
       >
         <Radios
           id="satisfaction"
+          aria-label="Satisfaction"
           legend={t('radios_label')}
           legendClass="govuk-fieldset__legend--m"
           error={errors.satisfaction?.message}

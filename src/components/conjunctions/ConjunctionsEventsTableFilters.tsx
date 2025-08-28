@@ -42,6 +42,7 @@ const ConjunctionsEventsTableFilters = ({ params, showFilterRadios }: Conjunctio
         {showFilterRadios && (
           <Radios
             inline
+            aria-label="View events"
             items={[
               {
                 id: 'view_all',

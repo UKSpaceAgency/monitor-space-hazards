@@ -55,6 +55,8 @@ const CookiesChange = () => {
       )}
       <Radios
         legend={t('question')}
+        required
+        aria-label="Cookie consent"
         items={[
           {
             id: 'granted',

@@ -57,6 +57,8 @@ const OrganisationUserTypeForm = ({ user }: OrganisationUserTypeFormProps) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Radios
         id="role"
+        aria-label="Role"
+        required
         hint={t('role_hint')}
         error={errors.role?.message}
         items={Object.entries(AccountType).map(([key, value]) => ({

@@ -48,7 +48,7 @@ const ReentriesEventsTable = async ({ initialParams }: ReentriesEventsTableProps
 
   return (
     <div>
-      <SearchBar label={searchBarLabel} placeholder={t('search_bar.placeholder')} aria-label="Re-entries Search Bar" />
+      <SearchBar label={`${searchBarLabel}:`} placeholder={t('search_bar.placeholder')} ariaLabel={searchBarLabel} />
       <ReentriesEventsTableFilters showFilterRadios={!isSatteliteUser(session?.user.role)} />
       <ReentriesDataTable params={params} initialData={initialData} haveAccessToAlerts={isAgencyUser(role)} />
       <div className="govuk-inset-text">

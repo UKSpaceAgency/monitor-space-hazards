@@ -15,6 +15,7 @@ type BaseFormField = {
   id: string;
   name: string;
   defaultValue?: string | null;
+  ariaLabel?: string;
   help?: ReactNode;
 };
 
@@ -59,9 +60,9 @@ const EventAlertEditForm = ({ fields }: EventAlertEditFormProps) => {
     }
   }, [searchParams, reset]);
 
-  const renderTextField = ({ id, name }: BaseFormField) => (
+  const renderTextField = ({ id, name, ariaLabel }: BaseFormField) => (
     <>
-      <TextArea {...register(id)} />
+      <TextArea {...register(id)} id={id} aria-label={ariaLabel} />
       <Button variant="secondary" type="button" onClick={() => resetField(id, { defaultValue: '' })}>{t('clear', { name })}</Button>
     </>
   );

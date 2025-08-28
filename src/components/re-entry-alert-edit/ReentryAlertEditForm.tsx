@@ -20,12 +20,14 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
 
   const formFields: EventAlertFormField[] = [{
     id: 'closed_comment',
+    ariaLabel: 'Closed comment',
     name: tForm('type.closed_comment'),
     defaultValue: event.closedComment ?? '',
     type: 'text',
     help: tForm.rich('closed_comment_hint'),
   }, {
     id: 'exec_summary',
+    ariaLabel: 'Exec summary',
     name: tForm('type.exec_summary'),
     defaultValue: event.execSummary,
     type: 'text',
@@ -47,6 +49,7 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     ),
   }, {
     id: 'immediate_response',
+    ariaLabel: 'Immediate response',
     name: tForm('type.immediate_response'),
     defaultValue: event.immediateResponse,
     type: 'text',
@@ -58,6 +61,7 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     ),
   }, {
     id: 'recovery_and_clean_up',
+    ariaLabel: 'Recovery and clean up',
     name: tForm('type.recovery_and_clean_up'),
     defaultValue: event.recoveryAndCleanUp,
     type: 'text',
@@ -69,6 +73,7 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     ),
   }, {
     id: 'damages_liability',
+    ariaLabel: 'Damages liability',
     name: tForm('type.damages_liability'),
     defaultValue: event.damagesLiability,
     type: 'text',
@@ -80,6 +85,7 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     ),
   }, {
     id: 'press_attention',
+    ariaLabel: 'Press attention',
     name: tForm('type.press_attention'),
     defaultValue: event.pressAttention,
     type: 'text',

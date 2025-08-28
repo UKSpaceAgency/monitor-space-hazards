@@ -37,6 +37,7 @@ const ReentriesEventsTableFilters = ({ showFilterRadios }: { showFilterRadios: b
         {showFilterRadios && (
           <Radios
             inline
+            aria-label="Has report"
             className="m-0"
             items={[
               {

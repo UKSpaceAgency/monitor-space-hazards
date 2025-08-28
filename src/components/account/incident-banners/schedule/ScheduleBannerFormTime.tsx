@@ -52,6 +52,9 @@ const ScheduleBannerFormTime = ({ setValue, watch, resetField }: ScheduleBannerF
         {t('when_display_banner')}
       </h2>
       <Radios
+        id="activate"
+        required
+        aria-label="Activate"
         items={[
           {
             id: 'activate_now',
