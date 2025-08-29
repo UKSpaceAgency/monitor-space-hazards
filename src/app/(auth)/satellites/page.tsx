@@ -34,7 +34,7 @@ export default async function SatellitesPage(props: PageProps) {
   return (
     <div>
       <h1 className="govuk-heading-xl">{t('title')}</h1>
-      <SearchBar label={t('search_bar.label')} placeholder={t('search_bar.placeholder')} aria-label="Satellite Search Bar" />
+      <SearchBar label={t('search_bar.label')} id="satellites_search_bar" placeholder={t('search_bar.placeholder')} ariaLabel="Satellite Search Bar" />
       <Suspense fallback={<Spinner />}>
         <SatellitesDataTable initialData={initialData} params={params} />
         <LastIntegration />

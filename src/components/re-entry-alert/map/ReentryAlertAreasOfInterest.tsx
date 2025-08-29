@@ -63,7 +63,7 @@ const ReentryAlertAreasOfInterest = ({ selected, onChange }: ReentryAlertAreasOf
   };
 
   return (
-    <fieldset>
+    <fieldset aria-label="Re-entry Alert Areas of interest">
       <legend className="govuk-fieldset__legend govuk-fieldset__legend--s">{t('legend')}</legend>
       <Details summary={t('help')} initiallyOpen>
         <div className="grid grid-cols-2 gap-4">
