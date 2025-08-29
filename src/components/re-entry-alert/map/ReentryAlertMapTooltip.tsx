@@ -7,7 +7,7 @@ import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import { calcDistance } from '@/utils/Math';
 import { countries } from '@/utils/Regions';
 
-import { OverflightColors } from './utils';
+import { FlightpathColor, OverflightColor } from './utils';
 
 export type MapTooltipInfo = {
   longitude: number;
@@ -28,7 +28,7 @@ const ReentryAlertMapTooltip = ({ latitude, longitude, regions, overflight, type
 
   const distance = calcDistance(latitude, longitude, city.latitude, city.longitude);
 
-  const color = OverflightColors[pass || 0];
+  const color = !pass || pass === 0 ? FlightpathColor : OverflightColor;
 
   const icon = useMemo(() => {
     switch (type) {

@@ -6,7 +6,7 @@ import Checkbox from '@/ui/checkbox/checkbox';
 import Details from '@/ui/details/details';
 
 import type { OverflightType } from './utils';
-import { FlightpathColor, OverflightColors } from './utils';
+import { FlightpathColor, OverflightColor } from './utils';
 
 type ReentryAlertOverflightsProps = {
   types: OverflightType[];
@@ -69,7 +69,7 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
             const number = index + 1;
             return (
               <Fragment key={overflight}>
-                {renderCheckbox({ value: number, label: t('overflight', { number }), date: overflight, color: OverflightColors[number] ?? '#fff' })}
+                {renderCheckbox({ value: number, label: t('overflight', { number }), date: overflight, color: OverflightColor })}
               </Fragment>
             );
           })}

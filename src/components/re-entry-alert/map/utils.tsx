@@ -43,20 +43,21 @@ export const regionLayer = (region: string): FillLayerSpecification => ({
 });
 
 // here is flightpath color
-export const FlightpathColor = '#f46a25';
+export const FlightpathColor = '#3D3D3D';
 export const FragmentColor = '#801650';
-export const OverflightColors = [
-  FlightpathColor,
-  '#28A197',
-  '#12436D',
-  '#A285D1',
-  '#D4351C',
-  '#F499BE',
-  '#B58840',
-  '#5694CA',
-  '#3D3D3D',
-  '#85994b',
-];
+export const OverflightColor = '#F46A25';
+// export const OverflightColors = [
+//   FlightpathColor,
+//   '#28A197',
+//   '#12436D',
+//   '#A285D1',
+//   '#D4351C',
+//   '#F499BE',
+//   '#B58840',
+//   '#5694CA',
+//   '#3D3D3D',
+//   '#85994b',
+// ];
 
 export type OverflightType = 'FLIGHTPATH' | 'FRAGMENT' | string;
 
@@ -65,11 +66,10 @@ export const flightpathStyle = (index: number, visible: boolean): CircleLayerSpe
   type: 'circle',
   source: `FLIGHTPATH-${index}`,
   paint: {
-    'circle-color': OverflightColors[index] ?? '#fff',
+    'circle-color': index === 0 ? FlightpathColor : OverflightColor,
     'circle-opacity': 0.6,
-    'circle-blur': 1,
+    'circle-blur': 0.85,
     'circle-radius': {
-      base: index === 0 ? 1 : 1.75,
       stops: [
         [0, 2],
         [5, 10],
@@ -99,8 +99,38 @@ export const fragmentsStyle = (index: number, visible: boolean): SymbolLayerSpec
     'visibility': visible ? 'visible' : 'none',
   },
   paint: {
-    'icon-color': OverflightColors[index] ?? '#fff',
+    'icon-color': index === 0 ? FlightpathColor : OverflightColor,
     'icon-opacity': 0.6,
+  },
+});
+
+export const fragmentsCircleStyle = (index: number, visible: boolean): CircleLayerSpecification => ({
+  id: `FRAGMENT-CIRCLE-${index}`,
+  type: 'circle',
+  source: `FRAGMENT-CIRCLE-${index}`,
+  paint: {
+    // Color changes based on the number of circles (fragments_number)
+    'circle-color': FragmentColor,
+    'circle-opacity': [
+      'interpolate',
+      ['linear'],
+      ['get', 'fragments_number'],
+      0,
+      0.1,
+      1000,
+      1,
+    ],
+    'circle-blur': 0.5,
+    'circle-radius': {
+      stops: [
+        [0, 2],
+        [5, 10],
+        [10, 180],
+      ],
+    },
+  },
+  layout: {
+    visibility: visible ? 'visible' : 'none',
   },
 });
 
@@ -112,34 +142,38 @@ export const fragmentsHeatmapStyle = (index: number, visible: boolean): HeatmapL
     visibility: visible ? 'visible' : 'none',
   },
   paint: {
-    'heatmap-intensity': [
+    // Use fragments_number as the weight for the heatmap
+    'heatmap-weight': [
       'interpolate',
       ['linear'],
-      ['zoom'],
+      ['get', 'fragments_number'],
       0,
+      0,
+      10,
       1,
-      9,
-      3,
     ],
-    'heatmap-radius': [
-      'interpolate',
-      ['linear'],
-      ['zoom'],
-      0,
-      2,
-      9,
-      20,
-    ],
+    // Use OverflightColors[index] as the base color for the heatmap
     'heatmap-color': [
       'interpolate',
       ['linear'],
       ['heatmap-density'],
       0,
-      'transparent',
+      'rgba(0,0,0,0)',
+      0.2,
+      FragmentColor,
       1,
-      OverflightColors[index],
+      FragmentColor,
     ],
-    'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 7, 1, 9, 0],
-    'heatmap-weight': 1,
+    'heatmap-intensity': 1,
+    'heatmap-radius': [
+      'interpolate',
+      ['linear'],
+      ['zoom'],
+      0,
+      10,
+      9,
+      30,
+    ],
+    'heatmap-opacity': 0.7,
   },
 });
