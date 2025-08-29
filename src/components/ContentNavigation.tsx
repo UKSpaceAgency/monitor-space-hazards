@@ -25,11 +25,18 @@ const ContentNavigation = ({ title, internalTitle, className }: ContentNavigatio
     e.preventDefault();
     const target = e.currentTarget.hash.replace('#', '');
     const element = document.querySelector<HTMLElement>(`[data-anchor="${target}"]`);
+
     if (element) {
       window.scrollTo({
         top: element.offsetTop,
         behavior: 'smooth',
       });
+
+      const parentButton = element.closest('button');
+
+      if (parentButton) {
+        parentButton.focus();
+      }
     }
   };
 
