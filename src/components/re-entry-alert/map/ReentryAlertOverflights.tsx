@@ -50,7 +50,7 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
   };
 
   return (
-    <fieldset>
+    <fieldset aria-label="Re-entry Alert Overflights and ground fragments">
       <div>
         <legend className="govuk-fieldset__legend govuk-fieldset__legend--s">{t('legend')}</legend>
         <div className="grid md:grid-cols-2 md:gap-4 govuk-checkboxes govuk-checkboxes--small md:py-4 md:pl-[25px]">
