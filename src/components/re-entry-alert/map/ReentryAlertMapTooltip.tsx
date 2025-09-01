@@ -1,7 +1,6 @@
 import { nearestCity } from 'cityjs';
 import { useTranslations } from 'next-intl';
-import { useMemo } from 'react';
-import { IoCloseOutline, IoEllipseSharp, IoTriangleSharp } from 'react-icons/io5';
+import { IoCloseOutline, IoEllipseSharp } from 'react-icons/io5';
 
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import { calcDistance } from '@/utils/Math';
@@ -30,32 +29,6 @@ const ReentryAlertMapTooltip = ({ latitude, longitude, regions, overflight, type
 
   const color = !pass || pass === 0 ? FlightpathColor : OverflightColor;
 
-  const icon = useMemo(() => {
-    switch (type) {
-      case 'flightpath':
-      case 'overflight':
-        return (
-          <IoEllipseSharp
-            className="size-6"
-            style={{
-              fill: color,
-            }}
-          />
-        );
-      case 'fragments':
-        return (
-          <IoTriangleSharp
-            className="size-6"
-            style={{
-              fill: color,
-            }}
-          />
-        );
-      default:
-        return null;
-    }
-  }, [type, color]);
-
   return (
     <div className="bg-white p-4 absolute top-2 left-2 max-w-[300px]">
       <button type="button" className="absolute top-2 right-2" onClick={onClose}>
@@ -64,7 +37,12 @@ const ReentryAlertMapTooltip = ({ latitude, longitude, regions, overflight, type
       <div className="pr-4">
         <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
           {t(type as any)}
-          {icon}
+          <IoEllipseSharp
+            className="size-6"
+            style={{
+              fill: color,
+            }}
+          />
         </h4>
         <ul className="govuk-list mb-0 text-sm">
           {distance < 50 && (
