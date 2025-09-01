@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 import type { ReactNode } from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { MapRef } from 'react-map-gl';
-import Map, { FullscreenControl, Layer, Source } from 'react-map-gl';
+import Map, { Layer, Source } from 'react-map-gl';
 
 import { env } from '@/libs/Env';
 import Details from '@/ui/details/details';
@@ -14,6 +14,7 @@ import { RegionsEnum } from '@/utils/Regions';
 
 import { ReentryAlertAreasOfInterest } from './ReentryAlertAreasOfInterest';
 import { ReentryAlertMapCenterButton } from './ReentryAlertMapCenterButton';
+import { ReentryAlertMapFullscreenButton } from './ReentryAlertMapFullscreenButton';
 import type { MapTooltipInfo } from './ReentryAlertMapTooltip';
 import { ReentryAlertMapType } from './ReentryAlertMapType';
 import { type MapView, ReentryAlertMapView } from './ReentryAlertMapView';
@@ -121,7 +122,7 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
           attributionControl={false}
           renderWorldCopies={false}
         >
-          <FullscreenControl />
+          <ReentryAlertMapFullscreenButton mapRef={mapRef} />
           {isStyleLoaded && (
             <>
               {regions.map(region => region === RegionsEnum.UK_AIRSPACE

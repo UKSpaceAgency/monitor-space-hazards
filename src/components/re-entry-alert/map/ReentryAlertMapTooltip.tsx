@@ -30,7 +30,7 @@ const ReentryAlertMapTooltip = ({ latitude, longitude, regions, overflight, type
   const flightpathColor = !pass || pass === 0 ? FlightpathColor : OverflightColor;
 
   return (
-    <div className="bg-white p-4 absolute top-2 left-2 max-w-[300px]">
+    <div className="bg-white p-4 absolute top-2 left-2 max-w-[200px] md:max-w-[300px]">
       <button type="button" className="absolute top-2 right-2" onClick={onClose}>
         <IoCloseOutline className="size-4" />
       </button>
