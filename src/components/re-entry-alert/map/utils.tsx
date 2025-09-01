@@ -12,6 +12,12 @@ import ScottishFirGeojson from './regions/scotland_fir.json';
 import ShanwickGeojson from './regions/shanwick.json';
 import WalesGeojson from './regions/wales.json';
 
+export enum MapTypes {
+  streets = 'streets',
+  light = 'light',
+  satellite = 'satellite',
+}
+
 export const RegionsGeoJson: Partial<Record<RegionsEnum, unknown>> = {
   [RegionsEnum.ENGLAND]: EnglandGeojson,
   [RegionsEnum.NORTHERN_IRELAND]: IrelandGeojson,

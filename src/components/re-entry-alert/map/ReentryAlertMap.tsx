@@ -16,10 +16,10 @@ import { ReentryAlertAreasOfInterest } from './ReentryAlertAreasOfInterest';
 import { ReentryAlertMapCenterButton } from './ReentryAlertMapCenterButton';
 import { ReentryAlertMapLegend } from './ReentryAlertMapLegend';
 import type { MapTooltipInfo } from './ReentryAlertMapTooltip';
-import { type MapType, ReentryAlertMapType } from './ReentryAlertMapType';
+import { ReentryAlertMapType } from './ReentryAlertMapType';
 import { type MapView, ReentryAlertMapView } from './ReentryAlertMapView';
 import { ReentryAlertOverflights } from './ReentryAlertOverflights';
-import { flightpathStyle, fragmentsCircleStyle, type OverflightType, regionLayer, RegionsGeoJson } from './utils';
+import { flightpathStyle, fragmentsCircleStyle, MapTypes, type OverflightType, regionLayer, RegionsGeoJson } from './utils';
 
 const ReentryAlertMapTooltip = dynamic(() => import('./ReentryAlertMapTooltip').then(mod => mod.ReentryAlertMapTooltip), {
   ssr: false,
@@ -32,6 +32,12 @@ const initialViewState = {
   ],
 } as const;
 
+const MapStyles = {
+  [MapTypes.streets]: 'mapbox://styles/monitorspacehazards/cm9tmme2t01a101r3057u9pmy',
+  [MapTypes.light]: 'mapbox://styles/monitorspacehazards/cmewwcttq016301sd0br6d1nf',
+  [MapTypes.satellite]: 'mapbox://styles/monitorspacehazards/cmewvccvu01h901pjcz3qdy1j',
+};
+
 type ReentryAlertMapProps = {
   overflightTime: string[];
   flightpathsCollection: Map<number, FeatureCollection<Point>>;
@@ -42,7 +48,7 @@ type ReentryAlertMapProps = {
 
 const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsCollection, detailsTitle, detailsContent }: ReentryAlertMapProps) => {
   const mapRef = useRef<MapRef | null>(null);
-  const [mapType, setMapType] = useState<MapType>('streets-v12');
+  const [mapType, setMapType] = useState<MapTypes>(MapTypes.streets);
   const [mapView, setMapView] = useState<MapView>('globe');
   const [regions, setRegions] = useState<RegionsEnum[]>([]);
   const [types, setTypes] = useState<OverflightType[]>(['FLIGHTPATH', 'FRAGMENT']);
@@ -101,7 +107,7 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
         <Map
           ref={mapRefCallback}
           mapboxAccessToken={env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
-          mapStyle={`mapbox://styles/mapbox/${mapType}`}
+          mapStyle={MapStyles[mapType]}
           projection={{
             name: mapView,
           }}
@@ -135,10 +141,10 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
                     >
                       <Layer
                         {...regionLayer(`UK_AIRSPACE-${index}`)}
+                        slot="bottom"
                         layout={{
                           visibility: 'visible',
                         }}
-                        beforeId="airport-label"
                       />
                     </Source>
                   );
@@ -151,14 +157,14 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
                   type="geojson"
                   data={RegionsGeoJson[region]}
                 >
-                  <Layer {...regionLayer(region)} />
+                  <Layer {...regionLayer(region)} slot="bottom" />
                 </Source>
               ))}
           {flightpathsCollection && Array.from(flightpathsCollection.entries()).map(([index, flightpath]) => (
             <Source key={`FLIGHTPATH-${index}`} type="geojson" data={flightpath}>
               <Layer
                 {...flightpathStyle(index, types.includes('FLIGHTPATH') && flightpaths.includes(index))}
-                beforeId="airport-label"
+                slot="top"
               />
             </Source>
           ))}
@@ -166,7 +172,7 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
             <Source key={`FRAGMENT-${index}`} type="geojson" data={fragments}>
               <Layer
                 {...fragmentsCircleStyle(index, types.includes('FRAGMENT') && flightpaths.includes(index))}
-                beforeId="airport-label"
+                slot="top"
               />
             </Source>
           ))}
