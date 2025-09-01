@@ -35,8 +35,8 @@ const MonitoringEventsByTypeMonthly = async () => {
       {
         label: t('other'),
         data: data.map(({ OTHER }) => OTHER),
-        borderColor: chartPalette.lightPurple,
-        backgroundColor: chartPalette.lightPurple,
+        borderColor: chartPalette.turquoise,
+        backgroundColor: chartPalette.turquoise,
       },
     ],
   };
