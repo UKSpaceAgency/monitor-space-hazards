@@ -15,7 +15,8 @@ const ReentryAlertMapCenterButton = () => {
       <Button
         variant="secondary"
         className="mb-0"
-        aria-label="Zoom in"
+        aria-label="Zoom in on map"
+        title="Zoom in on map"
         onClick={() => map?.zoomTo((map.getZoom?.() ?? 4) + 1)}
       >
         +
@@ -23,12 +24,13 @@ const ReentryAlertMapCenterButton = () => {
       <Button
         variant="secondary"
         className="mb-0"
-        aria-label="Zoom out"
+        aria-label="Zoom out on map"
+        title="Zoom out on map"
         onClick={() => map?.zoomTo((map.getZoom?.() ?? 4) - 1)}
       >
         −
       </Button>
-      <Button className="mb-0" onClick={onClick} variant="secondary" aria-label={t('center_button')}><IoLocateOutline /></Button>
+      <Button className="mb-0" onClick={onClick} variant="secondary" aria-label={t('center_button')} title="Recentre on UK"><IoLocateOutline /></Button>
     </div>
   );
 };
