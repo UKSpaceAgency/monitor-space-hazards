@@ -14,7 +14,6 @@ import { RegionsEnum } from '@/utils/Regions';
 
 import { ReentryAlertAreasOfInterest } from './ReentryAlertAreasOfInterest';
 import { ReentryAlertMapCenterButton } from './ReentryAlertMapCenterButton';
-import { ReentryAlertMapLegend } from './ReentryAlertMapLegend';
 import type { MapTooltipInfo } from './ReentryAlertMapTooltip';
 import { ReentryAlertMapType } from './ReentryAlertMapType';
 import { type MapView, ReentryAlertMapView } from './ReentryAlertMapView';
@@ -187,7 +186,7 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
             />
           )}
           <ReentryAlertMapCenterButton />
-          <ReentryAlertMapLegend />
+          {/* <ReentryAlertMapLegend /> */}
         </Map>
       </div>
       <Details

@@ -97,6 +97,7 @@ export async function getReentryAlertMapData(presignedUrl: string) {
         const fragmentPoint = {
           ...fragment,
           pass: point.pass,
+          overflight: point.overflight,
         };
         if (point.pass) {
           fragmentsCollection.get(point.pass)?.features.push(generateFeature(fragmentPoint, 'fragments'));

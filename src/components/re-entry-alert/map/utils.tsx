@@ -111,9 +111,9 @@ export const fragmentsStyle = (index: number, visible: boolean): SymbolLayerSpec
 });
 
 export const fragmentsCircleStyle = (index: number, visible: boolean): CircleLayerSpecification => ({
-  id: `FRAGMENT-CIRCLE-${index}`,
+  id: `FRAGMENT-${index}`,
   type: 'circle',
-  source: `FRAGMENT-CIRCLE-${index}`,
+  source: `FRAGMENT-${index}`,
   paint: {
     // Color changes based on the number of circles (fragments_number)
     'circle-color': FragmentColor,

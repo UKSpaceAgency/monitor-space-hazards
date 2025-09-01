@@ -6,7 +6,6 @@ import Checkbox from '@/ui/checkbox/checkbox';
 import Details from '@/ui/details/details';
 
 import type { OverflightType } from './utils';
-import { FlightpathColor, OverflightColor } from './utils';
 
 type ReentryAlertOverflightsProps = {
   types: OverflightType[];
@@ -35,7 +34,7 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
     setTypes(types.includes(value) ? types.filter(type => type !== value) : [...types, value]);
   };
 
-  const renderCheckbox = ({ value, label, date, color }: { value: number; label: string; date?: string; color?: string }) => {
+  const renderCheckbox = ({ value, label, date }: { value: number; label: string; date?: string }) => {
     return (
       <Checkbox className="content-baseline mb-0" value={value} checked={selected.includes(value)} onChange={handleChange} full>
         <div className="flex w-full justify-between items-center">
@@ -43,7 +42,7 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
             {label}
             {date && <span className="block govuk-body-s mb-0">{dayjs(date).format(FORMAT_DATE_TIME)}</span>}
           </div>
-          <div className="size-5 rounded-full" style={{ backgroundColor: color }} />
+          {/* <div className="size-5 rounded-full" style={{ backgroundColor: color }} /> */}
         </div>
       </Checkbox>
     );
@@ -64,12 +63,12 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
       </div>
       <Details summary={t('help')} initiallyOpen>
         <div className="grid md:grid-cols-2 gap-4 govuk-checkboxes govuk-checkboxes--small">
-          {renderCheckbox({ value: 0, label: t('flightpath'), color: FlightpathColor })}
+          {renderCheckbox({ value: 0, label: t('flightpath') })}
           {overflights.map((overflight, index) => {
             const number = index + 1;
             return (
               <Fragment key={overflight}>
-                {renderCheckbox({ value: number, label: t('overflight', { number }), date: overflight, color: OverflightColor })}
+                {renderCheckbox({ value: number, label: t('overflight', { number }), date: overflight })}
               </Fragment>
             );
           })}
