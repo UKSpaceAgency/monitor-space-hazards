@@ -69,8 +69,8 @@ export const ReentryAlertMapFullscreenButton = ({ mapRef }: ReentryAlertMapFulls
       <Button
         type="button"
         variant="secondary"
+        className="mb-0 bg-white"
         onClick={toggleFullscreen}
-        className="mb-0"
         aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
         title={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
       >
