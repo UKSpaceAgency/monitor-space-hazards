@@ -6,7 +6,7 @@ import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import { calcDistance } from '@/utils/Math';
 import { countries } from '@/utils/Regions';
 
-import { FlightpathColor, OverflightColor } from './utils';
+import { FlightpathColor, FragmentColor, OverflightColor } from './utils';
 
 export type MapTooltipInfo = {
   longitude: number;
@@ -27,7 +27,7 @@ const ReentryAlertMapTooltip = ({ latitude, longitude, regions, overflight, type
 
   const distance = calcDistance(latitude, longitude, city.latitude, city.longitude);
 
-  const color = !pass || pass === 0 ? FlightpathColor : OverflightColor;
+  const flightpathColor = !pass || pass === 0 ? FlightpathColor : OverflightColor;
 
   return (
     <div className="bg-white p-4 absolute top-2 left-2 max-w-[300px]">
@@ -40,7 +40,7 @@ const ReentryAlertMapTooltip = ({ latitude, longitude, regions, overflight, type
           <IoEllipseSharp
             className="size-6"
             style={{
-              fill: color,
+              fill: type === 'fragments' ? FragmentColor : flightpathColor,
             }}
           />
         </h4>
