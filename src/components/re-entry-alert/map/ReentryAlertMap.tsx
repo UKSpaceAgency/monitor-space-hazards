@@ -54,28 +54,18 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
   const [types, setTypes] = useState<OverflightType[]>(['FLIGHTPATH', 'FRAGMENT']);
   const [flightpaths, setFlightpaths] = useState<number[]>([0]);
   const [hoverInfo, setHoverInfo] = useState<MapTooltipInfo | null>(null);
+  const [isStyleLoaded, setIsStyleLoaded] = useState<boolean>(false);
 
   useEffect(() => {
     setFlightpaths(flightpaths => [...new Set([...flightpaths, ...overflightTime.map((_, index) => index + 1)])]);
   }, [overflightTime]);
 
-  const loadImage = useCallback((map: MapRef) => {
-    if (!map.hasImage('fragments-icon')) {
-      map.loadImage('/fragments.png', (error, image) => {
-        if (error || !image) {
-          throw error;
-        }
-        map.addImage('fragments-icon', image, { sdf: true });
-      });
-    }
-  }, []);
-
   const mapRefCallback = useCallback((ref: MapRef | null) => {
     if (ref !== null) {
       mapRef.current = ref;
-      // Add event listener for style.load
+      // Mark style as loaded when style finishes loading (fires on initial load and after style changes)
       ref.on('style.load', () => {
-        loadImage(ref);
+        setIsStyleLoaded(true);
       });
       ref.on('resize', () => {
         if (document.fullscreenElement) {
@@ -83,7 +73,12 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
         }
       });
     }
-  }, [loadImage]);
+  }, []);
+
+  // When switching map style, temporarily hide layers/sources until the new style is ready
+  useEffect(() => {
+    setIsStyleLoaded(false);
+  }, [mapType]);
 
   const handleClick = useCallback((event: MapMouseEvent) => {
     const {
@@ -128,54 +123,58 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
           renderWorldCopies={false}
         >
           <FullscreenControl />
-          {regions.map(region => region === RegionsEnum.UK_AIRSPACE
-            ? (
-                (RegionsGeoJson[RegionsEnum.UK_AIRSPACE] as unknown[]).map((airspace: unknown, index: number) => {
-                  return (
+          {isStyleLoaded && (
+            <>
+              {regions.map(region => region === RegionsEnum.UK_AIRSPACE
+                ? (
+                    (RegionsGeoJson[RegionsEnum.UK_AIRSPACE] as unknown[]).map((airspace: unknown, index: number) => {
+                      return (
+                        <Source
+                          // eslint-disable-next-line react/no-array-index-key
+                          key={`UK_AIRSPACE-${index}`}
+                          id={`UK_AIRSPACE-${index}`}
+                          type="geojson"
+                          data={airspace}
+                        >
+                          <Layer
+                            {...regionLayer(`UK_AIRSPACE-${index}`)}
+                            slot="bottom"
+                            layout={{
+                              visibility: 'visible',
+                            }}
+                          />
+                        </Source>
+                      );
+                    })
+                  )
+                : (
                     <Source
-                      // eslint-disable-next-line react/no-array-index-key
-                      key={`UK_AIRSPACE-${index}`}
-                      id={`UK_AIRSPACE-${index}`}
+                      key={region}
+                      id={region}
                       type="geojson"
-                      data={airspace}
+                      data={RegionsGeoJson[region]}
                     >
-                      <Layer
-                        {...regionLayer(`UK_AIRSPACE-${index}`)}
-                        slot="bottom"
-                        layout={{
-                          visibility: 'visible',
-                        }}
-                      />
+                      <Layer {...regionLayer(region)} slot="bottom" />
                     </Source>
-                  );
-                })
-              )
-            : (
-                <Source
-                  key={region}
-                  id={region}
-                  type="geojson"
-                  data={RegionsGeoJson[region]}
-                >
-                  <Layer {...regionLayer(region)} slot="bottom" />
+                  ))}
+              {flightpathsCollection && Array.from(flightpathsCollection.entries()).map(([index, flightpath]) => (
+                <Source key={`FLIGHTPATH-${index}`} type="geojson" data={flightpath}>
+                  <Layer
+                    {...flightpathStyle(index, types.includes('FLIGHTPATH') && flightpaths.includes(index))}
+                    slot="top"
+                  />
                 </Source>
               ))}
-          {flightpathsCollection && Array.from(flightpathsCollection.entries()).map(([index, flightpath]) => (
-            <Source key={`FLIGHTPATH-${index}`} type="geojson" data={flightpath}>
-              <Layer
-                {...flightpathStyle(index, types.includes('FLIGHTPATH') && flightpaths.includes(index))}
-                slot="top"
-              />
-            </Source>
-          ))}
-          {fragmentsCollection && Array.from(fragmentsCollection.entries()).map(([index, fragments]) => (
-            <Source key={`FRAGMENT-${index}`} type="geojson" data={fragments}>
-              <Layer
-                {...fragmentsCircleStyle(index, types.includes('FRAGMENT') && flightpaths.includes(index))}
-                slot="top"
-              />
-            </Source>
-          ))}
+              {fragmentsCollection && Array.from(fragmentsCollection.entries()).map(([index, fragments]) => (
+                <Source key={`FRAGMENT-${index}`} type="geojson" data={fragments}>
+                  <Layer
+                    {...fragmentsCircleStyle(index, types.includes('FRAGMENT') && flightpaths.includes(index))}
+                    slot="top"
+                  />
+                </Source>
+              ))}
+            </>
+          )}
           {hoverInfo && (
             <ReentryAlertMapTooltip
               regions={hoverInfo?.regions}
