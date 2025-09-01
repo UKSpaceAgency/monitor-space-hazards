@@ -7,7 +7,6 @@ import { useMemo, useState } from 'react';
 
 import type { TypeOverflightProbability } from '@/__generated__/data-contracts';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
-import Button from '@/ui/button/button';
 import Checkboxes from '@/ui/checkboxes/checkboxes';
 import Details from '@/ui/details/details';
 import Select from '@/ui/select/select';
@@ -83,11 +82,6 @@ const ReentryAlertImpactTable = ({ caption, impact }: ReentryAlertImpactTablePro
         ? prev.filter(type => type !== probabilityType)
         : [...prev, probabilityType],
     );
-  };
-
-  const handleClearFilters = () => {
-    setSelectedProbabilityTypes(ALL_PROBABILITY_TYPES);
-    setSelectedOverflightIndex(ALL_OVERFLIGHTS_OPTION);
   };
 
   // Header configuration
@@ -203,9 +197,6 @@ const ReentryAlertImpactTable = ({ caption, impact }: ReentryAlertImpactTablePro
               options={overflightOptions}
               onChange={handleOverflightChange}
             />
-            <Button onClick={handleClearFilters}>
-              {t('clear_filters')}
-            </Button>
           </div>
         </div>
       </Details>
