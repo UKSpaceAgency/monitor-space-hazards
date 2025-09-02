@@ -53,7 +53,7 @@ export const Button = forwardRef<HTMLElement, ButtonProps | LinkProps>((
   } = props;
 
   if (as === 'link' && href) {
-    return <Link className={classes} href={href}>{children}</Link>;
+    return <Link ref={ref as ForwardedRef<HTMLAnchorElement>} className={classes} href={href}>{children}</Link>;
   }
 
   return (
