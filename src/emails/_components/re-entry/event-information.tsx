@@ -34,7 +34,7 @@ export const ReentryEventInformation = ({ event }: ReentryEventInformationProps)
     fragmentsRisk: event?.fragmentsRisk ?? 'Low',
     fragmentsProbability: roundedPercent(event?.fragmentsProbability ?? 0),
     licensingCountry: getFullCountry(event.licenseCountry),
-    objectUrl: chunks => <Link href={`${env.NEXTAUTH_URL}/satellites/${event.noradId}`}>{chunks}</Link>,
+    objectUrl: chunks => <Link href={`${env.NEXTAUTH_URL}/re-entries/${event.shortId}/alert`}>{chunks}</Link>,
     tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
     p: chunks => <Text>{chunks}</Text>,
     b: chunks => <b>{chunks}</b>,

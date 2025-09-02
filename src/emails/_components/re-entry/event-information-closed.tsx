@@ -32,7 +32,7 @@ export const ReentryEventInformationClosed = ({ event }: ReentryEventInformation
     riskLevel: event?.atmosphericRisk ?? 'Low',
     riskProbability: roundedPercentage(event?.atmosphericProbability ?? 0),
     licensingCountry: getFullCountry(event.licenseCountry),
-    objectUrl: chunks => <Link href={`${env.NEXTAUTH_URL}/satellites/${event.noradId}`}>{chunks}</Link>,
+    objectUrl: chunks => <Link href={`${env.NEXTAUTH_URL}/re-entries/${event.shortId}/alert`}>{chunks}</Link>,
     tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
     p: chunks => <Text>{chunks}</Text>,
   };
