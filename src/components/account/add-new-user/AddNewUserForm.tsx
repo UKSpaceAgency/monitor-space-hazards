@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { FieldPath, SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 
@@ -28,11 +28,23 @@ type AddNewUserFormProps = {
 
 const AddNewUserForm = ({ defaultValues, organizations, role }: AddNewUserFormProps) => {
   const t = useTranslations('Forms.Add_new_user');
+  const editSettingsButtonRef = useRef<HTMLAnchorElement>(null);
+  const returnButtonRef = useRef<HTMLAnchorElement>(null);
   const [createdUser, setCreatedUser] = useState<{ user_id: string; organization_id: string; role: TypeUserRole; first_name: string; last_name: string } | null>(null);
 
   const { register, handleSubmit, setError, reset, formState: { isSubmitting, isSubmitSuccessful, errors } } = useForm<AddNewUserSchema>({
     defaultValues,
   });
+
+  const showSuccessBanner = !!createdUser && isSubmitSuccessful;
+
+  useEffect(() => {
+    if (showSuccessBanner && editSettingsButtonRef.current) {
+      editSettingsButtonRef.current?.focus();
+    } else {
+      returnButtonRef.current?.focus();
+    }
+  }, [showSuccessBanner]);
 
   const onSubmit: SubmitHandler<AddNewUserSchema> = async (data) => {
     const { data: success, errors } = await postUsers(data);
@@ -60,7 +72,7 @@ const AddNewUserForm = ({ defaultValues, organizations, role }: AddNewUserFormPr
       onSubmit={handleSubmit(onSubmit)}
     >
       <FormErrorSummary i18path="Add_new_user" errors={errors} />
-      {isSubmitSuccessful && createdUser && (
+      {showSuccessBanner && (
         <TopNotificationBanner status="success">
           <div>
             <RichText>
@@ -79,11 +91,11 @@ const AddNewUserForm = ({ defaultValues, organizations, role }: AddNewUserFormPr
             <ButtonGroup>
               {(isGovUser(createdUser.role) || isAgencyUser(createdUser.role))
               && (
-                <Button as="link" href={`/account/alert-settings/${createdUser?.user_id}`}>
+                <Button ref={editSettingsButtonRef} as="link" href={`/account/alert-settings/${createdUser?.user_id}`}>
                   {t('success_message_edit_settings_button')}
                 </Button>
               )}
-              <Button as="link" href={`/account/organisations/${createdUser?.organization_id}`} className="govuk-button--secondary">
+              <Button ref={returnButtonRef} as="link" href={`/account/organisations/${createdUser?.organization_id}`} className="govuk-button--secondary">
                 {t('success_message_return_button')}
               </Button>
             </ButtonGroup>
