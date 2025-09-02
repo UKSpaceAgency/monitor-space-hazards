@@ -36,6 +36,7 @@ import { Chart } from 'react-chartjs-2';
 
 import { FORMAT_DATE, FORMAT_DATE_TIME, FORMAT_SHORT_DATE } from '@/libs/Dayjs';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
+import { whiteBackgroundPlugin } from '@/utils/ChartPlugins';
 
 import type { InferChartLegendProps } from '../legend/LegendChart';
 import { ChartLegend } from '../legend/LegendChart';
@@ -261,6 +262,7 @@ export function BaseChart({
               },
             },
           }}
+          plugins={[whiteBackgroundPlugin]}
         />
       </div>
       {showLegend && (

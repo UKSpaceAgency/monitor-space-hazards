@@ -17,6 +17,8 @@ import type { ReactNode } from 'react';
 import { useEffect, useRef } from 'react';
 import { Pie } from 'react-chartjs-2';
 
+import { whiteBackgroundPlugin } from '@/utils/ChartPlugins';
+
 import { setChartDefaults } from '../base/defaults';
 import { chartPalette } from '../base/theme';
 import { useInViewport } from '../base/useInViewport';
@@ -90,6 +92,7 @@ export function BasePie({
               },
             },
           }}
+          plugins={[whiteBackgroundPlugin]}
         />
       </div>
     </div>

@@ -33,6 +33,7 @@ import {
 import { Chart } from 'react-chartjs-2';
 
 import { FORMAT_DATE, FORMAT_SHORT_DATE } from '@/libs/Dayjs';
+import { whiteBackgroundPlugin } from '@/utils/ChartPlugins';
 
 import { setChartDefaults } from '../base/defaults';
 import { getReferenceLine } from '../base/referenceLine';
@@ -202,6 +203,7 @@ export function BaseScatter({
               tooltip: tooltipConfig,
             },
           }}
+          plugins={[whiteBackgroundPlugin]}
         />
       </div>
       {showLegend && (
