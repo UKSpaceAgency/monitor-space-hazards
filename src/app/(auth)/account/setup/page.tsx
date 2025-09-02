@@ -22,9 +22,9 @@ export default async function SetupPage() {
   return (
     <div>
       <NotificationBanner status={isCompleted ? 'success' : 'important'}>
-        <h3 className="govuk-notification-banner__heading">
+        <p className="govuk-notification-banner__heading">
           {t(isCompleted ? 'notification.completed' : 'notification.uncompleted')}
-        </h3>
+        </p>
         {isCompleted && (
           <ButtonGroup>
             <Button as="link" href="/account">

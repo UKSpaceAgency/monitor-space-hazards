@@ -35,9 +35,9 @@ const OrganisationUserEmailForm = ({ user }: OrganisationUserEmailFormProps) => 
     return (
       <div>
         <NotificationBanner status="success">
-          <h3 className="govuk-notification-banner__heading">
+          <p className="govuk-notification-banner__heading">
             {t('success')}
-          </h3>
+          </p>
         </NotificationBanner>
         <Button
           as="link"
