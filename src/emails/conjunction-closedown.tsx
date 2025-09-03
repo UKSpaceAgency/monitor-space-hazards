@@ -34,10 +34,10 @@ function ConjunctionClosedownEmail({ report, event, withPlaceholders }: Conjunct
     >
       <Subheader comment={event.closedComment} />
       <Section title={t('event_overview_title')}>
-        <ConjunctionEventOverview eventUrl={eventLink} event={event} report={report} closedown className="pb-6" />
+        <ConjunctionEventOverview eventUrl={eventLink} event={event} report={report} className="pb-6" />
       </Section>
       <Section title={t('event_details_title')}>
-        <ConjunctionEventDetails eventUrl={eventLink} event={event} report={report} closedown className="pb-6" />
+        <ConjunctionEventDetails eventUrl={eventLink} event={event} report={report} className="pb-6" />
       </Section>
     </Layout>
   );

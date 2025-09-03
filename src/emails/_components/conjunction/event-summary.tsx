@@ -21,7 +21,7 @@ type ConjunctionEventSummaryProps = {
   closedown?: boolean;
 } & ComponentProps<'table'>;
 
-export const ConjunctionEventSummary = ({ eventUrl, report, event, closedown, ...props }: ConjunctionEventSummaryProps) => {
+export const ConjunctionEventSummary = ({ eventUrl, report, event, ...props }: ConjunctionEventSummaryProps) => {
   const t = createTranslator({
     locale: 'en',
     namespace: 'Emails.Conjunction_alert.Event_summary',
@@ -46,7 +46,7 @@ export const ConjunctionEventSummary = ({ eventUrl, report, event, closedown, ..
     <Section {...props}>
       <Table data={data} className="mb-6" />
       <Table data={objectData} className="mb-4" />
-      {t.rich(closedown ? 'content_closed' : 'content', {
+      {t.rich('content', {
         primaryObject: report.primaryObjectCommonName,
         secondaryObject: report.secondaryObjectCommonName,
         risk: report.risk,

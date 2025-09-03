@@ -15,10 +15,9 @@ type ConjunctionEventDetailsProps = {
   eventUrl: string;
   report: TypeConjunctionReportOut;
   event: TypeUniqueEventOut;
-  closedown?: boolean;
 } & ComponentProps<'table'>;
 
-export const ConjunctionEventDetails = ({ eventUrl, report, event, closedown, ...props }: ConjunctionEventDetailsProps) => {
+export const ConjunctionEventDetails = ({ eventUrl, report, event, ...props }: ConjunctionEventDetailsProps) => {
   const t = createTranslator({
     locale: 'en',
     namespace: 'Emails.Conjunction_alert.Event_details',
@@ -27,7 +26,7 @@ export const ConjunctionEventDetails = ({ eventUrl, report, event, closedown, ..
 
   const objectData = [
     [t('details'), t.rich('details_content', { link: chunks => <Link href={eventUrl}>{chunks}</Link> })],
-    [t('event_summary'), t.rich('event_summary_content', {
+    [t('event_summary'), t.rich('event_summary_content_closed', {
       primaryObject: report.primaryObjectCommonName,
       secondaryObject: report.secondaryObjectCommonName,
       risk: report.risk,

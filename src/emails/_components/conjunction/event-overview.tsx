@@ -12,10 +12,9 @@ type ConjunctionEventOverviewProps = {
   eventUrl: string;
   report: TypeConjunctionReportOut;
   event: TypeUniqueEventOut;
-  closedown?: boolean;
 } & ComponentProps<'table'>;
 
-export const ConjunctionEventOverview = ({ eventUrl, report, event, closedown, ...props }: ConjunctionEventOverviewProps) => {
+export const ConjunctionEventOverview = ({ eventUrl, report, event, ...props }: ConjunctionEventOverviewProps) => {
   const t = createTranslator({
     locale: 'en',
     namespace: 'Emails.Conjunction_alert.Event_summary',
