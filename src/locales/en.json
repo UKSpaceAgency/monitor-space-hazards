@@ -1843,13 +1843,8 @@
         "norad_id": "NORAD ID",
         "licensing_country": "Licensing Country",
         "report_number": "Report number",
-        "content": "<p>The National Space Operations Centre is monitoring the conjunction event <eventUrl>{primaryObject} vs {secondaryObject}</eventUrl>. A potential collision could damage the objects involved, limiting or eliminating their capability, as well as releasing new fragments, which would increase the risk of future collisions for other objects. This event is assessed as <tag>{risk}</tag> risk, with a {probability} probability of collision (PoC).</p>"
-      },
-      "Event_details": {
-        "details": "Details",
-        "event_summary": "Event Summary",
-        "details_content": "Log into <link>Monitor Space Hazards</link> for more informations about this event.",
-        "event_summary_content_closed": "<p>The National Space Operations Centre has completed monitoring the conjunction event <eventUrl>{primaryObject} vs {secondaryObject}</eventUrl>. A potential collision could have damaged the objects involved, limiting or eliminating their capability, as well as releasing new fragments, which would increase the risk of future collisions for other objects. This event was assessed as <tag>{risk}</tag> risk, with a {probability} probability of collision (PoC).</p>"
+        "content": "<p>The National Space Operations Centre is monitoring the conjunction event <eventUrl>{primaryObject} vs {secondaryObject}</eventUrl>. A potential collision could damage the objects involved, limiting or eliminating their capability, as well as releasing new fragments, which would increase the risk of future collisions for other objects. This event is assessed as <tag>{risk}</tag> risk, with a {probability} probability of collision (PoC).</p>",
+        "content_closed": "<p>The National Space Operations Centre has completed monitoring the conjunction event <eventUrl>{primaryObject} vs {secondaryObject}</eventUrl>. A potential collision could have damaged the objects involved, limiting or eliminating their capability, as well as releasing new fragments, which would increase the risk of future collisions for other objects. This event was assessed as <tag>{risk}</tag> risk, with a {probability} probability of collision (PoC).</p>"
       },
       "Event_details": {
         "details": "Details",
