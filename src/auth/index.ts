@@ -160,17 +160,27 @@ export const { handlers, signIn, signOut, auth, unstable_update: update } = Next
         return token;
       } else {
         if (!token.refresh_token) {
-          throw new TypeError('Missing refresh_token');
+          // Return null to trigger session expiration and redirect to homepage
+          return null;
         }
-        return await refreshAccessToken(token);
+        const refreshedToken = await refreshAccessToken(token);
+        // If refresh failed, return null to trigger session expiration
+        if (refreshedToken.error === 'RefreshAccessTokenError') {
+          return null;
+        }
+        return refreshedToken;
       }
     },
     async session({ session, token }) {
+      // If token is null (session expired), return null to trigger logout
+      if (!token) {
+        return null as any;
+      }
+
       session.user = {
         ...session.user,
         role: token.role,
         setup_completed: token.setup_completed,
-
       };
       session.access_token = token.access_token;
       return session;
