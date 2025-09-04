@@ -138,7 +138,7 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
                         >
                           <Layer
                             {...regionLayer(`UK_AIRSPACE-${index}`)}
-                            slot="bottom"
+                            slot="middle"
                             layout={{
                               visibility: 'visible',
                             }}
@@ -161,7 +161,7 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
                 <Source key={`FLIGHTPATH-${index}`} type="geojson" data={flightpath}>
                   <Layer
                     {...flightpathStyle(index, types.includes('FLIGHTPATH') && flightpaths.includes(index))}
-                    slot="top"
+                    slot="middle"
                   />
                 </Source>
               ))}
@@ -169,7 +169,7 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
                 <Source key={`FRAGMENT-${index}`} type="geojson" data={fragments}>
                   <Layer
                     {...fragmentsCircleStyle(index, types.includes('FRAGMENT') && flightpaths.includes(index))}
-                    slot="top"
+                    slot="middle"
                   />
                 </Source>
               ))}

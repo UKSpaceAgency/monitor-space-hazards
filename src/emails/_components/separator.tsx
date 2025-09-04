@@ -21,11 +21,11 @@ export const Separator = () => {
               margin: '0',
               height: '1px',
               backgroundColor: '#006ebb',
-              fontSize: '0px',
-              lineHeight: '0px',
+              fontSize: '0',
+              lineHeight: '0',
             }}
           >
-          &nbsp;
+            &nbsp;
           </td>
         </tr>
       </table>
