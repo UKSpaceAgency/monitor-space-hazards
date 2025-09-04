@@ -104,117 +104,126 @@ export function BaseScatter({
   return (
     <div className="bg-lightGrey" data-type="chart">
       <div className="flex justify-between">{actionButtons}</div>
-      <div className="lg:my-2 my-auto relative">
-        <Chart
-          aria-label="Scatter chart"
-          ref={chart}
-          type="line"
-          data={data}
-          options={{
-            aspectRatio: 1.5,
-            interaction: {
-              intersect: false,
-              mode: 'nearest',
-            },
-            scales: {
-              y: {
-                border: {
+      <div className="border border-black bg-white">
+        <div className="lg:my-2 my-auto relative">
+          <Chart
+            aria-label="Scatter chart"
+            ref={chart}
+            type="line"
+            data={data}
+            options={{
+              aspectRatio: 1.5,
+              interaction: {
+                intersect: false,
+                mode: 'nearest',
+              },
+              scales: {
+                y: {
+                  border: {
+                    display: false,
+                  },
+                  grid: {
+                    display: showGrid,
+                    drawOnChartArea: false,
+                    z: -1,
+                  },
+                  title: {
+                    display: !!yAxisTitle,
+                    text: yAxisTitle,
+                    align: isMobile ? 'end' : 'center',
+                    font: {
+                      size: isMobile ? 10 : 16,
+                      weight: 'bold',
+                    },
+                    padding: {
+                      bottom: isMobile ? 4 : 20,
+                    },
+                  },
+                  ticks: {
+                    font: {
+                      size: isMobile ? 10 : 12,
+                    },
+                  },
+                },
+                x: {
+                  border: {
+                    display: false,
+                  },
+                  grid: {
+                    display: showGrid,
+                    drawOnChartArea: false,
+                    z: -1,
+                  },
+                  type: 'time',
+                  adapters: {
+                    date: {
+                      locale: enGb,
+                    },
+                  },
+                  min,
+                  time: {
+                    unit: 'day',
+                    displayFormats: {
+                      day: isMobile ? FORMAT_SHORT_DATE : FORMAT_DATE,
+                    },
+                    tooltipFormat: FORMAT_DATE,
+                  },
+                  ticks: {
+                    autoSkip: true,
+                    source: 'auto',
+                    maxTicksLimit: isMobile ? 4 : 10,
+                    padding: 2,
+                    align: isMobile ? 'end' : 'center',
+                    font: {
+                      size: isMobile ? 10 : 12,
+                    },
+                  },
+                  title: {
+                    display: !!xAxisTitle,
+                    text: xAxisTitle,
+                    font: {
+                      size: isMobile ? 10 : 16,
+                      weight: 'bold',
+                    },
+                    padding: {
+                      bottom: isMobile ? 10 : 20,
+                    },
+                  },
+                },
+              },
+              layout: {
+                padding: {
+                  top: isMobile ? 5 : 50,
+                  right: isMobile ? 5 : 80,
+                  left: isMobile ? 5 : 50,
+                },
+              },
+              plugins: {
+                annotation: {
+                  annotations: {
+                    referenceLine,
+                  },
+                  clip: true,
+                },
+                legend: {
                   display: false,
                 },
-                grid: {
-                  display: showGrid,
-                  drawOnChartArea: false,
-                  z: -1,
-                },
-                title: {
-                  display: !!yAxisTitle,
-                  text: yAxisTitle,
-                  align: isMobile ? 'end' : 'center',
-                  font: {
-                    size: isMobile ? 10 : 16,
-                    weight: 'bold',
-                  },
-                  padding: {
-                    bottom: isMobile ? 4 : 20,
-                  },
-                },
-                ticks: {
-                  font: {
-                    size: isMobile ? 10 : 12,
-                  },
-                },
+                tooltip: tooltipConfig,
               },
-              x: {
-                border: {
-                  display: false,
-                },
-                grid: {
-                  display: showGrid,
-                  drawOnChartArea: false,
-                  z: -1,
-                },
-                type: 'time',
-                adapters: {
-                  date: {
-                    locale: enGb,
-                  },
-                },
-                min,
-                time: {
-                  unit: 'day',
-                  displayFormats: {
-                    day: isMobile ? FORMAT_SHORT_DATE : FORMAT_DATE,
-                  },
-                  tooltipFormat: FORMAT_DATE,
-                },
-                ticks: {
-                  autoSkip: true,
-                  source: 'auto',
-                  maxTicksLimit: isMobile ? 4 : 10,
-                  padding: 2,
-                  align: isMobile ? 'end' : 'center',
-                  font: {
-                    size: isMobile ? 10 : 12,
-                  },
-                },
-                title: {
-                  display: !!xAxisTitle,
-                  text: xAxisTitle,
-                  font: {
-                    size: isMobile ? 10 : 16,
-                    weight: 'bold',
-                  },
-                  padding: {
-                    bottom: isMobile ? 10 : 20,
-                  },
-                },
-              },
-            },
-            plugins: {
-              annotation: {
-                annotations: {
-                  referenceLine,
-                },
-                clip: true,
-              },
-              legend: {
-                display: false,
-              },
-              tooltip: tooltipConfig,
-            },
-          }}
-          plugins={[whiteBackgroundPlugin]}
-        />
+            }}
+            plugins={[whiteBackgroundPlugin]}
+          />
+        </div>
+        {showLegend && (
+          <ChartLegend
+            chartRef={chart}
+            items={legendItems}
+            interactive={false}
+            ariaLabel={ariaLabel}
+            {...legend}
+          />
+        )}
       </div>
-      {showLegend && (
-        <ChartLegend
-          chartRef={chart}
-          items={legendItems}
-          interactive={false}
-          ariaLabel={ariaLabel}
-          {...legend}
-        />
-      )}
     </div>
   );
 }

@@ -36,7 +36,7 @@ export const ChartLegend = ({
   }, [chartRef]);
 
   return (
-    <fieldset className="flex items-start justify-center gap-2 font-sans text-xs md:mx-2 md:text-base" aria-label={`${ariaLabel} Legend`} data-pdf-ignore>
+    <fieldset className="flex flex-col items-center justify-center gap-2 font-sans text-xs md:mx-2 md:text-base" aria-label={`${ariaLabel} Legend`} data-pdf-ignore>
       {title && <div><legend className="govuk-fieldset__legend m-0 p-1 font-bold text-nowrap">{title}</legend></div>}
       <ul className="flex flex-wrap items-center m-0 p-0 gap-x-2 list-none justify-center">
         {items.map(({ label, backgroundColor, borderColor }, index) => (
