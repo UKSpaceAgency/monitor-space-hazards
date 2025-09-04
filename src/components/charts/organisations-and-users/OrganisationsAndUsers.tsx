@@ -75,6 +75,7 @@ const OrganisationsAndUsersChart = ({ data }: OrganisationsAndUsersProps) => {
       name="organisations-and-users-chart"
       actionButtons={actionButtons}
       yAxisTitle={t('y_axis_title')}
+      xAxisTitle={t('x_axis_title')}
       showLegend
       ariaLabel="Organisations and users"
       legend={{
