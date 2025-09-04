@@ -57,7 +57,7 @@ export function BasePie({
   return (
     <div className="p-4 bg-lightGrey" data-type="chart">
       <div className="flex justify-between">{actionButtons}</div>
-      <div className="relative mx-0 my-auto">
+      <div className="border border-black relative mx-0 my-auto">
         <Pie
           ref={chart}
           aria-label={`${ariaLabel} Pie chart`}
@@ -68,6 +68,14 @@ export function BasePie({
             interaction: {
               intersect: false,
               mode: 'index',
+            },
+            layout: {
+              padding: {
+                top: isMobile ? 5 : 50,
+                right: isMobile ? 5 : 80,
+                left: isMobile ? 5 : 50,
+                bottom: isMobile ? 5 : 50,
+              },
             },
             plugins: {
               legend: {
