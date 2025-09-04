@@ -30,7 +30,6 @@ function ConjunctionClosedownEmail({ report, event, withPlaceholders }: Conjunct
       title={t('title_closed', { reportNumber: report.reportNumber })}
       subtitle={`${report.primaryObjectCommonName} vs ${report.secondaryObjectCommonName}`}
       withPlaceholders={withPlaceholders}
-      isShort
     >
       <Subheader comment={event.closedComment} />
       <Section title={t('event_overview_title')}>

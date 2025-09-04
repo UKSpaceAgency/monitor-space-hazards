@@ -26,7 +26,7 @@ export const ConjunctionEventDetails = ({ eventUrl, report, event, ...props }: C
 
   const objectData = [
     [t('details'), t.rich('details_content', { link: chunks => <Link href={eventUrl}>{chunks}</Link> })],
-    [t('event_summary'), t.rich('event_summary_content_closed', {
+    [t('event_summary'), t.rich('event_summary_content', {
       primaryObject: report.primaryObjectCommonName,
       secondaryObject: report.secondaryObjectCommonName,
       risk: report.risk,
