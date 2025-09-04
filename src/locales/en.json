@@ -446,6 +446,7 @@
       "manoeuvre_received": "Manoeuvre support plots received",
       "file_type": "File type",
       "number_received": "Number received",
+      "date": "Date",
       "latest_ingest": "Latest ingest: ",
       "date_range": "Date range",
       "7_days": "7 days",
@@ -475,6 +476,7 @@
       "<1e-3_and_>1e-5": "<1e-3 and >1e-5",
       ">1e-3": ">1e-3",
       "y_axis": "Number of events",
+      "x_axis": "Date",
       "legend_title": "Probability of collision",
       "upcoming_events": "Upcoming events",
       "last_7d": "Last 7 days",
@@ -491,24 +493,28 @@
       "medium": "<1e-3 and >1e-5",
       "high": ">1e-3",
       "legend_title": "Probability of collision",
-      "y_axis_title": "Number of events"
+      "y_axis_title": "Number of events",
+      "x_axis_title": "Date"
     },
     "Organisations_and_users": {
       "data_range": "Data range",
       "12_months": "12 months",
       "all_time": "All time",
       "y_axis_title": "Number of accounts",
+      "x_axis_title": "Date",
       "organisations": "Organisations",
       "users": "Users accounts",
       "legend_title": "Account type"
     },
     "Monthly_analyses": {
       "y_axis_title": "Number received",
+      "x_axis_title": "Date",
       "analyses": "Analyses Received",
       "manoeuvre_support_plots": "Manoeuvre Support Plots Received"
     },
     "Monthly_conjunction_events": {
       "y_axis_title": "Number of events",
+      "x_axis_title": "Date",
       "legend_title": "Events type",
       "debris": "Events with debris",
       "satellite": "Events with another satellite",
@@ -868,7 +874,8 @@
       "cdm_ingests": {
         "title": "CDM ingests",
         "unknown": "Unknown",
-        "x_axis_title": "Number of CDMs ingested",
+        "y_axis_title": "Number of CDMs ingested",
+        "x_axis_title": "Date",
         "legend": "Conjunction Data Message (CDM) source",
         "details": {
           "title": "Help with this table",
@@ -878,7 +885,8 @@
       "tip_ingests": {
         "title": "TIP ingests",
         "unknown": "Unknown",
-        "x_axis_title": "Number of TIPs ingested",
+        "y_axis_title": "Number of TIPs ingested",
+        "x_axis_title": "Date",
         "legend": "Tracking and Impact Prediction (TIP) source",
         "details": {
           "title": "Help with this table",
@@ -888,7 +896,8 @@
       "object_data_ingests": {
         "title": "Object data ingests",
         "unknown": "Unknown",
-        "x_axis_title": "Number of objects ingested",
+        "y_axis_title": "Number of objects ingested",
+        "x_axis_title": "Date",
         "legend": "Object ingest",
         "details": {
           "title": "Help with this table",

@@ -16,12 +16,13 @@ import { chartPalette } from '../base/theme';
 type DataPerformanceChartProps = {
   latestIngestDate: string;
   sourceType: TypeExternalDataType;
+  yAxisTitle: string;
   xAxisTitle: string;
   legend: string;
   ariaLabel?: string;
 };
 
-const DataPerformanceChart = ({ latestIngestDate, sourceType, xAxisTitle, legend, ariaLabel }: DataPerformanceChartProps) => {
+const DataPerformanceChart = ({ latestIngestDate, sourceType, xAxisTitle, yAxisTitle, legend, ariaLabel }: DataPerformanceChartProps) => {
   const t = useTranslations('Charts.Ingests');
 
   const params: TypeGetExternalDataPerformanceAggregatedParams = {
@@ -114,7 +115,8 @@ const DataPerformanceChart = ({ latestIngestDate, sourceType, xAxisTitle, legend
       <BaseChart
         name={`${camelCase(sourceType)}-ingests-chart`}
         data={datasets}
-        yAxisTitle={xAxisTitle}
+        yAxisTitle={yAxisTitle}
+        xAxisTitle={xAxisTitle}
         actionButtons={actionButtons}
         legend={{ title: legend }}
         ariaLabel={ariaLabel}
