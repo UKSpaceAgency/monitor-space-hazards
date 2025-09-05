@@ -24,7 +24,7 @@ const OrganisationUserAccountDetails = ({ user }: OrganisationUserAccountDetails
   const confirmDelete = useCallback(async () => {
     await deleteUser(user.id);
 
-    replace(`/account/organisations/${user.organizationId}`);
+    replace(`/account/organisations/${user.organizationId}?deletionUserSucceeded=true`);
   }, [replace, user.id, user.organizationId]);
 
   useEffect(() => {

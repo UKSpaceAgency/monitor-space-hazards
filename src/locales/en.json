@@ -217,6 +217,10 @@
     }
   },
   "Organisation": {
+    "banner": {
+      "success_message": "User is  successfully deleted",
+      "close_button": "Close"
+    },
     "summary": {
       "operator_information": "Operator Information",
       "uk_satellites": "Number of UK-licensed satellites",
