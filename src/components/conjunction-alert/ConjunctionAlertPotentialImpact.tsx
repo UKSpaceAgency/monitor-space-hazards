@@ -14,21 +14,24 @@ const ConjunctionAlertPotentialImpact = ({ immediateImpactAddition, shortTermImp
 
   return (
     <div data-pdf={dataPdf}>
-      <div>
-        <h4 className="govuk-heading-m">{t('immediate_impact.title')}</h4>
-        {t.rich('immediate_impact.content')}
-        <Markdown>{immediateImpactAddition}</Markdown>
-      </div>
-      <div>
-        <h4 className="govuk-heading-m">{t('short_term_impact.title')}</h4>
-        {t.rich('short_term_impact.content')}
-        <Markdown>{shortTermImpactAddition}</Markdown>
-      </div>
-      <div>
-        <h4 className="govuk-heading-m">{t('long_term_impact.title')}</h4>
-        {t.rich('long_term_impact.content')}
-        <Markdown>{longTermImpactAddition}</Markdown>
-      </div>
+      {immediateImpactAddition && (
+        <div>
+          <h4 className="govuk-heading-m">{t('immediate_impact.title')}</h4>
+          <Markdown>{immediateImpactAddition}</Markdown>
+        </div>
+      )}
+      {shortTermImpactAddition && (
+        <div>
+          <h4 className="govuk-heading-m">{t('short_term_impact.title')}</h4>
+          <Markdown>{shortTermImpactAddition}</Markdown>
+        </div>
+      )}
+      {longTermImpactAddition && (
+        <div>
+          <h4 className="govuk-heading-m">{t('long_term_impact.title')}</h4>
+          <Markdown>{longTermImpactAddition}</Markdown>
+        </div>
+      )}
     </div>
   );
 };

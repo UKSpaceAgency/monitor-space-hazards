@@ -39,12 +39,13 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(({
         className,
       )}
     >
-      {label && <Label htmlFor={id}>{label}</Label>}
+      {label && <Label htmlFor={props.id ?? id}>{label}</Label>}
       {hint && <Hint>{hint}</Hint>}
       {error && <ErrorMessage>{error}</ErrorMessage>}
       <div className="govuk-input__wrapper">
         <select
           id={id}
+          aria-describedby={props.id ?? id}
           ref={ref}
           className={clsx('govuk-select', {
             'govuk-select--error': !!error,

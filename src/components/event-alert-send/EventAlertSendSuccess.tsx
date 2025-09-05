@@ -1,5 +1,4 @@
 'use client';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
@@ -23,9 +22,7 @@ const EventAlertSendSuccess = ({ type, shortId }: EventAlertSendSuccessProps) =>
   return (
     <div>
       <Panel heading={t('title')}>{t('content', { type, shortId })}</Panel>
-      <Link href={eventPageUrl}>
-        <Button>{t('return')}</Button>
-      </Link>
+      <Button as="link" href={eventPageUrl}>{t('return')}</Button>
     </div>
   );
 };

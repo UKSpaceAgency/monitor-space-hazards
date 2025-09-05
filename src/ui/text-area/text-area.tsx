@@ -17,7 +17,7 @@ export type TextareaProps = {
 
 export const TextArea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
-    { name, className, label, hint, error, prefix, suffix, labelClass, ...props },
+    { name, className, label, hint, error, prefix, suffix, labelClass, required, 'aria-label': ariaLabel, ...props },
     ref,
   ) => {
     const id = useId();
@@ -39,6 +39,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           id={id}
           rows={5}
           name={name}
+          aria-label={`${ariaLabel} ${required ? 'required' : 'optional'} field`}
           {...props}
         />
       </div>

@@ -18,8 +18,8 @@ const NotificationsSent = async () => {
   return (
     <>
       <NotificationsSentDaily />
-      <DownloadData type={t('title')} params={params} downloadAction={getStatsNotificationsSent} />
-      <Details summary={t('details.title')}>
+      <DownloadData type={t('title')} params={params} downloadAction={getStatsNotificationsSent} ariaLabel="Notifications sent" />
+      <Details summary={t('details.title')} aria-label="Notifications Sent details">
         {t.rich('details.content')}
       </Details>
     </>

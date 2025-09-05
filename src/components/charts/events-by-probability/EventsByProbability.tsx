@@ -47,7 +47,9 @@ export function EventsByProbabilityOfCollisionChart({
       actionButtons={actionButtons}
       showTotal={false}
       showLegend
+      ariaLabel="Conjunction events by probability of collision"
       yAxisTitle={t('y_axis_title')}
+      xAxisTitle={t('x_axis_title')}
       legend={{ title: t('legend_title') }}
     />
   );

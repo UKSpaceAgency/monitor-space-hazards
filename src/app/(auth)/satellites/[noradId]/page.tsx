@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 
 import { getEphemerises } from '@/actions/getEphemerises';
@@ -48,7 +47,7 @@ export default async function Satellite(props: PageProps) {
       <div className="grid md:grid-cols-4 gap-7">
         <ContentNavigation />
         <div className="md:col-span-3">
-          <SatelliteConjunctionEvents noradId={noradId} query={upcoming_search_like} epoch="future" />
+          <SatelliteConjunctionEvents noradId={noradId} query={upcoming_search_like} epoch="future" id="future_search_bar" ariaLabel="Upcoming Conjunction Events" />
           <SatelliteEphemerisData
             noradId={noradId}
             ephemerises={ephemerises}
@@ -56,10 +55,8 @@ export default async function Satellite(props: PageProps) {
           />
           <SatelliteInformation object={satellite} />
           <SatelliteAdditionalInformations object={satellite} />
-          <SatelliteConjunctionEvents noradId={noradId} query={previous_search_link} epoch="past" />
-          <Link href="/satellites">
-            <Button variant="secondary">{t('return', { to: 'all satellites' })}</Button>
-          </Link>
+          <SatelliteConjunctionEvents noradId={noradId} query={previous_search_link} epoch="past" id="past_search_bar" ariaLabel="Previous Conjunction Events" />
+          <Button as="link" href="/satellites" variant="secondary">{t('return', { to: 'all satellites' })}</Button>
         </div>
       </div>
     </div>

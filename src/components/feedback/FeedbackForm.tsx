@@ -46,26 +46,33 @@ const FeedbackForm = () => {
       >
         <Radios
           id="satisfaction"
-          label={t('radios_label')}
-          labelClass="govuk-fieldset__legend--m"
+          aria-label="Satisfaction"
+          legend={t('radios_label')}
+          legendClass="govuk-fieldset__legend--m"
           error={errors.satisfaction?.message}
+          required
           items={[{
+            id: '5',
             value: '5',
             children: t('very_satisfied'),
             ...register('satisfaction'),
           }, {
+            id: '4',
             value: '4',
             children: t('satisfied'),
             ...register('satisfaction'),
           }, {
+            id: '3',
             value: '3',
             children: t('neither'),
             ...register('satisfaction'),
           }, {
+            id: '2',
             value: '2',
             children: t('dissatisfied'),
             ...register('satisfaction'),
           }, {
+            id: '1',
             value: '1',
             children: t('very_dissatisfied'),
             ...register('satisfaction'),
@@ -78,6 +85,8 @@ const FeedbackForm = () => {
         label={t('textarea_label')}
         labelClass="govuk-fieldset__legend--m"
         hint={t('textarea_hint')}
+        required
+        aria-label="Details"
         error={errors.details?.message}
       />
       <Button type="submit" disabled={loading}>{t('submit')}</Button>

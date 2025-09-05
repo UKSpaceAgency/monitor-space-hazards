@@ -17,6 +17,8 @@ import type { ReactNode } from 'react';
 import { useEffect, useRef } from 'react';
 import { Pie } from 'react-chartjs-2';
 
+import { whiteBackgroundPlugin } from '@/utils/ChartPlugins';
+
 import { setChartDefaults } from '../base/defaults';
 import { chartPalette } from '../base/theme';
 import { useInViewport } from '../base/useInViewport';
@@ -32,6 +34,7 @@ defaults.plugins.tooltip.footerColor = chartPalette.black;
 export type BasePieProps = {
   data: ChartData<'pie'>;
   actionButtons?: ReactNode;
+  ariaLabel?: string;
 } & InferChartLegendProps;
 
 export function BasePie({
@@ -39,6 +42,7 @@ export function BasePie({
   actionButtons,
   showLegend = true,
   legend,
+  ariaLabel,
 }: BasePieProps) {
   const chart = useRef<ChartJS<'pie'>>({} as ChartJS<'pie'>);
   const [isMobile] = useInViewport();
@@ -53,10 +57,10 @@ export function BasePie({
   return (
     <div className="p-4 bg-lightGrey" data-type="chart">
       <div className="flex justify-between">{actionButtons}</div>
-      <div className="relative mx-0 my-auto">
+      <div className="border border-black relative mx-0 my-auto">
         <Pie
           ref={chart}
-          aria-label="Pie chart"
+          aria-label={`${ariaLabel} Pie chart`}
           data={data}
           options={{
             responsive: true,
@@ -64,6 +68,14 @@ export function BasePie({
             interaction: {
               intersect: false,
               mode: 'index',
+            },
+            layout: {
+              padding: {
+                top: isMobile ? 5 : 50,
+                right: isMobile ? 5 : 80,
+                left: isMobile ? 5 : 50,
+                bottom: isMobile ? 5 : 50,
+              },
             },
             plugins: {
               legend: {
@@ -88,6 +100,7 @@ export function BasePie({
               },
             },
           }}
+          plugins={[whiteBackgroundPlugin]}
         />
       </div>
     </div>

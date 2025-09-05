@@ -1,17 +1,29 @@
+import type { UrlObject } from 'node:url';
+
 import clsx from 'clsx';
+import Link from 'next/link';
 import type { ButtonHTMLAttributes, ForwardedRef } from 'react';
 import { forwardRef } from 'react';
 
-export type ButtonProps = {
+export type LinkProps = CommonButtonProps & {
+  as: 'link';
+  href: string | UrlObject;
+};
+
+export type ButtonProps = CommonButtonProps & {
+  as?: 'button';
+  href?: never; // not allowed for button
+};
+
+export type CommonButtonProps = {
   variant?: 'secondary' | 'warning';
-  href?: string;
   isStartButton?: true;
   text?: string;
   disabled?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const Button = forwardRef<HTMLElement, ButtonProps>((
-  { isStartButton, variant, className, ...props },
+export const Button = forwardRef<HTMLElement, ButtonProps | LinkProps>((
+  { isStartButton, variant, className, href, as = 'button', ...props },
   ref,
 ) => {
   const startIcon = (
@@ -39,6 +51,10 @@ export const Button = forwardRef<HTMLElement, ButtonProps>((
     children,
     ...rest
   } = props;
+
+  if (as === 'link' && href) {
+    return <Link ref={ref as ForwardedRef<HTMLAnchorElement>} className={classes} href={href}>{children}</Link>;
+  }
 
   return (
     <button

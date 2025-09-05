@@ -26,8 +26,9 @@ const SatellitesDataTable = ({ initialData, params }: SatellitesDataTableProps) 
         columns={satellitesColumns}
         fetcher={getSatellites}
         queryKeys={[QUERY_KEYS.Satellites]}
+        focusable
       />
-      <DownloadData type={t('Download.types.satellites')} params={params} downloadAction={getSatellites} />
+      <DownloadData type={t('Download.types.satellites')} params={params} downloadAction={getSatellites} ariaLabel="Satellites" />
     </>
   );
 };

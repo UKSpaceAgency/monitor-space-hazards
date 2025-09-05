@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
@@ -29,9 +28,7 @@ export default async function ConjunctionSuccessfulAnalysisUpload({
   return (
     <div>
       <Panel heading={t('title')}>{t('content', { shortId })}</Panel>
-      <Link href={`/conjunctions/${shortId}`}>
-        <Button>{tCommon('return', { to: 'conjunction event' })}</Button>
-      </Link>
+      <Button as="link" href={`/conjunctions/${shortId}`}>{tCommon('return', { to: 'conjunction event' })}</Button>
     </div>
   );
 };

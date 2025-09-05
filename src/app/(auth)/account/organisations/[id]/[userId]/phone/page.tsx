@@ -1,9 +1,7 @@
-import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import { getUsersById } from '@/actions/getUserById';
 import { OrganisationUserPhoneForm } from '@/components/account/organisations/organisation/OrganisationUserPhoneForm';
-import { isOrgAdmin } from '@/utils/Roles';
 
 export async function generateMetadata({
   params,
@@ -12,10 +10,6 @@ export async function generateMetadata({
 }) {
   const { userId } = await params;
   const user = await getUsersById(userId);
-
-  if (!isOrgAdmin(user.role)) {
-    notFound();
-  }
 
   return {
     title: user.role,

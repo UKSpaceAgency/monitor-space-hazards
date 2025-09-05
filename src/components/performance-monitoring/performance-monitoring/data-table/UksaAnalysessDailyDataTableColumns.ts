@@ -1,5 +1,5 @@
 import type { AnalysisAndManoeuvreSupportStatsType } from '@/actions/getStatsAnalysisAndManoeuvreSupport';
-import { dayjs, FORMAT_API_DATE } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 
 export const uksaAnalysesDailyColumns: TranslatedColumnDef<AnalysisAndManoeuvreSupportStatsType>[] = [
@@ -16,7 +16,7 @@ export const uksaAnalysesDailyColumns: TranslatedColumnDef<AnalysisAndManoeuvreS
     cell: ({ getValue }) => {
       const date = getValue<string>();
 
-      return dayjs(date).format(FORMAT_API_DATE);
+      return dayjs(date).format(FORMAT_DATE);
     },
     enableSorting: false,
   },

@@ -82,7 +82,7 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
             content: (
               <div className="overflow-auto">
                 <DataTable
-                  data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_option === 'uk_satellites_only')}
+                  data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_option === 'uk-licensed')}
                   columns={distributionListColumns}
                   largerText
                 />

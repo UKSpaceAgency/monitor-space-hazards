@@ -1,4 +1,4 @@
-import type { CircleLayerSpecification, FillLayerSpecification, SymbolLayerSpecification } from 'mapbox-gl';
+import type { CircleLayerSpecification, FillLayerSpecification, HeatmapLayerSpecification, SymbolLayerSpecification } from 'mapbox-gl';
 
 import { RegionsEnum } from '@/utils/Regions';
 
@@ -11,6 +11,12 @@ import ScotlandGeojson from './regions/scotland.json';
 import ScottishFirGeojson from './regions/scotland_fir.json';
 import ShanwickGeojson from './regions/shanwick.json';
 import WalesGeojson from './regions/wales.json';
+
+export enum MapTypes {
+  streets = 'streets',
+  light = 'light',
+  satellite = 'satellite',
+}
 
 export const RegionsGeoJson: Partial<Record<RegionsEnum, unknown>> = {
   [RegionsEnum.ENGLAND]: EnglandGeojson,
@@ -42,20 +48,22 @@ export const regionLayer = (region: string): FillLayerSpecification => ({
   },
 });
 
-export const FlightpathColor = '#f46a25';
+// here is flightpath color
+export const FlightpathColor = '#3D3D3D';
 export const FragmentColor = '#801650';
-export const OverflightColors = [
-  FlightpathColor,
-  '#28A197',
-  '#12436D',
-  '#A285D1',
-  '#D4351C',
-  '#F499BE',
-  '#B58840',
-  '#5694CA',
-  '#3D3D3D',
-  '#85994b',
-];
+export const OverflightColor = '#F46A25';
+// export const OverflightColors = [
+//   FlightpathColor,
+//   '#28A197',
+//   '#12436D',
+//   '#A285D1',
+//   '#D4351C',
+//   '#F499BE',
+//   '#B58840',
+//   '#5694CA',
+//   '#3D3D3D',
+//   '#85994b',
+// ];
 
 export type OverflightType = 'FLIGHTPATH' | 'FRAGMENT' | string;
 
@@ -64,20 +72,15 @@ export const flightpathStyle = (index: number, visible: boolean): CircleLayerSpe
   type: 'circle',
   source: `FLIGHTPATH-${index}`,
   paint: {
-    'circle-color': OverflightColors[index] ?? '#fff',
+    'circle-color': index === 0 ? FlightpathColor : OverflightColor,
     'circle-opacity': 0.6,
+    'circle-blur': 0.85,
     'circle-radius': {
-      base: 20,
-      stops: index === 0
-        ? [
-            [0, 2],
-            [3, 10],
-          ]
-        : [
-            [0, 2],
-            [3, 10],
-            [10, 20],
-          ],
+      stops: [
+        [0, 2],
+        [5, 10],
+        [10, 180],
+      ],
     },
   },
   layout: {
@@ -102,7 +105,81 @@ export const fragmentsStyle = (index: number, visible: boolean): SymbolLayerSpec
     'visibility': visible ? 'visible' : 'none',
   },
   paint: {
-    'icon-color': OverflightColors[index] ?? '#fff',
+    'icon-color': index === 0 ? FlightpathColor : OverflightColor,
     'icon-opacity': 0.6,
+  },
+});
+
+export const fragmentsCircleStyle = (index: number, visible: boolean): CircleLayerSpecification => ({
+  id: `FRAGMENT-${index}`,
+  type: 'circle',
+  source: `FRAGMENT-${index}`,
+  paint: {
+    // Color changes based on the number of circles (fragments_number)
+    'circle-color': FragmentColor,
+    'circle-opacity': [
+      'interpolate',
+      ['linear'],
+      ['get', 'fragments_number'],
+      0,
+      0.1,
+      1000,
+      1,
+    ],
+    'circle-blur': 0.5,
+    'circle-radius': {
+      stops: [
+        [0, 2],
+        [5, 10],
+        [10, 180],
+      ],
+    },
+  },
+  layout: {
+    visibility: visible ? 'visible' : 'none',
+  },
+});
+
+export const fragmentsHeatmapStyle = (index: number, visible: boolean): HeatmapLayerSpecification => ({
+  id: `FRAGMENT-HEATMAP-${index}`,
+  type: 'heatmap',
+  source: `FRAGMENT-${index}`,
+  layout: {
+    visibility: visible ? 'visible' : 'none',
+  },
+  paint: {
+    // Use fragments_number as the weight for the heatmap
+    'heatmap-weight': [
+      'interpolate',
+      ['linear'],
+      ['get', 'fragments_number'],
+      0,
+      0,
+      10,
+      1,
+    ],
+    // Use OverflightColors[index] as the base color for the heatmap
+    'heatmap-color': [
+      'interpolate',
+      ['linear'],
+      ['heatmap-density'],
+      0,
+      'rgba(0,0,0,0)',
+      0.2,
+      FragmentColor,
+      1,
+      FragmentColor,
+    ],
+    'heatmap-intensity': 1,
+    'heatmap-radius': [
+      'interpolate',
+      ['linear'],
+      ['zoom'],
+      0,
+      10,
+      9,
+      30,
+    ],
+    'heatmap-opacity': 0.7,
   },
 });

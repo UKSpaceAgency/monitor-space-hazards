@@ -9,6 +9,9 @@
  * ---------------------------------------------------------------
  */
 
+/** AffectedRegime */
+export type TypeAffectedRegime = "GEO" | "LEO" | "MEO" | "Lunar";
+
 /** AlertDryRunOut */
 export interface TypeAlertDryRunOut {
   /** Emailrecipients */
@@ -564,8 +567,17 @@ export interface TypeBodyCreateEphemerisV1EphemerisPost {
   file: File;
 }
 
-/** Body_upload_conjunction_report_v1_conjunction_reports__post */
-export interface TypeBodyUploadConjunctionReportV1ConjunctionReportsPost {
+/** Body_post_conjunction_report_v1_conjunction_reports__post */
+export interface TypeBodyPostConjunctionReportV1ConjunctionReportsPost {
+  /**
+   * File
+   * @format binary
+   */
+  file: File;
+}
+
+/** Body_post_fragmentation_event_report_v1_fragmentation_reports__post */
+export interface TypeBodyPostFragmentationEventReportV1FragmentationReportsPost {
   /**
    * File
    * @format binary
@@ -643,7 +655,7 @@ export interface TypeConjunctionAlertSettings {
    */
   alert_type?: "conjunction";
   /** Chosen Option */
-  chosen_option: "all" | "priority" | "none";
+  chosen_option: "all" | "priority" | "uk-licensed" | "closedown" | "none";
   /**
    * Notification Types
    * @uniqueItems true
@@ -655,7 +667,7 @@ export interface TypeConjunctionAlertSettings {
 /** ConjunctionEventAlertIn */
 export interface TypeConjunctionEventAlertIn {
   /** Alerttype */
-  alertType: ("standard" | "priority")[];
+  alertType: ("standard" | "priority" | "uk-licensed" | "closedown")[];
   /** Additionalemails */
   additionalEmails: string[];
 }
@@ -670,7 +682,7 @@ export interface TypeConjunctionEventAlertOut {
    */
   conjunctionReportId: string;
   /** Alerttype */
-  alertType: ("standard" | "priority")[];
+  alertType: ("standard" | "priority" | "uk-licensed" | "closedown")[];
   /** Additionalrecipients */
   additionalRecipients: string[] | null;
   /** Emailnotificationsendingstatus */
@@ -720,8 +732,10 @@ export interface TypeConjunctionReportOut {
   reportTime?: string | null;
   /** Risk */
   risk: "Low" | "Medium" | "High";
+  /** Closedcomment */
+  closedComment?: string | null;
   /** Alerttype */
-  alertType: ("priority" | "standard")[];
+  alertType: ("priority" | "standard" | "uk-licensed" | "closedown")[];
   /** Tcatime */
   tcaTime?: string | null;
   /** Collisionprobability */
@@ -1055,6 +1069,9 @@ export interface TypeEventForAnalysisOut {
   secondary_object_cross_section_max?: number | null;
 }
 
+/** EventLevel */
+export type TypeEventLevel = "Event" | "Alert";
+
 /** EventOut */
 export interface TypeEventOut {
   /**
@@ -1120,6 +1137,8 @@ export interface TypeEventOut {
   additionalAnalysis?: TypeAdditionalAnalysis | null;
   /** Reportnumber */
   reportNumber?: number | null;
+  /** Collisionprobabilityuksa */
+  collisionProbabilityUksa?: number | null;
 }
 
 /** EventSatellitesOut */
@@ -1303,7 +1322,185 @@ export type TypeExternalDataType =
   | "Manoeuvre Trade Space Plot"
   | "Tracking and Impact Prediction"
   | "Reentry Event Report"
-  | "Conjunction Report";
+  | "Conjunction Report"
+  | "Fragmentation Report";
+
+/** FragmentationEvent */
+export interface TypeFragmentationEvent {
+  /**
+   * Id
+   * @format uuid
+   */
+  id?: string;
+  /**
+   * Created At
+   * @format date-time
+   */
+  created_at?: string;
+  /**
+   * Updated At
+   * @format date-time
+   */
+  updated_at?: string;
+  /** Short Id */
+  short_id: string;
+  /**
+   * Event Epoch
+   * @format date-time
+   */
+  event_epoch: string;
+  /** Conjunction Commentary */
+  conjunction_commentary?: string | null;
+  /** Object History */
+  object_history?: string | null;
+  /** Risk */
+  risk?: string | null;
+  /** Primary Object Common Name */
+  primary_object_common_name?: string | null;
+  /** Primary Object Norad Id */
+  primary_object_norad_id: string;
+  /** Secondary Object Common Name */
+  secondary_object_common_name?: string | null;
+  /** Secondary Object Norad Id */
+  secondary_object_norad_id?: string | null;
+  /**
+   * Is Active
+   * @default true
+   */
+  is_active?: boolean;
+  /** Report Number */
+  report_number?: number | null;
+  /** Closed Comment */
+  closed_comment?: string | null;
+}
+
+/** FragmentationEventsSortBy */
+export type TypeFragmentationEventsSortBy =
+  | "created_at"
+  | "updated_at"
+  | "event_epoch"
+  | "primary_object_norad_id"
+  | "short_id"
+  | "primary_object_common_name";
+
+/** FragmentationReport */
+export interface TypeFragmentationReport {
+  /**
+   * Id
+   * @format uuid
+   */
+  id?: string;
+  /**
+   * Created At
+   * @format date-time
+   */
+  created_at?: string;
+  /**
+   * Updated At
+   * @format date-time
+   */
+  updated_at?: string;
+  /** Short Id */
+  short_id: string | null;
+  /** Report Number */
+  report_number: number;
+  /** Closed Comment */
+  closed_comment?: string | null;
+  /**
+   * Event Epoch
+   * @format date-time
+   */
+  event_epoch: string;
+  /** Modelled Fragments */
+  modelled_fragments?: number | null;
+  /** Known Fragments */
+  known_fragments?: number | null;
+  /** Fragmentation Type Comment */
+  fragmentation_type_comment?: string | null;
+  fragmentation_type: TypeFragmentationType;
+  affected_regime: TypeAffectedRegime;
+  /** Conjunction Event Id */
+  conjunction_event_id?: string | null;
+  /** Conjunction Commentary */
+  conjunction_commentary?: string | null;
+  /** Object History */
+  object_history?: string | null;
+  /** Risk */
+  risk?: string | null;
+  /** Primary Object Common Name */
+  primary_object_common_name?: string | null;
+  /** Primary Object Norad Id */
+  primary_object_norad_id: string;
+  /** Primary Object Licensing Country */
+  primary_object_licensing_country?: string | null;
+  /** Primary Object Type */
+  primary_object_type?: string | null;
+  /** Primary Object Mass */
+  primary_object_mass?: number | null;
+  /** Primary Object International Designator */
+  primary_object_international_designator?: string | null;
+  /** Primary Object Launching Year */
+  primary_object_launching_year?: number | null;
+  /** Primary Object Apogee */
+  primary_object_apogee?: number | null;
+  /** Primary Object Perigee */
+  primary_object_perigee?: number | null;
+  /** Primary Object Inclination */
+  primary_object_inclination?: number | null;
+  /** Secondary Object Common Name */
+  secondary_object_common_name?: string | null;
+  /** Secondary Object Norad Id */
+  secondary_object_norad_id?: string | null;
+  /** Secondary Object Licensing Country */
+  secondary_object_licensing_country?: string | null;
+  /** Secondary Object Type */
+  secondary_object_type?: string | null;
+  /** Secondary Object Mass */
+  secondary_object_mass?: number | null;
+  /** Secondary Object International Designator */
+  secondary_object_international_designator?: string | null;
+  /** Secondary Object Launching Year */
+  secondary_object_launching_year?: number | null;
+  /** Secondary Object Apogee */
+  secondary_object_apogee?: number | null;
+  /** Secondary Object Perigee */
+  secondary_object_perigee?: number | null;
+  /** Secondary Object Inclination */
+  secondary_object_inclination?: number | null;
+  /**
+   * Is Active
+   * @default true
+   */
+  is_active?: boolean;
+  /** Uploaded By Id */
+  uploaded_by_id?: string | null;
+  /** Deleted By Id */
+  deleted_by_id?: string | null;
+  /** File Name */
+  file_name: string;
+}
+
+/** FragmentationReportSortBy */
+export type TypeFragmentationReportSortBy =
+  | "created_at"
+  | "updated_at"
+  | "event_epoch"
+  | "primary_object_norad_id"
+  | "report_number"
+  | "short_id"
+  | "primary_object_common_name";
+
+/** FragmentationType */
+export type TypeFragmentationType =
+  | "Propulsion"
+  | "Collision"
+  | "Small Impactor"
+  | "Electrical"
+  | "Accidental"
+  | "Aerodynamics"
+  | "Deliberate"
+  | "Unknown"
+  | "Anomalous";
 
 /** HTTPValidationError */
 export interface TypeHTTPValidationError {
@@ -1513,7 +1710,7 @@ export interface TypeReentryAlertSettings {
    */
   alert_type?: "reentry";
   /** Chosen Option */
-  chosen_option: "all" | "priority" | "uk_satellites_only" | "none";
+  chosen_option: "all" | "priority" | "uk-licensed" | "closedown" | "none";
   /**
    * Areas Of Interest
    * @uniqueItems true
@@ -1534,7 +1731,7 @@ export type TypeReentryDirection = "ascending" | "descending";
 /** ReentryEventAlertIn */
 export interface TypeReentryEventAlertIn {
   /** Alerttype */
-  alertType: ("standard" | "priority" | "uk_satellites_only" | "closedown")[];
+  alertType: ("standard" | "priority" | "uk-licensed" | "closedown")[];
   /**
    * Additionalemails
    * @default []
@@ -1555,7 +1752,7 @@ export interface TypeReentryEventAlertOut {
    */
   reentryReportId: string;
   /** Alerttype */
-  alertType: ("standard" | "priority" | "uk_satellites_only" | "closedown")[];
+  alertType: ("standard" | "priority" | "uk-licensed" | "closedown")[];
   /** Additionalrecipients */
   additionalRecipients: string[] | null;
   /** Emailnotificationsendingstatus */
@@ -1619,9 +1816,11 @@ export interface TypeReentryEventOut {
   tipExternalId: string;
   /** Reentryreportnumber */
   reentryReportNumber?: number | null;
-  /** Montecarloprobability */
-  monteCarloProbability?: number | null;
-  monteCarloRisk?: TypeReentryRisk | null;
+  /** Closedcomment */
+  closedComment?: string | null;
+  /** Atmosphericprobability */
+  atmosphericProbability?: number | null;
+  atmosphericRisk?: TypeReentryRisk | null;
   /** Fragmentsprobability */
   fragmentsProbability?: number | null;
   fragmentsRisk?: TypeReentryRisk | null;
@@ -1691,6 +1890,8 @@ export interface TypeReentryEventPatch {
   damages_liability?: string | null;
   /** Press Attention */
   press_attention?: string | null;
+  /** Closed Comment */
+  closed_comment?: string | null;
 }
 
 /** ReentryEventReportOut */
@@ -1735,16 +1936,18 @@ export interface TypeReentryEventReportOut {
   uncertaintyWindow?: number | null;
   /** Reportnumber */
   reportNumber: number;
+  /** Closedcomment */
+  closedComment?: string | null;
   /** Alerttype */
-  alertType: ("priority" | "standard" | "uk_satellites_only" | "closedown")[];
+  alertType: ("priority" | "standard" | "uk-licensed" | "closedown")[];
   /**
    * Reporttime
    * @format date-time
    */
   reportTime: string;
-  /** Montecarloprobability */
-  monteCarloProbability: number;
-  monteCarloRisk?: TypeReentryRisk | null;
+  /** Atmosphericprobability */
+  atmosphericProbability: number;
+  atmosphericRisk?: TypeReentryRisk | null;
   /** Fragmentsprobability */
   fragmentsProbability?: number | null;
   fragmentsRisk?: TypeReentryRisk | null;
@@ -1804,13 +2007,15 @@ export type TypeReentryEventSortBy =
   | "license_country"
   | "norad_id"
   | "object_name"
-  | "monte_carlo_probability"
+  | "atmospheric_probability"
   | "short_id"
   | "survivability"
   | "time_window_end"
   | "time_window_start"
   | "tip_external_id"
   | "uk_reentry_probability"
+  | "human_casualty_probability"
+  | "fragments_probability"
   | "overflight_time"
   | "updated_at";
 
@@ -2100,6 +2305,32 @@ export interface TypeStatisticsEventsType {
   count: number;
 }
 
+/** StatisticsFragmentationEventsAndAlertsCount */
+export interface TypeStatisticsFragmentationEventsAndAlertsCount {
+  /** Objecttype */
+  objectType: string;
+  /** Count */
+  count: number;
+}
+
+/** StatisticsFragmentationEventsByObjectTypeMonthlyCount */
+export interface TypeStatisticsFragmentationEventsByObjectTypeMonthlyCount {
+  /** Objecttype */
+  objectType?: string | null;
+  /** Month */
+  month?: string | null;
+  /** Count */
+  count: number;
+}
+
+/** StatisticsFragmentationEventsMonthlyCount */
+export interface TypeStatisticsFragmentationEventsMonthlyCount {
+  /** Month */
+  month: string;
+  /** Count */
+  count: number;
+}
+
 /** StatisticsHighestUpcomingCollisionProbability */
 export interface TypeStatisticsHighestUpcomingCollisionProbability {
   /** Collisionprobability */
@@ -2138,6 +2369,14 @@ export interface TypeStatisticsNotificationsSent {
 
 /** StatisticsReentryEventReportsCount */
 export interface TypeStatisticsReentryEventReportsCount {
+  /** Count */
+  count: number;
+}
+
+/** StatisticsReentryEventsAndAlertsCount */
+export interface TypeStatisticsReentryEventsAndAlertsCount {
+  /** Objecttype */
+  objectType: string;
   /** Count */
   count: number;
 }
@@ -2332,17 +2571,21 @@ export interface TypeUniqueEventOut {
   cdmExternalId?: string | null;
   /** Cdmcreationdate */
   cdmCreationDate?: string | null;
+  /** Closedcomment */
+  closedComment?: string | null;
 }
 
 /** UniqueEventUpdateTextFieldsIn */
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2025-04-14T07:07:45.410660"
+   * @default "2025-08-13T12:47:01.949721"
    */
   updated_at?: string | null;
   /** Report Number */
   report_number?: number | null;
+  /** Closed Comment */
+  closed_comment?: string | null;
   /** Exec Summary Addition */
   exec_summary_addition?: string | null;
   /** Manoeuvre Addition */
@@ -2561,8 +2804,12 @@ export interface TypeAdditionalAnalysis {
 
 /** _OverflightProbability */
 export interface TypeOverflightProbability {
-  /** Probability */
-  probability: number;
+  /** Atmospheric Probability */
+  atmospheric_probability: number;
+  /** Fragments Probability */
+  fragments_probability: number;
+  /** Human Casualty Probability */
+  human_casualty_probability: number;
   /** Overflight Time */
   overflight_time?: string[] | null;
 }
@@ -2798,6 +3045,89 @@ export interface TypeGetExternalDataPerformanceAggregatedParams {
    * @default "asc"
    */
   sort_order?: TypeSortOrder;
+}
+
+export interface TypeGetFragmentationEventsParams {
+  /**
+   * Epoch
+   * @default "future"
+   */
+  epoch?: TypeEpoch;
+  /** Search Query */
+  search_query?: string | null;
+  /**
+   * Sort By
+   * @default "event_epoch"
+   */
+  sort_by?: TypeFragmentationEventsSortBy;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+}
+
+export interface TypeGetFragmentationReportsParams {
+  /**
+   * Sort By
+   * @default "event_epoch"
+   */
+  sort_by?: TypeFragmentationReportSortBy;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeGetFragmentationReportsFragmentationEventShortIdParams {
+  /**
+   * Sort By
+   * @default "event_epoch"
+   */
+  sort_by?: TypeFragmentationReportSortBy;
+  /**
+   * Show Only Active
+   * @default false
+   */
+  show_only_active?: boolean;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+  /** Short Id */
+  shortId: string;
 }
 
 export interface TypeGetManoeuvrePlotsParams {
@@ -3354,7 +3684,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2025-05-01"
+   * @default "2025-09-01"
    */
   end_date?: string;
 }
@@ -3369,7 +3699,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2025-05-01"
+   * @default "2025-09-01"
    */
   end_date?: string;
 }
@@ -3384,7 +3714,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-05-01"
+   * @default "2025-09-01"
    */
   end_date?: string;
 }
@@ -3399,7 +3729,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-05-01"
+   * @default "2025-09-01"
    */
   end_date?: string;
 }
@@ -3414,7 +3744,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-05-01"
+   * @default "2025-09-01"
    */
   end_date?: string;
 }
@@ -3429,7 +3759,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2025-05-01"
+   * @default "2025-09-01"
    */
   end_date?: string;
 }
@@ -3454,6 +3784,39 @@ export interface TypeGetStatsMonthlyReentryEventsParams {
 }
 
 export interface TypeGetStatsMonthlyReentryEventsByObjectTypeParams {
+  /** Start Date */
+  start_date?: string | null;
+  /** End Date */
+  end_date?: string | null;
+}
+
+export interface TypeGetStatsReentryEventsParams {
+  /** Start Date */
+  start_date?: string | null;
+  /** End Date */
+  end_date?: string | null;
+  /**
+   * Reentry Level
+   * @default "Event"
+   */
+  reentry_level?: TypeEventLevel;
+}
+
+export interface TypeGetStatsFragmentationEventsParams {
+  /** Start Date */
+  start_date?: string | null;
+  /** End Date */
+  end_date?: string | null;
+}
+
+export interface TypeGetStatsMonthlyFragmentationEventsParams {
+  /** Start Date */
+  start_date?: string | null;
+  /** End Date */
+  end_date?: string | null;
+}
+
+export interface TypeGetStatsMonthlyFragmentationEventsByObjectTypeParams {
   /** Start Date */
   start_date?: string | null;
   /** End Date */

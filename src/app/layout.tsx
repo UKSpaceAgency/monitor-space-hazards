@@ -40,7 +40,7 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang={locale} className="font-sans">
+    <html lang={locale} className="font-sans govuk-template--rebranded">
       <body className="govuk-template__body" suppressHydrationWarning>
         {process.env.NEXT_PUBLIC_PUBLIC_GA && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_PUBLIC_GA} />}
         <NextIntlClientProvider messages={pick(messages, ['Tables', 'Template', 'Forms', 'Common', 'OverflightMap', 'Charts'])}>

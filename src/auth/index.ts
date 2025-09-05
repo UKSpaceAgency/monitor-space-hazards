@@ -5,6 +5,7 @@ import Auth0 from 'next-auth/providers/auth0';
 
 import type { TypeUserRole } from '@/__generated__/data-contracts';
 import fetchUser from '@/auth/getUser';
+import { initialiseApi } from '@/libs/Api';
 import { env } from '@/libs/Env';
 
 declare module 'next-auth' {
@@ -85,6 +86,14 @@ async function refreshAccessToken(token: JWT) {
 }
 
 export const { handlers, signIn, signOut, auth, unstable_update: update } = NextAuth({
+  events: {
+    signOut: async (message) => {
+      if ('token' in message && message.token?.access_token) {
+        const apiClient = initialiseApi(message.token.access_token);
+        await apiClient.getUsersMeLogout();
+      }
+    },
+  },
   providers: [
     Auth0({
       clientId: env.AUTH0_CLIENT_ID,
@@ -113,6 +122,7 @@ export const { handlers, signIn, signOut, auth, unstable_update: update } = Next
       if (request.nextUrl.pathname === '/data-privacy-notice'
         || request.nextUrl.pathname === '/cookies'
         || request.nextUrl.pathname === '/contact-analyst'
+        || request.nextUrl.pathname === '/feedback'
       ) {
         return true;
       }
@@ -150,17 +160,27 @@ export const { handlers, signIn, signOut, auth, unstable_update: update } = Next
         return token;
       } else {
         if (!token.refresh_token) {
-          throw new TypeError('Missing refresh_token');
+          // Return null to trigger session expiration and redirect to homepage
+          return null;
         }
-        return await refreshAccessToken(token);
+        const refreshedToken = await refreshAccessToken(token);
+        // If refresh failed, return null to trigger session expiration
+        if (refreshedToken.error === 'RefreshAccessTokenError') {
+          return null;
+        }
+        return refreshedToken;
       }
     },
     async session({ session, token }) {
+      // If token is null (session expired), return null to trigger logout
+      if (!token) {
+        return null as any;
+      }
+
       session.user = {
         ...session.user,
         role: token.role,
         setup_completed: token.setup_completed,
-
       };
       session.access_token = token.access_token;
       return session;

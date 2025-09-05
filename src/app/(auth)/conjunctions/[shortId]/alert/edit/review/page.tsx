@@ -17,9 +17,9 @@ export async function generateMetadata(props: PageProps) {
   const t = await getTranslations('Conjunction_alert_edit');
   const { shortId } = await props.params;
 
-  await getConjunctionUniqueEvent(shortId);
+  const event = await getConjunctionUniqueEvent(shortId);
   return {
-    title: t('title', { shortId }),
+    title: t('title', { primaryObject: event.primaryObjectCommonName ?? 'Unknown', secondaryObject: event.secondaryObjectCommonName ?? 'Unknown' }),
   };
 }
 

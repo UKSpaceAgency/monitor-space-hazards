@@ -1,7 +1,6 @@
 'use client';
 
 import { useMutation } from '@tanstack/react-query';
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
@@ -43,16 +42,12 @@ const ScheduleBannerConfirm = ({ title, banner }: ScheduleBannerConfirmProps) =>
             })}
           </p>
           <ButtonGroup>
-            <Link href="/conjunctions">
-              <Button className="govuk-button--secondary">
-                {t('Success_banner.conjunction_events')}
-              </Button>
-            </Link>
-            <Link href="/account/incident-banner">
-              <Button className="govuk-button--secondary">
-                {t('Success_banner.manage_incident_banners')}
-              </Button>
-            </Link>
+            <Button as="link" href="/conjunctions" className="govuk-button--secondary">
+              {t('Success_banner.conjunction_events')}
+            </Button>
+            <Button as="link" href="/account/incident-banner" className="govuk-button--secondary">
+              {t('Success_banner.manage_incident_banners')}
+            </Button>
           </ButtonGroup>
         </TopNotificationBanner>
       )}
@@ -71,9 +66,7 @@ const ScheduleBannerConfirm = ({ title, banner }: ScheduleBannerConfirmProps) =>
         <Button onClick={() => setConfirmModal(true)}>
           {t('display_button')}
         </Button>
-        <Link href="/account/incident-banners/schedule">
-          <Button variant="secondary">{tCommon('return', { to: 'incident banner options' })}</Button>
-        </Link>
+        <Button as="link" href="/account/incident-banners/schedule" variant="secondary">{tCommon('return', { to: 'incident banner options' })}</Button>
       </ButtonGroup>
     </>
   );

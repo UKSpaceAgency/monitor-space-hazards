@@ -152,12 +152,10 @@ export const getConjunctionEventsColumns = ({
       },
       {
         id: 'collisionProbabilityUksa',
-        accessorKey: 'additionalAnalysis',
+        accessorKey: 'collisionProbabilityUksa',
         header: 'Conjunctions.uksa',
         cell: ({ getValue }) => {
-          const value = getValue<{ collisionProbability: number }>();
-          const { collisionProbability } = value ?? {};
-
+          const collisionProbability = getValue<number>();
           if (collisionProbability === undefined) {
             return '-';
           }

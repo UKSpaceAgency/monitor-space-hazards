@@ -25,8 +25,9 @@ const ConjunctionAlertHistoryDataTable = async ({ shortId, reports, dataPdf }: C
       <DataTable
         columns={conjunctionAlertHistoryColumns}
         data={reports ?? []}
+        sorting={[{ id: 'reportNumber', desc: true }]}
       />
-      <DownloadData type={t('Download.types.conjunction_reports')} params={params} downloadAction={getConjunctionReports} data-pdf-ignore />
+      <DownloadData type={t('Download.types.conjunction_reports')} params={params} downloadAction={getConjunctionReports} data-pdf-ignore ariaLabel="Conjunction alert history" />
     </div>
 
   );

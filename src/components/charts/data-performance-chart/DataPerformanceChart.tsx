@@ -16,11 +16,13 @@ import { chartPalette } from '../base/theme';
 type DataPerformanceChartProps = {
   latestIngestDate: string;
   sourceType: TypeExternalDataType;
+  yAxisTitle: string;
   xAxisTitle: string;
   legend: string;
+  ariaLabel?: string;
 };
 
-const DataPerformanceChart = ({ latestIngestDate, sourceType, xAxisTitle, legend }: DataPerformanceChartProps) => {
+const DataPerformanceChart = ({ latestIngestDate, sourceType, xAxisTitle, yAxisTitle, legend, ariaLabel }: DataPerformanceChartProps) => {
   const t = useTranslations('Charts.Ingests');
 
   const params: TypeGetExternalDataPerformanceAggregatedParams = {
@@ -75,18 +77,22 @@ const DataPerformanceChart = ({ latestIngestDate, sourceType, xAxisTitle, legend
   const actionButtons = (
     <ToggleButtons
       name={`${camelCase(sourceType)}-ingests-days`}
+      ariaLabel={ariaLabel}
       items={[
         {
+          id: '7d',
           title: '7d',
           ariaLabel: t('7_days'),
           value: 7,
         },
         {
+          id: '30d',
           title: '30d',
           ariaLabel: t('30_days'),
           value: 31,
         },
         {
+          id: 'all_time',
           title: 'All',
           ariaLabel: t('all_time'),
           value: 0,
@@ -109,9 +115,11 @@ const DataPerformanceChart = ({ latestIngestDate, sourceType, xAxisTitle, legend
       <BaseChart
         name={`${camelCase(sourceType)}-ingests-chart`}
         data={datasets}
-        yAxisTitle={xAxisTitle}
+        yAxisTitle={yAxisTitle}
+        xAxisTitle={xAxisTitle}
         actionButtons={actionButtons}
         legend={{ title: legend }}
+        ariaLabel={ariaLabel}
         isDay
       />
     </div>

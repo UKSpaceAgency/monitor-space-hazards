@@ -120,13 +120,18 @@ export function MtpChart({
             <ToggleButtons
               name="mtp-source-toggle"
               title={t('chart.buttons.title')}
+              ariaLabel="Mtp Chart"
               items={[
                 {
+                  id: 'space-track',
                   title: t('chart.buttons.space-track'),
+                  ariaLabel: t('chart.buttons.space-track'),
                   value: 'ST_collision_probability',
                 },
                 {
+                  id: 'uksa',
                   title: t('chart.buttons.uksa'),
+                  ariaLabel: t('chart.buttons.uksa'),
                   value: 'UKSA_collision_probability',
                 },
               ]}
@@ -149,9 +154,10 @@ export function MtpChart({
             referenceLineTitle={t('chart.tca')}
             legend={{ title: t('chart.legend_title') }}
             min={keys[keys.length - 1]}
+            ariaLabel="Mtp Chart"
           />
         </div>
-        <DownloadData type={t('download')} params={{}} downloadAction={async () => data} data-pdf-ignore />
+        <DownloadData type={t('download')} params={{}} downloadAction={async () => data} data-pdf-ignore ariaLabel="Mtp chart" />
       </div>
       <Details summary={t('details.summary')} data-pdf-ignore>
         <RichText>

@@ -43,16 +43,19 @@ const ConjunctionsDataTable = ({ params, conjunctions, isAnalyst, haveAccessToAl
         </legend>
         <Radios
           className="govuk-!-margin-0"
+          aria-label="Probability of collision"
           inline
           small
           items={[
             {
+              id: 'scientific',
               children: 'Scientific',
               value: 'scientific',
               checked: probabilityUnit === 'scientific',
               onChange: handleProbabilityUnitChange,
             },
             {
+              id: 'percentage',
               children: 'Percentage',
               value: 'percentage',
               checked: probabilityUnit === 'percentage',
@@ -70,6 +73,7 @@ const ConjunctionsDataTable = ({ params, conjunctions, isAnalyst, haveAccessToAl
         fetcher={getConjunctionEventsList}
         queryKeys={[QUERY_KEYS.Conjunctions]}
         emptyLabel={t('Conjunctions.empty_list_info')}
+        focusable
       />
     </>
   );

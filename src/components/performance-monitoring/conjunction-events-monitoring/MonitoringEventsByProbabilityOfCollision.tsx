@@ -12,8 +12,8 @@ const MonitoringEventsByProbabilityOfCollision = () => {
   return (
     <div>
       <MonitoringEventsByProbabilityOfCollisionContent />
-      <DownloadData type={t('title')} params={{ months: 0 }} downloadAction={getStatsMonthlyConjunctionEvents} />
-      <Details summary={t('details.title')}>
+      <DownloadData type={t('title')} params={{ months: 0 }} downloadAction={getStatsMonthlyConjunctionEvents} ariaLabel="Conjunction events by probability" />
+      <Details summary={t('details.title')} aria-label="Daily Conjunction events by probability collision details">
         {t('details.content')}
       </Details>
     </div>

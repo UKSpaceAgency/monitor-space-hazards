@@ -31,13 +31,15 @@ const BaseTemplate = ({
     <>
       <a href="#main-content" className="govuk-skip-link">{t('skip_content')}</a>
       <Cookies />
-      <Header />
-      <PhaseBanner tag="Beta">
-        {t.rich('phase_banner', {
-          feedback: chunks => <Link className="govuk-link" href="/feedback">{chunks}</Link>,
-        })}
-      </PhaseBanner>
-      {showNavigation && <Navigation />}
+      <div className="govuk-service-navigation app-service-navigation">
+        <Header />
+        <PhaseBanner tag="Beta">
+          {t.rich('phase_banner', {
+            feedback: chunks => <Link className="govuk-link" href="/feedback" target="_blank">{chunks}</Link>,
+          })}
+        </PhaseBanner>
+        {showNavigation && <Navigation />}
+      </div>
       <div className="govuk-width-container">
         {breadcrumb}
         <main className="govuk-main-wrapper" id="main-content">

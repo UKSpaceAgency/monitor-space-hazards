@@ -22,9 +22,7 @@ const ReentryAlertImpactRegion = ({ england, ireland, wales, scotland, dataPdf }
       {ireland && <ReentryAlertImpactTable caption={Regions.NORTHERN_IRELAND.name} impact={ireland} />}
       {wales && <ReentryAlertImpactTable caption={Regions.WALES.name} impact={wales} />}
       {scotland && <ReentryAlertImpactTable caption={Regions.SCOTLAND.name} impact={scotland} />}
-      <p className="govuk-body">{t('uk_nations_hint')}</p>
       {t.rich('see_further_information', { link: chunks => <a href="#further_information" className="govuk-link">{chunks}</a> })}
-
     </div>
   );
 };

@@ -44,7 +44,7 @@ export default async function ReentryAlertSend({
   const defaultValues = {
     isStandard: alert.alertType.includes('standard'),
     isPriority: alert.alertType.includes('priority'),
-    isUkSatellitesOnly: alert.alertType.includes('uk_satellites_only'),
+    isUkSatellitesOnly: alert.alertType.includes('uk-licensed'),
     additionalRecipients: alert.additionalRecipients?.join('; ') || '',
   };
 

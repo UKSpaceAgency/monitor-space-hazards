@@ -18,13 +18,16 @@ const MonitoringEventsByProbabilityOfCollisionContent = () => {
   const actionButtons = (
     <ToggleButtons
       name="organisations-and-users-data-range"
+      ariaLabel="Conjunction events by probability of collision"
       items={[
         {
+          id: '12_months',
           title: t('12_months'),
           ariaLabel: t('12_months'),
           value: 12,
         },
         {
+          id: 'all_time',
           title: t('all_time'),
           ariaLabel: t('all_time'),
           value: 0,

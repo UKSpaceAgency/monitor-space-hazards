@@ -23,13 +23,16 @@ const OrganisationsAndUsersChart = ({ data }: OrganisationsAndUsersProps) => {
   const actionButtons = (
     <ToggleButtons
       name="organisations-and-users-data-range"
+      ariaLabel="Organisations and users"
       items={[
         {
+          id: '12_months',
           title: t('12_months'),
           ariaLabel: t('12_months'),
           value: 13,
         },
         {
+          id: 'all_time',
           title: t('all_time'),
           ariaLabel: t('all_time'),
           value: -1,
@@ -72,7 +75,9 @@ const OrganisationsAndUsersChart = ({ data }: OrganisationsAndUsersProps) => {
       name="organisations-and-users-chart"
       actionButtons={actionButtons}
       yAxisTitle={t('y_axis_title')}
+      xAxisTitle={t('x_axis_title')}
       showLegend
+      ariaLabel="Organisations and users"
       legend={{
         title: t('legend_title'),
       }}

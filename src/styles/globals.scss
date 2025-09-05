@@ -38,7 +38,7 @@ ol.govuk-list {
 }
 
 .mapboxgl-ctrl-top-right {
-  @apply top-auto bottom-2 right-2 md:top-2;
+  @apply top-auto bottom-2 right-2;
   .mapboxgl-ctrl-fullscreen {
     top: 0 !important;
   }
@@ -74,4 +74,8 @@ ol.govuk-list {
       content: 'Exit map';
     }
   }
+}
+
+.mapboxgl-canvas {
+  background-color: #364b69;
 }

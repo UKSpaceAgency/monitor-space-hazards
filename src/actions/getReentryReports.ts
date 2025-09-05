@@ -4,6 +4,10 @@ import type { TypeGetReentryEventReportsReentryEventShortIdParams } from '@/__ge
 import Api from '@/libs/Api';
 
 export async function getReentryReports(params: TypeGetReentryEventReportsReentryEventShortIdParams) {
-  const { data } = await Api.getReentryEventReportsReentryEventShortId(params);
-  return data;
+  try {
+    const { data } = await Api.getReentryEventReportsReentryEventShortId(params);
+    return data;
+  } catch {
+    return [];
+  }
 };

@@ -15,9 +15,10 @@ type AccordionProps = {
     summary?: ReactNode;
     expanded?: boolean;
   }[];
+  addAnchor?: boolean;
 };
 
-export function Accordion({ initialItems, id, dynamic = false }: AccordionProps) {
+export function Accordion({ initialItems, id, dynamic = false, addAnchor = true }: AccordionProps) {
   const [isAllItemsExpanded, setAllItemsExpanded] = useState(false);
   const [items, setItems] = useState(initialItems);
 
@@ -89,12 +90,12 @@ export function Accordion({ initialItems, id, dynamic = false }: AccordionProps)
                   className="govuk-accordion__section-heading-text"
                   id={`heading-${id}`}
                 >
-                  <h2
+                  <h3
                     className="govuk-accordion__section-heading-text-focus"
-                    data-anchor={id}
+                    data-anchor={addAnchor ? id : undefined}
                   >
                     {heading}
-                  </h2>
+                  </h3>
                 </span>
                 <span className="govuk-accordion__section-toggle">
                   <span className="govuk-accordion__section-toggle-focus">

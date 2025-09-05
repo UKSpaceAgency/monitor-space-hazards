@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
+import { getConjunctionReports } from '@/actions/getConjunctionReports';
 import getConjunctionUniqueEvent from '@/actions/getConjunctionUniqueEvent';
 import { getSession } from '@/actions/getSession';
 import { ConjunctionAlertEditForm } from '@/components/conjunction-alert-edit/ConjunctionAlertEditForm';
@@ -16,9 +17,10 @@ export async function generateMetadata({
 }: PageProps) {
   const t = await getTranslations('Conjunction_alert_edit');
   const { shortId } = await params;
-  await getConjunctionUniqueEvent(shortId);
+  const event = await getConjunctionUniqueEvent(shortId);
+
   return {
-    title: t('title', { shortId }),
+    title: t('title', { primaryObject: event.primaryObjectCommonName ?? 'Unknown', secondaryObject: event.secondaryObjectCommonName ?? 'Unknown' }),
   };
 }
 
@@ -30,12 +32,15 @@ export default async function ConjunctionAlertEdit({
 
   const session = await getSession();
 
-  if (!isAgencyApproverOrSuperuser(session?.user.role)) {
+  const event = await getConjunctionUniqueEvent(shortId);
+  const reports = await getConjunctionReports({ shortId });
+  const lastReport = reports[reports.length - 1];
+
+  const title = t('title', { primaryObject: event.primaryObjectCommonName ?? 'Unknown', secondaryObject: event.secondaryObjectCommonName ?? 'Unknown' });
+
+  if (!isAgencyApproverOrSuperuser(session?.user.role) || !lastReport) {
     return notFound();
   }
-
-  const event = await getConjunctionUniqueEvent(shortId);
-  const title = t('title', { primaryObject: event.primaryObjectCommonName, secondaryObject: event.secondaryObjectCommonName });
 
   return (
     <div>
@@ -44,7 +49,7 @@ export default async function ConjunctionAlertEdit({
         <span className="block text-lg">{dayjs(event.tca).format(FORMAT_FULL_DATE)}</span>
       </h1>
       {t.rich('content')}
-      <ConjunctionAlertEditForm event={event} />
+      <ConjunctionAlertEditForm event={event} report={lastReport} />
     </div>
   );
 }

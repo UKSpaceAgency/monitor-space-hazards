@@ -1,17 +1,19 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { MessageKeys } from 'next-intl';
-import { useMessages, useTranslations } from 'next-intl';
+import { getMessages, getTranslations } from 'next-intl/server';
 
+import { getSession } from '@/actions/getSession';
 import { ObjectsTracked } from '@/components/dashboard/ObjectsTracked';
 import { UpcomingEvents } from '@/components/dashboard/UpcomingEvents';
 import nsocLogo from '@/public/nspoclogo2.png';
 import { AppConfig } from '@/utils/AppConfig';
+import { isAgencyUser } from '@/utils/Roles';
 
-export default function DashboardPage() {
-  const t = useTranslations('Dashboard');
-
-  const messages = useMessages() as IntlMessages;
+export default async function DashboardPage() {
+  const t = await getTranslations('Dashboard');
+  const session = await getSession();
+  const messages = await getMessages() as IntlMessages;
   const services = Object.keys(messages.Dashboard.services) as Array<keyof typeof messages['Dashboard']['services']>; ;
 
   return (
@@ -36,7 +38,12 @@ export default function DashboardPage() {
             <h3 className="govuk-heading-m">{t(`services.${serviceKey}.title`)}</h3>
             <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
-              {Object.keys(items).map((key) => {
+              {Object.keys(items).filter((key) => {
+                if (key === 'track_reentries' && !isAgencyUser(session?.user?.role)) {
+                  return false;
+                }
+                return true;
+              }).map((key) => {
                 const title = t(`services.${serviceKey}.items.${key}.title` as MessageKeys<IntlMessages, 'Dashboard'>);
                 const description = t(`services.${serviceKey}.items.${key}.description` as MessageKeys<IntlMessages, 'Dashboard'>);
 

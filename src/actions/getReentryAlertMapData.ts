@@ -48,7 +48,10 @@ const generateFeature = (point: MapPoint, type: 'overflight' | 'fragments' | 'fl
 });
 
 export async function getReentryAlertMapData(presignedUrl: string) {
-  const data = await fetch(presignedUrl);
+  const data = await fetch(presignedUrl, {
+    cache: 'no-store',
+    next: { revalidate: 0 },
+  });
   const reports: ReportRespsponseData[] = await data.json();
   const lastReport = reports[0];
 
@@ -81,7 +84,9 @@ export async function getReentryAlertMapData(presignedUrl: string) {
     });
   });
 
-  for (const point of lastReport.map_points) {
+  const sortedPoints = lastReport.map_points.sort((a, b) => Date.parse(b.overflight) - Date.parse(a.overflight));
+
+  for (const point of sortedPoints) {
     if (point.pass) {
       flightpathsCollection.get(point.pass)?.features.push(generateFeature(point, 'overflight'));
     } else {
@@ -92,6 +97,7 @@ export async function getReentryAlertMapData(presignedUrl: string) {
         const fragmentPoint = {
           ...fragment,
           pass: point.pass,
+          overflight: point.overflight,
         };
         if (point.pass) {
           fragmentsCollection.get(point.pass)?.features.push(generateFeature(fragmentPoint, 'fragments'));

@@ -106,23 +106,28 @@ const MonitoringEventsByOrganisationContent = ({ isAnalysist }: PerformanceMonit
   const actionButtons = (
     <ToggleButtons
       name="events-by-organization-days"
+      ariaLabel="Conjunction events by organisation"
       items={[
         {
+          id: 'upcoming_events',
           title: t('upcoming_events'),
           ariaLabel: 'Upcoming events',
           value: 'Upcoming events',
         },
         {
+          id: 'last_7d',
           title: t('last_7d'),
           ariaLabel: 'Last 7 days',
           value: 'Last 7d',
         },
         {
+          id: 'last_1_month',
           title: t('last_1_month'),
           ariaLabel: 'Last 1 month',
           value: 'Last 1 month',
         },
         {
+          id: 'last_6_months',
           title: t('last_6_months'),
           ariaLabel: 'Last 6 months',
           value: 'Last 6 months',

@@ -10,13 +10,16 @@ export const alertSettingsSchema = z.object({
     z.literal('all'),
     z.literal('none'),
     z.literal('priority'),
+    z.literal('uk-licensed'),
+    z.literal('closedown'),
   ]),
   receiveConjunction: receiveDefault,
   reEntryAlerts: z.union([
     z.literal('all'),
     z.literal('none'),
     z.literal('priority'),
-    z.literal('uk_satellites_only'),
+    z.literal('uk-licensed'),
+    z.literal('closedown'),
   ]),
   receiveReEntry: receiveDefault,
   areasOfInterest: z.array(z.enum([

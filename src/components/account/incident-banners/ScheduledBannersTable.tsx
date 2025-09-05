@@ -1,7 +1,6 @@
 'use client';
 
 import { useMutation } from '@tanstack/react-query';
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
@@ -37,11 +36,9 @@ const ScheduledBannersTable = ({ banners }: ScheduledBannersTableProps) => {
             <TopNotificationBanner status="success" heading={t('Success_banner.title', { title: bannerToRemove.title })}>
               <p className="govuk-body">{t('Success_banner.content')}</p>
               <ButtonGroup>
-                <Link href="/conjunctions">
-                  <Button className="govuk-button--secondary">
-                    {t('Success_banner.button')}
-                  </Button>
-                </Link>
+                <Button as="link" href="/conjunctions" className="govuk-button--secondary">
+                  {t('Success_banner.button')}
+                </Button>
               </ButtonGroup>
             </TopNotificationBanner>
           )

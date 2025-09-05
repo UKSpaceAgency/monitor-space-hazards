@@ -35,8 +35,8 @@ const MonitoringEventsByTypeMonthly = async () => {
       {
         label: t('other'),
         data: data.map(({ OTHER }) => OTHER),
-        borderColor: chartPalette.lightPurple,
-        backgroundColor: chartPalette.lightPurple,
+        borderColor: chartPalette.turquoise,
+        backgroundColor: chartPalette.turquoise,
       },
     ],
   };
@@ -46,13 +46,16 @@ const MonitoringEventsByTypeMonthly = async () => {
       <MonthlyBarChart
         data={datasets}
         stacked
+        ariaLabel="Conjunction events by type monthly"
         yAxisTitle={t('y_axis_title')}
+        xAxisTitle={t('x_axis_title')}
         legend={t('legend_title')}
       />
       <Scrollable>
         <DataTable
           columns={eventsByTypeMonthlyColumns}
           data={data.reverse()}
+          ariaLabel="Information on Conjunction Events by type Monthly"
         />
       </Scrollable>
     </>

@@ -14,8 +14,8 @@ const MonitoringOrganisationsAndUsers = async () => {
   return (
     <>
       <MonitoringOrganisationsAndUsersMonthly data={data.reverse()} />
-      <DownloadData type={t('title')} downloadAction={getStatsMonthlyOrganizations} params={{}} />
-      <Details summary={t('details.title')}>
+      <DownloadData type={t('title')} downloadAction={getStatsMonthlyOrganizations} params={{}} ariaLabel="Organisations and users" />
+      <Details summary={t('details.title')} aria-label="Organisations and users details">
         {t.rich('details.content')}
       </Details>
     </>

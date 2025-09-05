@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { type ReactNode, Suspense } from 'react';
 
@@ -31,20 +32,34 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
 
   const lastReport = reports[reports.length - 1];
   const isClosed = lastReport?.alertType.includes('closedown');
+  const closedComment = searchParams?.closed_comment ?? event.closedComment;
+
+  if (!lastReport) {
+    return redirect(`/re-entries/${shortId}`);
+  }
 
   return (
     <div>
-      {isClosed && <Tag>{t('closed')}</Tag>}
+      {isClosed
+      && (
+        <div className="flex items-center gap-4 mb-4">
+          <Tag>{t('closed')}</Tag>
+          {closedComment && (
+            <span>{closedComment}</span>
+          )}
+        </div>
+      )}
       <h1 className="govuk-heading-xl">
         {title}
         <span className="block text-lg">{dayjs(event.decayEpoch).format(FORMAT_FULL_DATE)}</span>
       </h1>
-      <div className="grid md:grid-cols-4 gap-7">
+      <div>
         <ContentNavigation />
+        <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
         <div className="md:col-span-3">
           {t.rich('report_info', { number: event.reentryReportNumber?.toString(), time: dayjs(event.updatedAt).format(FORMAT_DATE_TIME) })}
           <Suspense fallback={<Spinner />}>
-            <ReentryAlertExecutiveSummary event={event} previewSummary={searchParams?.exec_summary} />
+            <ReentryAlertExecutiveSummary event={event} previewSummary={searchParams?.exec_summary} isClosed={isClosed} />
           </Suspense>
           <Suspense fallback={<Spinner />}>
             {lastReport?.presignedUrl && (

@@ -3,13 +3,16 @@ import type { HTMLAttributes } from 'react';
 
 type DetailsProps = {
   summary?: string;
+  initiallyOpen?: boolean;
 } & HTMLAttributes<HTMLDetailsElement>;
 
 export function Details(props: DetailsProps) {
-  const { summary = 'Help', className, children, id, ...rest } = props;
+  const { summary = 'Help', className, children, id, initiallyOpen, ...rest } = props;
+
   return (
     <details
       className={clsx('govuk-details', className)}
+      open={initiallyOpen}
       {...rest}
     >
       <summary id={id} className="govuk-details__summary">

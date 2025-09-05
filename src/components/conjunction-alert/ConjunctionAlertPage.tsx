@@ -6,6 +6,7 @@ import type { TypeUniqueEventUpdateTextFieldsIn } from '@/__generated__/data-con
 import { getConjunctionReports } from '@/actions/getConjunctionReports';
 import getConjunctionUniqueEvent from '@/actions/getConjunctionUniqueEvent';
 import { dayjs, FORMAT_DATE_TIME, FORMAT_FULL_DATE } from '@/libs/Dayjs';
+import Tag from '@/ui/tag/tag';
 
 import { ContentNavigation } from '../ContentNavigation';
 import { ConjunctionAlertAccordion } from './ConjunctionAlertAccordion';
@@ -22,10 +23,13 @@ type ConjunctionAlertPageProps = {
 const ConjunctionAlertPage = async ({ shortId, searchParams, footer }: ConjunctionAlertPageProps) => {
   const t = await getTranslations('Conjunction_alert');
   const event = await getConjunctionUniqueEvent(shortId);
-  const reports = await getConjunctionReports({ shortId });
-  const lastReport = reports[reports.length - 1];
+  const reports = await getConjunctionReports({ shortId, show_only_active: false });
   const title = t('title', { primaryObject: event.primaryObjectCommonName, secondaryObject: event.secondaryObjectCommonName });
-  const pdfTitle = t('pdf_title', { primaryObject: event.primaryObjectCommonName, secondaryObject: event.secondaryObjectCommonName, reportNumber: lastReport?.reportNumber ?? '' });
+  const pdfTitle = t('pdf_title', { primaryObject: event.primaryObjectCommonName, secondaryObject: event.secondaryObjectCommonName, reportNumber: event.reportNumber });
+
+  const lastReport = reports[reports.length - 1];
+  const isClosed = lastReport?.alertType.includes('closedown');
+  const closedComment = searchParams?.closed_comment ?? event.closedComment;
 
   if (!lastReport) {
     notFound();
@@ -33,6 +37,15 @@ const ConjunctionAlertPage = async ({ shortId, searchParams, footer }: Conjuncti
 
   return (
     <div>
+      {isClosed
+      && (
+        <div className="flex items-center gap-4 mb-4">
+          <Tag>{t('closed')}</Tag>
+          {closedComment && (
+            <span>{closedComment}</span>
+          )}
+        </div>
+      )}
       <h1 className="govuk-heading-xl">
         {title}
         <span className="block text-lg">{dayjs(event.tca).format(FORMAT_FULL_DATE)}</span>
@@ -41,7 +54,7 @@ const ConjunctionAlertPage = async ({ shortId, searchParams, footer }: Conjuncti
         <ContentNavigation />
         <div className="md:col-span-3">
           {t.rich('report_info', { number: lastReport.reportNumber.toString(), time: dayjs(lastReport.reportTime).format(FORMAT_DATE_TIME) })}
-          <ConjunctionAlertExecutiveSummary event={event} report={lastReport} execSummaryAddition={searchParams?.exec_summary_addition ?? event.execSummaryAddition} manoeuvreAddition={searchParams?.manoeuvre_addition ?? event.manoeuvreAddition} />
+          <ConjunctionAlertExecutiveSummary report={lastReport} execSummaryAddition={searchParams?.exec_summary_addition ?? event.execSummaryAddition} manoeuvreAddition={searchParams?.manoeuvre_addition ?? event.manoeuvreAddition} isClosed={isClosed} />
           <ConjunctionAlertNextUpdate shortId={shortId} />
           <ConjunctionAlertAccordion event={event} report={lastReport} reports={reports} searchParams={searchParams} />
           {footer || <ConjunctionAlertPageButtons pdfTitle={pdfTitle} />}

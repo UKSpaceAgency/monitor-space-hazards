@@ -1,22 +1,22 @@
-import { isNumber, round } from 'lodash';
+import { isNumber } from 'lodash';
 import Link from 'next/link';
 
 import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
-import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
+import { roundedPercentage } from '@/utils/Math';
 import { getFullCountry } from '@/utils/Regions';
 
 export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumnDef<TypeReentryEventOut>[] => [
   {
     id: 'eventInformation',
-    accessorKey: 'eventInformation',
     header: 'Reentries.table.event_details',
     enableSorting: false,
     columns: [
       {
         id: 'uk_reentry_probability',
-        accessorKey: 'ukReentryProbability',
+        accessorKey: 'fragmentsRisk',
         header: 'Reentries.table.risk',
         cell: ({ getValue }) => {
           const classes = {
@@ -51,20 +51,11 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
         },
       },
       {
-        id: 'monte_carlo_probability',
-        accessorKey: 'monteCarloProbability',
-        header: 'Reentries.table.probability_of_reentry',
-        cell: ({ getValue }) => {
-          const value = getValue<number>();
-          return isNumber(value) ? `${round(value * 100, 3)}%` : '-';
-        },
-      },
-      {
         id: 'timeWindowStart',
         accessorKey: 'timeWindowStart',
         header: 'Reentries.table.re-entry_time_window',
-        cell: ({ row: { original: { timeWindowStart, timeWindowEnd } } }) => {
-          return `${dayjs(timeWindowStart).format(FORMAT_DATE_TIME)} to ${dayjs(timeWindowEnd).format(FORMAT_DATE_TIME)}`;
+        cell: ({ row: { original: { decayEpoch, uncertaintyWindow } } }) => {
+          return `${dayjs(decayEpoch).format(FORMAT_FULL_DATE_TIME)} +/- ${uncertaintyWindow} minute(s)`;
         },
       },
       {
@@ -74,7 +65,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
         cell: ({ getValue }) => {
           const [value] = getValue<string[]>();
 
-          return value ? dayjs(value).format(FORMAT_DATE_TIME) : '-';
+          return value ? dayjs(value).format(FORMAT_FULL_DATE_TIME) : '-';
         },
       },
     ],
@@ -91,18 +82,46 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
         cell: ({ getValue }) => getValue() ?? '-',
       },
       {
-        id: 'survivability',
-        accessorKey: 'survivability',
-        header: 'Reentries.table.expected_survivability',
-        cell: ({ getValue }) => getValue() ?? '-',
-      },
-      {
         id: 'licenseCountry',
         accessorKey: 'licenseCountry',
         header: 'Reentries.table.licensing_country',
         cell: ({ getValue }) => {
           const value = getValue<string>();
           return value ? getFullCountry(value) : '-';
+        },
+      },
+    ],
+  },
+  {
+    id: 'riskLikelihood',
+    header: 'Reentries.table.risk_likelihood',
+    enableSorting: false,
+    columns: [
+      {
+        id: 'fragmentsProbability',
+        accessorKey: 'fragmentsProbability',
+        header: 'Reentries.table.probability_of_fragmentation',
+        cell: ({ getValue }) => {
+          const value = getValue<number>();
+          return isNumber(value) ? `${roundedPercentage(value)}` : '-';
+        },
+      },
+      {
+        id: 'atmosphericProbability',
+        accessorKey: 'atmosphericProbability',
+        header: 'Reentries.table.probability_of_atmospheric_entry',
+        cell: ({ getValue }) => {
+          const value = getValue<number>();
+          return isNumber(value) ? `${roundedPercentage(value)}` : '-';
+        },
+      },
+      {
+        id: 'humanCasualtyProbability',
+        accessorKey: 'humanCasualtyProbability',
+        header: 'Reentries.table.probability_of_human_casualty',
+        cell: ({ getValue }) => {
+          const value = getValue<number>();
+          return isNumber(value) ? `${roundedPercentage(value)}` : '-';
         },
       },
     ],

@@ -5,9 +5,18 @@ import type { RequestParams } from '@/__generated__/http-client';
 import Api from '@/libs/Api';
 
 export async function getConjunctionEventsList(
-  query?: TypeGetConjunctionEventsParams,
+  queryParams?: TypeGetConjunctionEventsParams,
   params: RequestParams = {},
 ) {
+  let query = queryParams;
+  if (queryParams?.epoch === 'past' && !queryParams?.sort_by) {
+    query = {
+      ...query,
+      epoch: 'past',
+      sort_by: 'tca_time',
+      sort_order: 'desc',
+    };
+  }
   const { data } = await Api.getConjunctionEventsList(query, params);
   return data;
 };

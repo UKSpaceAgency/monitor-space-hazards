@@ -30,7 +30,8 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
             ref={ref}
             className="govuk-radios__input"
             type="radio"
-            id={props.id ?? id}
+            id={`${props.id ?? id}-rb`}
+            aria-describedby={props.id ?? id}
             checked={checked}
             {...props}
           />

@@ -16,6 +16,8 @@ import type { ReactNode } from 'react';
 import { useEffect, useRef } from 'react';
 import { Bar } from 'react-chartjs-2';
 
+import { whiteBackgroundPlugin } from '@/utils/ChartPlugins';
+
 import { setChartDefaults } from '../base/defaults';
 import { chartPalette } from '../base/theme';
 import { useInViewport } from '../base/useInViewport';
@@ -33,22 +35,26 @@ export type BaseBarProps = {
   id?: string;
   data: ChartData<'bar'>;
   yAxisTitle?: string;
+  xAxisTitle?: string;
   actionButtons?: ReactNode;
   showTotal?: boolean;
   title?: React.ReactNode;
   stacked?: boolean;
+  ariaLabel?: string;
 } & InferChartLegendProps;
 
 export function BaseBar({
   id,
   data,
   yAxisTitle,
+  xAxisTitle,
   actionButtons,
   showTotal,
   title,
   stacked = true,
   showLegend = false,
   legend,
+  ariaLabel,
 }: BaseBarProps) {
   const chart = useRef<ChartJS<'bar'>>({} as ChartJS<'bar'>);
   const [isMobile] = useInViewport();
@@ -64,73 +70,95 @@ export function BaseBar({
     <div className="p-4 bg-lightGrey" data-type="chart">
       <div className="flex justify-between">{actionButtons}</div>
       {title}
-      <div className="relative w-full">
-        <Bar
-          aria-label="Bar chart"
-          id={id}
-          ref={chart}
-          data={data}
-          options={{
-            interaction: {
-              intersect: false,
-              mode: 'index',
-            },
-            plugins: {
-              tooltip: {
-                callbacks: {
-                  label: (tooltipItem) => {
-                    let label = tooltipItem.dataset.label || '';
-
-                    if (label) {
-                      label += `: `;
-                    }
-                    label += tooltipItem.formattedValue;
-                    return label;
-                  },
-                  footer: showTotal
-                    ? function (items) {
-                      return (
-                        `Total: ${items.reduce((a, b) => a + b.parsed.y, 0)}`
-                      );
-                    }
-                    : undefined,
+      <div className="border border-black bg-white">
+        <div className="relative w-full">
+          <Bar
+            aria-label={`${ariaLabel} Bar chart`}
+            id={id}
+            ref={chart}
+            data={data}
+            options={{
+              interaction: {
+                intersect: false,
+                mode: 'index',
+              },
+              layout: {
+                padding: {
+                  top: isMobile ? 5 : 50,
+                  right: isMobile ? 5 : 80,
+                  left: isMobile ? 5 : 50,
                 },
               },
-              legend: {
-                display: false,
-              },
-            },
-            scales: {
-              x: {
-                stacked,
-              },
-              y: {
-                stacked,
-                beginAtZero: true,
-                title: {
-                  display: !!yAxisTitle,
-                  text: yAxisTitle,
-                  font: {
-                    size: isMobile ? 8 : 16,
-                    weight: 'bold',
+              plugins: {
+                tooltip: {
+                  callbacks: {
+                    label: (tooltipItem) => {
+                      let label = tooltipItem.dataset.label || '';
+
+                      if (label) {
+                        label += `: `;
+                      }
+                      label += tooltipItem.formattedValue;
+                      return label;
+                    },
+                    footer: showTotal
+                      ? function (items) {
+                        return (
+                          `Total: ${items.reduce((a, b) => a + b.parsed.y, 0)}`
+                        );
+                      }
+                      : undefined,
                   },
-                  padding: {
-                    bottom: isMobile ? 10 : 20,
+                },
+                legend: {
+                  display: false,
+                },
+              },
+              scales: {
+                x: {
+                  stacked,
+                  title: {
+                    display: !!xAxisTitle,
+                    text: xAxisTitle,
+                    font: {
+                      size: isMobile ? 8 : 16,
+                      weight: 'bold',
+                    },
+                    padding: {
+                      bottom: isMobile ? 10 : 20,
+                    },
+                  },
+                },
+                y: {
+                  stacked,
+                  beginAtZero: true,
+                  title: {
+                    display: !!yAxisTitle,
+                    text: yAxisTitle,
+                    font: {
+                      size: isMobile ? 8 : 16,
+                      weight: 'bold',
+                    },
+                    padding: {
+                      bottom: isMobile ? 10 : 20,
+                    },
                   },
                 },
               },
-            },
 
-          }}
-        />
+            }}
+            plugins={[whiteBackgroundPlugin]}
+          />
+        </div>
+        {showLegend && (
+          <ChartLegend
+            chartRef={chart}
+            items={data.datasets}
+            ariaLabel={ariaLabel}
+            {...legend}
+          />
+        )}
       </div>
-      {showLegend && (
-        <ChartLegend
-          chartRef={chart}
-          items={data.datasets}
-          {...legend}
-        />
-      )}
     </div>
   );
 }

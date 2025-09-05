@@ -1,12 +1,13 @@
 'use client';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { type FieldPath, type SubmitHandler, useForm } from 'react-hook-form';
 
 import { patchThresholds } from '@/actions/patchThresholds';
 import { FormErrorSummary } from '@/components/form/FormErrorSummary';
 import { TopNotificationBanner } from '@/components/TopNotificationBanner';
-import type { ThresholdsSettingsFormSchema } from '@/validations/thresholdsSettingsFormSchema';
+import { type ThresholdsSettingsFormSchema, thresholdsSettingsFormSchema } from '@/validations/thresholdsSettingsFormSchema';
 
 import { ThresholdsSettingsFormContent } from './ThresholdsSettingsFormContent';
 
@@ -19,6 +20,7 @@ const ThresholdsSettingsForm = ({ defaultValues }: ThresholdsSettingsFormProps) 
 
   const { register, handleSubmit, setError, formState: { isSubmitting, isSubmitSuccessful, errors } } = useForm<ThresholdsSettingsFormSchema>({
     defaultValues,
+    resolver: zodResolver(thresholdsSettingsFormSchema),
   });
 
   const onSubmit: SubmitHandler<ThresholdsSettingsFormSchema> = async (data) => {
@@ -35,6 +37,7 @@ const ThresholdsSettingsForm = ({ defaultValues }: ThresholdsSettingsFormProps) 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
+      noValidate
     >
       {isSubmitSuccessful && <TopNotificationBanner status="success">{t('success_message')}</TopNotificationBanner>}
       <FormErrorSummary i18path="Thresholds_settings" errors={errors} />

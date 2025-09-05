@@ -1,7 +1,6 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 
@@ -39,19 +38,17 @@ const OrganisationUserTypeForm = ({ user }: OrganisationUserTypeFormProps) => {
     return (
       <div>
         <NotificationBanner status="success">
-          <h3 className="govuk-notification-banner__heading">
+          <p className="govuk-notification-banner__heading">
             {t('success')}
-          </h3>
+          </p>
         </NotificationBanner>
-        <Link
+        <Button
+          as="link"
           href={`/account/organisations/${user.organizationId}/${user.id}`}
+          className="govuk-button--secondary"
         >
-          <Button
-            className="govuk-button--secondary"
-          >
-            {tCommon('return', { to: 'user account details' })}
-          </Button>
-        </Link>
+          {tCommon('return', { to: 'user account details' })}
+        </Button>
       </div>
     );
   }
@@ -60,9 +57,12 @@ const OrganisationUserTypeForm = ({ user }: OrganisationUserTypeFormProps) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Radios
         id="role"
+        aria-label="Role"
+        required
         hint={t('role_hint')}
         error={errors.role?.message}
         items={Object.entries(AccountType).map(([key, value]) => ({
+          id: 'role',
           value: key,
           children: value,
           ...register('role'),
@@ -74,15 +74,13 @@ const OrganisationUserTypeForm = ({ user }: OrganisationUserTypeFormProps) => {
         </RichText>
       </Details>
       <ButtonGroup>
-        <Link
+        <Button
+          as="link"
           href={`/account/organisations/${user.organizationId}/${user.id}`}
+          className="govuk-button--secondary"
         >
-          <Button
-            className="govuk-button--secondary"
-          >
-            {t('back')}
-          </Button>
-        </Link>
+          {t('back')}
+        </Button>
         <Button type="submit">{t('save')}</Button>
       </ButtonGroup>
     </form>

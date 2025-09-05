@@ -1,6 +1,5 @@
 'use client';
 import dynamic from 'next/dynamic';
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 import Button from '@/ui/button/button';
@@ -19,14 +18,10 @@ const ReentryButtons = ({ title }: ReentryButtonsProps) => {
 
   return (
     <ButtonGroup>
-      <PdfDownloadButton title={title} />
-      <Link
-        href="/re-entries"
-      >
-        <Button className="govuk-button--secondary">
-          {tCommon('return', { to: 'previous page' })}
-        </Button>
-      </Link>
+      <PdfDownloadButton title={title} ariaLabel="Reentry Pdf download" />
+      <Button as="link" href="/re-entries" className="govuk-button--secondary">
+        {tCommon('return', { to: 'track re-entry events' })}
+      </Button>
     </ButtonGroup>
   );
 };

@@ -16,6 +16,7 @@ const MonitoringNotificationsSentDataTable = ({ data }: MonitoringNotificationsS
       <DataTable
         data={data}
         columns={notificationsSentColumns}
+        ariaLabel="Information on Notifications sent"
       />
     </Scrollable>
   );

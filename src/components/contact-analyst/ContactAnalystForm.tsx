@@ -46,6 +46,8 @@ const ContactAnalystForm = ({ searchParams }: ContactAnalystFormProps) => {
         {...register('messageContent')}
         id="message"
         error={errors.messageContent?.message}
+        required
+        aria-label="Message Content"
       />
       <Button type="submit">{t('submit')}</Button>
     </form>

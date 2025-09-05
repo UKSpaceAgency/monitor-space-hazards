@@ -21,6 +21,8 @@ export function RegionsTable({ name }: RegionsTableProps) {
         <RegionsTableRow region={Regions.WALES} name={name} intent />
         <RegionsTableRow region={Regions.BRITISH_OVERSEAS_TERRITORIES} name={name} />
         <RegionsTableRow region={Regions.SHANWICK} name={name} />
+        <RegionsTableRow region={Regions.LONDON_FIR} name={name} />
+        <RegionsTableRow region={Regions.SCOTLAND_FIR} name={name} />
         <RegionsTableRow region={Regions.NAVAREA} name={name} />
         <RegionsTableRow region={Regions.REST_OF_THE_WORLD} name={name} />
       </tbody>
