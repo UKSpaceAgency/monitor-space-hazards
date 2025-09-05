@@ -12,7 +12,7 @@ type OrganisationUserDeletionSucceededBannerProps = {
   buttonText: string;
 };
 
-export const OrganisationUserDeletionSucceededBanner = ({ showBanner, message, buttonText }: OrganisationUserDeletionSucceededBannerProps) => {
+const OrganisationUserDeletionSucceededBanner = ({ showBanner, message, buttonText }: OrganisationUserDeletionSucceededBannerProps) => {
   const { replace } = useRouter();
 
   const handleCloseBanner = () => {
@@ -36,3 +36,5 @@ export const OrganisationUserDeletionSucceededBanner = ({ showBanner, message, b
     </>
   );
 };
+
+export { OrganisationUserDeletionSucceededBanner };
