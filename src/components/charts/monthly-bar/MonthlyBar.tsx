@@ -11,12 +11,13 @@ import BaseBar from '../base-bar/BaseBar';
 type MonthlyAnalysesProps = {
   data: ChartData<'bar'>;
   yAxisTitle?: string;
+  xAxisTitle?: string;
   stacked?: boolean;
   legend?: string;
   ariaLabel?: string;
 };
 
-const MonthlyBarChart = ({ data, yAxisTitle, stacked = false, legend, ariaLabel }: MonthlyAnalysesProps) => {
+const MonthlyBarChart = ({ data, yAxisTitle, xAxisTitle, stacked = false, legend, ariaLabel }: MonthlyAnalysesProps) => {
   const t = useTranslations('Charts.Actions');
   const [showMonths, setShowMonths] = useState(12);
 
@@ -58,6 +59,7 @@ const MonthlyBarChart = ({ data, yAxisTitle, stacked = false, legend, ariaLabel 
     <BaseBar
       actionButtons={actionButtons}
       yAxisTitle={yAxisTitle}
+      xAxisTitle={xAxisTitle}
       data={datasets}
       stacked={stacked}
       showLegend

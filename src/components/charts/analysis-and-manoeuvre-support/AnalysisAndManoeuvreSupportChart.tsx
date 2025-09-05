@@ -67,6 +67,7 @@ const AnalysisAndManoeuvreSupportChart = ({
         ariaLabel="NSpOC conjunction event analysis and manoeuvre support"
         legend={{ title: t('file_type') }}
         yAxisTitle={t('number_received')}
+        xAxisTitle={t('date')}
       />
     </div>
   );

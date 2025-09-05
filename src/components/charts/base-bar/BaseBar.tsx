@@ -35,6 +35,7 @@ export type BaseBarProps = {
   id?: string;
   data: ChartData<'bar'>;
   yAxisTitle?: string;
+  xAxisTitle?: string;
   actionButtons?: ReactNode;
   showTotal?: boolean;
   title?: React.ReactNode;
@@ -46,6 +47,7 @@ export function BaseBar({
   id,
   data,
   yAxisTitle,
+  xAxisTitle,
   actionButtons,
   showTotal,
   title,
@@ -115,6 +117,17 @@ export function BaseBar({
               scales: {
                 x: {
                   stacked,
+                  title: {
+                    display: !!xAxisTitle,
+                    text: xAxisTitle,
+                    font: {
+                      size: isMobile ? 8 : 16,
+                      weight: 'bold',
+                    },
+                    padding: {
+                      bottom: isMobile ? 10 : 20,
+                    },
+                  },
                 },
                 y: {
                   stacked,
