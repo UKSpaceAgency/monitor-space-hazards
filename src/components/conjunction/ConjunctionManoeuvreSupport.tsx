@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
-import type { TypeManoeuvrePlotWithUserMetadataOut } from '@/__generated__/data-contracts';
+import type { TypeManoeuvrePlotMetadataOut } from '@/__generated__/data-contracts';
 import { getManoeuvrePlot } from '@/actions/getManoeuvrePlot';
 import { getManoeuvrePlotsManoeuvrePlotId } from '@/actions/getManoeuvrePlotsManoeuvrePlotId';
 import ErrorMessage from '@/ui/error-message/error-message';
@@ -8,7 +8,7 @@ import ErrorMessage from '@/ui/error-message/error-message';
 import MtpChart from '../charts/mtp-chart/MtpChart';
 
 type ConjunctionManoeuvreSupportProps = {
-  plot: TypeManoeuvrePlotWithUserMetadataOut;
+  plot: TypeManoeuvrePlotMetadataOut;
 };
 
 const ConjunctionManoeuvreSupport = async ({ plot }: ConjunctionManoeuvreSupportProps) => {

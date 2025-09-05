@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import type { HTMLAttributes, ReactNode } from 'react';
+import { type HTMLAttributes, type ReactNode, useEffect, useRef } from 'react';
 
 type ErrorSummaryProps = {
   title?: ReactNode;
@@ -12,6 +12,8 @@ type ErrorSummaryProps = {
 } & Omit<HTMLAttributes<HTMLDivElement>, 'title'>;
 
 export function ErrorSummary(props: ErrorSummaryProps) {
+  const firstAnchorRef = useRef<HTMLAnchorElement>(null);
+
   const {
     title = 'There is a problem',
     description,
@@ -20,6 +22,10 @@ export function ErrorSummary(props: ErrorSummaryProps) {
     className,
     ...rest
   } = props;
+
+  useEffect(() => {
+    firstAnchorRef.current?.focus();
+  }, []);
 
   return (
     <div
@@ -39,7 +45,7 @@ export function ErrorSummary(props: ErrorSummaryProps) {
             {errorList.map(({ href, children }, index) => (
               // eslint-disable-next-line react/no-array-index-key
               <li key={index}>
-                {href ? <a href={href}>{children}</a> : children}
+                {href ? <a href={href} ref={index === 0 ? firstAnchorRef : null}>{children}</a> : children}
               </li>
             ))}
           </ul>

@@ -2,7 +2,7 @@ import { getTranslations } from 'next-intl/server';
 
 import type { TypeSatelliteOut } from '@/__generated__/data-contracts';
 import { getConjunctionEventsEventIdSummary } from '@/actions/getConjunctionEventsEventIdSummary';
-import { getManoeuvrePlotShortId } from '@/actions/getManoeuvrePlotShortId';
+import { getManoeuvrePlotsByEventEventShortId } from '@/actions/getManoeuvrePlotsByEventEventShortId';
 import Accordion from '@/ui/accordion/accordion';
 
 import { ConjunctionCollisionProbabilityChart } from './ConjunctionCollisionProbabilityChart';
@@ -28,7 +28,8 @@ const ConjunctionAccordion = async ({
   const t = await getTranslations('Conjunction');
 
   const events = await getConjunctionEventsEventIdSummary({ eventId: shortId });
-  const plot = await getManoeuvrePlotShortId(shortId);
+  const plots = await getManoeuvrePlotsByEventEventShortId({ eventShortId: shortId });
+  const [latestPlot] = plots.sort((a, b) => new Date(b.tcaTime).getTime() - new Date(a.tcaTime).getTime());
 
   return (
     <Accordion
@@ -41,12 +42,12 @@ const ConjunctionAccordion = async ({
             <ConjunctionCollisionProbabilityChart shortId={shortId} events={events} />
           ),
         },
-        ...(plot
+        ...(latestPlot
           ? [{
               id: 'mtpChart',
               heading: t('Mtp_chart.title'),
               content: (
-                <ConjunctionManoeuvreSupport plot={plot} />
+                <ConjunctionManoeuvreSupport plot={latestPlot} />
               ),
             }]
           : []),

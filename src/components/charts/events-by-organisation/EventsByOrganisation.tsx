@@ -71,6 +71,7 @@ export function EventsByOrganizationChart({
   return (
     <BaseBar
       yAxisTitle={t('y_axis')}
+      xAxisTitle={t('x_axis')}
       title={title}
       data={datasets}
       ariaLabel="Conjunction events by organisation"
