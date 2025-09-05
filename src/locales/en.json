@@ -218,7 +218,7 @@
   },
   "Organisation": {
     "banner": {
-      "success_message": "User is  successfully deleted",
+      "success_message": "The user has been deleted from {organisationName} organisation",
       "close_button": "Close"
     },
     "summary": {

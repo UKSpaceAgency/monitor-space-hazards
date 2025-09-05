@@ -9,7 +9,7 @@ import { OrganisationSummary } from '@/components/account/organisations/organisa
 import { OrganisationUserDeletionSucceededBanner } from '@/components/account/organisations/organisation/OrganisationUserDeletionSucceededBanner';
 import { OrganisationUsers } from '@/components/account/organisations/organisation/OrganisationUsers';
 import Button from '@/ui/button/button';
-import ButtonGroup, { } from '@/ui/button-group/button-group';
+import ButtonGroup from '@/ui/button-group/button-group';
 import Spinner from '@/ui/spinner/spinner';
 import { isGovUser, isOrgAdmin } from '@/utils/Roles';
 
@@ -49,7 +49,7 @@ export default async function OrganisationPage({
 
   return (
     <div>
-      <OrganisationUserDeletionSucceededBanner showBanner={deletionUserSucceeded === 'true'} buttonText={t('banner.close_button')} message={t('banner.success_message')} />
+      <OrganisationUserDeletionSucceededBanner showBanner={deletionUserSucceeded === 'true'} buttonText={t('banner.close_button')} message={t('banner.success_message', { organisationName: organisation.name })} />
       <h1 className="govuk-heading-xl">{organisation.name}</h1>
       <OrganisationSummary satellites={organisation.satellitesCount} users={organisation.accountsCount} />
       <Suspense fallback={<Spinner />}>
