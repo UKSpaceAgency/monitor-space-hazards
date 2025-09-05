@@ -217,6 +217,10 @@
     }
   },
   "Organisation": {
+    "banner": {
+      "success_message": "The user has been deleted from {organisationName} organisation",
+      "close_button": "Close"
+    },
     "summary": {
       "operator_information": "Operator Information",
       "uk_satellites": "Number of UK-licensed satellites",
@@ -615,7 +619,7 @@
     "Executive_summary": {
       "title": "Conjunction alert summary",
       "email_title": "Event Information:",
-      "content": "The National Space Operations Centre is tracking the close approach of two objects, <primaryObjectUrl>{primaryObject}</primaryObjectUrl> and <secondaryObjectUrl>{secondaryObject}</secondaryObjectUrl>. A potential collision could damage the objects involved, limiting or eliminating their capability, as well as releasing new fragments, which would increase the risk of future collisions for other objects. This event is assessed as <tag>{risk}</tag> risk, with a {collisionProbability} probability of collision (PoC).",
+      "content": "The National Space Operations Centre is tracking the close approach of two objects, <primaryObjectUrl>{primaryObject}</primaryObjectUrl> and <secondaryObjectUrl>{secondaryObject}</secondaryObjectUrl>. A collision could damage the objects involved, limiting or eliminating their capability, as well as releasing new fragments, which would increase the risk of future collisions for other objects. This event is assessed as <tag>{risk}</tag> risk, with a {collisionProbability} probability of collision (PoC).",
       "closed_report": "The National Space Operations Centre has completed tracking of the conjunction event involving <primaryObjectUrl>{primaryObject}</primaryObjectUrl> and <secondaryObjectUrl>{secondaryObject}</secondaryObjectUrl>, which occurred on {date}. The event was assessed as <tag>{risk}</tag> risk, with a {collisionProbability} probability of collision (PoC).",
       "see_further_information": "<p>See <link>Further information</link> for more detail on methodology used in this report and the organisations that have been sent this alert.</p>"
     },
@@ -1821,7 +1825,7 @@
       },
       "Public_guidance_on_space_debris": {
         "title": "Public Guidance on Space Debris",
-        "content": "<p>Space debris can be hazardous and may contain materials that pose a serious risk to health. If you come across an object that you believe to be space debris, follow these steps:</p><ul><li>Do not touch the object</li><li>Note the location of the object</li><li>If possible, take a photograph of the object without touching it</li><li>Do not stay close to the object</li><li>Notify the authorities by calling 111 (or the relevant number outside the UK)</li><li>Space debris remains the property of the spacecraft owner.</li><li>If you have already handled an object you believe to be space debris, place it in a safe location where others will not touch it and inform the authorities immediately.</li></ul><p>Space debris remains the property of the spacecraft owner.</p><p>If you have already handled an object you believe to be space debris, place it in a safe location where others will not touch it and inform the authorities immediately.</p>"
+        "content": "<p>Space debris can be hazardous and may contain materials that pose a serious risk to health. If you come across an object that you believe to be space debris, follow these steps:</p><ul><li>Do not touch the object</li><li>Note the location of the object</li><li>If possible, take a photograph of the object without touching it</li><li>Do not stay close to the object</li><li>Notify the authorities by calling 111 (or the relevant number outside the UK)</li><li>Space debris remains the property of the spacecraft owner.</li><li>If you have already handled an object you believe to be space debris, place it in a safe location where others will not touch it and inform the authorities immediately.</li></ul>"
       },
       "Press_attention": {
         "title": "Press Attention",
@@ -1852,13 +1856,13 @@
         "norad_id": "NORAD ID",
         "licensing_country": "Licensing Country",
         "report_number": "Report number",
-        "content": "<p>The National Space Operations Centre is monitoring the conjunction event <eventUrl>{primaryObject} vs {secondaryObject}</eventUrl>. A potential collision could damage the objects involved, limiting or eliminating their capability, as well as releasing new fragments, which would increase the risk of future collisions for other objects. This event is assessed as <tag>{risk}</tag> risk, with a {probability} probability of collision (PoC).</p>"
+        "content": "<p>The National Space Operations Centre is monitoring the conjunction event <eventUrl>{primaryObject} vs {secondaryObject}</eventUrl>. A collision could damage the objects involved, limiting or eliminating their capability, as well as releasing new fragments, which would increase the risk of future collisions for other objects. This event is assessed as <tag>{risk}</tag> risk, with a {probability} probability of collision (PoC).</p>"
       },
       "Event_details": {
         "details": "Details",
         "event_summary": "Event Summary",
         "details_content": "Sign in to <link>Monitor Space Hazards</link> for more information about this event.",
-        "event_summary_content": "<p>The National Space Operations Centre has completed monitoring the conjunction event <eventUrl>{primaryObject} vs {secondaryObject}</eventUrl>. A potential collision could have damaged the objects involved, limiting or eliminating their capability, as well as releasing new fragments, which would increase the risk of future collisions for other objects. This event was assessed as <tag>{risk}</tag> risk, with a {probability} probability of collision (PoC).</p>"
+        "event_summary_content": "<p>The National Space Operations Centre has completed monitoring the conjunction event <eventUrl>{primaryObject} vs {secondaryObject}</eventUrl>. A collision could have damaged the objects involved, limiting or eliminating their capability, as well as releasing new fragments, which would increase the risk of future collisions for other objects. This event was assessed as <tag>{risk}</tag> risk, with a {probability} probability of collision (PoC).</p>"
       },
       "Additional_event_details": {
         "predicted_miss_distance": "Predicted Miss Distance",
