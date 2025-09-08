@@ -1847,6 +1847,8 @@
       "potential_impact_title": "Potential impact of event",
       "utc_note": "* Coordinated Universal Time (UTC) is 1 hour behind British Summer Time (BST) and the same as Greenwich Mean Time (GMT).",
       "Event_summary": {
+        "objects": "Objects",
+        "event": "Event",
         "risk": "Risk",
         "predicted_time_of_closest_approach": "Predicted Time of Closest Approach",
         "probability_of_collision": "Probability of Collision",
