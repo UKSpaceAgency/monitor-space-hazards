@@ -1,7 +1,7 @@
 import { createTranslator } from 'next-intl';
 import { type ComponentProps, Fragment } from 'react';
 
-import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
+import type { TypeReentryEventOut, TypeTIPOut } from '@/__generated__/data-contracts';
 import { objectTypeIndex } from '@/emails/_utils/utils';
 import { dayjs, FORMAT_FULL_DATE_TIME_WITH_UTC } from '@/libs/Dayjs';
 import messages from '@/locales/en.json';
@@ -10,9 +10,10 @@ import { Table } from '../table';
 
 type ReentryEventSummaryProps = {
   event: TypeReentryEventOut;
+  tip: TypeTIPOut;
 } & ComponentProps<'table'>;
 
-export const ReentryEventSummary = ({ event, ...props }: ReentryEventSummaryProps) => {
+export const ReentryEventSummary = ({ event, tip, ...props }: ReentryEventSummaryProps) => {
   const t = createTranslator({
     locale: 'en',
     namespace: 'Emails.Reentry_alert.Event_summary',
@@ -24,7 +25,7 @@ export const ReentryEventSummary = ({ event, ...props }: ReentryEventSummaryProp
     [t('object_type'), `${event.objectType ? objectTypeIndex[event.objectType as keyof typeof objectTypeIndex] : 'Unknown'}`],
     [t('estimated_mass'), `${event.estimatedMass ?? 'Unknown'} kg`],
     [t('re_entry_time'), `${dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME_WITH_UTC)} +/- ${event.uncertaintyWindow} minute(s)`],
-    // [t('direction_of_travel'), event.dire],
+    [t('direction_of_travel'), tip.direction === 'ascending' ? 'North' : 'South'],
     [
       t('uk_overflight_time'),
       event.overflightTime.length > 0
