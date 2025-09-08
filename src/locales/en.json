@@ -1768,6 +1768,7 @@
   },
   "Emails": {
     "sign_in_to_monitor_space_hazards": "Sign in to <link>Monitor Space Hazards</link> to view analysis and additional information.",
+    "utc_note": "* Coordinated Universal Time (UTC) is 1 hour behind British Summer Time (BST) and the same as Greenwich Mean Time (GMT).",
     "Reentry_alert": {
       "title": "{risk} Risk Uncontrolled Re-Entry Alert - Report {reportNumber}",
       "title_closed": "Re-entry Close Down Alert - Report {reportNumber}",
@@ -1789,7 +1790,8 @@
         "estimated_mass": "Estimated Mass",
         "re_entry_time": "Re-entry time window worldwide",
         "uk_overflight_time": "UK overflight time(s)",
-        "no_overflights": "No overflights"
+        "no_overflights": "No overflights",
+        "direction_of_travel": "Direction of travel at predicted re-entry time"
       },
       "Affected_regions": {
         "uk_mainland": "UK Mainland",
