@@ -24,6 +24,7 @@ export const ReentryEventSummary = ({ event, ...props }: ReentryEventSummaryProp
     [t('object_type'), `${event.objectType ? objectTypeIndex[event.objectType as keyof typeof objectTypeIndex] : 'Unknown'}`],
     [t('estimated_mass'), `${event.estimatedMass ?? 'Unknown'} kg`],
     [t('re_entry_time'), `${dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME_WITH_UTC)} +/- ${event.uncertaintyWindow} minute(s)`],
+    // [t('direction_of_travel'), event.dire],
     [
       t('uk_overflight_time'),
       event.overflightTime.length > 0

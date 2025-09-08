@@ -18,7 +18,7 @@ type AnalysisUploadEmailProps = {
 function AnalysisUploadEmail({ conjunctions, withPlaceholders }: AnalysisUploadEmailProps) {
   const t = createTranslator({
     locale: 'en',
-    namespace: 'Emails.Analysis_upload',
+    namespace: 'Emails',
     messages,
   });
 
@@ -26,11 +26,12 @@ function AnalysisUploadEmail({ conjunctions, withPlaceholders }: AnalysisUploadE
 
   return (
     <Layout withPlaceholders={withPlaceholders} isNotification>
-      <Section title={t('title')}>
-        {t.rich('content', {
+      <Section title={t('Analysis_upload.title')}>
+        {t.rich('Analysis_upload.content', {
           p: chunks => <Text>{chunks}</Text>,
         })}
         <AnalysisNotificationTable conjunctions={conjunctions} />
+        <Text>{t('utc_note')}</Text>
         <SignIn link={url} />
       </Section>
     </Layout>

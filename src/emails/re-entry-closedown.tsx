@@ -26,7 +26,7 @@ type ReEntryEmailProps = {
 function ReEntryClosedownEmail({ event, report, withPlaceholders }: ReEntryEmailProps) {
   const t = createTranslator({
     locale: 'en',
-    namespace: 'Emails.Reentry_alert',
+    namespace: 'Emails',
     messages,
   });
 
@@ -34,18 +34,18 @@ function ReEntryClosedownEmail({ event, report, withPlaceholders }: ReEntryEmail
 
   return (
     <Layout
-      title={t('title_closed', { reportNumber: report.reportNumber })}
+      title={t('Reentry_alert.title_closed', { reportNumber: report.reportNumber })}
       subtitle={`${event.objectName} ${objectTypeIndex[event.objectType as keyof typeof objectTypeIndex] ?? ''}`}
       withPlaceholders={withPlaceholders}
     >
       <Subheader comment={event.closedComment} />
-      <Section title={t('event_summary_title')}>
+      <Section title={t('Reentry_alert.event_summary_title')}>
         <ReentryEventSummary event={event} className="pb-4" />
         <Map src="{{WORLD_MAP.src}}" className="pb-4" width="580" />
         <ReentryAffectedRegions report={report} className="pb-4" />
         <Text>{t('utc_note')}</Text>
       </Section>
-      <Section title={t('additional_information_title')}>
+      <Section title={t('Reentry_alert.additional_information_title')}>
         <ReentryEventInformationClosed event={event} />
         <ReentryHandlingSpaceDebris event={event} />
         <ReentryPressAttention pressAttention={event.pressAttention} />

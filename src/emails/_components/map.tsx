@@ -6,5 +6,9 @@ type MapProps = {
 } & ComponentProps<'table'>;
 
 export const Map = ({ src, ...props }: MapProps) => {
-  return <Section {...props}><Img src={src} alt="map" className="w-full h-auto block outline-none border-none" /></Section>;
+  return (
+    <Section {...props}>
+      <Img src={src} alt="map" className="w-full h-auto block outline-none border-none" />
+    </Section>
+  );
 };

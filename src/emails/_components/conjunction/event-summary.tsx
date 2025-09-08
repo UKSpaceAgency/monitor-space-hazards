@@ -11,6 +11,7 @@ import { getFullCountry } from '@/utils/Regions';
 
 import { Link } from '../link';
 import { Markdown } from '../markdown';
+import { Separator } from '../separator';
 import { Table } from '../table';
 import { Text } from '../text';
 
@@ -44,8 +45,9 @@ export const ConjunctionEventSummary = ({ eventUrl, report, event, ...props }: C
 
   return (
     <Section {...props}>
-      <Table data={data} className="mb-6" />
-      <Table data={objectData} className="mb-4" />
+      <Table data={data} className="mb-2" />
+      <Separator />
+      <Table data={objectData} className="mt-2 mb-4" />
       {t.rich('content', {
         primaryObject: report.primaryObjectCommonName,
         secondaryObject: report.secondaryObjectCommonName,
