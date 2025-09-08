@@ -6,6 +6,7 @@ import { getOrganisation } from '@/actions/getOrganisation';
 import { getSession } from '@/actions/getSession';
 import { OrganisationSatellites } from '@/components/account/organisations/organisation/OrganisationSatellites';
 import { OrganisationSummary } from '@/components/account/organisations/organisation/OrganisationSummary';
+import { OrganisationUserDeletionSucceededBanner } from '@/components/account/organisations/organisation/OrganisationUserDeletionSucceededBanner';
 import { OrganisationUsers } from '@/components/account/organisations/organisation/OrganisationUsers';
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
@@ -26,9 +27,12 @@ export async function generateMetadata({
 
 export default async function OrganisationPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ deletionUserSucceeded: string }>;
 }) {
+  const { deletionUserSucceeded } = await searchParams;
   const t = await getTranslations('Organisation');
   const tCommon = await getTranslations('Common');
 
@@ -45,6 +49,7 @@ export default async function OrganisationPage({
 
   return (
     <div>
+      <OrganisationUserDeletionSucceededBanner showBanner={deletionUserSucceeded === 'true'} buttonText={t('banner.close_button')} message={t('banner.success_message', { organisationName: organisation.name })} />
       <h1 className="govuk-heading-xl">{organisation.name}</h1>
       <OrganisationSummary satellites={organisation.satellitesCount} users={organisation.accountsCount} />
       <Suspense fallback={<Spinner />}>
