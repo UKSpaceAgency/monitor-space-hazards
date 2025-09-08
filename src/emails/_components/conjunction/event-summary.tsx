@@ -45,9 +45,11 @@ export const ConjunctionEventSummary = ({ eventUrl, report, event, ...props }: C
 
   return (
     <Section {...props}>
-      <Table data={data} className="mb-2" />
+      <Text className="font-bold mt-4 mb-2">{t('objects')}</Text>
+      <Table data={objectData} className="mb-4" />
       <Separator />
-      <Table data={objectData} className="mt-2 mb-4" />
+      <Text className="font-bold mt-4 mb-2">{t('event')}</Text>
+      <Table data={data} className="mb-6" />
       {t.rich('content', {
         primaryObject: report.primaryObjectCommonName,
         secondaryObject: report.secondaryObjectCommonName,
