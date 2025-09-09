@@ -9,14 +9,14 @@ export const Map = ({ src, ...props }: MapProps) => {
   return (
     <Section {...props}>
       <Img src={src} alt="map" className="w-full h-auto block outline-none border-none" />
-      <Row>
-        <Column style={{ width: '25%', fontSize: '12px', verticalAlign: 'top' }}>
-          <strong>Map Legend:</strong>
+      <Row cellSpacing={8}>
+        <Column className="w-1/4 text-sm font-bold">
+          Map Legend:
         </Column>
-        <Column style={{ width: '25%' }}>
-          <table cellPadding="0" cellSpacing="0" align="center" style={{ width: '100%' }}>
+        <Column className="w-1/4">
+          <table cellPadding="0" cellSpacing="8" align="center" style={{ width: '100%' }}>
             <tr>
-              <td width="20" valign="middle" style={{ paddingRight: '6px' }}>
+              <td width="20" valign="middle">
                 <table
                   width="16"
                   style={{
@@ -43,16 +43,16 @@ export const Map = ({ src, ...props }: MapProps) => {
                   </tr>
                 </table>
               </td>
-              <td style={{ fontSize: '12px', verticalAlign: 'middle' }}>
+              <td className="text-sm">
                 Object flightpath
               </td>
             </tr>
           </table>
         </Column>
-        <Column style={{ width: '25%' }}>
-          <table cellPadding="0" cellSpacing="0" align="center" style={{ width: '100%' }}>
+        <Column className="w-1/4">
+          <table cellPadding="0" cellSpacing="8" align="center" style={{ width: '100%' }}>
             <tr>
-              <td width="20" valign="middle" style={{ paddingRight: '6px' }}>
+              <td width="20" valign="middle">
                 <table
                   width="16"
                   style={{
@@ -79,16 +79,16 @@ export const Map = ({ src, ...props }: MapProps) => {
                   </tr>
                 </table>
               </td>
-              <td style={{ fontSize: '12px', verticalAlign: 'middle' }}>
+              <td className="text-sm">
                 Chance the object enters atmosphere
               </td>
             </tr>
           </table>
         </Column>
-        <Column style={{ width: '25%' }}>
-          <table cellPadding="0" cellSpacing="0" align="center" style={{ width: '100%' }}>
+        <Column className="w-1/4">
+          <table cellPadding="0" cellSpacing="8" align="center" style={{ width: '100%' }}>
             <tr>
-              <td width="20" valign="middle" style={{ paddingRight: '6px' }}>
+              <td width="20" valign="middle">
                 <table
                   width="16"
                   style={{
@@ -115,7 +115,7 @@ export const Map = ({ src, ...props }: MapProps) => {
                   </tr>
                 </table>
               </td>
-              <td style={{ fontSize: '12px', verticalAlign: 'middle' }}>
+              <td className="text-sm">
                 Chance fragments reach the ground
               </td>
             </tr>

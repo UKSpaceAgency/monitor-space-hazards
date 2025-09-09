@@ -6,6 +6,7 @@ import messages from '@/locales/en.json';
 
 import { ConjunctionAdditionalEventDetails } from './_components/conjunction/additional-event-details';
 import { ConjunctionEventSummary } from './_components/conjunction/event-summary';
+import { ConjunctionObjects } from './_components/conjunction/objects';
 import { ConjunctionPotentialImpact } from './_components/conjunction/potential-impact';
 import { ConjunctionPressAttention } from './_components/conjunction/press-attention';
 import { ConjunctionRecommendedActions } from './_components/conjunction/recommended-actions';
@@ -37,7 +38,10 @@ function ConjunctionEmail({ report, event, withPlaceholders }: ConjunctionEmailP
       withPlaceholders={withPlaceholders}
     >
       <Subheader risk={report.risk} />
-      <Section title={t('Conjunction_alert.event_summary_title')}>
+      <Section title={t('Conjunction_alert.objects_title')}>
+        <ConjunctionObjects eventUrl={eventLink} event={event} report={report} className="pb-6" />
+      </Section>
+      <Section title={t('Conjunction_alert.event_details_title')}>
         <ConjunctionEventSummary eventUrl={eventLink} event={event} report={report} className="pb-6" />
         <Text>{t('utc_note')}</Text>
       </Section>
