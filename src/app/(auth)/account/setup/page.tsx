@@ -3,11 +3,8 @@ import { getTranslations } from 'next-intl/server';
 
 import { getUsersMe } from '@/actions/getUsersMe';
 import { auth } from '@/auth';
-import Button from '@/ui/button/button';
-import ButtonGroup from '@/ui/button-group/button-group';
-import NotificationBanner from '@/ui/notification-banner/notification-banner';
+import { SetupNotificationBanner } from '@/components/account/setup/SetupNotificationBanner';
 import TaskList from '@/ui/task-list/task-list';
-import { isAdmin } from '@/utils/Roles';
 
 export const metadata: Metadata = {
   title: 'Set up your account',
@@ -21,28 +18,7 @@ export default async function SetupPage() {
 
   return (
     <div>
-      <NotificationBanner status={isCompleted ? 'success' : 'important'}>
-        <p className="govuk-notification-banner__heading">
-          {t(isCompleted ? 'notification.completed' : 'notification.uncompleted')}
-        </p>
-        {isCompleted && (
-          <ButtonGroup>
-            <Button as="link" href="/account" aria-label={t('notification.view_account_settings')}>
-              {t('notification.view_account_settings')}
-            </Button>
-            {!isAdmin(session.user.role) && (
-              <Button as="link" href="/" className="govuk-button--secondary" aria-label={t('notification.view_home')}>
-                {t('notification.view_home')}
-              </Button>
-            )}
-            {isAdmin(session.user.role) && (
-              <Button as="link" href="/account/add-new-user" className="govuk-button--secondary" aria-label={t('notification.add_users')}>
-                {t('notification.add_users')}
-              </Button>
-            )}
-          </ButtonGroup>
-        )}
-      </NotificationBanner>
+      <SetupNotificationBanner session={session} viewAccountSettingsText={t('notification.view_account_settings')} viewHomeText={t('notification.view_home')} addUsersText={t('notification.add_users')} notificationsLabel={t(isCompleted ? 'notification.completed' : 'notification.uncompleted')} />
       <div className="govuk-grid-row">
         <div className="govuk-grid-column-two-thirds">
           <h1 className="govuk-heading-xl">{t('title')}</h1>
