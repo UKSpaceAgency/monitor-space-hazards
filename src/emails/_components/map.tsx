@@ -10,38 +10,74 @@ export const Map = ({ src, ...props }: MapProps) => {
     <Section {...props}>
       <Img src={src} alt="map" className="w-full h-auto block outline-none border-none" />
       <Row>
-        <Column className="w-1/4 text-xs">
-          Map Legend:
+        <Column style={{ width: '25%', fontSize: '12px', verticalAlign: 'top' }}>
+          <strong>Map Legend:</strong>
         </Column>
-        <Column className="w-1/4">
-          <Row cellSpacing={6} align="center">
-            <Column className="w-4">
-              <div className="size-4 bg-[#3D3D3D] rounded-full">&nbsp;</div>
-            </Column>
-            <Column className="text-xs">
-              Object flightpath
-            </Column>
-          </Row>
+        <Column style={{ width: '25%' }}>
+          <table cellPadding="0" cellSpacing="0" align="center" style={{ width: '100%' }}>
+            <tr>
+              <td width="20" valign="middle" style={{ paddingRight: '6px' }}>
+                <span
+                  style={{
+                    display: 'inline-block',
+                    width: '16px',
+                    height: '16px',
+                    backgroundColor: '#3D3D3D',
+                    borderRadius: '50%',
+                  }}
+                >
+&nbsp;
+                </span>
+              </td>
+              <td style={{ fontSize: '12px', verticalAlign: 'middle' }}>
+                Object flightpath
+              </td>
+            </tr>
+          </table>
         </Column>
-        <Column className="w-1/4">
-          <Row cellSpacing={6} align="center">
-            <Column>
-              <div className="size-4 bg-[#F46A25] rounded-full">&nbsp;</div>
-            </Column>
-            <Column className="text-xs">
-              Change the object enters atmosphere
-            </Column>
-          </Row>
+        <Column style={{ width: '25%' }}>
+          <table cellPadding="0" cellSpacing="0" align="center" style={{ width: '100%' }}>
+            <tr>
+              <td width="20" valign="middle" style={{ paddingRight: '6px' }}>
+                <span
+                  style={{
+                    display: 'inline-block',
+                    width: '16px',
+                    height: '16px',
+                    backgroundColor: '#F46A25',
+                    borderRadius: '50%',
+                  }}
+                >
+&nbsp;
+                </span>
+              </td>
+              <td style={{ fontSize: '12px', verticalAlign: 'middle' }}>
+                Change the object enters atmosphere
+              </td>
+            </tr>
+          </table>
         </Column>
-        <Column className="w-1/4">
-          <Row cellSpacing={6} align="center">
-            <Column>
-              <div className="size-4 bg-[#801650] rounded-full">&nbsp;</div>
-            </Column>
-            <Column className="text-xs">
-              Chane fragments reach the ground
-            </Column>
-          </Row>
+        <Column style={{ width: '25%' }}>
+          <table cellPadding="0" cellSpacing="0" align="center" style={{ width: '100%' }}>
+            <tr>
+              <td width="20" valign="middle" style={{ paddingRight: '6px' }}>
+                <span
+                  style={{
+                    display: 'inline-block',
+                    width: '16px',
+                    height: '16px',
+                    backgroundColor: '#801650',
+                    borderRadius: '50%',
+                  }}
+                >
+&nbsp;
+                </span>
+              </td>
+              <td style={{ fontSize: '12px', verticalAlign: 'middle' }}>
+                Chane fragments reach the ground
+              </td>
+            </tr>
+          </table>
         </Column>
       </Row>
     </Section>
