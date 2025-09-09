@@ -28,7 +28,7 @@ export default async function EphemerisUploadSuccess({
   return (
     <div>
       <Panel heading={t('title')}>{t('content', { noradId })}</Panel>
-      <Button as="link" href={`/satellites/${noradId}`}>{tCommon('return', { to: 'Satellite' })}</Button>
+      <Button as="link" href={`/satellites/${noradId}`} aria-label={tCommon('return', { to: 'Satellite' })}>{tCommon('return', { to: 'Satellite' })}</Button>
     </div>
   );
 }

@@ -27,16 +27,16 @@ export default async function SetupPage() {
         </p>
         {isCompleted && (
           <ButtonGroup>
-            <Button as="link" href="/account">
+            <Button as="link" href="/account" aria-label={t('notification.view_account_settings')}>
               {t('notification.view_account_settings')}
             </Button>
             {!isAdmin(session.user.role) && (
-              <Button as="link" href="/" className="govuk-button--secondary">
+              <Button as="link" href="/" className="govuk-button--secondary" aria-label={t('notification.view_home')}>
                 {t('notification.view_home')}
               </Button>
             )}
             {isAdmin(session.user.role) && (
-              <Button as="link" href="/account/add-new-user" className="govuk-button--secondary">
+              <Button as="link" href="/account/add-new-user" className="govuk-button--secondary" aria-label={t('notification.add_users')}>
                 {t('notification.add_users')}
               </Button>
             )}

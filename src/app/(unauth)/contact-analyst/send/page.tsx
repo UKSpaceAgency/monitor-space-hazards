@@ -17,7 +17,7 @@ export default async function ContactAnalystSend({ searchParams }: { searchParam
   return (
     <>
       <Panel heading={t('title')}>{t('content')}</Panel>
-      <Button as="link" href={callback}>{tCommon('return', { to: 'Event' })}</Button>
+      <Button as="link" href={callback} aria-label={tCommon('return', { to: 'Event' })}>{tCommon('return', { to: 'Event' })}</Button>
     </>
   );
 }
