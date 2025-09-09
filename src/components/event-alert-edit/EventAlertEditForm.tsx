@@ -63,7 +63,7 @@ const EventAlertEditForm = ({ fields }: EventAlertEditFormProps) => {
   const renderTextField = ({ id, name, ariaLabel }: BaseFormField) => (
     <>
       <TextArea {...register(id)} id={id} aria-label={ariaLabel} />
-      <Button variant="secondary" type="button" onClick={() => resetField(id, { defaultValue: '' })}>{t('clear', { name })}</Button>
+      <Button variant="secondary" type="button" onClick={() => resetField(id, { defaultValue: '' })} aria-label={t('clear', { name })}>{t('clear', { name })}</Button>
     </>
   );
 
@@ -93,8 +93,8 @@ const EventAlertEditForm = ({ fields }: EventAlertEditFormProps) => {
         </div>
       ))}
       <ButtonGroup>
-        <Button type="submit">{t('review')}</Button>
-        <Button as="link" href={getBackUrl(pathname, 1)} variant="secondary">{tCommon('return', { to: 'event' })}</Button>
+        <Button type="submit" aria-label={t('review')}>{t('review')}</Button>
+        <Button as="link" href={getBackUrl(pathname, 1)} variant="secondary" aria-label={tCommon('return', { to: 'event' })}>{tCommon('return', { to: 'event' })}</Button>
       </ButtonGroup>
     </form>
   );

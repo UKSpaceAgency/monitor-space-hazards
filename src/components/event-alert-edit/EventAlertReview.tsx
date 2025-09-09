@@ -43,8 +43,8 @@ const EventAlertReview = <T extends object>({ description, values }: EventAlertR
       </Table>
       <p className="govuk-body">{t('review_hint')}</p>
       <ButtonGroup>
-        <Button as="link" href={`${pathname}/preview?${searchParams.toString()}`} type="submit">{t('preview')}</Button>
-        <Button as="link" href={prevPageUrl} variant="secondary">{tCommon('return', { to: 'edit event' })}</Button>
+        <Button as="link" href={`${pathname}/preview?${searchParams.toString()}`} type="submit" aria-label={t('preview')}>{t('preview')}</Button>
+        <Button as="link" href={prevPageUrl} variant="secondary" aria-label={tCommon('return', { to: 'edit event' })}>{tCommon('return', { to: 'edit event' })}</Button>
       </ButtonGroup>
     </div>
   );

@@ -46,10 +46,10 @@ const ScheduleBannerForm = ({ templates }: ScheduleBannerFormProps) => {
       <ScheduleBannerFormTemplate register={register} templates={templates} />
       <ScheduleBannerFormTime setValue={setValue} watch={watch} resetField={resetField} />
       <ButtonGroup>
-        <Button type="submit">
+        <Button type="submit" aria-label={t('confirm')}>
           {t('confirm')}
         </Button>
-        <Button as="link" href="/account" variant="secondary">{tCommon('return', { to: 'account page' })}</Button>
+        <Button as="link" href="/account" variant="secondary" aria-label={tCommon('return', { to: 'account page' })}>{tCommon('return', { to: 'account page' })}</Button>
       </ButtonGroup>
     </form>
   );

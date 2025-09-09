@@ -26,7 +26,7 @@ const OrganisationUserDeletionSucceededBanner = ({ showBanner, message, buttonTe
           <div>
             <p className="govuk-body">{message}</p>
             <ButtonGroup>
-              <Button onClick={handleCloseBanner}>
+              <Button onClick={handleCloseBanner} aria-label={buttonText}>
                 {buttonText}
               </Button>
             </ButtonGroup>

@@ -79,7 +79,7 @@ export const Navigation = () => {
               <li
                 className="govuk-service-navigation__item"
               >
-                <button type="button" className="govuk-service-navigation__link" onClick={() => signOut({ redirectTo: '/api/auth/logout' })}>{t('sign_out')}</button>
+                <button type="button" className="govuk-service-navigation__link" onClick={() => signOut({ redirectTo: '/api/auth/logout' })} aria-label={t('sign_out')}>{t('sign_out')}</button>
               </li>
             </ul>
           </div>

@@ -22,7 +22,7 @@ const EventAlertSendSuccess = ({ type, shortId }: EventAlertSendSuccessProps) =>
   return (
     <div>
       <Panel heading={t('title')}>{t('content', { type, shortId })}</Panel>
-      <Button as="link" href={eventPageUrl}>{t('return')}</Button>
+      <Button as="link" href={eventPageUrl} aria-label={t('return')}>{t('return')}</Button>
     </div>
   );
 };
