@@ -93,7 +93,7 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
               >
                 {t('panel.description')}
               </Panel>
-              <Button as="link" href="/account">
+              <Button as="link" href="/account" aria-label={tCommon('return', { to: 'account page' })}>
                 {tCommon('return', { to: 'account page' })}
               </Button>
             </>
@@ -227,7 +227,7 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                     ]}
                   />
                   <div className="govuk-button-group">
-                    <Button type="submit">
+                    <Button type="submit" aria-label={tCommon('save_and_continue')}>
                       {tCommon('save_and_continue')}
                     </Button>
                   </div>

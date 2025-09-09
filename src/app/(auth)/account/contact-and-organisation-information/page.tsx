@@ -79,12 +79,12 @@ export default async function ContactAndOrganisationInformation() {
 
       {data.account_details_confirmed_at
         ? (
-            <Button type="submit" as="link" href="/account">
+            <Button type="submit" as="link" href="/account" aria-label={tCommon('return', { to: 'account page' })}>
               {tCommon('return', { to: 'account page' })}
             </Button>
           )
         : (
-            <form action={saveAndContinue}>
+            <form action={saveAndContinue} aria-label={tCommon('save_and_continue')}>
               <Button type="submit">{tCommon('save_and_continue')}</Button>
             </form>
           )}

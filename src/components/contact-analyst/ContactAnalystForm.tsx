@@ -49,7 +49,7 @@ const ContactAnalystForm = ({ searchParams }: ContactAnalystFormProps) => {
         required
         aria-label="Message Content"
       />
-      <Button type="submit">{t('submit')}</Button>
+      <Button type="submit" aria-label={t('submit')}>{t('submit')}</Button>
     </form>
   );
 };

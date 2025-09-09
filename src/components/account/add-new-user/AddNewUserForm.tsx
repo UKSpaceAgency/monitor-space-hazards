@@ -91,11 +91,11 @@ const AddNewUserForm = ({ defaultValues, organizations, role }: AddNewUserFormPr
             <ButtonGroup>
               {(isGovUser(createdUser.role) || isAgencyUser(createdUser.role))
               && (
-                <Button ref={editSettingsButtonRef} as="link" href={`/account/alert-settings/${createdUser?.user_id}`}>
+                <Button ref={editSettingsButtonRef} as="link" href={`/account/alert-settings/${createdUser?.user_id}`} aria-label={t('success_message_edit_settings_button')}>
                   {t('success_message_edit_settings_button')}
                 </Button>
               )}
-              <Button ref={returnButtonRef} as="link" href={`/account/organisations/${createdUser?.organization_id}`} className="govuk-button--secondary">
+              <Button ref={returnButtonRef} as="link" href={`/account/organisations/${createdUser?.organization_id}`} className="govuk-button--secondary" aria-label={t('success_message_return_button')}>
                 {t('success_message_return_button')}
               </Button>
             </ButtonGroup>

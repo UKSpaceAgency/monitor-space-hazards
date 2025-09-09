@@ -19,7 +19,7 @@ const ConjunctionButtons = ({ title }: ConjunctionButtonsProps) => {
   return (
     <ButtonGroup>
       <PdfDownloadButton title={title} ariaLabel="Conjunctions Pdf download" />
-      <Button as="link" href="/conjunctions" className="govuk-button--secondary">
+      <Button as="link" href="/conjunctions" className="govuk-button--secondary" aria-label={tCommon('return', { to: 'track conjunction events' })}>
         {tCommon('return', { to: 'track conjunction events' })}
       </Button>
     </ButtonGroup>

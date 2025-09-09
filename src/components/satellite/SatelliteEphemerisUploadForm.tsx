@@ -33,7 +33,7 @@ const SatelliteEphemerisUploadForm = ({ objectId }: SatelliteEphemerisUploadForm
       <form action={formAction}>
         <input type="hidden" name="object_id" value={objectId} />
         <FieldUpload name="file" label={t('label')} required />
-        <Button type="submit" disabled={pending}>{t('button')}</Button>
+        <Button type="submit" disabled={pending} aria-label={t('button')}>{t('button')}</Button>
       </form>
     </div>
 

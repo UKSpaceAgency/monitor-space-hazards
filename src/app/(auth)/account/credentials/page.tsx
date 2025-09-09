@@ -26,6 +26,7 @@ export default async function Credentials() {
         </div>
         <Button
           className="govuk-button--secondary"
+          aria-label={t('copy_client_id_button')}
         >
           {t('copy_client_id_button')}
         </Button>
@@ -40,6 +41,7 @@ export default async function Credentials() {
         </div>
         <Button
           className="govuk-button--secondary"
+          aria-label={t('copy_client_secret_button')}
         >
           {t('copy_client_secret_button')}
         </Button>

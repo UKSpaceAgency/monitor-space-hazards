@@ -28,8 +28,8 @@ export default async function IncidentBannersPage() {
       {t.rich('content')}
       <ScheduledBanners />
       <ButtonGroup>
-        <Button as="link" href="/account/incident-banner/schedule">{t('add_new')}</Button>
-        <Button as="link" href="/account" variant="secondary">{tCommon('return', { to: 'account page' })}</Button>
+        <Button as="link" href="/account/incident-banner/schedule" aria-label={t('add_new')}>{t('add_new')}</Button>
+        <Button as="link" href="/account" variant="secondary" aria-label={tCommon('return', { to: 'account page' })}>{tCommon('return', { to: 'account page' })}</Button>
       </ButtonGroup>
     </div>
   );

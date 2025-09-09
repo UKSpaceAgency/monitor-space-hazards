@@ -40,7 +40,7 @@ const SearchBar = ({ label, placeholder, id, paramName, ariaLabel }: SearchBarPr
       <form className="flex gap-3" onSubmit={handleSubmit}>
         <Input className="flex-1" id={id} placeholder={placeholder} value={search} onChange={e => setSearch(e.target.value)} aria-label={ariaLabel} />
         <div>
-          <Button type="submit">Search</Button>
+          <Button type="submit" aria-label={`${ariaLabel} Search`}>Search</Button>
         </div>
       </form>
     </div>

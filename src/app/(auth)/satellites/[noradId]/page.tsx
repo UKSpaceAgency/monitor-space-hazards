@@ -56,7 +56,7 @@ export default async function Satellite(props: PageProps) {
           <SatelliteInformation object={satellite} />
           <SatelliteAdditionalInformations object={satellite} />
           <SatelliteConjunctionEvents noradId={noradId} query={previous_search_link} epoch="past" id="past_search_bar" ariaLabel="Previous Conjunction Events" />
-          <Button as="link" href="/satellites" variant="secondary">{t('return', { to: 'all satellites' })}</Button>
+          <Button as="link" href="/satellites" variant="secondary" aria-label={t('return', { to: 'all satellites' })}>{t('return', { to: 'all satellites' })}</Button>
         </div>
       </div>
     </div>

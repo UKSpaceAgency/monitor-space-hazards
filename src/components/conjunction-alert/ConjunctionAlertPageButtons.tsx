@@ -19,7 +19,7 @@ const ConjunctionAlertPageButtons = ({ pdfTitle }: ConjunctionAlertPageButtonsPr
   return (
     <ButtonGroup>
       <PdfDownloadButton title={pdfTitle} ariaLabel="Conjunction Alert Pdf download" />
-      <Button as="link" href="/conjunctions" variant="secondary">{t('return', { to: 'track conjunction events' })}</Button>
+      <Button as="link" href="/conjunctions" variant="secondary" aria-label={t('return', { to: 'track conjunction events' })}>{t('return', { to: 'track conjunction events' })}</Button>
     </ButtonGroup>
   );
 };
