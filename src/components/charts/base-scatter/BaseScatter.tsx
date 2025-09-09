@@ -104,7 +104,7 @@ export function BaseScatter({
   return (
     <div className="bg-lightGrey" data-type="chart">
       <div className="flex justify-between">{actionButtons}</div>
-      <div className="border border-black bg-white">
+      <div className="border border-black bg-white forced-color-adjust-none">
         <div className="lg:my-2 my-auto relative">
           <Chart
             aria-label="Scatter chart"

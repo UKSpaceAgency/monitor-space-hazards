@@ -70,7 +70,7 @@ export function BaseBar({
     <div className="p-4 bg-lightGrey" data-type="chart">
       <div className="flex justify-between">{actionButtons}</div>
       {title}
-      <div className="border border-black bg-white">
+      <div className="border border-black bg-white forced-color-adjust-none">
         <div className="relative w-full">
           <Bar
             aria-label={`${ariaLabel} Bar chart`}
