@@ -26,7 +26,7 @@ export const Map = ({ src, ...props }: MapProps) => {
         <Column className="w-1/4">
           <Row cellSpacing={6} align="center">
             <Column>
-              <div className="size-4 bg-[#801650] rounded-full">&nbsp;</div>
+              <div className="size-4 bg-[#F46A25] rounded-full">&nbsp;</div>
             </Column>
             <Column className="text-xs">
               Change the object enters atmosphere
@@ -36,7 +36,7 @@ export const Map = ({ src, ...props }: MapProps) => {
         <Column className="w-1/4">
           <Row cellSpacing={6} align="center">
             <Column>
-              <div className="size-4 bg-[#FFDD00] rounded-full">&nbsp;</div>
+              <div className="size-4 bg-[#801650] rounded-full">&nbsp;</div>
             </Column>
             <Column className="text-xs">
               Chane fragments reach the ground
