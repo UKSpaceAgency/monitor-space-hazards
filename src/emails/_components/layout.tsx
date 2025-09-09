@@ -75,7 +75,10 @@ export function Layout({ title, subtitle, withPlaceholders, children, isNotifica
     }}
     >
       <Html>
-        <Head />
+        <Head>
+          <meta name="color-scheme" content="light" />
+          <meta name="supported-color-schemes" content="light" />
+        </Head>
         <Body className="bg-white font-sans p-2">
           <Container>
             <Header
