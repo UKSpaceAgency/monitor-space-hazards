@@ -17,17 +17,31 @@ export const Map = ({ src, ...props }: MapProps) => {
           <table cellPadding="0" cellSpacing="0" align="center" style={{ width: '100%' }}>
             <tr>
               <td width="20" valign="middle" style={{ paddingRight: '6px' }}>
-                <span
+                <table
+                  width="16"
                   style={{
-                    display: 'inline-block',
-                    width: '16px',
-                    height: '16px',
-                    backgroundColor: '#3D3D3D',
-                    borderRadius: '50%',
+                    borderCollapse: 'collapse',
+                    borderSpacing: 0,
                   }}
                 >
-&nbsp;
-                </span>
+                  <tr>
+                    <td
+                      width="16"
+                      height="16"
+                      style={{
+                        backgroundColor: '#3D3D3D',
+                        borderRadius: '8px', // or '0' for square
+                        lineHeight: '16px',
+                        width: '16px',
+                        height: '16px',
+                        padding: 0,
+                        textAlign: 'center',
+                      }}
+                    >
+      &nbsp;
+                    </td>
+                  </tr>
+                </table>
               </td>
               <td style={{ fontSize: '12px', verticalAlign: 'middle' }}>
                 Object flightpath
@@ -39,17 +53,31 @@ export const Map = ({ src, ...props }: MapProps) => {
           <table cellPadding="0" cellSpacing="0" align="center" style={{ width: '100%' }}>
             <tr>
               <td width="20" valign="middle" style={{ paddingRight: '6px' }}>
-                <span
+                <table
+                  width="16"
                   style={{
-                    display: 'inline-block',
-                    width: '16px',
-                    height: '16px',
-                    backgroundColor: '#F46A25',
-                    borderRadius: '50%',
+                    borderCollapse: 'collapse',
+                    borderSpacing: 0,
                   }}
                 >
-&nbsp;
-                </span>
+                  <tr>
+                    <td
+                      width="16"
+                      height="16"
+                      style={{
+                        backgroundColor: '#F46A25',
+                        borderRadius: '8px', // or '0' for square
+                        lineHeight: '16px',
+                        width: '16px',
+                        height: '16px',
+                        padding: 0,
+                        textAlign: 'center',
+                      }}
+                    >
+      &nbsp;
+                    </td>
+                  </tr>
+                </table>
               </td>
               <td style={{ fontSize: '12px', verticalAlign: 'middle' }}>
                 Chance the object enters atmosphere
@@ -61,17 +89,31 @@ export const Map = ({ src, ...props }: MapProps) => {
           <table cellPadding="0" cellSpacing="0" align="center" style={{ width: '100%' }}>
             <tr>
               <td width="20" valign="middle" style={{ paddingRight: '6px' }}>
-                <span
+                <table
+                  width="16"
                   style={{
-                    display: 'inline-block',
-                    width: '16px',
-                    height: '16px',
-                    backgroundColor: '#801650',
-                    borderRadius: '50%',
+                    borderCollapse: 'collapse',
+                    borderSpacing: 0,
                   }}
                 >
-&nbsp;
-                </span>
+                  <tr>
+                    <td
+                      width="16"
+                      height="16"
+                      style={{
+                        backgroundColor: '#801650',
+                        borderRadius: '8px', // or '0' for square
+                        lineHeight: '16px',
+                        width: '16px',
+                        height: '16px',
+                        padding: 0,
+                        textAlign: 'center',
+                      }}
+                    >
+      &nbsp;
+                    </td>
+                  </tr>
+                </table>
               </td>
               <td style={{ fontSize: '12px', verticalAlign: 'middle' }}>
                 Chance fragments reach the ground
