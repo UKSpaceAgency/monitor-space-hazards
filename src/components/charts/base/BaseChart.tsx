@@ -135,7 +135,7 @@ export function BaseChart({
           title="Scale"
         />
       </div>
-      <div className="border border-black bg-white">
+      <div className="border border-black bg-white forced-color-adjust-none">
         <div className="relative w-auto my-4">
           <Chart
             aria-label={`${ariaLabel} Chart`}

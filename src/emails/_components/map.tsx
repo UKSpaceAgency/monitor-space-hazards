@@ -52,7 +52,7 @@ export const Map = ({ src, ...props }: MapProps) => {
                 </span>
               </td>
               <td style={{ fontSize: '12px', verticalAlign: 'middle' }}>
-                Change the object enters atmosphere
+                Chance the object enters atmosphere
               </td>
             </tr>
           </table>
@@ -74,7 +74,7 @@ export const Map = ({ src, ...props }: MapProps) => {
                 </span>
               </td>
               <td style={{ fontSize: '12px', verticalAlign: 'middle' }}>
-                Chane fragments reach the ground
+                Chance fragments reach the ground
               </td>
             </tr>
           </table>
