@@ -29,7 +29,7 @@ export const Map = ({ src, ...props }: MapProps) => {
               <div className="size-4 bg-[#F46A25] rounded-full">&nbsp;</div>
             </Column>
             <Column className="text-xs">
-              Change the object enters atmosphere
+              Chance the object enters atmosphere
             </Column>
           </Row>
         </Column>
@@ -39,7 +39,7 @@ export const Map = ({ src, ...props }: MapProps) => {
               <div className="size-4 bg-[#801650] rounded-full">&nbsp;</div>
             </Column>
             <Column className="text-xs">
-              Chane fragments reach the ground
+              Chance fragments reach the ground
             </Column>
           </Row>
         </Column>
