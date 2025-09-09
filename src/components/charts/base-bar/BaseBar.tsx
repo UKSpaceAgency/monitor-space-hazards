@@ -84,7 +84,7 @@ export function BaseBar({
               },
               layout: {
                 padding: {
-                  top: isMobile ? 5 : 50,
+                  top: isMobile ? 30 : 50,
                   right: isMobile ? 5 : 80,
                   left: isMobile ? 5 : 50,
                 },
