@@ -1628,7 +1628,7 @@
         "using_individual_emails": "Using individual emails",
         "individually_selected_recipients": "Individually selected recipients",
         "sent_to_distribution_list": "Sent to distribution list",
-        "not_sent to distribution list": "Not sent to distribution list"
+        "not_sent_to_distribution_list": "Not sent to distribution list"
       },
       "Change_distribution": {
         "title": "Choose who to alert",
