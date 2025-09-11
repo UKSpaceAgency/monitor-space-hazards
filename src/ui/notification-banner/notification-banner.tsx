@@ -31,7 +31,7 @@ export function NotificationBanner({
     >
       {status !== 'error' && (
         <div className="govuk-notification-banner__header">
-          <h2 className="govuk-notification-banner__title">
+          <h2 className="govuk-notification-banner__title" id="govuk-notification-banner-title">
             {status.toUpperCase()}
           </h2>
         </div>
