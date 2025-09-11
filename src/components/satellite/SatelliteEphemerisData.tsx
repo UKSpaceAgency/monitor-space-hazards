@@ -16,7 +16,7 @@ const SatelliteEphemerisData = ({ noradId, ephemerises, showButtons }: Satellite
   return (
     <div className="mb-12">
       {showButtons && (
-        <Button as="link" href={`/satellites/${noradId}/ephemeris-upload`}>{t('upload_button')}</Button>
+        <Button as="link" href={`/satellites/${noradId}/ephemeris-upload`} aria-label={t('upload_button')}>{t('upload_button')}</Button>
       )}
       {ephemerises.length
         ? (

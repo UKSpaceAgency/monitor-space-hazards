@@ -101,7 +101,7 @@ const AddNewUserFormContent = ({ organizations, isSubmitting, register, role, er
       </Details>
 
       <ButtonGroup>
-        <Button type="submit" disabled={isSubmitting}>{t('submit')}</Button>
+        <Button type="submit" disabled={isSubmitting} aria-label={t('submit')}>{t('submit')}</Button>
       </ButtonGroup>
     </div>
   );

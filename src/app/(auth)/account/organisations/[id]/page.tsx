@@ -65,10 +65,11 @@ export default async function OrganisationPage({
               organization_id: organisation.id,
             },
           }}
+          aria-label={t('add_new_user')}
         >
           {t('add_new_user')}
         </Button>
-        <Button as="link" href={isGovAdmin ? '/account' : '/account/organisations'} variant="secondary">{tCommon('return', { to: isGovAdmin ? 'account page' : 'organisations page' })}</Button>
+        <Button as="link" href={isGovAdmin ? '/account' : '/account/organisations'} variant="secondary" aria-label={tCommon('return', { to: isGovAdmin ? 'account page' : 'organisations page' })}>{tCommon('return', { to: isGovAdmin ? 'account page' : 'organisations page' })}</Button>
       </ButtonGroup>
     </div>
   );

@@ -36,7 +36,7 @@ export default function IndexPage() {
           await signIn('auth0');
         }}
       >
-        <Button type="submit" isStartButton>{t('existing_users.button')}</Button>
+        <Button type="submit" isStartButton aria-label={t('existing_users.button')}>{t('existing_users.button')}</Button>
       </form>
       <h2 className="govuk-heading-m">{t('new_users.title')}</h2>
       { t.rich('new_users.markup', {

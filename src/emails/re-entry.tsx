@@ -1,6 +1,6 @@
 import { createTranslator } from 'next-intl';
 
-import type { TypeReentryEventOut, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
+import type { TypeReentryEventOut, TypeReentryEventReportOut, TypeTIPOut } from '@/__generated__/data-contracts';
 import { env } from '@/libs/Env';
 import messages from '@/locales/en.json';
 
@@ -22,13 +22,14 @@ import { objectTypeIndex } from './_utils/utils';
 type ReEntryEmailProps = {
   event: TypeReentryEventOut;
   report: TypeReentryEventReportOut;
+  tip: TypeTIPOut;
   withPlaceholders: boolean;
 };
 
-function ReEntryEmail({ event, report, withPlaceholders }: ReEntryEmailProps) {
+function ReEntryEmail({ event, report, tip, withPlaceholders }: ReEntryEmailProps) {
   const t = createTranslator({
     locale: 'en',
-    namespace: 'Emails.Reentry_alert',
+    namespace: 'Emails',
     messages,
   });
 
@@ -36,25 +37,25 @@ function ReEntryEmail({ event, report, withPlaceholders }: ReEntryEmailProps) {
 
   return (
     <Layout
-      title={t('title', { risk: event.fragmentsRisk, reportNumber: report.reportNumber })}
+      title={t('Reentry_alert.title', { risk: event.fragmentsRisk, reportNumber: report.reportNumber })}
       subtitle={`${event.objectName} ${objectTypeIndex[event.objectType as keyof typeof objectTypeIndex] ?? ''}`}
       withPlaceholders={withPlaceholders}
     >
       <Subheader risk={event.fragmentsRisk} />
-      <Section title={t('risk_probabilities_title')}>
+      <Section title={t('Reentry_alert.risk_probabilities_title')}>
         <ReentryRiskProbabilities event={event} className="pb-6" />
       </Section>
-      <Section title={t('event_summary_title')}>
-        <ReentryEventSummary event={event} className="pb-6" />
+      <Section title={t('Reentry_alert.event_summary_title')}>
+        <ReentryEventSummary event={event} tip={tip} className="pb-6" />
         {event.overflightTime.length > 0 && <Map src="{{MAP.src}}" className="pb-6" />}
         <Map src="{{WORLD_MAP.src}}" className="pb-6" />
         <ReentryAffectedRegions report={report} className="pb-6" />
       </Section>
-      <Section title={t('event_details_title')}>
+      <Section title={t('Reentry_alert.event_details_title')}>
         <ReentryEventDetails event={event} report={report} className="pb-4" />
         <Text>{t('utc_note')}</Text>
       </Section>
-      <Section title={t('additional_information_title')}>
+      <Section title={t('Reentry_alert.additional_information_title')}>
         <ReentryEventInformation event={event} />
         <ReentryHandlingSpaceDebris event={event} />
         <ReentryPressAttention pressAttention={event.pressAttention} />
@@ -65,6 +66,10 @@ function ReEntryEmail({ event, report, withPlaceholders }: ReEntryEmailProps) {
 }
 
 ReEntryEmail.PreviewProps = {
+  pageUrl: 'https://www.dev.monitor-space-hazards.service.gov.uk',
+  tip: {
+    direction: 'ascending',
+  },
   event: {
     objectName: 'Falcon 9 Second Stage',
     objectType: 'ROCKET BODY',

@@ -18,7 +18,7 @@ type ConjunctionNotificationEmailProps = {
 function ConjunctionNotificationEmail({ conjunctions, withPlaceholders }: ConjunctionNotificationEmailProps) {
   const t = createTranslator({
     locale: 'en',
-    namespace: 'Emails.Conjunction_notification',
+    namespace: 'Emails',
     messages,
   });
 
@@ -26,11 +26,12 @@ function ConjunctionNotificationEmail({ conjunctions, withPlaceholders }: Conjun
 
   return (
     <Layout withPlaceholders={withPlaceholders} isNotification>
-      <Section title={t('title')}>
-        {t.rich('content', {
+      <Section title={t('Conjunction_notification.title')}>
+        {t.rich('Conjunction_notification.content', {
           p: chunks => <Text>{chunks}</Text>,
         })}
         <ConjunctionNotificationTable conjunctions={conjunctions} />
+        <Text>{t('utc_note')}</Text>
         <SignIn link={url} />
       </Section>
     </Layout>

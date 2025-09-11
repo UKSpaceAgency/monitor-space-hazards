@@ -37,7 +37,7 @@ export const ChartLegend = ({
 
   return (
     <fieldset className="flex flex-col items-center justify-center gap-2 font-sans text-xs md:mx-2 md:text-base" aria-label={`${ariaLabel} Legend`} data-pdf-ignore>
-      {title && <div><legend className="govuk-fieldset__legend m-0 p-1 font-bold text-nowrap">{title}</legend></div>}
+      {title && <div><legend className="govuk-fieldset__legend text-xs md:text-xl m-0 p-1 font-bold text-nowrap ">{title}</legend></div>}
       <ul className="flex flex-wrap items-center m-0 p-0 gap-x-2 list-none justify-center">
         {items.map(({ label, backgroundColor, borderColor }, index) => (
           // eslint-disable-next-line react/no-array-index-key
@@ -54,7 +54,7 @@ export const ChartLegend = ({
                 checked={legendStatusMap[index]}
                 onChange={handleLegendClick}
               />
-              <span className="block flex-auto w-4 h-5 border-[1px] border-solid opacity-50 peer-checked/legend:opacity-100" style={{ backgroundColor, borderColor } as CSSProperties} />
+              <span className="block flex-auto w-4 h-5 border-[1px] border-solid opacity-50 peer-checked/legend:opacity-100 forced-color-adjust-none" style={{ backgroundColor, borderColor } as CSSProperties} />
               <span className=" line-through peer-checked/legend:no-underline">
                 {label}
               </span>

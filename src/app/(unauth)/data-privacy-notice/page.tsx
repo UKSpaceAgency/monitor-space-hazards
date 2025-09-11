@@ -18,7 +18,7 @@ export default async function DataPrivacyNotice() {
       <h1 className="govuk-heading-xl">{t('title')}</h1>
       <HtmlMapper content={content} />
       <a href="/Monitor Space Hazards Privacy Notice.pdf" download>
-        <Button>{t('button')}</Button>
+        <Button aria-label={t('button')}>{t('button')}</Button>
       </a>
     </>
   );

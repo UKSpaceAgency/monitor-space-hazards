@@ -619,7 +619,7 @@
     "Executive_summary": {
       "title": "Conjunction alert summary",
       "email_title": "Event Information:",
-      "content": "The National Space Operations Centre is tracking the close approach of two objects, <primaryObjectUrl>{primaryObject}</primaryObjectUrl> and <secondaryObjectUrl>{secondaryObject}</secondaryObjectUrl>. A potential collision could damage the objects involved, limiting or eliminating their capability, as well as releasing new fragments, which would increase the risk of future collisions for other objects. This event is assessed as <tag>{risk}</tag> risk, with a {collisionProbability} probability of collision (PoC).",
+      "content": "The National Space Operations Centre is tracking the close approach of two objects, <primaryObjectUrl>{primaryObject}</primaryObjectUrl> and <secondaryObjectUrl>{secondaryObject}</secondaryObjectUrl>. A collision could damage the objects involved, limiting or eliminating their capability, as well as releasing new fragments, which would increase the risk of future collisions for other objects. This event is assessed as <tag>{risk}</tag> risk, with a {collisionProbability} probability of collision (PoC).",
       "closed_report": "The National Space Operations Centre has completed tracking of the conjunction event involving <primaryObjectUrl>{primaryObject}</primaryObjectUrl> and <secondaryObjectUrl>{secondaryObject}</secondaryObjectUrl>, which occurred on {date}. The event was assessed as <tag>{risk}</tag> risk, with a {collisionProbability} probability of collision (PoC).",
       "see_further_information": "<p>See <link>Further information</link> for more detail on methodology used in this report and the organisations that have been sent this alert.</p>"
     },
@@ -1628,7 +1628,7 @@
         "using_individual_emails": "Using individual emails",
         "individually_selected_recipients": "Individually selected recipients",
         "sent_to_distribution_list": "Sent to distribution list",
-        "not_sent to distribution list": "Not sent to distribution list"
+        "not_sent_to_distribution_list": "Not sent to distribution list"
       },
       "Change_distribution": {
         "title": "Choose who to alert",
@@ -1768,6 +1768,7 @@
   },
   "Emails": {
     "sign_in_to_monitor_space_hazards": "Sign in to <link>Monitor Space Hazards</link> to view analysis and additional information.",
+    "utc_note": "* Coordinated Universal Time (UTC) is 1 hour behind British Summer Time (BST) and the same as Greenwich Mean Time (GMT).",
     "Reentry_alert": {
       "title": "{risk} Risk Uncontrolled Re-Entry Alert - Report {reportNumber}",
       "title_closed": "Re-entry Close Down Alert - Report {reportNumber}",
@@ -1789,7 +1790,8 @@
         "estimated_mass": "Estimated Mass",
         "re_entry_time": "Re-entry time window worldwide",
         "uk_overflight_time": "UK overflight time(s)",
-        "no_overflights": "No overflights"
+        "no_overflights": "No overflights",
+        "direction_of_travel": "Direction of travel at predicted re-entry time"
       },
       "Affected_regions": {
         "uk_mainland": "UK Mainland",
@@ -1825,7 +1827,7 @@
       },
       "Public_guidance_on_space_debris": {
         "title": "Public Guidance on Space Debris",
-        "content": "<p>Space debris can be hazardous and may contain materials that pose a serious risk to health. If you come across an object that you believe to be space debris, follow these steps:</p><ul><li>Do not touch the object</li><li>Note the location of the object</li><li>If possible, take a photograph of the object without touching it</li><li>Do not stay close to the object</li><li>Notify the authorities by calling 111 (or the relevant number outside the UK)</li><li>Space debris remains the property of the spacecraft owner.</li><li>If you have already handled an object you believe to be space debris, place it in a safe location where others will not touch it and inform the authorities immediately.</li></ul><p>Space debris remains the property of the spacecraft owner.</p><p>If you have already handled an object you believe to be space debris, place it in a safe location where others will not touch it and inform the authorities immediately.</p>"
+        "content": "<p>Space debris can be hazardous and may contain materials that pose a serious risk to health. If you come across an object that you believe to be space debris, follow these steps:</p><ul><li>Do not touch the object</li><li>Note the location of the object</li><li>If possible, take a photograph of the object without touching it</li><li>Do not stay close to the object</li><li>Notify the authorities by calling 111 (or the relevant number outside the UK)</li><li>Space debris remains the property of the spacecraft owner.</li><li>If you have already handled an object you believe to be space debris, place it in a safe location where others will not touch it and inform the authorities immediately.</li></ul>"
       },
       "Press_attention": {
         "title": "Press Attention",
@@ -1842,21 +1844,24 @@
       "additional_informations_title": "Additional Information",
       "support_and_assistance_title": "Support and Assistance",
       "event_details_title": "Event Details",
+      "objects_title": "Objects",
       "potential_impact_title": "Potential impact of event",
       "utc_note": "* Coordinated Universal Time (UTC) is 1 hour behind British Summer Time (BST) and the same as Greenwich Mean Time (GMT).",
-      "Event_summary": {
-        "risk": "Risk",
-        "predicted_time_of_closest_approach": "Predicted Time of Closest Approach",
-        "probability_of_collision": "Probability of Collision",
-        "manoeuvre_expected": "Manoeuvre Expected?",
+      "Objects": {
         "object_type": "Object Type",
         "object_name": "Object",
         "primary_object": "Primary Object",
         "secondary_object": "Secondary Object",
         "norad_id": "NORAD ID",
-        "licensing_country": "Licensing Country",
+        "licensing_country": "Licensing Country"
+      },
+      "Event_summary": {
+        "risk": "Risk",
+        "predicted_time_of_closest_approach": "Predicted Time of Closest Approach",
+        "probability_of_collision": "Probability of Collision",
+        "manoeuvre_expected": "Manoeuvre Expected?",
         "report_number": "Report number",
-        "content": "<p>The National Space Operations Centre is monitoring the conjunction event <eventUrl>{primaryObject} vs {secondaryObject}</eventUrl>. A potential collision could damage the objects involved, limiting or eliminating their capability, as well as releasing new fragments, which would increase the risk of future collisions for other objects. This event is assessed as <tag>{risk}</tag> risk, with a {probability} probability of collision (PoC).</p>"
+        "content": "<p>The National Space Operations Centre is monitoring the conjunction event <eventUrl>{primaryObject} vs {secondaryObject}</eventUrl>. A collision could damage the objects involved, limiting or eliminating their capability, as well as releasing new fragments, which would increase the risk of future collisions for other objects. This event is assessed as <tag>{risk}</tag> risk, with a {probability} probability of collision (PoC).</p>"
       },
       "Event_details": {
         "details": "Details",

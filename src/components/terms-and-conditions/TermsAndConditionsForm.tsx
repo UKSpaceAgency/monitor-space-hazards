@@ -28,7 +28,7 @@ const TermsAndConditionsForm = ({ label, onSubmit }: TermsAndConditionsFormProps
           },
         ]}
       />
-      <Button type="submit" disabled={!checked}>
+      <Button type="submit" disabled={!checked} aria-label={tCommon('save_and_continue')}>
         {tCommon('save_and_continue')}
       </Button>
     </form>

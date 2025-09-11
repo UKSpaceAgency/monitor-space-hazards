@@ -29,14 +29,14 @@ export function EventsByProbabilityOfCollisionChart({
       {
         label: t('medium'),
         data: data.map(({ medium }) => medium ?? 0),
-        borderColor: chartPalette.midBlue,
-        backgroundColor: chartPalette.midBlue,
+        borderColor: chartPalette.orange,
+        backgroundColor: chartPalette.orange,
       },
       {
         label: t('high'),
         data: data.map(({ high }) => high ?? 0),
-        borderColor: chartPalette.brightBlue,
-        backgroundColor: chartPalette.brightBlue,
+        borderColor: chartPalette.darkPink,
+        backgroundColor: chartPalette.darkPink,
       },
     ],
   };

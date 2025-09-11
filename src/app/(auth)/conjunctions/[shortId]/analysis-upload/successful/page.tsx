@@ -28,7 +28,7 @@ export default async function ConjunctionSuccessfulAnalysisUpload({
   return (
     <div>
       <Panel heading={t('title')}>{t('content', { shortId })}</Panel>
-      <Button as="link" href={`/conjunctions/${shortId}`}>{tCommon('return', { to: 'conjunction event' })}</Button>
+      <Button as="link" href={`/conjunctions/${shortId}`} aria-label={tCommon('return', { to: 'conjunction event' })}>{tCommon('return', { to: 'conjunction event' })}</Button>
     </div>
   );
 };

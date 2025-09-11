@@ -8,13 +8,14 @@ import { getFullCountry } from '@/utils/Regions';
 
 import { Table } from '../table';
 
-type ConjunctionEventOverviewProps = {
+type ConjunctionObjectsProps = {
   eventUrl: string;
   report: TypeConjunctionReportOut;
   event: TypeUniqueEventOut;
+  closedown?: boolean;
 } & ComponentProps<'table'>;
 
-export const ConjunctionEventOverview = ({ eventUrl, report, event, ...props }: ConjunctionEventOverviewProps) => {
+export const ConjunctionObjects = ({ eventUrl, report, event, ...props }: ConjunctionObjectsProps) => {
   const t = createTranslator({
     locale: 'en',
     namespace: 'Emails.Conjunction_alert.Objects',
@@ -23,6 +24,7 @@ export const ConjunctionEventOverview = ({ eventUrl, report, event, ...props }: 
 
   const objectData = [
     [t('object_name'), report.primaryObjectCommonName, report.secondaryObjectCommonName],
+    [t('object_type'), report.primaryObjectType, report.secondaryObjectType],
     [t('norad_id'), report.primaryObjectNoradId, report.secondaryObjectNoradId],
     [t('licensing_country'), getFullCountry(report.primaryObjectLicensingCountry), getFullCountry(report.secondaryObjectLicensingCountry)],
   ];
