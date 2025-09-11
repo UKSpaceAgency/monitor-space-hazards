@@ -41,7 +41,7 @@ const EventAlertSendCurrentStatus = ({ type, detailsSummary, detailsContent, dat
               {t('all_alerts', { type })}
             </TableCellHeader>
             <TableCell>
-              {isStandard ? <Tag className="max-w-none">{t('sent_to_distribution_list')}</Tag> : <Tag color="grey" className="max-w-none">{t('not_sent to distribution list')}</Tag>}
+              {isStandard ? <Tag className="max-w-none">{t('sent_to_distribution_list')}</Tag> : <Tag color="grey" className="max-w-none">{t('not_sent_to_distribution_list')}</Tag>}
             </TableCell>
           </TableRow>
           {type === 're-entry' && (
@@ -50,7 +50,7 @@ const EventAlertSendCurrentStatus = ({ type, detailsSummary, detailsContent, dat
                 {t('alert_for_uk', { type: capitalized(type) })}
               </TableCellHeader>
               <TableCell>
-                {isUkSatellitesOnly ? <Tag className="max-w-none">{t('sent_to_distribution_list')}</Tag> : <Tag color="grey" className="max-w-none">{t('not_sent to distribution list')}</Tag>}
+                {isUkSatellitesOnly ? <Tag className="max-w-none">{t('sent_to_distribution_list')}</Tag> : <Tag color="grey" className="max-w-none">{t('not_sent_to_distribution_list')}</Tag>}
               </TableCell>
             </TableRow>
           )}
@@ -59,7 +59,7 @@ const EventAlertSendCurrentStatus = ({ type, detailsSummary, detailsContent, dat
               {t('priority_alert', { type })}
             </TableCellHeader>
             <TableCell>
-              {isPriority ? <Tag className="max-w-none">{t('sent_to_distribution_list')}</Tag> : <Tag color="grey" className="max-w-none">{t('not_sent to distribution list')}</Tag>}
+              {isPriority ? <Tag className="max-w-none">{t('sent_to_distribution_list')}</Tag> : <Tag color="grey" className="max-w-none">{t('not_sent_to_distribution_list')}</Tag>}
             </TableCell>
           </TableRow>
           <TableRow>
