@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { useEffect, useRef } from 'react';
 
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
@@ -14,10 +15,17 @@ type OrganisationUserDeletionSucceededBannerProps = {
 
 const OrganisationUserDeletionSucceededBanner = ({ showBanner, message, buttonText }: OrganisationUserDeletionSucceededBannerProps) => {
   const { replace } = useRouter();
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   const handleCloseBanner = () => {
     replace(window.location.pathname);
   };
+
+  useEffect(() => {
+    if (showBanner) {
+      closeButtonRef.current?.focus();
+    }
+  }, [showBanner]);
 
   return (
     <>
@@ -26,7 +34,7 @@ const OrganisationUserDeletionSucceededBanner = ({ showBanner, message, buttonTe
           <div>
             <p className="govuk-body">{message}</p>
             <ButtonGroup>
-              <Button onClick={handleCloseBanner} aria-label={buttonText}>
+              <Button onClick={handleCloseBanner} ref={closeButtonRef} aria-label={buttonText}>
                 {buttonText}
               </Button>
             </ButtonGroup>
