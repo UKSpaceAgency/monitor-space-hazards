@@ -1303,6 +1303,7 @@
     },
     "Reentry_alert_risk_probabilities": {
       "probability": "Probability (%)",
+      "description": "Description",
       "risk": "Risk",
       "probability_of_atmospheric_entry": "Re-entry over UK",
       "probability_of_fragmentation": "Debris impact in UK",
@@ -1494,6 +1495,7 @@
       "activate_later": "Choose custom time period to display banner for",
       "confirm": "Confirm choices",
       "display_button": "Display incident banner",
+      "choose_one": "Choose one:",
       "Confirm_banner": {
         "title": "Are you sure you want to display the banner for  \"{title}\" on the site?",
         "content": "The banner will be visible to all users of the service until the active time period is over or until you manually remove it.",
