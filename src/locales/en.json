@@ -1048,6 +1048,7 @@
     },
     "Satellite_informations": {
       "Objects": {
+        "description": "Description",
         "primary": "Primary object",
         "secondary": "Secondary object"
       },
@@ -1155,6 +1156,7 @@
         "events_summary": "Conjunction event summary"
       },
       "summary_list": {
+        "description": "Description",
         "special": "Special",
         "space_track_cdm": "Space-Track CDM",
         "uksa_analysis": "NSpOC Analysis",

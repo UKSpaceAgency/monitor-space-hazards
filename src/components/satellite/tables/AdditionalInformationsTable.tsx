@@ -17,6 +17,7 @@ const AdditionalInformationsTable = async ({ object, headerCellWidth }: Addition
   const headers = Array.isArray(object)
     ? [{
         className: 'w-1/3',
+        children: <div className="hidden">{t('Objects.description')}</div>,
       }, {
         className: 'w-1/3',
         children: t('Objects.primary'),

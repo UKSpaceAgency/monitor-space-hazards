@@ -41,7 +41,7 @@ export const organisationUsersTableColumns: TranslatedColumnDef<TypeUserOut>[] =
     id: 'id',
     accessorKey: `id`,
     enableSorting: false,
-    header: () => <span style={{ visibility: 'hidden' }}></span>,
+    header: () => <span style={{ visibility: 'hidden' }}>Edit</span>,
     cell: ({ row }) => (
       <Link
         href={`/account/organisations/${row.original.organizationId}/${row.original.id}`}
