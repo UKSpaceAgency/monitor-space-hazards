@@ -28,7 +28,7 @@ export function Checkboxes({
 }: CheckboxesProps) {
   return (
     <div className={clsx('govuk-form-group', className)}>
-      <fieldset className="govuk-fieldset" aria-describedby={hint}>
+      <fieldset className="govuk-fieldset">
         {legend && (
           <legend className="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h2 className="govuk-fieldset__heading">{legend}</h2>
