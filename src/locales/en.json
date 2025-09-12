@@ -1303,6 +1303,7 @@
     },
     "Reentry_alert_risk_probabilities": {
       "probability": "Probability (%)",
+      "description": "Description",
       "risk": "Risk",
       "probability_of_atmospheric_entry": "Re-entry over UK",
       "probability_of_fragmentation": "Debris impact in UK",
