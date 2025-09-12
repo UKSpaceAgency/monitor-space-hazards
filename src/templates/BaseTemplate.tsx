@@ -44,7 +44,7 @@ const BaseTemplate = ({
         {breadcrumb}
         <main className="govuk-main-wrapper" id="main-content">
           {incidentBanners.map(banner => (
-            <NotificationBanner key={banner.id}>
+            <NotificationBanner key={banner.id} aria-label={banner.title} id={banner.id}>
               <HtmlMapper content={banner.content} />
             </NotificationBanner>
           ))}

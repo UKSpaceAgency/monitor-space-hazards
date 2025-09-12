@@ -45,6 +45,7 @@ const EphemerisesTable = ({ data, showDeleteButton }: EphemerisesTableProps) => 
         <NotificationBanner
           status="error"
           heading={t('Confirm_banner.title', { fileName: ephemerisToDelete.fileName })}
+          aria-label="Ephemeris delete banner"
         >
           <div className="govuk-button-group">
             {ephemerisToDelete.id && (
@@ -59,7 +60,7 @@ const EphemerisesTable = ({ data, showDeleteButton }: EphemerisesTableProps) => 
         </NotificationBanner>
       )}
       {ephemerisToDelete && isSuccess && (
-        <NotificationBanner status="success">
+        <NotificationBanner status="success" aria-label="Ephemeris success banner">
           {t('Success_banner.title', { fileName: ephemerisToDelete.fileName })}
         </NotificationBanner>
       )}

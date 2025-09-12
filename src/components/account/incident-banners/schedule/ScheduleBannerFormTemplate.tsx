@@ -16,7 +16,7 @@ type BannerTemplateProps = {
 const renderTemplate = ({ id, title, content }: TypeBannerMessagesOut) => (
   <Fragment key={id}>
     <p className="govuk-body">{title}</p>
-    <NotificationBanner aria-label={title}>
+    <NotificationBanner aria-label={title} id={id}>
       <HtmlMapper content={content} />
     </NotificationBanner>
   </Fragment>
