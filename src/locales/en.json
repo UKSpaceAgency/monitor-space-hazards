@@ -389,7 +389,8 @@
       "xAxis": "Creation date of CDM (UTC)",
       "yAxis": "Probability of collision",
       "tca": "TCA",
-      "special": "Show <special>Special</special> ephemeris"
+      "special": "Show <special>Special</special> ephemeris",
+      "download": "Probability of Collision data"
     },
     "Mtp_chart": {
       "description": "The probability of collision (PoC) for different combinations of date/time or number of orbits compared to time of closest approach (TCA) and Delta V (amount of burn) of manoeuvre are shown. All available data is shown.",
@@ -425,7 +426,8 @@
         "x_axis_title": "Miss distance (m)",
         "y_axis_title": "Creation date of CDM (UTC)",
         "show_ephemeris": "Show <special>Special</special> ephemeris"
-      }
+      },
+      "download": "Miss Distance data"
     },
     "Ingests": {
       "space_track": "Space-Track",
