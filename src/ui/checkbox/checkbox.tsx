@@ -19,7 +19,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         <input
           {...props}
           id={inputId}
-          aria-describedby={props.id ?? id}
+          aria-describedby={inputId}
           className="govuk-checkboxes__input"
           type="checkbox"
           ref={ref}
