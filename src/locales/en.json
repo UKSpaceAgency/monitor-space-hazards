@@ -1761,7 +1761,8 @@
       "show_fragments": "Show ground fragments",
       "flightpath": "Flightpath",
       "fragments": "Potential ground fragments",
-      "overflight": "Overflight {number}"
+      "overflight": "Overflight {number}",
+      "fragment": "Fragment {number}"
     },
     "tooltip": {
       "fragments": "Ground fragments",
