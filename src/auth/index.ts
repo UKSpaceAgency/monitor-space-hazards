@@ -111,7 +111,7 @@ export const { handlers, signIn, signOut, auth, unstable_update: update } = Next
     signIn: '/',
   },
   session: {
-    maxAge: 60 * 60 * 24,
+    maxAge: 60 * 60 * 23,
   },
   callbacks: {
     authorized: async ({ request, auth }) => {

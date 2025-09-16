@@ -2579,7 +2579,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2025-08-13T12:47:01.949721"
+   * @default "2025-09-16T09:35:45.443584"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3684,7 +3684,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2025-09-01"
+   * @default "2025-10-01"
    */
   end_date?: string;
 }
@@ -3699,7 +3699,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2025-09-01"
+   * @default "2025-10-01"
    */
   end_date?: string;
 }
@@ -3714,7 +3714,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-09-01"
+   * @default "2025-10-01"
    */
   end_date?: string;
 }
@@ -3729,7 +3729,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-09-01"
+   * @default "2025-10-01"
    */
   end_date?: string;
 }
@@ -3744,7 +3744,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-09-01"
+   * @default "2025-10-01"
    */
   end_date?: string;
 }
@@ -3759,7 +3759,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2025-09-01"
+   * @default "2025-10-01"
    */
   end_date?: string;
 }
