@@ -4,7 +4,7 @@ import type { MapMouseEvent } from 'mapbox-gl';
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import type { ReactNode } from 'react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import type { MapRef } from 'react-map-gl';
 import Map, { Layer, Source } from 'react-map-gl';
 
@@ -191,39 +191,39 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
           {/* <ReentryAlertMapLegend /> */}
         </Map>
       </div>
-      <div className="mb-6">
-        <p className="govuk-body mb-0">Download GeoJSON files:</p>
-        <div className="flex flex-col gap-1">
+      <div className="flex gap-2 items-center mb-6">
+        <p className="govuk-body-s mb-0">Download GeoJSON files:</p>
+        <div className="flex gap-2">
           <a
             href={`https://cdn.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-overflight_features_0.geojson`}
-            download
+            download={`${reportId}-${reportId}-flightpath.geojson`}
             className="govuk-link text-blue"
-            target="_blank"
             rel="noopener noreferrer"
+            target="_blank"
           >
             {t('flightpath')}
           </a>
           {flightpaths.slice(1).map(index => (
-            <div key={`DOWNLOADS-${index}`} className="flex gap-2">
+            <Fragment key={`DOWNLOADS-${index}`}>
               <a
                 href={`https://cdn.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-overflight_features_${index}.geojson`}
-                download
+                download={`${reentryId}-${reportId}-overflight_${index}.geojson`}
                 className="govuk-link text-blue"
-                target="_blank"
                 rel="noopener noreferrer"
+                target="_blank"
               >
                 {t('overflight', { number: index })}
               </a>
               <a
                 href={`https://cdn.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-fragment_features_${index}.geojson`}
-                download
+                download={`${reentryId}-${reportId}-fragment_${index}.geojson`}
                 className="govuk-link text-blue"
-                target="_blank"
                 rel="noopener noreferrer"
+                target="_blank"
               >
                 {t('fragment', { number: index })}
               </a>
-            </div>
+            </Fragment>
           ))}
         </div>
       </div>
