@@ -18,24 +18,26 @@ import { AlertSettingsDetails } from './AlertSettingsDetails';
 import { RegionsTable } from './RegionsTableRow';
 
 function Option({
+  id,
   name,
   hint,
   label,
   register,
-}: { name: keyof AlertSettingsSchema; hint: string; label: string; register: UseFormRegister<AlertSettingsSchema> }) {
+}: { id: string; name: keyof AlertSettingsSchema; hint: string; label: string; register: UseFormRegister<AlertSettingsSchema> }) {
   return (
     <Checkboxes
       name={name}
       hint={hint}
+      id={id}
       items={[
         {
-          id: 'email',
+          id: `email-${id}`,
           children: 'Email',
           value: 'EMAIL',
           ...register(name),
         },
         {
-          id: 'sms',
+          id: `sms-${id}`,
           children: 'SMS',
           value: 'SMS',
           ...register(name),
@@ -93,7 +95,7 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
               >
                 {t('panel.description')}
               </Panel>
-              <Button as="link" href="/account">
+              <Button as="link" href="/account" aria-label={tCommon('return', { to: 'account page' })}>
                 {tCommon('return', { to: 'account page' })}
               </Button>
             </>
@@ -149,6 +151,7 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                             />
                             <AlertSettingsDetails type="conjunction" />
                             <Option
+                              id="receiveConjunction"
                               name="receiveConjunction"
                               hint={t('select_one_option')}
                               label={t('how_would_you_like_conjunction')}
@@ -216,6 +219,7 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                             </p>
 
                             <Option
+                              id="receiveReEntry"
                               name="receiveReEntry"
                               hint={t('select_one_option')}
                               label={t('how_would_you_like_re_entry')}
@@ -227,7 +231,7 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                     ]}
                   />
                   <div className="govuk-button-group">
-                    <Button type="submit">
+                    <Button type="submit" aria-label={tCommon('save_and_continue')}>
                       {tCommon('save_and_continue')}
                     </Button>
                   </div>

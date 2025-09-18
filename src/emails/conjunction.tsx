@@ -6,6 +6,7 @@ import messages from '@/locales/en.json';
 
 import { ConjunctionAdditionalEventDetails } from './_components/conjunction/additional-event-details';
 import { ConjunctionEventSummary } from './_components/conjunction/event-summary';
+import { ConjunctionObjects } from './_components/conjunction/objects';
 import { ConjunctionPotentialImpact } from './_components/conjunction/potential-impact';
 import { ConjunctionPressAttention } from './_components/conjunction/press-attention';
 import { ConjunctionRecommendedActions } from './_components/conjunction/recommended-actions';
@@ -24,7 +25,7 @@ type ConjunctionEmailProps = {
 function ConjunctionEmail({ report, event, withPlaceholders }: ConjunctionEmailProps) {
   const t = createTranslator({
     locale: 'en',
-    namespace: 'Emails.Conjunction_alert',
+    namespace: 'Emails',
     messages,
   });
 
@@ -32,22 +33,25 @@ function ConjunctionEmail({ report, event, withPlaceholders }: ConjunctionEmailP
 
   return (
     <Layout
-      title={t('title', { risk: report.risk, reportNumber: report.reportNumber })}
+      title={t('Conjunction_alert.title', { risk: report.risk, reportNumber: report.reportNumber })}
       subtitle={`${report.primaryObjectCommonName} vs ${report.secondaryObjectCommonName}`}
       withPlaceholders={withPlaceholders}
     >
       <Subheader risk={report.risk} />
-      <Section title={t('event_summary_title')}>
+      <Section title={t('Conjunction_alert.objects_title')}>
+        <ConjunctionObjects eventUrl={eventLink} event={event} report={report} className="pb-6" />
+      </Section>
+      <Section title={t('Conjunction_alert.event_details_title')}>
         <ConjunctionEventSummary eventUrl={eventLink} event={event} report={report} className="pb-6" />
         <Text>{t('utc_note')}</Text>
       </Section>
-      <Section title={t('additional_event_details_title')}>
+      <Section title={t('Conjunction_alert.additional_event_details_title')}>
         <ConjunctionAdditionalEventDetails report={report} className="pb-6" />
       </Section>
-      <Section title={t('potential_impact_title')}>
+      <Section title={t('Conjunction_alert.potential_impact_title')}>
         <ConjunctionPotentialImpact report={report} event={event} className="pb-6" />
       </Section>
-      <Section title={t('additional_informations_title')}>
+      <Section title={t('Conjunction_alert.additional_informations_title')}>
         <ConjunctionRecommendedActions report={report} event={event} />
         <ConjunctionPressAttention pressAttention={event.pressAttentionAddition} />
       </Section>

@@ -7,7 +7,6 @@ import { renderRiskTag } from '@/emails/_utils/utils';
 import { dayjs, FORMAT_FULL_DATE_TIME_WITH_UTC } from '@/libs/Dayjs';
 import messages from '@/locales/en.json';
 import { roundedFixed, roundedPercent } from '@/utils/Math';
-import { getFullCountry } from '@/utils/Regions';
 
 import { Link } from '../link';
 import { Markdown } from '../markdown';
@@ -35,17 +34,9 @@ export const ConjunctionEventSummary = ({ eventUrl, report, event, ...props }: C
     [t('manoeuvre_expected'), report.manoeuvreExpected],
   ];
 
-  const objectData = [
-    [t('object_name'), report.primaryObjectCommonName, report.secondaryObjectCommonName],
-    [t('object_type'), report.primaryObjectType, report.secondaryObjectType],
-    [t('norad_id'), report.primaryObjectNoradId, report.secondaryObjectNoradId],
-    [t('licensing_country'), getFullCountry(report.primaryObjectLicensingCountry), getFullCountry(report.secondaryObjectLicensingCountry)],
-  ];
-
   return (
     <Section {...props}>
-      <Table data={data} className="mb-6" />
-      <Table data={objectData} className="mb-4" />
+      <Table data={data} className="pb-6" />
       {t.rich('content', {
         primaryObject: report.primaryObjectCommonName,
         secondaryObject: report.secondaryObjectCommonName,

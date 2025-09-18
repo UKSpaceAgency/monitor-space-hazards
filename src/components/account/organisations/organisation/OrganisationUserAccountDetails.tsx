@@ -1,5 +1,6 @@
 'use client';
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -19,11 +20,11 @@ const OrganisationUserAccountDetails = ({ user }: OrganisationUserAccountDetails
 
   const [confirmMessage, setConfirmMessage] = useState(false);
   const { replace } = useRouter();
+  const session = useSession();
   const confirmDeleteButtonRef = useRef<HTMLButtonElement>(null);
 
   const confirmDelete = useCallback(async () => {
     await deleteUser(user.id);
-
     replace(`/account/organisations/${user.organizationId}?deletionUserSucceeded=true`);
   }, [replace, user.id, user.organizationId]);
 
@@ -73,6 +74,7 @@ const OrganisationUserAccountDetails = ({ user }: OrganisationUserAccountDetails
           className="govuk-button--warning"
           onClick={onDeleteUser}
           aria-label="Delete user"
+          disabled={user.email === session.data?.user.email}
         >
           {t('delete_user')}
         </Button>

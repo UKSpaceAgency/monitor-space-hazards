@@ -1,22 +1,21 @@
 import { getTranslations } from 'next-intl/server';
 
-import { getReentryAlertMapData } from '@/actions/getReentryAlertMapData';
-
 import { ReentryAlertMap } from './ReentryAlertMap';
 
 type ReentryAlertMapContainerProps = {
-  presignedUrl: string;
+  reentryId: string;
+  reportId: string;
+  overflightTime: string[];
 };
 
-const ReentryAlertMapContainer = async ({ presignedUrl }: ReentryAlertMapContainerProps) => {
+const ReentryAlertMapContainer = async ({ reentryId, reportId, overflightTime }: ReentryAlertMapContainerProps) => {
   const t = await getTranslations('Reentry_alert.Map');
-  const { overflightTime, flightpathsCollection, fragmentsCollection } = await getReentryAlertMapData(presignedUrl);
   return (
     <div>
       <ReentryAlertMap
+        reentryId={reentryId}
+        reportId={reportId}
         overflightTime={overflightTime}
-        flightpathsCollection={flightpathsCollection}
-        fragmentsCollection={fragmentsCollection}
         detailsTitle={t('details.title')}
         detailsContent={t.rich('details.content')}
       />

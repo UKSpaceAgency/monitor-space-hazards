@@ -62,8 +62,12 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
             <ReentryAlertExecutiveSummary event={event} previewSummary={searchParams?.exec_summary} isClosed={isClosed} />
           </Suspense>
           <Suspense fallback={<Spinner />}>
-            {lastReport?.presignedUrl && (
-              <ReentryAlertMapContainer presignedUrl={lastReport.presignedUrl} />
+            {lastReport?.id && (
+              <ReentryAlertMapContainer
+                reentryId={shortId}
+                reportId={lastReport.reportNumber.toString().padStart(3, '0')}
+                overflightTime={event.overflightTime}
+              />
             )}
           </Suspense>
           <ReentryAlertNextUpdate shortId={shortId} />

@@ -74,8 +74,8 @@ const EventAlertSendReview = ({ type, shortId, data, action }: EventAlertSendRev
       </Table>
       <p className="govuk-body">{t('hint')}</p>
       <ButtonGroup>
-        <Button onClick={handleSubmit} disabled={loading}>{t('send_alerts')}</Button>
-        <Button as="link" href={prevPageUrl} variant="secondary">{t('return')}</Button>
+        <Button onClick={handleSubmit} disabled={loading} aria-label={t('send_alerts')}>{t('send_alerts')}</Button>
+        <Button as="link" href={prevPageUrl} variant="secondary" aria-label={t('return')}>{t('return')}</Button>
       </ButtonGroup>
     </div>
   );

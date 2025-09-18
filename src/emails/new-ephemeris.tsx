@@ -17,7 +17,7 @@ type NewEphemerisEmailProps = {
 function NewEphemerisEmail({ commonName, noradId, withPlaceholders }: NewEphemerisEmailProps) {
   const t = createTranslator({
     locale: 'en',
-    namespace: 'Emails.Conjunction_new_ephemeris',
+    namespace: 'Emails',
     messages,
   });
 
@@ -25,8 +25,8 @@ function NewEphemerisEmail({ commonName, noradId, withPlaceholders }: NewEphemer
 
   return (
     <Layout withPlaceholders={withPlaceholders} isNotification>
-      <Section title={t('title', { commonName })}>
-        {t.rich('content', {
+      <Section title={t('Conjunction_new_ephemeris.title', { commonName })}>
+        {t.rich('Conjunction_new_ephemeris.content', {
           commonName,
           noradId,
           p: chunks => <Text>{chunks}</Text>,

@@ -77,7 +77,7 @@ const CookiesChange = () => {
         name="analytics"
         onChange={onChangeHandler}
       />
-      <Button onClick={saveCookieSettings}>{t('button')}</Button>
+      <Button onClick={saveCookieSettings} aria-label={t('button')}>{t('button')}</Button>
     </div>
   );
 };

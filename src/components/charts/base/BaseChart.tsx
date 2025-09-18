@@ -118,13 +118,13 @@ export function BaseChart({
           ariaLabel={ariaLabel}
           items={[
             {
-              id: 'linear',
+              id: `${id}-linear`,
               title: 'Linear',
               ariaLabel: 'Linear',
               value: 'linear',
             },
             {
-              id: 'log',
+              id: `${id}-log`,
               title: 'Log',
               ariaLabel: 'Log',
               value: 'logarithmic',
@@ -135,7 +135,7 @@ export function BaseChart({
           title="Scale"
         />
       </div>
-      <div className="border border-black bg-white">
+      <div className="border border-black bg-white forced-color-adjust-none">
         <div className="relative w-auto my-4">
           <Chart
             aria-label={`${ariaLabel} Chart`}

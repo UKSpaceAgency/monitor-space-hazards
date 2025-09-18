@@ -19,7 +19,7 @@ type ConjunctionClosedownEmailProps = {
 function ConjunctionClosedownEmail({ report, event, withPlaceholders }: ConjunctionClosedownEmailProps) {
   const t = createTranslator({
     locale: 'en',
-    namespace: 'Emails.Conjunction_alert',
+    namespace: 'Emails',
     messages,
   });
 
@@ -27,15 +27,15 @@ function ConjunctionClosedownEmail({ report, event, withPlaceholders }: Conjunct
 
   return (
     <Layout
-      title={t('title_closed', { reportNumber: report.reportNumber })}
+      title={t('Conjunction_alert.title_closed', { reportNumber: report.reportNumber })}
       subtitle={`${report.primaryObjectCommonName} vs ${report.secondaryObjectCommonName}`}
       withPlaceholders={withPlaceholders}
     >
       <Subheader comment={event.closedComment} />
-      <Section title={t('event_overview_title')}>
+      <Section title={t('Conjunction_alert.event_overview_title')}>
         <ConjunctionEventOverview eventUrl={eventLink} event={event} report={report} className="pb-6" />
       </Section>
-      <Section title={t('event_details_title')}>
+      <Section title={t('Conjunction_alert.event_details_title')}>
         <ConjunctionEventDetails eventUrl={eventLink} event={event} report={report} className="pb-6" />
       </Section>
     </Layout>

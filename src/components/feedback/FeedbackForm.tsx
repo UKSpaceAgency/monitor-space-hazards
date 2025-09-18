@@ -89,7 +89,7 @@ const FeedbackForm = () => {
         aria-label="Details"
         error={errors.details?.message}
       />
-      <Button type="submit" disabled={loading}>{t('submit')}</Button>
+      <Button type="submit" disabled={loading} aria-label={t('submit')}>{t('submit')}</Button>
     </form>
   );
 };

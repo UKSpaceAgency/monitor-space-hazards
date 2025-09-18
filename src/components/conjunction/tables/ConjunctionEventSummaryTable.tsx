@@ -20,7 +20,9 @@ type ConjunctionEventSummaryTableInformationsTableProps = {
 const ConjunctionEventSummaryTableInformationsTable = ({ data }: ConjunctionEventSummaryTableInformationsTableProps) => {
   const t = useTranslations('Tables.Conjunction');
 
-  const eventDetailsHeaders: HTMLProps<HTMLTableCellElement>[] = [{}, {
+  const eventDetailsHeaders: HTMLProps<HTMLTableCellElement>[] = [{
+    children: <div className="hidden">{t('summary_list.description')}</div>,
+  }, {
     children: t('summary_list.space_track_cdm'),
   }, ...(Array.isArray(data)
     ? [{

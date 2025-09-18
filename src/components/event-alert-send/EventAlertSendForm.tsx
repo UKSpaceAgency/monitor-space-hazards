@@ -92,7 +92,7 @@ const EventAlertSendForm = ({ type, defaultValues }: EventAlertSendFormProps) =>
       }]}
       />
       <ButtonGroup>
-        <Button type="submit">{t('review_button')}</Button>
+        <Button type="submit" aria-label={t('review_button')}>{t('review_button')}</Button>
       </ButtonGroup>
     </form>
 

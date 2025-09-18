@@ -16,7 +16,7 @@ type BannerTemplateProps = {
 const renderTemplate = ({ id, title, content }: TypeBannerMessagesOut) => (
   <Fragment key={id}>
     <p className="govuk-body">{title}</p>
-    <NotificationBanner>
+    <NotificationBanner aria-label={title} id={id}>
       <HtmlMapper content={content} />
     </NotificationBanner>
   </Fragment>
@@ -32,9 +32,10 @@ const ScheduleBannerFormTemplate = ({ register, templates }: BannerTemplateProps
       <Radios
         id="message_id"
         required
+        legend={t('choose_one')}
         aria-label="Message Id"
         items={templates.map(template => ({
-          id: 'message_id',
+          id: template.id,
           value: template.id,
           className: 'w-full',
           children: renderTemplate(template),

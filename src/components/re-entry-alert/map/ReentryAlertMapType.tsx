@@ -29,7 +29,7 @@ const ReentryAlertMapType = ({ value, onChange }: ReentryAlertMapTypeProps) => {
         children: 'Street',
         value: MapTypes.streets,
       }, {
-        id: 'map',
+        id: 'map-type',
         children: 'Map',
         value: MapTypes.light,
       }, {

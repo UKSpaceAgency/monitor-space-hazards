@@ -39,10 +39,10 @@ const EventAlertPublish = ({ shortId, action }: EventAlertPublishProps) => {
     return (
       <NotificationBanner heading={t('publish_confirm')}>
         <ButtonGroup>
-          <Button onClick={handleSubmit}>
+          <Button onClick={handleSubmit} aria-label={tCommon('yes')}>
             {tCommon('yes')}
           </Button>
-          <Button variant="secondary" onClick={() => setConfirm(false)}>
+          <Button variant="secondary" onClick={() => setConfirm(false)} aria-label={tCommon('no')}>
             {tCommon('no')}
           </Button>
         </ButtonGroup>
@@ -52,10 +52,10 @@ const EventAlertPublish = ({ shortId, action }: EventAlertPublishProps) => {
 
   return (
     <ButtonGroup>
-      <Button onClick={() => setConfirm(true)}>
+      <Button onClick={() => setConfirm(true)} aria-label={t('publish_edits')}>
         {t('publish_edits')}
       </Button>
-      <Button as="link" href={prevPageUrl} variant="secondary">{t('publish_return')}</Button>
+      <Button as="link" href={prevPageUrl} variant="secondary" aria-label={t('publish_return')}>{t('publish_return')}</Button>
     </ButtonGroup>
   );
 };

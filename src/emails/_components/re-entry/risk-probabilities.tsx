@@ -52,6 +52,7 @@ export const ReentryRiskProbabilities = ({ event, ...props }: ReentryRiskProbabi
               'bg-[#f0f0f0]': index % 2 === 0,
             })}
           >
+            TEST
             <Column className="font-bold w-1/3 p-2">{type}</Column>
             <Column className="w-2/3 text-center p-2">
               {isNumber(probability) ? `${roundedFixed(probability)}%` : 'Unknown'}

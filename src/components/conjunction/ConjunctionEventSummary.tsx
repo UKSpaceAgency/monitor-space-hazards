@@ -86,6 +86,7 @@ const ConjunctionEventSummary = async ({
               callback: `/conjunctions/${shortId}`,
             },
           }}
+          aria-label={t('contact_analyst')}
         >
           {t('contact_analyst')}
         </Button>
