@@ -4,7 +4,7 @@ import { IoCloseOutline, IoEllipseSharp } from 'react-icons/io5';
 
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import { calcDistance } from '@/utils/Math';
-import { countries } from '@/utils/Regions';
+import { countries, jsonRegionsMap } from '@/utils/Regions';
 
 import { FlightpathColor, FragmentColor, OverflightColor } from './utils';
 
@@ -50,10 +50,14 @@ const ReentryAlertMapTooltip = ({ latitude, longitude, regions, overflight, type
               <span className="font-bold mr-1">{`${name}, ${countries[countryCode as keyof typeof countries]}`}</span>
             </li>
           )}
-          {regions && (
+          {Array.isArray(regions) && regions.length > 0 && (
             <li>
               <span className="font-bold mr-1">{t('regions')}</span>
-              {regions}
+              {regions.map((el) => {
+                ;
+                const [_, last] = el.split('.');
+                return jsonRegionsMap[last];
+              }).join(', ')}
             </li>
           )}
           {overflight && (
