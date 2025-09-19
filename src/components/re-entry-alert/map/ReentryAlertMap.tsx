@@ -159,7 +159,7 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
                     </Source>
                   ))}
               {flightpaths && flightpaths.map(index => (
-                <Source key={`FLIGHTPATH-${index}`} type="geojson" data={`https://cdn.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-overflight_features_${index}.geojson`}>
+                <Source key={`FLIGHTPATH-${index}`} type="geojson" data={`https://www.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-overflight_features_${index}.geojson`}>
                   <Layer
                     {...flightpathStyle(index, types.includes('FLIGHTPATH') && flightpaths.includes(index))}
                     slot="middle"
@@ -167,7 +167,7 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
                 </Source>
               ))}
               {flightpaths.map(index => (
-                <Source key={`FRAGMENT-${index}`} type="geojson" data={`https://cdn.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-fragment_features_${index}.geojson`}>
+                <Source key={`FRAGMENT-${index}`} type="geojson" data={`https://www.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-fragment_features_${index}.geojson`}>
                   <Layer
                     {...fragmentsCircleStyle(index, types.includes('FRAGMENT') && flightpaths.includes(index))}
                     slot="middle"
@@ -195,7 +195,7 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
         <p className="govuk-body-s mb-0">Download GeoJSON files:</p>
         <div className="flex gap-2">
           <a
-            href={`https://cdn.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-overflight_features_0.geojson`}
+            href={`https://www.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-overflight_features_0.geojson`}
             download={`${reportId}-${reportId}-flightpath.geojson`}
             className="govuk-link text-blue"
             rel="noopener noreferrer"
@@ -206,7 +206,7 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
           {flightpaths.slice(1).map(index => (
             <Fragment key={`DOWNLOADS-${index}`}>
               <a
-                href={`https://cdn.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-overflight_features_${index}.geojson`}
+                href={`https://www.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-overflight_features_${index}.geojson`}
                 download={`${reentryId}-${reportId}-overflight_${index}.geojson`}
                 className="govuk-link text-blue"
                 rel="noopener noreferrer"
@@ -215,7 +215,7 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
                 {t('overflight', { number: index })}
               </a>
               <a
-                href={`https://cdn.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-fragment_features_${index}.geojson`}
+                href={`https://www.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-fragment_features_${index}.geojson`}
                 download={`${reentryId}-${reportId}-fragment_${index}.geojson`}
                 className="govuk-link text-blue"
                 rel="noopener noreferrer"
