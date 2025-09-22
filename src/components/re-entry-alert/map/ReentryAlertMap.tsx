@@ -196,7 +196,7 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
         <div className="flex gap-2">
           <a
             href={`https://www.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-overflight_features_0.geojson`}
-            download={`${reportId}-${reportId}-flightpath.geojson`}
+            download={`${reentryId}-${reportId}-flightpath.geojson`}
             className="govuk-link text-blue"
             rel="noopener noreferrer"
             target="_blank"
