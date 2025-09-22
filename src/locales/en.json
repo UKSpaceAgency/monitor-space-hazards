@@ -1049,7 +1049,7 @@
     },
     "Satellite_informations": {
       "Objects": {
-        "description": "Description",
+        "description": "Satellites summary table",
         "primary": "Primary object",
         "secondary": "Secondary object"
       },
@@ -1157,7 +1157,7 @@
         "events_summary": "Conjunction event summary"
       },
       "summary_list": {
-        "description": "Description",
+        "description": "Conjunction events summary table",
         "special": "Special",
         "space_track_cdm": "Space-Track CDM",
         "uksa_analysis": "NSpOC Analysis",
@@ -1306,7 +1306,7 @@
     },
     "Reentry_alert_risk_probabilities": {
       "probability": "Probability (%)",
-      "description": "Description",
+      "description": "Re-entry alert risk probabilities",
       "risk": "Risk",
       "probability_of_atmospheric_entry": "Re-entry over UK",
       "probability_of_fragmentation": "Debris impact in UK",
