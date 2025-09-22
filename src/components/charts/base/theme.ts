@@ -6,8 +6,8 @@ export const chartPalette = {
   // These colors are required to keep sufficient contrast
   orange: '#f46a25',
   darkBlue: '#12436d',
-  lightPurple: 'a285d1',
-  darkGrey: '3d3d3d',
+  lightPurple: '#28A197',
+  darkGrey: '#3d3d3d',
 } as const;
 
 export const chartColors = [

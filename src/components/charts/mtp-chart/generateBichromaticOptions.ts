@@ -17,7 +17,7 @@ export const generateBichromaticOptions = (thresh: number): BichromaticOptions[]
     {
       thresh,
       label: `≥ ${exp(thresh)}`,
-      color: chartPalette.brightBlue,
+      color: chartPalette.darkPink,
       target: -1,
     },
     {
@@ -29,7 +29,7 @@ export const generateBichromaticOptions = (thresh: number): BichromaticOptions[]
     {
       thresh: 0,
       label: `< ${exp(nextThresh)}`,
-      color: chartPalette.darkPink,
+      color: chartPalette.darkBlue,
       target: 1,
     },
   ];
