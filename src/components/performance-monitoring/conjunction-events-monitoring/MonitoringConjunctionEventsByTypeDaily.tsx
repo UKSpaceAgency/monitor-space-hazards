@@ -5,8 +5,8 @@ import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import type { TypeGetStatsEventsTypeParams } from '@/__generated__/data-contracts';
-import { getStatsEventsType } from '@/actions/getStatsEventsType';
-import EventsTypeChart from '@/components/charts/events-type-chart/EventsTypeChart';
+import { getStatsConjunctionEventsType } from '@/actions/getStatsConjunctionEventsType';
+import { ConjunctionEventsTypeChart } from '@/components/charts/conjunction-events-type-chart/ConjunctionEventsTypeChart';
 import { DataTable } from '@/components/DataTable';
 import { Scrollable } from '@/components/Scrollable';
 import { FORMAT_API_DATE_TIME, TODAY_DATE_TIME } from '@/libs/Dayjs';
@@ -15,11 +15,11 @@ import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
 import { assertUnreachable } from '@/utils/Helpers';
 import { QUERY_KEYS } from '@/utils/QueryKeys';
 
-import { eventsByTypeDailyColumns } from './data-table/MonitoringEventsByTypeDailyDataTableColumns';
+import { conjunctionEventsByTypeDailyColumns } from './data-table/MonitoringConjunctionEventsByTypeDailyDataTableColumns';
 
 type DataRangeType = 'Upcoming events' | 'Last 7d' | 'Last 1 month' | 'Last 6 months';
 
-const MonitoringEventsByTypeDaily = () => {
+const MonitoringConjunctionEventsByTypeDaily = () => {
   const t = useTranslations('Charts.Events_type');
 
   const params: TypeGetStatsEventsTypeParams = {
@@ -33,8 +33,8 @@ const MonitoringEventsByTypeDaily = () => {
   });
 
   const { data, isFetching } = useQuery({
-    queryKey: [QUERY_KEYS.StatsEventByType, dates],
-    queryFn: () => getStatsEventsType({
+    queryKey: [QUERY_KEYS.StatsConjunctionEventByType, dates],
+    queryFn: () => getStatsConjunctionEventsType({
       ...params,
       start_date: dates.startDate,
       end_date: dates.endDate,
@@ -121,10 +121,10 @@ const MonitoringEventsByTypeDaily = () => {
 
   return (
     <div>
-      <EventsTypeChart data={data} actionButtons={actionButtons} />
+      <ConjunctionEventsTypeChart data={data} actionButtons={actionButtons} />
       <Scrollable>
         <DataTable
-          columns={eventsByTypeDailyColumns}
+          columns={conjunctionEventsByTypeDailyColumns}
           data={data}
           ariaLabel="Information on Conjunction Events by type Daily"
         />
@@ -133,4 +133,4 @@ const MonitoringEventsByTypeDaily = () => {
   );
 };
 
-export { MonitoringEventsByTypeDaily };
+export { MonitoringConjunctionEventsByTypeDaily };

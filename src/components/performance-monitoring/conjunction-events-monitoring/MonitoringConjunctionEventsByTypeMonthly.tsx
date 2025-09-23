@@ -6,9 +6,9 @@ import { MonthlyBarChart } from '@/components/charts/monthly-bar/MonthlyBar';
 import { DataTable } from '@/components/DataTable';
 import { Scrollable } from '@/components/Scrollable';
 
-import { eventsByTypeMonthlyColumns } from './data-table/MonitoringEventsByTypeMonthlyDataTableColumns';
+import { conjunctionEventsByTypeMonthlyColumns } from './data-table/MonitoringConjunctionEventsByTypeMonthlyDataTableColumns';
 
-const MonitoringEventsByTypeMonthly = async () => {
+const MonitoringConjunctionEventsByTypeMonthly = async () => {
   const t = await getTranslations('Charts.Monthly_conjunction_events');
   const data = await getStatsMonthlyConjunctionEventsByObjectType();
   const datasets = {
@@ -53,7 +53,7 @@ const MonitoringEventsByTypeMonthly = async () => {
       />
       <Scrollable>
         <DataTable
-          columns={eventsByTypeMonthlyColumns}
+          columns={conjunctionEventsByTypeMonthlyColumns}
           data={data.reverse()}
           ariaLabel="Information on Conjunction Events by type Monthly"
         />
@@ -62,4 +62,4 @@ const MonitoringEventsByTypeMonthly = async () => {
   );
 };
 
-export { MonitoringEventsByTypeMonthly };
+export { MonitoringConjunctionEventsByTypeMonthly };
