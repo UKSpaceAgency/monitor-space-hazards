@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 
 import type { TypeStatisticsReentryEventsAndAlertsCount } from '@/__generated__/data-contracts';
 
-import { chartColors } from '../base/theme';
+import { chartPalette } from '../base/theme';
 import BasePie from '../base-pie/BasePie';
 
 export type ReentryEventsTypeChartProps = {
@@ -14,14 +14,17 @@ export type ReentryEventsTypeChartProps = {
 export function ReentryEventsTypeChart({ data, actionButtons }: ReentryEventsTypeChartProps) {
   const t = useTranslations('Charts.Events_type');
 
-  const filteredData = [...data].filter(({ objectType }) => objectType !== 'Total');
+  const order = ['Payload', 'Debris', 'Rocket Body', 'Unknown'];
+  const filteredData = [...data]
+    .filter(({ objectType }) => objectType !== 'Total')
+    .sort((a, b) => order.indexOf(a.objectType) - order.indexOf(b.objectType));
 
   const datasets = {
     labels: filteredData.map(({ objectType }) => objectType),
     datasets: [
       {
         data: filteredData.map(({ count }) => count),
-        backgroundColor: chartColors,
+        backgroundColor: [chartPalette.darkBlue, chartPalette.darkPink, chartPalette.orange, chartPalette.lightPurple],
       },
     ],
   };

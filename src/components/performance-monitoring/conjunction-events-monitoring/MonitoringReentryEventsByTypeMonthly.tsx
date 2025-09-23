@@ -23,14 +23,14 @@ const MonitoringReentryEventsByTypeMonthly = async () => {
       {
         label: 'Debris',
         data: data.map(({ DEBRIS }) => DEBRIS),
-        borderColor: chartPalette.orange,
-        backgroundColor: chartPalette.orange,
+        borderColor: chartPalette.darkPink,
+        backgroundColor: chartPalette.darkPink,
       },
       {
         label: 'Rocket Body',
         data: data.map(({ ROCKET_BODY }) => ROCKET_BODY),
-        borderColor: chartPalette.darkPink,
-        backgroundColor: chartPalette.darkPink,
+        borderColor: chartPalette.orange,
+        backgroundColor: chartPalette.orange,
       },
       {
         label: 'Unknown',

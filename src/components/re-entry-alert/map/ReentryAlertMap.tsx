@@ -192,7 +192,7 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
         </Map>
       </div>
       <div className="flex gap-2 items-center mb-6">
-        <p className="govuk-body-s mb-0">Download GeoJSON files:</p>
+        <p className="govuk-body-s mb-0">Download re-entry geoJSON data:</p>
         <div className="flex gap-2">
           <a
             href={`https://www.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-overflight_features_0.geojson`}
@@ -203,28 +203,31 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
           >
             {t('flightpath')}
           </a>
-          {flightpaths.slice(1).map(index => (
-            <Fragment key={`DOWNLOADS-${index}`}>
-              <a
-                href={`https://www.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-overflight_features_${index}.geojson`}
-                download={`${reentryId}-${reportId}-overflight_${index}.geojson`}
-                className="govuk-link text-blue"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                {t('overflight', { number: index })}
-              </a>
-              <a
-                href={`https://www.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-fragment_features_${index}.geojson`}
-                download={`${reentryId}-${reportId}-fragment_${index}.geojson`}
-                className="govuk-link text-blue"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                {t('fragment', { number: index })}
-              </a>
-            </Fragment>
-          ))}
+          {overflightTime.map((_, index) => {
+            const number = index + 1;
+            return (
+              <Fragment key={`DOWNLOADS-${index}`}>
+                <a
+                  href={`https://www.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-overflight_features_${number}.geojson`}
+                  download={`${reentryId}-${reportId}-overflight_${number}.geojson`}
+                  className="govuk-link text-blue"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {t('overflight', { number })}
+                </a>
+                <a
+                  href={`https://www.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-fragment_features_${number}.geojson`}
+                  download={`${reentryId}-${reportId}-fragment_${number}.geojson`}
+                  className="govuk-link text-blue"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {t('fragment', { number })}
+                </a>
+              </Fragment>
+            );
+          })}
         </div>
       </div>
       <Details
