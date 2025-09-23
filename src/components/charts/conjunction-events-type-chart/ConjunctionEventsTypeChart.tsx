@@ -6,12 +6,12 @@ import type { TypeStatisticsEventsType } from '@/__generated__/data-contracts';
 import { chartColors } from '../base/theme';
 import BasePie from '../base-pie/BasePie';
 
-export type EventsTypeChartProps = {
+export type ConjunctionEventsTypeChartProps = {
   data: TypeStatisticsEventsType[];
   actionButtons: ReactNode;
 };
 
-export function EventsTypeChart({ data, actionButtons }: EventsTypeChartProps) {
+export function ConjunctionEventsTypeChart({ data, actionButtons }: ConjunctionEventsTypeChartProps) {
   const t = useTranslations('Charts.Events_type');
 
   const filteredData = [...data].filter(({ eventType }) => eventType !== t('total_events'));
@@ -29,4 +29,4 @@ export function EventsTypeChart({ data, actionButtons }: EventsTypeChartProps) {
   return <BasePie data={datasets} actionButtons={actionButtons} legend={{ title: t('event_type') }} ariaLabel="Conjunctions events by type" />;
 }
 
-export default EventsTypeChart;
+export default ConjunctionEventsTypeChart;

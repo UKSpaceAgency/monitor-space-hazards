@@ -1,4 +1,4 @@
-import type { SetStateAction } from 'react';
+import { type SetStateAction, useId } from 'react';
 
 import Radios from '../radios/radios';
 import styles from './toggle-buttons.module.scss';
@@ -27,6 +27,8 @@ export function ToggleButtons({
   dataPdfIgnore,
   ariaLabel,
 }: ToggleButtonsProps) {
+  const prefix = useId();
+
   return (
     <fieldset className={styles.root} data-pdf-ignore={dataPdfIgnore}>
       {title && (
@@ -45,7 +47,7 @@ export function ToggleButtons({
         inline
         name={name}
         items={items.map(({ title, value, id }) => ({
-          id,
+          id: `${prefix}-${id}`,
           children: title,
           value,
           onChange: () => setActive(value),

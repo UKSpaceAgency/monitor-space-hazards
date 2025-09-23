@@ -470,6 +470,7 @@
       "data_range": "Data range",
       "total_events": "Total events across all organisations",
       "event_type": "Event type",
+      "object_type": "Object type",
       "details": {
         "title": "Help with this table",
         "content": "This table shows the number of conjunction events between different object types."
@@ -522,6 +523,7 @@
       "y_axis_title": "Number of events",
       "x_axis_title": "Date",
       "legend_title": "Events type",
+      "object_type": "Object type",
       "debris": "Events with debris",
       "satellite": "Events with another satellite",
       "rocket_body": "Events with two UK-licensed satellites",
@@ -875,6 +877,7 @@
     "description": "This page shows both performance data for the Monitor Space Hazards service and more detailed information about the object and conjunction event data processed by the service. This data is broken down by organisation and by satellite.",
     "performance_monitoring": "Performance monitoring",
     "conjunction_event_and_organisation_data": "Conjunction events",
+    "reentry_event_and_organisation_data": "Re-entry events",
     "service_usage": "Service usage",
     "performance_accordion": {
       "title": "Performance monitoring",
@@ -940,6 +943,29 @@
         "details": {
           "title": "Help with this table",
           "content": "This table shows the number of users and organisations signed up to the service each month."
+        }
+      }
+    },
+    "reentry_accordion": {
+      "title": "Re-entry events",
+      "reentry_event_by_type": {
+        "title": "Re-entry events by type",
+        "description": "Total number of re-entry events monitored and a breakdown of their type.",
+        "this_table": "this table",
+        "upcoming_events": "Upcoming events",
+        "last_7d": "Last 7 days",
+        "last_1_month": "Last 1 month",
+        "last_6_months": "Last 6 months",
+        "data_range": "Date range",
+        "daily_title": "Total number of re-entry events monitored and a breakdown of their type.",
+        "daily_details": {
+          "title": "Help with this table",
+          "content": "This table shows the number of re-entry events by different object types and level of event."
+        },
+        "monthly_title": "Monthly number of re-entry events monitored and a breakdown of their type.",
+        "monthly_details": {
+          "title": "Help with this table",
+          "content": "This table shows the number of re-entry events by different object types per month."
         }
       }
     },
@@ -1392,6 +1418,19 @@
         "high": ">1e-3",
         "this_table": "this table",
         "all_organisations": "All organisations"
+      },
+      "reentry_events_by_type": {
+        "type": "Type",
+        "reentry_events": "Reentry events",
+        "this_table": "this table"
+      },
+      "reentry_events_by_type_monthly": {
+        "month": "Month",
+        "payload": "Payload",
+        "debris": "Debris",
+        "rocket_body": "Rocket Body",
+        "unknown": "Unknown",
+        "total": "Total"
       },
       "analyses_and_manoeuvre_support": {
         "source": "Source",

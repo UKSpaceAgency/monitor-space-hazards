@@ -1,16 +1,16 @@
 import { getTranslations } from 'next-intl/server';
 
 import type { TypeGetStatsEventsTypeParams } from '@/__generated__/data-contracts';
-import { getStatsEventsType } from '@/actions/getStatsEventsType';
+import { getStatsConjunctionEventsType } from '@/actions/getStatsConjunctionEventsType';
 import { getStatsMonthlyConjunctionEventsByObjectType } from '@/actions/getStatsMonthlyConjunctionEventsByObjectType';
 import { DownloadData } from '@/components/DownloadData';
 import { FORMAT_API_DATE_TIME, TODAY_DATE_TIME } from '@/libs/Dayjs';
 import Details from '@/ui/details/details';
 
-import { MonitoringEventsByTypeDaily } from './MonitoringEventsByTypeDaily';
-import { MonitoringEventsByTypeMonthly } from './MonitoringEventsByTypeMonthly';
+import { MonitoringConjunctionEventsByTypeDaily } from './MonitoringConjunctionEventsByTypeDaily';
+import { MonitoringConjunctionEventsByTypeMonthly } from './MonitoringConjunctionEventsByTypeMonthly';
 
-const MonitoringEventsByType = async () => {
+const MonitoringConjunctionEventsByType = async () => {
   const t = await getTranslations('Performance_monitoring.conjunction_accordion.conjunction_event_by_type');
 
   const params: TypeGetStatsEventsTypeParams = {
@@ -20,14 +20,14 @@ const MonitoringEventsByType = async () => {
   return (
     <>
       <h3 className="govuk-heading-s">{t('daily_title')}</h3>
-      <MonitoringEventsByTypeDaily />
-      <DownloadData type={t('daily_title')} params={params} downloadAction={getStatsEventsType} ariaLabel="Daily Conjunction events by type" />
+      <MonitoringConjunctionEventsByTypeDaily />
+      <DownloadData params={params} downloadAction={getStatsConjunctionEventsType} ariaLabel="Daily Conjunction events by type" />
       <Details summary={t('daily_details.title')} aria-label="Daily Conjunction events by type details">
         {t('daily_details.content')}
       </Details>
       <h3 className="govuk-heading-s">{t('monthly_title')}</h3>
-      <MonitoringEventsByTypeMonthly />
-      <DownloadData type={t('monthly_title')} params={{}} downloadAction={getStatsMonthlyConjunctionEventsByObjectType} ariaLabel="Monthly Conjunction events by type" />
+      <MonitoringConjunctionEventsByTypeMonthly />
+      <DownloadData params={{}} downloadAction={getStatsMonthlyConjunctionEventsByObjectType} ariaLabel="Monthly Conjunction events by type" />
       <Details summary={t('monthly_details.title')} aria-label="Monthly Conjunction events by type details">
         {t('monthly_details.content')}
       </Details>
@@ -35,4 +35,4 @@ const MonitoringEventsByType = async () => {
   );
 };
 
-export { MonitoringEventsByType };
+export { MonitoringConjunctionEventsByType };
