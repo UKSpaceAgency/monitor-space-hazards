@@ -27,9 +27,7 @@ const ReentryAlertMapTooltip = ({ latitude, longitude, regions, overflight, type
 
   const distance = calcDistance(latitude, longitude, city.latitude, city.longitude);
 
-  const tooltipType = type === 'fragments' ? 'fragments' : !pass || pass === 0 ? 'flightpath' : 'overflight';
-
-  const color = type === 'fragments' ? FragmentColor : !pass || pass === 0 ? FlightpathColor : OverflightColor;
+  const flightpathColor = !pass || pass === 0 ? FlightpathColor : OverflightColor;
 
   return (
     <div className="bg-white p-4 absolute top-2 left-2 max-w-[200px] md:max-w-[300px]">
@@ -38,11 +36,11 @@ const ReentryAlertMapTooltip = ({ latitude, longitude, regions, overflight, type
       </button>
       <div className="pr-4">
         <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
-          {t(tooltipType)}
+          {t(type as any)}
           <IoEllipseSharp
             className="size-6"
             style={{
-              fill: color,
+              fill: type === 'fragments' ? FragmentColor : flightpathColor,
             }}
           />
         </h4>
