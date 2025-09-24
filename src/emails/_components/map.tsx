@@ -10,7 +10,7 @@ export const Map = ({ src, ...props }: MapProps) => {
     <Section {...props}>
       <Img src={src} alt="map" className="w-full h-auto block outline-none border-none" />
       <Row cellSpacing={8}>
-        <Column className="w-1/5 text-xs font-bold">
+        <Column className="w-1/5 text-2xs font-bold">
           Map Legend:
         </Column>
         <Column>
@@ -43,7 +43,7 @@ export const Map = ({ src, ...props }: MapProps) => {
                   </tr>
                 </table>
               </td>
-              <td className="text-xs">
+              <td className="text-2xs">
                 Object flightpath
               </td>
             </tr>
@@ -79,7 +79,7 @@ export const Map = ({ src, ...props }: MapProps) => {
                   </tr>
                 </table>
               </td>
-              <td className="text-xs">
+              <td className="text-2xs">
                 Chance the object enters atmosphere
               </td>
             </tr>
@@ -115,7 +115,7 @@ export const Map = ({ src, ...props }: MapProps) => {
                   </tr>
                 </table>
               </td>
-              <td className="text-xs">
+              <td className="text-2xs">
                 Chance fragments reach the ground
               </td>
             </tr>

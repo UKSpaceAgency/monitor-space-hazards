@@ -14,17 +14,15 @@ export type ReentryEventsTypeChartProps = {
 export function ReentryEventsTypeChart({ data, actionButtons }: ReentryEventsTypeChartProps) {
   const t = useTranslations('Charts.Events_type');
 
-  const order = ['Payload', 'Debris', 'Rocket Body', 'Unknown'];
   const filteredData = [...data]
-    .filter(({ objectType }) => objectType !== 'Total')
-    .sort((a, b) => order.indexOf(a.objectType) - order.indexOf(b.objectType));
+    .filter(({ objectType }) => objectType !== 'Total');
 
   const datasets = {
     labels: filteredData.map(({ objectType }) => objectType),
     datasets: [
       {
         data: filteredData.map(({ count }) => count),
-        backgroundColor: [chartPalette.darkBlue, chartPalette.darkPink, chartPalette.orange, chartPalette.lightPurple],
+        backgroundColor: [chartPalette.darkBlue, chartPalette.orange, chartPalette.darkPink, chartPalette.lightPurple],
       },
     ],
   };

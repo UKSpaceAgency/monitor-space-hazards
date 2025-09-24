@@ -16,15 +16,15 @@ export const reentryEventsByTypeMonthlyColumns: TranslatedColumnDef<StatsMonthly
     enableSorting: false,
   },
   {
-    accessorKey: 'DEBRIS',
-    id: 'DEBRIS',
-    header: 'Performance_monitoring.reentry_events_by_type_monthly.debris',
-    enableSorting: false,
-  },
-  {
     accessorKey: 'ROCKET_BODY',
     id: 'ROCKET_BODY',
     header: 'Performance_monitoring.reentry_events_by_type_monthly.rocket_body',
+    enableSorting: false,
+  },
+  {
+    accessorKey: 'DEBRIS',
+    id: 'DEBRIS',
+    header: 'Performance_monitoring.reentry_events_by_type_monthly.debris',
     enableSorting: false,
   },
   {
