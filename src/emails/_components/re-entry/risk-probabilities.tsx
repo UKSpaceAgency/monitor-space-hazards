@@ -34,7 +34,7 @@ export const ReentryRiskProbabilities = ({ event, ...props }: ReentryRiskProbabi
   }];
 
   return (
-    <Section {...props}>
+    <Section className="!w-full" {...props}>
       <Row
         className="text-sm"
       >
@@ -48,11 +48,10 @@ export const ReentryRiskProbabilities = ({ event, ...props }: ReentryRiskProbabi
         return (
           <Row
             key={type}
-            className={clsx('text-sm', {
+            className={clsx('text-sm w-full', {
               'bg-[#f0f0f0]': index % 2 === 0,
             })}
           >
-            TEST
             <Column className="font-bold w-1/3 p-2">{type}</Column>
             <Column className="w-2/3 text-center p-2">
               {isNumber(probability) ? `${roundedFixed(probability)}%` : 'Unknown'}
