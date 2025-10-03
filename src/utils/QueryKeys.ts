@@ -4,6 +4,7 @@ export enum QUERY_KEYS {
   Analyses = 'analyses',
   Manoeuvres = 'manoeuvres',
   Reentries = 'reentries',
+  Fragmentations = 'fragmentations',
   DataPerformance = 'data-performance',
   NotificationsSent = 'notifications-sent',
   StatsAnalysisAndManoeuvreSupport = 'stats-analysis-and-manoeuvre-support',

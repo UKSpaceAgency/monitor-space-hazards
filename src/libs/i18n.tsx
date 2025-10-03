@@ -9,6 +9,7 @@ export const defaultTranslationValues: RichTranslationValues = {
   list: chunks => <ul className="govuk-list govuk-list--bullet">{chunks}</ul>,
   item: chunks => <li>{chunks}</li>,
   bold: chunks => <b>{chunks}</b>,
+  b: chunks => <b>{chunks}</b>,
   special: chunks => <strong className="govuk-tag">{chunks}</strong>,
 };
 
