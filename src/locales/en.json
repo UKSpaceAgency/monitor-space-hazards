@@ -1058,7 +1058,8 @@
         "conjunction_events": "conjunction events",
         "conjunction_reports": "conjunction reports",
         "reentry_events": "re-entry events",
-        "reentry_reports": "re-entry reports"
+        "reentry_reports": "re-entry reports",
+        "fragmentation_events": "fragmentation events"
       }
     },
     "Analysis_data": {
@@ -1482,6 +1483,19 @@
       "phone_number": "Phone number",
       "registered": "Registered",
       "edit": "Edit"
+    },
+    "Fragmentations": {
+      "fragmentations_events_as_of": "Upcoming and previous known fragmentation events as of ",
+      "event_details": "Event details",
+      "risk": "Risk",
+      "object_details": "Object details",
+      "object": "Object",
+      "time": "Time",
+      "short_id": "Event ID",
+      "affected_regime": "Affected regime",
+      "known_fragments": "Number of known fragments",
+      "object_type": "Object type",
+      "licensing_country": "Licensing country"
     }
   },
   "Forms": {
@@ -1986,6 +2000,21 @@
       "content": "<p>For urgent enquiries about this event, email <nspocemail>NSPOCincidents@ukspaceagency.gov.uk</nspocemail>.</p><p><contact>Additional contact details</contact> are available via Monitor Space Hazards (for registered users).</p><p>We welcome your feedback and ideas to improve future reports. If you're not signed up to <link>Monitor Space Hazards</link> and would like access to the service, please contact us.</p><p>Monitor Space Hazards is a service provided by the UK Space Agency via the National Space Operations Centre.</p>",
       "content_notification": "<p>For assistance in managing an incident, or for more information, please contact our Operations, Analysis and Response Team:</p><button>Operations Support</button><p>Or email us: <nspocemail>NSPOCincidents@ukspaceagency.gov.uk</nspocemail> and <orbitalemail>OrbitalAnalysts@ukspaceagency.gov.uk</orbitalemail>.</p><p><contact>Additional contact details</contact> are available via <contact>Monitor Space Hazards</contact>. Monitor Space Hazards is a service provided by the UK Space Agency via the National Space Operations Centre.</p>",
       "content_short": "<p>Please direct any questions about this event to <nspocemail>nspoc@ukspaceagency.gov.uk</nspocemail></p><p>Monitor Space Hazards is a service provided by the UK Space Agency through the National Space Operations Centre.</p>"
+    }
+  },
+  "Fragmentations": {
+    "title": "Fragmentation events",
+    "section_title": "All fragmentation events (upcoming and past)",
+    "description": "This table contains all tracked tragmentation events, including fragmentation events that meet the UK Space Agency's thresholds for alerting UK government. For further detail on how risk and alert thresholds are defined, see 'Help with this table' below.",
+    "search_bar": {
+      "upcomingLabel": "Find a upcoming fragmentation event",
+      "previousLabel": "Find a previous fragmentation event",
+      "allLabel": "Find a fragmentation event",
+      "placeholder": "Search by event or object ID"
+    },
+    "help": {
+      "title": "Help with this table",
+      "content": "<p><bold>This table shows all upcoming and previous tracked fragmentation events that have been identified by Space-Track and ingested into Monitor space hazards, including events which pose a risk to UK satellites and Human Spaceflight missions. Higher risk events contain additional analysis by UKSA's Orbital Analysts at the National Space Operations Centre.</bold></p><list><item>Select the <bold>Event ID</bold> to view more information</item><item>Each Event ID or row represents <bold>one fragmentation event</bold></item><item>Sort the alerts according to criteria by clicking on the relevant <bold>headings</bold></item></list><p><bold>Alert thresholds</bold></p><p>Alerts about fragmentation events are produced if:</p><list><item>there is an increased risk of a potential collision with a UK operated satellite or Human Spaceflight mission</item><item>OR nominated for escalation by the National Space Operations Centre</item></list><p><bold>Risk thresholds</bold></p><p>Risk thresholds are calculated according to the probability of the object affecting UK operated satellites or Human Spaceflight mission.</p><table><thead><tr><th>Risk level</th><th>Increase in potential collision with UK satellites (%)</th></tr></thead><tbody><tr><td><tag>Low</tag></td><td>Less than 1%</td></tr><tr><td><tag>Medium</tag></td><td>1% - 5%</td></tr><tr><td><tag>High</tag></td><td>More than 5%</td></tr></tbody></table>"
     }
   }
 }
