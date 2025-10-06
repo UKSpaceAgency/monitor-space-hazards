@@ -206,6 +206,7 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
           {overflightTime.map((_, index) => {
             const number = index + 1;
             return (
+              // eslint-disable-next-line react/no-array-index-key
               <Fragment key={`DOWNLOADS-${index}`}>
                 <a
                   href={`https://www.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-overflight_features_${number}.geojson`}

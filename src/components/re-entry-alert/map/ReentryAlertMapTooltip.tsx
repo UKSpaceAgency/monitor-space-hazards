@@ -20,14 +20,14 @@ export type MapTooltipInfo = {
 
 type ReentryAlertMapTooltipProps = MapTooltipInfo;
 
-const ReentryAlertMapTooltip = ({ latitude, longitude, regions, overflight, type, onClose, pass }: ReentryAlertMapTooltipProps) => {
+const ReentryAlertMapTooltip = ({ latitude, longitude, regions, overflight, type, onClose }: ReentryAlertMapTooltipProps) => {
   const t = useTranslations('OverflightMap.tooltip');
 
   const { name, countryCode, ...city } = nearestCity({ latitude, longitude });
 
   const distance = calcDistance(latitude, longitude, city.latitude, city.longitude);
 
-  const flightpathColor = !pass || pass === 0 ? FlightpathColor : OverflightColor;
+  const flightpathColor = type === 'flightpath' ? FlightpathColor : OverflightColor;
 
   return (
     <div className="bg-white p-4 absolute top-2 left-2 max-w-[200px] md:max-w-[300px]">
