@@ -1291,7 +1291,7 @@
         "object_details": "Object details",
         "risk": "Risk to the UK",
         "event_id": "Event ID",
-        "re-entry_time_window": "Re-entry time window worldwide (UTC)",
+        "re-entry_time_window": "Re-entry time window (UTC)",
         "uk_overflight": "UK overflight time(s) (UTC)",
         "object": "Object",
         "expected_survivability": "Expected survivability to the ground",
@@ -1324,7 +1324,7 @@
     "Reentry_alert_executive_summary": {
       "uk_reentry_probability": "Risk to the UK (see Risk thresholds)",
       "probability": "Probability of re-entry over the UK (%)",
-      "time_window_world": "Re-entry time window worldwide (UTC)",
+      "time_window_world": "Re-entry time window (UTC)",
       "overflight_time": "UK overflight time(s) (UTC)",
       "survivability_comment": "Expected survivability to ground",
       "object": "Object",
@@ -1849,7 +1849,7 @@
         "object_name": "Object",
         "object_type": "Object Type",
         "estimated_mass": "Estimated Mass",
-        "re_entry_time": "Re-entry time window worldwide",
+        "re_entry_time": "Re-entry time window ",
         "uk_overflight_time": "UK overflight time(s)",
         "no_overflights": "No overflights",
         "direction_of_travel": "Direction of travel at predicted re-entry time"
@@ -1861,7 +1861,7 @@
         "no_regions_affected": "No Regions Affected"
       },
       "Event_details": {
-        "re_entry_time": "Re-entry time window worldwide",
+        "re_entry_time": "Re-entry time window",
         "object_name": "Object",
         "object_type": "Object Type",
         "norad_id": "NORAD ID",
