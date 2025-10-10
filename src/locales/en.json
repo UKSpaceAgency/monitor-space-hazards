@@ -1510,12 +1510,17 @@
       "risk": "Risk",
       "object_details": "Object details",
       "object": "Object",
-      "time": "Time",
+      "time": "Time of fragmentation (UTC)",
       "short_id": "Event ID",
       "affected_regime": "Affected regime",
       "known_fragments": "Number of known fragments",
       "object_type": "Object type",
-      "licensing_country": "Licensing country"
+      "licensing_country": "Licensing country",
+      "primary_object_common_name": "Primary object",
+      "secondary_object_common_name": "Secondary object",
+      "number_of_fragments": "Number of known fragments",
+      "modelled_fragments": "Modelled number of fragments",
+      "fragmentation_risk": "Fragmentation risk"
     }
   },
   "Forms": {
@@ -2037,7 +2042,7 @@
     },
     "help": {
       "title": "Help with this table",
-      "content": "<p><bold>This table shows all upcoming and previous tracked fragmentation events that have been identified by Space-Track and ingested into Monitor space hazards, including events which pose a risk to UK satellites and Human Spaceflight missions. Higher risk events contain additional analysis by UKSA's Orbital Analysts at the National Space Operations Centre.</bold></p><list><item>Select the <bold>Event ID</bold> to view more information</item><item>Each Event ID or row represents <bold>one fragmentation event</bold></item><item>Sort the alerts according to criteria by clicking on the relevant <bold>headings</bold></item></list><p><bold>Alert thresholds</bold></p><p>Alerts about fragmentation events are produced if:</p><list><item>there is an increased risk of a potential collision with a UK operated satellite or Human Spaceflight mission</item><item>OR nominated for escalation by the National Space Operations Centre</item></list><p><bold>Risk thresholds</bold></p><p>Risk thresholds are calculated according to the probability of the object affecting UK operated satellites or Human Spaceflight mission.</p><table><thead><tr><th>Risk level</th><th>Increase in potential collision with UK satellites (%)</th></tr></thead><tbody><tr><td><tag>Low</tag></td><td>Less than 1%</td></tr><tr><td><tag>Medium</tag></td><td>1% - 5%</td></tr><tr><td><tag>High</tag></td><td>More than 5%</td></tr></tbody></table>"
+      "content": "<p><bold>This table shows all upcoming and previous tracked fragmentation events that have been identified by Space-Track and ingested into Monitor space hazards, including events which pose a risk to UK satellites and Human Spaceflight missions. Higher risk events contain additional analysis by UKSA's Orbital Analysts at the National Space Operations Centre.</bold></p><list><item>Select the <bold>Event ID</bold> to view more information</item><item>Each Event ID or row represents <bold>one fragmentation event</bold></item><item>Sort the alerts according to criteria by clicking on the relevant <bold>headings</bold></item></list><p><bold>Alert thresholds</bold></p><p>Alerts about fragmentation events are produced if:</p><list><item>there is an increased risk of a potential collision with a UK operated satellite or Human Spaceflight mission</item><item>OR nominated for escalation by the National Space Operations Centre</item></list><p><bold>Risk thresholds</bold></p><p>Risk thresholds are calculated according to the probability of the object affecting UK operated satellites or Human Spaceflight mission.</p>"
     }
   },
   "Fragmentation": {
