@@ -1797,7 +1797,9 @@
     "user": "User",
     "users": "Users",
     "upload-success": "Upload successful",
-    "send-alert": "Send alert to additional recipients"
+    "send-alert": "Send alert to additional recipients",
+    "feedback": "Feedback",
+    "success": "Success"
   },
   "OverflightMap": {
     "map_type": "Map type:",
