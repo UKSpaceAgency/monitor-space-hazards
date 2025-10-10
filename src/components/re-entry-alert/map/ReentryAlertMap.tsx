@@ -19,7 +19,7 @@ import type { MapTooltipInfo } from './ReentryAlertMapTooltip';
 import { ReentryAlertMapType } from './ReentryAlertMapType';
 import { type MapView, ReentryAlertMapView } from './ReentryAlertMapView';
 import { ReentryAlertOverflights } from './ReentryAlertOverflights';
-import { flightpathStyle, fragmentsCircleStyle, MapTypes, type OverflightType, regionLayer, RegionsGeoJson } from './utils';
+import { flightpathStyle, fragmentsHeatmapStyle, MapTypes, type OverflightType, regionLayer, RegionsGeoJson } from './utils';
 
 const ReentryAlertMapTooltip = dynamic(() => import('./ReentryAlertMapTooltip').then(mod => mod.ReentryAlertMapTooltip), {
   ssr: false,
@@ -169,7 +169,7 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
               {flightpaths.map(index => (
                 <Source key={`FRAGMENT-${index}`} type="geojson" data={`https://www.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-fragment_features_${index}.geojson`}>
                   <Layer
-                    {...fragmentsCircleStyle(index, types.includes('FRAGMENT') && flightpaths.includes(index))}
+                    {...fragmentsHeatmapStyle(index, types.includes('FRAGMENT') && flightpaths.includes(index))}
                     slot="middle"
                   />
                 </Source>

@@ -148,38 +148,50 @@ export const fragmentsHeatmapStyle = (index: number, visible: boolean): HeatmapL
     visibility: visible ? 'visible' : 'none',
   },
   paint: {
-    // Use fragments_number as the weight for the heatmap
+    // Single color heatmap with opacity based on density
+    'heatmap-color': [
+      'interpolate',
+      ['linear'],
+      ['heatmap-density'],
+      0,
+      'rgba(128, 22, 80, 0)', // FragmentColor with 0 opacity
+      0.1,
+      'rgba(128, 22, 80, 0.2)', // FragmentColor with low opacity
+      0.3,
+      'rgba(128, 22, 80, 0.4)', // FragmentColor with medium opacity
+      0.6,
+      'rgba(128, 22, 80, 0.6)', // FragmentColor with higher opacity
+      1,
+      'rgba(128, 22, 80, 0.8)', // FragmentColor with high opacity
+    ],
+    'heatmap-intensity': [
+      'interpolate',
+      ['linear'],
+      ['zoom'],
+      0,
+      0.8,
+      9,
+      1.2,
+    ],
+    'heatmap-radius': [
+      'interpolate',
+      ['linear'],
+      ['zoom'],
+      0,
+      8,
+      5,
+      8,
+      9,
+      8,
+    ],
     'heatmap-weight': [
       'interpolate',
       ['linear'],
       ['get', 'fragments_number'],
       0,
       0,
-      10,
+      1,
       1,
     ],
-    // Use OverflightColors[index] as the base color for the heatmap
-    'heatmap-color': [
-      'interpolate',
-      ['linear'],
-      ['heatmap-density'],
-      0,
-      'rgba(0,0,0,0)',
-      0.2,
-      FragmentColor,
-      1,
-      FragmentColor,
-    ],
-    'heatmap-intensity': 1,
-    'heatmap-radius': [
-      'interpolate',
-      ['linear'],
-      ['zoom'],
-      0,
-      10,
-      9,
-      30,
-    ],
-    'heatmap-opacity': 0.7,
   },
 });
