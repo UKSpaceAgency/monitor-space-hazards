@@ -27,11 +27,12 @@ export const ReentryRiskProbabilities = ({ event, ...props }: ReentryRiskProbabi
     type: t('reentry_over_uk'),
     probability: event.atmosphericProbability,
     risk: event.atmosphericRisk,
-  }, {
-    type: t('uk_casuality_risk'),
-    probability: event.humanCasualtyProbability,
-    risk: event.humanCasualtyRisk,
   }];
+  // }, {
+  //   type: t('uk_casuality_risk'),
+  //   probability: event.humanCasualtyProbability,
+  //   risk: event.humanCasualtyRisk,
+  // }];
 
   return (
     <Section className="!w-full" {...props}>

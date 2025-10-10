@@ -115,15 +115,15 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
           return isNumber(value) ? `${roundedPercentage(value)}` : '-';
         },
       },
-      {
-        id: 'humanCasualtyProbability',
-        accessorKey: 'humanCasualtyProbability',
-        header: 'Reentries.table.probability_of_human_casualty',
-        cell: ({ getValue }) => {
-          const value = getValue<number>();
-          return isNumber(value) ? `${roundedPercentage(value)}` : '-';
-        },
-      },
+      // {
+      //   id: 'humanCasualtyProbability',
+      //   accessorKey: 'humanCasualtyProbability',
+      //   header: 'Reentries.table.probability_of_human_casualty',
+      //   cell: ({ getValue }) => {
+      //     const value = getValue<number>();
+      //     return isNumber(value) ? `${roundedPercentage(value)}` : '-';
+      //   },
+      // },
     ],
   },
 ];

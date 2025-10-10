@@ -11,9 +11,10 @@ import { Table } from '../table';
 type ReentryEventSummaryProps = {
   event: TypeReentryEventOut;
   tip: TypeTIPOut;
+  showDirectionOfTravel?: boolean;
 } & ComponentProps<'table'>;
 
-export const ReentryEventSummary = ({ event, tip, ...props }: ReentryEventSummaryProps) => {
+export const ReentryEventSummary = ({ event, tip, showDirectionOfTravel = false, ...props }: ReentryEventSummaryProps) => {
   const t = createTranslator({
     locale: 'en',
     namespace: 'Emails.Reentry_alert.Event_summary',
@@ -25,7 +26,7 @@ export const ReentryEventSummary = ({ event, tip, ...props }: ReentryEventSummar
     [t('object_type'), `${event.objectType ? objectTypeIndex[event.objectType as keyof typeof objectTypeIndex] : 'Unknown'}`],
     [t('estimated_mass'), `${event.estimatedMass ?? 'Unknown'} kg`],
     [t('re_entry_time'), `${dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME_WITH_UTC)} +/- ${event.uncertaintyWindow} minute(s)`],
-    [t('direction_of_travel'), tip.direction === 'ascending' ? 'North' : 'South'],
+    ...(showDirectionOfTravel ? [[t('direction_of_travel'), tip.direction === 'ascending' ? 'North' : 'South']] : []),
     [
       t('uk_overflight_time'),
       event.overflightTime.length > 0
