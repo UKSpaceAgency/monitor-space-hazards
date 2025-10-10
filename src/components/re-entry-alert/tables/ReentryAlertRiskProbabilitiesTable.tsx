@@ -49,7 +49,7 @@ const ReentryAlertRiskProbabilitiesTable = ({ event }: ReentryAlertExecutiveSumm
                 </TableRow>
               )
             : null}
-          {isNumber(event.humanCasualtyProbability)
+          {/* {isNumber(event.humanCasualtyProbability)
             ? (
                 <TableRow>
                   <TableCellHeader>{t('probability_of_human_casualty')}</TableCellHeader>
@@ -59,7 +59,7 @@ const ReentryAlertRiskProbabilitiesTable = ({ event }: ReentryAlertExecutiveSumm
                   </TableCell>
                 </TableRow>
               )
-            : null}
+            : null} */}
         </TableBody>
       </Table>
       <Details summary={t('help.title')}>
