@@ -1378,6 +1378,26 @@
       "probability": "Probability of debris impact (%)",
       "overflight": "UK overflight time(s) (UTC)"
     },
+    "Fragmentation_alert_executive_summary": {
+      "object_name": "Object name",
+      "event_epoch": "Event time (UTC)",
+      "inclination": "Inclination (°)",
+      "known_fragments": "Number of known fragments",
+      "modelled_fragments": "Modelled number of fragments",
+      "risk": "Initial risk assessment",
+      "affected_regime": "Affected regime",
+      "primary_object_type": "Object type",
+      "primary_object_licensing_country": "Launching State"
+    },
+    "Fragmentation_object_details": {
+      "common_name": "Common name",
+      "norad_id": "NORAD ID",
+      "international_designator": "International designator",
+      "object_type": "Object type",
+      "mass": "Mass (kg)",
+      "launch_site": "Launch site",
+      "launch_date": "Launch date"
+    },
     "Performance_monitoring": {
       "data_performance": {
         "source": "Source",
@@ -1797,7 +1817,8 @@
     "user": "User",
     "users": "Users",
     "upload-success": "Upload successful",
-    "send-alert": "Send alert to additional recipients"
+    "send-alert": "Send alert to additional recipients",
+    "fragmentations": "Fragmentations"
   },
   "OverflightMap": {
     "map_type": "Map type:",
@@ -2015,6 +2036,51 @@
     "help": {
       "title": "Help with this table",
       "content": "<p><bold>This table shows all upcoming and previous tracked fragmentation events that have been identified by Space-Track and ingested into Monitor space hazards, including events which pose a risk to UK satellites and Human Spaceflight missions. Higher risk events contain additional analysis by UKSA's Orbital Analysts at the National Space Operations Centre.</bold></p><list><item>Select the <bold>Event ID</bold> to view more information</item><item>Each Event ID or row represents <bold>one fragmentation event</bold></item><item>Sort the alerts according to criteria by clicking on the relevant <bold>headings</bold></item></list><p><bold>Alert thresholds</bold></p><p>Alerts about fragmentation events are produced if:</p><list><item>there is an increased risk of a potential collision with a UK operated satellite or Human Spaceflight mission</item><item>OR nominated for escalation by the National Space Operations Centre</item></list><p><bold>Risk thresholds</bold></p><p>Risk thresholds are calculated according to the probability of the object affecting UK operated satellites or Human Spaceflight mission.</p><table><thead><tr><th>Risk level</th><th>Increase in potential collision with UK satellites (%)</th></tr></thead><tbody><tr><td><tag>Low</tag></td><td>Less than 1%</td></tr><tr><td><tag>Medium</tag></td><td>1% - 5%</td></tr><tr><td><tag>High</tag></td><td>More than 5%</td></tr></tbody></table>"
+    }
+  },
+  "Fragmentation": {
+    "title": "Fragmentation event {shortId}",
+    "report_info": "<p><bold>Report {number}</bold> updated on {time} UTC</p>",
+    "accordion": {
+      "guidance_on_response": "Guidance on response",
+      "object_details": "Object details",
+      "further_information": "Further information"
+    },
+    "Executive_summary": {
+      "title": "Executive summary",
+      "content": "The UK Space Agency is actively monitoring a non-UK fragmentation event involving {objectName}. Current tracking shows approximately {fragments} pieces of debris associated with this fragmentation, though work continues to identify and catalogue other potential debris objects. This number could therefore change significantly as more data is received.",
+      "see_further_information": "<p>See <link>Further information</link> for more detail on methodology used in this report and the organisations that have been sent this alert.</p>"
+    },
+    "Next_update": {
+      "title": "Next update",
+      "content": "For Low Risk events, updates are only sent if the event breaches a higher risk threshold. For Medium and High Risk events, updates are sent as soon as new information is available. A close-down report will be sent in all cases.",
+      "contact_analyst": "Operations support"
+    },
+    "Guidance_on_response": {
+      "title": "Guidance on response",
+      "uk_response": {
+        "title": "UK response",
+        "content": "<p>Sovereign sensors have been tasked to provide data on the fragments. Observations have been received; more will be generated over the weekend.</p>"
+      },
+      "press_attention": {
+        "title": "Press attention",
+        "empty": "We have not seen any press attention on this event."
+      }
+    },
+    "Object_details": {
+      "title": "Object details"
+    },
+    "Further_information": {
+      "title": "Further information",
+      "content": "Risk thresholds are calculated according to the increase in potential collisions with UK satelites.",
+      "risk_level": "Risk level",
+      "risk": {
+        "low": "Less than {value}%",
+        "medium": "{from}% - {to}%",
+        "high": "More than {value}%"
+      },
+      "potential": "Increase in potential collisions with UK satellites",
+      "footer": "<p>Modelled fragmentation data is calculated according to the NASA breakup model. Our methodology and assumptions are detailed here.</p><p>Event time is estimated using pinch point analysis. Our methodology and assumptions are detailed here.</p>"
     }
   }
 }
