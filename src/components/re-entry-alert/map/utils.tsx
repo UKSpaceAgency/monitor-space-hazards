@@ -156,13 +156,13 @@ export const fragmentsHeatmapStyle = (index: number, visible: boolean): HeatmapL
       0,
       'rgba(128, 22, 80, 0)', // FragmentColor with 0 opacity
       0.1,
-      'rgba(128, 22, 80, 0.2)', // FragmentColor with low opacity
+      'rgba(128, 22, 80, 0.1)', // FragmentColor with low opacity
       0.3,
-      'rgba(128, 22, 80, 0.4)', // FragmentColor with medium opacity
+      'rgba(128, 22, 80, 0.2)', // FragmentColor with medium opacity
       0.6,
-      'rgba(128, 22, 80, 0.6)', // FragmentColor with higher opacity
+      'rgba(128, 22, 80, 0.4)', // FragmentColor with higher opacity
       1,
-      'rgba(128, 22, 80, 0.8)', // FragmentColor with high opacity
+      'rgba(128, 22, 80, 0.6)', // FragmentColor with high opacity
     ],
     'heatmap-intensity': [
       'interpolate',
