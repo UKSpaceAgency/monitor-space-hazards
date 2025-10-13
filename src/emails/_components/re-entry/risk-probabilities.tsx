@@ -37,7 +37,7 @@ export const ReentryRiskProbabilities = ({ event, ...props }: ReentryRiskProbabi
   return (
     <Section className="!w-full" {...props}>
       <Row
-        className="text-sm"
+        className="text-sm !w-full"
       >
         <Column className="w-1/3 p-2">&nbsp;</Column>
         <Column className="font-bold text-center w-2/3 p-2">{t('probability')}</Column>
@@ -49,7 +49,7 @@ export const ReentryRiskProbabilities = ({ event, ...props }: ReentryRiskProbabi
         return (
           <Row
             key={type}
-            className={clsx('text-sm w-full', {
+            className={clsx('text-sm !w-full', {
               'bg-[#f0f0f0]': index % 2 === 0,
             })}
           >

@@ -31,7 +31,7 @@ export const env = createEnv({
     NEXT_PUBLIC_SENTRY_DSN: z.string().optional(),
     NEXT_PUBLIC_PUBLIC_GA: z.string().optional(),
     NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: z.string().optional(),
-    NEXT_PUBLIC_FEEDBACK_URL: z.string(),
+    NEXT_PUBLIC_FEEDBACK_URL: z.string().optional(),
   },
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,

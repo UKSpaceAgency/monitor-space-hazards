@@ -37,7 +37,7 @@ const FeedbackForm = () => {
     });
 
     try {
-      await fetch(env.NEXT_PUBLIC_FEEDBACK_URL, {
+      await fetch(env.NEXT_PUBLIC_FEEDBACK_URL ?? '', {
         method: 'POST',
         body: formData,
       });
