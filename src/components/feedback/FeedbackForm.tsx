@@ -1,12 +1,13 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 
-import { postFeedback } from '@/actions/postFeedback';
+import { env } from '@/libs/Env';
 import Button from '@/ui/button/button';
 import Fieldset, { } from '@/ui/fieldset/fieldset';
 import Radios from '@/ui/radios/radios';
@@ -20,8 +21,9 @@ const FeedbackForm = () => {
   const t = useTranslations('Forms.Feedback');
 
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
-  const { register, handleSubmit, formState: { errors } } = useForm<FeedbackSchema>({
+  const { register, handleSubmit, formState: { errors }, setError } = useForm<FeedbackSchema>({
     defaultValues: feedBackFormDefaultValues,
     resolver: zodResolver(feedbackSchema),
   });
@@ -29,7 +31,22 @@ const FeedbackForm = () => {
   const onSubmit: SubmitHandler<FeedbackSchema> = async (data) => {
     setLoading(true);
 
-    await postFeedback(data);
+    const formData = new FormData();
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+
+    try {
+      await fetch(env.NEXT_PUBLIC_FEEDBACK_URL, {
+        method: 'POST',
+        body: formData,
+      });
+      router.push('/feedback/success');
+    } catch (error) {
+      setError('root', {
+        message: error instanceof Error ? error.message : 'An error occurred while submitting the feedback',
+      });
+    }
 
     setLoading(false);
   };
@@ -81,7 +98,7 @@ const FeedbackForm = () => {
       </Fieldset>
       <TextArea
         {...register('details')}
-        id="details"
+        id="Details"
         label={t('textarea_label')}
         labelClass="govuk-fieldset__legend--m"
         hint={t('textarea_hint')}
@@ -89,6 +106,7 @@ const FeedbackForm = () => {
         aria-label="Details"
         error={errors.details?.message}
       />
+      <input type="hidden" name="_gotcha" style={{ display: 'none !important' }} />
       <Button type="submit" disabled={loading} aria-label={t('submit')}>{t('submit')}</Button>
     </form>
   );

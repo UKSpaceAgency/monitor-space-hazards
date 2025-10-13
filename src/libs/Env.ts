@@ -21,20 +21,18 @@ export const env = createEnv({
     AUTH0_CLIENT_SECRET: z.string(),
     COSMIC_BUCKET_SLUG: z.string().optional(),
     COSMIC_READ_KEY: z.string().optional(),
-    FEEDBACK_URL: z.string(),
   },
   shared: {
     NODE_ENV: z
       .enum(['development', 'test', 'production'])
       .default('development'),
   },
-
   client: {
     NEXT_PUBLIC_SENTRY_DSN: z.string().optional(),
     NEXT_PUBLIC_PUBLIC_GA: z.string().optional(),
     NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: z.string().optional(),
+    NEXT_PUBLIC_FEEDBACK_URL: z.string(),
   },
-
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
@@ -49,7 +47,7 @@ export const env = createEnv({
     NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
     NEXT_PUBLIC_PUBLIC_GA: process.env.NEXT_PUBLIC_PUBLIC_GA,
     NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN,
-    FEEDBACK_URL: process.env.FEEDBACK_URL,
+    NEXT_PUBLIC_FEEDBACK_URL: process.env.NEXT_PUBLIC_FEEDBACK_URL,
   },
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
   emptyStringAsUndefined: true,
