@@ -35,12 +35,12 @@ export const ReentryRiskProbabilities = ({ event, ...props }: ReentryRiskProbabi
   // }];
 
   return (
-    <Section className="!w-full" {...props}>
+    <Section {...props}>
       <Row
         className="text-sm !w-full"
       >
-        <Column className="w-1/3 p-2">&nbsp;</Column>
-        <Column className="font-bold text-center w-2/3 p-2">{t('probability')}</Column>
+        <Column className="w-1/2 p-2">&nbsp;</Column>
+        <Column className="font-bold text-center w-1/2 p-2">{t('probability')}</Column>
         {/* <Column className="w-1/3 font-bold text-center p-2">
             {t('risk')}
           </Column> */}
@@ -53,8 +53,8 @@ export const ReentryRiskProbabilities = ({ event, ...props }: ReentryRiskProbabi
               'bg-[#f0f0f0]': index % 2 === 0,
             })}
           >
-            <Column className="font-bold w-1/3 p-2">{type}</Column>
-            <Column className="w-2/3 text-center p-2">
+            <Column className="font-bold w-1/2 p-2">{type}</Column>
+            <Column className="w-1/2 text-center p-2">
               {isNumber(probability) ? `${roundedFixed(probability)}%` : 'Unknown'}
             </Column>
             {/* <Column style={{ backgroundColor: riskStyle.background, color: riskStyle.text }} className="w-1/3 text-center p-2">{risk}</Column> */}

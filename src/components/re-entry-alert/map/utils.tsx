@@ -35,7 +35,7 @@ export const RegionsGeoJson: Partial<Record<RegionsEnum, unknown>> = {
   ],
 };
 
-export const RegionColor = '#FFDD00';
+export const RegionColor = '#FFC000';
 
 export const regionLayer = (region: string): FillLayerSpecification => ({
   id: region,
@@ -49,9 +49,9 @@ export const regionLayer = (region: string): FillLayerSpecification => ({
 });
 
 // here is flightpath color
-export const FlightpathColor = '#3D3D3D';
-export const FragmentColor = '#801650';
-export const OverflightColor = '#F46A25';
+export const FlightpathColor = '#007CC8';
+export const FragmentColor = '#C000000';
+export const OverflightColor = '#92D050';
 // export const OverflightColors = [
 //   FlightpathColor,
 //   '#28A197',
@@ -154,15 +154,15 @@ export const fragmentsHeatmapStyle = (index: number, visible: boolean): HeatmapL
       ['linear'],
       ['heatmap-density'],
       0,
-      'rgba(128, 22, 80, 0)', // FragmentColor with 0 opacity
+      'rgba(192,0,0, 0)', // FragmentColor with 0 opacity
       0.1,
-      'rgba(128, 22, 80, 0.1)', // FragmentColor with low opacity
+      'rgba(192,0,0, 0.1)', // FragmentColor with low opacity
       0.3,
-      'rgba(128, 22, 80, 0.2)', // FragmentColor with medium opacity
+      'rgba(192,0,0, 0.2)', // FragmentColor with medium opacity
       0.6,
-      'rgba(128, 22, 80, 0.4)', // FragmentColor with higher opacity
+      'rgba(192,0,0, 0.4)', // FragmentColor with higher opacity
       1,
-      'rgba(128, 22, 80, 0.6)', // FragmentColor with high opacity
+      'rgba(192,0,0, 0.6)', // FragmentColor with high opacity
     ],
     'heatmap-intensity': [
       'interpolate',

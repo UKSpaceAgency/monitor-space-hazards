@@ -1863,6 +1863,7 @@
       "title_closed": "Re-entry Close Down Alert - Report {reportNumber}",
       "risk_probabilities_title": "UK Risk Probabilities",
       "event_summary_title": "Event Summary",
+      "regions_at_risk_title": "Regions at Risk",
       "additional_information_title": "Additional Information",
       "event_details_title": "Event Details",
       "utc_note": "* Coordinated Universal Time (UTC) is 1 hour behind British Summer Time (BST) and the same as Greenwich Mean Time (GMT).",
