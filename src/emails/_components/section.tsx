@@ -14,7 +14,7 @@ export const Section = ({ children, className, style, title }: SectionProps) => 
         {title}
       </Heading>
       <Separator />
-      <EmailSection>
+      <EmailSection className="!w-full">
         {children}
       </EmailSection>
     </EmailSection>

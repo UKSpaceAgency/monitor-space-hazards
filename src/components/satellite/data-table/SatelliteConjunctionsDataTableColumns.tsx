@@ -61,11 +61,16 @@ export const satteliteConjunctionColumns: TranslatedColumnDef<TypeEventOut>[] = 
     enableSorting: false,
     columns: [
       {
-        accessorKey: `collisionProbability`,
+        id: 'collisionProbability',
+        accessorKey: 'collisionProbability',
         header: 'Conjunctions.space_track',
+        size: 200,
         cell: ({ getValue }) => {
-          const value = getValue<number | null>();
-          return displayExponential(value, 3);
+          const collisionProbability = getValue<number>();
+          if (collisionProbability === undefined) {
+            return '-';
+          }
+          return displayExponential(collisionProbability, 4);
         },
       },
       {
@@ -73,11 +78,9 @@ export const satteliteConjunctionColumns: TranslatedColumnDef<TypeEventOut>[] = 
         accessorKey: 'collisionProbabilityUksa',
         header: 'Conjunctions.uksa',
         cell: ({ getValue }) => {
-          const value = getValue<{ collisionProbability: number }>();
-          const { collisionProbability } = value ?? {};
-
-          if (!collisionProbability) {
-            return '';
+          const collisionProbability = getValue<number>();
+          if (collisionProbability === undefined) {
+            return '-';
           }
           return displayExponential(collisionProbability, 4);
         },

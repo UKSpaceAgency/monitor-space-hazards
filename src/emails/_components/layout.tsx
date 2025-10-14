@@ -20,6 +20,7 @@ export function Layout({ title, subtitle, withPlaceholders, children, isNotifica
           sans: ['Calibri', 'Arial', 'sans-serif'],
         },
         fontSize: {
+          '2xs': ['10px', { lineHeight: '14px' }],
           'xs': ['12px', { lineHeight: '16px' }],
           'sm': ['14px', { lineHeight: '20px' }],
           'base': ['16px', { lineHeight: '20px' }],

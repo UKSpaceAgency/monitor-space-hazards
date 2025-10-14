@@ -12,34 +12,41 @@ const options: Option[][] = [[
   {
     children: Regions.ENGLAND.name,
     value: Regions.ENGLAND.id,
+    id: Regions.ENGLAND.id,
   },
 
   {
     children: Regions.SCOTLAND.name,
     value: Regions.SCOTLAND.id,
+    id: Regions.SCOTLAND.id,
   },
 
   {
     children: Regions.WALES.name,
     value: Regions.WALES.id,
+    id: Regions.WALES.id,
   },
 
   {
     children: Regions.NORTHERN_IRELAND.name,
     value: Regions.NORTHERN_IRELAND.id,
+    id: Regions.NORTHERN_IRELAND.id,
   },
 ], [
   {
     children: Regions.BRITISH_OVERSEAS_TERRITORIES.name,
     value: Regions.BRITISH_OVERSEAS_TERRITORIES.id,
+    id: Regions.BRITISH_OVERSEAS_TERRITORIES.id,
   },
   {
     children: Regions.UK_AIRSPACE.name,
     value: Regions.UK_AIRSPACE.id,
+    id: Regions.UK_AIRSPACE.id,
   },
   {
     children: Regions.NAVAREA.name,
     value: Regions.NAVAREA.id,
+    id: Regions.NAVAREA.id,
   },
 ]];
 

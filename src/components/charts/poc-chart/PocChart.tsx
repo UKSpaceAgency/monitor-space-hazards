@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { useMemo, useState } from 'react';
 
 import type { TypeEventSummaryOut } from '@/__generated__/data-contracts';
+import { DownloadData } from '@/components/DownloadData';
 import RichText from '@/components/RichText';
 import Checkboxes from '@/ui/checkboxes/checkboxes';
 import { displayExponential } from '@/utils/Math';
@@ -77,6 +78,7 @@ export function PocChart({ data }: PocChartProps) {
           )
         }
       />
+      <DownloadData type={t('download')} params={{}} downloadAction={async () => data} data-pdf-ignore ariaLabel="Poc chart" />
     </div>
   );
 }

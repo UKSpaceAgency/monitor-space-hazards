@@ -35,7 +35,7 @@ const BaseTemplate = ({
         <Header />
         <PhaseBanner tag="Beta">
           {t.rich('phase_banner', {
-            feedback: chunks => <Link className="govuk-link" href="/feedback" target="_blank">{chunks}</Link>,
+            feedback: chunks => <Link className="govuk-link" href="/feedback">{chunks}</Link>,
           })}
         </PhaseBanner>
         {showNavigation && <Navigation />}
@@ -44,7 +44,7 @@ const BaseTemplate = ({
         {breadcrumb}
         <main className="govuk-main-wrapper" id="main-content">
           {incidentBanners.map(banner => (
-            <NotificationBanner key={banner.id}>
+            <NotificationBanner key={banner.id} aria-label={banner.title} id={banner.id}>
               <HtmlMapper content={banner.content} />
             </NotificationBanner>
           ))}

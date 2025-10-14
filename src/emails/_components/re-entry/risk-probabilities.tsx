@@ -27,19 +27,20 @@ export const ReentryRiskProbabilities = ({ event, ...props }: ReentryRiskProbabi
     type: t('reentry_over_uk'),
     probability: event.atmosphericProbability,
     risk: event.atmosphericRisk,
-  }, {
-    type: t('uk_casuality_risk'),
-    probability: event.humanCasualtyProbability,
-    risk: event.humanCasualtyRisk,
   }];
+  // }, {
+  //   type: t('uk_casuality_risk'),
+  //   probability: event.humanCasualtyProbability,
+  //   risk: event.humanCasualtyRisk,
+  // }];
 
   return (
     <Section {...props}>
       <Row
-        className="text-sm"
+        className="text-sm !w-full"
       >
-        <Column className="w-1/3 p-2">&nbsp;</Column>
-        <Column className="font-bold text-center w-2/3 p-2">{t('probability')}</Column>
+        <Column className="w-1/2 p-2">&nbsp;</Column>
+        <Column className="font-bold text-center w-1/2 p-2">{t('probability')}</Column>
         {/* <Column className="w-1/3 font-bold text-center p-2">
             {t('risk')}
           </Column> */}
@@ -48,12 +49,12 @@ export const ReentryRiskProbabilities = ({ event, ...props }: ReentryRiskProbabi
         return (
           <Row
             key={type}
-            className={clsx('text-sm', {
+            className={clsx('text-sm !w-full', {
               'bg-[#f0f0f0]': index % 2 === 0,
             })}
           >
-            <Column className="font-bold w-1/3 p-2">{type}</Column>
-            <Column className="w-2/3 text-center p-2">
+            <Column className="font-bold w-1/2 p-2">{type}</Column>
+            <Column className="w-1/2 text-center p-2">
               {isNumber(probability) ? `${roundedFixed(probability)}%` : 'Unknown'}
             </Column>
             {/* <Column style={{ backgroundColor: riskStyle.background, color: riskStyle.text }} className="w-1/3 text-center p-2">{risk}</Column> */}

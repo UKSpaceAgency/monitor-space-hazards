@@ -28,7 +28,6 @@ export function Radios({ items, legend, value, hint, error, inline, small, legen
   return (
     <fieldset
       aria-label={`${ariaLabel} ${required ? 'required' : 'optional'} field`}
-      aria-describedby={hint}
       className={clsx(
         'govuk-form-group',
         { 'govuk-form-group--error': !!error },

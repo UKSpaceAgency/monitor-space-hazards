@@ -42,13 +42,15 @@ function ReEntryEmail({ event, report, tip, withPlaceholders }: ReEntryEmailProp
       withPlaceholders={withPlaceholders}
     >
       <Subheader risk={event.fragmentsRisk} />
-      <Section title={t('Reentry_alert.risk_probabilities_title')}>
-        <ReentryRiskProbabilities event={event} className="pb-6" />
+      <Section title={t('Reentry_alert.risk_probabilities_title')} className="!w-full">
+        <ReentryRiskProbabilities event={event} className="pb-6 !w-full" />
       </Section>
       <Section title={t('Reentry_alert.event_summary_title')}>
         <ReentryEventSummary event={event} tip={tip} className="pb-6" />
         {event.overflightTime.length > 0 && <Map src="{{MAP.src}}" className="pb-6" />}
         <Map src="{{WORLD_MAP.src}}" className="pb-6" />
+      </Section>
+      <Section title={t('Reentry_alert.regions_at_risk_title')}>
         <ReentryAffectedRegions report={report} className="pb-6" />
       </Section>
       <Section title={t('Reentry_alert.event_details_title')}>

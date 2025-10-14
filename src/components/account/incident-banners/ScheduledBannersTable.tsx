@@ -2,7 +2,7 @@
 
 import { useMutation } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import type { TypeBannerMessagesBroadcastedOut } from '@/__generated__/data-contracts';
 import { deleteIncidentBanner } from '@/actions/deleteIncidentBanner';
@@ -19,6 +19,7 @@ type ScheduledBannersTableProps = {
 const ScheduledBannersTable = ({ banners }: ScheduledBannersTableProps) => {
   const t = useTranslations('Tables.Incident_banners');
   const [bannerToRemove, setBannerToRemove] = useState<{ id?: string; title: string } | null>(null);
+  const removeButtonRef = useRef<HTMLButtonElement>(null);
 
   const { mutate, isSuccess } = useMutation({
     mutationKey: ['removeBanner', bannerToRemove?.id],
@@ -29,11 +30,17 @@ const ScheduledBannersTable = ({ banners }: ScheduledBannersTableProps) => {
     },
   });
 
+  useEffect(() => {
+    if (bannerToRemove && !isSuccess) {
+      removeButtonRef.current?.focus();
+    }
+  }, [bannerToRemove, isSuccess]);
+
   return (
     <>
       {bannerToRemove && (isSuccess
         ? (
-            <TopNotificationBanner status="success" heading={t('Success_banner.title', { title: bannerToRemove.title })}>
+            <TopNotificationBanner status="success" heading={t('Success_banner.title', { title: bannerToRemove.title })} aria-label={t('Success_banner.title', { title: bannerToRemove.title })}>
               <p className="govuk-body">{t('Success_banner.content')}</p>
               <ButtonGroup>
                 <Button as="link" href="/conjunctions" className="govuk-button--secondary" aria-label={t('Success_banner.button')}>
@@ -43,9 +50,9 @@ const ScheduledBannersTable = ({ banners }: ScheduledBannersTableProps) => {
             </TopNotificationBanner>
           )
         : (
-            <TopNotificationBanner status="error" heading={t('Remove_confirmation.title', { title: bannerToRemove.title })}>
+            <TopNotificationBanner status="error" heading={t('Remove_confirmation.title', { title: bannerToRemove.title })} aria-label={t('Remove_confirmation.title', { title: bannerToRemove.title })}>
               <ButtonGroup>
-                <Button variant="warning" onClick={() => mutate()} aria-label={t('Remove_confirmation.yes')}>{t('Remove_confirmation.yes')}</Button>
+                <Button ref={removeButtonRef} variant="warning" onClick={() => mutate()} aria-label={t('Remove_confirmation.yes')}>{t('Remove_confirmation.yes')}</Button>
                 <Button variant="secondary" onClick={() => setBannerToRemove(null)} aria-label={t('Remove_confirmation.no')}>{t('Remove_confirmation.no')}</Button>
               </ButtonGroup>
             </TopNotificationBanner>

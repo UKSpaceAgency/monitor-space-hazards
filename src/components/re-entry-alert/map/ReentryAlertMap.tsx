@@ -1,10 +1,10 @@
 'use client';
 
-import type { FeatureCollection, Point } from 'geojson';
 import type { MapMouseEvent } from 'mapbox-gl';
 import dynamic from 'next/dynamic';
+import { useTranslations } from 'next-intl';
 import type { ReactNode } from 'react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import type { MapRef } from 'react-map-gl';
 import Map, { Layer, Source } from 'react-map-gl';
 
@@ -19,7 +19,7 @@ import type { MapTooltipInfo } from './ReentryAlertMapTooltip';
 import { ReentryAlertMapType } from './ReentryAlertMapType';
 import { type MapView, ReentryAlertMapView } from './ReentryAlertMapView';
 import { ReentryAlertOverflights } from './ReentryAlertOverflights';
-import { flightpathStyle, fragmentsCircleStyle, MapTypes, type OverflightType, regionLayer, RegionsGeoJson } from './utils';
+import { flightpathHeatmapStyle, fragmentsHeatmapStyle, MapTypes, type OverflightType, regionLayer, RegionsGeoJson } from './utils';
 
 const ReentryAlertMapTooltip = dynamic(() => import('./ReentryAlertMapTooltip').then(mod => mod.ReentryAlertMapTooltip), {
   ssr: false,
@@ -39,14 +39,15 @@ const MapStyles = {
 };
 
 type ReentryAlertMapProps = {
+  reentryId: string;
+  reportId: string;
   overflightTime: string[];
-  flightpathsCollection: Map<number, FeatureCollection<Point>>;
-  fragmentsCollection: Map<number, FeatureCollection<Point>>;
   detailsTitle?: string;
   detailsContent?: ReactNode;
 };
 
-const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsCollection, detailsTitle, detailsContent }: ReentryAlertMapProps) => {
+const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, detailsContent }: ReentryAlertMapProps) => {
+  const t = useTranslations('OverflightMap.overflights');
   const mapRef = useRef<MapRef | null>(null);
   const [mapType, setMapType] = useState<MapTypes>(MapTypes.streets);
   const [mapView, setMapView] = useState<MapView>('globe');
@@ -157,18 +158,18 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
                       <Layer {...regionLayer(region)} slot="bottom" />
                     </Source>
                   ))}
-              {flightpathsCollection && Array.from(flightpathsCollection.entries()).map(([index, flightpath]) => (
-                <Source key={`FLIGHTPATH-${index}`} type="geojson" data={flightpath}>
+              {flightpaths && flightpaths.map(index => (
+                <Source key={`FLIGHTPATH-${index}`} type="geojson" data={`https://www.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-overflight_features_${index}.geojson`}>
                   <Layer
-                    {...flightpathStyle(index, types.includes('FLIGHTPATH') && flightpaths.includes(index))}
+                    {...flightpathHeatmapStyle(index, types.includes('FLIGHTPATH') && flightpaths.includes(index))}
                     slot="middle"
                   />
                 </Source>
               ))}
-              {fragmentsCollection && Array.from(fragmentsCollection.entries()).map(([index, fragments]) => (
-                <Source key={`FRAGMENT-${index}`} type="geojson" data={fragments}>
+              {flightpaths.map(index => (
+                <Source key={`FRAGMENT-${index}`} type="geojson" data={`https://www.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-fragment_features_${index}.geojson`}>
                   <Layer
-                    {...fragmentsCircleStyle(index, types.includes('FRAGMENT') && flightpaths.includes(index))}
+                    {...fragmentsHeatmapStyle(index, types.includes('FRAGMENT') && flightpaths.includes(index))}
                     slot="middle"
                   />
                 </Source>
@@ -189,6 +190,46 @@ const ReentryAlertMap = ({ overflightTime, flightpathsCollection, fragmentsColle
           <ReentryAlertMapCenterButton />
           {/* <ReentryAlertMapLegend /> */}
         </Map>
+      </div>
+      <div className="flex gap-2 items-center mb-6">
+        <p className="govuk-body-s mb-0">Download re-entry geoJSON data:</p>
+        <div className="flex gap-2">
+          <a
+            href={`https://www.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-overflight_features_0.geojson`}
+            download={`${reentryId}-${reportId}-flightpath.geojson`}
+            className="govuk-link text-blue"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            {t('flightpath')}
+          </a>
+          {overflightTime.map((_, index) => {
+            const number = index + 1;
+            return (
+              // eslint-disable-next-line react/no-array-index-key
+              <Fragment key={`DOWNLOADS-${index}`}>
+                <a
+                  href={`https://www.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-overflight_features_${number}.geojson`}
+                  download={`${reentryId}-${reportId}-overflight_${number}.geojson`}
+                  className="govuk-link text-blue"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {t('overflight', { number })}
+                </a>
+                <a
+                  href={`https://www.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}/${reportId}-fragment_features_${number}.geojson`}
+                  download={`${reentryId}-${reportId}-fragment_${number}.geojson`}
+                  className="govuk-link text-blue"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {t('fragment', { number })}
+                </a>
+              </Fragment>
+            );
+          })}
+        </div>
       </div>
       <Details
         summary={detailsTitle}

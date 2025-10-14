@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { useMemo, useState } from 'react';
 
 import type { TypeEventSummaryOut } from '@/__generated__/data-contracts';
+import { DownloadData } from '@/components/DownloadData';
 import RichText from '@/components/RichText';
 import Checkboxes from '@/ui/checkboxes/checkboxes';
 import { getAbsoluteValue } from '@/utils/Math';
@@ -86,6 +87,7 @@ export function MissDistanceChart({ data, isSpecial }: MissDistanceChartProps) {
           )
         }
       />
+      <DownloadData type={t('download')} params={{}} downloadAction={async () => data} data-pdf-ignore ariaLabel="Mtp chart" />
     </div>
   );
 }

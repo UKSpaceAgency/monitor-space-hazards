@@ -10,7 +10,7 @@ export function BackLink({ text = 'Back' }: BackLinkProps) {
   const router = useRouter();
 
   return (
-    <button type="button" onClick={() => router.back()} className="govuk-back-link" aria-describedby={text}>
+    <button type="button" onClick={() => router.back()} className="govuk-back-link" aria-label={text}>
       {text}
     </button>
   );

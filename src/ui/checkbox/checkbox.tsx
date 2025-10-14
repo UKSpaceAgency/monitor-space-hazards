@@ -19,7 +19,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         <input
           {...props}
           id={inputId}
-          aria-describedby={props.id ?? id}
+          aria-describedby={inputId}
           className="govuk-checkboxes__input"
           type="checkbox"
           ref={ref}
@@ -31,6 +31,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           })}
         >
           {children}
+          {/* this div just for accessibility purpose */}
+          <div className="hidden">{inputId}</div>
         </label>
         {hint && (
           <div className="govuk-hint govuk-checkboxes__hint">{hint}</div>

@@ -76,7 +76,7 @@ const AddNewUserFormContent = ({ organizations, isSubmitting, register, role, er
             hint={t('select_account_type_hint')}
             error={errors.role?.message}
             items={Object.keys(roles[role as keyof typeof roles]).map(key => ({
-              id: 'role',
+              id: `role-${key}`,
               value: key,
               children: AccountType[key as keyof typeof AccountType],
               ...register('role'),

@@ -34,7 +34,7 @@ const ScheduleBannerConfirm = ({ title, banner }: ScheduleBannerConfirmProps) =>
   return (
     <>
       {isSuccess && (
-        <TopNotificationBanner status="success" heading={t('Success_banner.title', { title })}>
+        <TopNotificationBanner status="success" heading={t('Success_banner.title', { title })} aria-label="Set up incident banner" id="success-incident-banner">
           <p className="govuk-body">
             {t('Success_banner.content', {
               from: dayjs(banner.broadcastStart).format(FORMAT_DATE_TIME),
@@ -52,7 +52,7 @@ const ScheduleBannerConfirm = ({ title, banner }: ScheduleBannerConfirmProps) =>
         </TopNotificationBanner>
       )}
       {confirmModal && (
-        <TopNotificationBanner status="error" heading={t('Confirm_banner.title', { title })}>
+        <TopNotificationBanner status="error" heading={t('Confirm_banner.title', { title })} aria-label="Display confirmation banner" id="error-incident-banner">
           <p className="govuk-body">
             {t('Confirm_banner.content')}
           </p>

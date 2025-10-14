@@ -16,7 +16,7 @@
     "commitlint": "commitlint --edit",
     "commitizen": "exec < /dev/tty && git cz --hook || true",
     "prepare": "husky",
-    "generate-api": "vite-node generateApi.ts",
+    "codegen": "vite-node generateApi.ts",
     "push-i18n": "crowdin upload sources",
     "pull-i18n": "crowdin download sources",
     "email": "email dev --dir ./src/emails"

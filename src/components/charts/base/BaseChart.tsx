@@ -118,13 +118,13 @@ export function BaseChart({
           ariaLabel={ariaLabel}
           items={[
             {
-              id: 'linear',
+              id: `${id}-linear`,
               title: 'Linear',
               ariaLabel: 'Linear',
               value: 'linear',
             },
             {
-              id: 'log',
+              id: `${id}-log`,
               title: 'Log',
               ariaLabel: 'Log',
               value: 'logarithmic',

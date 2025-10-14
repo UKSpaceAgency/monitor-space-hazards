@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
 
 import Panel from '@/ui/panel/panel';
 
@@ -6,8 +6,8 @@ export const metadata = {
   title: 'Feedback sending complete',
 };
 
-export default async function FeedbackSuccess() {
-  const t = await getTranslations('Forms.Feedback');
+export default function FeedbackSuccess() {
+  const t = useTranslations('Forms.Feedback');
 
   return (
     <Panel heading={t('success')} />

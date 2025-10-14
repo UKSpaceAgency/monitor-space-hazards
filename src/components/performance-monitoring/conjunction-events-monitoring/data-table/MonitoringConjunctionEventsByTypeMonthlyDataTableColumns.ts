@@ -2,7 +2,7 @@
 import type { StatsMonthlyConjunctionEventsByObjectType } from '@/actions/getStatsMonthlyConjunctionEventsByObjectType';
 import type { TranslatedColumnDef } from '@/types';
 
-export const eventsByTypeMonthlyColumns: TranslatedColumnDef<StatsMonthlyConjunctionEventsByObjectType>[] = [
+export const conjunctionEventsByTypeMonthlyColumns: TranslatedColumnDef<StatsMonthlyConjunctionEventsByObjectType>[] = [
   {
     accessorKey: 'month',
     id: 'month',

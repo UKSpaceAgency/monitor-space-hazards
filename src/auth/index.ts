@@ -111,7 +111,7 @@ export const { handlers, signIn, signOut, auth, unstable_update: update } = Next
     signIn: '/',
   },
   session: {
-    maxAge: 60 * 60 * 24,
+    maxAge: 60 * 60 * 23,
   },
   callbacks: {
     authorized: async ({ request, auth }) => {
@@ -123,6 +123,7 @@ export const { handlers, signIn, signOut, auth, unstable_update: update } = Next
         || request.nextUrl.pathname === '/cookies'
         || request.nextUrl.pathname === '/contact-analyst'
         || request.nextUrl.pathname === '/feedback'
+        || request.nextUrl.pathname.startsWith('/feedback/')
       ) {
         return true;
       }

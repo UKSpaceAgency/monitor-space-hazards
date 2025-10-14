@@ -1355,14 +1355,24 @@ export interface TypeFragmentationEvent {
   object_history?: string | null;
   /** Risk */
   risk?: string | null;
+  /** Known Fragments */
+  known_fragments?: number | null;
   /** Primary Object Common Name */
   primary_object_common_name?: string | null;
   /** Primary Object Norad Id */
-  primary_object_norad_id: string;
+  primary_object_norad_id?: string | null;
+  /** Primary Object Type */
+  primary_object_type?: string | null;
+  /** Primary Object Licensing Country */
+  primary_object_licensing_country?: string | null;
   /** Secondary Object Common Name */
   secondary_object_common_name?: string | null;
   /** Secondary Object Norad Id */
   secondary_object_norad_id?: string | null;
+  /** Secondary Object Type */
+  secondary_object_type?: string | null;
+  /** Secondary Object Licensing Country */
+  secondary_object_licensing_country?: string | null;
   /**
    * Is Active
    * @default true
@@ -1372,6 +1382,8 @@ export interface TypeFragmentationEvent {
   report_number?: number | null;
   /** Closed Comment */
   closed_comment?: string | null;
+  /** Affected Regime */
+  affected_regime?: string | null;
 }
 
 /** FragmentationEventsSortBy */
@@ -2579,7 +2591,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2025-08-13T12:47:01.949721"
+   * @default "2025-09-30T09:32:04.928672"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3684,7 +3696,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2025-09-01"
+   * @default "2025-10-01"
    */
   end_date?: string;
 }
@@ -3699,7 +3711,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2025-09-01"
+   * @default "2025-10-01"
    */
   end_date?: string;
 }
@@ -3714,7 +3726,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-09-01"
+   * @default "2025-10-01"
    */
   end_date?: string;
 }
@@ -3729,7 +3741,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-09-01"
+   * @default "2025-10-01"
    */
   end_date?: string;
 }
@@ -3744,7 +3756,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-09-01"
+   * @default "2025-10-01"
    */
   end_date?: string;
 }
@@ -3759,7 +3771,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2025-09-01"
+   * @default "2025-10-01"
    */
   end_date?: string;
 }
