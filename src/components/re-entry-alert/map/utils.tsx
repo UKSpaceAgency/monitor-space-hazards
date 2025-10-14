@@ -195,3 +195,59 @@ export const fragmentsHeatmapStyle = (index: number, visible: boolean): HeatmapL
     ],
   },
 });
+
+export const flightpathHeatmapStyle = (index: number, visible: boolean): HeatmapLayerSpecification => ({
+  id: `FLIGHTPATH-HEATMAP-${index}`,
+  type: 'heatmap',
+  source: `FLIGHTPATH-${index}`,
+  layout: {
+    visibility: visible ? 'visible' : 'none',
+  },
+  paint: {
+    // Color changes based on index - primary flightpath uses FlightpathColor, others use OverflightColor
+    'heatmap-color': [
+      'interpolate',
+      ['linear'],
+      ['heatmap-density'],
+      0,
+      index === 0 ? 'rgba(0,124,200, 0)' : 'rgba(146,208,80, 0)', // FlightpathColor or OverflightColor with 0 opacity
+      0.1,
+      index === 0 ? 'rgba(0,124,200, 0.1)' : 'rgba(146,208,80, 0.1)', // FlightpathColor or OverflightColor with low opacity
+      0.3,
+      index === 0 ? 'rgba(0,124,200, 0.2)' : 'rgba(146,208,80, 0.2)', // FlightpathColor or OverflightColor with medium opacity
+      0.6,
+      index === 0 ? 'rgba(0,124,200, 0.4)' : 'rgba(146,208,80, 0.4)', // FlightpathColor or OverflightColor with higher opacity
+      1,
+      index === 0 ? 'rgba(0,124,200, 0.6)' : 'rgba(146,208,80, 0.6)', // FlightpathColor or OverflightColor with high opacity
+    ],
+    'heatmap-intensity': [
+      'interpolate',
+      ['linear'],
+      ['zoom'],
+      0,
+      0.8,
+      9,
+      1.2,
+    ],
+    'heatmap-radius': [
+      'interpolate',
+      ['linear'],
+      ['zoom'],
+      0,
+      8,
+      5,
+      8,
+      9,
+      8,
+    ],
+    'heatmap-weight': [
+      'interpolate',
+      ['linear'],
+      ['get', 'fragments_number'],
+      0,
+      0,
+      1,
+      1,
+    ],
+  },
+});
