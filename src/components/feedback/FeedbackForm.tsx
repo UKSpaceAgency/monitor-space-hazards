@@ -21,6 +21,9 @@ const FeedbackForm = () => {
 
   const [loading, setLoading] = useState(false);
 
+  // eslint-disable-next-line no-console
+  console.log(env.NEXT_PUBLIC_FEEDBACK_URL);
+
   const { register, handleSubmit, formState: { errors }, setError } = useForm<FeedbackSchema>({
     defaultValues: feedBackFormDefaultValues,
     resolver: zodResolver(feedbackSchema),
