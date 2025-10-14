@@ -20,7 +20,6 @@ const FeedbackForm = () => {
   const t = useTranslations('Forms.Feedback');
 
   const [loading, setLoading] = useState(false);
-  // const router = useRouter();
 
   const { register, handleSubmit, formState: { errors }, setError } = useForm<FeedbackSchema>({
     defaultValues: feedBackFormDefaultValues,

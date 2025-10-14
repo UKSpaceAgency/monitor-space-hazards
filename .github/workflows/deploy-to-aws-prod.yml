@@ -50,6 +50,7 @@ jobs:
             cosmic-key=${{ secrets.COSMIC_READ_KEY }}
             mapbox-token=${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }}
             public-ga=${{ secrets.NEXT_PUBLIC_PUBLIC_GA }}
+            feedback-url=${{ secrets.NEXT_PUBLIC_FEEDBACK_URL }}
           tags: |
             ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest-prod
             ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
