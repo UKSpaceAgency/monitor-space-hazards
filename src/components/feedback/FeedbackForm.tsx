@@ -21,9 +21,6 @@ const FeedbackForm = () => {
 
   const [loading, setLoading] = useState(false);
 
-  // eslint-disable-next-line no-console
-  console.log(env.NEXT_PUBLIC_FEEDBACK_URL);
-
   const { register, handleSubmit, formState: { errors }, setError } = useForm<FeedbackSchema>({
     defaultValues: feedBackFormDefaultValues,
     resolver: zodResolver(feedbackSchema),
@@ -52,6 +49,9 @@ const FeedbackForm = () => {
         body: formData,
       });
 
+      // eslint-disable-next-line no-console
+      console.log(response);
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -62,9 +62,6 @@ const FeedbackForm = () => {
       // Show success message (you can customize this)
       // eslint-disable-next-line no-alert
       alert('Thank you for your feedback!');
-
-      // Reset form
-      window.location.reload();
     } catch (error) {
       console.error('Feedback submission error:', error);
       setError('root', {
