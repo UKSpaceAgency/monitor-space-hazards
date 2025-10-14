@@ -30,18 +30,41 @@ const FeedbackForm = () => {
   const onSubmit: SubmitHandler<FeedbackSchema> = async (data) => {
     setLoading(true);
 
+    // Check if feedback URL is configured
+    if (!env.NEXT_PUBLIC_FEEDBACK_URL) {
+      setError('root', {
+        message: 'Feedback submission is not configured. Please contact support.',
+      });
+      setLoading(false);
+      return;
+    }
+
     const formData = new FormData();
     Object.entries(data).forEach(([key, value]) => {
       formData.append(key, value);
     });
 
     try {
-      await fetch(env.NEXT_PUBLIC_FEEDBACK_URL ?? '', {
+      const response = await fetch(env.NEXT_PUBLIC_FEEDBACK_URL, {
         method: 'POST',
         body: formData,
       });
-      // router.push('/feedback/success');
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      // Clear any existing errors
+      setError('root', { message: '' });
+
+      // Show success message (you can customize this)
+      // eslint-disable-next-line no-alert
+      alert('Thank you for your feedback!');
+
+      // Reset form
+      window.location.reload();
     } catch (error) {
+      console.error('Feedback submission error:', error);
       setError('root', {
         message: error instanceof Error ? error.message : 'An error occurred while submitting the feedback',
       });
