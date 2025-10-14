@@ -31,7 +31,7 @@ type HeaderConfig = HTMLProps<HTMLTableCellElement> & {
 const ALL_PROBABILITY_TYPES: ProbabilityType[] = [
   'fragments_probability',
   'atmospheric_probability',
-  'human_casualty_probability',
+  // 'human_casualty_probability',
 ];
 
 const ALL_OVERFLIGHTS_OPTION = 0;
@@ -95,10 +95,10 @@ const ReentryAlertImpactTable = ({ caption, impact }: ReentryAlertImpactTablePro
         id: 'atmospheric_probability',
         children: t('probability_of_atmospheric_entry'),
       },
-      {
-        id: 'human_casualty_probability',
-        children: t('probability_of_human_casualty'),
-      },
+      // {
+      //   id: 'human_casualty_probability',
+      //   children: t('probability_of_human_casualty'),
+      // },
     ];
 
     const overflightHeaders: HeaderConfig[] = Array.from(
@@ -220,7 +220,7 @@ const ReentryAlertImpactTable = ({ caption, impact }: ReentryAlertImpactTablePro
 
                 {renderProbabilityCell(value, 'fragments_probability')}
                 {renderProbabilityCell(value, 'atmospheric_probability')}
-                {renderProbabilityCell(value, 'human_casualty_probability')}
+                {/* {renderProbabilityCell(value, 'human_casualty_probability')} */}
 
                 {renderOverflightCells(value, regionKey)}
               </TableRow>
