@@ -1,7 +1,6 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
@@ -21,7 +20,7 @@ const FeedbackForm = () => {
   const t = useTranslations('Forms.Feedback');
 
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
+  // const router = useRouter();
 
   const { register, handleSubmit, formState: { errors }, setError } = useForm<FeedbackSchema>({
     defaultValues: feedBackFormDefaultValues,
@@ -41,7 +40,7 @@ const FeedbackForm = () => {
         method: 'POST',
         body: formData,
       });
-      router.push('/feedback/success');
+      // router.push('/feedback/success');
     } catch (error) {
       setError('root', {
         message: error instanceof Error ? error.message : 'An error occurred while submitting the feedback',
