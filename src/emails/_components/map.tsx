@@ -29,7 +29,7 @@ export const Map = ({ src, ...props }: MapProps) => {
                       width="16"
                       height="16"
                       style={{
-                        backgroundColor: '#3D3D3D',
+                        backgroundColor: '#007CC8',
                         borderRadius: '8px', // or '0' for square
                         lineHeight: '16px',
                         width: '16px',
@@ -65,7 +65,7 @@ export const Map = ({ src, ...props }: MapProps) => {
                       width="16"
                       height="16"
                       style={{
-                        backgroundColor: '#F46A25',
+                        backgroundColor: '#92D050',
                         borderRadius: '8px', // or '0' for square
                         lineHeight: '16px',
                         width: '16px',
@@ -101,7 +101,7 @@ export const Map = ({ src, ...props }: MapProps) => {
                       width="16"
                       height="16"
                       style={{
-                        backgroundColor: '#801650',
+                        backgroundColor: '#C00000',
                         borderRadius: '8px', // or '0' for square
                         lineHeight: '16px',
                         width: '16px',
