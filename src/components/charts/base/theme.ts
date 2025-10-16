@@ -27,8 +27,8 @@ export const chartColors = [
 ];
 
 export const brandColors = {
-  SpaceTrack: chartPalette.darkBlue,
-  UKSA: chartPalette.orange,
+  SpaceTrack: chartPalette.nspocBlue,
+  UKSA: chartPalette.nspocRed,
 };
 
 export const chartFontFamily = '"GDS Transport", arial, sans-serif';
