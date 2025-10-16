@@ -28,7 +28,7 @@ export function EventsByOrganizationChart({
               data.length > 0
                 ? [data[0]?.low ?? 0, data[0]?.medium ?? 0, data[0]?.high ?? 0]
                 : [],
-            backgroundColor: [chartPalette.darkBlue, chartPalette.orange, chartPalette.darkPink],
+            backgroundColor: [chartPalette.nspocBlue, chartPalette.nspocRed, chartPalette.nspocYellow],
             borderWidth: 0,
           },
         ],
@@ -39,20 +39,20 @@ export function EventsByOrganizationChart({
           {
             label: t('<1e-5'),
             data: data.map(({ low }) => low ?? 0),
-            borderColor: chartPalette.darkBlue,
-            backgroundColor: chartPalette.darkBlue,
+            borderColor: chartPalette.nspocBlue,
+            backgroundColor: chartPalette.nspocBlue,
           },
           {
             label: t('<1e-3_and_>1e-5'),
             data: data.map(({ medium }) => medium ?? 0),
-            borderColor: chartPalette.orange,
-            backgroundColor: chartPalette.orange,
+            borderColor: chartPalette.nspocRed,
+            backgroundColor: chartPalette.nspocRed,
           },
           {
             label: t('>1e-3'),
             data: data.map(({ high }) => high ?? 0),
-            borderColor: chartPalette.darkPink,
-            backgroundColor: chartPalette.darkPink,
+            borderColor: chartPalette.nspocYellow,
+            backgroundColor: chartPalette.nspocYellow,
           },
         ],
       };

@@ -53,7 +53,7 @@ export const getPocChartDatasets = ({ sortedData, specialData, showSpecial, tca 
             })),
             pointStyle: 'triangle',
             pointRadius: 5,
-            backgroundColor: chartPalette.darkBlue,
+            backgroundColor: chartPalette.nspocBlue,
           },
         ]
       : []),

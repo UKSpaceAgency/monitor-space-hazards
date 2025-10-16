@@ -55,8 +55,8 @@ const DataPerformanceChart = ({ latestIngestDate, sourceType, xAxisTitle, yAxisT
           x: data.ingestionDate as unknown as number,
           y: data.ingestionSum as number,
         })),
-        borderColor: chartPalette.darkBlue,
-        backgroundColor: chartPalette.darkBlue,
+        borderColor: chartPalette.nspocBlue,
+        backgroundColor: chartPalette.nspocBlue,
       },
       ...(sourceType === 'Satellite'
         ? [
@@ -66,8 +66,8 @@ const DataPerformanceChart = ({ latestIngestDate, sourceType, xAxisTitle, yAxisT
                 x: data.ingestionDate as unknown as number,
                 y: data.ingestionSum as number,
               })),
-              borderColor: chartPalette.orange,
-              backgroundColor: chartPalette.orange,
+              borderColor: chartPalette.nspocRed,
+              backgroundColor: chartPalette.nspocRed,
             },
           ]
         : []),
