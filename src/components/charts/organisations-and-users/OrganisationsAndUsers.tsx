@@ -53,8 +53,8 @@ const OrganisationsAndUsersChart = ({ data }: OrganisationsAndUsersProps) => {
             x: month.getTime(),
             y: users,
           })),
-          borderColor: chartPalette.darkBlue,
-          backgroundColor: chartPalette.darkBlue,
+          borderColor: chartPalette.nspocBlue,
+          backgroundColor: chartPalette.nspocBlue,
         },
         {
           label: t('organisations'),
@@ -62,8 +62,8 @@ const OrganisationsAndUsersChart = ({ data }: OrganisationsAndUsersProps) => {
             x: month.getTime(),
             y: organisations,
           })),
-          borderColor: chartPalette.orange,
-          backgroundColor: chartPalette.orange,
+          borderColor: chartPalette.nspocRed,
+          backgroundColor: chartPalette.nspocRed,
         },
       ],
     };

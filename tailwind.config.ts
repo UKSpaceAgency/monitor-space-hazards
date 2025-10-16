@@ -2,7 +2,7 @@ import type { Config } from 'tailwindcss';
 
 export const colors = {
   red: '#d4351c',
-  yellow: '#ffdd00',
+  yellow: '#ffc000',
   green: '#00703c',
   blue: '#1d70b8',
   darkBlue: '#003078',

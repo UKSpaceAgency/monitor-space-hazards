@@ -8,12 +8,17 @@ export const chartPalette = {
   darkBlue: '#12436d',
   lightPurple: '#28A197',
   darkGrey: '#3d3d3d',
+  nspocBlue: '#007CC8',
+  nspocRed: '#C00000',
+  nspocYellow: '#FFC000',
+  nspocGreen: '#92D050',
 } as const;
 
 export const chartColors = [
-  chartPalette.darkBlue,
-  chartPalette.orange,
-  chartPalette.darkPink,
+  chartPalette.nspocBlue,
+  chartPalette.nspocRed,
+  chartPalette.nspocYellow,
+  chartPalette.nspocGreen,
   chartPalette.lightPurple,
   chartPalette.turquoise,
   chartPalette.lightBlue,

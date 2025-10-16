@@ -18,14 +18,14 @@ const UksaAnalysesMonthly = async () => {
       {
         label: t('analyses'),
         data: data.map(({ analyses }) => analyses),
-        borderColor: chartPalette.darkBlue,
-        backgroundColor: chartPalette.darkBlue,
+        borderColor: chartPalette.nspocBlue,
+        backgroundColor: chartPalette.nspocBlue,
       },
       {
         label: t('manoeuvre_support_plots'),
         data: data.map(({ manoeuvreSupportPlots }) => manoeuvreSupportPlots),
-        borderColor: chartPalette.orange,
-        backgroundColor: chartPalette.orange,
+        borderColor: chartPalette.nspocRed,
+        backgroundColor: chartPalette.nspocRed,
       },
     ],
   };
