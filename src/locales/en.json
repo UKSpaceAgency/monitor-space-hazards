@@ -1229,7 +1229,7 @@
     },
     "Conjunction_alert_executive_summary": {
       "risk": "Risk to the UK",
-      "tca": "Predicted Time of Closest Approach (UTC)",
+      "tca": "Time of Closest Approach (UTC)",
       "poc": "Probability of Collision (%)",
       "manoeuvre_expected": "Manoeuvre expected?",
       "primary_object": "Primary object",
@@ -1260,13 +1260,13 @@
       "report_time": "Time of update (UTC)",
       "risk": "Risk",
       "probability": "Probability of collision (%)",
-      "overflight": "Predicted Time of Closest Approach (UTC)"
+      "overflight": "Time of Closest Approach (UTC)"
     },
     "Reentries_summary": {
       "upcoming_reentry": "Upcoming re-entry {item}",
       "help": {
         "title": "Help with this table",
-        "content": "<p>This service tracks all upcoming re-entry events worldwide, including those which pose a risk to the UK. The service reports on two types of re-entry event.</p><list><item><bold>Upcoming re-entry alerts:</bold> all upcoming re-entry events that meet the National Space Operations Centre's thresholds for alerting UK government</item><item><bold>Upcoming re-entry events worldwide:</bold> all upcoming re-entry events worldwide, including those which have not met alerting thresholds</item></list>"
+        "content": "<p>This service tracks all upcoming re-entry events worldwide, including those which pose a risk to the UK. The service reports on two types of re-entry event.</p><list><item><bold>Upcoming risks to UK interests:</bold> all upcoming re-entry events that meet the National Space Operations Centre's thresholds for alerting UK government</item><item><bold>Upcoming re-entry events worldwide:</bold> all upcoming re-entry events worldwide, including those which have not met alerting thresholds</item></list>"
       }
     },
     "Reentries": {
@@ -1308,7 +1308,7 @@
       "tip_id": "TIP ID",
       "predicted_reentry_time": "Predicted re-entry time (UTC)",
       "uncertainty_window": "Uncertainty window for predicted re-entry time (mins)",
-      "direction_of_travel": "Direction of travel at predicted re-entry time",
+      "direction_of_travel": "Direction of travel",
       "latitude": "Latitude of predicted re-entry (°)",
       "longitude": "Longitude of predicted re-entry (°)",
       "inclination": "Inclination (°)",
@@ -1860,7 +1860,7 @@
     "utc_note": "* Coordinated Universal Time (UTC) is 1 hour behind British Summer Time (BST) and the same as Greenwich Mean Time (GMT).",
     "Reentry_alert": {
       "title": "{risk} Risk Uncontrolled Re-Entry Alert - Report {reportNumber}",
-      "title_closed": "Re-entry Close Down Alert - Report {reportNumber}",
+      "title_closed": "Re-entry Close Down - Report {reportNumber}",
       "risk_probabilities_title": "UK Risk Probabilities",
       "event_summary_title": "Event Summary",
       "regions_at_risk_title": "Regions at Risk",
@@ -1881,12 +1881,12 @@
         "re_entry_time": "Re-entry time window ",
         "uk_overflight_time": "UK overflight time(s)",
         "no_overflights": "No overflights",
-        "direction_of_travel": "Direction of travel at predicted re-entry time"
+        "direction_of_travel": "Direction of travel"
       },
       "Affected_regions": {
         "uk_mainland": "UK Mainland",
         "maritime_and_airspace": "Airspace and Maritime",
-        "overseas_territories_and_crown_dependencies": "UK Overseas Territories and Crown Dependencies",
+        "overseas_territories_and_crown_dependencies": "UK CDOTs",
         "no_regions_affected": "No Regions Affected"
       },
       "Event_details": {
@@ -1926,7 +1926,7 @@
     },
     "Conjunction_alert": {
       "title": "{risk} Risk Conjunction Alert - Report {reportNumber}",
-      "title_closed": "Conjunction Close Down Alert - Report {reportNumber}",
+      "title_closed": "Conjunction Close Down - Report {reportNumber}",
       "risk_probabilities_title": "UK Risk Probabilities",
       "event_summary_title": "Event Summary",
       "event_overview_title": "Event Overview",
@@ -1947,7 +1947,7 @@
       },
       "Event_summary": {
         "risk": "Risk",
-        "predicted_time_of_closest_approach": "Predicted Time of Closest Approach",
+        "predicted_time_of_closest_approach": "Time of Closest Approach",
         "probability_of_collision": "Probability of Collision",
         "manoeuvre_expected": "Manoeuvre Expected?",
         "report_number": "Report number",
