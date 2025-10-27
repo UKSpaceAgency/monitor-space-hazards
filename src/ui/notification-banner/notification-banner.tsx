@@ -26,7 +26,6 @@ export function NotificationBanner({
         className,
       )}
       role={status !== 'important' ? 'alert' : 'status'}
-      aria-labelledby={props.id || 'govuk-notification-banner-title'}
       {...props}
     >
       {status !== 'error' && (

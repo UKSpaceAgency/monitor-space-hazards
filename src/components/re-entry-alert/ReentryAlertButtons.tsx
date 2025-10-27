@@ -19,7 +19,7 @@ const ReentryAlertButtons = ({ pdfTitle }: ReentryAlertButtonsProps) => {
 
   return (
     <ButtonGroup>
-      <PdfDownloadButton title={pdfTitle} ariaLabel="Reentry Alert Pdf download" />
+      <PdfDownloadButton title={pdfTitle} />
       <Button as="link" href="/re-entries" variant="secondary" aria-label={t('return', { to: 'track re-entry events' })}>{t('return', { to: 'track re-entry events' })}</Button>
     </ButtonGroup>
   );

@@ -18,7 +18,7 @@ const FragmentationButtons = ({ title }: FragmentationButtonsProps) => {
 
   return (
     <ButtonGroup>
-      <PdfDownloadButton title={title} ariaLabel="Fragmentation Pdf download" />
+      <PdfDownloadButton title={title} />
       <Button as="link" href="/fragmentations" className="govuk-button--secondary" aria-label={tCommon('return', { to: 'track fragmentation events' })}>
         {tCommon('return', { to: 'track fragmentation events' })}
       </Button>

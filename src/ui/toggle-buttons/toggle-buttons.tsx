@@ -1,7 +1,6 @@
 import { type SetStateAction, useId } from 'react';
 
 import Radios from '../radios/radios';
-import styles from './toggle-buttons.module.scss';
 
 export type ToggleButtonsProps = {
   name: string;
@@ -30,19 +29,22 @@ export function ToggleButtons({
   const prefix = useId();
 
   return (
-    <fieldset className={styles.root} data-pdf-ignore={dataPdfIgnore}>
+    <fieldset className="inline-flex items-center md:h-[44px]" data-pdf-ignore={dataPdfIgnore}>
       {title && (
-        <div>
+        <>
           <legend
-            className={`govuk-fieldset__legend govuk-!-font-weight-bold govuk-!-margin-bottom-1 govuk-!-margin-right-4 ${styles.heading}`}
+            className="absolute opacity-0 pointer-events-none"
             aria-label={`${ariaLabel} ${title}`}
           >
             {title}
           </legend>
-        </div>
+          <span className="govuk-body font-bold mb-0 mr-5">
+            {title}
+          </span>
+        </>
       )}
       <Radios
-        className={styles['button-group']}
+        className="mb-0"
         small
         inline
         name={name}

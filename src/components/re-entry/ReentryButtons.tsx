@@ -18,7 +18,7 @@ const ReentryButtons = ({ title }: ReentryButtonsProps) => {
 
   return (
     <ButtonGroup>
-      <PdfDownloadButton title={title} ariaLabel="Reentry Pdf download" />
+      <PdfDownloadButton title={title} />
       <Button as="link" href="/re-entries" className="govuk-button--secondary" aria-label={tCommon('return', { to: 'track re-entry events' })}>
         {tCommon('return', { to: 'track re-entry events' })}
       </Button>

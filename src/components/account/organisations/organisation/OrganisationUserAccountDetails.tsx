@@ -55,14 +55,14 @@ const OrganisationUserAccountDetails = ({ user }: OrganisationUserAccountDetails
               ref={confirmDeleteButtonRef}
               className="govuk-button--warning"
               onClick={confirmDelete}
-              aria-label="Delete user confirmation"
+              aria-label={t('yes_delete')}
             >
               {t('yes_delete')}
             </Button>
             <Button
               className="govuk-button--secondary"
               onClick={onCancelDelete}
-              aria-label="Delete user cancellation"
+              aria-label={t('cancel')}
             >
               {t('cancel')}
             </Button>

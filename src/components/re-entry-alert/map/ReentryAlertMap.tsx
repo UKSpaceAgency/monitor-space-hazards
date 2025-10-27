@@ -93,12 +93,6 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
 
   return (
     <div className="bg-lightGrey p-3 mb-4" data-pdf="Re-entry map">
-      <div className="grid grid-cols-1 md:grid-cols-2">
-        <ReentryAlertMapType value={mapType} onChange={setMapType} />
-        <ReentryAlertMapView value={mapView} onChange={setMapView} />
-      </div>
-      <ReentryAlertAreasOfInterest selected={regions} onChange={setRegions} />
-      <ReentryAlertOverflights types={types} setTypes={setTypes} overflights={overflightTime} selected={flightpaths} onChange={setFlightpaths} />
       <div className="relative w-full aspect-[1/1] md:aspect-[4/3] bg-[#364B69] mb-4" data-type="map" aria-label="Re-entry alert map">
         <Map
           ref={mapRefCallback}
@@ -235,6 +229,13 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
           })}
         </div>
       </div>
+      <div className="grid grid-cols-1 md:grid-cols-2">
+        <ReentryAlertMapType value={mapType} onChange={setMapType} />
+        <ReentryAlertMapView value={mapView} onChange={setMapView} />
+      </div>
+      <ReentryAlertAreasOfInterest selected={regions} onChange={setRegions} />
+      <ReentryAlertOverflights types={types} setTypes={setTypes} overflights={overflightTime} selected={flightpaths} onChange={setFlightpaths} />
+
       <Details
         summary={detailsTitle}
         className="mb-0"

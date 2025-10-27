@@ -8,7 +8,7 @@ import { generatePdfSections } from '@/libs/Pdf';
 import { PdfTemplate } from '@/templates/PdfTemplate';
 import Button from '@/ui/button/button';
 
-const PdfDownloadButton = ({ title, ariaLabel }: { title: string; ariaLabel?: string }) => {
+const PdfDownloadButton = ({ title }: { title: string }) => {
   const tCommon = useTranslations('Common');
   const [downloading, setDownloading] = useState(false);
   const [instance, update] = usePDF({ document: <PdfTemplate title={title} sections={[]} /> });
@@ -46,7 +46,7 @@ const PdfDownloadButton = ({ title, ariaLabel }: { title: string; ariaLabel?: st
   }
 
   return (
-    <Button onClick={handleDownload} disabled={downloading} aria-label={ariaLabel}>
+    <Button onClick={handleDownload} disabled={downloading} aria-label={tCommon('download_event_as', { as: 'PDF' })}>
       {tCommon('download_event_as', { as: 'PDF' })}
     </Button>
   );
