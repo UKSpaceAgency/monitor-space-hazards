@@ -41,18 +41,21 @@ export interface TypeAlertSettingsDistributionList {
   organization_name: string;
   conjunction_alert_settings: TypeConjunctionAlertSettings | null;
   reentry_alert_settings: TypeReentryAlertSettings | null;
+  fragmentation_alert_settings: TypeFragmentationAlertSettings | null;
 }
 
 /** AlertSettingsIn */
 export interface TypeAlertSettingsIn {
   conjunction_alert_settings: TypeConjunctionAlertSettings;
   reentry_alert_settings: TypeReentryAlertSettings;
+  fragmentation_alert_settings: TypeFragmentationAlertSettings;
 }
 
 /** AlertSettingsOut */
 export interface TypeAlertSettingsOut {
   conjunction_alert_settings?: TypeConjunctionAlertSettings | null;
   reentry_alert_settings?: TypeReentryAlertSettings | null;
+  fragmentation_alert_settings?: TypeFragmentationAlertSettings | null;
 }
 
 /** AnalysesSortBy */
@@ -1325,6 +1328,23 @@ export type TypeExternalDataType =
   | "Conjunction Report"
   | "Fragmentation Report";
 
+/** FragmentationAlertSettings */
+export interface TypeFragmentationAlertSettings {
+  /**
+   * Alert Type
+   * @default "fragmentation"
+   */
+  alert_type?: "fragmentation";
+  /** Chosen Option */
+  chosen_option: "all" | "priority" | "none";
+  /**
+   * Notification Types
+   * @uniqueItems true
+   * @default []
+   */
+  notification_types?: TypeNotificationType[];
+}
+
 /** FragmentationEvent */
 export interface TypeFragmentationEvent {
   /**
@@ -1442,7 +1462,7 @@ export interface TypeFragmentationReport {
   /** Primary Object Common Name */
   primary_object_common_name?: string | null;
   /** Primary Object Norad Id */
-  primary_object_norad_id: string;
+  primary_object_norad_id?: string | null;
   /** Primary Object Licensing Country */
   primary_object_licensing_country?: string | null;
   /** Primary Object Type */
@@ -1492,6 +1512,88 @@ export interface TypeFragmentationReport {
   file_name: string;
 }
 
+/** FragmentationReportOut */
+export interface TypeFragmentationReportOut {
+  /**
+   * Id
+   * @format uuid
+   */
+  id: string;
+  /** Short Id */
+  short_id: string | null;
+  /** Report Number */
+  report_number: number;
+  /**
+   * Event Epoch
+   * @format date-time
+   */
+  event_epoch: string;
+  /** Modelled Fragments */
+  modelled_fragments?: number | null;
+  /** Known Fragments */
+  known_fragments?: number | null;
+  /** Fragmentation Type Comment */
+  fragmentation_type_comment?: string | null;
+  fragmentation_type: TypeFragmentationType;
+  affected_regime: TypeAffectedRegime;
+  /** Conjunction Event Id */
+  conjunction_event_id?: string | null;
+  /** Conjunction Commentary */
+  conjunction_commentary?: string | null;
+  /** Object History */
+  object_history?: string | null;
+  /** Risk */
+  risk?: string | null;
+  /** File Name */
+  file_name: string;
+  /** Presigned Url */
+  presigned_url: string;
+  /** Uploaded By Id */
+  uploaded_by_id?: string | null;
+  /** Deleted By Id */
+  deleted_by_id?: string | null;
+  /** Primary Object Common Name */
+  primary_object_common_name?: string | null;
+  /** Primary Object Norad Id */
+  primary_object_norad_id?: string | null;
+  /** Primary Object Licensing Country */
+  primary_object_licensing_country?: string | null;
+  /** Primary Object Type */
+  primary_object_type?: string | null;
+  /** Primary Object Mass */
+  primary_object_mass?: number | null;
+  /** Primary Object International Designator */
+  primary_object_international_designator?: string | null;
+  /** Primary Object Launching Year */
+  primary_object_launching_year?: number | null;
+  /** Primary Object Apogee */
+  primary_object_apogee?: number | null;
+  /** Primary Object Perigee */
+  primary_object_perigee?: number | null;
+  /** Primary Object Inclination */
+  primary_object_inclination?: number | null;
+  /** Secondary Object Common Name */
+  secondary_object_common_name?: string | null;
+  /** Secondary Object Norad Id */
+  secondary_object_norad_id?: string | null;
+  /** Secondary Object Licensing Country */
+  secondary_object_licensing_country?: string | null;
+  /** Secondary Object Type */
+  secondary_object_type?: string | null;
+  /** Secondary Object Mass */
+  secondary_object_mass?: number | null;
+  /** Secondary Object International Designator */
+  secondary_object_international_designator?: string | null;
+  /** Secondary Object Launching Year */
+  secondary_object_launching_year?: number | null;
+  /** Secondary Object Apogee */
+  secondary_object_apogee?: number | null;
+  /** Secondary Object Perigee */
+  secondary_object_perigee?: number | null;
+  /** Secondary Object Inclination */
+  secondary_object_inclination?: number | null;
+}
+
 /** FragmentationReportSortBy */
 export type TypeFragmentationReportSortBy =
   | "created_at"
@@ -1512,7 +1614,8 @@ export type TypeFragmentationType =
   | "Aerodynamics"
   | "Deliberate"
   | "Unknown"
-  | "Anomalous";
+  | "Anomalous"
+  | "Explosion";
 
 /** HTTPValidationError */
 export interface TypeHTTPValidationError {
@@ -2591,7 +2694,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2025-09-30T09:32:04.928672"
+   * @default "2025-10-27T11:38:20.063018"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3696,7 +3799,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2025-10-01"
+   * @default "2025-11-01"
    */
   end_date?: string;
 }
@@ -3711,7 +3814,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2025-10-01"
+   * @default "2025-11-01"
    */
   end_date?: string;
 }
@@ -3726,7 +3829,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-10-01"
+   * @default "2025-11-01"
    */
   end_date?: string;
 }
@@ -3741,7 +3844,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-10-01"
+   * @default "2025-11-01"
    */
   end_date?: string;
 }
@@ -3756,7 +3859,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-10-01"
+   * @default "2025-11-01"
    */
   end_date?: string;
 }
@@ -3771,7 +3874,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2025-10-01"
+   * @default "2025-11-01"
    */
   end_date?: string;
 }

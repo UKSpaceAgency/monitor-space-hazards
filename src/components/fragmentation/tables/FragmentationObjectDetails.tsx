@@ -1,54 +1,52 @@
 import { useTranslations } from 'next-intl';
 
-import type { TypeSatelliteOut } from '@/__generated__/data-contracts';
+import type { TypeFragmentationReport } from '@/__generated__/data-contracts';
 import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
-import { dayjs } from '@/libs/Dayjs';
 import { getFullCountry } from '@/utils/Regions';
 
-type ObjectDetailsData = Pick<TypeSatelliteOut, 'commonName' | 'noradId' | 'internationalDesignator' | 'objectType' | 'mass' | 'launchSite' | 'launchDate'>;
+type ObjectDetailsData = Pick<TypeFragmentationReport, 'primary_object_common_name' | 'primary_object_norad_id' | 'primary_object_international_designator' | 'primary_object_type' | 'primary_object_mass' | 'primary_object_launching_year' | 'primary_object_licensing_country'>;
 
 type FragmentationObjectDetailsTableProps = {
-  object: TypeSatelliteOut;
+  report: TypeFragmentationReport;
 };
 
-const FragmentationObjectDetailsTable = ({ object }: FragmentationObjectDetailsTableProps) => {
+const FragmentationObjectDetailsTable = ({ report }: FragmentationObjectDetailsTableProps) => {
   const t = useTranslations('Tables.Fragmentation_object_details');
 
   const rows: InformationsTableRow<ObjectDetailsData>[] = [
     {
       header: t('common_name'),
-      accessorKey: 'commonName',
+      accessorKey: 'primary_object_common_name',
     },
     {
       header: t('norad_id'),
-      accessorKey: 'noradId',
+      accessorKey: 'primary_object_norad_id',
     },
     {
       header: t('international_designator'),
-      accessorKey: 'internationalDesignator',
+      accessorKey: 'primary_object_international_designator',
     },
     {
       header: t('object_type'),
-      accessorKey: 'objectType',
+      accessorKey: 'primary_object_type',
     },
     {
       header: t('mass'),
-      accessorKey: 'mass',
+      accessorKey: 'primary_object_mass',
     },
     {
       header: t('launch_site'),
-      accessorKey: 'launchSite',
-      renderCell: ({ launchSite }) => getFullCountry(launchSite),
+      accessorKey: 'primary_object_licensing_country',
+      renderCell: ({ primary_object_licensing_country }) => getFullCountry(primary_object_licensing_country),
     },
     {
       header: t('launch_date'),
-      accessorKey: 'launchDate',
-      renderCell: ({ launchDate }) => dayjs(launchDate).format('YYYY'),
+      accessorKey: 'primary_object_launching_year',
     },
   ];
 
-  return <InformationsTable rows={rows} data={object} className="text-base" />;
+  return <InformationsTable rows={rows} data={report} className="text-base" />;
 };
 
 export { FragmentationObjectDetailsTable };

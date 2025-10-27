@@ -8,14 +8,11 @@ export async function getFragmentationEventsList(
   queryParams?: TypeGetFragmentationEventsParams,
   params: RequestParams = {},
 ) {
-  let query = queryParams;
-  if (queryParams?.epoch === 'past' && !queryParams?.sort_by) {
-    query = {
-      ...query,
-      epoch: 'past',
-      sort_order: 'desc',
-    };
-  }
+  const query: TypeGetFragmentationEventsParams = {
+    epoch: 'all',
+    sort_order: 'desc',
+    ...queryParams,
+  };
   const { data } = await Api.getFragmentationEvents(query, params);
   return data;
 };

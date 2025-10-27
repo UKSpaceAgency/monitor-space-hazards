@@ -48,6 +48,7 @@ import {
   TypeExternalDataPerformanceOut,
   TypeFragmentationEvent,
   TypeFragmentationReport,
+  TypeFragmentationReportOut,
   TypeGetAnalysesParams,
   TypeGetBannersMessagesCurrentParams,
   TypeGetBannersMessagesParams,
@@ -798,7 +799,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getFragmentationReportsFragmentationReportId = (fragmentationReportId: string, params: RequestParams = {}) =>
-    this.request<TypeFragmentationReport | null, void | TypeHTTPValidationError>({
+    this.request<TypeFragmentationReportOut | null, void | TypeHTTPValidationError>({
       path: `/v1/fragmentation-reports/${fragmentationReportId}`,
       method: "GET",
       secure: true,
@@ -833,7 +834,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
     { shortId, ...query }: TypeGetFragmentationReportsFragmentationEventShortIdParams,
     params: RequestParams = {},
   ) =>
-    this.request<TypeFragmentationReport[], void | TypeHTTPValidationError>({
+    this.request<TypeFragmentationReportOut[], void | TypeHTTPValidationError>({
       path: `/v1/fragmentation-reports/fragmentation-event/${shortId}`,
       method: "GET",
       query: query,

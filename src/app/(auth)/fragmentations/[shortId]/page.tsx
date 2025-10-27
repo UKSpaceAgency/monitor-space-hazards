@@ -30,8 +30,8 @@ export default async function Fragmentation({
   const t = await getTranslations('Fragmentation');
   const { shortId } = await params;
   const event = await getFragmentationEvent(shortId);
-  const reports = await getFragmentationReports({ shortId });
-  const lastReport = reports[reports.length - 1];
+  const report = await getFragmentationReports({ shortId });
+  const lastReport = report[report.length - 1];
 
   if (!event || !lastReport) {
     notFound();
@@ -48,7 +48,7 @@ export default async function Fragmentation({
           {t.rich('report_info', { number: event.report_number?.toString(), time: dayjs(event.created_at).format(FORMAT_DATE_TIME) })}
           <FragmentationExecutiveSummary event={event} report={lastReport} />
           <FragmentationNextUpdate shortId={shortId} />
-          <FragmentationAccordion event={event} reports={reports} lastReport={lastReport} />
+          <FragmentationAccordion event={event} report={lastReport} />
           {/* {spacetrack && (
             <ConjunctionEventSummary
               shortId={shortId}

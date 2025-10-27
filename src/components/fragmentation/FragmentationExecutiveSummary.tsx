@@ -15,7 +15,7 @@ const FragmentationExecutiveSummary = async ({ event, report }: FragmentationExe
 
   const contentVariables: RichTranslationValues = {
     objectName: event?.primary_object_common_name ?? 'Unknown',
-    fragments: event?.known_fragments ?? 0,
+    fragments: report?.known_fragments ?? 0,
   };
 
   return (

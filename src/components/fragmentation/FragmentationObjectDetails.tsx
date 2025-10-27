@@ -1,17 +1,15 @@
-import { getSatellite } from '@/actions/getSatellite';
+import type { TypeFragmentationReport } from '@/__generated__/data-contracts';
 
 import { FragmentationObjectDetailsTable } from './tables/FragmentationObjectDetails';
 
 type FragmentationObjectDetailsProps = {
-  noradId: string;
-  dataPdf?: string;
+  report: TypeFragmentationReport;
 };
 
-const FragmentationObjectDetails = async ({ noradId, dataPdf }: FragmentationObjectDetailsProps) => {
-  const object = await getSatellite(noradId);
+const FragmentationObjectDetails = async ({ report }: FragmentationObjectDetailsProps) => {
   return (
-    <div data-pdf={dataPdf}>
-      <FragmentationObjectDetailsTable object={object} />
+    <div>
+      <FragmentationObjectDetailsTable report={report} />
     </div>
   );
 };

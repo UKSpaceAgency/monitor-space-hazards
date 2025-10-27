@@ -78,6 +78,10 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
         notification_types: data.receiveReEntry,
         areas_of_interest: data.areasOfInterest,
       },
+      fragmentation_alert_settings: {
+        chosen_option: 'all',
+        notification_types: [],
+      },
     };
 
     await onSubmitAction(payload);
