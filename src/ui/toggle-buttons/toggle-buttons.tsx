@@ -29,7 +29,20 @@ export function ToggleButtons({
   const prefix = useId();
 
   return (
-    <fieldset className="inline-flex items-center md:h-[44px]" data-pdf-ignore={dataPdfIgnore}>
+    <Radios
+      className="inline-flex items-center md:h-[44px] mb-0"
+      small
+      inline
+      name={name}
+      items={items.map(({ title, value, id }) => ({
+        id: `${prefix}-${id}`,
+        children: title,
+        value,
+        onChange: () => setActive(value),
+        checked: active === value,
+      }))}
+      data-pdf-ignore={dataPdfIgnore}
+    >
       {title && (
         <>
           <legend
@@ -43,20 +56,7 @@ export function ToggleButtons({
           </span>
         </>
       )}
-      <Radios
-        className="mb-0"
-        small
-        inline
-        name={name}
-        items={items.map(({ title, value, id }) => ({
-          id: `${prefix}-${id}`,
-          children: title,
-          value,
-          onChange: () => setActive(value),
-          checked: active === value,
-        }))}
-      />
-    </fieldset>
+    </Radios>
   );
 }
 

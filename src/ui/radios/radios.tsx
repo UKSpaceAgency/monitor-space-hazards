@@ -24,7 +24,7 @@ export type RadiosProps = {
   required?: true;
 } & Omit<HTMLAttributes<HTMLDivElement>, 'defaultChecked'>;
 
-export function Radios({ items, legend, value, hint, error, inline, small, legendClass, className, id, required, 'aria-label': ariaLabel, onChange }: RadiosProps) {
+export function Radios({ items, legend, value, hint, error, inline, small, legendClass, className, id, required, 'aria-label': ariaLabel, onChange, children }: RadiosProps) {
   return (
     <fieldset
       aria-label={`${ariaLabel} ${required ? 'required' : 'optional'} field`}
@@ -34,6 +34,7 @@ export function Radios({ items, legend, value, hint, error, inline, small, legen
         className,
       )}
     >
+      {children}
       {legend && <legend className={clsx('govuk-fieldset__legend govuk-fieldset__legend--s', legendClass)}><b>{legend}</b></legend>}
       {hint && <Hint id={hint}>{hint}</Hint>}
       {error && <ErrorMessage>{error}</ErrorMessage>}

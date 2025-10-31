@@ -46,7 +46,7 @@ const PdfDownloadButton = ({ title }: { title: string }) => {
   }
 
   return (
-    <Button onClick={handleDownload} disabled={downloading} aria-label={tCommon('download_event_as', { as: 'PDF' })}>
+    <Button onClick={handleDownload} disabled={downloading} aria-label={`${tCommon('download_event_as', { as: 'PDF' })} - ${title}`}>
       {tCommon('download_event_as', { as: 'PDF' })}
     </Button>
   );

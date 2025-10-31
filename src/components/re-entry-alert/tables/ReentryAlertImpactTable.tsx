@@ -16,6 +16,7 @@ import { jsonRegionsMap } from '@/utils/Regions';
 
 // Types
 type ReentryAlertImpactTableProps = {
+  label?: string;
   caption?: string;
   impact: Record<string, TypeOverflightProbability>;
 };
@@ -51,7 +52,7 @@ const getRegionDisplayName = (key: string): string => {
   return jsonRegionsMap[key] ?? key;
 };
 
-const ReentryAlertImpactTable = ({ caption, impact }: ReentryAlertImpactTableProps) => {
+const ReentryAlertImpactTable = ({ caption, impact, label }: ReentryAlertImpactTableProps) => {
   const t = useTranslations('Tables.Reentry_alert_impact');
 
   // State
@@ -181,7 +182,7 @@ const ReentryAlertImpactTable = ({ caption, impact }: ReentryAlertImpactTablePro
           {caption}
         </h4>
       )}
-      <Details summary={t('details.summary')}>
+      <Details summary={t('details.summary')} aria-label={`${label}`}>
         <div className="mb-4 flex items-center justify-between gap-2">
           <div className="flex-1">
             <Checkboxes
@@ -189,7 +190,15 @@ const ReentryAlertImpactTable = ({ caption, impact }: ReentryAlertImpactTablePro
               smaller
               items={probabilityCheckboxItems}
               onChange={handleProbabilityChange}
-            />
+            >
+              {label && (
+                <legend className="sr-only">
+                  Toggle
+                  {' '}
+                  {label}
+                </legend>
+              )}
+            </Checkboxes>
           </div>
           <div className="flex items-end gap-2">
             <Select

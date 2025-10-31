@@ -15,7 +15,7 @@ import WarningText from '@/ui/warning-text/warning-text';
 import type { AlertSettingsSchema } from '@/validations/alertSettingsSchema';
 
 import { AlertSettingsDetails } from './AlertSettingsDetails';
-import { RegionsTable } from './RegionsTableRow';
+import { RegionsTable } from './RegionsTable';
 
 function Option({
   id,
@@ -205,18 +205,13 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                             />
                             <AlertSettingsDetails type="re-entry" />
 
-                            <fieldset>
-                              <legend className="govuk-body">
-                                <b>
-                                  {t(
-                                    'select_the_areas_of_interest',
-                                    { whose: selfEdit ? 'your' : 'user\'s' },
-                                  )}
-                                </b>
-                              </legend>
-
-                              <RegionsTable name="areasOfInterest" />
-                            </fieldset>
+                            <RegionsTable
+                              name="areasOfInterest"
+                              legend={t(
+                                'select_the_areas_of_interest',
+                                { whose: selfEdit ? 'your' : 'user\'s' },
+                              )}
+                            />
 
                             <p className="govuk-body">
                               {t('notifications_for_re_entries')}

@@ -14,7 +14,7 @@ const ReentryAlertImpactOverseas = ({ impact, dataPdf }: ReentryAlertImpactOvers
 
   return (
     <div data-pdf={dataPdf}>
-      <ReentryAlertImpactTable impact={impact} />
+      <ReentryAlertImpactTable impact={impact} label="Potential impact by Overseas" />
       <p className="govuk-body">{t('overseas_hint')}</p>
       {t.rich('see_further_information', { link: chunks => <a href="#further_information" className="govuk-link">{chunks}</a> })}
     </div>

@@ -54,7 +54,7 @@ export const ChartLegend = ({
                 checked={legendStatusMap[index]}
                 onChange={handleLegendClick}
               />
-              <span className="block flex-auto w-4 h-5 border-[1px] border-solid opacity-50 peer-checked/legend:opacity-100 peer-focus-visible/legend:border-4 peer-focus-visible/legend:ring-2" style={{ backgroundColor, borderColor } as CSSProperties} />
+              <span className="block flex-auto w-5 h-5 border-[1px] border-solid opacity-50 peer-checked/legend:opacity-100 peer-focus-visible/legend:border-4 peer-focus-visible/legend:shadow-[0_0_0_3px_#fd0]" style={{ backgroundColor, borderColor } as CSSProperties} />
               <span className="line-through peer-checked/legend:no-underline">
                 {label}
               </span>

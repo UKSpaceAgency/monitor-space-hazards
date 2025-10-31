@@ -88,8 +88,8 @@ importers:
         specifier: ^0.5.0
         version: 0.5.0
       govuk-frontend:
-        specifier: 5.11.1
-        version: 5.11.1
+        specifier: 6.0.0-beta.0
+        version: 6.0.0-beta.0
       hugeicons-react:
         specifier: ^0.3.0
         version: 0.3.0(react@19.0.0)
@@ -4312,8 +4312,8 @@ packages:
     resolution: {integrity: sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg==}
     engines: {node: '>= 0.4'}
 
-  govuk-frontend@5.11.1:
-    resolution: {integrity: sha512-hJJFpaer4MZLvz/2F9RZ7xZ6FqlzpxL9aw6YWOGK3F1tn419xj2WcVXwOC8Bcj/dc/LanknbWJDGkb+IdkuhTQ==}
+  govuk-frontend@6.0.0-beta.0:
+    resolution: {integrity: sha512-6qzf+/2bFMexkB+BJYoRxQD9qb3iCjvrId9FXH2JqUMOzV+8mMv1VWm509+V0CcIS9B1h+Z4S8j4Gx2sdxTgBg==}
     engines: {node: '>= 4.2.0'}
 
   graceful-fs@4.2.11:
@@ -11482,7 +11482,7 @@ snapshots:
 
   gopd@1.2.0: {}
 
-  govuk-frontend@5.11.1: {}
+  govuk-frontend@6.0.0-beta.0: {}
 
   graceful-fs@4.2.11: {}
 

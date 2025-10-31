@@ -14,7 +14,7 @@ const ReentryAlertImpactAirspaceAndMaritime = ({ impact, dataPdf }: ReentryAlert
 
   return (
     <div data-pdf={dataPdf}>
-      <ReentryAlertImpactTable impact={impact} />
+      <ReentryAlertImpactTable impact={impact} label="Potential impact by Airspace and Maritime" />
       <p className="govuk-body">{t('extra_information')}</p>
       {t.rich('see_further_information', { link: chunks => <a href="#further_information" className="govuk-link">{chunks}</a> })}
     </div>

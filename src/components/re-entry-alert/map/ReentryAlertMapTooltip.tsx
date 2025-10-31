@@ -1,5 +1,6 @@
 import { nearestCity } from 'cityjs';
 import { useTranslations } from 'next-intl';
+import { useMemo } from 'react';
 import { IoCloseOutline, IoEllipseSharp } from 'react-icons/io5';
 
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
@@ -27,7 +28,16 @@ const ReentryAlertMapTooltip = ({ latitude, longitude, regions, overflight, type
 
   const distance = calcDistance(latitude, longitude, city.latitude, city.longitude);
 
-  const flightpathColor = type === 'flightpath' ? FlightpathColor : OverflightColor;
+  const color = useMemo(() => {
+    switch (type) {
+      case 'flightpath':
+        return FlightpathColor;
+      case 'fragments':
+        return FragmentColor;
+      default:
+        return OverflightColor;
+    }
+  }, [type]);
 
   return (
     <div className="bg-white p-4 absolute top-2 left-2 max-w-[200px] md:max-w-[300px]">
@@ -37,10 +47,11 @@ const ReentryAlertMapTooltip = ({ latitude, longitude, regions, overflight, type
       <div className="pr-4">
         <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
           {t(type as any)}
+          {type}
           <IoEllipseSharp
             className="size-6"
             style={{
-              fill: type === 'fragments' ? FragmentColor : flightpathColor,
+              color,
             }}
           />
         </h4>
