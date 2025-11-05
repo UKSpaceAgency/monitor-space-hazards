@@ -70,19 +70,20 @@ const ReentryAlertAreasOfInterest = ({ selected, onChange }: ReentryAlertAreasOf
   };
 
   return (
-    <fieldset aria-label="Re-entry Alert Areas of interest">
-      <legend className="govuk-fieldset__legend govuk-fieldset__legend--s">{t('legend')}</legend>
+    <div>
+      <h4 className="govuk-fieldset__legend govuk-fieldset__legend--s">{t('legend')}</h4>
       <Details summary={t('help')} initiallyOpen>
-        <div className="grid grid-cols-2 gap-4">
+        <fieldset className="grid grid-cols-2 gap-4">
+          <legend className="govuk-visually-hidden">{t('legend')}</legend>
           {options.map((group, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <div key={index} className="govuk-checkboxes govuk-checkboxes--small">
               {group.map(({ value, children, ...props }) => <Checkbox key={value} value={value} checked={selected.includes(value)} onChange={handleChange} {...props}>{children}</Checkbox>)}
             </div>
           ))}
-        </div>
+        </fieldset>
       </Details>
-    </fieldset>
+    </div>
   );
 };
 

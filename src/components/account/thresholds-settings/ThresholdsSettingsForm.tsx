@@ -40,7 +40,10 @@ const ThresholdsSettingsForm = ({ defaultValues }: ThresholdsSettingsFormProps) 
       noValidate
     >
       {isSubmitSuccessful && <TopNotificationBanner status="success">{t('success_message')}</TopNotificationBanner>}
-      <FormErrorSummary i18path="Thresholds_settings" errors={errors} />
+      <FormErrorSummary
+        errors={errors}
+        fieldOrder={Object.keys(defaultValues ?? {}) as (keyof ThresholdsSettingsFormSchema)[]}
+      />
       <ThresholdsSettingsFormContent isSubmitting={isSubmitting} register={register} errors={errors} />
     </form>
   );

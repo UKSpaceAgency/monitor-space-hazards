@@ -27,7 +27,7 @@ export type RadiosProps = {
 export function Radios({ items, legend, value, hint, error, inline, small, legendClass, className, id, required, 'aria-label': ariaLabel, onChange, children }: RadiosProps) {
   return (
     <fieldset
-      aria-label={`${ariaLabel} ${required ? 'required' : 'optional'} field`}
+      aria-label={ariaLabel ? `${ariaLabel} ${required ? 'required' : 'optional'} field` : undefined}
       className={clsx(
         'govuk-form-group',
         { 'govuk-form-group--error': !!error },
@@ -35,7 +35,7 @@ export function Radios({ items, legend, value, hint, error, inline, small, legen
       )}
     >
       {children}
-      {legend && <legend className={clsx('govuk-fieldset__legend govuk-fieldset__legend--s', legendClass)}><b>{legend}</b></legend>}
+      {legend && <legend className={clsx('govuk-fieldset__legend govuk-fieldset__legend--s font-bold', legendClass)}>{legend}</legend>}
       {hint && <Hint id={hint}>{hint}</Hint>}
       {error && <ErrorMessage>{error}</ErrorMessage>}
       <div

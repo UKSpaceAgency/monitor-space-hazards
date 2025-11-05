@@ -41,7 +41,7 @@ const ContactAnalystForm = ({ searchParams }: ContactAnalystFormProps) => {
     <form
       onSubmit={handleSubmit(onSubmit)}
     >
-      <FormErrorSummary i18path="Contact_analyst" errors={errors} />
+      <FormErrorSummary errors={errors} />
       <TextArea
         {...register('messageContent')}
         id="message"

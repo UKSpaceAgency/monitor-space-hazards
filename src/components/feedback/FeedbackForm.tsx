@@ -68,7 +68,10 @@ const FeedbackForm = () => {
     <form
       onSubmit={handleSubmit(onSubmit)}
     >
-      <FormErrorSummary i18path="Feedback" errors={errors} />
+      <FormErrorSummary
+        errors={errors}
+        fieldOrder={Object.keys(feedBackFormDefaultValues) as (keyof FeedbackSchema)[]}
+      />
       <Fieldset
         legend={{
           text: t('survey_label'),

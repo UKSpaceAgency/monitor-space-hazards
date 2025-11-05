@@ -21,8 +21,7 @@ const ReentryAlertMapView = ({ value, onChange }: ReentryAlertMapViewProps) => {
     <Radios
       small
       id="map_view"
-      aria-label="Map view"
-      legend={t('map_view')}
+      legend={<h4>{t('map_view')}</h4>}
       items={[{
         id: 'globe',
         children: 'Globe',

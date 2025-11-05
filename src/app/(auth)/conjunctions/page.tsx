@@ -55,7 +55,7 @@ export default async function ConjunctionsPage(props: PageProps) {
       <h1 className="govuk-heading-xl">{t('title')}</h1>
       <Suspense key={params.search_like} fallback={<Spinner />}>
         <ConjunctionsSummaryTable />
-        <Details summary={t('help1.title')}>
+        <Details summary={t('help1.title')} ariaLabel="Upcoming conjunction events - Help with this table">
           {t.rich('help1.content')}
         </Details>
         <h2 className="govuk-heading-m">{t('section_title')}</h2>
@@ -65,7 +65,7 @@ export default async function ConjunctionsPage(props: PageProps) {
         <ConjunctionsEventsTableFilters params={params} showFilterRadios={!isSatteliteUser(session?.user.role)} />
         <ConjunctionsEventsTable params={params} />
       </Suspense>
-      <Details summary={t('help2.title')}>
+      <Details summary={t('help2.title')} ariaLabel="Track conjunction events - Help with this table">
         {t.rich('help2.content')}
       </Details>
     </div>

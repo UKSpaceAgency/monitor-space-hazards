@@ -24,6 +24,7 @@
   "dependencies": {
     "@ag-media/react-pdf-table": "^2.0.1",
     "@cosmicjs/sdk": "1.2.0",
+    "@hookform/error-message": "^2.0.1",
     "@hookform/resolvers": "3.9.1",
     "@json2csv/plainjs": "7.0.6",
     "@next/third-parties": "^15.2.3",

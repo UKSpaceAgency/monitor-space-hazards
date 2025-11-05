@@ -13,7 +13,7 @@ export const phoneUserSchema = z.object({
     if (!phoneNumber?.isValid()) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        message: 'Invalid phone number',
+        message: 'Enter a valid phone number',
       });
       return z.NEVER;
     }

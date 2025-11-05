@@ -71,7 +71,7 @@ const AddNewUserForm = ({ defaultValues, organizations, role }: AddNewUserFormPr
     <form
       onSubmit={handleSubmit(onSubmit)}
     >
-      <FormErrorSummary i18path="Add_new_user" errors={errors} />
+      <FormErrorSummary errors={errors} fieldOrder={Object.keys(defaultValues) as (keyof AddNewUserSchema)[]} />
       {showSuccessBanner && (
         <TopNotificationBanner status="success">
           <div>
