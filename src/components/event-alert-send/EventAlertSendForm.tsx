@@ -42,6 +42,7 @@ const EventAlertSendForm = ({ type, defaultValues }: EventAlertSendFormProps) =>
       additionalRecipients: defaultValues.additionalRecipients || '',
       haveAdditionalRecipients: !!defaultValues.additionalRecipients?.length,
     },
+    reValidateMode: 'onSubmit',
   });
 
   const haveAdditionalRecipients = watch('haveAdditionalRecipients');

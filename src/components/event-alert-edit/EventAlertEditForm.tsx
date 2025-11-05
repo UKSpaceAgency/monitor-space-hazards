@@ -46,6 +46,7 @@ const EventAlertEditForm = ({ fields }: EventAlertEditFormProps) => {
       acc[field.id] = field.defaultValue || '';
       return acc;
     }, {}),
+    reValidateMode: 'onSubmit',
   });
 
   const onSubmit = async (data: Record<string, any>) => {

@@ -34,6 +34,7 @@ const AddNewUserForm = ({ defaultValues, organizations, role }: AddNewUserFormPr
 
   const { register, handleSubmit, setError, reset, formState: { isSubmitting, isSubmitSuccessful, errors } } = useForm<AddNewUserSchema>({
     defaultValues,
+    reValidateMode: 'onSubmit',
   });
 
   const showSuccessBanner = !!createdUser && isSubmitSuccessful;

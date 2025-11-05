@@ -21,6 +21,7 @@ const ThresholdsSettingsForm = ({ defaultValues }: ThresholdsSettingsFormProps) 
   const { register, handleSubmit, setError, formState: { isSubmitting, isSubmitSuccessful, errors } } = useForm<ThresholdsSettingsFormSchema>({
     defaultValues,
     resolver: zodResolver(thresholdsSettingsFormSchema),
+    reValidateMode: 'onSubmit',
   });
 
   const onSubmit: SubmitHandler<ThresholdsSettingsFormSchema> = async (data) => {

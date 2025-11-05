@@ -26,6 +26,7 @@ const FeedbackForm = () => {
   const { register, handleSubmit, formState: { errors }, setError } = useForm<FeedbackSchema>({
     defaultValues: feedBackFormDefaultValues,
     resolver: zodResolver(feedbackSchema),
+    reValidateMode: 'onSubmit',
   });
 
   const onSubmit: SubmitHandler<FeedbackSchema> = async (data) => {

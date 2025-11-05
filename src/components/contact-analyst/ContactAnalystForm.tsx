@@ -28,6 +28,7 @@ const ContactAnalystForm = ({ searchParams }: ContactAnalystFormProps) => {
   const { register, handleSubmit, formState: { errors } } = useForm<ContactAnalystSchema>({
     defaultValues: contactAnalystFormDefaultValues,
     resolver: zodResolver(contactAnalyst),
+    reValidateMode: 'onSubmit',
   });
 
   const onSubmit: SubmitHandler<ContactAnalystSchema> = async ({ messageContent }) => {

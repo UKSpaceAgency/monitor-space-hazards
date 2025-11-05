@@ -27,6 +27,7 @@ const OrganisationUserTypeForm = ({ user }: OrganisationUserTypeFormProps) => {
   const { handleSubmit, register, reset, formState: { errors, isSubmitSuccessful } } = useForm({
     defaultValues: { role: user.role ?? 'AGENCY_USER' },
     resolver: zodResolver(roleUserSchema),
+    reValidateMode: 'onSubmit',
   });
 
   const onSubmit = async (data: RoleUserSchema) => {
