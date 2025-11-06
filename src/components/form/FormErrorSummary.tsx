@@ -3,6 +3,8 @@ import type { FieldErrors } from 'react-hook-form';
 
 import ErrorSummary from '@/ui/error-summary/error-summary';
 
+import { MainTopPortal } from '../MainTopPortal';
+
 type FormErrorSummaryProps<T extends object> = {
   errors: FieldErrors<T>;
   fieldOrder?: (keyof T)[];
@@ -102,9 +104,12 @@ const FormErrorSummary = <T extends object>({ errors, fieldOrder }: FormErrorSum
   }));
 
   return (
-    <div ref={errorSummaryRef}>
-      <ErrorSummary errorList={errorList} />
-    </div>
+    <MainTopPortal>
+      <div ref={errorSummaryRef}>
+        <ErrorSummary errorList={errorList} />
+      </div>
+    </MainTopPortal>
+
   );
 };
 

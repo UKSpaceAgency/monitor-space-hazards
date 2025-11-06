@@ -13,7 +13,7 @@ export const phoneUserSchema = z.object({
     if (!phoneNumber?.isValid()) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        message: 'Enter a valid phone number',
+        message: 'Enter a phone number, like 01632 960 001, 07700 900 982 or +44 808 157 0192',
       });
       return z.NEVER;
     }

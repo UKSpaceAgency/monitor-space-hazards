@@ -10,7 +10,7 @@ export const addNewUserSchema = z.object({
   }),
   first_name: z.string().min(1, 'Enter your first name'),
   last_name: z.string().min(1, 'Enter your last name'),
-  email: z.string().email('Enter a valid email address'),
+  email: z.string().email('Enter an email address in the correct format, like name@example.com'),
   phone_number: z.string().transform((value, ctx) => {
     if (!value) {
       return value;
@@ -22,7 +22,7 @@ export const addNewUserSchema = z.object({
     if (!phoneNumber?.isValid()) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        message: 'Enter a valid phone number',
+        message: 'Enter a phone number, like 01632 960 001, 07700 900 982 or +44 808 157 0192',
       });
       return z.NEVER;
     }
