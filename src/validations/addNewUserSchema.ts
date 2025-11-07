@@ -6,10 +6,10 @@ import { getZodEnumFromObjectKeys } from '@/utils/Zod';
 
 export const addNewUserSchema = z.object({
   organization_id: z.string({
-    invalid_type_error: 'Select your organisation from the list.',
+    invalid_type_error: 'Select an organisation from the list.',
   }),
-  first_name: z.string().min(1, 'Enter your first name'),
-  last_name: z.string().min(1, 'Enter your last name'),
+  first_name: z.string().min(1, 'Enter a first name'),
+  last_name: z.string().min(1, 'Enter a last name'),
   email: z.string().email('Enter an email address in the correct format, like name@example.com'),
   phone_number: z.string().transform((value, ctx) => {
     if (!value) {

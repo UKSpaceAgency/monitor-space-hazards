@@ -47,7 +47,6 @@ const ReentryAlertMapTooltip = ({ latitude, longitude, regions, overflight, type
       <div className="pr-4">
         <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
           {t(type as any)}
-          {type}
           <IoEllipseSharp
             className="size-6"
             style={{
