@@ -59,7 +59,7 @@ export const ChartLegend = ({
                 <span className="block flex-auto w-5 h-5 outline outline-2 outline-black rounded-[1px] border-[4px] peer-focus-visible:ring ring-[#fd0] ring-offset-2" style={{ borderColor } as CSSProperties}>
                   {checked && <span className="block w-full h-full" style={{ backgroundColor } as CSSProperties} />}
                 </span>
-                <span className="line-through peer-checked:no-underline">
+                <span className="opacity-60 peer-checked:opacity-100">
                   {label}
                 </span>
               </label>

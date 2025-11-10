@@ -64,7 +64,7 @@ export const PieChartLegend = ({
                 <span className="block w-5 h-5 outline outline-2 outline-black rounded-[1px] border-[4px] peer-focus-visible:ring ring-[#fd0] ring-offset-2" style={{ borderColor: legendColors[index] } as CSSProperties}>
                   {checked && <span className="block w-full h-full" style={{ backgroundColor: legendColors[index] } as CSSProperties} />}
                 </span>
-                <span className="line-through peer-checked:no-underline">
+                <span className="opacity-60 peer-checked:opacity-100 peer-checked:no-underline">
                   {label}
                 </span>
               </label>
