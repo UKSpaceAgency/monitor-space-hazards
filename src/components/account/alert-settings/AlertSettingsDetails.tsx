@@ -13,7 +13,7 @@ const AlertSettingsDetails = ({ type }: AlertSettingsDetailsProps) => {
   const key = type === 'conjunction' ? 'help_conjunctions' : 'help_reentry';
 
   return (
-    <Details summary={t(`${key}.title`)}>
+    <Details summary={t.rich(`${key}.title`)}>
       <RichText>
         {tags => t.rich(`${key}.content`, tags) }
       </RichText>

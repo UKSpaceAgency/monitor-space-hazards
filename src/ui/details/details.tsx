@@ -1,14 +1,14 @@
 import clsx from 'clsx';
-import type { HTMLAttributes } from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 
 type DetailsProps = {
-  summary?: string;
+  summary?: ReactNode;
   initiallyOpen?: boolean;
-  ariaLabel?: string;
+  summaryAriaLabel?: string;
 } & HTMLAttributes<HTMLDetailsElement>;
 
 export function Details(props: DetailsProps) {
-  const { summary = 'Help', className, children, id, initiallyOpen, ariaLabel, ...rest } = props;
+  const { summary = 'Help', className, children, id, initiallyOpen, summaryAriaLabel, ...rest } = props;
 
   return (
     <details
@@ -16,7 +16,7 @@ export function Details(props: DetailsProps) {
       open={initiallyOpen}
       {...rest}
     >
-      <summary id={id} className="govuk-details__summary" aria-label={ariaLabel}>
+      <summary id={id} className="govuk-details__summary" aria-label={summaryAriaLabel}>
         <span className="govuk-details__summary-text">{summary}</span>
       </summary>
       <div className="govuk-details__text">{children}</div>

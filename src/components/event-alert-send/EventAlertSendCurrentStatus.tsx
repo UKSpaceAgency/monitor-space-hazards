@@ -10,7 +10,7 @@ import type { EventAlertData, EventAlertType } from './EventAlertTypes';
 
 type EventAlertSendCurrentStatusProps = {
   type: EventAlertType;
-  detailsSummary: string;
+  detailsSummary: ReactNode;
   detailsContent: ReactNode;
   data: EventAlertData;
 };

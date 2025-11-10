@@ -18,7 +18,7 @@ const ConjunctionMissDistanceChart = async ({ shortId, events, isSpecial }: Conj
   return (
     <div data-pdf={t('title')}>
       <MissDistanceChart data={events} isSpecial={isSpecial} />
-      <Details summary={t('help.title')} data-pdf-ignore>
+      <Details summary={t.rich('help.title')} data-pdf-ignore>
         {t.rich('help.content', {
           link: chunks => <Link href={`/conjunctions/${shortId}#eventHistory`} className="govuk-link">{chunks}</Link>,
         })}

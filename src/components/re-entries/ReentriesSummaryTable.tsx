@@ -25,7 +25,7 @@ const ReentriesSummaryTable = async () => {
   return (
     <div>
       <InformationsTable rows={baseInformations} data={eventsStats} headerCellWidth="sm" />
-      <Details summary={t('help.title')} ariaLabel="Upcoming re-entry events - Help with this table">
+      <Details summary={t.rich('help.title')}>
         {t.rich('help.content')}
       </Details>
     </div>

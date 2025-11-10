@@ -32,7 +32,7 @@ const CdmIngests = async () => {
       <DataPerformanceChart latestIngestDate={latestIngestDate} sourceType="CDM" xAxisTitle={t('x_axis_title')} yAxisTitle={t('y_axis_title')} legend={t('legend')} ariaLabel="Conjunction Data Message" />
       <DataPerformanceDataTable params={params} ariaLabel="Information on CDM Ingests" />
       <DownloadData type={t('title')} params={params} downloadAction={getExternalDataPerformance} ariaLabel="Cdm Ingest" />
-      <Details summary={t('details.title')} aria-label="Cdm Ingest details">
+      <Details summary={t.rich('details.title')}>
         {t.rich('details.content')}
       </Details>
     </>

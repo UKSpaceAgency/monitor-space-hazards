@@ -33,13 +33,13 @@ const UksaAnalyses = async () => {
       <h3 className="govuk-heading-s">{t('daily_title')}</h3>
       <UksaAnalysesDaily latestIngestDate={latestIngestDate} />
       <DownloadData type={t('daily_title')} params={params} downloadAction={getStatsAnalysisAndManoeuvreSupport} ariaLabel="Daily analyses and manoeuvre support details" />
-      <Details summary={t('daily_title')} aria-label="Daily analyses and manoeuvre support details">
+      <Details summary={t.rich('daily_details.title')}>
         {t('daily_details.content')}
       </Details>
       <h3 className="govuk-heading-s">{t('monthly_title')}</h3>
       <UksaAnalysesMonthly />
       <DownloadData type={t('monthly_title')} params={{}} downloadAction={getStatsMonthlyAnalyses} ariaLabel="Monthly analyses and manoeuvre support details" />
-      <Details summary={t('monthly_details.title')} aria-label="Monthly analyses and manoeuvre support details">
+      <Details summary={t.rich('monthly_details.title')}>
         {t('monthly_details.content')}
       </Details>
     </>

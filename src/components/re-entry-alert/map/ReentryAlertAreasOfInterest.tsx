@@ -72,7 +72,7 @@ const ReentryAlertAreasOfInterest = ({ selected, onChange }: ReentryAlertAreasOf
   return (
     <div>
       <h4 className="govuk-fieldset__legend govuk-fieldset__legend--s">{t('legend')}</h4>
-      <Details summary={t('help')} initiallyOpen>
+      <Details summary={t.rich('help')} initiallyOpen>
         <fieldset className="grid grid-cols-2 gap-4">
           <legend className="govuk-visually-hidden">{t('legend')}</legend>
           {options.map((group, index) => (

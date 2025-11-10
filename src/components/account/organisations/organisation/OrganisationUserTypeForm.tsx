@@ -70,7 +70,7 @@ const OrganisationUserTypeForm = ({ user }: OrganisationUserTypeFormProps) => {
           ...register('role'),
         }))}
       />
-      <Details summary={t('role_help.title')}>
+      <Details summary={t.rich('role_help.title')}>
         <RichText>
           {tags => t.rich('role_help.content', tags)}
         </RichText>

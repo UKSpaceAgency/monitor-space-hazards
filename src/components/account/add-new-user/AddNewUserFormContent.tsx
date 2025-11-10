@@ -85,7 +85,7 @@ const AddNewUserFormContent = ({ organizations, isSubmitting, register, role, er
         )}
       </Fieldset>
 
-      <Details summary={t('help.title')}>
+      <Details summary={t.rich('help.title')}>
         <p>
           <b className="mr-1">{t('help.admins')}</b>
           {t('help.adminsDescription')}

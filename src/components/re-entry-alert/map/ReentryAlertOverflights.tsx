@@ -61,7 +61,7 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
           </Checkbox>
         </div>
       </fieldset>
-      <Details summary={t('help')} initiallyOpen>
+      <Details summary={t.rich('help')} initiallyOpen>
         <fieldset className="grid md:grid-cols-2 gap-4 govuk-checkboxes govuk-checkboxes--small">
           <legend className="govuk-visually-hidden">Toggle overflights and ground fragments</legend>
           {renderCheckbox({ value: 0, label: t('flightpath') })}
