@@ -294,7 +294,7 @@
     "title": "NSpOC analysis uploads",
     "description": "View all NSpOC analysis uploaded to Monitor Space Hazards for UK conjunction events.",
     "help": {
-      "title": "Help with this table",
+      "title": "Help with this table <screenReaderOnly> - Uploaded analyses</screenReaderOnly>",
       "description1": "Select the file to view the analysis.",
       "description2": "Select delete to permanently remove the analysis from the service."
     }
@@ -303,7 +303,7 @@
     "title": "Manoeuvre support uploads",
     "description": "View all Manoeuvre support files uploaded to Monitor Space Hazards for UK conjunction events.",
     "help": {
-      "title": "Help with this table",
+      "title": "Help with this table<screenReaderOnly> - Uploaded manoeuvres</screenReaderOnly>",
       "description1": "Select the file to view the manoeuvre support.",
       "description2": "Select delete to permanently remove the file from the service."
     }
@@ -472,7 +472,7 @@
       "event_type": "Event type",
       "object_type": "Object type",
       "details": {
-        "title": "Help with this table",
+        "title": "Help with this table<screenReaderOnly> - Events by type</screenReaderOnly>",
         "content": "This table shows the number of conjunction events between different object types."
       }
     },
@@ -541,11 +541,11 @@
       "placeholder": "Search by event or object ID"
     },
     "help1": {
-      "title": "Help with this table",
+      "title": "Help with this table<screenReaderOnly> - Upcoming conjunctions</screenReaderOnly>",
       "content": "<p>This service tracks conjunction events for UK-licensed objects.</p><list><item><bold>Conjunction alerts:</bold>  conjunction events that meet the National Space Operations Centre's thresholds for alerting UK government</item><item><bold>All conjunction events:</bold> all conjunction events, including those which have not met alerting thresholds, either for a specific operator or all UK-licensed satellites</item></list>"
     },
     "help2": {
-      "title": "Help with this table",
+      "title": "Help with this table<screenReaderOnly> - Conjunction events</screenReaderOnly>",
       "content": "<p>This table shows upcoming conjunction events involving UK-licensed satellites by default. You can apply filters to view past events.</p><p>Select the <bold>event ID</bold> to view more information</p><p>Each event ID or row represents <bold>one conjunction event </bold> including all related Conjunction Data Messages (CDMs) and NSpOC analysis.</p><p>The <bold>your interest</bold> column contains HIGH labels for events that meet your thresholds for notifications.</p>"
     }
   },
@@ -555,7 +555,7 @@
     "Poc_chart": {
       "title": "Evolution of collision probability",
       "help": {
-        "title": "Help with this chart",
+        "title": "Help with this chart<screenReaderOnly> - Probability of collision</screenReaderOnly>",
         "content": "<p>Data sources can be turned on or off by selecting the series in the legend below the chart.</p><p>Evolution of operational conjunction event data is displayed as a continuous line. Individual <special>Special</special> ephemeris probabilities can be turned on or off.</p><p>You can reveal more details about a specific data point by moving your mouse over it or tapping on the data point on touch-enabled screens.</p><p>Full conjunction event data can be viewed or downloaded from <link>Conjunction event history</link>.</p>"
       }
     },
@@ -565,7 +565,7 @@
     "Miss_distance_chart": {
       "title": "Evolution of miss distance",
       "help": {
-        "title": "Help with this chart",
+        "title": "Help with this chart<screenReaderOnly> - Miss distance</screenReaderOnly>",
         "content": "<p>Miss distances can be turned on or off by selecting the series in the legend below the chart.</p><p>Evolution of operational conjunction event data is displayed as a continuous line. Individual <special>Special</special> ephemeris probabilities can be turned on or off.</p><p>You can reveal more details about a specific data point by moving your mouse over it or tapping on the data point on touch-enabled screens.</p><p>Full conjunction event data can be viewed or downloaded from <link>Conjunction event history</link>.</p>"
       }
     },
@@ -583,7 +583,7 @@
       "title": "Conjunction event history",
       "download": "event history",
       "help": {
-        "title": "Help with this table",
+        "title": "Help with this table<screenReaderOnly> - Event history</screenReaderOnly>",
         "content": "<p>Historical CDMs for the event are available in this table. Information about the individual CDM is available, including the calculation method for the probability of collision, the position uncertainty and data source for each object.</p><p>The data source for each object either comes from SSN observations, special or operational owner/operator ephemeris or NASA/CARA. Further information about these can be found in <link>definitions on data sources</link>.</p>"
       }
     },
@@ -832,7 +832,7 @@
         "high": "More than {value}%"
       },
       "details": {
-        "title": "Help with this table",
+        "title": "Help with this table<screenReaderOnly> - Risk thresholds</screenReaderOnly>",
         "content": "<p>This table shows the risk thresholds and levels used to assess how a re-entering object could pose a risk to UK interests:</p><list><item><bold>Debris impact in UK:</bold> Chance fragments reach the ground within UK</item><item><bold>Re-entry over UK:</bold> Chance the object enters atmosphere over UK</item></list>"
       }
     },
@@ -888,7 +888,7 @@
         "x_axis_title": "Date",
         "legend": "Conjunction Data Message (CDM) source",
         "details": {
-          "title": "Help with this table",
+          "title": "Help with this table<screenReaderOnly> - Cdm ingests</screenReaderOnly>",
           "content": "<p>This table shows performance monitoring information for the external sources of CDMs that Monitor Space Hazards ingests.</p><list><item>Ingestion start and stop show the time the data ingest started and finished</item><item>Number of items fetched shows how many items were retrieved</item></list>"
         }
       },
@@ -899,7 +899,7 @@
         "x_axis_title": "Date",
         "legend": "Tracking and Impact Prediction (TIP) source",
         "details": {
-          "title": "Help with this table",
+          "title": "Help with this table<screenReaderOnly> - Tip ingests</screenReaderOnly>",
           "content": "<p>This table shows performance monitoring information for the external sources of TIPs that Monitor Space Hazards ingests.</p><list><item>Ingestion start and stop show the time the data ingest started and finished</item><item>Number of items fetched shows how many items were retrieved</item></list>"
         }
       },
@@ -910,14 +910,14 @@
         "x_axis_title": "Date",
         "legend": "Object ingest",
         "details": {
-          "title": "Help with this table",
+          "title": "Help with this table<screenReaderOnly> - Object data ingests</screenReaderOnly>",
           "content": "<p>This table shows performance monitoring information for the external data sources of satellite information that Monitor Space Hazards ingests.</p><list><item>Ingestion start and stop show the time the data ingest started and finished</item><item>Number of items fetched shows how many items were retrieved</item></list>"
         }
       },
       "notifications_sent": {
         "title": "Notifications sent",
         "details": {
-          "title": "Help with this table",
+          "title": "Help with this table<screenReaderOnly> - Notifications send</screenReaderOnly>",
           "content": "<p>This table shows the number and type of alert notifications sent  to users of Monitor Space Hazards.</p>"
         }
       },
@@ -926,12 +926,12 @@
         "unknown": "Unknown",
         "daily_title": "Daily count of analyses and manoeuvre support plots",
         "daily_details": {
-          "title": "Help with this table",
+          "title": "Help with this table<screenReaderOnly> - UKSA daily analyses and manoeuvre support</screenReaderOnly>",
           "content": "This table shows the number of analyses and manoeuvre support plots uploaded by a NSpOC orbital analyst."
         },
         "monthly_title": "Monthly count of analyses and manoeuvre support plots",
         "monthly_details": {
-          "title": "Help with this table",
+          "title": "Help with this table<screenReaderOnly> - UKSA monthly analyses and manoeuvre support</screenReaderOnly>",
           "content": "This table shows the number of analyses and manoeuvre support plots uploaded by a NSpOC orbital analyst per month."
         }
       }
@@ -2059,7 +2059,7 @@
       "placeholder": "Search by event or object ID"
     },
     "help": {
-      "title": "Help with this table",
+      "title": "Help with this table<screenReaderOnly> - Fragmentation events</screenReaderOnly>",
       "content": "<p><bold>This table shows all upcoming and previous tracked fragmentation events that have been identified by Space-Track and ingested into Monitor space hazards, including events which pose a risk to UK satellites and Human Spaceflight missions. Higher risk events contain additional analysis by UKSA's Orbital Analysts at the National Space Operations Centre.</bold></p><list><item>Select the <bold>Event ID</bold> to view more information</item><item>Each Event ID or row represents <bold>one fragmentation event</bold></item><item>Sort the alerts according to criteria by clicking on the relevant <bold>headings</bold></item></list><p><bold>Alert thresholds</bold></p><p>Alerts about fragmentation events are produced if:</p><list><item>there is an increased risk of a potential collision with a UK operated satellite or Human Spaceflight mission</item><item>OR nominated for escalation by the National Space Operations Centre</item></list><p><bold>Risk thresholds</bold></p><p>Risk thresholds are calculated according to the probability of the object affecting UK operated satellites or Human Spaceflight mission.</p>"
     }
   },
