@@ -11,6 +11,7 @@ export const defaultTranslationValues: RichTranslationValues = {
   bold: chunks => <b>{chunks}</b>,
   b: chunks => <b>{chunks}</b>,
   special: chunks => <strong className="govuk-tag">{chunks}</strong>,
+  screenReaderOnly: chunks => <span className="sr-only">{chunks}</span>,
 };
 
 // Using internationalization in Server Components

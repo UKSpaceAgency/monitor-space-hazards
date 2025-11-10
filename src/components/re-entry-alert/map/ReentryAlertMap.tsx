@@ -191,7 +191,7 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
       </div>
       <div className="flex gap-2 items-center mb-6">
         <p className="govuk-body-s mb-0">Download re-entry geoJSON data:</p>
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
           <a
             href={`${window.location.origin}/reentry_event_reports/${reentryId}/${reportId}-overflight_features_0.geojson`}
             download={`${reentryId}-${reportId}-flightpath.geojson`}

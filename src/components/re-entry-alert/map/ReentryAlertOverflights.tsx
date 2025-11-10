@@ -49,9 +49,9 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
   };
 
   return (
-    <fieldset aria-label="Re-entry Alert Overflights and ground fragments">
-      <div>
-        <legend className="govuk-fieldset__legend govuk-fieldset__legend--s">{t('legend')}</legend>
+    <div>
+      <fieldset>
+        <legend className="govuk-fieldset__legend govuk-fieldset__legend--s"><h4>{t('legend')}</h4></legend>
         <div className="grid md:grid-cols-2 md:gap-4 govuk-checkboxes govuk-checkboxes--small md:py-4 md:pl-[25px]">
           <Checkbox full checked={types.includes('FLIGHTPATH')} value="FLIGHTPATH" onChange={handleTypeChange}>
             {t('show_flightpaths')}
@@ -60,9 +60,10 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
             {t('show_fragments')}
           </Checkbox>
         </div>
-      </div>
-      <Details summary={t('help')} initiallyOpen>
-        <div className="grid md:grid-cols-2 gap-4 govuk-checkboxes govuk-checkboxes--small">
+      </fieldset>
+      <Details summary={t.rich('help')} initiallyOpen>
+        <fieldset className="grid md:grid-cols-2 gap-4 govuk-checkboxes govuk-checkboxes--small">
+          <legend className="govuk-visually-hidden">Toggle overflights and ground fragments</legend>
           {renderCheckbox({ value: 0, label: t('flightpath') })}
           {overflights.map((overflight, index) => {
             const number = index + 1;
@@ -72,9 +73,9 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
               </Fragment>
             );
           })}
-        </div>
+        </fieldset>
       </Details>
-    </fieldset>
+    </div>
   );
 };
 

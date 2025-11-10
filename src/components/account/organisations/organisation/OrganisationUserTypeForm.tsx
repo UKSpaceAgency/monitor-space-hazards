@@ -27,6 +27,7 @@ const OrganisationUserTypeForm = ({ user }: OrganisationUserTypeFormProps) => {
   const { handleSubmit, register, reset, formState: { errors, isSubmitSuccessful } } = useForm({
     defaultValues: { role: user.role ?? 'AGENCY_USER' },
     resolver: zodResolver(roleUserSchema),
+    reValidateMode: 'onSubmit',
   });
 
   const onSubmit = async (data: RoleUserSchema) => {
@@ -69,7 +70,7 @@ const OrganisationUserTypeForm = ({ user }: OrganisationUserTypeFormProps) => {
           ...register('role'),
         }))}
       />
-      <Details summary={t('role_help.title')}>
+      <Details summary={t.rich('role_help.title')}>
         <RichText>
           {tags => t.rich('role_help.content', tags)}
         </RichText>

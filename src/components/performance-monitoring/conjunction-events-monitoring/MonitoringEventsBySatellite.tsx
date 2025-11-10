@@ -15,7 +15,7 @@ const MonitoringEventsBySatellite = async () => {
     <div>
       <p className="govuk-body">{t('description')}</p>
       <MonitoringEventsBySatelliteDataTable isAnalysist={isAnalysist(user.role)} />
-      <Details summary={t('details.title')} aria-label="Daily Conjunction events by satellite details">
+      <Details summary={t.rich('details.title')}>
         {t('details.content')}
       </Details>
     </div>

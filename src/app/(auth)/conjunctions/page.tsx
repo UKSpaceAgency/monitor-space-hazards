@@ -53,19 +53,21 @@ export default async function ConjunctionsPage(props: PageProps) {
   return (
     <div>
       <h1 className="govuk-heading-xl">{t('title')}</h1>
-      <Suspense key={params.search_like} fallback={<Spinner />}>
+      <Suspense key={`summary-table-${params.search_like}`} fallback={<Spinner />}>
         <ConjunctionsSummaryTable />
-        <Details summary={t('help1.title')}>
-          {t.rich('help1.content')}
-        </Details>
-        <h2 className="govuk-heading-m">{t('section_title')}</h2>
-        <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
-        <p className="govuk-body">{t('description')}</p>
-        <SearchBar label={`${searchBarLabel}:`} id="conjunctions_search_bar" placeholder={t('search_bar.placeholder')} ariaLabel={searchBarLabel} />
-        <ConjunctionsEventsTableFilters params={params} showFilterRadios={!isSatteliteUser(session?.user.role)} />
+      </Suspense>
+      <Details summary={t.rich('help1.title')}>
+        {t.rich('help1.content')}
+      </Details>
+      <h2 className="govuk-heading-m">{t('section_title')}</h2>
+      <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
+      <p className="govuk-body">{t('description')}</p>
+      <SearchBar label={`${searchBarLabel}:`} id="conjunctions_search_bar" placeholder={t('search_bar.placeholder')} ariaLabel={searchBarLabel} />
+      <ConjunctionsEventsTableFilters params={params} showFilterRadios={!isSatteliteUser(session?.user.role)} />
+      <Suspense key={`events-table-${params.search_like}`} fallback={<Spinner />}>
         <ConjunctionsEventsTable params={params} />
       </Suspense>
-      <Details summary={t('help2.title')}>
+      <Details summary={t.rich('help2.title')}>
         {t.rich('help2.content')}
       </Details>
     </div>

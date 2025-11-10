@@ -159,7 +159,7 @@ export function MtpChart({
         </div>
         <DownloadData type={t('download')} params={{}} downloadAction={async () => data} data-pdf-ignore ariaLabel="Mtp chart" />
       </div>
-      <Details summary={t('details.summary')} data-pdf-ignore>
+      <Details summary={t.rich('details.summary')} data-pdf-ignore>
         <RichText>
           {tags => t.rich('details.content', tags) }
         </RichText>

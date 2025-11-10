@@ -49,7 +49,7 @@ export default async function FragmentationsPage(props: PageProps) {
       <p className="govuk-body">{t('description')}</p>
       <SearchBar label={`${searchBarLabel}:`} id="conjunctions_search_bar" placeholder={t('search_bar.placeholder')} ariaLabel={searchBarLabel} />
       <FragmentationsEventsTable params={params} />
-      <Details summary={t('help.title')}>
+      <Details summary={t.rich('help.title')}>
         {t.rich('help.content', {
           table: chunks => <Table className="text-sm md:text-base">{chunks}</Table>,
           thead: chunks => <TableHead>{chunks}</TableHead>,

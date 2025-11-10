@@ -19,7 +19,7 @@ const ConjunctionCollisionProbabilityChart = async ({ shortId, events }: Conjunc
       <PocChart
         data={events}
       />
-      <Details summary={t('help.title')} data-pdf-ignore>
+      <Details summary={t.rich('help.title')} data-pdf-ignore>
         {t.rich('help.content', {
           link: chunks => <Link href={`/conjunctions/${shortId}#eventHistory`} className="govuk-link">{chunks}</Link>,
         })}

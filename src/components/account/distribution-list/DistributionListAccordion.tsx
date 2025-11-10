@@ -52,7 +52,7 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
         ]}
       />
 
-      <Details summary={t('conjunctions_help.summary')}>
+      <Details summary={t.rich('conjunctions_help.summary')}>
         {t.rich('conjunctions_help.content')}
       </Details>
 
@@ -105,7 +105,7 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
         ]}
       />
 
-      <Details summary={t('reentry_help.summary')}>
+      <Details summary={t.rich('reentry_help.summary')}>
         {t.rich('reentry_help.content')}
       </Details>
     </>

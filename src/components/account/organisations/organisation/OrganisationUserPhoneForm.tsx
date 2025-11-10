@@ -24,6 +24,7 @@ const OrganisationUserPhoneForm = ({ user }: OrganisationUserPhoneFormProps) => 
   const { handleSubmit, register, reset, formState: { errors, isSubmitSuccessful } } = useForm({
     defaultValues: { phone: '' },
     resolver: zodResolver(phoneUserSchema),
+    reValidateMode: 'onSubmit',
   });
 
   const onSubmit = async (data: PhoneUserSchema) => {

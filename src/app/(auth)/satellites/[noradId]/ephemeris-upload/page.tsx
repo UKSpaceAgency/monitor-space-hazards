@@ -30,7 +30,7 @@ export default async function EphemerisUpload({
       <h1 className="govuk-heading-xl">{t('title')}</h1>
       {t.rich('content')}
       <SatelliteEphemerisUploadForm objectId={noradId} />
-      <Details summary={t('help_summary')}>
+      <Details summary={t.rich('help_summary')}>
         {t.rich('help_content', {
           link: chunks => <Link href="/account/terms-and-conditions" className="govuk-link">{chunks}</Link>,
         })}

@@ -21,8 +21,7 @@ const ReentryAlertMapType = ({ value, onChange }: ReentryAlertMapTypeProps) => {
     <Radios
       small
       id="map_type"
-      aria-label="Map Type"
-      legend={t('map_type')}
+      legend={<h4>{t('map_type')}</h4>}
       value={value}
       items={[{
         id: 'street',

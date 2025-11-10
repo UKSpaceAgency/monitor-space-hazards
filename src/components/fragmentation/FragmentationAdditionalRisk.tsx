@@ -16,7 +16,7 @@ const FragmentationAdditionalRisk = async ({ presignedUrl, dataPdf }: { presigne
       <div className="overflow-auto max-h-[500px]">
         <FragmentationAdditionalRiskTable data={data} />
       </div>
-      <Details summary={t('help.title')}>
+      <Details summary={t.rich('help.title')}>
         {t.rich('help.content')}
       </Details>
     </div>

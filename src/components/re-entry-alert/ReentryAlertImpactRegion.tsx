@@ -18,10 +18,10 @@ const ReentryAlertImpactRegion = ({ england, ireland, wales, scotland, dataPdf }
 
   return (
     <div data-pdf={dataPdf}>
-      {england && <ReentryAlertImpactTable caption={Regions.ENGLAND.name} impact={england} />}
-      {ireland && <ReentryAlertImpactTable caption={Regions.NORTHERN_IRELAND.name} impact={ireland} />}
-      {wales && <ReentryAlertImpactTable caption={Regions.WALES.name} impact={wales} />}
-      {scotland && <ReentryAlertImpactTable caption={Regions.SCOTLAND.name} impact={scotland} />}
+      {england && <ReentryAlertImpactTable caption={Regions.ENGLAND.name} impact={england} byRegion="England" />}
+      {ireland && <ReentryAlertImpactTable caption={Regions.NORTHERN_IRELAND.name} impact={ireland} byRegion="Northern Ireland" />}
+      {wales && <ReentryAlertImpactTable caption={Regions.WALES.name} impact={wales} byRegion="Wales" />}
+      {scotland && <ReentryAlertImpactTable caption={Regions.SCOTLAND.name} impact={scotland} byRegion="Scotland" />}
       {t.rich('see_further_information', { link: chunks => <a href="#further_information" className="govuk-link">{chunks}</a> })}
     </div>
   );

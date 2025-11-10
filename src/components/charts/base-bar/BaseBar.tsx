@@ -11,7 +11,6 @@ import {
   Title,
   Tooltip,
 } from 'chart.js';
-import AnnotationPlugin from 'chartjs-plugin-annotation';
 import type { ReactNode } from 'react';
 import { useEffect, useRef } from 'react';
 import { Bar } from 'react-chartjs-2';
@@ -23,6 +22,7 @@ import { chartPalette } from '../base/theme';
 import { useInViewport } from '../base/useInViewport';
 import type { InferChartLegendProps } from '../legend/LegendChart';
 import { ChartLegend } from '../legend/LegendChart';
+import AnnotationPlugin from '../plugins/plugin-a11y-legend';
 
 ChartJS.register(Title, Tooltip, Legend, AnnotationPlugin, BarElement);
 
