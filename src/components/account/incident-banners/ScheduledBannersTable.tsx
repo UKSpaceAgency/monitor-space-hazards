@@ -52,8 +52,8 @@ const ScheduledBannersTable = ({ banners }: ScheduledBannersTableProps) => {
         : (
             <TopNotificationBanner status="error" heading={t('Remove_confirmation.title', { title: bannerToRemove.title })} aria-label={t('Remove_confirmation.title', { title: bannerToRemove.title })}>
               <ButtonGroup>
-                <Button ref={removeButtonRef} variant="warning" onClick={() => mutate()} aria-label={t('Remove_confirmation.yes')}>{t('Remove_confirmation.yes')}</Button>
-                <Button variant="secondary" onClick={() => setBannerToRemove(null)} aria-label={t('Remove_confirmation.no')}>{t('Remove_confirmation.no')}</Button>
+                <Button ref={removeButtonRef} variant="warning" onClick={() => mutate()} aria-label={`Yes, delete ${bannerToRemove.title}`}>{t('Remove_confirmation.yes')}</Button>
+                <Button variant="secondary" onClick={() => setBannerToRemove(null)} aria-label={`Cancel, deleting ${bannerToRemove.title}`}>{t('Remove_confirmation.no')}</Button>
               </ButtonGroup>
             </TopNotificationBanner>
           ))}

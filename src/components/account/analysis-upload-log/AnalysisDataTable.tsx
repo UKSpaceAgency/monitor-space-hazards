@@ -104,10 +104,10 @@ const AnalysisDataTable = ({ data, params }: AnalysisDataTableProps) => {
       {fileToDelete && !isFileDeleted && (
         <TopNotificationBanner status="error" heading={tCommon('are_you_sure_you_want_to_delete_json', { fileToDelete })}>
           <div className="govuk-button-group">
-            <Button className="govuk-button--warning" onClick={confirmDelete} aria-label="File deletion confirmation button">
+            <Button className="govuk-button--warning" onClick={confirmDelete} aria-label={`Yes, delete ${fileToDelete}`}>
               {tCommon('yes_delete')}
             </Button>
-            <Button className="govuk-button--secondary" onClick={cancel} aria-label="File deletion cancellation button">
+            <Button className="govuk-button--secondary" onClick={cancel} aria-label={`Cancel, deleting ${fileToDelete}`}>
               {tCommon('cancel')}
             </Button>
           </div>
