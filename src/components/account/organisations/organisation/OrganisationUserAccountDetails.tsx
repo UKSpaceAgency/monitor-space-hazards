@@ -73,7 +73,7 @@ const OrganisationUserAccountDetails = ({ user }: OrganisationUserAccountDetails
         <Button
           className="govuk-button--warning"
           onClick={onDeleteUser}
-          aria-label="Delete user"
+          aria-label={`Delete user ${user.email}`}
           disabled={user.email === session.data?.user.email}
         >
           {t('delete_user')}
