@@ -1,16 +1,15 @@
 import { useTranslations } from 'next-intl';
 
-import type { TypeFragmentationReport, TypeReentryRisk } from '@/__generated__/data-contracts';
+import type { TypeFragmentationReportOut, TypeReentryRisk } from '@/__generated__/data-contracts';
 import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
-import { getFullCountry } from '@/utils/Regions';
 import { renderRiskTag } from '@/utils/Risk';
 
-type EventSummaryData = Pick<TypeFragmentationReport, 'primary_object_common_name' | 'event_epoch' | 'primary_object_inclination' | 'known_fragments' | 'modelled_fragments' | 'risk' | 'affected_regime' | 'primary_object_type' | 'primary_object_licensing_country'>;
+type EventSummaryData = Pick<TypeFragmentationReportOut, 'primary_object_common_name' | 'event_epoch' | 'primary_object_inclination' | 'known_fragments' | 'modelled_fragments' | 'risk' | 'affected_regime' | 'primary_object_type' | 'primary_object_licensing_country'>;
 
 type FragmentationExecutiveSummaryTableProps = {
-  report: TypeFragmentationReport;
+  report: TypeFragmentationReportOut;
 };
 
 const FragmentationExecutiveSummaryTable = ({ report }: FragmentationExecutiveSummaryTableProps) => {
@@ -18,17 +17,14 @@ const FragmentationExecutiveSummaryTable = ({ report }: FragmentationExecutiveSu
 
   const rows: InformationsTableRow<EventSummaryData>[] = [
     {
-      header: t('object_name'),
-      accessorKey: 'primary_object_common_name',
+      header: t('risk'),
+      accessorKey: 'risk',
+      renderCell: ({ risk }) => renderRiskTag(risk as TypeReentryRisk),
     },
     {
       header: t('event_epoch'),
       accessorKey: 'event_epoch',
       renderCell: ({ event_epoch }) => `${dayjs(event_epoch).format(FORMAT_FULL_DATE_TIME)}`,
-    },
-    {
-      header: t('inclination'),
-      accessorKey: 'primary_object_inclination',
     },
     {
       header: t('known_fragments'),
@@ -39,9 +35,8 @@ const FragmentationExecutiveSummaryTable = ({ report }: FragmentationExecutiveSu
       accessorKey: 'modelled_fragments',
     },
     {
-      header: t('risk'),
-      accessorKey: 'risk',
-      renderCell: ({ risk }) => renderRiskTag(risk as TypeReentryRisk),
+      header: t('uk_satellites_affected'),
+      renderCell: () => 'TODO',
     },
     {
       header: t('affected_regime'),
@@ -49,13 +44,8 @@ const FragmentationExecutiveSummaryTable = ({ report }: FragmentationExecutiveSu
       renderCell: ({ affected_regime }) => affected_regime,
     },
     {
-      header: t('primary_object_type'),
-      accessorKey: 'primary_object_type',
-    },
-    {
-      header: t('primary_object_licensing_country'),
-      accessorKey: 'primary_object_licensing_country',
-      renderCell: ({ primary_object_licensing_country }) => getFullCountry(primary_object_licensing_country),
+      header: t('potential_cause'),
+      renderCell: () => 'TODO',
     },
   ];
 

@@ -28,7 +28,7 @@ import { PieChartLegend } from '../legend/PieLegendChart';
 
 ChartJS.register(Title, Tooltip, Legend, AnnotationPlugin, ArcElement, A11yLegendPlugin);
 
-setChartDefaults();
+setChartDefaults({ isTimeScale: false, isLogarithmicScale: false });
 
 defaults.plugins.legend.position = 'left';
 defaults.plugins.tooltip.footerColor = chartPalette.black;

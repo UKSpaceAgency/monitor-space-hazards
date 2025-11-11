@@ -1,7 +1,7 @@
 import type { Chart as ChartJS, ChartDataset, ChartType } from 'chart.js';
 import clsx from 'clsx';
 import type { ChangeEvent, CSSProperties, MutableRefObject } from 'react';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export type ChartLegendOptions = {
   interactive?: boolean;
@@ -27,6 +27,10 @@ export const ChartLegend = ({
   ariaLabel,
 }: ChartLegendProps) => {
   const [legendStatusMap, setLegendStatus] = useState<boolean[]>(Array(items.length).fill(true));
+
+  useEffect(() => {
+    setLegendStatus(Array(items.length).fill(true));
+  }, [items]);
 
   const handleLegendClick = useCallback(({ target }: ChangeEvent<HTMLInputElement>) => {
     const index = Number.parseInt(target.value);

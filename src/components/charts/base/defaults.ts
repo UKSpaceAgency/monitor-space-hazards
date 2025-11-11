@@ -4,7 +4,13 @@ import { FORMAT_DATE, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 
 import { chartFontFamily, chartPalette } from './theme';
 
-export const setChartDefaults = () => {
+export const setChartDefaults = ({
+  isTimeScale = true,
+  isLogarithmicScale = false,
+}: {
+  isTimeScale?: boolean;
+  isLogarithmicScale?: boolean;
+}) => {
   defaults.color = chartPalette.black;
 
   defaults.font = {
@@ -37,11 +43,15 @@ export const setChartDefaults = () => {
     },
   };
 
-  defaults.scales.time.time.displayFormats = {
-    hour: FORMAT_DATE_TIME,
-    day: FORMAT_DATE,
-  };
+  if (isTimeScale) {
+    defaults.scales.time.time.displayFormats = {
+      hour: FORMAT_DATE_TIME,
+      day: FORMAT_DATE,
+    };
+  }
 
-  defaults.scales.logarithmic.ticks.autoSkip = true;
-  defaults.scales.logarithmic.ticks.maxTicksLimit = 8;
+  if (isLogarithmicScale) {
+    defaults.scales.logarithmic.ticks.autoSkip = true;
+    defaults.scales.logarithmic.ticks.maxTicksLimit = 8;
+  }
 };

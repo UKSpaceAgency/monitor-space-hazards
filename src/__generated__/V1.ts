@@ -47,6 +47,9 @@ import {
   TypeExternalDataPerformanceAggregateOut,
   TypeExternalDataPerformanceOut,
   TypeFragmentationEvent,
+  TypeFragmentationEventAlertIn,
+  TypeFragmentationEventAlertOut,
+  TypeFragmentationEventPatch,
   TypeFragmentationReport,
   TypeFragmentationReportOut,
   TypeGetAnalysesParams,
@@ -720,6 +723,24 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
+   * @description ## Description Update Fragmentation Event by short ID. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Update| |Agency approver|Update| |Agency superuser|Update|
+   *
+   * @tags fragmentation-events
+   * @name PatchFragmentationEventsShortId
+   * @summary Update Fragmentation Event by short ID
+   * @request PATCH:/v1/fragmentation-events/{short_id}
+   * @secure
+   */
+  patchFragmentationEventsShortId = (shortId: string, data: TypeFragmentationEventPatch, params: RequestParams = {}) =>
+    this.request<TypeFragmentationEvent, void | TypeHTTPValidationError>({
+      path: `/v1/fragmentation-events/${shortId}`,
+      method: "PATCH",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    }); /**
    * @description ## Description Gets Fragmentation Events schema. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
    *
    * @tags fragmentation-events
@@ -733,6 +754,66 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       path: `/v1/fragmentation-events/schema`,
       method: "GET",
       secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags fragmentation-events
+   * @name GetFragmentationEventsShortIdAlertsLatest
+   * @summary Get Latest Fragmentation Event Alert
+   * @request GET:/v1/fragmentation-events/{short_id}/alerts/latest
+   * @secure
+   */
+  getFragmentationEventsShortIdAlertsLatest = (shortId: string, params: RequestParams = {}) =>
+    this.request<TypeFragmentationEventAlertOut, void | TypeHTTPValidationError>({
+      path: `/v1/fragmentation-events/${shortId}/alerts/latest`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|Put| |Agency superuser|Put|
+   *
+   * @tags fragmentation-events
+   * @name PutFragmentationEventsShortIdAlertsLatest
+   * @summary Put Latest Fragmentation Event Alert
+   * @request PUT:/v1/fragmentation-events/{short_id}/alerts/latest
+   * @secure
+   */
+  putFragmentationEventsShortIdAlertsLatest = (
+    shortId: string,
+    data: TypeFragmentationEventAlertIn,
+    params: RequestParams = {},
+  ) =>
+    this.request<any, void | TypeHTTPValidationError>({
+      path: `/v1/fragmentation-events/${shortId}/alerts/latest`,
+      method: "PUT",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    }); /**
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|Put| |Agency superuser|Put|
+   *
+   * @tags fragmentation-events
+   * @name PutFragmentationEventsShortIdAlertsLatestDryRun
+   * @summary Put Latest Fragmentation Event Alert Dry Run
+   * @request PUT:/v1/fragmentation-events/{short_id}/alerts/latest/dry-run
+   * @secure
+   */
+  putFragmentationEventsShortIdAlertsLatestDryRun = (
+    shortId: string,
+    data: TypeFragmentationEventAlertIn,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeAlertDryRunOut, void | TypeHTTPValidationError>({
+      path: `/v1/fragmentation-events/${shortId}/alerts/latest/dry-run`,
+      method: "PUT",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
       format: "json",
       ...params,
     }); /**
@@ -851,7 +932,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getFragmentationReportsFragmentationEventShortIdLatest = (shortId: string, params: RequestParams = {}) =>
-    this.request<TypeFragmentationReport | null, void | TypeHTTPValidationError>({
+    this.request<TypeFragmentationReportOut, void | TypeHTTPValidationError>({
       path: `/v1/fragmentation-reports/fragmentation-event/${shortId}/latest`,
       method: "GET",
       secure: true,

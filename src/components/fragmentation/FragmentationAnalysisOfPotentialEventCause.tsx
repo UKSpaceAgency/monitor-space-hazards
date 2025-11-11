@@ -1,7 +1,7 @@
-import type { TypeFragmentationReport } from '@/__generated__/data-contracts';
+import type { TypeFragmentationReportOut } from '@/__generated__/data-contracts';
 
 type FragmentationAnalysisOfPotentialEventCauseProps = {
-  report: TypeFragmentationReport;
+  report: TypeFragmentationReportOut;
 };
 
 // eslint-disable-next-line unused-imports/no-unused-vars

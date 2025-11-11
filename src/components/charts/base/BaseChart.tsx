@@ -58,7 +58,7 @@ ChartJS.register(
   AnnotationPlugin,
 );
 
-setChartDefaults();
+setChartDefaults({ isTimeScale: true, isLogarithmicScale: true });
 
 export type BaseChartProps = {
   id?: string;

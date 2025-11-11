@@ -26,7 +26,7 @@ import AnnotationPlugin from '../plugins/plugin-a11y-legend';
 
 ChartJS.register(Title, Tooltip, Legend, AnnotationPlugin, BarElement);
 
-setChartDefaults();
+setChartDefaults({ isTimeScale: false, isLogarithmicScale: false });
 
 defaults.plugins.legend.labels.color = chartPalette.white;
 defaults.plugins.tooltip.footerColor = chartPalette.black;

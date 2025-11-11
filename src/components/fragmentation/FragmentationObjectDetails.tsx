@@ -1,16 +1,14 @@
-import type { TypeFragmentationReport } from '@/__generated__/data-contracts';
+import type { TypeFragmentationReportOut } from '@/__generated__/data-contracts';
 
 import { FragmentationObjectDetailsTable } from './tables/FragmentationObjectDetails';
 
 type FragmentationObjectDetailsProps = {
-  report: TypeFragmentationReport;
+  report: TypeFragmentationReportOut;
 };
 
 const FragmentationObjectDetails = async ({ report }: FragmentationObjectDetailsProps) => {
   return (
-    <div>
-      <FragmentationObjectDetailsTable report={report} />
-    </div>
+    <FragmentationObjectDetailsTable report={report} />
   );
 };
 

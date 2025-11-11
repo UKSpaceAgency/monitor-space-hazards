@@ -1,14 +1,14 @@
 import { useTranslations } from 'next-intl';
 
-import type { TypeFragmentationReport } from '@/__generated__/data-contracts';
+import type { TypeFragmentationReportOut } from '@/__generated__/data-contracts';
 import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 
-type EventDetailsData = Pick<TypeFragmentationReport, 'event_epoch' | 'primary_object_inclination' | 'known_fragments' | 'modelled_fragments' | 'primary_object_apogee' | 'primary_object_perigee'>;
+type EventDetailsData = Pick<TypeFragmentationReportOut, 'event_epoch' | 'primary_object_inclination' | 'known_fragments' | 'modelled_fragments' | 'primary_object_apogee' | 'primary_object_perigee'>;
 
 type FragmentationEventDetailsTableProps = {
-  report: TypeFragmentationReport;
+  report: TypeFragmentationReportOut;
 };
 
 const FragmentationEventDetailsTable = ({ report }: FragmentationEventDetailsTableProps) => {

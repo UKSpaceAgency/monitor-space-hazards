@@ -1,7 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
 import type { TypeEpoch, TypeReentryRisk, TypeReportFlagSettings } from '@/__generated__/data-contracts';
-import { FragmentationFurtherInformation } from '@/components/fragmentation/FragmentationFurtherInformation';
 import { FragmentationsEventsTable } from '@/components/fragmentations/FragmentationsEventsTable';
 import { SearchBar } from '@/components/SearchBar';
 import Details from '@/ui/details/details';
@@ -59,7 +58,6 @@ export default async function FragmentationsPage(props: PageProps) {
           td: chunks => <TableCell>{chunks}</TableCell>,
           tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
         })}
-        <FragmentationFurtherInformation />
       </Details>
     </div>
   );
