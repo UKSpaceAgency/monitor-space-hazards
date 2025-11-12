@@ -569,7 +569,7 @@
     "Poc_chart": {
       "title": "Evolution of collision probability",
       "help": {
-        "title": "Help with this chart<screenReaderOnly> - Probability of collision</screenReaderOnly>",
+        "title": "Help with this chart<screenReaderOnly> - Evolution of collision probability</screenReaderOnly>",
         "content": "<p>Data sources can be turned on or off by selecting the series in the legend below the chart.</p><p>Evolution of operational conjunction event data is displayed as a continuous line. Individual <special>Special</special> ephemeris probabilities can be turned on or off.</p><p>You can reveal more details about a specific data point by moving your mouse over it or tapping on the data point on touch-enabled screens.</p><p>Full conjunction event data can be viewed or downloaded from <link>Conjunction event history</link>.</p>"
       }
     },
@@ -579,7 +579,7 @@
     "Miss_distance_chart": {
       "title": "Evolution of miss distance",
       "help": {
-        "title": "Help with this chart<screenReaderOnly> - Miss distance</screenReaderOnly>",
+        "title": "Help with this chart<screenReaderOnly> - Evolution of miss distance</screenReaderOnly>",
         "content": "<p>Miss distances can be turned on or off by selecting the series in the legend below the chart.</p><p>Evolution of operational conjunction event data is displayed as a continuous line. Individual <special>Special</special> ephemeris probabilities can be turned on or off.</p><p>You can reveal more details about a specific data point by moving your mouse over it or tapping on the data point on touch-enabled screens.</p><p>Full conjunction event data can be viewed or downloaded from <link>Conjunction event history</link>.</p>"
       }
     },
@@ -597,7 +597,7 @@
       "title": "Conjunction event history",
       "download": "event history",
       "help": {
-        "title": "Help with this table<screenReaderOnly> - Event history</screenReaderOnly>",
+        "title": "Help with this table<screenReaderOnly> - Conjunction event history</screenReaderOnly>",
         "content": "<p>Historical CDMs for the event are available in this table. Information about the individual CDM is available, including the calculation method for the probability of collision, the position uncertainty and data source for each object.</p><p>The data source for each object either comes from SSN observations, special or operational owner/operator ephemeris or NASA/CARA. Further information about these can be found in <link>definitions on data sources</link>.</p>"
       }
     },
