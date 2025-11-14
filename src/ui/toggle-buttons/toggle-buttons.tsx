@@ -1,4 +1,4 @@
-import { type SetStateAction, useId } from 'react';
+import type { SetStateAction } from 'react';
 
 import Radios from '../radios/radios';
 
@@ -26,8 +26,6 @@ export function ToggleButtons({
   dataPdfIgnore,
   ariaLabel,
 }: ToggleButtonsProps) {
-  const prefix = useId();
-
   return (
     <Radios
       className="inline-flex items-center md:h-[44px] mb-0"
@@ -35,7 +33,7 @@ export function ToggleButtons({
       inline
       name={name}
       items={items.map(({ title, value, id }) => ({
-        id: `${prefix}-${id}`,
+        id: `${name}-${id}`,
         children: title,
         value,
         onChange: () => setActive(value),
