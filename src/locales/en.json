@@ -569,7 +569,7 @@
     "Poc_chart": {
       "title": "Evolution of collision probability",
       "help": {
-        "title": "Help with this chart<screenReaderOnly> - Probability of collision</screenReaderOnly>",
+        "title": "Help with this chart<screenReaderOnly> - Evolution of collision probability</screenReaderOnly>",
         "content": "<p>Data sources can be turned on or off by selecting the series in the legend below the chart.</p><p>Evolution of operational conjunction event data is displayed as a continuous line. Individual <special>Special</special> ephemeris probabilities can be turned on or off.</p><p>You can reveal more details about a specific data point by moving your mouse over it or tapping on the data point on touch-enabled screens.</p><p>Full conjunction event data can be viewed or downloaded from <link>Conjunction event history</link>.</p>"
       }
     },
@@ -579,7 +579,7 @@
     "Miss_distance_chart": {
       "title": "Evolution of miss distance",
       "help": {
-        "title": "Help with this chart<screenReaderOnly> - Miss distance</screenReaderOnly>",
+        "title": "Help with this chart<screenReaderOnly> - Evolution of miss distance</screenReaderOnly>",
         "content": "<p>Miss distances can be turned on or off by selecting the series in the legend below the chart.</p><p>Evolution of operational conjunction event data is displayed as a continuous line. Individual <special>Special</special> ephemeris probabilities can be turned on or off.</p><p>You can reveal more details about a specific data point by moving your mouse over it or tapping on the data point on touch-enabled screens.</p><p>Full conjunction event data can be viewed or downloaded from <link>Conjunction event history</link>.</p>"
       }
     },
@@ -597,7 +597,7 @@
       "title": "Conjunction event history",
       "download": "event history",
       "help": {
-        "title": "Help with this table<screenReaderOnly> - Event history</screenReaderOnly>",
+        "title": "Help with this table<screenReaderOnly> - Conjunction event history</screenReaderOnly>",
         "content": "<p>Historical CDMs for the event are available in this table. Information about the individual CDM is available, including the calculation method for the probability of collision, the position uncertainty and data source for each object.</p><p>The data source for each object either comes from SSN observations, special or operational owner/operator ephemeris or NASA/CARA. Further information about these can be found in <link>definitions on data sources</link>.</p>"
       }
     },
@@ -902,7 +902,7 @@
         "x_axis_title": "Date",
         "legend": "Conjunction Data Message (CDM) source",
         "details": {
-          "title": "Help with this table<screenReaderOnly> - Cdm ingests</screenReaderOnly>",
+          "title": "Help with this table<screenReaderOnly> - CDM ingests</screenReaderOnly>",
           "content": "<p>This table shows performance monitoring information for the external sources of CDMs that Monitor Space Hazards ingests.</p><list><item>Ingestion start and stop show the time the data ingest started and finished</item><item>Number of items fetched shows how many items were retrieved</item></list>"
         }
       },
@@ -913,7 +913,7 @@
         "x_axis_title": "Date",
         "legend": "Tracking and Impact Prediction (TIP) source",
         "details": {
-          "title": "Help with this table<screenReaderOnly> - Tip ingests</screenReaderOnly>",
+          "title": "Help with this table<screenReaderOnly> - TIP ingests</screenReaderOnly>",
           "content": "<p>This table shows performance monitoring information for the external sources of TIPs that Monitor Space Hazards ingests.</p><list><item>Ingestion start and stop show the time the data ingest started and finished</item><item>Number of items fetched shows how many items were retrieved</item></list>"
         }
       },
@@ -931,7 +931,7 @@
       "notifications_sent": {
         "title": "Notifications sent",
         "details": {
-          "title": "Help with this table<screenReaderOnly> - Notifications send</screenReaderOnly>",
+          "title": "Help with this table<screenReaderOnly> - Notifications sent</screenReaderOnly>",
           "content": "<p>This table shows the number and type of alert notifications sent  to users of Monitor Space Hazards.</p>"
         }
       },
@@ -940,12 +940,12 @@
         "unknown": "Unknown",
         "daily_title": "Daily count of analyses and manoeuvre support plots",
         "daily_details": {
-          "title": "Help with this table<screenReaderOnly> - UKSA daily analyses and manoeuvre support</screenReaderOnly>",
+          "title": "Help with this table<screenReaderOnly>- NSpOC conjunction event analysis and manoeuvre support - Daily count</screenReaderOnly>",
           "content": "This table shows the number of analyses and manoeuvre support plots uploaded by a NSpOC orbital analyst."
         },
         "monthly_title": "Monthly count of analyses and manoeuvre support plots",
         "monthly_details": {
-          "title": "Help with this table<screenReaderOnly> - UKSA monthly analyses and manoeuvre support</screenReaderOnly>",
+          "title": "Help with this table<screenReaderOnly>- NSpOC conjunction event analysis and manoeuvre support - Monthly count</screenReaderOnly>",
           "content": "This table shows the number of analyses and manoeuvre support plots uploaded by a NSpOC orbital analyst per month."
         }
       }
@@ -955,7 +955,7 @@
       "organisations_and_users": {
         "title": "Organisations and users",
         "details": {
-          "title": "Help with this table",
+          "title": "Help with this table<screenReaderOnly>- Organisations and Users</screenReaderOnly>",
           "content": "This table shows the number of users and organisations signed up to the service each month."
         }
       }
@@ -973,12 +973,12 @@
         "data_range": "Date range",
         "daily_title": "Total number of re-entry events monitored and a breakdown of their type.",
         "daily_details": {
-          "title": "Help with this table",
+          "title": "Help with this table<screenReaderOnly>- Re-entry events by type - Total number</screenReaderOnly>",
           "content": "This table shows the number of re-entry events by different object types and level of event."
         },
         "monthly_title": "Monthly number of re-entry events monitored and a breakdown of their type.",
         "monthly_details": {
-          "title": "Help with this table",
+          "title": "Help with this table<screenReaderOnly>- Re-entry events by type -Monthly number</screenReaderOnly>",
           "content": "This table shows the number of re-entry events by different object types per month."
         }
       }
@@ -996,12 +996,12 @@
         "data_range": "Date range",
         "daily_title": "Total number of conjunction events monitored and a breakdown of their type.",
         "daily_details": {
-          "title": "Help with this table",
+          "title": "Help with this table<screenReaderOnly>- Conjunction events by type -Total number</screenReaderOnly>",
           "content": "This table shows the number of conjunction events between different object types."
         },
         "monthly_title": "Monthly number of conjunction events monitored and a breakdown of their type.",
         "monthly_details": {
-          "title": "Help with this table",
+          "title": "Help with this table<screenReaderOnly>- Conjunction events by type -Monthly number</screenReaderOnly>",
           "content": "This table shows the number of conjunction events between different object types per month."
         }
       },
@@ -1010,7 +1010,7 @@
         "probability_of_collision": "Probability of collision",
         "this_table": "this table",
         "details": {
-          "title": "Help with this table",
+          "title": "Help with this table<screenReaderOnly>- Conjunction events by probability of collision</screenReaderOnly>",
           "content": "This table shows the total number and probability of conjunction events per month."
         }
       },
@@ -1018,14 +1018,14 @@
         "title": "Objects catalogued",
         "heading": "Objects catalogued by Monitor Space Hazards",
         "details": {
-          "title": "Help with this table",
+          "title": "Help with this table<screenReaderOnly>- Objects catalogued</screenReaderOnly>",
           "content": "This table shows the current number of objects catalogued in Monitor Space Hazards and their breakdown by type."
         }
       },
       "conjunction_events_by_organisation": {
         "title": "Conjunction events by organisation",
         "details": {
-          "title": "Help with this table",
+          "title": "Help with this table<screenReaderOnly>- Conjunction events by organisation</screenReaderOnly>",
           "content": "This table shows the total number and probability of conjunction events for an organisation."
         }
       },
@@ -1033,7 +1033,7 @@
         "title": "Conjunction events by satellite",
         "description": "This table shows the registered satellites by organisation and the number of conjunction events each has been involved in at different probabilities of collision over the last 30 days.",
         "details": {
-          "title": "Help with this table",
+          "title": "Help with this table<screenReaderOnly>- Conjunction events by satellite</screenReaderOnly>",
           "content": "This table shows the total number of conjunction events for each registered satellite in the last 30 days."
         }
       }
@@ -1279,7 +1279,7 @@
     "Reentries_summary": {
       "upcoming_reentry": "Upcoming re-entry {item}",
       "help": {
-        "title": "Help with this table",
+        "title": "Help with this table<screenReaderOnly> - UK risk probabilities</screenReaderOnly>",
         "content": "<p>This service tracks all upcoming re-entry events worldwide, including those which pose a risk to the UK. The service reports on two types of re-entry event.</p><list><item><bold>Upcoming risks to UK interests:</bold> all upcoming re-entry events that meet the National Space Operations Centre's thresholds for alerting UK government</item><item><bold>Upcoming re-entry events worldwide:</bold> all upcoming re-entry events worldwide, including those which have not met alerting thresholds</item></list>"
       }
     },
@@ -1353,7 +1353,7 @@
       "probability_of_fragmentation": "Debris impact in UK",
       "probability_of_human_casualty": "UK casualty risk",
       "help": {
-        "title": "Help with this table",
+        "title": "Help with this table<screenReaderOnly> - Risk thresholds</screenReaderOnly>",
         "content": "<p>This table shows the risk thresholds and levels used to assess how a re-entering object could pose a risk to UK interests:</p><list><item><bold>Debris impact in UK:</bold> Chance fragments reach the ground within UK</item><item><bold>Re-entry over UK:</bold> Chance the object enters atmosphere over UK</item></list>"
       }
     },
