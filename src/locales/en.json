@@ -1543,6 +1543,7 @@
       "edit": "Edit"
     },
     "Fragmentations": {
+      "empty_list_info": "No fragmentation events have been found",
       "fragmentations_events_as_of": "Upcoming and previous known fragmentation events as of ",
       "event_details": "Event details",
       "risk": "Risk",
