@@ -26,6 +26,7 @@ const FragmentationExecutiveSummary = async ({ event, report }: FragmentationExe
     <div data-pdf={t('title')}>
       <h2 data-anchor="information" className="govuk-heading-l">{t('title')}</h2>
       <p className="govuk-body">
+        {event.executive_summary_comment}
         {t.rich('content', contentVariables)}
       </p>
       <FragmentationExecutiveSummaryTable report={report} />

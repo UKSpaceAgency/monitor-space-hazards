@@ -53,9 +53,9 @@ export default async function OrganisationUserPage({
             },
             actions: [
               {
-                ariaLabel: 'Edit user type',
-                children: t('edit'),
-                href: `/account/organisations/${id}/${userId}/type`,
+                'aria-label': 'Edit user type',
+                'children': t('edit'),
+                'href': `/account/organisations/${id}/${userId}/type`,
               },
             ],
           },
@@ -76,9 +76,9 @@ export default async function OrganisationUserPage({
             },
             actions: [
               {
-                ariaLabel: 'Edit phone number',
-                children: t('edit'),
-                href: `/account/organisations/${id}/${userId}/phone`,
+                'aria-label': 'Edit phone number',
+                'children': t('edit'),
+                'href': `/account/organisations/${id}/${userId}/phone`,
               },
             ],
           },

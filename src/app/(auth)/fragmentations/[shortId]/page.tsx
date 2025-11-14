@@ -47,22 +47,6 @@ export default async function Fragmentation({
       <FragmentationExecutiveSummary event={event} report={report} />
       <FragmentationNextUpdate shortId={shortId} />
       <FragmentationAccordion event={event} report={report} />
-      {/* {spacetrack && (
-            <ConjunctionEventSummary
-              shortId={shortId}
-              spacetrack={spacetrack}
-              uksa={uksa}
-              primaryObject={primaryObject}
-              secondaryObject={secondaryObject}
-              isSpecial={isSpecial}
-            />
-          )}
-          <ConjunctionAccordion
-            shortId={shortId}
-            primaryObject={primaryObject}
-            secondaryObject={secondaryObject}
-            isSpecial={isSpecial}
-          /> */}
       <FragmentationButtons title={t('title', { shortId })} />
     </div>
   );
