@@ -23,7 +23,7 @@ const MonthlyBarChart = ({ data, yAxisTitle, xAxisTitle, stacked = false, legend
 
   const actionButtons = (
     <ToggleButtons
-      name="organisations-and-users-data-range"
+      name="organisations-and-users-data-range-monthly"
       ariaLabel={ariaLabel}
       items={[
         {

@@ -154,6 +154,7 @@ const MonitoringEventsByOrganisationContent = ({ isAnalysist }: PerformanceMonit
         <Select
           name="event-by-organisation-select"
           value={organisation}
+          label={t('events_by_organisation_select_label')}
           options={[
             {
               children: t('all_organisations'),

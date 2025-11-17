@@ -62,6 +62,7 @@ const MonitoringEventsBySatelliteDataTable = ({ isAnalysist }: MonitoringEventsB
         <Select
           name="organisation-select"
           value={organisation}
+          label={t('events_by_organisation_select_label')}
           options={[
             {
               children: t('all_organisations'),
