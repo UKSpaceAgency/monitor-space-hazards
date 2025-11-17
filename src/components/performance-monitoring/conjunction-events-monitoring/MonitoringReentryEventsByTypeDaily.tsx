@@ -78,7 +78,7 @@ const MonitoringReentryEventsByTypeDaily = () => {
 
   const actionButtons = (
     <ToggleButtons
-      name="events-type-days"
+      name="reentry-events-by-type-daily"
       ariaLabel="Reentry events by type"
       items={[
         {

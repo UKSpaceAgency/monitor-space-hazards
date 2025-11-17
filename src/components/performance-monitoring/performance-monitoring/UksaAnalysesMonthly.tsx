@@ -38,6 +38,7 @@ const UksaAnalysesMonthly = async () => {
         xAxisTitle={t('x_axis_title')}
         ariaLabel="NSpOC conjunction event analysis and manoeuvre support monthly"
         legend={t('file_type')}
+        name="uksa-analyses-monthly"
       />
       <Scrollable>
         <DataTable

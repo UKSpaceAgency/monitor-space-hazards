@@ -50,6 +50,7 @@ const MonitoringConjunctionEventsByTypeMonthly = async () => {
         yAxisTitle={t('y_axis_title')}
         xAxisTitle={t('x_axis_title')}
         legend={t('legend_title')}
+        name="conjunction-events-by-type-monthly"
       />
       <Scrollable>
         <DataTable
