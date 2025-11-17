@@ -50,14 +50,14 @@ const FragmentationAccordion = ({
             id: 'actual_fragment_data',
             heading: t('actual_fragment_data'),
             content: (
-              <ActualFragmentData shortId={event.short_id} modelledFragments={report.modelled_fragments ?? 0} dataPdf={t('actual_fragment_data')} />
+              <ActualFragmentData shortId={event.short_id} modelledFragments={report.modelled_fragments ?? 0} knownFragments={report.known_fragments ?? 0} dataPdf={t('actual_fragment_data')} />
             ),
           },
           {
             id: 'analysis_of_potential_event_cause',
             heading: t('analysis_of_potential_event_cause'),
             content: (
-              <FragmentationAnalysisOfPotentialEventCause report={report} />
+              <FragmentationAnalysisOfPotentialEventCause comment={event.orbital_analyst_comment} />
             ),
           },
         ]}
@@ -71,7 +71,7 @@ const FragmentationAccordion = ({
             id: 'additional_risk',
             heading: t('additional_risk'),
             content: (
-              <FragmentationAdditionalRisk presignedUrl={report.presigned_url as string} dataPdf={t('additional_risk')} />
+              <FragmentationAdditionalRisk spaceflightComment={event.spaceflight_risk_comment} ukComment={event.uk_response_comment} presignedUrl={report.presigned_url as string} dataPdf={t('additional_risk')} />
             ),
           },
         ]}
@@ -85,14 +85,14 @@ const FragmentationAccordion = ({
             id: 'guidance_on_response',
             heading: t('guidance_on_response'),
             content: (
-              <FragmentationGuidanceOnResponse ukResponse={report.uk_response_comment} dataPdf={t('guidance_on_response')} />
+              <FragmentationGuidanceOnResponse comment={event.uk_response_comment} dataPdf={t('guidance_on_response')} />
             ),
           },
           {
             id: 'press_attention',
             heading: t('press_attention'),
             content: (
-              <FragmentationPressAttention pressAttention={report.press_attention_comment} dataPdf={t('press_attention')} />
+              <FragmentationPressAttention comment={report.press_attention_comment} dataPdf={t('press_attention')} />
             ),
           },
         ]}

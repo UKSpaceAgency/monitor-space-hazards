@@ -130,8 +130,8 @@ const GabbardChart = ({ data }: GabbardChartProps) => {
 
   const actionButtons = (
     <Checkboxes
-      name="gabbard-types"
-      aria-label="Gabbard type"
+      name="fragment-types"
+      aria-label={t('legend_title')}
       items={[
         {
           id: 'actual_gabbard_points',
@@ -154,7 +154,7 @@ const GabbardChart = ({ data }: GabbardChartProps) => {
   );
 
   return (
-    <div className="p-4 bg-lightGrey" data-type="chart">
+    <div data-type="chart">
       <div className="flex justify-between">
         <div className="flex-1">
           {actionButtons}
@@ -266,7 +266,7 @@ const GabbardChart = ({ data }: GabbardChartProps) => {
         <ChartLegend
           chartRef={chart}
           items={legendItems}
-          ariaLabel="Gabbard chart"
+          ariaLabel={t('legend_title')}
         />
 
       </div>

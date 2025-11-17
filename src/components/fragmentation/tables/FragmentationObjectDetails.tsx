@@ -14,7 +14,7 @@ type FragmentationObjectDetailsTableProps = {
 const FragmentationObjectDetailsTable = ({ report }: FragmentationObjectDetailsTableProps) => {
   const t = useTranslations('Tables.Fragmentation_object_details');
 
-  const rows: InformationsTableRow<ObjectDetailsData>[] = [
+  const primaryObjectRows: InformationsTableRow<ObjectDetailsData>[] = [
     {
       header: t('primary_object_details'),
       accessorKey: 'primary_object_common_name',
@@ -92,6 +92,9 @@ const FragmentationObjectDetailsTable = ({ report }: FragmentationObjectDetailsT
         width: '50%',
       },
     },
+  ];
+
+  const secondaryObjectRows: InformationsTableRow<ObjectDetailsData>[] = [
     {
       header: t('secondary_object_details'),
       accessorKey: 'secondary_object_common_name',
@@ -170,6 +173,8 @@ const FragmentationObjectDetailsTable = ({ report }: FragmentationObjectDetailsT
       },
     },
   ];
+
+  const rows = report.secondary_object_common_name ? [...primaryObjectRows, ...secondaryObjectRows] : primaryObjectRows;
 
   return <InformationsTable rows={rows} data={report} className="text-base" />;
 };

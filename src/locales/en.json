@@ -532,9 +532,9 @@
       "other": "Events with other objects"
     },
     "Gabbard_chart": {
-      "legend_title": "Gabbard type",
+      "legend_title": "Fragment type",
       "x_axis_title": "Period (minutes)",
-      "y_axis_title": "Attitude (km)",
+      "y_axis_title": "Altitude (km)",
       "actual_fragments": "Actual fragments",
       "modelled_fragments": "Modelled fragments",
       "period": "Period: {period} minutes",
@@ -543,7 +543,8 @@
       "actual_fragments_apogee_label": "Actual fragment apogee",
       "actual_fragments_perigee_label": "Actual fragment perigee",
       "modelled_fragments_apogee_label": "Modelled fragment apogee",
-      "modelled_fragments_perigee_label": "Modelled fragment perigee"
+      "modelled_fragments_perigee_label": "Modelled fragment perigee",
+      "toggle_observation_date": "Toggle observation date:"
     }
   },
   "Conjunctions": {
@@ -1436,7 +1437,7 @@
     "Fragmentation_history": {
       "report_number": "Report number",
       "report_time": "Time of report (UTC)",
-      "event_epoch": "Predicted time of closest approach (UTC)"
+      "event_epoch": "Estimated event time (UTC)"
     },
     "Performance_monitoring": {
       "data_performance": {
@@ -2093,7 +2094,7 @@
     "report_info": "<p><bold>Report {number}</bold> updated on {time} UTC</p>",
     "accordion": {
       "event_details": "Event details",
-      "actual_fragment_data": "Actual fragment data",
+      "actual_fragment_data": "Fragment data",
       "potential_impact": "Potential impact of event",
       "guidance": "Guidance",
       "additional_information": "Additional information",
@@ -2109,7 +2110,7 @@
     },
     "Executive_summary": {
       "title": "Event summary",
-      "content": "The National Space Operations Centre is tracking the non-UK fragmentation event involving {primaryObjectName} and {secondaryObjectName}. Current tracking shows approximately {fragments} pieces of debris associated with this fragmentation, though work continues to identify and catalogue other potential debris objects. This number could therefore change significantly as more data is received. The event is assessed as <tag>{risk}</tag> risk.",
+      "content": "The event is assessed as <tag>{risk}</tag> risk.",
       "see_further_information": "<p>See <link>Further information</link> for more detail on methodology used in this report and the organisations that have been sent this alert.</p>"
     },
     "Next_update": {
@@ -2117,13 +2118,20 @@
       "content": "A close-down report will be sent for each event.",
       "contact_analyst": "Operations support"
     },
-    "Event_details": {
-      "actual_fragment_data": "Actual fragment data",
-      "actual_fragment_data_content": "<p>At present we have received orbits for approximately {fragments} fragments. The below plots and figures have been generated using this cleaned data. Please note that this data has been produced using a limited number of observations.</p>"
+    "Fragment_data": {
+      "title": "Fragment data",
+      "content": "<p>We've received orbital data for {knownFragments} fragments. The plots below use this cleaned data, based on limited observations. Modelled data is also available for around {modelledFragments} fragments.</p>",
+      "help": {
+        "title": "Help with interpreting Gabbard plots",
+        "content": "<p>The Gabbard plot shows how satellite fragments are distributed in orbit after an event such as a breakup. Each point represents a fragment, plotted by its orbital period (x-axis) and apogee and perigee heights (y-axis). The pattern helps identify how debris spread - fragments close together indicate minor changes in orbit, while wide or crossed patterns suggest a high-energy breakup. In general, points clustered near the parent satellite's orbit show limited dispersion, while wider scatter shows greater variation in altitude and energy.</p><p>On this plot you can:</p><list><item>toggle to see distribution of modelled and actual fragment data</item><item>see the evolution of the event over time where additional information becomes available</item></list>"
+      }
+    },
+    "Analysis_of_potential_event_cause": {
+      "empty": "No analysis"
     },
     "Additional_risk": {
       "title": "Risk to your assets",
-      "content": "<p>Due to the high mass and energy of this event, a substantial number of fragments have been generated. Work is ongoing to assess the risk to UK licensed satellites however it's likely that those at lower altitudes such as newly launched OneWeb satellites, Davinci and the Diamond series of CubeSats will have a significant increase in the number of potential collisions due to tracked and untracked debris. Both the International Space Station and the Tiangong Space Station orbit within the affected region and so we would expect to see a significant increase in risk over the short-medium term because of this event.</p><p>This incident has been intially assessed as MEDIUM RISK due to the effect on the number of potential collisions with UK Satellites.</p><p><b>Your satellites affected</b></p><p>Each of your satellites was screened against the current population of objects as well as the fragments generated by the breakup model.</p>",
+      "content": "<p><b>UK satellites affected</b></p><p>All UK satellites were screened against the current population of objects as well as the fragments generated by the breakup model.</p>",
       "help": {
         "title": "Help with this table",
         "content": "<p>The 'Current Tally column is the number of 5 km conjunction events the object currently has per week. The 'Fragments Tally' column is the number of <b>additional 5 km conjunction events</b> that would be expected in the 7-day period after the event based on the predicted orbits outputted by the breakup model. Also included in the table is the mass of the licensed object and the orbit information.</p>"
@@ -2131,7 +2139,7 @@
     },
     "Guidance_on_response": {
       "title": "UK response",
-      "content": "<p>Sovereign sensors have been tasked to provide data on the fragments. Observations have been received; more will be generated over the weekend.</p>"
+      "empty": "No guidance"
     },
     "Press_attention": {
       "title": "Press attention",
