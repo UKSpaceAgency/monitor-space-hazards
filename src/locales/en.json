@@ -1658,6 +1658,13 @@
       "how_would_you_like_re_entry": "How would you like to receive re-entry alerts?",
       "select_the_areas_of_interest": "Select the {whose} areas of interest:",
       "notifications_for_re_entries": "Notifications for re-entries over non UK nations are currently only distributed in the case of the re-entering object being a UK licensed satellite.",
+      "fragmentation_alerts": "Fragmentation alerts",
+      "how_would_you_like_fragmentation": "How would you like to receive fragmentation alerts?",
+      "only_priority_fragmentation_alerts": "Only priority fragmentation alerts",
+      "receive_all_fragmentation_alerts": "Receive all fragmentation alerts",
+      "recommended_for_fragmentation": "Recommended for National Space Operations Centre, Civil Aviation Authority and Ministry of Defence",
+      "recommended_for_all_other_fragmentation": "Recommended for all other government departments",
+      "no_fragmentation_alerts": "No fragmentation alerts",
       "sms": "SMS",
       "email": "Email",
       "help_reentry": {
@@ -1667,6 +1674,10 @@
       "help_conjunctions": {
         "title": "Criteria for priority conjunction alerts",
         "content": "<h3>Standard conjunction alert</h3><p>There are various criteria which determine if alerts are produced about conjunction events. These criteria vary by type of object.</p><h4>For UK-licensed objects:</h4><list><item>Less than 5 days until Time of Closest Approach</item><item>More than 0.1% probability of collision</item><item>Press interest</item></list><h4>For non-UK objects:</h4><list><item>Less than 5 days until Time of Closest Approach, with:</item><list><item>Low risk or higher</item><item>No manoeuvre expected</item></list></list><h4>For all objects:</h4><list><item>If nominated for escalation by the National Space Operations Centre</item></list><h3>Priority conjunction alert</h3><h4>For UK-licensed objects:</h4><list><item>More than 1% probability of collision</item><item>No manoeuvre expected</item></list><h4>For non-UK objects:</h4><list><item>More than 5% probability of collision</item><item>No manoeuvre expected</item><item>Significant press interest</item></list>"
+      },
+      "help_fragmentation": {
+        "title": "Criteria for priority fragmentation alerts",
+        "content": "<h3>Standard fragmentation alert</h3><p>There are various criteria which determine if alerts are produced about fragmentation events. These criteria vary by type of object.</p><h4>For UK-licensed objects:</h4><list><item>Less than 5 days until Time of Closest Approach</item><item>More than 0.1% probability of collision</item><item>Press interest</item></list><h4>For non-UK objects:</h4><list><item>Less than 5 days until Time of Closest Approach, with:</item><list><item>Low risk or higher</item><item>No manoeuvre expected</item></list></list><h4>For all objects:</h4><list><item>If nominated for escalation by the National Space Operations Centre</item></list><h3>Priority fragmentation alert</h3><h4>For UK-licensed objects:</h4><list><item>More than 1% probability of collision</item><item>No manoeuvre expected</item></list><h4>For non-UK objects:</h4><list><item>More than 5% probability of collision</item><item>No manoeuvre expected</item><item>Significant press interest</item></list>"
       },
       "panel": {
         "title": "Alert settings changed",

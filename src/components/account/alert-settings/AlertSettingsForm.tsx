@@ -79,8 +79,8 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
         areas_of_interest: data.areasOfInterest,
       },
       fragmentation_alert_settings: {
-        chosen_option: 'all',
-        notification_types: [],
+        chosen_option: data.fragmentationAlerts,
+        notification_types: data.receiveFragmentation,
       },
     };
 
@@ -222,6 +222,50 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                               name="receiveReEntry"
                               hint={t('select_one_option')}
                               label={t('how_would_you_like_re_entry')}
+                              register={register}
+                            />
+                          </>
+                        ),
+                      },
+                      {
+                        id: 'fragmentation_alerts',
+                        heading: t('fragmentation_alerts'),
+                        content: (
+                          <>
+                            <Radios
+                              id="fragmentationAlerts"
+                              required
+                              aria-label="Fragmentation Alerts"
+                              legend={t(
+                                `${selfEdit ? 'self_which' : 'their_which'}`,
+                                { type: 'fragmentation' },
+                              )}
+                              hint={t('select_one_option')}
+                              items={[{
+                                id: 'no_fragmentation_alerts',
+                                value: 'none',
+                                children: t('no_fragmentation_alerts'),
+                                ...register('fragmentationAlerts'),
+                              }, {
+                                id: 'receive_all_fragmentation_alerts',
+                                value: 'all',
+                                children: t('receive_all_fragmentation_alerts'),
+                                hint: t('recommended_for'),
+                                ...register('fragmentationAlerts'),
+                              }, {
+                                id: 'only_priority_fragmentation_alerts',
+                                value: 'priority',
+                                children: t('only_priority_fragmentation_alerts'),
+                                hint: t('recommended_for_all_other'),
+                                ...register('fragmentationAlerts'),
+                              }]}
+                            />
+                            <AlertSettingsDetails type="fragmentation" />
+                            <Option
+                              id="receiveFragmentation"
+                              name="receiveFragmentation"
+                              hint={t('select_one_option')}
+                              label={t('how_would_you_like_fragmentation')}
                               register={register}
                             />
                           </>
