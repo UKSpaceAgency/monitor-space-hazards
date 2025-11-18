@@ -1167,7 +1167,6 @@
       "display_probability": "Display probability of collision as:",
       "conjunctions_events_as_of": "Conjunction events as of ",
       "event_information": "Event information",
-      "your_interest": "Your interest",
       "conjunction_event_id": "Conjunction event ID",
       "time_of_closest_approach": "Time of closest approach (UTC)",
       "objects": "Objects",
@@ -1187,7 +1186,18 @@
       "event_id": "Event ID",
       "total_miss_distance": "Total",
       "user_interest": "Your interest",
-      "empty_list_info": "No conjunction events have been found"
+      "empty_list_info": "No conjunction events have been found",
+      "table": {
+        "risk": "Risk",
+        "event_id": "Event ID",
+        "primary_object": "Primary object",
+        "secondary_object": "Secondary object",
+        "poc_space_track": "PoC ST",
+        "poc_uksa": "PoC NSpOC",
+        "total_miss_distance": "Miss Distance total",
+        "date": "TCA Date",
+        "time": "TCA Time (UTC)"
+      }
     },
     "Conjunction": {
       "contact_analyst": "Operations support",
@@ -1392,7 +1402,7 @@
       "overflight": "UK overflight time(s) (UTC)"
     },
     "Fragmentation_alert_executive_summary": {
-      "event_epoch": "Fragmentation time window worldwide (UTC)",
+      "event_epoch": "Estimated event time (UTC)",
       "known_fragments": "Number of known fragments",
       "modelled_fragments": "Modelled number of fragments",
       "risk": "Risk",
@@ -2098,7 +2108,7 @@
     }
   },
   "Fragmentation": {
-    "title": "Fragmentation event for {shortId}",
+    "title": "Fragmentation event for {object}",
     "report_info": "<p><bold>Report {number}</bold> updated on {time} UTC</p>",
     "accordion": {
       "event_details": "Event details",
