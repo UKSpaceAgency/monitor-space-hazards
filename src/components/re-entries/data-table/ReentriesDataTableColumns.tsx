@@ -2,7 +2,7 @@ import { isNumber } from 'lodash';
 import Link from 'next/link';
 
 import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
-import { dayjs, FORMAT_DATE, FORMAT_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_FULL_MONTH, FORMAT_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
 import { roundedFixed } from '@/utils/Math';
@@ -68,7 +68,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     id: 'event_epoch',
     accessorKey: 'decayEpoch',
     header: 'Reentries.table.date',
-    cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_DATE),
+    cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_DATE_FULL_MONTH),
   },
   {
     id: 'time',

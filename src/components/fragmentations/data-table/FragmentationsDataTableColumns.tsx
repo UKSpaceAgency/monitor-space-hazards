@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import type { TypeFragmentationEvent } from '@/__generated__/data-contracts';
-import { dayjs, FORMAT_DATE, FORMAT_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_FULL_MONTH, FORMAT_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
 
@@ -69,7 +69,7 @@ export const fragmentationsColumns: TranslatedColumnDef<TypeFragmentationEvent>[
     id: 'event_epoch',
     accessorKey: 'event_epoch',
     header: 'Fragmentations.date',
-    cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_DATE),
+    cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_DATE_FULL_MONTH),
   },
   {
     id: 'time',
