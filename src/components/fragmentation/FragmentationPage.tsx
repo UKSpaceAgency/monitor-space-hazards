@@ -28,7 +28,7 @@ const FragmentationPage = async ({ shortId, footer }: FragmentationPageProps) =>
   return (
     <div>
       <h1 className="govuk-heading-xl">
-        {t('title', { shortId })}
+        {t('title', { object: `${event.primary_object_common_name} ${event.secondary_object_common_name ? `vs ${event.secondary_object_common_name}` : ''}` })}
         <span className="block text-lg">{dayjs(event.event_epoch).format(FORMAT_FULL_DATE_TIME)}</span>
       </h1>
       <ContentNavigation className="mb-8" />
@@ -36,7 +36,7 @@ const FragmentationPage = async ({ shortId, footer }: FragmentationPageProps) =>
       <FragmentationExecutiveSummary event={event} report={report} />
       <FragmentationNextUpdate shortId={shortId} />
       <FragmentationAccordion event={event} report={report} />
-      {footer || <FragmentationButtons title={t('title', { shortId })} />}
+      {footer || <FragmentationButtons title={t('title', { object: `${event.primary_object_common_name} ${event.secondary_object_common_name ? `vs ${event.secondary_object_common_name}` : ''}` })} />}
     </div>
   );
 };

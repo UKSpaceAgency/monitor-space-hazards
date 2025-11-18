@@ -1402,7 +1402,7 @@
       "overflight": "UK overflight time(s) (UTC)"
     },
     "Fragmentation_alert_executive_summary": {
-      "event_epoch": "Fragmentation time window worldwide (UTC)",
+      "event_epoch": "Estimated event time (UTC)",
       "known_fragments": "Number of known fragments",
       "modelled_fragments": "Modelled number of fragments",
       "risk": "Risk",
@@ -2108,7 +2108,7 @@
     }
   },
   "Fragmentation": {
-    "title": "Fragmentation event for {shortId}",
+    "title": "Fragmentation event for {object}",
     "report_info": "<p><bold>Report {number}</bold> updated on {time} UTC</p>",
     "accordion": {
       "event_details": "Event details",

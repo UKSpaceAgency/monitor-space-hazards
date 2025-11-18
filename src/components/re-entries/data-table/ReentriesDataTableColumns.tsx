@@ -48,6 +48,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     id: 'objectName',
     accessorKey: 'objectName',
     header: 'Reentries.table.object',
+    size: 250,
     cell: ({ row: { original: { objectName, objectType } } }) => `${objectName} ${objectType ? `(${objectType})` : ''}`,
   },
   {
@@ -65,15 +66,15 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     },
   },
   {
-    id: 'event_epoch',
-    accessorKey: 'decayEpoch',
+    id: 'timeWindowStart',
+    accessorKey: 'timeWindowStart',
     header: 'Reentries.table.date',
     cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_DATE_FULL_MONTH),
   },
   {
     id: 'time',
     enableSorting: false,
-    accessorKey: 'event_epoch',
+    accessorKey: 'timeWindowStart',
     header: 'Reentries.table.time',
     cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_TIME),
   },
