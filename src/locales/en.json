@@ -1638,6 +1638,7 @@
       "recommended_for": "Recommended for National Space Operations Centre, Civil Aviation Authority and Ministry of Defence",
       "only_priority_conjunction_alerts": "Only priority conjunction alerts",
       "recommended_for_all_other": "Recommended for all other government departments",
+      "recommended_for_all_users": "Recommended for all users",
       "re_entry_alerts": "Re-entry alerts",
       "no_re_entry_alerts": "No re-entry alerts",
       "all_re_entry_alerts": "All re-entry alerts for {whose} areas of interest",
@@ -1653,9 +1654,7 @@
       "how_would_you_like_fragmentation": "How would you like to receive fragmentation alerts?",
       "only_priority_fragmentation_alerts": "Only priority fragmentation alerts",
       "receive_all_fragmentation_alerts": "Receive all fragmentation alerts",
-      "recommended_for_fragmentation": "Recommended for National Space Operations Centre, Civil Aviation Authority and Ministry of Defence",
-      "recommended_for_all_other_fragmentation": "Recommended for all other government departments",
-      "no_fragmentation_alerts": "No fragmentation alerts",
+      "no_fragmentation_alerts": "Do not receive fragmentation alerts",
       "sms": "SMS",
       "email": "Email",
       "help_reentry": {

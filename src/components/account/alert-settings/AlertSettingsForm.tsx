@@ -250,13 +250,7 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                                 id: 'receive_all_fragmentation_alerts',
                                 value: 'all',
                                 children: t('receive_all_fragmentation_alerts'),
-                                hint: t('recommended_for'),
-                                ...register('fragmentationAlerts'),
-                              }, {
-                                id: 'only_priority_fragmentation_alerts',
-                                value: 'priority',
-                                children: t('only_priority_fragmentation_alerts'),
-                                hint: t('recommended_for_all_other'),
+                                hint: t('recommended_for_all_users'),
                                 ...register('fragmentationAlerts'),
                               }]}
                             />

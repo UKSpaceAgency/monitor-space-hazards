@@ -69,6 +69,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     id: 'timeWindowStart',
     accessorKey: 'timeWindowStart',
     header: 'Reentries.table.date',
+    size: 250,
     cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_DATE_FULL_MONTH),
   },
   {
