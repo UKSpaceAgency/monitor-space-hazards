@@ -1719,7 +1719,8 @@
         "long_term_impact": "Long term impact",
         "long_term_impact_addition": "Long term impact",
         "uk_response_addition": "UK response",
-        "closed_comment": "Closed comment"
+        "closed_comment": "Closed comment",
+        "spaceflight_risk_comment": "UK and Human Spaceflight risk"
       },
       "manoeuvrable": {
         "unknown": "Unknown",
@@ -2093,6 +2094,7 @@
   "Fragmentation": {
     "title": "Fragmentation event for {object}",
     "report_info": "<p><bold>Report {number}</bold> updated on {time} UTC</p>",
+    "notification_banner": "You are able to <edit>edit this alert</edit> or <send>send this alert to additional recipients</send>",
     "accordion": {
       "event_details": "Event details",
       "actual_fragment_data": "Fragment data",
@@ -2177,6 +2179,26 @@
     "Further_information": {
       "fragmentation_event_analysis_information": "Fragmentation event analysis information",
       "help_with_information": "Help with the information on fragmentation events"
+    }
+  },
+  "Fragmentation_alert_edit": {
+    "title": "Edit fragmentation event for {object}",
+    "content": "<p>If edits or additions are needed to the automatically generated report, these can be made through free text inputs in the boxes below. Once published, these edits will automatically be added to the relevant event page, and users on the appropriate distribution lists will be notified of the update.</p><p>The below boxes can only process <bold>plain text</bold>. Do not include images or text formatting.</p>",
+    "review_description": "Free text edits to fragmentation event {shortId}",
+    "preview": {
+      "title": "Preview your edits before publishing",
+      "banner": {
+        "title": "Ensure you review before publishing.",
+        "content": "It is advised that at least two individuals review text edits before they are published on GOV.UK platforms."
+      }
+    }
+  },
+  "Fragmentation_alert_send": {
+    "title": "Send alert to additional recipients",
+    "content": "<p>This page shows you the current distribution status of the fragmentation event and allows you to manually distribute the alert to additional recipients.</p><p>If it is not already, you can choose to make the event a priority fragmentation event. You are also able to manually select individual emails to send the alert to.</p>",
+    "alert_criteria_help": {
+      "title": "Distribution lists and fragmentation alert criteria",
+      "content": "<p><bold>Distribution lists:</bold></p><p>You are able to what distribution list users are currently on in the account section (<link>View distribution lists</link>)</p><p><b>Priority fragmentation alert criteria for automatic distribution:</b></p><list><item>More than 5% increase in potential collisions with UK satellites and/or Human Spaceflight missions</item><item>OR significant press interest</item></list><p>You can use this page to make an event 'priority' before it meets the automatic distribution criteria.</p>"
     }
   }
 }
