@@ -1174,10 +1174,10 @@
         "primary_object": "Primary",
         "secondary_object": "Secondary",
         "probability_of_collision": "Probability of collision",
-        "poc_space_track": "PoC ST",
-        "poc_uksa": "PoC NSpOC",
+        "poc_space_track": "Space-Track CDM",
+        "poc_uksa": "NSpOC",
         "total_miss_distance": "Miss Distance total (m)",
-        "tca_time": "Time of closest approach",
+        "tca_time": "Time of closest approach (TCA)",
         "date": "TCA Date",
         "time": "TCA Time (UTC)",
         "empty_list_info": "No conjunction events have been found"
@@ -2087,7 +2087,7 @@
     },
     "help": {
       "title": "Help with this table<screenReaderOnly> - Fragmentation events</screenReaderOnly>",
-      "content": "<p><bold>This table shows all upcoming and previous tracked fragmentation events that have been identified by Space-Track and ingested into Monitor space hazards, including events which pose a risk to UK satellites and Human Spaceflight missions. Higher risk events contain additional analysis by UKSA's Orbital Analysts at the National Space Operations Centre.</bold></p><list><item>Select the <bold>Event ID</bold> to view more information</item><item>Each Event ID or row represents <bold>one fragmentation event</bold></item><item>Sort the alerts according to criteria by clicking on the relevant <bold>headings</bold></item></list>"
+      "content": "<p>This table shows all upcoming and previous tracked fragmentation events that have been identified by Space-Track and ingested into Monitor space hazards, including events which pose a risk to UK satellites and Human Spaceflight missions. Higher risk events contain additional analysis by UKSA's Orbital Analysts at the National Space Operations Centre.</p><list><item>Select the <bold>Event ID</bold> to view more information</item><item>Each Event ID or row represents <bold>one fragmentation event</bold></item><item>Sort the alerts according to criteria by clicking on the relevant <bold>headings</bold></item></list>"
     }
   },
   "Fragmentation": {
