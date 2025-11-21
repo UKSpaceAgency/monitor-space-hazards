@@ -10,9 +10,10 @@ import { FragmentationExecutiveSummaryTable } from './tables/FragmentationExecut
 type FragmentationExecutiveSummaryProps = {
   event: TypeFragmentationEvent;
   report: TypeFragmentationReportOut;
+  execSummaryComment?: string | null;
 };
 
-const FragmentationExecutiveSummary = async ({ event, report }: FragmentationExecutiveSummaryProps) => {
+const FragmentationExecutiveSummary = async ({ event, report, execSummaryComment }: FragmentationExecutiveSummaryProps) => {
   const t = await getTranslations('Fragmentation.Executive_summary');
 
   const contentVariables: RichTranslationValues = {
@@ -23,9 +24,9 @@ const FragmentationExecutiveSummary = async ({ event, report }: FragmentationExe
   return (
     <div data-pdf={t('title')}>
       <h2 data-anchor="information" className="govuk-heading-l">{t('title')}</h2>
-      {event.executive_summary_comment && (
+      {execSummaryComment && (
         <Markdown>
-          {event.executive_summary_comment}
+          {execSummaryComment}
         </Markdown>
       )}
       <p className="govuk-body">

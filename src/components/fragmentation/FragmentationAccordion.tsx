@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
 
-import type { TypeFragmentationEvent, TypeFragmentationReportOut } from '@/__generated__/data-contracts';
+import type { TypeFragmentationEvent, TypeFragmentationEventPatch, TypeFragmentationReportOut } from '@/__generated__/data-contracts';
 import Accordion from '@/ui/accordion/accordion';
 
 import { FragmentationHistoryDataTable } from './data-table/FragmentationHistoryDataTable';
@@ -17,11 +17,13 @@ import { FragmentationRiskThresholds } from './FragmentationRiskThresholds';
 type FragmentationAccordionProps = {
   event: TypeFragmentationEvent;
   report: TypeFragmentationReportOut;
+  searchParams?: TypeFragmentationEventPatch;
 };
 
 const FragmentationAccordion = ({
   event,
   report,
+  searchParams,
 }: FragmentationAccordionProps) => {
   const t = useTranslations('Fragmentation.accordion');
 
@@ -71,7 +73,7 @@ const FragmentationAccordion = ({
             id: 'additional_risk',
             heading: t('additional_risk'),
             content: (
-              <FragmentationAdditionalRisk spaceflightComment={event.spaceflight_risk_comment} ukComment={event.uk_response_comment} presignedUrl={report.presigned_url as string} dataPdf={t('additional_risk')} />
+              <FragmentationAdditionalRisk spaceflightComment={searchParams?.spaceflight_risk_comment ?? event.spaceflight_risk_comment} presignedUrl={report.presigned_url as string} dataPdf={t('additional_risk')} />
             ),
           },
         ]}
@@ -85,14 +87,14 @@ const FragmentationAccordion = ({
             id: 'guidance_on_response',
             heading: t('guidance_on_response'),
             content: (
-              <FragmentationGuidanceOnResponse comment={event.uk_response_comment} dataPdf={t('guidance_on_response')} />
+              <FragmentationGuidanceOnResponse comment={searchParams?.uk_response_comment ?? event.uk_response_comment} dataPdf={t('guidance_on_response')} />
             ),
           },
           {
             id: 'press_attention',
             heading: t('press_attention'),
             content: (
-              <FragmentationPressAttention comment={report.press_attention_comment} dataPdf={t('press_attention')} />
+              <FragmentationPressAttention comment={searchParams?.press_attention_comment ?? report.press_attention_comment} dataPdf={t('press_attention')} />
             ),
           },
         ]}

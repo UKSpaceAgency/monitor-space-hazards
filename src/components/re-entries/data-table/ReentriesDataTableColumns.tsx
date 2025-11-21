@@ -12,6 +12,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     id: 'uk_reentry_probability',
     accessorKey: 'fragmentsRisk',
     header: 'Reentries.table.risk',
+    size: 100,
     cell: ({ getValue }) => {
       const classes = {
         Low: 'govuk-tag--green',
@@ -30,6 +31,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     id: 'shortId',
     accessorKey: 'shortId',
     header: 'Reentries.table.event_id',
+    size: 100,
     cell: ({ getValue, row: { original: { reentryReportNumber } } }) => {
       const value = getValue<string>();
 
@@ -48,18 +50,19 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     id: 'objectName',
     accessorKey: 'objectName',
     header: 'Reentries.table.object',
-    size: 250,
     cell: ({ row: { original: { objectName, objectType } } }) => `${objectName} ${objectType ? `(${objectType})` : ''}`,
   },
   {
     id: 'noradId',
     accessorKey: 'noradId',
     header: 'Reentries.table.norad_id',
+    size: 100,
   },
   {
     id: 'fragmentsProbability',
     accessorKey: 'fragmentsProbability',
     header: 'Reentries.table.probability_of_fragmentation',
+    size: 70,
     cell: ({ getValue }) => {
       const value = getValue<number>();
       return isNumber(value) ? `${roundedFixed(value)}` : '-';
@@ -69,7 +72,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     id: 'timeWindowStart',
     accessorKey: 'timeWindowStart',
     header: 'Reentries.table.date',
-    size: 250,
+    size: 150,
     cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_DATE_FULL_MONTH),
   },
   {
@@ -77,6 +80,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     enableSorting: false,
     accessorKey: 'timeWindowStart',
     header: 'Reentries.table.time',
+    size: 80,
     cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_TIME),
   },
   {
@@ -84,6 +88,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     enableSorting: false,
     accessorKey: 'uncertaintyWindow',
     header: 'Reentries.table.window',
+    size: 70,
     cell: ({ getValue }) => `+/- ${getValue<number>()}`,
   },
 ];

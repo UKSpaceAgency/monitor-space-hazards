@@ -95,7 +95,9 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText,
             key={header.id}
             scope="col"
             colSpan={header.colSpan}
-            style={{ minWidth: header.column.columnDef.minSize, width: `${header.getSize()}px`, maxWidth: header.column.columnDef.maxSize }}
+            style={{
+              width: header.getSize(),
+            }}
             className={clsx('govuk-table__header', {
               'border-0': stickyHeader,
             })}

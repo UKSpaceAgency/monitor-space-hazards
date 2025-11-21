@@ -5,13 +5,13 @@ import type { TypeEventOut } from '@/__generated__/data-contracts';
 import { getConjunctionEventsColumns } from '@/components/conjunctions/data-table/ConjunctionsDataTableColumns';
 import { DataTable } from '@/components/DataTable';
 
-type DashboardConjunctionsDataTableProps = {
+type ConjunctionsAlertsDataTableProps = {
   data: TypeEventOut[];
   isAnalyst: boolean;
   haveAccessToAlerts: boolean;
 };
 
-const DashboardConjunctionsDataTable = ({ data, isAnalyst, haveAccessToAlerts }: DashboardConjunctionsDataTableProps) => {
+const ConjunctionsAlertsDataTable = ({ data, isAnalyst, haveAccessToAlerts }: ConjunctionsAlertsDataTableProps) => {
   const t = useTranslations('Tables');
 
   const columns = getConjunctionEventsColumns({
@@ -30,4 +30,4 @@ const DashboardConjunctionsDataTable = ({ data, isAnalyst, haveAccessToAlerts }:
   );
 };
 
-export { DashboardConjunctionsDataTable };
+export { ConjunctionsAlertsDataTable };

@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 
 import type { TypeEpoch, TypeReportFlagSettings } from '@/__generated__/data-contracts';
 import { getSession } from '@/actions/getSession';
+import { ConjunctionsAlertsTable } from '@/components/conjunctions/ConjunctionsAlertsTable';
 import { ConjunctionsEventsTable } from '@/components/conjunctions/ConjunctionsEventsTable';
 import { ConjunctionsEventsTableFilters } from '@/components/conjunctions/ConjunctionsEventsTableFilters';
 import { ConjunctionsSummaryTable } from '@/components/conjunctions/ConjunctionsSummaryTable';
@@ -59,6 +60,7 @@ export default async function ConjunctionsPage(props: PageProps) {
       <Details summary={t.rich('help1.title')}>
         {t.rich('help1.content')}
       </Details>
+      <ConjunctionsAlertsTable />
       <h2 className="govuk-heading-m">{t('section_title')}</h2>
       <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
       <p className="govuk-body">{t('description')}</p>

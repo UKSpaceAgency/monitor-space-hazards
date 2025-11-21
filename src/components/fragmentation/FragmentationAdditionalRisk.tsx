@@ -8,12 +8,11 @@ import { FragmentationAdditionalRiskTable } from './tables/FragmentationAddition
 
 type FragmentationAdditionalRiskProps = {
   spaceflightComment?: string | null;
-  ukComment?: string | null;
   presignedUrl: string;
   dataPdf?: string;
 };
 
-const FragmentationAdditionalRisk = async ({ spaceflightComment, ukComment, presignedUrl, dataPdf }: FragmentationAdditionalRiskProps) => {
+const FragmentationAdditionalRisk = async ({ spaceflightComment, presignedUrl, dataPdf }: FragmentationAdditionalRiskProps) => {
   const t = await getTranslations('Fragmentation.Additional_risk');
 
   const data = await getFragmentationEventScreeningResults(presignedUrl);
@@ -21,7 +20,6 @@ const FragmentationAdditionalRisk = async ({ spaceflightComment, ukComment, pres
   return (
     <div data-pdf={dataPdf}>
       {spaceflightComment && <Markdown>{spaceflightComment}</Markdown>}
-      {ukComment && <Markdown>{ukComment}</Markdown>}
       {t.rich('content')}
       <div className="overflow-auto max-h-[500px] mb-4">
         <FragmentationAdditionalRiskTable data={data} />
