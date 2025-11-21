@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
-import type { TypeGetConjunctionEventsParams } from '@/__generated__/data-contracts';
+import type { TypeGetConjunctionEventsListParams } from '@/__generated__/data-contracts';
 import { getConjunctionEventsList } from '@/actions/getConjunctionEventsList';
 import { getSession } from '@/actions/getSession';
 import Details from '@/ui/details/details';
@@ -8,8 +8,8 @@ import { isAgencyUser, isAnalysist, isGovUser } from '@/utils/Roles';
 
 import { DashboardConjunctionsDataTable } from './data-table/DashboardConjunctionsDataTable';
 
-const params: TypeGetConjunctionEventsParams = {
-  limit: 5,
+const params: TypeGetConjunctionEventsListParams = {
+  report: 'present',
 };
 
 const DashboardConjunctions = async () => {

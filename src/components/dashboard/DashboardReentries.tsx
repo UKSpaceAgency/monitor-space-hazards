@@ -8,7 +8,7 @@ import { isAgencyUser, isGovUser } from '@/utils/Roles';
 import { DashboardReentriesDataTable } from './data-table/ReentriesDataTable';
 
 const params: TypeGetReentryEventsParams = {
-  limit: 5,
+  report: 'present',
 };
 
 const DashboardReentries = async () => {
