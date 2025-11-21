@@ -2,7 +2,7 @@ import { Section } from '@react-email/components';
 import type { RichTranslationValues } from 'next-intl';
 import { createTranslator } from 'next-intl';
 
-import type { TypeReentryEventOut, TypeReentryRisk } from '@/__generated__/data-contracts';
+import type { TypeReentryEventOut, TypeRisk } from '@/__generated__/data-contracts';
 import { objectTypeIndex, renderRiskTag } from '@/emails/_utils/utils';
 import { dayjs, FORMAT_FULL_DATE_TIME_WITH_UTC } from '@/libs/Dayjs';
 import { env } from '@/libs/Env';
@@ -35,7 +35,7 @@ export const ReentryEventInformation = ({ event }: ReentryEventInformationProps)
     fragmentsProbability: roundedPercent(event?.fragmentsProbability ?? 0),
     licensingCountry: getFullCountry(event.licenseCountry),
     objectUrl: chunks => <Link href={`${env.NEXTAUTH_URL}/re-entries/${event.shortId}/alert`}>{chunks}</Link>,
-    tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
+    tag: chunks => renderRiskTag(chunks as TypeRisk),
     p: chunks => <Text>{chunks}</Text>,
     b: chunks => <b>{chunks}</b>,
   };
@@ -44,10 +44,10 @@ export const ReentryEventInformation = ({ event }: ReentryEventInformationProps)
     <Section>
       <Text className="text-sm m-0 font-bold">{t('title')}</Text>
       {t.rich('content', contentVariables)}
-      {event?.execSummary
+      {event?.executiveSummaryComment
       && (
         <Markdown>
-          {event.execSummary}
+          {event.executiveSummaryComment}
         </Markdown>
       )}
     </Section>

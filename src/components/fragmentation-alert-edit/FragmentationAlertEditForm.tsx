@@ -20,8 +20,8 @@ const FragmentationAlertEditForm = ({ event }: FragmentationAlertEditFormProps) 
     type: 'text',
   }, {
     id: 'executive_summary_comment',
-    ariaLabel: tForm('type.exec_summary_addition'),
-    name: tForm('type.exec_summary_addition'),
+    ariaLabel: tForm('type.executive_summary_comment'),
+    name: tForm('type.executive_summary_comment'),
     defaultValue: event.executive_summary_comment ?? '',
     type: 'text',
   }, {
@@ -38,8 +38,8 @@ const FragmentationAlertEditForm = ({ event }: FragmentationAlertEditFormProps) 
     type: 'text',
   }, {
     id: 'press_attention_comment',
-    ariaLabel: tForm('type.press_attention_addition'),
-    name: tForm('type.press_attention_addition'),
+    ariaLabel: tForm('type.press_attention_comment'),
+    name: tForm('type.press_attention_comment'),
     defaultValue: event.press_attention_comment || '',
     type: 'text',
   }];

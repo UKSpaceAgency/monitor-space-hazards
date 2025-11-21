@@ -2,7 +2,7 @@ import { Section } from '@react-email/components';
 import { createTranslator } from 'next-intl';
 import type { ComponentProps } from 'react';
 
-import type { TypeConjunctionReportOut, TypeReentryRisk, TypeUniqueEventOut } from '@/__generated__/data-contracts';
+import type { TypeConjunctionReportOut, TypeRisk, TypeUniqueEventOut } from '@/__generated__/data-contracts';
 import { renderRiskTag } from '@/emails/_utils/utils';
 import messages from '@/locales/en.json';
 import { roundedPercent } from '@/utils/Math';
@@ -32,7 +32,7 @@ export const ConjunctionEventDetails = ({ eventUrl, report, event, ...props }: C
       risk: report.risk,
       probability: roundedPercent(report.collisionProbability ?? 0),
       eventUrl: chunks => <Link href={eventUrl}>{chunks}</Link>,
-      tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
+      tag: chunks => renderRiskTag(chunks as TypeRisk),
       p: chunks => <Text className="m-0">{chunks}</Text>,
     })],
   ];

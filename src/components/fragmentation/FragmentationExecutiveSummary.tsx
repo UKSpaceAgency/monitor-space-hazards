@@ -1,7 +1,7 @@
 import type { RichTranslationValues } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
-import type { TypeFragmentationEvent, TypeFragmentationReportOut, TypeReentryRisk } from '@/__generated__/data-contracts';
+import type { TypeFragmentationEvent, TypeFragmentationReportOut, TypeRisk } from '@/__generated__/data-contracts';
 import { renderRiskTag } from '@/utils/Risk';
 
 import { Markdown } from '../Markdown';
@@ -18,7 +18,7 @@ const FragmentationExecutiveSummary = async ({ event, report, execSummaryComment
 
   const contentVariables: RichTranslationValues = {
     risk: event?.risk ?? 'Unknown',
-    tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
+    tag: chunks => renderRiskTag(chunks as TypeRisk),
   };
 
   return (

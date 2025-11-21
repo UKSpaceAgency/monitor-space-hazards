@@ -1,4 +1,4 @@
-import type { TypeReentryRisk } from '@/__generated__/data-contracts';
+import type { TypeRisk } from '@/__generated__/data-contracts';
 import Tag from '@/ui/tag/tag';
 
 const classes = {
@@ -7,7 +7,7 @@ const classes = {
   High: 'govuk-tag--red',
 };
 
-export const renderRiskTag = (risk: TypeReentryRisk | null | undefined) => risk
+export const renderRiskTag = (risk: TypeRisk | null | undefined) => risk
   ? (
       <Tag className={classes[risk as unknown as keyof typeof classes]}>
         {risk}

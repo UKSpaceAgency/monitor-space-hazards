@@ -733,8 +733,7 @@ export interface TypeConjunctionReportOut {
   reportNumber: number;
   /** Reporttime */
   reportTime?: string | null;
-  /** Risk */
-  risk: "Low" | "Medium" | "High";
+  risk: TypeRisk;
   /** Closedcomment */
   closedComment?: string | null;
   /** Alerttype */
@@ -773,22 +772,22 @@ export interface TypeConjunctionReportOut {
   secondaryObjectMass?: number | null;
   /** Secondaryobjectmanoeuvrable */
   secondaryObjectManoeuvrable?: string | null;
-  /** Execsummaryaddition */
-  execSummaryAddition?: string | null;
-  /** Manoeuvreaddition */
-  manoeuvreAddition?: string | null;
-  /** Immediateimpactaddition */
-  immediateImpactAddition?: string | null;
-  /** Shorttermimpactaddition */
-  shortTermImpactAddition?: string | null;
-  /** Riskataltitude */
-  riskAtAltitude?: string | null;
-  /** Longtermimpactaddition */
-  longTermImpactAddition?: string | null;
-  /** Ukresponseaddition */
-  ukResponseAddition?: string | null;
-  /** Pressattentionaddition */
-  pressAttentionAddition?: string | null;
+  /** Executivesummarycomment */
+  executiveSummaryComment?: string | null;
+  /** Manoeuvrecomment */
+  manoeuvreComment?: string | null;
+  /** Immediateimpactcomment */
+  immediateImpactComment?: string | null;
+  /** Shorttermimpactcomment */
+  shortTermImpactComment?: string | null;
+  /** Riskataltitudecomment */
+  riskAtAltitudeComment?: string | null;
+  /** Longtermimpactcomment */
+  longTermImpactComment?: string | null;
+  /** Ukresponsecomment */
+  ukResponseComment?: string | null;
+  /** Pressattentioncomment */
+  pressAttentionComment?: string | null;
   /** Missdistance */
   missDistance?: number | null;
   /** Impactspeed */
@@ -1142,6 +1141,7 @@ export interface TypeEventOut {
   reportNumber?: number | null;
   /** Collisionprobabilityuksa */
   collisionProbabilityUksa?: number | null;
+  risk?: TypeRisk | null;
 }
 
 /** EventSatellitesOut */
@@ -1256,7 +1256,8 @@ export type TypeEventsSortBy =
   | "miss_distance"
   | "radial_miss_distance"
   | "updated_at"
-  | "user_interest";
+  | "user_interest"
+  | "risk";
 
 /** ExternalDataPerformanceAggregateOut */
 export interface TypeExternalDataPerformanceAggregateOut {
@@ -1373,7 +1374,7 @@ export interface TypeFragmentationEvent {
   year: number;
   /** Event Number */
   event_number: number;
-  risk?: TypeReentryRisk | null;
+  risk?: TypeRisk | null;
   /** Modelled Fragments */
   modelled_fragments?: number | null;
   /** Known Fragments */
@@ -1530,7 +1531,7 @@ export interface TypeFragmentationReport {
   affected_regime: TypeAffectedRegime;
   /** Conjunction Event Id */
   conjunction_event_id?: string | null;
-  risk?: TypeReentryRisk | null;
+  risk?: TypeRisk | null;
   /** Alert Type */
   alert_type: "priority" | "closedown";
   /** Executive Summary Comment */
@@ -1590,6 +1591,11 @@ export interface TypeFragmentationReport {
   /** Secondary Object Inclination */
   secondary_object_inclination?: number | null;
   /**
+   * File Name
+   * @default "unknown-filename.json"
+   */
+  file_name?: string;
+  /**
    * Is Active
    * @default true
    */
@@ -1598,8 +1604,6 @@ export interface TypeFragmentationReport {
   uploaded_by_id?: string | null;
   /** Deleted By Id */
   deleted_by_id?: string | null;
-  /** File Name */
-  file_name: string;
 }
 
 /** FragmentationReportOut */
@@ -2046,30 +2050,30 @@ export interface TypeReentryEventOut {
   closedComment?: string | null;
   /** Atmosphericprobability */
   atmosphericProbability?: number | null;
-  atmosphericRisk?: TypeReentryRisk | null;
+  atmosphericRisk?: TypeRisk | null;
   /** Fragmentsprobability */
   fragmentsProbability?: number | null;
-  fragmentsRisk?: TypeReentryRisk | null;
+  fragmentsRisk?: TypeRisk | null;
   /** Fragmentsnumber */
   fragmentsNumber?: number | null;
   /** Humancasualtyprobability */
   humanCasualtyProbability?: number | null;
-  humanCasualtyRisk?: TypeReentryRisk | null;
+  humanCasualtyRisk?: TypeRisk | null;
   /** Overflighttime */
   overflightTime: string[];
   survivability?: TypeReentrySurvivability | null;
   /** Survivabilitycomment */
   survivabilityComment?: string | null;
-  /** Execsummary */
-  execSummary?: string | null;
-  /** Immediateresponse */
-  immediateResponse?: string | null;
-  /** Recoveryandcleanup */
-  recoveryAndCleanUp?: string | null;
-  /** Damagesliability */
-  damagesLiability?: string | null;
-  /** Pressattention */
-  pressAttention?: string | null;
+  /** Executivesummarycomment */
+  executiveSummaryComment?: string | null;
+  /** Immediateresponsecomment */
+  immediateResponseComment?: string | null;
+  /** Ukresponsecomment */
+  ukResponseComment?: string | null;
+  /** Damagesliabilitycomment */
+  damagesLiabilityComment?: string | null;
+  /** Pressattentioncomment */
+  pressAttentionComment?: string | null;
   /** Objectname */
   objectName?: string | null;
   /** Objecttype */
@@ -2106,16 +2110,16 @@ export interface TypeReentryEventOut {
 
 /** ReentryEventPatch */
 export interface TypeReentryEventPatch {
-  /** Exec Summary */
-  exec_summary?: string | null;
-  /** Immediate Response */
-  immediate_response?: string | null;
-  /** Recovery And Clean Up */
-  recovery_and_clean_up?: string | null;
-  /** Damages Liability */
-  damages_liability?: string | null;
-  /** Press Attention */
-  press_attention?: string | null;
+  /** Executive Summary Comment */
+  executive_summary_comment?: string | null;
+  /** Immediate Response Comment */
+  immediate_response_comment?: string | null;
+  /** Uk Response Comment */
+  uk_response_comment?: string | null;
+  /** Damages Liability Comment */
+  damages_liability_comment?: string | null;
+  /** Press Attention Comment */
+  press_attention_comment?: string | null;
   /** Closed Comment */
   closed_comment?: string | null;
 }
@@ -2164,6 +2168,16 @@ export interface TypeReentryEventReportOut {
   reportNumber: number;
   /** Closedcomment */
   closedComment?: string | null;
+  /** Executivesummarycomment */
+  executiveSummaryComment?: string | null;
+  /** Immediateresponsecomment */
+  immediateResponseComment?: string | null;
+  /** Ukresponsecomment */
+  ukResponseComment?: string | null;
+  /** Damagesliabilitycomment */
+  damagesLiabilityComment?: string | null;
+  /** Pressattentioncomment */
+  pressAttentionComment?: string | null;
   /** Alerttype */
   alertType: ("priority" | "standard" | "uk-licensed" | "closedown")[];
   /**
@@ -2173,15 +2187,15 @@ export interface TypeReentryEventReportOut {
   reportTime: string;
   /** Atmosphericprobability */
   atmosphericProbability: number;
-  atmosphericRisk?: TypeReentryRisk | null;
+  atmosphericRisk?: TypeRisk | null;
   /** Fragmentsprobability */
   fragmentsProbability?: number | null;
-  fragmentsRisk?: TypeReentryRisk | null;
+  fragmentsRisk?: TypeRisk | null;
   /** Fragmentsnumber */
   fragmentsNumber?: number | null;
   /** Humancasualtyprobability */
   humanCasualtyProbability?: number | null;
-  humanCasualtyRisk?: TypeReentryRisk | null;
+  humanCasualtyRisk?: TypeRisk | null;
   survivability: TypeReentrySurvivability;
   /** Survivabilitycomment */
   survivabilityComment?: string | null;
@@ -2217,14 +2231,17 @@ export interface TypeReentryEventReportOut {
   /** Inclination */
   inclination?: number | null;
   impact?: TypeReentryEventReportImpact | null;
+  /**
+   * Filename
+   * @default "unknown-filename.json"
+   */
+  fileName?: string;
   /** Uploadedbyid */
   uploadedById?: string | null;
   /** Deletedbyid */
   deletedById?: string | null;
   /** Presignedurl */
   presignedUrl?: string | null;
-  /** Filename */
-  fileName: string;
 }
 
 /** ReentryEventSortBy */
@@ -2251,9 +2268,6 @@ export type TypeReentryInterest = "low" | "high";
 /** ReentryReportSortBy */
 export type TypeReentryReportSortBy = "created_at" | "tip_external_id" | "report_number" | "updated_at";
 
-/** ReentryRisk */
-export type TypeReentryRisk = "Low" | "Medium" | "High";
-
 /** ReentrySurvivability */
 export type TypeReentrySurvivability = "Highly likely" | "Likely" | "Unlikely" | "Highly unlikely";
 
@@ -2272,6 +2286,9 @@ export type TypeReferenceFrame =
 
 /** ReportFlagSettings */
 export type TypeReportFlagSettings = "present" | "not_present" | "all";
+
+/** Risk */
+export type TypeRisk = "Low" | "Medium" | "High";
 
 /** SatelliteObservationsData */
 export interface TypeSatelliteObservationsData {
@@ -2769,22 +2786,25 @@ export interface TypeUniqueEventOut {
   maximumCollisionProbability?: number | null;
   /** Reportnumber */
   reportNumber?: number | null;
-  /** Execsummaryaddition */
-  execSummaryAddition?: string | null;
-  /** Manoeuvreaddition */
-  manoeuvreAddition?: string | null;
-  /** Immediateimpactaddition */
-  immediateImpactAddition?: string | null;
-  /** Shorttermimpactaddition */
-  shortTermImpactAddition?: string | null;
-  /** Riskataltitude */
-  riskAtAltitude?: string | null;
-  /** Longtermimpactaddition */
-  longTermImpactAddition?: string | null;
-  /** Ukresponseaddition */
-  ukResponseAddition?: string | null;
-  /** Pressattentionaddition */
-  pressAttentionAddition?: string | null;
+  risk?: TypeRisk | null;
+  /** Closedcomment */
+  closedComment?: string | null;
+  /** Executivesummarycomment */
+  executiveSummaryComment?: string | null;
+  /** Immediateimpactcomment */
+  immediateImpactComment?: string | null;
+  /** Longtermimpactcomment */
+  longTermImpactComment?: string | null;
+  /** Manoeuvrecomment */
+  manoeuvreComment?: string | null;
+  /** Pressattentioncomment */
+  pressAttentionComment?: string | null;
+  /** Riskataltitudecomment */
+  riskAtAltitudeComment?: string | null;
+  /** Shorttermimpactcomment */
+  shortTermImpactComment?: string | null;
+  /** Ukresponsecomment */
+  ukResponseComment?: string | null;
   /** Missdistance */
   missDistance?: number | null;
   /** Radialmissdistance */
@@ -2797,37 +2817,35 @@ export interface TypeUniqueEventOut {
   cdmExternalId?: string | null;
   /** Cdmcreationdate */
   cdmCreationDate?: string | null;
-  /** Closedcomment */
-  closedComment?: string | null;
 }
 
 /** UniqueEventUpdateTextFieldsIn */
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2025-11-14T09:48:37.526715"
+   * @default "2025-11-21T13:52:58.968841"
    */
   updated_at?: string | null;
   /** Report Number */
   report_number?: number | null;
   /** Closed Comment */
   closed_comment?: string | null;
-  /** Exec Summary Addition */
-  exec_summary_addition?: string | null;
-  /** Manoeuvre Addition */
-  manoeuvre_addition?: string | null;
-  /** Immediate Impact Addition */
-  immediate_impact_addition?: string | null;
-  /** Short Term Impact Addition */
-  short_term_impact_addition?: string | null;
-  /** Risk At Altitude */
-  risk_at_altitude?: string | null;
-  /** Long Term Impact Addition */
-  long_term_impact_addition?: string | null;
-  /** Uk Response Addition */
-  uk_response_addition?: string | null;
-  /** Press Attention Addition */
-  press_attention_addition?: string | null;
+  /** Executive Summary Comment */
+  executive_summary_comment?: string | null;
+  /** Manoeuvre Comment */
+  manoeuvre_comment?: string | null;
+  /** Immediate Impact Comment */
+  immediate_impact_comment?: string | null;
+  /** Short Term Impact Comment */
+  short_term_impact_comment?: string | null;
+  /** Risk At Altitude Comment */
+  risk_at_altitude_comment?: string | null;
+  /** Long Term Impact Comment */
+  long_term_impact_comment?: string | null;
+  /** Uk Response Comment */
+  uk_response_comment?: string | null;
+  /** Press Attention Comment */
+  press_attention_comment?: string | null;
 }
 
 /** User */

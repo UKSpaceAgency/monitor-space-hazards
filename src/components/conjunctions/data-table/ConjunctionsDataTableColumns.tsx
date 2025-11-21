@@ -24,8 +24,8 @@ export const getConjunctionEventsColumns = ({
     enableSorting: false,
     columns: [
       {
-        id: 'userInterest',
-        accessorKey: 'userInterest',
+        id: 'risk',
+        accessorKey: 'risk',
         header: 'Conjunctions.table.risk',
         cell: ({ getValue }) => {
           const value = getValue<string>();

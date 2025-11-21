@@ -53,7 +53,7 @@ function ConjunctionEmail({ report, event, withPlaceholders }: ConjunctionEmailP
       </Section>
       <Section title={t('Conjunction_alert.additional_informations_title')}>
         <ConjunctionRecommendedActions report={report} event={event} />
-        <ConjunctionPressAttention pressAttention={event.pressAttentionAddition} />
+        <ConjunctionPressAttention pressAttention={event.pressAttentionComment} />
       </Section>
       <SignIn link={eventLink} />
     </Layout>

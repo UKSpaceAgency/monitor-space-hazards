@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import { useTranslations } from 'next-intl';
 
-import type { TypeReentryEventOut, TypeReentryRisk } from '@/__generated__/data-contracts';
+import type { TypeReentryEventOut, TypeRisk } from '@/__generated__/data-contracts';
 import { FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 import { roundedPercentage } from '@/utils/Math';
 import { getFullCountry } from '@/utils/Regions';
@@ -26,10 +26,10 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     type: 'text',
     help: tForm.rich('closed_comment_hint'),
   }, {
-    id: 'exec_summary',
+    id: 'executive_summary_comment',
     ariaLabel: 'Exec summary',
-    name: tForm('type.exec_summary'),
-    defaultValue: event.execSummary,
+    name: tForm('type.executive_summary_comment'),
+    defaultValue: event.executiveSummaryComment,
     type: 'text',
     help: (
       <div>
@@ -43,27 +43,27 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
           fragmentsRisk: event?.fragmentsRisk,
           fragmentsProbability: roundedPercentage(event?.fragmentsProbability ?? 0),
           licensingCountry: getFullCountry(event.licenseCountry),
-          tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
+          tag: chunks => renderRiskTag(chunks as TypeRisk),
         })}
       </div>
     ),
   }, {
-    id: 'immediate_response',
+    id: 'immediate_response_comment',
     ariaLabel: 'Immediate response',
-    name: tForm('type.immediate_response'),
-    defaultValue: event.immediateResponse,
+    name: tForm('type.immediate_impact_comment'),
+    defaultValue: event.immediateResponseComment,
     type: 'text',
     help: (
       <div>
         <p className="govuk-body">{tForm('hint')}</p>
-        {tReentryAlert.rich(`Guidance_on_response.risk.${event?.atmosphericRisk?.toLowerCase() as 'low' | 'medium' | 'high' ?? 'low'}`, { tag: chunks => renderRiskTag(chunks as TypeReentryRisk) })}
+        {tReentryAlert.rich(`Guidance_on_response.risk.${event?.atmosphericRisk?.toLowerCase() as 'low' | 'medium' | 'high' ?? 'low'}`, { tag: chunks => renderRiskTag(chunks as TypeRisk) })}
       </div>
     ),
   }, {
-    id: 'recovery_and_clean_up',
-    ariaLabel: 'Recovery and clean up',
-    name: tForm('type.recovery_and_clean_up'),
-    defaultValue: event.recoveryAndCleanUp,
+    id: 'uk_response_comment',
+    ariaLabel: tForm('type.uk_response_comment'),
+    name: tForm('type.uk_response_comment'),
+    defaultValue: event.ukResponseComment,
     type: 'text',
     help: (
       <div>
@@ -72,10 +72,10 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
       </div>
     ),
   }, {
-    id: 'damages_liability',
-    ariaLabel: 'Damages liability',
-    name: tForm('type.damages_liability'),
-    defaultValue: event.damagesLiability,
+    id: 'damages_liability_comment',
+    ariaLabel: tForm('type.damages_liability_comment'),
+    name: tForm('type.damages_liability_comment'),
+    defaultValue: event.damagesLiabilityComment,
     type: 'text',
     help: (
       <div>
@@ -84,10 +84,10 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
       </div>
     ),
   }, {
-    id: 'press_attention',
-    ariaLabel: 'Press attention',
-    name: tForm('type.press_attention'),
-    defaultValue: event.pressAttention,
+    id: 'press_attention_comment',
+    ariaLabel: tForm('type.press_attention_comment'),
+    name: tForm('type.press_attention_comment'),
+    defaultValue: event.pressAttentionComment,
     type: 'text',
     help: tForm.rich('press_attention_hint'),
   }];

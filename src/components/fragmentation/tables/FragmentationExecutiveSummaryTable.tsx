@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
-import type { TypeFragmentationReportOut, TypeReentryRisk } from '@/__generated__/data-contracts';
+import type { TypeFragmentationReportOut, TypeRisk } from '@/__generated__/data-contracts';
 import { getFragmentationEventScreeningResults } from '@/actions/getFragmentationEventScreeningResults';
 import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
@@ -21,7 +21,7 @@ const FragmentationExecutiveSummaryTable = async ({ report }: FragmentationExecu
     {
       header: t('risk'),
       accessorKey: 'risk',
-      renderCell: ({ risk }) => renderRiskTag(risk as TypeReentryRisk),
+      renderCell: ({ risk }) => renderRiskTag(risk as TypeRisk),
     },
     {
       header: t('event_epoch'),
