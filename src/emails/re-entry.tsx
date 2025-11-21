@@ -47,7 +47,7 @@ function ReEntryEmail({ event, report, tip, withPlaceholders }: ReEntryEmailProp
       </Section>
       <Section title={t('Reentry_alert.event_summary_title')}>
         <ReentryEventSummary event={event} tip={tip} className="pb-6" />
-        {event.overflightTime.length > 0 && <Map src="{{MAP.src}}" className="pb-6" />}
+        {event.overflightTime.length > 0 && <Map src="{{MAP.src}}" className="pb-6" showLegend={false} />}
         <Map src="{{WORLD_MAP.src}}" className="pb-6" />
       </Section>
       <Section title={t('Reentry_alert.regions_at_risk_title')}>
