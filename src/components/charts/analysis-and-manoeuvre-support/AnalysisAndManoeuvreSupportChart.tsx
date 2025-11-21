@@ -25,7 +25,7 @@ const AnalysisAndManoeuvreSupportChart = ({
 }: AnalysisAndManoeuvreSupportChartProps) => {
   const t = useTranslations('Charts.Analysis_and_manoeuvre_support');
 
-  const actionButtons = <DateRange dataRange={dataRange} handleDataRangeChange={handleDataRangeChange} ariaLabel="NSpOC conjunction event analysis and manoeuvre support" />;
+  const actionButtons = <DateRange dataRange={dataRange} handleDataRangeChange={handleDataRangeChange} ariaLabel="NSpOC conjunction event analysis and manoeuvre support" name="analysis-ingests-days" />;
 
   const datasets = useMemo(
     () => ({

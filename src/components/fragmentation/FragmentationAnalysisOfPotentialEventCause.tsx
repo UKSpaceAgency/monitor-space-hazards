@@ -1,15 +1,16 @@
-import type { TypeFragmentationReportOut } from '@/__generated__/data-contracts';
+import { useTranslations } from 'next-intl';
+
+import { Markdown } from '../Markdown';
 
 type FragmentationAnalysisOfPotentialEventCauseProps = {
-  report: TypeFragmentationReportOut;
+  comment?: string | null;
 };
 
-// eslint-disable-next-line unused-imports/no-unused-vars
-const FragmentationAnalysisOfPotentialEventCause = ({ report }: FragmentationAnalysisOfPotentialEventCauseProps) => {
+const FragmentationAnalysisOfPotentialEventCause = ({ comment }: FragmentationAnalysisOfPotentialEventCauseProps) => {
+  const t = useTranslations('Fragmentation.Analysis_of_potential_event_cause');
   return (
     <div>
-      <p className="govuk-body">At present, the UK Space Agency believes the most likely cause of this event to be a collision between RESURS P1 and METEOR 1-11.</p>
-      <p className="govuk-body">Hold for commentary on the collision provided by orbital analysts through API.</p>
+      {comment ? <Markdown>{comment}</Markdown> : <p className="govuk-body">{t('empty')}</p>}
     </div>
   );
 };

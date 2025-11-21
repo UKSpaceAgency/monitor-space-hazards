@@ -50,6 +50,7 @@ const MonitoringReentryEventsByTypeMonthly = async () => {
         yAxisTitle={t('y_axis_title')}
         xAxisTitle={t('x_axis_title')}
         legend={t('object_type')}
+        name="reentry-events-by-type-monthly"
       />
       <Scrollable>
         <DataTable

@@ -44,8 +44,12 @@ export const fragmentationHistoryColumns: TranslatedColumnDef<TypeFragmentationR
   },
   {
     header: 'Fragmentation_history.report_time',
+    accessorKey: 'report_time',
     enableSorting: false,
-    cell: () => 'MISSING DATA',
+    cell: ({ getValue }) => {
+      const value = getValue<string>();
+      return dayjs(value).format(FORMAT_DATE_TIME);
+    },
   },
   {
     header: 'Fragmentation_history.event_epoch',

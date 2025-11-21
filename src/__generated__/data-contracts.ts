@@ -1369,6 +1369,10 @@ export interface TypeFragmentationEvent {
    * @format date-time
    */
   event_epoch: string;
+  /** Year */
+  year: number;
+  /** Event Number */
+  event_number: number;
   risk?: TypeReentryRisk | null;
   /** Modelled Fragments */
   modelled_fragments?: number | null;
@@ -1419,7 +1423,12 @@ export interface TypeFragmentationEvent {
    */
   is_active?: boolean;
   /** Report Number */
-  report_number?: number | null;
+  report_number: number;
+  /**
+   * Report Time
+   * @format date-time
+   */
+  report_time: string;
 }
 
 /** FragmentationEventAlertIn */
@@ -1502,6 +1511,11 @@ export interface TypeFragmentationReport {
   short_id: string | null;
   /** Report Number */
   report_number: number;
+  /**
+   * Report Time
+   * @format date-time
+   */
+  report_time: string;
   /**
    * Event Epoch
    * @format date-time
@@ -1599,6 +1613,11 @@ export interface TypeFragmentationReportOut {
   short_id: string | null;
   /** Report Number */
   report_number: number;
+  /**
+   * Report Time
+   * @format date-time
+   */
+  report_time: string;
   /**
    * Event Epoch
    * @format date-time
@@ -2019,6 +2038,10 @@ export interface TypeReentryEventOut {
   tipExternalId: string;
   /** Reentryreportnumber */
   reentryReportNumber?: number | null;
+  /** Year */
+  year: number;
+  /** Eventnumber */
+  eventNumber: number;
   /** Closedcomment */
   closedComment?: string | null;
   /** Atmosphericprobability */
@@ -2782,7 +2805,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2025-11-08T01:40:54.101517"
+   * @default "2025-11-14T09:48:37.526715"
    */
   updated_at?: string | null;
   /** Report Number */

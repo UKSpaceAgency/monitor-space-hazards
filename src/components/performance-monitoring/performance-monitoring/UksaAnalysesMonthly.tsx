@@ -32,7 +32,14 @@ const UksaAnalysesMonthly = async () => {
 
   return (
     <>
-      <MonthlyBarChart data={datasets} yAxisTitle={t('y_axis_title')} xAxisTitle={t('x_axis_title')} ariaLabel="NSpOC conjunction event analysis and manoeuvre support monthly" />
+      <MonthlyBarChart
+        data={datasets}
+        yAxisTitle={t('y_axis_title')}
+        xAxisTitle={t('x_axis_title')}
+        ariaLabel="NSpOC conjunction event analysis and manoeuvre support monthly"
+        legend={t('file_type')}
+        name="uksa-analyses-monthly"
+      />
       <Scrollable>
         <DataTable
           columns={uksaAnalysesMonthlyColumns}

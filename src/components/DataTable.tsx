@@ -38,9 +38,10 @@ export type DataTableProps<T extends RowData> = {
   emptyLabel?: string;
   ariaLabel?: string;
   manualSorting?: boolean;
+  enableSorting?: boolean;
 };
 
-const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText, sorting, emptyLabel = 'No data', focusable, ariaLabel, manualSorting = true, onSortingChange, renderSubComponent }: DataTableProps<T>) => {
+const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText, sorting, emptyLabel = 'No data', focusable, ariaLabel, manualSorting = true, onSortingChange, renderSubComponent, enableSorting = true }: DataTableProps<T>) => {
   const t = useTranslations('Tables');
 
   const translatedColumns = useMemo(() => {
@@ -68,6 +69,7 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText,
       sorting,
     },
     manualSorting,
+    enableSorting,
     onSortingChange,
     getRowCanExpand: () => (!!renderSubComponent),
     getCoreRowModel: getCoreRowModel(),

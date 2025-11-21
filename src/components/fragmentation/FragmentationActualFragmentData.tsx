@@ -1,17 +1,19 @@
 import { getTranslations } from 'next-intl/server';
 
 import { getFragmentationEventGabbardData } from '@/actions/getFragmentationEventGabbardData';
+import { Details } from '@/ui/details/details';
 
 import { GabbardPlotChart } from './charts/GabbardPlotChart';
 
 type ActualFragmentDataProps = {
   shortId: string;
+  knownFragments: number;
   modelledFragments: number;
   dataPdf: string;
 };
 
-const ActualFragmentData = async ({ shortId, modelledFragments, dataPdf }: ActualFragmentDataProps) => {
-  const t = await getTranslations('Fragmentation.Event_details');
+const ActualFragmentData = async ({ shortId, modelledFragments, knownFragments, dataPdf }: ActualFragmentDataProps) => {
+  const t = await getTranslations('Fragmentation.Fragment_data');
 
   const gabbardData = await getFragmentationEventGabbardData(shortId);
 
@@ -19,8 +21,16 @@ const ActualFragmentData = async ({ shortId, modelledFragments, dataPdf }: Actua
 
   return (
     <div data-pdf={dataPdf}>
-      {t.rich('actual_fragment_data_content', { fragments: modelledFragments })}
-      <GabbardPlotChart dates={dates} gabbardData={gabbardData} />
+      {t.rich('content', { knownFragments, modelledFragments })}
+      <div className="bg-lightGrey p-8 mb-4">
+        <GabbardPlotChart dates={dates} gabbardData={gabbardData} />
+        <Details
+          summary={t('help.title')}
+          className="mb-0"
+        >
+          {t.rich('help.content')}
+        </Details>
+      </div>
     </div>
   );
 };

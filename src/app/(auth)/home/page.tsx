@@ -2,11 +2,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { MessageKeys } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
+import { Suspense } from 'react';
 
 import { getSession } from '@/actions/getSession';
+import { DashboardConjunctions } from '@/components/dashboard/DashboardConjunctions';
+import { DashboardReentries } from '@/components/dashboard/DashboardReentries';
 import { ObjectsTracked } from '@/components/dashboard/ObjectsTracked';
 import { UpcomingEvents } from '@/components/dashboard/UpcomingEvents';
 import nsocLogo from '@/public/nspoclogo2.png';
+import Spinner from '@/ui/spinner/spinner';
 import { AppConfig } from '@/utils/AppConfig';
 import { isAgencyUser } from '@/utils/Roles';
 
@@ -70,6 +74,10 @@ export default async function DashboardPage() {
       })}
       <UpcomingEvents className="mb-12" title={t('upcoming_events.title')} conjunctionTitle={t('upcoming_events.upcoming_conjunction')} highestPocTitle={t('upcoming_events.highest_poc')} reentryTitle={t('upcoming_events.upcoming_reentry')} />
       <ObjectsTracked className="mb-12" title={t('objects_tracked.title')} />
+      <Suspense fallback={<Spinner />}>
+        <DashboardConjunctions />
+        <DashboardReentries />
+      </Suspense>
     </div>
   );
 }
