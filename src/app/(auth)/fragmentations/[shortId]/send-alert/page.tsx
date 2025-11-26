@@ -18,7 +18,7 @@ export async function generateMetadata() {
   };
 }
 
-export default async function ConjunctionAlertSend({
+export default async function FragmentationAlertSend({
   params,
 }: PageProps) {
   const t = await getTranslations('Fragmentation_alert_send');

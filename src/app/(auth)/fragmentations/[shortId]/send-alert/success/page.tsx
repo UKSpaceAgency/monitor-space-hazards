@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
-import { getConjunctionAlertLatest } from '@/actions/getConjunctionAlertLatest';
+import { getFragmentationAlertLatest } from '@/actions/getFragmentationAlertLatest';
 import { getSession } from '@/actions/getSession';
 import { EventAlertSendSuccess } from '@/components/event-alert-send/EventAlertSendSuccess';
 import { isAgencyApproverOrSuperuser } from '@/utils/Roles';
@@ -15,12 +15,12 @@ export async function generateMetadata({
 }: PageProps) {
   const t = await getTranslations('Forms.Send_alert.Success');
   const { shortId } = await params;
-  await getConjunctionAlertLatest(shortId);
+  await getFragmentationAlertLatest(shortId);
   return {
     title: t('title'),
   };
 }
-export default async function ConjunctionAlertEditSuccess({
+export default async function FragmentationAlertEditSuccess({
   params,
 }: PageProps) {
   const { shortId } = await params;

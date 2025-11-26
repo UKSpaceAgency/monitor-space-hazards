@@ -202,7 +202,12 @@ const ReentryAlertImpactTable = ({ caption, impact, byRegion }: ReentryAlertImpa
           </div>
           <div className="flex items-end gap-2">
             <Select
-              label={<b>{t('choose_overflight')}</b>}
+              label={(
+                <b>
+                  {t('choose_overflight')}
+                  <span className="sr-only">{` - Potential impact by ${byRegion}`}</span>
+                </b>
+              )}
               options={overflightOptions}
               onChange={handleOverflightChange}
             />
