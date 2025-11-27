@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import { getFragmentationEvent } from '@/actions/getFragmentationEvent';
@@ -25,6 +26,8 @@ export default async function Fragmentation({
 }: PageProps) {
   const t = await getTranslations('Fragmentation');
   const { shortId } = await params;
+
+  notFound();
 
   return (
     <div>
