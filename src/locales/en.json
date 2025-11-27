@@ -895,7 +895,6 @@
     "performance_monitoring": "Performance monitoring",
     "conjunction_event_and_organisation_data": "Conjunction events",
     "reentry_event_and_organisation_data": "Re-entry events",
-    "fragmentation_event_and_organisation_data": "Fragmentation events",
     "service_usage": "Service usage",
     "performance_accordion": {
       "title": "Performance monitoring",
@@ -1039,23 +1038,6 @@
         "details": {
           "title": "Help with this table<screenReaderOnly>- Conjunction events by satellite</screenReaderOnly>",
           "content": "This table shows the total number of conjunction events for each registered satellite in the last 30 days."
-        }
-      }
-    },
-    "fragmentation_accordion": {
-      "title": "Fragmentation events",
-      "fragmentation_event_by_type": {
-        "title": "Fragmentation events by type",
-        "description": "Total number of fragmentation events monitored and a breakdown of their type.",
-        "daily_title": "Total number of fragmentation events monitored and a breakdown of their type.",
-        "daily_details": {
-          "title": "Help with this table<screenReaderOnly>- Fragmentation events by type - Total number</screenReaderOnly>",
-          "content": "This table shows the number of fragmentation events by different object types and level of event."
-        },
-        "monthly_title": "Monthly number of fragmentation events monitored and a breakdown of their type.",
-        "monthly_details": {
-          "title": "Help with this table<screenReaderOnly>- Fragmentation events by type -Monthly number</screenReaderOnly>",
-          "content": "Content"
         }
       }
     }
@@ -1534,11 +1516,6 @@
         "medium": "<1e-3 and >1e-5",
         "high": ">1e-3",
         "total": "Total"
-      },
-      "fragmentation_events_by_type": {
-        "type": "Type",
-        "fragmentation_events": "Fragmentation events",
-        "this_table": "this table"
       }
     },
     "Organisation_satellites": {
