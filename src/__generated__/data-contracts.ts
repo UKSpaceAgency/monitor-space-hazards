@@ -1717,16 +1717,16 @@ export type TypeFragmentationReportSortBy =
 
 /** FragmentationType */
 export type TypeFragmentationType =
-  | "Propulsion"
-  | "Collision"
-  | "Small Impactor"
-  | "Electrical"
   | "Accidental"
   | "Aerodynamics"
-  | "Deliberate"
-  | "Unknown"
   | "Anomalous"
-  | "Explosion";
+  | "Collision"
+  | "Deliberate"
+  | "Electrical"
+  | "Explosion"
+  | "Propulsion"
+  | "Small Impactor"
+  | "Unknown";
 
 /** HTTPValidationError */
 export interface TypeHTTPValidationError {
@@ -1953,6 +1953,107 @@ export interface TypeReentryAlertSettings {
 
 /** ReentryDirection */
 export type TypeReentryDirection = "ascending" | "descending";
+
+/** ReentryEvent */
+export interface TypeReentryEvent {
+  /**
+   * Id
+   * @format uuid
+   */
+  id?: string;
+  /**
+   * Createdat
+   * @format date-time
+   */
+  createdAt?: string;
+  /**
+   * Updatedat
+   * @format date-time
+   */
+  updatedAt?: string;
+  /** Shortid */
+  shortId: string;
+  /** Noradid */
+  noradId: string;
+  /**
+   * Timewindowstart
+   * @format date-time
+   */
+  timeWindowStart: string;
+  /**
+   * Timewindowend
+   * @format date-time
+   */
+  timeWindowEnd: string;
+  /** Decayepoch */
+  decayEpoch?: string | null;
+  /** Uncertaintywindow */
+  uncertaintyWindow?: number | null;
+  /** Tipexternalid */
+  tipExternalId: string;
+  /** Reentryreportnumber */
+  reentryReportNumber?: number | null;
+  /** Year */
+  year: number;
+  /** Eventnumber */
+  eventNumber: number;
+  /** Closedcomment */
+  closedComment?: string | null;
+  /** Atmosphericprobability */
+  atmosphericProbability?: number | null;
+  atmosphericRisk?: TypeRisk | null;
+  /** Fragmentsprobability */
+  fragmentsProbability?: number | null;
+  fragmentsRisk?: TypeRisk | null;
+  /** Fragmentsnumber */
+  fragmentsNumber?: number | null;
+  /** Humancasualtyprobability */
+  humanCasualtyProbability?: number | null;
+  humanCasualtyRisk?: TypeRisk | null;
+  /** Overflighttime */
+  overflightTime: string[];
+  survivability?: TypeReentrySurvivability | null;
+  /** Survivabilitycomment */
+  survivabilityComment?: string | null;
+  /** Executivesummarycomment */
+  executiveSummaryComment?: string | null;
+  /** Immediateresponsecomment */
+  immediateResponseComment?: string | null;
+  /** Ukresponsecomment */
+  ukResponseComment?: string | null;
+  /** Damagesliabilitycomment */
+  damagesLiabilityComment?: string | null;
+  /** Pressattentioncomment */
+  pressAttentionComment?: string | null;
+  /** Objectname */
+  objectName?: string | null;
+  /** Objecttype */
+  objectType?: string | null;
+  /** Estimatedmass */
+  estimatedMass?: number | null;
+  /** Licensecountry */
+  licenseCountry?: string | null;
+  /** Internationaldesignator */
+  internationalDesignator?: string | null;
+  /** Objectheight */
+  objectHeight?: number | null;
+  /** Objectwidth */
+  objectWidth?: number | null;
+  /** Objectspan */
+  objectSpan?: number | null;
+  /** Launchingyear */
+  launchingYear?: number | null;
+  /** Apogee */
+  apogee?: number | null;
+  /** Perigee */
+  perigee?: number | null;
+  /** Inclination */
+  inclination?: number | null;
+  /** Approvedbyid */
+  approvedById?: string | null;
+  /** Approvedat */
+  approvedAt?: string | null;
+}
 
 /** ReentryEventAlertIn */
 export interface TypeReentryEventAlertIn {
@@ -2556,12 +2657,29 @@ export interface TypeStatisticsFragmentationEventsAndAlertsCount {
   count: number;
 }
 
+/** StatisticsFragmentationEventsByFragmentationTypeMonthlyCount */
+export interface TypeStatisticsFragmentationEventsByFragmentationTypeMonthlyCount {
+  fragmentationType: TypeFragmentationType;
+  /** Month */
+  month?: string | null;
+  /** Count */
+  count: number;
+}
+
 /** StatisticsFragmentationEventsByObjectTypeMonthlyCount */
 export interface TypeStatisticsFragmentationEventsByObjectTypeMonthlyCount {
   /** Objecttype */
   objectType?: string | null;
   /** Month */
   month?: string | null;
+  /** Count */
+  count: number;
+}
+
+/** StatisticsFragmentationEventsCountByFragmentationType */
+export interface TypeStatisticsFragmentationEventsCountByFragmentationType {
+  /** Fragmentationtype */
+  fragmentationType: string;
   /** Count */
   count: number;
 }
@@ -2823,7 +2941,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2025-11-21T13:52:58.968841"
+   * @default "2025-11-30T23:46:33.490045"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -4053,6 +4171,13 @@ export interface TypeGetStatsFragmentationEventsParams {
   end_date?: string | null;
 }
 
+export interface TypeGetStatsFragmentationEventsByFragmentationTypeParams {
+  /** Start Date */
+  start_date?: string | null;
+  /** End Date */
+  end_date?: string | null;
+}
+
 export interface TypeGetStatsMonthlyFragmentationEventsParams {
   /** Start Date */
   start_date?: string | null;
@@ -4061,6 +4186,13 @@ export interface TypeGetStatsMonthlyFragmentationEventsParams {
 }
 
 export interface TypeGetStatsMonthlyFragmentationEventsByObjectTypeParams {
+  /** Start Date */
+  start_date?: string | null;
+  /** End Date */
+  end_date?: string | null;
+}
+
+export interface TypeGetStatsMonthlyFragmentationEventsByFragmentationTypeParams {
   /** Start Date */
   start_date?: string | null;
   /** End Date */

@@ -86,10 +86,12 @@ import {
   TypeGetStatsEventsByOrganizationParams,
   TypeGetStatsEventsBySatelliteParams,
   TypeGetStatsEventsTypeParams,
+  TypeGetStatsFragmentationEventsByFragmentationTypeParams,
   TypeGetStatsFragmentationEventsParams,
   TypeGetStatsMonthlyAnalysesParams,
   TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams,
   TypeGetStatsMonthlyConjunctionEventsParams,
+  TypeGetStatsMonthlyFragmentationEventsByFragmentationTypeParams,
   TypeGetStatsMonthlyFragmentationEventsByObjectTypeParams,
   TypeGetStatsMonthlyFragmentationEventsParams,
   TypeGetStatsMonthlyManoeuvrePlotsParams,
@@ -111,6 +113,7 @@ import {
   TypePostConjunctionReportsParams,
   TypePostReentryEventReportsParams,
   TypePostTipsParams,
+  TypeReentryEvent,
   TypeReentryEventAlertIn,
   TypeReentryEventAlertOut,
   TypeReentryEventCount,
@@ -129,7 +132,9 @@ import {
   TypeStatisticsEventsBySatellite,
   TypeStatisticsEventsType,
   TypeStatisticsFragmentationEventsAndAlertsCount,
+  TypeStatisticsFragmentationEventsByFragmentationTypeMonthlyCount,
   TypeStatisticsFragmentationEventsByObjectTypeMonthlyCount,
+  TypeStatisticsFragmentationEventsCountByFragmentationType,
   TypeStatisticsFragmentationEventsMonthlyCount,
   TypeStatisticsHighestUpcomingCollisionProbability,
   TypeStatisticsMonthlyCount,
@@ -707,6 +712,54 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
+   * @description ## Description Gets the latest Fragmentation Event. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags fragmentation-events
+   * @name GetFragmentationEventsLatest
+   * @summary Gets the latest Fragmentation Events
+   * @request GET:/v1/fragmentation-events/latest
+   * @secure
+   */
+  getFragmentationEventsLatest = (params: RequestParams = {}) =>
+    this.request<TypeFragmentationEvent, void>({
+      path: `/v1/fragmentation-events/latest`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets Fragmentation Event by short ID.. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags fragmentation-events
+   * @name GetFragmentationEventsByNoradIdNoradId
+   * @summary Gets Fragmentation Events by NORAD ID
+   * @request GET:/v1/fragmentation-events/by-norad-id/{norad_id}
+   * @secure
+   */
+  getFragmentationEventsByNoradIdNoradId = (noradId: string, params: RequestParams = {}) =>
+    this.request<TypeFragmentationEvent[], void | TypeHTTPValidationError>({
+      path: `/v1/fragmentation-events/by-norad-id/${noradId}`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets Fragmentation Events schema. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
+   *
+   * @tags fragmentation-events
+   * @name GetFragmentationEventsSchema
+   * @summary Gets Fragmentation Events schema
+   * @request GET:/v1/fragmentation-events/schema
+   * @secure
+   */
+  getFragmentationEventsSchema = (params: RequestParams = {}) =>
+    this.request<object, void>({
+      path: `/v1/fragmentation-events/schema`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
    * @description ## Description Gets Fragmentation Event by short ID.. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
    *
    * @tags fragmentation-events
@@ -738,22 +791,6 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       body: data,
       secure: true,
       type: ContentType.Json,
-      format: "json",
-      ...params,
-    }); /**
-   * @description ## Description Gets Fragmentation Events schema. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
-   *
-   * @tags fragmentation-events
-   * @name GetFragmentationEventsSchema
-   * @summary Gets Fragmentation Events schema
-   * @request GET:/v1/fragmentation-events/schema
-   * @secure
-   */
-  getFragmentationEventsSchema = (params: RequestParams = {}) =>
-    this.request<object, void>({
-      path: `/v1/fragmentation-events/schema`,
-      method: "GET",
-      secure: true,
       format: "json",
       ...params,
     }); /**
@@ -1098,11 +1135,11 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets list of Reentry Event Reports data by Reentry Event short ID ie. re-20240404-23123 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   * @description ## Description Gets list of Reentry Event Reports data by Reentry Event short ID ie. RE25-0031 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
    *
    * @tags reentry-event-reports
    * @name GetReentryEventReportsReentryEventShortId
-   * @summary Get list of Reentry Event Reports by Reentry Event short ID ie. re-20240404-23123
+   * @summary Get list of Reentry Event Reports by Reentry Event short ID ie. RE25-0031
    * @request GET:/v1/reentry-event-reports/reentry-event/{short_id}
    * @secure
    */
@@ -1166,7 +1203,39 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Reentry Event data by Reentry Event short ID ie. re-20240404-23123 |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   * @description ## Description Gets the latest Reentry Event. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags reentry-events
+   * @name GetReentryEventsLatest
+   * @summary Gets the latest Reentry Event
+   * @request GET:/v1/reentry-events/latest
+   * @secure
+   */
+  getReentryEventsLatest = (params: RequestParams = {}) =>
+    this.request<TypeReentryEvent, void>({
+      path: `/v1/reentry-events/latest`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets Reentry Event by short ID.. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags reentry-events
+   * @name GetReentryEventsByNoradIdNoradId
+   * @summary Gets Reentry Event by NORAD ID
+   * @request GET:/v1/reentry-events/by-norad-id/{norad_id}
+   * @secure
+   */
+  getReentryEventsByNoradIdNoradId = (noradId: string, params: RequestParams = {}) =>
+    this.request<TypeReentryEvent, void | TypeHTTPValidationError>({
+      path: `/v1/reentry-events/by-norad-id/${noradId}`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets Reentry Event data by Reentry Event short ID ie. RE25-0031 |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
    *
    * @tags reentry-events
    * @name GetReentryEventsShortId
@@ -1182,7 +1251,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Updates Reentry Event data by Reentry Event short ID ie. re-20240404-23123 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|Update| |Agency analyst|Update| |Agency approver|Update| |Agency superuser|Update|
+   * @description ## Description Updates Reentry Event data by Reentry Event short ID ie. RE25-0031 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|Update| |Agency analyst|Update| |Agency approver|Update| |Agency superuser|Update|
    *
    * @tags reentry-events
    * @name PatchReentryEventsShortId
@@ -1967,6 +2036,26 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
+   * @description ## Description Get count of Fragmentation Events with fragmentation type within a date range. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
+   *
+   * @tags stats
+   * @name GetStatsFragmentationEventsByFragmentationType
+   * @summary Get count of Fragmentation Events with fragmentation type within a date range.
+   * @request GET:/v1/stats/fragmentation-events/by-fragmentation-type
+   * @secure
+   */
+  getStatsFragmentationEventsByFragmentationType = (
+    query?: TypeGetStatsFragmentationEventsByFragmentationTypeParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeStatisticsFragmentationEventsCountByFragmentationType[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/fragmentation-events/by-fragmentation-type`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
    * @description ## Description Get monthly count of Fragmentation Events within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
    *
    * @tags stats
@@ -2001,6 +2090,26 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
   ) =>
     this.request<TypeStatisticsFragmentationEventsByObjectTypeMonthlyCount[], void | TypeHTTPValidationError>({
       path: `/v1/stats/monthly/fragmentation-events-by-object-type`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Get monthly count of Fragmentation Events with fragmentation type, within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
+   *
+   * @tags stats
+   * @name GetStatsMonthlyFragmentationEventsByFragmentationType
+   * @summary Get monthly count of Fragmentation Events with fragmentation type
+   * @request GET:/v1/stats/monthly/fragmentation-events-by-fragmentation-type
+   * @secure
+   */
+  getStatsMonthlyFragmentationEventsByFragmentationType = (
+    query?: TypeGetStatsMonthlyFragmentationEventsByFragmentationTypeParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeStatisticsFragmentationEventsByFragmentationTypeMonthlyCount[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/monthly/fragmentation-events-by-fragmentation-type`,
       method: "GET",
       query: query,
       secure: true,

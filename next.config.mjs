@@ -16,6 +16,13 @@ const config = {
   poweredByHeader: false,
   reactStrictMode: true,
   output: 'standalone',
+  sassOptions: {
+    quietDeps: true,
+    silenceDeprecations: ['legacy-js-api', 'import', 'slash-div'],
+    logger: {
+      warn: () => {},
+    },
+  },
 };
 
 export default withSentryConfig(bundleAnalyzer(
