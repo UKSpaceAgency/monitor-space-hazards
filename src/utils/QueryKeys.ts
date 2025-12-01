@@ -10,6 +10,7 @@ export enum QUERY_KEYS {
   StatsAnalysisAndManoeuvreSupport = 'stats-analysis-and-manoeuvre-support',
   StatsConjunctionEventByType = 'stats-conjunction-event-by-type',
   StatsReentryEventByType = 'stats-reentry-event-by-type',
+  StatsFragmentationEventByType = 'stats-fragmentation-event-by-type',
   StatsEventByOrganisation = 'stats-event-by-organisation',
   StatsEventBySatellite = 'stats-event-by-satellite',
   StatsNotificationsSent = 'stats-notifications-sent',

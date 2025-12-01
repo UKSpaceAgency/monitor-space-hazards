@@ -5,7 +5,7 @@ import Api from '@/libs/Api';
 
 export async function getStatsFragmentationEventsType(query?: TypeGetStatsFragmentationEventsParams) {
   const { data } = await Api.getStatsFragmentationEventsByFragmentationType(query);
-  const order = ['Debris', 'Payload', 'Rocket Body', 'Unknown', 'Total'];
+  const order = ['Accidental', 'Aerodynamics', 'Anomalous', 'Collision', 'Deliberate', 'Electrical', 'Explosion', 'Propulsion', 'Small Impactor', 'Unknown', 'Total'];
   data.sort((a, b) => order.indexOf(a.fragmentationType) - order.indexOf(b.fragmentationType));
   return data;
 };

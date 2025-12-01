@@ -9,7 +9,7 @@ type MapProps = {
 export const Map = ({ src, showLegend = true, ...props }: MapProps) => {
   return (
     <Section {...props}>
-      <Img src={src} alt="map" className="w-full h-auto block outline-none border-none" />
+      <Img src={src} alt="map" width="690" height="345" className="block outline-none border-none" />
       {showLegend && (
         <Row cellSpacing={8}>
           <Column className="w-1/5 text-2xs font-bold">
