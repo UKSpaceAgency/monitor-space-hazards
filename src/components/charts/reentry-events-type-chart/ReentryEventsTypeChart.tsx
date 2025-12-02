@@ -13,12 +13,13 @@ export type ReentryEventsTypeChartProps = {
 
 export function ReentryEventsTypeChart({ data, actionButtons }: ReentryEventsTypeChartProps) {
   const t = useTranslations('Charts.Events_type');
+  const filteredData = [...data].filter(({ objectType }) => objectType !== 'Total');
 
   const datasets = {
-    labels: data.map(({ objectType }) => objectType),
+    labels: filteredData.map(({ objectType }) => objectType),
     datasets: [
       {
-        data: data.map(({ count }) => count),
+        data: filteredData.map(({ count }) => count),
         backgroundColor: [chartPalette.nspocBlue, chartPalette.nspocRed, chartPalette.nspocYellow, chartPalette.lightPurple],
       },
     ],
