@@ -1194,7 +1194,7 @@
         "probability_of_collision": "Probability of collision",
         "poc_space_track": "Space-Track CDM",
         "poc_uksa": "NSpOC",
-        "total_miss_distance": "Miss Distance total (m)",
+        "total_miss_distance": "Total Miss Distance (m)",
         "tca_time": "Time of closest approach (TCA)",
         "date": "TCA Date",
         "time": "TCA Time (UTC)",
