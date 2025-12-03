@@ -65,7 +65,7 @@ const ConjunctionEventSummary = async ({
           </li>
         </ul>
         <ConjunctionEventSummaryTableInformationsTable data={uksa ? [spacetrack, uksa] : spacetrack} />
-        <Details summary={t('information_on_calculations.title')} data-pdf-ignore>
+        <Details summary={t.rich('information_on_calculations.title')} data-pdf-ignore>
           {t.rich('information_on_calculations.content')}
         </Details>
       </div>

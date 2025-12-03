@@ -34,6 +34,12 @@ export const alertSettingsSchema = z.object({
     'SCOTLAND_FIR',
     'REST_OF_THE_WORLD',
   ])),
+  fragmentationAlerts: z.union([
+    z.literal('all'),
+    z.literal('none'),
+    z.literal('priority'),
+  ]),
+  receiveFragmentation: receiveDefault,
 });
 
 export type AlertSettingsSchema = z.infer<typeof alertSettingsSchema>;

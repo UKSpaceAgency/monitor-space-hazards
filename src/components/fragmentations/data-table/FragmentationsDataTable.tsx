@@ -24,7 +24,7 @@ const FragmentationsDataTable = ({ params, fragmentations }: FragmentationsDataT
       columns={fragmentationsColumns}
       fetcher={getFragmentationEventsList}
       queryKeys={[QUERY_KEYS.Fragmentations]}
-      emptyLabel={t('Conjunctions.empty_list_info')}
+      emptyLabel={t('Fragmentations.empty_list_info')}
       focusable
     />
   );

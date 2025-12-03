@@ -11,4 +11,6 @@ export enum REVALIDATION_TAGS {
   GET_USERS = 'get-users',
   GET_REENTRY_EVENT = 'get-reentry-event',
   GET_REENTRY_ALERT_LATEST = 'get-reentry-alert-latest',
+  GET_FRAGMENTATION_EVENT = 'get-fragmentation-event',
+  GET_FRAGMENTATION_ALERT_LATEST = 'get-fragmentation-alert-latest',
 }

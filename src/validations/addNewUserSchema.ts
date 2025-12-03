@@ -6,14 +6,11 @@ import { getZodEnumFromObjectKeys } from '@/utils/Zod';
 
 export const addNewUserSchema = z.object({
   organization_id: z.string({
-    invalid_type_error: 'Field is required.',
+    invalid_type_error: 'Select an organisation from the list.',
   }),
-  first_name: z.string().min(1, 'Field is required.'),
-  last_name: z.string().min(1, 'Field is required.'),
-  email: z.string().email('Must be correct email format'),
-  role: getZodEnumFromObjectKeys<typeof AccountType>(AccountType, {
-    invalid_type_error: 'Field is required.',
-  }),
+  first_name: z.string().min(1, 'Enter a first name'),
+  last_name: z.string().min(1, 'Enter a last name'),
+  email: z.string().email('Enter an email address in the correct format, like name@example.com'),
   phone_number: z.string().transform((value, ctx) => {
     if (!value) {
       return value;
@@ -25,13 +22,16 @@ export const addNewUserSchema = z.object({
     if (!phoneNumber?.isValid()) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        message: 'Invalid phone number',
+        message: 'Enter a phone number, like 01632 960 001, 07700 900 982 or +44 808 157 0192',
       });
       return z.NEVER;
     }
 
     return phoneNumber.formatInternational();
   }).optional(),
+  role: getZodEnumFromObjectKeys<typeof AccountType>(AccountType, {
+    invalid_type_error: 'Select an account type',
+  }),
 });
 
 export type AddNewUserSchema = z.infer<typeof addNewUserSchema>;

@@ -1,9 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
-import type { TypeEpoch, TypeReentryRisk, TypeReportFlagSettings } from '@/__generated__/data-contracts';
-import { FragmentationFurtherInformation } from '@/components/fragmentation/FragmentationFurtherInformation';
+import type { TypeEpoch, TypeReportFlagSettings, TypeRisk } from '@/__generated__/data-contracts';
 import { FragmentationsEventsTable } from '@/components/fragmentations/FragmentationsEventsTable';
-import { FragmentationsEventsTableFilters } from '@/components/fragmentations/FragmentationsEventsTableFilters';
 import { SearchBar } from '@/components/SearchBar';
 import Details from '@/ui/details/details';
 import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
@@ -49,9 +47,8 @@ export default async function FragmentationsPage(props: PageProps) {
       <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
       <p className="govuk-body">{t('description')}</p>
       <SearchBar label={`${searchBarLabel}:`} id="conjunctions_search_bar" placeholder={t('search_bar.placeholder')} ariaLabel={searchBarLabel} />
-      <FragmentationsEventsTableFilters params={params} />
       <FragmentationsEventsTable params={params} />
-      <Details summary={t('help.title')}>
+      <Details summary={t.rich('help.title')}>
         {t.rich('help.content', {
           table: chunks => <Table className="text-sm md:text-base">{chunks}</Table>,
           thead: chunks => <TableHead>{chunks}</TableHead>,
@@ -59,9 +56,8 @@ export default async function FragmentationsPage(props: PageProps) {
           tr: chunks => <TableRow>{chunks}</TableRow>,
           th: chunks => <TableCellHeader className="w-1/2">{chunks}</TableCellHeader>,
           td: chunks => <TableCell>{chunks}</TableCell>,
-          tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
+          tag: chunks => renderRiskTag(chunks as TypeRisk),
         })}
-        <FragmentationFurtherInformation />
       </Details>
     </div>
   );

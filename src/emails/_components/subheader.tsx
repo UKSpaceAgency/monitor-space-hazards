@@ -1,6 +1,6 @@
 import { Section, Text } from '@react-email/components';
 
-import type { TypeReentryRisk } from '@/__generated__/data-contracts';
+import type { TypeRisk } from '@/__generated__/data-contracts';
 
 import { riskColours } from '../_utils/utils';
 
@@ -12,7 +12,7 @@ const styles = {
 };
 
 type SubheaderProps = {
-  risk?: TypeReentryRisk | null;
+  risk?: TypeRisk | null;
   comment?: string | null;
 };
 

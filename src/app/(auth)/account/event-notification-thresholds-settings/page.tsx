@@ -17,8 +17,6 @@ export default async function EventNotificationThresholdsSettingsPage() {
   const defaultValues = data.notification_thresholds?.reduce((acc, cur) => {
     if (cur.type === 'TIME_TO_EVENT') {
       acc[cur.type] = cur.value / 3600;
-    } else if (cur.type === 'PROBABILITY_OF_COLLISION') {
-      acc[cur.type] = Math.round(cur.value * 100);
     } else {
       acc[cur.type] = cur.value;
     }

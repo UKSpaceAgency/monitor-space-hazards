@@ -62,7 +62,7 @@ const ReentryAlertRiskProbabilitiesTable = ({ event }: ReentryAlertExecutiveSumm
             : null} */}
         </TableBody>
       </Table>
-      <Details summary={t('help.title')}>
+      <Details summary={t.rich('help.title')}>
         {t.rich('help.content')}
       </Details>
     </div>

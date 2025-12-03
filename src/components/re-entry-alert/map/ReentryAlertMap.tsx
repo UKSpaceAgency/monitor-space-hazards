@@ -93,12 +93,6 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
 
   return (
     <div className="bg-lightGrey p-3 mb-4" data-pdf="Re-entry map">
-      <div className="grid grid-cols-1 md:grid-cols-2">
-        <ReentryAlertMapType value={mapType} onChange={setMapType} />
-        <ReentryAlertMapView value={mapView} onChange={setMapView} />
-      </div>
-      <ReentryAlertAreasOfInterest selected={regions} onChange={setRegions} />
-      <ReentryAlertOverflights types={types} setTypes={setTypes} overflights={overflightTime} selected={flightpaths} onChange={setFlightpaths} />
       <div className="relative w-full aspect-[1/1] md:aspect-[4/3] bg-[#364B69] mb-4" data-type="map" aria-label="Re-entry alert map">
         <Map
           ref={mapRefCallback}
@@ -196,45 +190,60 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
         </Map>
       </div>
       <div className="flex gap-2 items-center mb-6">
-        <p className="govuk-body-s mb-0">Download re-entry geoJSON data:</p>
-        <div className="flex gap-2">
-          <a
-            href={`${window.location.origin}/reentry_event_reports/${reentryId}/${reportId}-overflight_features_0.geojson`}
-            download={`${reentryId}-${reportId}-flightpath.geojson`}
-            className="govuk-link text-blue"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            {t('flightpath')}
-          </a>
+        <h4 className="govuk-body-s mb-0">Download re-entry geoJSON data:</h4>
+        <ul className="flex gap-2 flex-wrap">
+          <li>
+            <a
+              href={`${window.location.origin}/reentry_event_reports/${reentryId}/${reportId}-overflight_features_0.geojson`}
+              download={`${reentryId}-${reportId}-flightpath.geojson`}
+              className="govuk-link text-blue"
+              rel="noopener noreferrer"
+              target="_blank"
+              aria-label={`Download ${t('flightpath')} data - GeoJson format - (open in new tab)`}
+            >
+              {t('flightpath')}
+            </a>
+          </li>
           {overflightTime.map((_, index) => {
             const number = index + 1;
             return (
               // eslint-disable-next-line react/no-array-index-key
               <Fragment key={`DOWNLOADS-${index}`}>
-                <a
-                  href={`${window.location.origin}/reentry_event_reports/${reentryId}/${reportId}-overflight_features_${number}.geojson`}
-                  download={`${reentryId}-${reportId}-overflight_${number}.geojson`}
-                  className="govuk-link text-blue"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  {t('overflight', { number })}
-                </a>
-                <a
-                  href={`${window.location.origin}/reentry_event_reports/${reentryId}/${reportId}-fragment_features_${number}.geojson`}
-                  download={`${reentryId}-${reportId}-fragment_${number}.geojson`}
-                  className="govuk-link text-blue"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  {t('fragment', { number })}
-                </a>
+                <li>
+                  <a
+                    href={`${window.location.origin}/reentry_event_reports/${reentryId}/${reportId}-overflight_features_${number}.geojson`}
+                    download={`${reentryId}-${reportId}-overflight_${number}.geojson`}
+                    className="govuk-link text-blue"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    {t('overflight', { number })}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={`${window.location.origin}/reentry_event_reports/${reentryId}/${reportId}-fragment_features_${number}.geojson`}
+                    download={`${reentryId}-${reportId}-fragment_${number}.geojson`}
+                    className="govuk-link text-blue"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    {t('fragment', { number })}
+                  </a>
+                </li>
               </Fragment>
+
             );
           })}
-        </div>
+        </ul>
       </div>
+      <div className="grid grid-cols-1 md:grid-cols-2">
+        <ReentryAlertMapType value={mapType} onChange={setMapType} />
+        <ReentryAlertMapView value={mapView} onChange={setMapView} />
+      </div>
+      <ReentryAlertAreasOfInterest selected={regions} onChange={setRegions} />
+      <ReentryAlertOverflights types={types} setTypes={setTypes} overflights={overflightTime} selected={flightpaths} onChange={setFlightpaths} />
+
       <Details
         summary={detailsTitle}
         className="mb-0"

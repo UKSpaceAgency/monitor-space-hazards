@@ -29,6 +29,7 @@ const ScheduleBannerForm = ({ templates }: ScheduleBannerFormProps) => {
       broadcastStart: startDate.toJSON(),
       broadcastEnd: dayjs(startDate).add(1, 'year').toJSON(),
     },
+    reValidateMode: 'onSubmit',
   });
 
   const onSubmit = ({ broadcastStart, broadcastEnd, messageId }: TypeBannerScheduleIn) => {

@@ -9,18 +9,20 @@ export default async function BreadcrumbSlot({
   const t = await getTranslations('Breadcrumb');
   const { all } = await params;
 
+  const breadcrumbPaths = all.filter(path => path !== 'page');
+
   const breadcrumbItems: ReactElement[] = [];
   // eslint-disable-next-line react/no-useless-fragment
   let breadcrumbPage: ReactElement = <></>;
 
-  if (all.length === 1) {
+  if (breadcrumbPaths.length === 1) {
     return null;
   }
 
-  for (let i = 0; i < all.length; i++) {
-    const route = all[i] as any;
-    const href = `/${all.slice(0, i + 1).join('/')}`;
-    if (i === all.length - 1) {
+  for (let i = 0; i < breadcrumbPaths.length; i++) {
+    const route = breadcrumbPaths[i] as any;
+    const href = `/${breadcrumbPaths.slice(0, i + 1).join('/')}`;
+    if (i === breadcrumbPaths.length - 1) {
       breadcrumbPage = (
         <BreadcrumbItem>
           <BreadcrumbPage>{t.has(route) ? t(route) : route}</BreadcrumbPage>

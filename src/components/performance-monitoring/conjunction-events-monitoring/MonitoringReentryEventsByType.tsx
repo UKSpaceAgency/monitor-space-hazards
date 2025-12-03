@@ -22,13 +22,13 @@ const MonitoringReentryEventsByType = async () => {
       <h3 className="govuk-heading-s">{t('daily_title')}</h3>
       <MonitoringReentryEventsByTypeDaily />
       <DownloadData params={params} downloadAction={getStatsReentryEventsType} ariaLabel="Daily Reentry events by type" />
-      <Details summary={t('daily_details.title')} aria-label="Daily Reentry events by type details">
+      <Details summary={t.rich('daily_details.title')}>
         {t('daily_details.content')}
       </Details>
       <h3 className="govuk-heading-s">{t('monthly_title')}</h3>
       <MonitoringReentryEventsByTypeMonthly />
       <DownloadData params={{}} downloadAction={getStatsMonthlyReentryEventsByObjectType} ariaLabel="Monthly Reentry events by type" />
-      <Details summary={t('monthly_details.title')} aria-label="Monthly Reentry events by type details">
+      <Details summary={t.rich('monthly_details.title')}>
         {t('monthly_details.content')}
       </Details>
     </>

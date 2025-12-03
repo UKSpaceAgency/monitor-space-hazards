@@ -2,7 +2,7 @@ import { Section } from '@react-email/components';
 import { createTranslator } from 'next-intl';
 import type { ComponentProps } from 'react';
 
-import type { TypeConjunctionReportOut, TypeReentryRisk, TypeUniqueEventOut } from '@/__generated__/data-contracts';
+import type { TypeConjunctionReportOut, TypeRisk, TypeUniqueEventOut } from '@/__generated__/data-contracts';
 import { renderRiskTag } from '@/emails/_utils/utils';
 import { dayjs, FORMAT_FULL_DATE_TIME_WITH_UTC } from '@/libs/Dayjs';
 import messages from '@/locales/en.json';
@@ -43,12 +43,12 @@ export const ConjunctionEventSummary = ({ eventUrl, report, event, ...props }: C
         risk: report.risk,
         probability: roundedPercent(report.collisionProbability ?? 0),
         eventUrl: chunks => <Link href={eventUrl}>{chunks}</Link>,
-        tag: chunks => renderRiskTag(chunks as TypeReentryRisk),
+        tag: chunks => renderRiskTag(chunks as TypeRisk),
         p: chunks => <Text className="m-0">{chunks}</Text>,
       })}
-      {event?.execSummaryAddition && (
+      {event?.executiveSummaryComment && (
         <Markdown>
-          {event.execSummaryAddition}
+          {event.executiveSummaryComment}
         </Markdown>
       )}
     </Section>

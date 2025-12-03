@@ -1,18 +1,19 @@
 import { useTranslations } from 'next-intl';
 
+import { Markdown } from '../Markdown';
+
 type FragmentationGuidanceOnResponseProps = {
+  comment?: string | null;
   dataPdf?: string;
 };
 
-const FragmentationGuidanceOnResponse = ({ dataPdf }: FragmentationGuidanceOnResponseProps) => {
+const FragmentationGuidanceOnResponse = ({ comment, dataPdf }: FragmentationGuidanceOnResponseProps) => {
   const t = useTranslations('Fragmentation.Guidance_on_response');
 
   return (
     <div data-pdf={dataPdf}>
-      <h4 className="govuk-heading-m">{t('uk_response.title')}</h4>
-      {t.rich('uk_response.content')}
-      <h4 className="govuk-heading-m">{t('press_attention.title')}</h4>
-      {t.rich('press_attention.empty')}
+      <h4 className="govuk-heading-s">{t('title')}</h4>
+      {comment ? <Markdown>{comment}</Markdown> : <p className="govuk-body">{t('empty')}</p>}
     </div>
   );
 };

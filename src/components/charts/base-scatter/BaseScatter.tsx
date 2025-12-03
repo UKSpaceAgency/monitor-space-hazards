@@ -54,7 +54,7 @@ ChartJS.register(
   Filler,
 );
 
-setChartDefaults();
+setChartDefaults({ isTimeScale: true, isLogarithmicScale: false });
 
 export type BaseScatterProps = {
   data: ChartData<'scatter'>;

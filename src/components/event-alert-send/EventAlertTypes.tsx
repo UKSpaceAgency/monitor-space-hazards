@@ -1,4 +1,4 @@
-export type EventAlertType = 're-entry' | 'conjunction';
+export type EventAlertType = 're-entry' | 'conjunction' | 'fragmentation';
 
 export type EventAlertData = {
   isPriority: boolean;

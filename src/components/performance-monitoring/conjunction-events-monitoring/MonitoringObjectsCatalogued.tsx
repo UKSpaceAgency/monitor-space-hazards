@@ -21,7 +21,7 @@ const MonitoringObjectsCatalogued = async () => {
           </li>
         ))}
       </ul>
-      <Details summary={t('details.title')} aria-label="Objects catalogued details">
+      <Details summary={t.rich('details.title')}>
         {t('details.content')}
       </Details>
     </div>

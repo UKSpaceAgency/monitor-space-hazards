@@ -31,7 +31,7 @@ const ObjectDataIngests = async () => {
       <DataPerformanceChart latestIngestDate={latestIngestDate} sourceType="Satellite" xAxisTitle={t('x_axis_title')} yAxisTitle={t('y_axis_title')} legend={t('legend')} ariaLabel="Object ingest" />
       <DataPerformanceDataTable params={params} ariaLabel="Information on Object data ingests" />
       <DownloadData type={t('legend')} params={params} downloadAction={getExternalDataPerformance} ariaLabel="Object data ingests" />
-      <Details summary={t('details.title')} aria-label="Object Data Ingest details">
+      <Details summary={t.rich('details.title')}>
         {t.rich('details.content')}
       </Details>
     </>

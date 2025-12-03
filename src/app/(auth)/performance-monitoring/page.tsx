@@ -33,6 +33,10 @@ export default async function PerformanceMonitoring() {
             text: t('reentry_event_and_organisation_data'),
             index: 11,
           },
+          {
+            text: t('fragmentation_event_and_organisation_data'),
+            index: 12,
+          },
         ]}
         className="mb-8"
       />
@@ -41,6 +45,7 @@ export default async function PerformanceMonitoring() {
       <MonitoringServiceUsageAccordion />
       <MonitoringConjunctionEventAccordion />
       <MonitoringReentryEventAccordion />
+      {/* <MonitoringFragmentationEventAccordion /> */}
     </div>
   );
 }

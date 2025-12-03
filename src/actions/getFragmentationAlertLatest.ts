@@ -1,0 +1,10 @@
+import Api from '@/libs/Api';
+
+import { REVALIDATION_TAGS } from './tags';
+
+export async function getFragmentationAlertLatest(shortId: string) {
+  const { data } = await Api.getFragmentationEventsShortIdAlertsLatest(shortId, {
+    next: { tags: [REVALIDATION_TAGS.GET_FRAGMENTATION_ALERT_LATEST] },
+  });
+  return data;
+}

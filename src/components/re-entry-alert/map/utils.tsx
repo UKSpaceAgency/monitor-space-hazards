@@ -50,7 +50,7 @@ export const regionLayer = (region: string): FillLayerSpecification => ({
 
 // here is flightpath color
 export const FlightpathColor = '#007CC8';
-export const FragmentColor = '#C000000';
+export const FragmentColor = '#C00000';
 export const OverflightColor = '#92D050';
 // export const OverflightColors = [
 //   FlightpathColor,
@@ -141,7 +141,7 @@ export const fragmentsCircleStyle = (index: number, visible: boolean): CircleLay
 });
 
 export const fragmentsHeatmapStyle = (index: number, visible: boolean): HeatmapLayerSpecification => ({
-  id: `FRAGMENT-HEATMAP-${index}`,
+  id: `FRAGMENT-${index}`,
   type: 'heatmap',
   source: `FRAGMENT-${index}`,
   layout: {
@@ -178,7 +178,7 @@ export const fragmentsHeatmapStyle = (index: number, visible: boolean): HeatmapL
       ['linear'],
       ['zoom'],
       0,
-      8,
+      4,
       5,
       8,
       9,
@@ -197,7 +197,7 @@ export const fragmentsHeatmapStyle = (index: number, visible: boolean): HeatmapL
 });
 
 export const flightpathHeatmapStyle = (index: number, visible: boolean): HeatmapLayerSpecification => ({
-  id: `FLIGHTPATH-HEATMAP-${index}`,
+  id: `FLIGHTPATH-${index}`,
   type: 'heatmap',
   source: `FLIGHTPATH-${index}`,
   layout: {
@@ -234,7 +234,7 @@ export const flightpathHeatmapStyle = (index: number, visible: boolean): Heatmap
       ['linear'],
       ['zoom'],
       0,
-      8,
+      4,
       5,
       8,
       9,

@@ -104,22 +104,22 @@ const ReentryAlertAccordion = ({
           {
             id: 'guidance_on_response',
             heading: t('guidance_on_response'),
-            content: <ReentryAlertGuidanceOnResponse risk={lastReport?.fragmentsRisk} immediateResponse={searchParams?.immediate_response ?? event.immediateResponse} dataPdf={t('guidance_on_response')} />,
+            content: <ReentryAlertGuidanceOnResponse risk={lastReport?.fragmentsRisk} immediateResponseComment={searchParams?.immediate_response_comment ?? event.immediateResponseComment} dataPdf={t('guidance_on_response')} />,
           },
           {
             id: 'guidance_if_object_impacts_uk_interests',
             heading: t('guidance_if_object_impacts_uk_interests'),
-            content: <ReentryAlertGuidanceIfObjectImpactsUkInterests recoveryAndCleanUp={searchParams?.recovery_and_clean_up ?? event.recoveryAndCleanUp} dataPdf={t('guidance_if_object_impacts_uk_interests')} />,
+            content: <ReentryAlertGuidanceIfObjectImpactsUkInterests ukResponseComment={searchParams?.uk_response_comment ?? event.ukResponseComment} dataPdf={t('guidance_if_object_impacts_uk_interests')} />,
           },
           {
             id: 'liability_for_damages',
             heading: t('liability_for_damages'),
-            content: <ReentryAlertLiabilityForDamages licenseCountry={event.licenseCountry} damagesLiability={searchParams?.damages_liability ?? event.damagesLiability} dataPdf={t('liability_for_damages')} />,
+            content: <ReentryAlertLiabilityForDamages licenseCountry={event.licenseCountry} damagesLiabilityComment={searchParams?.damages_liability_comment ?? event.damagesLiabilityComment} dataPdf={t('liability_for_damages')} />,
           },
           {
             id: 'press_attention',
             heading: t('press_attention'),
-            content: <ReentryAlertPressAttention pressAttention={searchParams?.press_attention ?? event.pressAttention} dataPdf={t('press_attention')} />,
+            content: <ReentryAlertPressAttention pressAttentionComment={searchParams?.press_attention_comment ?? event.pressAttentionComment} dataPdf={t('press_attention')} />,
           },
         ]}
       />

@@ -1,14 +1,16 @@
 import { useTranslations } from 'next-intl';
+import { useId } from 'react';
 
 import type { DataRangeType } from '@/hooks/useDataRange';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
 
-const DateRange = ({ dataRange, handleDataRangeChange, ariaLabel }: { dataRange: DataRangeType; ariaLabel?: string; handleDataRangeChange: (dataRange: DataRangeType) => void }) => {
+const DateRange = ({ dataRange, handleDataRangeChange, ariaLabel, name }: { dataRange: DataRangeType; ariaLabel?: string; handleDataRangeChange: (dataRange: DataRangeType) => void; name?: string }) => {
   const t = useTranslations('Charts.Actions');
+  const id = useId();
 
   return (
     <ToggleButtons
-      name="notifications-send-days"
+      name={name ?? id}
       ariaLabel={ariaLabel}
       items={[
         {

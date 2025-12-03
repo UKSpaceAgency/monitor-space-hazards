@@ -6,7 +6,6 @@ import { getOrganizations } from '@/actions/getOrganisations';
 import { getSession } from '@/actions/getSession';
 import { getUsersMe } from '@/actions/getUsersMe';
 import { AddNewUserForm } from '@/components/account/add-new-user/AddNewUserForm';
-import BackLink from '@/ui/back-link/back-link';
 import { isOrgAdmin } from '@/utils/Roles';
 
 export const metadata: Metadata = {
@@ -27,6 +26,11 @@ export default async function AddNewUserPage(props: {
 
   const defaultValues = {
     organization_id: searchParams?.organization_id || organization_id,
+    first_name: '',
+    last_name: '',
+    email: '',
+    phone_number: '',
+    role: null,
   };
 
   if (!isOrgAdmin(session?.user.role)) {
@@ -35,7 +39,6 @@ export default async function AddNewUserPage(props: {
 
   return (
     <div>
-      <BackLink />
       <h1 className="govuk-heading-xl">{t('title')}</h1>
       {t.rich('content')}
       <AddNewUserForm role={session?.user.role} defaultValues={defaultValues} organizations={organizations} />

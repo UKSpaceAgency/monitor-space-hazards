@@ -49,11 +49,11 @@ const EphemerisesTable = ({ data, showDeleteButton }: EphemerisesTableProps) => 
         >
           <div className="govuk-button-group">
             {ephemerisToDelete.id && (
-              <Button className="govuk-button--warning" onClick={() => mutate(ephemerisToDelete.id)} aria-label={t('Confirm_banner.yes')}>
+              <Button className="govuk-button--warning" onClick={() => mutate(ephemerisToDelete.id)} aria-label={`Yes, delete ${ephemerisToDelete.fileName}`}>
                 {t('Confirm_banner.yes')}
               </Button>
             )}
-            <Button className="govuk-button--secondary" onClick={() => setEphemerisToDelete(null)} aria-label={t('Confirm_banner.no')}>
+            <Button className="govuk-button--secondary" onClick={() => setEphemerisToDelete(null)} aria-label={`Cancel, deleting ${ephemerisToDelete.fileName}`}>
               {t('Confirm_banner.no')}
             </Button>
           </div>

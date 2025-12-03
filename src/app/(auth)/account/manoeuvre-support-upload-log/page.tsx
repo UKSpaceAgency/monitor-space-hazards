@@ -46,9 +46,9 @@ export default async function ManoeuvreSupportUploadLog(props: {
         <ManoeuvreDataTable data={data} params={params} />
       </Suspense>
       <div className="mt-2">
-        <Details summary={t('help.title')}>
-          <p>{t('help.description1')}</p>
-          <p>{t('help.description2')}</p>
+        <Details summary={t.rich('help.title')}>
+          {t.rich('help.description1')}
+          {t.rich('help.description2')}
         </Details>
       </div>
     </div>

@@ -9,10 +9,10 @@ import ButtonGroup from '@/ui/button-group/button-group';
 import { Table, TableBody, TableCell, TableCellHeader, TableRow } from '@/ui/table/Table';
 import { getBackUrl } from '@/utils/Helpers';
 
-import type { EventAlertSearchParams } from './EventAlertTypes';
+import type { EventAlertSearchParams, EventAlertType } from './EventAlertTypes';
 
 type EventAlertSendReviewProps = {
-  type: 're-entry' | 'conjunction';
+  type: EventAlertType;
   shortId: string;
   data: EventAlertSearchParams;
   action: (id: string, data: { alertType: any[]; additionalEmails: string[] }) => Promise<void>;

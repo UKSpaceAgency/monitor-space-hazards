@@ -1,4 +1,4 @@
-import type { TypeReentryRisk } from '@/__generated__/data-contracts';
+import type { TypeRisk } from '@/__generated__/data-contracts';
 import { jsonRegionsMap } from '@/utils/Regions';
 
 export const riskColours = {
@@ -16,7 +16,7 @@ export const riskColours = {
   },
 };
 
-export const renderRiskTag = (risk: TypeReentryRisk | null | undefined) => risk
+export const renderRiskTag = (risk: TypeRisk | null | undefined) => risk
   ? (
       <span style={{ backgroundColor: riskColours[risk].background, color: riskColours[risk].text }}>
         {risk}

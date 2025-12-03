@@ -72,9 +72,9 @@ export function Cookies() {
             {
               actions: [
                 {
-                  'children': 'Hide this message',
+                  'children': 'Hide cookie message',
                   'onClick': closeConsentForm,
-                  'aria-label': 'Hide this message',
+                  'aria-label': 'Hide cookie message',
                 },
               ],
               children:
@@ -85,9 +85,9 @@ export function Cookies() {
             {
               actions: [
                 {
-                  'children': 'Hide this message',
+                  'children': 'Hide cookie message',
                   'onClick': closeConsentForm,
-                  'aria-label': 'Hide this message',
+                  'aria-label': 'Hide cookie message',
                 },
               ],
               children:

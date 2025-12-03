@@ -24,6 +24,7 @@ const OrganisationUserEmailForm = ({ user }: OrganisationUserEmailFormProps) => 
   const { handleSubmit, register, reset, formState: { errors, isSubmitSuccessful } } = useForm({
     defaultValues: { email: '' },
     resolver: zodResolver(emailUserSchema),
+    reValidateMode: 'onSubmit',
   });
 
   const onSubmit = async (data: EmailUserSchema) => {

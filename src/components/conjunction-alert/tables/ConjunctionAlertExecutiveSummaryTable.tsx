@@ -11,10 +11,10 @@ import { getFullCountry } from '@/utils/Regions';
 
 type ConjunctionAlertExecutiveSummaryTableProps = {
   report: TypeConjunctionReportOut;
-  manoeuvreAddition?: string | null;
+  manoeuvreComment?: string | null;
 };
 
-const ConjunctionAlertExecutiveSummaryTable = ({ report, manoeuvreAddition }: ConjunctionAlertExecutiveSummaryTableProps) => {
+const ConjunctionAlertExecutiveSummaryTable = ({ report, manoeuvreComment }: ConjunctionAlertExecutiveSummaryTableProps) => {
   const t = useTranslations('Tables.Conjunction_alert_executive_summary');
 
   const rows: InformationsTableRow<Partial<TypeConjunctionReportOut>>[] = [{
@@ -46,7 +46,7 @@ const ConjunctionAlertExecutiveSummaryTable = ({ report, manoeuvreAddition }: Co
     renderCell: ({ collisionProbability }) => collisionProbability ? roundedPercent(collisionProbability) : '-',
   }, {
     header: t('manoeuvre_expected'),
-    renderCell: ({ manoeuvreExpected }) => `${manoeuvreExpected ? `${manoeuvreExpected}. ` : ''}${manoeuvreAddition}`,
+    renderCell: ({ manoeuvreExpected }) => `${manoeuvreExpected ? `${manoeuvreExpected}. ` : ''}${manoeuvreComment}`,
   }, {
     header: t('primary_object'),
     renderCell: ({ primaryObjectCommonName, primaryObjectNoradId }) => (

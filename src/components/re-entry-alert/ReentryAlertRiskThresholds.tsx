@@ -47,7 +47,7 @@ const ReentryAlertRiskThresholds = ({ dataPdf }: ReentryAlertRiskThresholdsProps
         </Table>
       </div>
       <Details
-        summary={t('details.title')}
+        summary={t.rich('details.title')}
       >
         {t.rich('details.content')}
       </Details>

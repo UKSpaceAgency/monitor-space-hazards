@@ -32,7 +32,7 @@ const MonitoringReentryEventsByTypeDaily = () => {
     endDate: params.end_date ?? '',
   });
 
-  const { data, isFetching } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: [QUERY_KEYS.StatsReentryEventByType, dates],
     queryFn: () => getStatsReentryEventsType({
       ...params,
@@ -41,6 +41,7 @@ const MonitoringReentryEventsByTypeDaily = () => {
     }),
     refetchOnMount: false,
     refetchOnWindowFocus: false,
+    placeholderData: prev => prev,
   });
 
   const handleDataRangeChange = (dataRange: DataRangeType) => {
@@ -77,7 +78,7 @@ const MonitoringReentryEventsByTypeDaily = () => {
 
   const actionButtons = (
     <ToggleButtons
-      name="events-type-days"
+      name="reentry-events-by-type-daily"
       ariaLabel="Reentry events by type"
       items={[
         {
@@ -111,7 +112,7 @@ const MonitoringReentryEventsByTypeDaily = () => {
     />
   );
 
-  if (isFetching || !data) {
+  if (isLoading || !data) {
     return (
       <div className="p-10">
         <Spinner />
