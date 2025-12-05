@@ -471,6 +471,7 @@
       "total_events": "Total events across all organisations",
       "event_type": "Event type",
       "object_type": "Object type",
+      "fragmentation_type": "Fragmentation type",
       "details": {
         "title": "Help with this table<screenReaderOnly> - Events by type</screenReaderOnly>",
         "content": "This table shows the number of conjunction events between different object types."
@@ -545,6 +546,22 @@
       "modelled_fragments_apogee_label": "Modelled fragment apogee",
       "modelled_fragments_perigee_label": "Modelled fragment perigee",
       "toggle_observation_date": "Toggle observation date:"
+    },
+    "Monthly_fragmentation_events": {
+      "y_axis_title": "Number of events",
+      "x_axis_title": "Date",
+      "legend_title": "Fragmentation type",
+      "fragmentation_type": "Fragmentation type",
+      "accidental": "Accidental",
+      "aerodynamics": "Aerodynamics",
+      "anomalous": "Anomalous",
+      "collision": "Collision",
+      "deliberate": "Deliberate",
+      "electrical": "Electrical",
+      "explosion": "Explosion",
+      "propulsion": "Propulsion",
+      "small_impactor": "Small Impactor",
+      "unknown": "Unknown"
     }
   },
   "Conjunctions": {
@@ -1537,8 +1554,23 @@
       },
       "fragmentation_events_by_type": {
         "type": "Type",
+        "fragmentation_type": "Fragmentation type",
         "fragmentation_events": "Fragmentation events",
         "this_table": "this table"
+      },
+      "fragmentation_events_by_type_monthly": {
+        "month": "Month",
+        "accidental": "Accidental",
+        "aerodynamics": "Aerodynamics",
+        "anomalous": "Anomalous",
+        "collision": "Collision",
+        "deliberate": "Deliberate",
+        "electrical": "Electrical",
+        "explosion": "Explosion",
+        "propulsion": "Propulsion",
+        "small_impactor": "Small Impactor",
+        "unknown": "Unknown",
+        "total": "Total"
       }
     },
     "Organisation_satellites": {
