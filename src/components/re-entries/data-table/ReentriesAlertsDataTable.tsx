@@ -16,12 +16,14 @@ const ReentriesAlertsDataTable = ({ data, haveAccessToAlerts }: ReentriesAlertsD
   const t = useTranslations('Tables');
 
   return (
-    <DataTable<TypeReentryEventOut>
-      data={data}
-      columns={reentriesColumns(haveAccessToAlerts)}
-      emptyLabel={t('Reentries.table.empty_list_info')}
-      enableSorting={false}
-    />
+    <div className="max-h-[500px] overflow-auto">
+      <DataTable<TypeReentryEventOut>
+        data={data}
+        columns={reentriesColumns(haveAccessToAlerts)}
+        emptyLabel={t('Reentries.table.empty_list_info')}
+        enableSorting={false}
+      />
+    </div>
   );
 };
 

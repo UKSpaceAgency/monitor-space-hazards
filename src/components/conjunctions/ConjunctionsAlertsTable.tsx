@@ -18,7 +18,9 @@ const ConjunctionsAlertsTable = async () => {
   }
 
   return (
-    <ConjunctionsAlertsDataTable data={data} isAnalyst={isAnalysist(session?.user.role)} haveAccessToAlerts={isAgencyUser(session?.user.role) || isGovUser(session?.user.role)} />
+    <div className="max-h-[500px] overflow-auto">
+      <ConjunctionsAlertsDataTable data={data} isAnalyst={isAnalysist(session?.user.role)} haveAccessToAlerts={isAgencyUser(session?.user.role) || isGovUser(session?.user.role)} />
+    </div>
   );
 };
 
