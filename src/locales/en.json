@@ -36,59 +36,33 @@
     "title": "National Space Operations Centre Civil Warning and Protection Services",
     "content": "National Space Operations Centre (NSpOC) Civil Warning and Protection Services support UK and international partners to manage space risks and hazards.",
     "services": {
-      "live": {
-        "title": "Live Services",
-        "items": {
-          "track_conjunctions": {
-            "title": "Track conjunction events (Monitor your satellites)",
-            "description": "In-space collision avoidance.",
-            "link": "/conjunctions"
-          },
-          "track_reentries": {
-            "title": "Track re-entry events",
-            "description": "Uncontrolled re-entry early warning.",
-            "link": "/re-entries"
-          },
-          "check_weather": {
-            "title": "Check space weather activity",
-            "description": "Space weather forecast and notifications.",
-            "link": "https://www.metoffice.gov.uk/weather/specialist-forecasts/space-weather"
-          }
-        }
-      },
-      "satellite_directory_and_statistics": {
-        "title": "Satellite Directory and Statistics",
-        "items": {
-          "view_uk_satellites": {
-            "title": "View UK-licensed satellites",
-            "description": "Data on UK-licensed satellites.",
-            "link": "/satellites"
-          },
-          "explore_statistics": {
-            "title": "Explore key statistics",
-            "description": "Statistics and trends.",
-            "link": "/performance-monitoring"
-          }
-        }
-      },
-      "account_and_information": {
-        "title": "Account Management and Additional Information",
-        "items": {
-          "view_roadmap": {
-            "title": "View Monitor Space Hazards roadmap",
-            "description": "Roadmap for current and future service developments.",
-            "link": "/page/roadmap"
-          },
-          "support_and_guidance": {
-            "title": "Access support and guidance",
-            "description": "Support and guidance for all active services.",
-            "link": "/page/support-and-guidance"
-          },
-          "change_account_settings": {
-            "title": "Change account settings",
-            "description": "Change notification settings, view T&Cs and see account details.",
-            "link": "/account"
-          }
+      "key_services_title": "Key services",
+      "all_services_title": "All services",
+      "items": {
+        "track_conjunctions": {
+          "title": "Track conjunction events",
+          "description": "In-space collision avoidance.",
+          "link": "/conjunctions"
+        },
+        "track_reentries": {
+          "title": "Track re-entry events",
+          "description": "Uncontrolled re-entry early warning.",
+          "link": "/re-entries"
+        },
+        "track_fragmentations": {
+          "title": "Track fragmentation events",
+          "description": "Space debris from objects",
+          "link": "/fragmentations"
+        },
+        "check_weather": {
+          "title": "Check space weather activity",
+          "description": "Space weather forecast and notifications.",
+          "link": "https://www.metoffice.gov.uk/weather/specialist-forecasts/space-weather"
+        },
+        "performance_monitoring": {
+          "title": "Performance monitoring and statistics",
+          "description": "Statistics and trends",
+          "link": "/performance-monitoring"
         }
       }
     },

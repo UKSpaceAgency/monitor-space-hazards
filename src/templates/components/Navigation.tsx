@@ -62,26 +62,37 @@ export const Navigation = () => {
             })}
             id="navbar-default"
           >
-            <ul className="govuk-service-navigation__list block md:flex md:flex-wrap">
-              {keys.map((key) => {
-                const isActive = pathname.includes(key);
-                return (
+            <div className="md:flex md:justify-between">
+              <ul className="govuk-service-navigation__list block mb-0 md:flex md:flex-wrap">
+                {keys.filter(key => key !== 'account').map((key) => {
+                  const isActive = pathname.includes(key);
+                  return (
+                    <li
+                      key={key}
+                      className={clsx('govuk-service-navigation__item', {
+                        'govuk-service-navigation__item--active': isActive,
+                      })}
+                    >
+                      <Link href={`/${key}`} className="govuk-service-navigation__link">{t(`navigation.${key}`)}</Link>
+                    </li>
+                  );
+                })}
+              </ul>
+              <ul className="govuk-service-navigation__list block mb-0 md:flex md:flex-wrap">
+                {keys.includes('account') && (
                   <li
-                    key={key}
-                    className={clsx('govuk-service-navigation__item', {
-                      'govuk-service-navigation__item--active': isActive,
-                    })}
+                    className="govuk-service-navigation__item self-end"
                   >
-                    <Link href={`/${key}`} className="govuk-service-navigation__link">{t(`navigation.${key}`)}</Link>
+                    <Link href="/account" className="govuk-service-navigation__link">{t('navigation.account')}</Link>
                   </li>
-                );
-              })}
-              <li
-                className="govuk-service-navigation__item"
-              >
-                <button type="button" className="govuk-service-navigation__link" onClick={() => signOut({ redirectTo: '/api/auth/logout' })} aria-label={t('sign_out')}>{t('sign_out')}</button>
-              </li>
-            </ul>
+                )}
+                <li
+                  className="govuk-service-navigation__item self-end"
+                >
+                  <button type="button" className="govuk-service-navigation__link" onClick={() => signOut({ redirectTo: '/api/auth/logout' })} aria-label={t('sign_out')}>{t('sign_out')}</button>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

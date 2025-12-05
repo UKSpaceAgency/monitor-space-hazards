@@ -1,10 +1,11 @@
+import { ArrowRight02Icon } from 'hugeicons-react';
+import { pick } from 'lodash';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { MessageKeys } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 
 import { getSession } from '@/actions/getSession';
-import { ObjectsTracked } from '@/components/dashboard/ObjectsTracked';
 import { UpcomingEvents } from '@/components/dashboard/UpcomingEvents';
 import nsocLogo from '@/public/nspoclogo2.png';
 import { AppConfig } from '@/utils/AppConfig';
@@ -14,7 +15,8 @@ export default async function DashboardPage() {
   const t = await getTranslations('Dashboard');
   const session = await getSession();
   const messages = await getMessages() as IntlMessages;
-  const services = Object.keys(messages.Dashboard.services) as Array<keyof typeof messages['Dashboard']['services']>; ;
+  const allServicesItems = messages.Dashboard.services.items;
+  const keyServicesItems = pick(allServicesItems, ['track_conjunctions', 'track_reentries', 'track_fragmentations']);
 
   return (
     <div>
@@ -30,46 +32,65 @@ export default async function DashboardPage() {
         <h2 className="govuk-heading-m">{t('title')}</h2>
         <p className="govuk-body mb-0">{t('content')}</p>
       </div>
+      <div className="mb-8">
+        <h3 className="govuk-heading-m">{t('services.key_services_title')}</h3>
+        <ul>
+          {Object.keys(keyServicesItems).map((key) => {
+            const title = t(`services.items.${key}.title` as MessageKeys<IntlMessages, 'Dashboard'>);
+            const linkKey = `services.items.${key}.link` as MessageKeys<IntlMessages, 'Dashboard'>;
+            const link = t.has(linkKey) ? t(linkKey) : null;
+            return (
+              <li key={key} className="flex items-center gap-3 mb-3">
+                <div className="flex items-center justify-center bg-lightGrey rounded-full w-8 h-8">
+                  <ArrowRight02Icon className="size-6" />
+                </div>
+                {link
+                  ? (
+                      <Link className="govuk-body govuk-link block font-bold mb-0" href={link}>
+                        {title}
+                      </Link>
+                    )
+                  : <h4 className="govuk-body block font-bold mb-0">{title}</h4>}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+      <hr className="border-t-4 border-t-blue mb-8" />
+      <div className="mb-8">
+        <h3 className="govuk-heading-m">{t('services.all_services_title')}</h3>
+        <div className="">
+          {Object.keys(allServicesItems).filter((key) => {
+            if (key === 'track_reentries' && !isAgencyUser(session?.user?.role)) {
+              return false;
+            }
+            return true;
+          }).map((key) => {
+            const title = t(`services.items.${key}.title` as MessageKeys<IntlMessages, 'Dashboard'>);
+            const description = t(`services.items.${key}.description` as MessageKeys<IntlMessages, 'Dashboard'>);
 
-      {services.map((serviceKey) => {
-        const items = messages.Dashboard.services[serviceKey].items;
-        return (
-          <div key={serviceKey} className="mb-12">
-            <h3 className="govuk-heading-m">{t(`services.${serviceKey}.title`)}</h3>
-            <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
-              {Object.keys(items).filter((key) => {
-                if (key === 'track_reentries' && !isAgencyUser(session?.user?.role)) {
-                  return false;
-                }
-                return true;
-              }).map((key) => {
-                const title = t(`services.${serviceKey}.items.${key}.title` as MessageKeys<IntlMessages, 'Dashboard'>);
-                const description = t(`services.${serviceKey}.items.${key}.description` as MessageKeys<IntlMessages, 'Dashboard'>);
+            const linkKey = `services.items.${key}.link` as MessageKeys<IntlMessages, 'Dashboard'>;
+            const link = t.has(linkKey) ? t(linkKey) : null;
 
-                const linkKey = `services.${serviceKey}.items.${key}.link` as MessageKeys<IntlMessages, 'Dashboard'>;
-                const link = t.has(linkKey) ? t(linkKey) : null;
-
-                return (
-                  <div key={key}>
-                    {link
-                      ? (
-                          <Link className="govuk-body govuk-link block font-bold mb-5" href={link}>
-                            {title}
-                            <svg className="inline-block govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="12.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false"><path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path></svg>
-                          </Link>
-                        )
-                      : <h4 className="govuk-body block font-bold mb-5">{title}</h4>}
-                    <p className="govuk-body mb-0">{description}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        );
-      })}
-      <UpcomingEvents className="mb-12" title={t('upcoming_events.title')} conjunctionTitle={t('upcoming_events.upcoming_conjunction')} highestPocTitle={t('upcoming_events.highest_poc')} reentryTitle={t('upcoming_events.upcoming_reentry')} />
-      <ObjectsTracked className="mb-12" title={t('objects_tracked.title')} />
+            return (
+              <div key={key}>
+                <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
+                {link
+                  ? (
+                      <Link className="govuk-body govuk-link block font-bold mb-5" href={link}>
+                        {title}
+                      </Link>
+                    )
+                  : <h4 className="govuk-body block font-bold mb-5">{title}</h4>}
+                <p className="govuk-body mb-0">{description}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <hr className="border-t-4 border-t-blue mb-8" />
+      <UpcomingEvents title={t('upcoming_events.title')} conjunctionTitle={t('upcoming_events.upcoming_conjunction')} highestPocTitle={t('upcoming_events.highest_poc')} reentryTitle={t('upcoming_events.upcoming_reentry')} />
+      {/* <ObjectsTracked className="mb-12" title={t('objects_tracked.title')} /> */}
     </div>
   );
 }

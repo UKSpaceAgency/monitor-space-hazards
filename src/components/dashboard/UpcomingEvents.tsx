@@ -1,5 +1,4 @@
 import Api from '@/libs/Api';
-import { displayExponential } from '@/utils/Math';
 
 type UpcomingEventsProps = {
   title: string;
@@ -9,9 +8,9 @@ type UpcomingEventsProps = {
   className?: string;
 };
 
-const UpcomingEvents = async ({ className, title, conjunctionTitle, highestPocTitle, reentryTitle }: UpcomingEventsProps) => {
+const UpcomingEvents = async ({ className, title, conjunctionTitle, reentryTitle }: UpcomingEventsProps) => {
   const conjunction = await Api.getStatsCountConjunctionEvents();
-  const highestPOC = await Api.getStatsHighestCollisionProbability();
+  // const highestPOC = await Api.getStatsHighestCollisionProbability();
   const reentry = await Api.getStatsCountReentryEvents();
 
   const items = [
@@ -19,10 +18,10 @@ const UpcomingEvents = async ({ className, title, conjunctionTitle, highestPocTi
       title: conjunctionTitle,
       value: conjunction.data.count,
     },
-    {
-      title: highestPocTitle,
-      value: displayExponential(highestPOC.data.collisionProbability, 3),
-    },
+    // {
+    //   title: highestPocTitle,
+    //   value: displayExponential(highestPOC.data.collisionProbability, 3),
+    // },
     {
       title: reentryTitle,
       value: reentry.data.count,
@@ -31,13 +30,13 @@ const UpcomingEvents = async ({ className, title, conjunctionTitle, highestPocTi
 
   return (
     <div className={className}>
-      <h2 className="govuk-heading-m pb-5 mb-8 border-b border-midGrey">{title}</h2>
-      <div className="grid md:grid-cols-3 gap-4">
+      <h2 className="govuk-heading-m mb-8">{title}</h2>
+      <div className="grid md:grid-cols-2 gap-4">
         {items.map(({ title, value }, index) => (
           // eslint-disable-next-line react/no-array-index-key
           <div key={index}>
-            <h4 className="govuk-heading-s pb-5 mb-8 border-b border-midGrey">{title}</h4>
-            <p className="govuk-heading-l mb-0">{value}</p>
+            <p className="govuk-heading-l mb-4">{value}</p>
+            <p className="mb-0">{title}</p>
           </div>
         ))}
       </div>
