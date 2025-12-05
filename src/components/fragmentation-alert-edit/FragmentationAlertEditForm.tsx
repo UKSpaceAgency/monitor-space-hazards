@@ -31,6 +31,12 @@ const FragmentationAlertEditForm = ({ event }: FragmentationAlertEditFormProps) 
     defaultValue: event.spaceflight_risk_comment || '',
     type: 'text',
   }, {
+    id: 'orbital_analyst_comment',
+    ariaLabel: tForm('type.orbital_analyst_comment'),
+    name: tForm('type.orbital_analyst_comment'),
+    defaultValue: event.orbital_analyst_comment || '',
+    type: 'text',
+  }, {
     id: 'uk_response_comment',
     ariaLabel: tForm('type.immediate_response'),
     name: tForm('type.immediate_response'),

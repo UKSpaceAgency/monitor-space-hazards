@@ -1775,7 +1775,8 @@
         "long_term_impact_comment": "Long term impact",
         "uk_response_comment": "UK response",
         "closed_comment": "Closed comment",
-        "spaceflight_risk_comment": "UK and Human Spaceflight risk"
+        "spaceflight_risk_comment": "UK and Human Spaceflight risk",
+        "orbital_analyst_comment": "Orbital analyst comment"
       },
       "manoeuvrable": {
         "unknown": "Unknown",
