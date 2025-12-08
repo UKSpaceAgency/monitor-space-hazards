@@ -191,7 +191,7 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                                 ...register('reEntryAlerts'),
                               }, {
                                 id: 're_entry_alerts_for_uk',
-                                value: 'uk_satellites_only',
+                                value: 'uk-licensed',
                                 children: t('re_entry_alerts_for_uk'),
                                 hint: t('recommended_for_foreign'),
                                 ...register('reEntryAlerts'),
