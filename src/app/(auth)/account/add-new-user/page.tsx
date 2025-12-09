@@ -26,6 +26,11 @@ export default async function AddNewUserPage(props: {
 
   const defaultValues = {
     organization_id: searchParams?.organization_id || organization_id,
+    first_name: '',
+    last_name: '',
+    email: '',
+    phone_number: '',
+    role: null,
   };
 
   if (!isOrgAdmin(session?.user.role)) {

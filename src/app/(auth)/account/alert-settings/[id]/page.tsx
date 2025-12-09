@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import type { TypeAlertSettingsIn } from '@/__generated__/data-contracts';
 import { getAlertsUserUserId } from '@/actions/getAlertsUserUserId';
 import { getUsersMe } from '@/actions/getUsersMe';
+import { patchAlertsUserUserId } from '@/actions/patchAlertsUserUserId';
 import { AlertSettingsForm } from '@/components/account/alert-settings/AlertSettingsForm';
 import { isAgencyApprover } from '@/utils/Roles';
 import type { AlertSettingsSchema } from '@/validations/alertSettingsSchema';
@@ -31,14 +33,21 @@ export default async function EditUserAlertSettingsPage({
     reEntryAlerts: alertSettings.reentry_alert_settings?.chosen_option || 'none',
     receiveReEntry: alertSettings.reentry_alert_settings?.notification_types || [],
     areasOfInterest: alertSettings.reentry_alert_settings?.areas_of_interest || [],
+    fragmentationAlerts: alertSettings.fragmentation_alert_settings?.chosen_option || 'none',
+    receiveFragmentation: alertSettings.fragmentation_alert_settings?.notification_types || [],
+  };
+
+  const onSubmit = async (data: TypeAlertSettingsIn) => {
+    'use server';
+    await patchAlertsUserUserId(id, data);
   };
 
   return (
     <div>
       <AlertSettingsForm
-        userId={id}
         defaultValues={defaultValues}
         selfEdit={false}
+        onSubmit={onSubmit}
       />
     </div>
   );

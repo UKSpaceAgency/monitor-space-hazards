@@ -8,6 +8,14 @@ import Api from '@/libs/Api';
 import { REVALIDATION_TAGS } from './tags';
 
 export async function patchUsersUserId(userId: string, payload: TypeUserUpdate) {
-  await Api.patchUsersUserId(userId, payload);
-  revalidateTag(REVALIDATION_TAGS.GET_USERS);
+  try {
+    await Api.patchUsersUserId(userId, payload);
+    revalidateTag(REVALIDATION_TAGS.GET_USERS);
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: 'Failed to update user role',
+    };
+  }
 };

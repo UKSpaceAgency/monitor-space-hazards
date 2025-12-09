@@ -25,6 +25,7 @@ export default function IndexPage() {
       <p className="govuk-body">{t('nsoc.list_title')}</p>
       <ul className="govuk-list govuk-list--bullet">
         <li>{t('nsoc.list_items.track_events')}</li>
+        <li>{t('nsoc.list_items.track_reentries')}</li>
         <li>{t('nsoc.list_items.satelite_history')}</li>
         <li>{t('nsoc.list_items.statistics')}</li>
       </ul>
@@ -32,12 +33,10 @@ export default function IndexPage() {
       <form
         action={async () => {
           'use server';
-          await signIn('auth0', {
-            redirectTo: '/home',
-          });
+          await signIn('auth0');
         }}
       >
-        <Button type="submit" isStartButton>{t('existing_users.button')}</Button>
+        <Button type="submit" isStartButton aria-label={t('existing_users.button')}>{t('existing_users.button')}</Button>
       </form>
       <h2 className="govuk-heading-m">{t('new_users.title')}</h2>
       { t.rich('new_users.markup', {

@@ -1,12 +1,13 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 
-import { postFeedback } from '@/actions/postFeedback';
+import { env } from '@/libs/Env';
 import Button from '@/ui/button/button';
 import Fieldset, { } from '@/ui/fieldset/fieldset';
 import Radios from '@/ui/radios/radios';
@@ -20,17 +21,47 @@ const FeedbackForm = () => {
   const t = useTranslations('Forms.Feedback');
 
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
-  const { register, handleSubmit, formState: { errors } } = useForm<FeedbackSchema>({
+  const { register, handleSubmit, formState: { errors }, setError } = useForm<FeedbackSchema>({
     defaultValues: feedBackFormDefaultValues,
     resolver: zodResolver(feedbackSchema),
+    reValidateMode: 'onSubmit',
   });
 
   const onSubmit: SubmitHandler<FeedbackSchema> = async (data) => {
     setLoading(true);
 
-    await postFeedback(data);
+    // Check if feedback URL is configured
+    if (!env.NEXT_PUBLIC_FEEDBACK_URL) {
+      setError('root', {
+        message: 'Feedback submission is not configured. Please contact support.',
+      });
+      setLoading(false);
+      return;
+    }
 
+    const formData = new FormData();
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+
+    try {
+      const response = await fetch(env.NEXT_PUBLIC_FEEDBACK_URL, {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      router.push('/feedback/success');
+    } catch (error) {
+      console.error('Feedback submission error:', error);
+      setError('root', {
+        message: error instanceof Error ? error.message : 'An error occurred while submitting the feedback',
+      });
+    }
     setLoading(false);
   };
 
@@ -38,7 +69,10 @@ const FeedbackForm = () => {
     <form
       onSubmit={handleSubmit(onSubmit)}
     >
-      <FormErrorSummary i18path="Feedback" errors={errors} />
+      <FormErrorSummary
+        errors={errors}
+        fieldOrder={Object.keys(feedBackFormDefaultValues) as (keyof FeedbackSchema)[]}
+      />
       <Fieldset
         legend={{
           text: t('survey_label'),
@@ -46,26 +80,33 @@ const FeedbackForm = () => {
       >
         <Radios
           id="satisfaction"
-          label={t('radios_label')}
-          labelClass="govuk-fieldset__legend--m"
+          aria-label="Satisfaction"
+          legend={t('radios_label')}
+          legendClass="govuk-fieldset__legend--m"
           error={errors.satisfaction?.message}
+          required
           items={[{
+            id: '5',
             value: '5',
             children: t('very_satisfied'),
             ...register('satisfaction'),
           }, {
+            id: '4',
             value: '4',
             children: t('satisfied'),
             ...register('satisfaction'),
           }, {
+            id: '3',
             value: '3',
             children: t('neither'),
             ...register('satisfaction'),
           }, {
+            id: '2',
             value: '2',
             children: t('dissatisfied'),
             ...register('satisfaction'),
           }, {
+            id: '1',
             value: '1',
             children: t('very_dissatisfied'),
             ...register('satisfaction'),
@@ -74,13 +115,16 @@ const FeedbackForm = () => {
       </Fieldset>
       <TextArea
         {...register('details')}
-        id="details"
+        id="Details"
         label={t('textarea_label')}
         labelClass="govuk-fieldset__legend--m"
         hint={t('textarea_hint')}
+        required
+        aria-label="Details"
         error={errors.details?.message}
       />
-      <Button type="submit" disabled={loading}>{t('submit')}</Button>
+      <input type="hidden" name="_gotcha" style={{ display: 'none !important' }} />
+      <Button type="submit" disabled={loading} aria-label={t('submit')}>{t('submit')}</Button>
     </form>
   );
 };

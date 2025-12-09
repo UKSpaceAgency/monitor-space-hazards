@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import type { UseFormRegister } from 'react-hook-form';
 
@@ -63,10 +62,8 @@ const NotificationSettingsFormContent = ({ isSubmitting, register }: Notificatio
       />
       <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
       <ButtonGroup>
-        <Button type="submit" disabled={isSubmitting}>{tCommon('save_and_continue')}</Button>
-        <Link href="/account">
-          <Button variant="secondary">{tCommon('return', { to: 'Account' })}</Button>
-        </Link>
+        <Button type="submit" disabled={isSubmitting} aria-label={tCommon('save_and_continue')}>{tCommon('save_and_continue')}</Button>
+        <Button as="link" href="/account" variant="secondary" aria-label={tCommon('return', { to: 'Account' })}>{tCommon('return', { to: 'Account' })}</Button>
       </ButtonGroup>
     </div>
   );

@@ -25,7 +25,7 @@ const AnalysisAndManoeuvreSupportChart = ({
 }: AnalysisAndManoeuvreSupportChartProps) => {
   const t = useTranslations('Charts.Analysis_and_manoeuvre_support');
 
-  const actionButtons = <DateRange dataRange={dataRange} handleDataRangeChange={handleDataRangeChange} />;
+  const actionButtons = <DateRange dataRange={dataRange} handleDataRangeChange={handleDataRangeChange} ariaLabel="NSpOC conjunction event analysis and manoeuvre support" name="analysis-ingests-days" />;
 
   const datasets = useMemo(
     () => ({
@@ -36,8 +36,8 @@ const AnalysisAndManoeuvreSupportChart = ({
             x: date as unknown as number,
             y: analysesCount,
           })),
-          borderColor: chartPalette.orange,
-          backgroundColor: chartPalette.orange,
+          borderColor: chartPalette.nspocBlue,
+          backgroundColor: chartPalette.nspocBlue,
         },
         {
           label: t('manoeuvre_received'),
@@ -45,8 +45,8 @@ const AnalysisAndManoeuvreSupportChart = ({
             x: date as unknown as number,
             y: manoeuvreSupportCount,
           })),
-          borderColor: chartPalette.darkBlue,
-          backgroundColor: chartPalette.darkBlue,
+          borderColor: chartPalette.nspocRed,
+          backgroundColor: chartPalette.nspocRed,
         },
       ],
     }),
@@ -64,8 +64,10 @@ const AnalysisAndManoeuvreSupportChart = ({
         data={datasets}
         actionButtons={actionButtons}
         isDay
+        ariaLabel="NSpOC conjunction event analysis and manoeuvre support"
         legend={{ title: t('file_type') }}
         yAxisTitle={t('number_received')}
+        xAxisTitle={t('date')}
       />
     </div>
   );

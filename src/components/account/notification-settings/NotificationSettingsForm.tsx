@@ -20,6 +20,7 @@ const NotificationSettingsForm = ({ defaultValues }: NotificationSettingsFormPro
 
   const { register, handleSubmit, setError, formState: { isSubmitting, isSubmitSuccessful, errors } } = useForm<TypeNotificationSettings>({
     defaultValues,
+    reValidateMode: 'onSubmit',
   });
 
   const onSubmit: SubmitHandler<TypeNotificationSettings> = async (data: TypeNotificationSettings) => {
@@ -38,7 +39,10 @@ const NotificationSettingsForm = ({ defaultValues }: NotificationSettingsFormPro
       onSubmit={handleSubmit(onSubmit)}
     >
       {isSubmitSuccessful && <TopNotificationBanner status="success">{t('success_message')}</TopNotificationBanner>}
-      <FormErrorSummary i18path="Notification_settings" errors={errors} />
+      <FormErrorSummary
+        errors={errors}
+        fieldOrder={Object.keys(defaultValues) as (keyof TypeNotificationSettings)[]}
+      />
       <NotificationSettingsFormContent isSubmitting={isSubmitting} register={register} />
     </form>
   );

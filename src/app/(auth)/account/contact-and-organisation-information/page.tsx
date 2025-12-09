@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
@@ -80,14 +79,12 @@ export default async function ContactAndOrganisationInformation() {
 
       {data.account_details_confirmed_at
         ? (
-            <Link href="/account">
-              <Button type="submit">
-                {tCommon('return', { to: 'account page' })}
-              </Button>
-            </Link>
+            <Button type="submit" as="link" href="/account" aria-label={tCommon('return', { to: 'account page' })}>
+              {tCommon('return', { to: 'account page' })}
+            </Button>
           )
         : (
-            <form action={saveAndContinue}>
+            <form action={saveAndContinue} aria-label={tCommon('save_and_continue')}>
               <Button type="submit">{tCommon('save_and_continue')}</Button>
             </form>
           )}

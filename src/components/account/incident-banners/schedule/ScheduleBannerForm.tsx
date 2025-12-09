@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
@@ -30,6 +29,7 @@ const ScheduleBannerForm = ({ templates }: ScheduleBannerFormProps) => {
       broadcastStart: startDate.toJSON(),
       broadcastEnd: dayjs(startDate).add(1, 'year').toJSON(),
     },
+    reValidateMode: 'onSubmit',
   });
 
   const onSubmit = ({ broadcastStart, broadcastEnd, messageId }: TypeBannerScheduleIn) => {
@@ -47,12 +47,10 @@ const ScheduleBannerForm = ({ templates }: ScheduleBannerFormProps) => {
       <ScheduleBannerFormTemplate register={register} templates={templates} />
       <ScheduleBannerFormTime setValue={setValue} watch={watch} resetField={resetField} />
       <ButtonGroup>
-        <Button type="submit">
+        <Button type="submit" aria-label={t('confirm')}>
           {t('confirm')}
         </Button>
-        <Link href="/account">
-          <Button variant="secondary">{tCommon('return', { to: 'account page' })}</Button>
-        </Link>
+        <Button as="link" href="/account" variant="secondary" aria-label={tCommon('return', { to: 'account page' })}>{tCommon('return', { to: 'account page' })}</Button>
       </ButtonGroup>
     </form>
   );

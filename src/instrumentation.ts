@@ -8,10 +8,10 @@ export async function register() {
       dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
 
       // Enable Spotlight in development
-      spotlight: process.env.NODE_ENV === 'development',
+      spotlight: false, // Disabled to prevent Socket.IO connection errors
 
       // Adjust this value in production, or use tracesSampler for greater control
-      tracesSampleRate: 1,
+      tracesSampleRate: 0.1,
 
       // Setting this option to true will print useful information to the console while you're setting up Sentry.
       debug: false,
@@ -25,10 +25,10 @@ export async function register() {
       dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
 
       // Enable Spotlight in development
-      spotlight: process.env.NODE_ENV === 'development',
+      spotlight: false, // Disabled to prevent Socket.IO connection errors
 
       // Adjust this value in production, or use tracesSampler for greater control
-      tracesSampleRate: 1,
+      tracesSampleRate: 0.1,
 
       // Setting this option to true will print useful information to the console while you're setting up Sentry.
       debug: false,

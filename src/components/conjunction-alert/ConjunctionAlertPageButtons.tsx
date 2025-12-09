@@ -1,6 +1,5 @@
 'use client';
 import dynamic from 'next/dynamic';
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 import Button from '@/ui/button/button';
@@ -20,10 +19,7 @@ const ConjunctionAlertPageButtons = ({ pdfTitle }: ConjunctionAlertPageButtonsPr
   return (
     <ButtonGroup>
       <PdfDownloadButton title={pdfTitle} />
-
-      <Link href="/conjunctions">
-        <Button variant="secondary">{t('return', { to: 'previous page' })}</Button>
-      </Link>
+      <Button as="link" href="/conjunctions" variant="secondary" aria-label={t('return', { to: 'track conjunction events' })}>{t('return', { to: 'track conjunction events' })}</Button>
     </ButtonGroup>
   );
 };

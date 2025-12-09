@@ -39,16 +39,14 @@ export function CookieBanner(props: CookieBannerProps) {
               'govuk-width-container',
               className,
             )}
+            hidden={!visible}
             {...rest}
           >
             <div className="govuk-grid-row">
               <div className="govuk-grid-column-two-thirds">
                 {heading && (
                   <h2
-                    className={clsx(
-                      'govuk-cookie-banner__heading',
-                      'govuk-heading-m',
-                    )}
+                    className="govuk-heading-m"
                   >
                     {heading}
                   </h2>

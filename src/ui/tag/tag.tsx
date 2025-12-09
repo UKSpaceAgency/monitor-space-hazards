@@ -18,7 +18,7 @@ export type TagProps = {
 export function Tag({ className, color, ...props }: TagProps) {
   return (
     <strong
-      className={clsx('govuk-tag', className, {
+      className={clsx('govuk-tag forced-color-adjust-none', className, {
         [`govuk-tag--${color as string}`]: color,
       })}
       {...props}

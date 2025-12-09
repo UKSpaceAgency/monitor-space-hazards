@@ -13,22 +13,26 @@ export type CheckboxProps = {
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   ({ hint, full, conditional, className, children, ...props }: CheckboxProps, ref) => {
     const id = useId();
+    const inputId = `${props.id ?? id}-cb`;
     return (
       <div className={clsx('govuk-checkboxes__item', className)}>
         <input
           {...props}
-          id={id}
+          id={inputId}
+          aria-describedby={inputId}
           className="govuk-checkboxes__input"
           type="checkbox"
           ref={ref}
         />
         <label
-          htmlFor={id}
+          htmlFor={inputId}
           className={clsx('govuk-label govuk-checkboxes__label', {
             'w-full': full,
           })}
         >
           {children}
+          {/* this div just for accessibility purpose */}
+          <div className="hidden">{inputId}</div>
         </label>
         {hint && (
           <div className="govuk-hint govuk-checkboxes__hint">{hint}</div>

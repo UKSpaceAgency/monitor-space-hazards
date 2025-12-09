@@ -4,12 +4,13 @@ import type { InputHTMLAttributes, ReactNode } from 'react';
 import type { CheckboxProps } from '../checkbox/checkbox';
 import { Checkbox } from '../checkbox/checkbox';
 import ErrorMessage from '../error-message/error-message';
+import Hint from '../hint/hint';
 
 export type CheckboxesProps = {
   items: CheckboxProps[];
   legend?: ReactNode;
-  hint?: ReactNode;
   error?: ReactNode;
+  hint?: string;
   smaller?: boolean;
   inline?: boolean;
 } & InputHTMLAttributes<HTMLInputElement>;
@@ -27,14 +28,14 @@ export function Checkboxes({
 }: CheckboxesProps) {
   return (
     <div className={clsx('govuk-form-group', className)}>
-      <fieldset className="govuk-fieldset" aria-describedby="nationality-hint">
+      <fieldset className="govuk-fieldset">
         {legend && (
           <legend className="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h2 className="govuk-fieldset__heading">{legend}</h2>
           </legend>
         )}
         {children}
-        {hint && <div className="govuk-hint">{hint}</div>}
+        {hint && <Hint id={hint}>{hint}</Hint>}
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <div
           className={clsx('govuk-checkboxes', {

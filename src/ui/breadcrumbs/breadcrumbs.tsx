@@ -41,7 +41,7 @@ const BreadcrumbLink = forwardRef<
   return (
     <Link
       ref={ref}
-      className="govuk-breadcrumbs__link capitalize"
+      className="govuk-breadcrumbs__link"
       href={href}
       {...props}
     />
@@ -58,7 +58,6 @@ const BreadcrumbPage = forwardRef<
     role="link"
     aria-disabled
     aria-current="page"
-    className="capitalize"
     {...props}
   />
 ));

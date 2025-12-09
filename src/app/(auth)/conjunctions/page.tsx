@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 
 import type { TypeEpoch, TypeReportFlagSettings } from '@/__generated__/data-contracts';
 import { getSession } from '@/actions/getSession';
+import { ConjunctionsAlertsTable } from '@/components/conjunctions/ConjunctionsAlertsTable';
 import { ConjunctionsEventsTable } from '@/components/conjunctions/ConjunctionsEventsTable';
 import { ConjunctionsEventsTableFilters } from '@/components/conjunctions/ConjunctionsEventsTableFilters';
 import { ConjunctionsSummaryTable } from '@/components/conjunctions/ConjunctionsSummaryTable';
@@ -11,6 +12,21 @@ import { SearchBar } from '@/components/SearchBar';
 import Details from '@/ui/details/details';
 import Spinner from '@/ui/spinner/spinner';
 import { isSatteliteUser } from '@/utils/Roles';
+
+const getSearchBarLabel = async (epoch: TypeEpoch | undefined): Promise<string> => {
+  const t = await getTranslations('Conjunctions');
+
+  switch (epoch) {
+    case 'all':
+      return t('search_bar.allLabel');
+    case 'future':
+      return t('search_bar.upcomingLabel');
+    case 'past':
+      return t('search_bar.previousLabel');
+    default:
+      return t('search_bar.allLabel');
+  }
+};
 
 export const metadata: Metadata = {
   title: 'Track conjunction events (Monitor your satellites)',
@@ -33,22 +49,27 @@ export default async function ConjunctionsPage(props: PageProps) {
   const searchParams = await props.searchParams;
   const params: ConjunctionsPageSearchParams = searchParams || {};
 
+  const searchBarLabel = await getSearchBarLabel(params.epoch);
+
   return (
     <div>
       <h1 className="govuk-heading-xl">{t('title')}</h1>
-      <Suspense key={params.search_like} fallback={<Spinner />}>
+      <Suspense key={`summary-table-${params.search_like}`} fallback={<Spinner />}>
         <ConjunctionsSummaryTable />
-        <Details summary={t('help1.title')}>
-          {t.rich('help1.content')}
-        </Details>
-        <h2 className="govuk-heading-m">{t('section_title')}</h2>
-        <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
-        <p className="govuk-body">{t('description')}</p>
-        <SearchBar label={t('search_bar.label')} placeholder={t('search_bar.placeholder')} />
-        <ConjunctionsEventsTableFilters params={params} showFilterRadios={!isSatteliteUser(session?.user.role)} />
+      </Suspense>
+      <Details summary={t.rich('help1.title')}>
+        {t.rich('help1.content')}
+      </Details>
+      <ConjunctionsAlertsTable />
+      <h2 className="govuk-heading-m">{t('section_title')}</h2>
+      <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
+      <p className="govuk-body">{t('description')}</p>
+      <SearchBar label={`${searchBarLabel}:`} id="conjunctions_search_bar" placeholder={t('search_bar.placeholder')} ariaLabel={searchBarLabel} />
+      <ConjunctionsEventsTableFilters params={params} showFilterRadios={!isSatteliteUser(session?.user.role)} />
+      <Suspense key={`events-table-${params.search_like}`} fallback={<Spinner />}>
         <ConjunctionsEventsTable params={params} />
       </Suspense>
-      <Details summary={t('help2.title')}>
+      <Details summary={t.rich('help2.title')}>
         {t.rich('help2.content')}
       </Details>
     </div>

@@ -1,5 +1,4 @@
 'use client';
-import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { type ReactNode, useEffect } from 'react';
@@ -16,6 +15,7 @@ type BaseFormField = {
   id: string;
   name: string;
   defaultValue?: string | null;
+  ariaLabel?: string;
   help?: ReactNode;
 };
 
@@ -46,6 +46,7 @@ const EventAlertEditForm = ({ fields }: EventAlertEditFormProps) => {
       acc[field.id] = field.defaultValue || '';
       return acc;
     }, {}),
+    reValidateMode: 'onSubmit',
   });
 
   const onSubmit = async (data: Record<string, any>) => {
@@ -60,16 +61,17 @@ const EventAlertEditForm = ({ fields }: EventAlertEditFormProps) => {
     }
   }, [searchParams, reset]);
 
-  const renderTextField = ({ id, name }: BaseFormField) => (
+  const renderTextField = ({ id, name, ariaLabel }: BaseFormField) => (
     <>
-      <TextArea {...register(id)} />
-      <Button variant="secondary" type="button" onClick={() => resetField(id, { defaultValue: '' })}>{t('clear', { name })}</Button>
+      <TextArea {...register(id)} id={id} aria-label={ariaLabel} />
+      <Button variant="secondary" type="button" onClick={() => resetField(id, { defaultValue: '' })} aria-label={t('clear', { name })}>{t('clear', { name })}</Button>
     </>
   );
 
   const renderRadioField = ({ id, name, items, ...props }: Omit<RadioFormField, 'type'>) => (
     <Radios
       items={items.map(item => ({
+        id: item.id,
         value: item.value,
         children: item.children,
         ...register(id),
@@ -92,10 +94,8 @@ const EventAlertEditForm = ({ fields }: EventAlertEditFormProps) => {
         </div>
       ))}
       <ButtonGroup>
-        <Button type="submit">{t('review')}</Button>
-        <Link href={getBackUrl(pathname, 1)}>
-          <Button variant="secondary">{tCommon('return', { to: 'event' })}</Button>
-        </Link>
+        <Button type="submit" aria-label={t('review')}>{t('review')}</Button>
+        <Button as="link" href={getBackUrl(pathname, 1)} variant="secondary" aria-label={tCommon('return', { to: 'event' })}>{tCommon('return', { to: 'event' })}</Button>
       </ButtonGroup>
     </form>
   );

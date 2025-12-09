@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
@@ -8,17 +9,9 @@ import { OrganisationUserAccountDetails } from '@/components/account/organisatio
 import SummaryList from '@/ui/summary-list/summary-list';
 import { AccountType, isOrgAdmin } from '@/utils/Roles';
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ userId: string }>;
-}) {
-  const { userId } = await params;
-  const user = await getUsersById(userId);
-  return {
-    title: user.email,
-  };
-}
+export const metadata: Metadata = {
+  title: 'User account details',
+};
 
 export default async function OrganisationUserPage({
   params,
@@ -60,8 +53,9 @@ export default async function OrganisationUserPage({
             },
             actions: [
               {
-                children: t('edit'),
-                href: `/account/organisations/${id}/${userId}/type`,
+                'aria-label': 'Edit user type',
+                'children': t('edit'),
+                'href': `/account/organisations/${id}/${userId}/type`,
               },
             ],
           },
@@ -72,12 +66,6 @@ export default async function OrganisationUserPage({
             value: {
               children: user.email,
             },
-            actions: [
-              {
-                children: t('edit'),
-                href: `/account/organisations/${id}/${userId}/email`,
-              },
-            ],
           },
           {
             key: {
@@ -88,8 +76,9 @@ export default async function OrganisationUserPage({
             },
             actions: [
               {
-                children: t('edit'),
-                href: `/account/organisations/${id}/${userId}/phone`,
+                'aria-label': 'Edit phone number',
+                'children': t('edit'),
+                'href': `/account/organisations/${id}/${userId}/phone`,
               },
             ],
           },

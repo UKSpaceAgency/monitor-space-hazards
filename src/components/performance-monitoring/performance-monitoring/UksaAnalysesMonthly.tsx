@@ -18,25 +18,33 @@ const UksaAnalysesMonthly = async () => {
       {
         label: t('analyses'),
         data: data.map(({ analyses }) => analyses),
-        borderColor: chartPalette.orange,
-        backgroundColor: chartPalette.orange,
+        borderColor: chartPalette.nspocBlue,
+        backgroundColor: chartPalette.nspocBlue,
       },
       {
         label: t('manoeuvre_support_plots'),
         data: data.map(({ manoeuvreSupportPlots }) => manoeuvreSupportPlots),
-        borderColor: chartPalette.darkBlue,
-        backgroundColor: chartPalette.darkBlue,
+        borderColor: chartPalette.nspocRed,
+        backgroundColor: chartPalette.nspocRed,
       },
     ],
   };
 
   return (
     <>
-      <MonthlyBarChart data={datasets} yAxisTitle={t('y_axis_title')} />
+      <MonthlyBarChart
+        data={datasets}
+        yAxisTitle={t('y_axis_title')}
+        xAxisTitle={t('x_axis_title')}
+        ariaLabel="NSpOC conjunction event analysis and manoeuvre support monthly"
+        legend={t('file_type')}
+        name="uksa-analyses-monthly"
+      />
       <Scrollable>
         <DataTable
           columns={uksaAnalysesMonthlyColumns}
           data={data.reverse()}
+          ariaLabel="Information on Uksa analyses Monthly"
         />
       </Scrollable>
     </>

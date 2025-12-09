@@ -6,7 +6,7 @@ import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import Tag from '@/ui/tag/tag';
-import { displayExponential, getAbsoluteValue } from '@/utils/Math';
+import { displayExponential, getAbsoluteValue, rounded } from '@/utils/Math';
 
 type ConjunctionEventSummaryTableInformations = Pick<
   TypeEventSummaryOut,
@@ -20,7 +20,9 @@ type ConjunctionEventSummaryTableInformationsTableProps = {
 const ConjunctionEventSummaryTableInformationsTable = ({ data }: ConjunctionEventSummaryTableInformationsTableProps) => {
   const t = useTranslations('Tables.Conjunction');
 
-  const eventDetailsHeaders: HTMLProps<HTMLTableCellElement>[] = [{}, {
+  const eventDetailsHeaders: HTMLProps<HTMLTableCellElement>[] = [{
+    children: <div className="hidden">{t('summary_list.description')}</div>,
+  }, {
     children: t('summary_list.space_track_cdm'),
   }, ...(Array.isArray(data)
     ? [{
@@ -40,7 +42,7 @@ const ConjunctionEventSummaryTableInformationsTable = ({ data }: ConjunctionEven
   }, {
     header: t('summary_list.probability_of_collision'),
     accessorKey: 'collisionProbability',
-    renderCell: row => displayExponential(row.collisionProbability, 4),
+    renderCell: row => displayExponential(row.collisionProbability, 4) ?? '-',
   }, {
     header: t('summary_list.probability_of_collision_calc_method'),
     accessorKey: 'collisionProbabilityMethod',
@@ -70,9 +72,11 @@ const ConjunctionEventSummaryTableInformationsTable = ({ data }: ConjunctionEven
   }, {
     header: t('summary_list.primary_object_size'),
     accessorKey: 'primaryObjectSize',
+    renderCell: row => row.primaryObjectSize ? rounded(row.primaryObjectSize) : '-',
   }, {
     header: t('summary_list.secondary_object_size'),
     accessorKey: 'secondaryObjectSize',
+    renderCell: row => row.secondaryObjectSize ? rounded(row.secondaryObjectSize) : '-',
   }];
 
   return <InformationsTable headers={eventDetailsHeaders} rows={baseInformations} data={data} headerCellWidth="sm" />;

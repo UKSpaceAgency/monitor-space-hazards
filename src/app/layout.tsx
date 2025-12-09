@@ -1,5 +1,6 @@
 import '@/styles/globals.scss';
 
+import { GoogleAnalytics } from '@next/third-parties/google';
 import pick from 'lodash/pick';
 import type { Metadata } from 'next';
 import { SessionProvider } from 'next-auth/react';
@@ -7,6 +8,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import type { ReactNode } from 'react';
 
+import type { TypeBannerMessagesBroadcastedOut } from '@/__generated__/data-contracts';
+import { getIncidentBanners } from '@/actions/getIncidentBanners';
 import { getSession } from '@/actions/getSession';
 import { BaseTemplate } from '@/templates/BaseTemplate';
 import { AppConfig } from '@/utils/AppConfig';
@@ -30,12 +33,19 @@ export default async function RootLayout({
   const messages = await getMessages();
   const session = await getSession();
 
+  let incidentBanners: TypeBannerMessagesBroadcastedOut[] = [];
+
+  if (session) {
+    incidentBanners = await getIncidentBanners();
+  }
+
   return (
-    <html lang={locale} className="font-sans">
+    <html lang={locale} className="font-sans govuk-template--rebranded">
       <body className="govuk-template__body" suppressHydrationWarning>
+        {process.env.NEXT_PUBLIC_PUBLIC_GA && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_PUBLIC_GA} />}
         <NextIntlClientProvider messages={pick(messages, ['Tables', 'Template', 'Forms', 'Common', 'OverflightMap', 'Charts'])}>
           <SessionProvider>
-            <BaseTemplate showNavigation={!!session} breadcrumb={breadcrumb}>
+            <BaseTemplate showNavigation={!!session} breadcrumb={breadcrumb} incidentBanners={incidentBanners}>
               {children}
             </BaseTemplate>
           </SessionProvider>

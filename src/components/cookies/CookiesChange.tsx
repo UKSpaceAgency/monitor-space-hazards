@@ -54,15 +54,19 @@ const CookiesChange = () => {
         </NotificationBanner>
       )}
       <Radios
-        label={t('question')}
+        legend={t('question')}
+        required
+        aria-label="Cookie consent"
         items={[
           {
+            id: 'granted',
             children: t('yes'),
             value: 'granted',
             defaultChecked: cookieConsent === 'granted',
             checked: cookieConsent === 'granted',
           },
           {
+            id: 'denied',
             children: t('no'),
             value: 'denied',
             defaultChecked: cookieConsent === 'denied',
@@ -73,7 +77,7 @@ const CookiesChange = () => {
         name="analytics"
         onChange={onChangeHandler}
       />
-      <Button onClick={saveCookieSettings}>{t('button')}</Button>
+      <Button onClick={saveCookieSettings} aria-label={t('button')}>{t('button')}</Button>
     </div>
   );
 };

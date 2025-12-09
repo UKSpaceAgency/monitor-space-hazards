@@ -6,7 +6,7 @@ import { useCallback, useMemo, useState } from 'react';
 import type { ManoeuvrePlot, ManoeuvrePlotPoint } from '@/actions/getManoeuvrePlot';
 import { DownloadData } from '@/components/DownloadData';
 import RichText from '@/components/RichText';
-import { dayjs } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import Details from '@/ui/details/details';
 import Select from '@/ui/select/select';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
@@ -77,7 +77,7 @@ export function MtpChart({
     }
     let datetime_label = t('chart.date_and_time');
     if (raw.x !== null) {
-      datetime_label += dayjs(raw.burn_datetime);
+      datetime_label += dayjs(raw.burn_datetime).format(FORMAT_DATE_TIME);
     }
     return [poc_label, dv_label, orbit_label, datetime_label];
   };
@@ -120,13 +120,18 @@ export function MtpChart({
             <ToggleButtons
               name="mtp-source-toggle"
               title={t('chart.buttons.title')}
+              ariaLabel="Mtp Chart"
               items={[
                 {
+                  id: 'space-track',
                   title: t('chart.buttons.space-track'),
+                  ariaLabel: t('chart.buttons.space-track'),
                   value: 'ST_collision_probability',
                 },
                 {
+                  id: 'uksa',
                   title: t('chart.buttons.uksa'),
+                  ariaLabel: t('chart.buttons.uksa'),
                   value: 'UKSA_collision_probability',
                 },
               ]}
@@ -149,11 +154,12 @@ export function MtpChart({
             referenceLineTitle={t('chart.tca')}
             legend={{ title: t('chart.legend_title') }}
             min={keys[keys.length - 1]}
+            ariaLabel="Mtp Chart"
           />
         </div>
-        <DownloadData type={t('download')} params={{}} downloadAction={async () => data} data-pdf-ignore />
+        <DownloadData type={t('download')} params={{}} downloadAction={async () => data} data-pdf-ignore ariaLabel="Mtp chart" />
       </div>
-      <Details summary={t('details.summary')} data-pdf-ignore>
+      <Details summary={t.rich('details.summary')} data-pdf-ignore>
         <RichText>
           {tags => t.rich('details.content', tags) }
         </RichText>

@@ -19,6 +19,7 @@ const LicenseInformationsTable = async ({ object, headerCellWidth }: LicenseInfo
   const headers = Array.isArray(object)
     ? [{
         className: 'w-1/3',
+        children: <div className="hidden">{t('Objects.description')}</div>,
       }, {
         className: 'w-1/3',
         children: t('Objects.primary'),
@@ -31,14 +32,14 @@ const LicenseInformationsTable = async ({ object, headerCellWidth }: LicenseInfo
   const baseInformations: InformationsTableRow<LicenseSatelliteInformations>[] = [{
     header: t('License.country'),
     accessorKey: 'licenseCountry',
-    renderCell: row => getFullCountry(row.licenseCountry),
+    renderCell: row => getFullCountry(row.licenseCountry) ?? '-',
   }, {
     header: t('License.launching_site'),
     accessorKey: 'launchSite',
   }, {
     header: t('License.launch_date'),
     accessorKey: 'launchDate',
-    renderCell: row => row.launchDate ? dayjs(row.launchDate).format('YYYY') : '',
+    renderCell: row => row.launchDate ? dayjs(row.launchDate).format('YYYY') : '-',
   }];
 
   return <InformationsTable caption={t('License.caption')} headers={headers} rows={baseInformations} data={object} headerCellWidth={headerCellWidth} />;

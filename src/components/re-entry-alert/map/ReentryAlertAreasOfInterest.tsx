@@ -3,7 +3,6 @@ import type { ChangeEvent } from 'react';
 
 import Checkbox, { type CheckboxProps } from '@/ui/checkbox/checkbox';
 import Details from '@/ui/details/details';
-import Label from '@/ui/label/label';
 import type { RegionsEnum } from '@/utils/Regions';
 import { Regions } from '@/utils/Regions';
 
@@ -13,34 +12,41 @@ const options: Option[][] = [[
   {
     children: Regions.ENGLAND.name,
     value: Regions.ENGLAND.id,
+    id: Regions.ENGLAND.id,
   },
 
   {
     children: Regions.SCOTLAND.name,
     value: Regions.SCOTLAND.id,
+    id: Regions.SCOTLAND.id,
   },
 
   {
     children: Regions.WALES.name,
     value: Regions.WALES.id,
+    id: Regions.WALES.id,
   },
 
   {
     children: Regions.NORTHERN_IRELAND.name,
     value: Regions.NORTHERN_IRELAND.id,
+    id: Regions.NORTHERN_IRELAND.id,
   },
 ], [
   {
     children: Regions.BRITISH_OVERSEAS_TERRITORIES.name,
     value: Regions.BRITISH_OVERSEAS_TERRITORIES.id,
+    id: Regions.BRITISH_OVERSEAS_TERRITORIES.id,
   },
   {
     children: Regions.UK_AIRSPACE.name,
     value: Regions.UK_AIRSPACE.id,
+    id: Regions.UK_AIRSPACE.id,
   },
   {
     children: Regions.NAVAREA.name,
     value: Regions.NAVAREA.id,
+    id: Regions.NAVAREA.id,
   },
 ]];
 
@@ -65,16 +71,17 @@ const ReentryAlertAreasOfInterest = ({ selected, onChange }: ReentryAlertAreasOf
 
   return (
     <div>
-      <Label className="font-bold">{t('label')}</Label>
-      <Details summary={t('help')}>
-        <div className="grid grid-cols-2 gap-4">
+      <h4 className="govuk-fieldset__legend govuk-fieldset__legend--s">{t('legend')}</h4>
+      <Details summary={t.rich('help')} initiallyOpen>
+        <fieldset className="grid grid-cols-2 gap-4">
+          <legend className="govuk-visually-hidden">{t('legend')}</legend>
           {options.map((group, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <div key={index} className="govuk-checkboxes govuk-checkboxes--small">
               {group.map(({ value, children, ...props }) => <Checkbox key={value} value={value} checked={selected.includes(value)} onChange={handleChange} {...props}>{children}</Checkbox>)}
             </div>
           ))}
-        </div>
+        </fieldset>
       </Details>
     </div>
   );

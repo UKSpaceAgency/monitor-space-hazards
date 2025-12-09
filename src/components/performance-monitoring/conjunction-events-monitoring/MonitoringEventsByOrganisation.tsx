@@ -14,7 +14,7 @@ const MonitoringEventsByOrganisation = async () => {
   return (
     <div>
       <MonitoringEventsByOrganisationContent isAnalysist={isAnalysist(session?.user.role)} />
-      <Details summary={t('details.title')}>
+      <Details summary={t.rich('details.title')}>
         {t('details.content')}
       </Details>
     </div>

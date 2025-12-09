@@ -1,10 +1,23 @@
+import { round } from 'lodash';
+
+export const rounded = (value: number, decimalPlaces: number = 3) => {
+  return value.toLocaleString('en-US', {
+    maximumFractionDigits: decimalPlaces,
+    minimumFractionDigits: 0,
+  });
+};
+
+export const roundedFixed = (value: number, decimalPlaces: number = 3) => {
+  return (value * 100).toFixed(decimalPlaces);
+};
+
 export const roundedPercent = (value: number, decimalPlaces: number = 3) => {
   return `${(value * 100).toFixed(decimalPlaces)}%`;
 };
 
 export const getAbsoluteValue = (num: number | undefined | null) => {
   if (!num && num !== 0) {
-    return;
+    return 0;
   }
 
   return Math.abs(num);
@@ -28,4 +41,8 @@ export const displayExponential = (num: number | undefined | null, fractionDigit
   }
 
   return num ? num.toExponential(fractionDigits) : 0;
+};
+
+export const roundedPercentage = (value: number, decimalPlaces: number = 3) => {
+  return `${round(value * 100, decimalPlaces)}%`;
 };

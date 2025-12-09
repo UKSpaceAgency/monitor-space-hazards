@@ -3,11 +3,13 @@ import { getTranslations } from 'next-intl/server';
 import type { TypeGetExternalDataPerformanceParams } from '@/__generated__/data-contracts';
 import { getExternalDataPerformance } from '@/actions/getExternalDataPerformance';
 import { getStatsAnalysisAndManoeuvreSupport } from '@/actions/getStatsAnalysisAndManoeuvreSupport';
+import { getStatsMonthlyAnalyses } from '@/actions/getStatsMonthlyAnalyses';
 import { DownloadData } from '@/components/DownloadData';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import Details from '@/ui/details/details';
 
 import { UksaAnalysesDaily } from './UksaAnalysesDaily';
+import { UksaAnalysesMonthly } from './UksaAnalysesMonthly';
 
 const UksaAnalyses = async () => {
   const t = await getTranslations('Performance_monitoring.performance_accordion.uksa');
@@ -30,12 +32,16 @@ const UksaAnalyses = async () => {
     <>
       <h3 className="govuk-heading-s">{t('daily_title')}</h3>
       <UksaAnalysesDaily latestIngestDate={latestIngestDate} />
-      <DownloadData type={t('daily_title')} params={params} downloadAction={getStatsAnalysisAndManoeuvreSupport} />
-      <Details summary={t('daily_title')}>
+      <DownloadData type={t('daily_title')} params={params} downloadAction={getStatsAnalysisAndManoeuvreSupport} ariaLabel="Daily analyses and manoeuvre support details" />
+      <Details summary={t.rich('daily_details.title')}>
         {t('daily_details.content')}
       </Details>
-      {/* <h3 className="govuk-heading-s">{t('monthly_title')}</h3>
-      <UksaAnalysesMonthly /> */}
+      <h3 className="govuk-heading-s">{t('monthly_title')}</h3>
+      <UksaAnalysesMonthly />
+      <DownloadData type={t('monthly_title')} params={{}} downloadAction={getStatsMonthlyAnalyses} ariaLabel="Monthly analyses and manoeuvre support details" />
+      <Details summary={t.rich('monthly_details.title')}>
+        {t('monthly_details.content')}
+      </Details>
     </>
   );
 };

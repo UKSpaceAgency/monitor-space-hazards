@@ -22,11 +22,13 @@ const ReentryAlertHistoryDataTable = async ({ shortId, reports, dataPdf }: Reent
 
   return (
     <div data-pdf={dataPdf}>
-      <DataTable
-        columns={reentryAlertHistoryColumns}
-        data={reports ?? []}
-      />
-      <DownloadData type={t('Download.types.reentry_reports')} params={params} downloadAction={getReentryReports} data-pdf-ignore />
+      <div className="overflow-x-auto">
+        <DataTable
+          columns={reentryAlertHistoryColumns}
+          data={reports ?? []}
+        />
+      </div>
+      <DownloadData type={t('Download.types.reentry_reports')} params={params} downloadAction={getReentryReports} data-pdf-ignore ariaLabel="Reentry alert history" />
     </div>
 
   );

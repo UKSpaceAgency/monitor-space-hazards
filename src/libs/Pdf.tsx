@@ -1,19 +1,19 @@
 /* eslint-disable react/no-array-index-key */
 import { Table, TD, TR } from '@ag-media/react-pdf-table';
 import { Image, StyleSheet, Text, View } from '@react-pdf/renderer';
-import type { Key, ReactElement, ReactNode } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 
 export const pdfStyles = StyleSheet.create({
   page: {
     fontSize: '12px',
     backgroundColor: '#ffffff',
     fontFamily: 'Arimo',
-    padding: '40px 0',
+    padding: '20px 0',
   },
   headerContainer: {
-    margin: '-40px -20px 0 -20px',
-    backgroundColor: '#265c59',
-    padding: '20px 40px',
+    margin: '0 20px',
+    padding: '0 0 10px',
+    borderBottom: '1px solid #006EBB',
   },
   logoContainer: {
     marginBottom: '10px',
@@ -22,12 +22,16 @@ export const pdfStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  logo: {
-    width: '80px',
-    height: '40px',
+  nspocLogo: {
+    width: '113px',
+    height: '50px',
+  },
+  uksaLogo: {
+    width: '113px',
+    height: '31px',
   },
   headerTitle: {
-    color: '#ffffff',
+    color: '#000000',
     fontSize: '24px',
     fontWeight: 'bold',
   },
@@ -51,7 +55,9 @@ export const pdfStyles = StyleSheet.create({
   sectionHeader: {
     fontSize: '20px',
     fontWeight: 'bold',
-    marginBottom: '20px',
+    paddingBottom: '10px',
+    marginBottom: '10px',
+    borderBottom: '1px solid #006EBB',
   },
   subHeader: {
     fontSize: '16px',
@@ -64,22 +70,24 @@ export const pdfStyles = StyleSheet.create({
   table: {
     marginBottom: '20px',
     width: '100%',
-    borderColor: '#e2e2e2',
     fontSize: '10px',
+    border: '0px',
   },
   tableCellHeader: {
-    backgroundColor: '#f5f8f8',
     fontWeight: 'bold',
   },
   bold: {
     fontWeight: 'bold',
   },
   link: {
-    color: '#000000',
+    color: '#006EBB',
   },
   footer: {
     margin: '20px',
     gap: '7px',
+  },
+  uksaLogoContainer: {
+    marginTop: '5px',
   },
 });
 
@@ -96,11 +104,11 @@ const generatePdfTable = (table: HTMLElement) => {
   const colWeight = 1 / colsNumber;
 
   return (
-    <>
+    <View>
       {captionObject}
       <Table style={pdfStyles.table} tdStyle={{ padding: '0.2cm' }} weightings={Array.from({ length: colsNumber }, () => colWeight)}>
         {headers.length > 0 && (
-          <TR>
+          <TR wrap={false}>
             {[...headers].map((header, index: number) => {
               const colSpan = header.getAttribute('colSpan');
               return (
@@ -111,13 +119,13 @@ const generatePdfTable = (table: HTMLElement) => {
             })}
           </TR>
         )}
-        {rows.map((row: { children: any }, rowIndex: Key | null | undefined) => (
-          <TR key={rowIndex} style={{ flexWrap: 'wrap' }}>
+        {rows.map((row: { children: any }, rowIndex: number) => (
+          <TR key={rowIndex} style={{ flexWrap: 'wrap', backgroundColor: rowIndex % 2 === 0 ? '#f0f0f0' : 'transparent' }} wrap={false}>
             {[...row.children].map((cell: HTMLElement, cellIndex: number) => {
               const tagClassList = (cell.firstChild as HTMLElement)?.classList;
               const cellStyle = {
                 color: '#000000',
-                backgroundColor: '#ffffff',
+                backgroundColor: 'transparent',
               };
               if (tagClassList?.contains('govuk-tag')) {
                 if (tagClassList.contains('govuk-tag--turquoise')) {
@@ -153,7 +161,7 @@ const generatePdfTable = (table: HTMLElement) => {
           </TR>
         ))}
       </Table>
-    </>
+    </View>
   );
 };
 

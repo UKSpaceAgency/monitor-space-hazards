@@ -1,7 +1,8 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 
 import { postAnalyses } from '@/actions/postAnalyses';
 import Button from '@/ui/button/button';
@@ -14,7 +15,7 @@ type ConjunctionAnalysisUploadFormProps = {
 
 const ConjunctionAnalysisUploadForm = ({ objectId }: ConjunctionAnalysisUploadFormProps) => {
   const t = useTranslations('Forms.Analysis_upload');
-  const [state, formAction] = useFormState(postAnalyses, null);
+  const [state, formAction] = useActionState(postAnalyses, null);
   const { pending } = useFormStatus();
 
   return (
@@ -32,7 +33,7 @@ const ConjunctionAnalysisUploadForm = ({ objectId }: ConjunctionAnalysisUploadFo
       <form action={formAction}>
         <input type="hidden" name="object_id" value={objectId} />
         <FieldUpload name="file" label={t('label')} required />
-        <Button type="submit" disabled={pending}>{t('button')}</Button>
+        <Button type="submit" disabled={pending} aria-label={t('button')}>{t('button')}</Button>
       </form>
     </div>
 

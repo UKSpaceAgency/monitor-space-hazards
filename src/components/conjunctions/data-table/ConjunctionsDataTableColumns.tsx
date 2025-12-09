@@ -1,9 +1,9 @@
 import Link from 'next/link';
 
 import type { TypeEventOut } from '@/__generated__/data-contracts';
-import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_FULL_MONTH, FORMAT_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
-import { displayExponential, getAbsoluteValue } from '@/utils/Math';
+import { displayExponential } from '@/utils/Math';
 
 export type ProbabilityUnitType = 'scientific' | 'percentage';
 
@@ -20,14 +20,13 @@ export const getConjunctionEventsColumns = ({
 }: ConjunctionsDataTableColumns): TranslatedColumnDef<TypeEventOut>[] => [
   {
     id: 'baseData',
-    accessorKey: 'baseData',
-    header: 'Event information',
+    header: 'Conjunctions.table.event_information',
     enableSorting: false,
     columns: [
       {
-        id: 'userInterest',
-        accessorKey: 'userInterest',
-        header: 'Conjunctions.user_interest',
+        id: 'risk',
+        accessorKey: 'risk',
+        header: 'Conjunctions.table.risk',
         cell: ({ getValue }) => {
           const value = getValue<string>();
           if (value === 'High') {
@@ -41,7 +40,7 @@ export const getConjunctionEventsColumns = ({
       {
         id: 'shortId',
         accessorKey: 'shortId',
-        header: 'Conjunctions.conjunction_event_id',
+        header: 'Conjunctions.table.event_id',
         cell: ({ getValue, row: { original: { reportNumber } } }) => {
           const value = getValue<string>();
 
@@ -56,23 +55,17 @@ export const getConjunctionEventsColumns = ({
           );
         },
       },
-      {
-        id: 'tcaTime',
-        accessorKey: 'tcaTime',
-        header: 'Conjunctions.time_of_closest_approach',
-        cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_DATE_TIME),
-      },
     ],
   },
   {
     id: 'objects',
-    header: 'Conjunctions.objects',
+    header: 'Conjunctions.table.objects',
     enableSorting: false,
     columns: [
       {
         id: 'primaryObjectCommonName',
         accessorKey: 'primaryObjectCommonName',
-        header: 'Conjunctions.primary',
+        header: 'Conjunctions.table.primary_object',
         cell: ({ row, getValue }) => (
           <Link
             href={`/satellites/${row?.original.primaryObjectNoradId}`}
@@ -85,10 +78,10 @@ export const getConjunctionEventsColumns = ({
       {
         id: 'secondaryObjectCommonName',
         accessorKey: 'secondaryObjectCommonName',
-        header: 'Conjunctions.secondary',
+        header: 'Conjunctions.table.secondary_object',
         cell: ({ row, getValue }) => {
-          const value = getValue();
-          if (value === 'UNKNOWN') {
+          const value = getValue<string>();
+          if (!value || value === 'UNKNOWN') {
             return value;
           } else {
             return isAnalyst
@@ -109,39 +102,18 @@ export const getConjunctionEventsColumns = ({
     ],
   },
   {
-    id: 'missDistance',
-    header: 'Conjunctions.miss_distance',
-    columns: [
-      {
-        id: 'radialMissDistance',
-        accessorKey: 'radialMissDistance',
-        header: 'Conjunctions.mean_radial',
-        cell: ({ getValue }) => {
-          const radialMissDistance = getValue<number>();
-
-          return getAbsoluteValue(radialMissDistance);
-        },
-      },
-      {
-        id: 'missDistance',
-        accessorKey: 'missDistance',
-        header: 'Conjunctions.total',
-      },
-    ],
-  },
-  {
     id: 'probabilityOfCollision',
-    header: 'Conjunctions.probability_of_collision',
+    header: 'Conjunctions.table.probability_of_collision',
     columns: [
       {
         id: 'collisionProbability',
         accessorKey: 'collisionProbability',
-        header: 'Conjunctions.space_track',
+        header: 'Conjunctions.table.poc_space_track',
         size: 200,
         cell: ({ getValue }) => {
           const collisionProbability = getValue<number>();
-          if (!collisionProbability) {
-            return '';
+          if (collisionProbability === undefined) {
+            return '-';
           }
 
           if (probabilityUnit === 'percentage') {
@@ -152,14 +124,12 @@ export const getConjunctionEventsColumns = ({
       },
       {
         id: 'collisionProbabilityUksa',
-        accessorKey: 'additionalAnalysis',
-        header: 'Conjunctions.uksa',
+        accessorKey: 'collisionProbabilityUksa',
+        header: 'Conjunctions.table.poc_uksa',
         cell: ({ getValue }) => {
-          const value = getValue<{ collisionProbability: number }>();
-          const { collisionProbability } = value ?? {};
-
-          if (!collisionProbability) {
-            return '';
+          const collisionProbability = getValue<number>();
+          if (collisionProbability === undefined) {
+            return '-';
           }
 
           if (probabilityUnit === 'percentage') {
@@ -168,6 +138,30 @@ export const getConjunctionEventsColumns = ({
           return displayExponential(collisionProbability, 4);
         },
       },
+      {
+        id: 'missDistance',
+        accessorKey: 'missDistance',
+        header: 'Conjunctions.table.total_miss_distance',
+      },
     ],
   },
+  {
+    header: 'Conjunctions.table.tca_time',
+    enableSorting: false,
+    columns: [
+      {
+        id: 'tcaTime',
+        accessorKey: 'tcaTime',
+        header: 'Conjunctions.table.date',
+        cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_DATE_FULL_MONTH),
+      },
+      {
+        id: 'time',
+        enableSorting: false,
+        header: 'Conjunctions.table.time',
+        cell: ({ row }) => dayjs(row.original.tcaTime).format(FORMAT_TIME),
+      },
+    ],
+  },
+
 ];

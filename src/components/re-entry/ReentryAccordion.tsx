@@ -26,7 +26,7 @@ const ReentryAccordion = ({
           id: 'object_data',
           heading: t('object_data'),
           content: (
-            <SatelliteInformation object={object} dataPdf={t('object_data')} />
+            <SatelliteInformation object={object} dataPdf={t('object_data')} haveAnchor={false} />
           ),
         },
         {

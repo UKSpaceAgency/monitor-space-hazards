@@ -62,6 +62,7 @@ const MonitoringEventsBySatelliteDataTable = ({ isAnalysist }: MonitoringEventsB
         <Select
           name="organisation-select"
           value={organisation}
+          label={t('events_by_organisation_select_label')}
           options={[
             {
               children: t('all_organisations'),
@@ -76,9 +77,10 @@ const MonitoringEventsBySatelliteDataTable = ({ isAnalysist }: MonitoringEventsB
         <DataTable
           columns={eventsBySatelliteColumns}
           data={tableData}
+          ariaLabel="Information on Conjunction Events by satellite"
         />
       </Scrollable>
-      <DownloadData type={t('this_table')} params={{}} downloadAction={getStatsEventsBySatellite} />
+      <DownloadData type={t('this_table')} params={{}} downloadAction={getStatsEventsBySatellite} ariaLabel="Conjunction events by satellite" />
     </>
   );
 };

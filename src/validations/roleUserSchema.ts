@@ -5,7 +5,7 @@ import { getZodEnumFromObjectKeys } from '@/utils/Zod';
 
 export const roleUserSchema = z.object({
   role: getZodEnumFromObjectKeys<typeof AccountType>(AccountType, {
-    invalid_type_error: 'Field is required.',
+    invalid_type_error: 'Select an account type',
   }),
 });
 

@@ -1,8 +1,7 @@
 'use client';
 
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { FieldPath, SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 
@@ -29,18 +28,34 @@ type AddNewUserFormProps = {
 
 const AddNewUserForm = ({ defaultValues, organizations, role }: AddNewUserFormProps) => {
   const t = useTranslations('Forms.Add_new_user');
-  const [createdUser, setCreatedUser] = useState<{ user_id: string; organization_id: string } | null>(null);
+  const editSettingsButtonRef = useRef<HTMLAnchorElement>(null);
+  const returnButtonRef = useRef<HTMLAnchorElement>(null);
+  const [createdUser, setCreatedUser] = useState<{ user_id: string; organization_id: string; role: TypeUserRole; first_name: string; last_name: string } | null>(null);
 
   const { register, handleSubmit, setError, reset, formState: { isSubmitting, isSubmitSuccessful, errors } } = useForm<AddNewUserSchema>({
     defaultValues,
+    reValidateMode: 'onSubmit',
   });
+
+  const showSuccessBanner = !!createdUser && isSubmitSuccessful;
+
+  useEffect(() => {
+    if (showSuccessBanner && editSettingsButtonRef.current) {
+      editSettingsButtonRef.current?.focus();
+    } else {
+      returnButtonRef.current?.focus();
+    }
+  }, [showSuccessBanner]);
 
   const onSubmit: SubmitHandler<AddNewUserSchema> = async (data) => {
     const { data: success, errors } = await postUsers(data);
     if (success) {
       setCreatedUser({
         user_id: success.user_id,
+        first_name: data.first_name,
+        last_name: data.last_name,
         organization_id: data.organization_id,
+        role: data.role,
       });
       reset();
     }
@@ -57,39 +72,33 @@ const AddNewUserForm = ({ defaultValues, organizations, role }: AddNewUserFormPr
     <form
       onSubmit={handleSubmit(onSubmit)}
     >
-      <FormErrorSummary i18path="Add_new_user" errors={errors} />
-      {isSubmitSuccessful && createdUser && (
+      <FormErrorSummary errors={errors} fieldOrder={Object.keys(defaultValues) as (keyof AddNewUserSchema)[]} />
+      {showSuccessBanner && (
         <TopNotificationBanner status="success">
           <div>
             <RichText>
               {tags => t.rich('success_message', {
                 ...tags,
                 organisation: organizations.find(({ id }) => id === createdUser?.organization_id)?.name,
+                first_name: createdUser.first_name,
+                last_name: createdUser.last_name,
               }) }
             </RichText>
-            {(isGovUser(role) || isAgencyUser(role)) && (
+            {(isGovUser(createdUser.role) || isAgencyUser(createdUser.role)) && (
               <RichText>
                 {tags => t.rich('success_message_only_admins', tags) }
               </RichText>
             ) }
             <ButtonGroup>
-              {(isGovUser(role) || isAgencyUser(role))
+              {(isGovUser(createdUser.role) || isAgencyUser(createdUser.role))
               && (
-                <Link
-                  href={`/account/alert-settings/${createdUser?.user_id}`}
-                >
-                  <Button>
-                    {t('success_message_edit_settings_button')}
-                  </Button>
-                </Link>
-              )}
-              <Link
-                href={`/account/organisations/${createdUser?.organization_id}`}
-              >
-                <Button className="govuk-button--secondary">
-                  {t('success_message_return_button')}
+                <Button ref={editSettingsButtonRef} as="link" href={`/account/alert-settings/${createdUser?.user_id}`} aria-label={t('success_message_edit_settings_button')}>
+                  {t('success_message_edit_settings_button')}
                 </Button>
-              </Link>
+              )}
+              <Button ref={returnButtonRef} as="link" href={`/account/organisations/${createdUser?.organization_id}`} className="govuk-button--secondary" aria-label={t('success_message_return_button')}>
+                {t('success_message_return_button')}
+              </Button>
             </ButtonGroup>
           </div>
         </TopNotificationBanner>

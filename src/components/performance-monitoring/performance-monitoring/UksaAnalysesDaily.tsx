@@ -50,6 +50,7 @@ const UksaAnalysesDaily = ({ latestIngestDate }: { latestIngestDate: string }) =
         <DataTable
           columns={uksaAnalysesDailyColumns}
           data={data}
+          ariaLabel="Information on Uksa analyses Daily"
         />
       </Scrollable>
     </div>

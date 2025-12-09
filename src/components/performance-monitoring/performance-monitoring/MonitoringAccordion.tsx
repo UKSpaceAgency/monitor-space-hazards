@@ -5,6 +5,7 @@ import Accordion from '@/ui/accordion/accordion';
 import { CdmIngests } from './CdmIngests';
 import { NotificationsSent } from './NotificationsSent';
 import { ObjectDataIngests } from './ObjectDataIngests';
+import { TipIngests } from './TipIngests';
 import { UksaAnalyses } from './UksaAnalyses';
 
 const MonitoringAccordion = async () => {
@@ -15,17 +16,18 @@ const MonitoringAccordion = async () => {
       <h2 className="govuk-heading-l" id="performanceAccordionTitle">{t('title')}</h2>
       <Accordion
         id="performance-monitoring-accordion"
+        dynamic
         initialItems={[
           {
             id: 'cdmIngests',
             heading: t('cdm_ingests.title'),
             content: <CdmIngests />,
           },
-          // {
-          //   id: 'tipIngests',
-          //   heading: t('tip_ingests.title'),
-          //   content: <TipIngests />,
-          // },
+          {
+            id: 'tipIngests',
+            heading: t('tip_ingests.title'),
+            content: <TipIngests />,
+          },
           {
             id: 'objectDataIngests',
             heading: t('object_data_ingests.title'),
@@ -34,7 +36,7 @@ const MonitoringAccordion = async () => {
           {
             id: 'notificationsSent',
             heading: t('notifications_sent.title'),
-            content: <NotificationsSent title={t('notifications_sent.title')} />,
+            content: <NotificationsSent />,
           },
           {
             id: 'uksa',

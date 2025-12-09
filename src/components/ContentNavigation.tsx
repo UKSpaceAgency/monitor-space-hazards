@@ -1,7 +1,7 @@
 'use client';
 
 import type { MouseEvent } from 'react';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
 type ContentNavigationProps = {
   title?: string;
@@ -25,35 +25,66 @@ const ContentNavigation = ({ title, internalTitle, className }: ContentNavigatio
     e.preventDefault();
     const target = e.currentTarget.hash.replace('#', '');
     const element = document.querySelector<HTMLElement>(`[data-anchor="${target}"]`);
+
     if (element) {
-      window.scrollTo({
-        top: element.offsetTop,
+      e.currentTarget.blur();
+      element.scrollIntoView({
         behavior: 'smooth',
       });
     }
   };
 
+  // Group anchors by their section
+  const groupedAnchors: Array<{ sectionHeading?: string; anchors: Array<{ text: string; anchor: string }> }> = [];
+  let currentSection: { sectionHeading?: string; anchors: Array<{ text: string; anchor: string }> } = { anchors: [] };
+
+  anchors.forEach((anchor, index) => {
+    const sectionTitle = internalTitle?.find(item => item.index === index);
+
+    if (sectionTitle) {
+      // If we have a section title, save the current section and start a new one
+      if (currentSection.anchors.length > 0 || currentSection.sectionHeading) {
+        groupedAnchors.push(currentSection);
+      }
+      currentSection = { sectionHeading: sectionTitle.text, anchors: [anchor] };
+    } else {
+      currentSection.anchors.push(anchor);
+    }
+  });
+
+  // Add the last section
+  if (currentSection.anchors.length > 0 || currentSection.sectionHeading) {
+    groupedAnchors.push(currentSection);
+  }
+
+  // If no sections exist, create one default section
+  if (groupedAnchors.length === 0 && anchors.length > 0) {
+    groupedAnchors.push({ anchors });
+  }
+
   return (
     <nav aria-label="Content navigation" className={className}>
-      <h3 className="govuk-caption-m">{title || 'Contents'}</h3>
-      <div>
-        {anchors.map((anchor, index) => {
-          return (
-            // eslint-disable-next-line react/no-array-index-key
-            <div key={index}>
-              {internalTitle?.find(item => item.index === index) && (
-                <h3 className="govuk-caption-m mt-[30px]">{internalTitle?.find(item => item.index === index)?.text}</h3>
-              )}
-              <div className="relative pt-2 px-6">
-                <span className="absolute left-0 w-5">—</span>
-                <a className="govuk-link govuk-link--no-underline" href={`#${anchor.anchor}`} onClick={handleClick}>
-                  {anchor.text}
-                </a>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      <h2 className="govuk-caption-m">{title || 'Contents'}</h2>
+      {groupedAnchors.map((group, groupIndex) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <Fragment key={groupIndex}>
+          {group.sectionHeading && (
+            <h2 className="govuk-caption-m mt-[30px]">{group.sectionHeading}</h2>
+          )}
+          {group.anchors.length > 0 && (
+            <ul>
+              {group.anchors.map((anchor, anchorIndex) => (
+                // eslint-disable-next-line react/no-array-index-key
+                <li key={anchorIndex} className="relative pt-2 before:content-['—'] before:w-5 before:mr-1">
+                  <a className="govuk-link govuk-link--no-underline" href={`#${anchor.anchor}`} onClick={handleClick}>
+                    {anchor.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </Fragment>
+      ))}
     </nav>
   );
 };

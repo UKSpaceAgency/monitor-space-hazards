@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
@@ -29,12 +28,8 @@ export default async function IncidentBannersPage() {
       {t.rich('content')}
       <ScheduledBanners />
       <ButtonGroup>
-        <Link href="/account/incident-banner/schedule">
-          <Button>{t('add_new')}</Button>
-        </Link>
-        <Link href="/account">
-          <Button variant="secondary">{tCommon('return', { to: 'account page' })}</Button>
-        </Link>
+        <Button as="link" href="/account/incident-banner/schedule" aria-label={t('add_new')}>{t('add_new')}</Button>
+        <Button as="link" href="/account" variant="secondary" aria-label={tCommon('return', { to: 'account page' })}>{tCommon('return', { to: 'account page' })}</Button>
       </ButtonGroup>
     </div>
   );

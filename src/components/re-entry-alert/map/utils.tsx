@@ -1,4 +1,4 @@
-import type { CircleLayerSpecification, FillLayerSpecification, SymbolLayerSpecification } from 'mapbox-gl';
+import type { CircleLayerSpecification, FillLayerSpecification, HeatmapLayerSpecification, SymbolLayerSpecification } from 'mapbox-gl';
 
 import { RegionsEnum } from '@/utils/Regions';
 
@@ -11,6 +11,12 @@ import ScotlandGeojson from './regions/scotland.json';
 import ScottishFirGeojson from './regions/scotland_fir.json';
 import ShanwickGeojson from './regions/shanwick.json';
 import WalesGeojson from './regions/wales.json';
+
+export enum MapTypes {
+  streets = 'streets',
+  light = 'light',
+  satellite = 'satellite',
+}
 
 export const RegionsGeoJson: Partial<Record<RegionsEnum, unknown>> = {
   [RegionsEnum.ENGLAND]: EnglandGeojson,
@@ -29,7 +35,7 @@ export const RegionsGeoJson: Partial<Record<RegionsEnum, unknown>> = {
   ],
 };
 
-export const RegionColor = '#FFDD00';
+export const RegionColor = '#FFC000';
 
 export const regionLayer = (region: string): FillLayerSpecification => ({
   id: region,
@@ -42,34 +48,38 @@ export const regionLayer = (region: string): FillLayerSpecification => ({
   },
 });
 
-export const FlightpathColor = '#f46a25';
-export const FragmentColor = '#801650';
-export const OverflightColors = [
-  '#28A197',
-  '#12436D',
-  '#A285D1',
-  '#D4351C',
-  '#F499BE',
-  '#B58840',
-  '#5694CA',
-  '#3D3D3D',
-  '#85994b',
-];
+// here is flightpath color
+export const FlightpathColor = '#007CC8';
+export const FragmentColor = '#C00000';
+export const OverflightColor = '#92D050';
+// export const OverflightColors = [
+//   FlightpathColor,
+//   '#28A197',
+//   '#12436D',
+//   '#A285D1',
+//   '#D4351C',
+//   '#F499BE',
+//   '#B58840',
+//   '#5694CA',
+//   '#3D3D3D',
+//   '#85994b',
+// ];
 
-export type OverflightType = 'FLIGHTPATH' | 'FRAGMENTS' | string;
+export type OverflightType = 'FLIGHTPATH' | 'FRAGMENT' | string;
 
-export const flightpathStyle = (visible: boolean): CircleLayerSpecification => ({
-  id: 'FLIGHTPATH',
+export const flightpathStyle = (index: number, visible: boolean): CircleLayerSpecification => ({
+  id: `FLIGHTPATH-${index}`,
   type: 'circle',
-  source: 'FLIGHTPATH',
+  source: `FLIGHTPATH-${index}`,
   paint: {
-    'circle-color': FlightpathColor,
-    'circle-opacity': 0.5,
+    'circle-color': index === 0 ? FlightpathColor : OverflightColor,
+    'circle-opacity': 0.6,
+    'circle-blur': 0.85,
     'circle-radius': {
-      base: 20,
       stops: [
         [0, 2],
-        [3, 10],
+        [5, 10],
+        [10, 180],
       ],
     },
   },
@@ -79,9 +89,9 @@ export const flightpathStyle = (visible: boolean): CircleLayerSpecification => (
 });
 
 export const fragmentsStyle = (index: number, visible: boolean): SymbolLayerSpecification => ({
-  id: `FRAGMENTS-${index}`,
+  id: `FRAGMENT-${index}`,
   type: 'symbol',
-  source: `FRAGMENTS-${index}`,
+  source: `FRAGMENT-${index}`,
   layout: {
     'icon-image': 'fragments-icon',
     'icon-size': {
@@ -95,27 +105,149 @@ export const fragmentsStyle = (index: number, visible: boolean): SymbolLayerSpec
     'visibility': visible ? 'visible' : 'none',
   },
   paint: {
-    'icon-color': OverflightColors[index],
+    'icon-color': index === 0 ? FlightpathColor : OverflightColor,
+    'icon-opacity': 0.6,
   },
 });
 
-export const overflightStyle = (index: number, visible: boolean): CircleLayerSpecification => ({
-  id: `OVERFLIGHT-${index}`,
+export const fragmentsCircleStyle = (index: number, visible: boolean): CircleLayerSpecification => ({
+  id: `FRAGMENT-${index}`,
   type: 'circle',
-  source: `OVERFLIGHT-${index}`,
+  source: `FRAGMENT-${index}`,
+  paint: {
+    // Color changes based on the number of circles (fragments_number)
+    'circle-color': FragmentColor,
+    'circle-opacity': [
+      'interpolate',
+      ['linear'],
+      ['get', 'fragments_number'],
+      0,
+      0.1,
+      1000,
+      1,
+    ],
+    'circle-blur': 0.5,
+    'circle-radius': {
+      stops: [
+        [0, 2],
+        [5, 10],
+        [10, 180],
+      ],
+    },
+  },
+  layout: {
+    visibility: visible ? 'visible' : 'none',
+  },
+});
+
+export const fragmentsHeatmapStyle = (index: number, visible: boolean): HeatmapLayerSpecification => ({
+  id: `FRAGMENT-${index}`,
+  type: 'heatmap',
+  source: `FRAGMENT-${index}`,
   layout: {
     visibility: visible ? 'visible' : 'none',
   },
   paint: {
-    'circle-color': OverflightColors[index],
-    'circle-opacity': 0.5,
-    'circle-radius': {
-      base: 20,
-      stops: [
-        [0, 2],
-        [3, 10],
-        [10, 20],
-      ],
-    },
+    // Single color heatmap with opacity based on density
+    'heatmap-color': [
+      'interpolate',
+      ['linear'],
+      ['heatmap-density'],
+      0,
+      'rgba(192,0,0, 0)', // FragmentColor with 0 opacity
+      0.1,
+      'rgba(192,0,0, 0.1)', // FragmentColor with low opacity
+      0.3,
+      'rgba(192,0,0, 0.2)', // FragmentColor with medium opacity
+      0.6,
+      'rgba(192,0,0, 0.4)', // FragmentColor with higher opacity
+      1,
+      'rgba(192,0,0, 0.6)', // FragmentColor with high opacity
+    ],
+    'heatmap-intensity': [
+      'interpolate',
+      ['linear'],
+      ['zoom'],
+      0,
+      0.8,
+      9,
+      1.2,
+    ],
+    'heatmap-radius': [
+      'interpolate',
+      ['linear'],
+      ['zoom'],
+      0,
+      4,
+      5,
+      8,
+      9,
+      8,
+    ],
+    'heatmap-weight': [
+      'interpolate',
+      ['linear'],
+      ['get', 'fragments_number'],
+      0,
+      0,
+      1,
+      1,
+    ],
+  },
+});
+
+export const flightpathHeatmapStyle = (index: number, visible: boolean): HeatmapLayerSpecification => ({
+  id: `FLIGHTPATH-${index}`,
+  type: 'heatmap',
+  source: `FLIGHTPATH-${index}`,
+  layout: {
+    visibility: visible ? 'visible' : 'none',
+  },
+  paint: {
+    // Color changes based on index - primary flightpath uses FlightpathColor, others use OverflightColor
+    'heatmap-color': [
+      'interpolate',
+      ['linear'],
+      ['heatmap-density'],
+      0,
+      index === 0 ? 'rgba(0,124,200, 0)' : 'rgba(146,208,80, 0)', // FlightpathColor or OverflightColor with 0 opacity
+      0.1,
+      index === 0 ? 'rgba(0,124,200, 0.1)' : 'rgba(146,208,80, 0.1)', // FlightpathColor or OverflightColor with low opacity
+      0.3,
+      index === 0 ? 'rgba(0,124,200, 0.2)' : 'rgba(146,208,80, 0.2)', // FlightpathColor or OverflightColor with medium opacity
+      0.6,
+      index === 0 ? 'rgba(0,124,200, 0.4)' : 'rgba(146,208,80, 0.4)', // FlightpathColor or OverflightColor with higher opacity
+      1,
+      index === 0 ? 'rgba(0,124,200, 0.6)' : 'rgba(146,208,80, 0.6)', // FlightpathColor or OverflightColor with high opacity
+    ],
+    'heatmap-intensity': [
+      'interpolate',
+      ['linear'],
+      ['zoom'],
+      0,
+      0.8,
+      9,
+      1.2,
+    ],
+    'heatmap-radius': [
+      'interpolate',
+      ['linear'],
+      ['zoom'],
+      0,
+      4,
+      5,
+      8,
+      9,
+      8,
+    ],
+    'heatmap-weight': [
+      'interpolate',
+      ['linear'],
+      ['get', 'fragments_number'],
+      0,
+      0,
+      1,
+      1,
+    ],
   },
 });

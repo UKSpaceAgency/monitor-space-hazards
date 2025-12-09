@@ -43,14 +43,14 @@ const ConjunctionAlertAccordion = ({
           id: 'potential_impact_of_event',
           heading: t('potential_impact_of_event'),
           content: (
-            <ConjunctionAlertPotentialImpact immediateImpactAddition={searchParams?.immediate_impact_addition ?? event.immediateImpactAddition} shortTermImpactAddition={searchParams?.short_term_impact_addition ?? event.shortTermImpactAddition} longTermImpactAddition={searchParams?.long_term_impact_addition ?? event.longTermImpactAddition} dataPdf={t('potential_impact_of_event')} />
+            <ConjunctionAlertPotentialImpact immediateImpactComment={searchParams?.immediate_impact_comment ?? event.immediateImpactComment} shortTermImpactComment={searchParams?.short_term_impact_comment ?? event.shortTermImpactComment} longTermImpactComment={searchParams?.long_term_impact_comment ?? event.longTermImpactComment} dataPdf={t('potential_impact_of_event')} />
           ),
         },
         {
           id: 'guidance_on_response',
           heading: t('guidance_on_response'),
           content: (
-            <ConjunctionAlertGuidanceOnResponse ukResponseAddition={searchParams?.uk_response_addition ?? event.ukResponseAddition} pressAttentionAddition={searchParams?.press_attention_addition ?? event.pressAttentionAddition} dataPdf={t('guidance_on_response')} />
+            <ConjunctionAlertGuidanceOnResponse ukResponseComment={searchParams?.uk_response_comment ?? event.ukResponseComment} pressAttentionComment={searchParams?.press_attention_comment ?? event.pressAttentionComment} dataPdf={t('guidance_on_response')} />
           ),
         },
         {

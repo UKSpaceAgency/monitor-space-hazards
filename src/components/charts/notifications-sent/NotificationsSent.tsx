@@ -22,7 +22,7 @@ export function NotificationsSentChart({
 }: NotificationsSentChartProps) {
   const t = useTranslations('Charts.Notifications_sent');
 
-  const actionButtons = <DateRange dataRange={dataRange} handleDataRangeChange={handleDataRangeChange} />;
+  const actionButtons = <DateRange dataRange={dataRange} handleDataRangeChange={handleDataRangeChange} ariaLabel="Notifications sent" name="notifications-send-days" />;
 
   const datasets = {
     labels: data.map(({ date }) => date),
@@ -30,20 +30,20 @@ export function NotificationsSentChart({
       {
         label: t('all_notifications'),
         data: data.map(({ totalCount }) => totalCount ?? 0),
-        borderColor: chartPalette.darkBlue,
-        backgroundColor: chartPalette.darkBlue,
+        borderColor: chartPalette.nspocBlue,
+        backgroundColor: chartPalette.nspocBlue,
       },
       {
         label: t('sms_messages'),
         data: data.map(({ smsCount }) => smsCount ?? 0),
-        borderColor: chartPalette.orange,
-        backgroundColor: chartPalette.orange,
+        borderColor: chartPalette.nspocRed,
+        backgroundColor: chartPalette.nspocRed,
       },
       {
         label: t('emails'),
         data: data.map(({ emailCount }) => emailCount ?? 0),
-        borderColor: chartPalette.darkPink,
-        backgroundColor: chartPalette.darkPink,
+        borderColor: chartPalette.nspocYellow,
+        backgroundColor: chartPalette.nspocYellow,
       },
     ],
   };
@@ -58,6 +58,7 @@ export function NotificationsSentChart({
         yAxisTitle={t('number_of_notifications')}
         xAxisTitle={t('date')}
         isDay
+        ariaLabel="Notifications sent"
         legend={{ title: t('notification_type') }}
       />
     </div>

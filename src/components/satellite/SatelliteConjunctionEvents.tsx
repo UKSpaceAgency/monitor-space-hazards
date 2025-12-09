@@ -2,20 +2,23 @@ import { getTranslations } from 'next-intl/server';
 
 import type { TypeEpoch, TypeGetConjunctionEventsListParams } from '@/__generated__/data-contracts';
 import { getConjunctions } from '@/actions/getConjunctions';
-import { SearchBar } from '@/components/SearchBar';
 
+import { SearchBar } from '../SearchBar';
 import { SatelliteConjunctionsDataTable } from './data-table/SatelliteConjunctionsDataTable';
 
 type SatelliteConjunctionEventsProps = {
   noradId: string;
   epoch: TypeEpoch;
+  id: string;
   query?: string;
+  ariaLabel?: string;
 };
 
-const SatelliteConjunctionEvents = async ({ noradId, query, epoch }: SatelliteConjunctionEventsProps) => {
+const SatelliteConjunctionEvents = async ({ noradId, query, epoch, id, ariaLabel }: SatelliteConjunctionEventsProps) => {
   const t = await getTranslations('Satellite.Conjunction_events');
   const type = epoch === 'future' ? t('type.future') : t('type.past');
   const searchParamName = epoch === 'future' ? 'upcoming_search_like' : 'previous_search_link';
+  const searchBarLabel = epoch === 'future' ? t('search_bar.upcomingLabel') : t('search_bar.previousLabel');
 
   const params: TypeGetConjunctionEventsListParams = {
     search_like: query,
@@ -31,7 +34,7 @@ const SatelliteConjunctionEvents = async ({ noradId, query, epoch }: SatelliteCo
   return (
     <div className="mb-12">
       <h2 className="govuk-heading-l" data-anchor={`${epoch}-conjunction-events`}>{t('title', { type })}</h2>
-      <SearchBar label={t('search_bar.label')} placeholder={t('search_bar.placeholder')} paramName={searchParamName} />
+      <SearchBar label={searchBarLabel} placeholder={t('search_bar.placeholder')} paramName={searchParamName} ariaLabel={ariaLabel} id={id} />
       <SatelliteConjunctionsDataTable params={params} initialData={initialData} />
     </div>
   );

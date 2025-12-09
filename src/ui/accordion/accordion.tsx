@@ -1,10 +1,13 @@
 'use client';
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
+
+import Spinner from '../spinner/spinner';
 
 type AccordionProps = {
   id: string;
+  dynamic?: boolean;
   initialItems: {
     id: string;
     heading: string;
@@ -12,9 +15,10 @@ type AccordionProps = {
     summary?: ReactNode;
     expanded?: boolean;
   }[];
+  addAnchor?: boolean;
 };
 
-export function Accordion({ initialItems, id }: AccordionProps) {
+export function Accordion({ initialItems, id, dynamic = false, addAnchor = true }: AccordionProps) {
   const [isAllItemsExpanded, setAllItemsExpanded] = useState(false);
   const [items, setItems] = useState(initialItems);
 
@@ -86,12 +90,12 @@ export function Accordion({ initialItems, id }: AccordionProps) {
                   className="govuk-accordion__section-heading-text"
                   id={`heading-${id}`}
                 >
-                  <h2
+                  <h3
                     className="govuk-accordion__section-heading-text-focus"
-                    data-anchor={id}
+                    data-anchor={addAnchor ? id : undefined}
                   >
                     {heading}
-                  </h2>
+                  </h3>
                 </span>
                 <span className="govuk-accordion__section-toggle">
                   <span className="govuk-accordion__section-toggle-focus">
@@ -119,11 +123,11 @@ export function Accordion({ initialItems, id }: AccordionProps) {
             </div>
             <div
               id={`content-${id}`}
-              className={clsx({
+              className={clsx('w-[calc(100vw-30px)] md:w-full', {
                 'content-visibility-hidden': !expanded,
               })}
             >
-              {content}
+              {dynamic ? expanded ? <Suspense fallback={<Spinner />}>{content}</Suspense> : null : content}
             </div>
           </div>
         ),

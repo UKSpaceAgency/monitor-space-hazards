@@ -16,24 +16,31 @@ export const conjunctionAlertHistoryColumns: TranslatedColumnDef<TypeConjunction
     cell: ({ row }) => {
       const { reportNumber, shortId, presignedUrl } = row.original;
       const report = `Report ${reportNumber}`;
+      const isClosed = row.original.alertType.includes('closedown');
 
-      return presignedUrl
-        ? (
-            <Link
-              href={presignedUrl}
-              className="govuk-link flex items-center gap-2"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Download04Icon />
-              <span>
-                {shortId}
-                <br />
-                {report}
-              </span>
-            </Link>
-          )
-        : report;
+      return (
+        <>
+          {presignedUrl
+            ? (
+                <Link
+                  href={presignedUrl}
+                  className="govuk-link flex items-center gap-2"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Download04Icon />
+                  <span>
+                    {shortId}
+                    <br />
+                    {report}
+                  </span>
+                </Link>
+              )
+            : report}
+          {`\n`}
+          {isClosed && <Tag className="text-sm mt-2 ml-6">Closed</Tag>}
+        </>
+      );
     },
   },
   {
@@ -48,6 +55,7 @@ export const conjunctionAlertHistoryColumns: TranslatedColumnDef<TypeConjunction
   {
     header: 'Conjunction_alert_history.risk',
     accessorKey: 'risk',
+    enableSorting: false,
     cell: ({ getValue }) => {
       const risk = getValue<string>();
       const classes = {
@@ -82,7 +90,7 @@ export const conjunctionAlertHistoryColumns: TranslatedColumnDef<TypeConjunction
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();
-      return value[0] ? dayjs(value[0]).format(FORMAT_DATE_TIME) : 'Unknown';
+      return value ? dayjs(value).format(FORMAT_DATE_TIME) : 'Unknown';
     },
   },
 ];

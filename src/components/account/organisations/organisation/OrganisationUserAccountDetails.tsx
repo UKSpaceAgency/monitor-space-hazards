@@ -1,14 +1,15 @@
 'use client';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { TypeUserOut } from '@/__generated__/data-contracts';
 import { deleteUser } from '@/actions/deleteUser';
 import { TopNotificationBanner } from '@/components/TopNotificationBanner';
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
+import { isAgencyUser, isGovUser } from '@/utils/Roles';
 
 type OrganisationUserAccountDetailsProps = {
   user: TypeUserOut;
@@ -19,12 +20,27 @@ const OrganisationUserAccountDetails = ({ user }: OrganisationUserAccountDetails
 
   const [confirmMessage, setConfirmMessage] = useState(false);
   const { replace } = useRouter();
+  const session = useSession();
+  const confirmDeleteButtonRef = useRef<HTMLButtonElement>(null);
 
   const confirmDelete = useCallback(async () => {
     await deleteUser(user.id);
-
-    replace(`/account/organisations/${user.organizationId}`);
+    replace(`/account/organisations/${user.organizationId}?deletionUserSucceeded=true`);
   }, [replace, user.id, user.organizationId]);
+
+  useEffect(() => {
+    if (confirmMessage) {
+      confirmDeleteButtonRef.current?.focus();
+    }
+  }, [confirmMessage]);
+
+  const onDeleteUser = () => {
+    setConfirmMessage(true);
+  };
+
+  const onCancelDelete = () => {
+    setConfirmMessage(false);
+  };
 
   return (
     <div>
@@ -36,14 +52,17 @@ const OrganisationUserAccountDetails = ({ user }: OrganisationUserAccountDetails
           <p className="govuk-body">{t('if_you_delete')}</p>
           <ButtonGroup>
             <Button
+              ref={confirmDeleteButtonRef}
               className="govuk-button--warning"
               onClick={confirmDelete}
+              aria-label={`${t('yes_delete')} user ${user.email}`}
             >
               {t('yes_delete')}
             </Button>
             <Button
               className="govuk-button--secondary"
-              onClick={() => setConfirmMessage(false)}
+              onClick={onCancelDelete}
+              aria-label={`Cancel, deleting ${user.email}`}
             >
               {t('cancel')}
             </Button>
@@ -53,19 +72,25 @@ const OrganisationUserAccountDetails = ({ user }: OrganisationUserAccountDetails
       <ButtonGroup>
         <Button
           className="govuk-button--warning"
-          onClick={() => setConfirmMessage(true)}
+          onClick={onDeleteUser}
+          aria-label={`Delete user ${user.email}`}
+          disabled={user.email === session.data?.user.email}
         >
           {t('delete_user')}
         </Button>
-        <Link
-          href={`/account/organisations/${user.organizationId}`}
-        >
-          <Button
-            className="govuk-button--secondary"
-          >
-            {t('return', { to: 'user accounts' })}
+        {(isAgencyUser(user.role) || isGovUser(user.role)) && (
+          <Button as="link" href={`/account/alert-settings/${user.id}`} aria-label="Edit alert settings">
+            {t('edit_alert_settings')}
           </Button>
-        </Link>
+        )}
+        <Button
+          as="link"
+          href={`/account/organisations/${user.organizationId}`}
+          className="govuk-button--secondary"
+          aria-label="Return to user accounts"
+        >
+          {t('return', { to: 'user accounts' })}
+        </Button>
       </ButtonGroup>
     </div>
   );

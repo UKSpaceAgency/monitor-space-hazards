@@ -4,17 +4,15 @@ import { type ChangeEvent, Fragment } from 'react';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import Checkbox from '@/ui/checkbox/checkbox';
 import Details from '@/ui/details/details';
-import Label from '@/ui/label/label';
 
 import type { OverflightType } from './utils';
-import { FlightpathColor, OverflightColors } from './utils';
 
 type ReentryAlertOverflightsProps = {
   types: OverflightType[];
   setTypes: (value: OverflightType[]) => void;
   overflights: string[];
-  selected: OverflightType[];
-  onChange: (value: OverflightType[]) => void;
+  selected: number[];
+  onChange: (value: number[]) => void;
 };
 
 const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onChange }: ReentryAlertOverflightsProps) => {
@@ -22,7 +20,7 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedSet = new Set(selected);
-    const value = e.target.value as OverflightType;
+    const value = Number.parseInt(e.target.value, 10);
     if (selectedSet.has(value)) {
       selectedSet.delete(value);
     } else {
@@ -36,15 +34,14 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
     setTypes(types.includes(value) ? types.filter(type => type !== value) : [...types, value]);
   };
 
-  const renderCheckbox = ({ value, label, date, color }: { value: OverflightType; label: string; date?: string; color?: string }) => {
+  const renderCheckbox = ({ id, value, label, date }: { id: string; value: number; label: string; date?: string }) => {
     return (
-      <Checkbox className="content-baseline mb-0" value={value} checked={selected.includes(value)} onChange={handleChange} full>
+      <Checkbox id={id} className="content-baseline mb-0" value={value} checked={selected.includes(value)} onChange={handleChange} full>
         <div className="flex w-full justify-between items-center">
           <div>
             {label}
             {date && <span className="block govuk-body-s mb-0">{dayjs(date).format(FORMAT_DATE_TIME)}</span>}
           </div>
-          <div className="size-5 rounded-full" style={{ backgroundColor: color }} />
         </div>
       </Checkbox>
     );
@@ -52,27 +49,30 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
 
   return (
     <div>
-      <Label className="font-bold">{t('label')}</Label>
-      <div className="grid md:grid-cols-2 gap-4 govuk-checkboxes govuk-checkboxes--small py-4 pl-[25px]">
-        <Checkbox full checked={types.includes('FLIGHTPATHS')} value="FLIGHTPATHS" onChange={handleTypeChange}>
-          {t('show_flightpaths')}
-        </Checkbox>
-        <Checkbox full checked={types.includes('FRAGMENTS')} value="FRAGMENTS" onChange={handleTypeChange}>
-          {t('show_fragments')}
-        </Checkbox>
-      </div>
-      <Details summary={t('help')}>
-        <div className="grid md:grid-cols-2 gap-4 govuk-checkboxes govuk-checkboxes--small">
-          {renderCheckbox({ value: 'FLIGHTPATH', label: t('flightpath'), color: FlightpathColor })}
-          {/* {renderCheckbox({ value: 'FRAGMENTS', label: t('fragments'), color: FragmentColor })} */}
+      <fieldset>
+        <legend className="govuk-fieldset__legend govuk-fieldset__legend--s"><h4>{t('legend')}</h4></legend>
+        <div className="grid md:grid-cols-2 md:gap-4 govuk-checkboxes govuk-checkboxes--small md:py-4 md:pl-[25px]">
+          <Checkbox id="show-flightpaths" full checked={types.includes('FLIGHTPATH')} value="FLIGHTPATH" onChange={handleTypeChange}>
+            {t('show_flightpaths')}
+          </Checkbox>
+          <Checkbox id="show-fragments" full checked={types.includes('FRAGMENT')} value="FRAGMENT" onChange={handleTypeChange}>
+            {t('show_fragments')}
+          </Checkbox>
+        </div>
+      </fieldset>
+      <Details summary={t.rich('help')} initiallyOpen>
+        <fieldset className="grid md:grid-cols-2 gap-4 govuk-checkboxes govuk-checkboxes--small">
+          <legend className="govuk-visually-hidden">Toggle overflights and ground fragments</legend>
+          {renderCheckbox({ id: 'flightpaths', value: 0, label: t('flightpath') })}
           {overflights.map((overflight, index) => {
+            const number = index + 1;
             return (
               <Fragment key={overflight}>
-                {renderCheckbox({ value: `OVERFLIGHT-${index}`, label: t('overflight', { number: index + 1 }), date: overflight, color: OverflightColors[index] })}
+                {renderCheckbox({ id: `overflight-${number}`, value: number, label: t('overflight', { number }), date: overflight })}
               </Fragment>
             );
           })}
-        </div>
+        </fieldset>
       </Details>
     </div>
   );

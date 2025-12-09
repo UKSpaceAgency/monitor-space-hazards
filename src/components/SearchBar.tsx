@@ -10,10 +10,12 @@ import Label from '@/ui/label/label';
 type SearchBarProps = {
   label: string;
   placeholder: string;
+  id: string;
   paramName?: string;
+  ariaLabel?: string;
 };
 
-const SearchBar = ({ label, placeholder, paramName }: SearchBarProps) => {
+const SearchBar = ({ label, placeholder, id, paramName, ariaLabel }: SearchBarProps) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -28,17 +30,17 @@ const SearchBar = ({ label, placeholder, paramName }: SearchBarProps) => {
     } else {
       params.delete(param);
     }
-    replace(`${pathname}?${params.toString()}`);
+    replace(`${pathname}?${params.toString()}#${id}`);
     e.preventDefault();
   };
 
   return (
     <div>
-      <Label className="font-bold" htmlFor="search-input">{label}</Label>
+      <Label className="font-bold" htmlFor={id}>{label}</Label>
       <form className="flex gap-3" onSubmit={handleSubmit}>
-        <Input className="flex-1" id="search-input" placeholder={placeholder} value={search} onChange={e => setSearch(e.target.value)} />
+        <Input className="flex-1" id={id} placeholder={placeholder} value={search} onChange={e => setSearch(e.target.value)} aria-label={ariaLabel} />
         <div>
-          <Button type="submit">Search</Button>
+          <Button type="submit" aria-label={`${ariaLabel} Search`}>Search</Button>
         </div>
       </form>
     </div>

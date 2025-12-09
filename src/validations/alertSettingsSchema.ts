@@ -10,13 +10,16 @@ export const alertSettingsSchema = z.object({
     z.literal('all'),
     z.literal('none'),
     z.literal('priority'),
+    z.literal('uk-licensed'),
+    z.literal('closedown'),
   ]),
   receiveConjunction: receiveDefault,
   reEntryAlerts: z.union([
     z.literal('all'),
     z.literal('none'),
     z.literal('priority'),
-    z.literal('uk_satellites_only'),
+    z.literal('uk-licensed'),
+    z.literal('closedown'),
   ]),
   receiveReEntry: receiveDefault,
   areasOfInterest: z.array(z.enum([
@@ -31,6 +34,12 @@ export const alertSettingsSchema = z.object({
     'SCOTLAND_FIR',
     'REST_OF_THE_WORLD',
   ])),
+  fragmentationAlerts: z.union([
+    z.literal('all'),
+    z.literal('none'),
+    z.literal('priority'),
+  ]),
+  receiveFragmentation: receiveDefault,
 });
 
 export type AlertSettingsSchema = z.infer<typeof alertSettingsSchema>;

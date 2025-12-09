@@ -26,12 +26,11 @@ export function NotificationBanner({
         className,
       )}
       role={status !== 'important' ? 'alert' : 'status'}
-      aria-labelledby="govuk-notification-banner-title"
       {...props}
     >
       {status !== 'error' && (
         <div className="govuk-notification-banner__header">
-          <h2 className="govuk-notification-banner__title">
+          <h2 className="govuk-notification-banner__title" id={props.id || 'govuk-notification-banner-title'}>
             {status.toUpperCase()}
           </h2>
         </div>

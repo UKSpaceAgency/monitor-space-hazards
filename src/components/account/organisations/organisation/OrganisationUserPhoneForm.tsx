@@ -1,7 +1,6 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 
@@ -25,6 +24,7 @@ const OrganisationUserPhoneForm = ({ user }: OrganisationUserPhoneFormProps) => 
   const { handleSubmit, register, reset, formState: { errors, isSubmitSuccessful } } = useForm({
     defaultValues: { phone: '' },
     resolver: zodResolver(phoneUserSchema),
+    reValidateMode: 'onSubmit',
   });
 
   const onSubmit = async (data: PhoneUserSchema) => {
@@ -40,33 +40,31 @@ const OrganisationUserPhoneForm = ({ user }: OrganisationUserPhoneFormProps) => 
             {t('success')}
           </h3>
         </NotificationBanner>
-        <Link
+        <Button
+          as="link"
           href={`/account/organisations/${user.organizationId}/${user.id}`}
+          className="govuk-button--secondary"
+          aria-label={tCommon('return', { to: 'user account details' })}
         >
-          <Button
-            className="govuk-button--secondary"
-          >
-            {tCommon('return', { to: 'user account details' })}
-          </Button>
-        </Link>
+          {tCommon('return', { to: 'user account details' })}
+        </Button>
       </div>
     );
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Input {...register('phone')} id="phone" label={t('phone_label')} error={errors.phone?.message} />
+      <Input {...register('phone')} required id="phone" label={t('phone_label')} error={errors.phone?.message} aria-label="Phone" autoComplete="phone_number" />
       <ButtonGroup>
-        <Link
+        <Button
+          as="link"
           href={`/account/organisations/${user.organizationId}/${user.id}`}
+          className="govuk-button--secondary"
+          aria-label={t('back')}
         >
-          <Button
-            className="govuk-button--secondary"
-          >
-            {t('back')}
-          </Button>
-        </Link>
-        <Button type="submit">{t('save')}</Button>
+          {t('back')}
+        </Button>
+        <Button type="submit" aria-label={t('save')}>{t('save')}</Button>
       </ButtonGroup>
     </form>
   );

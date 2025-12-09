@@ -5,6 +5,7 @@ import type { TypeUniqueEventUpdateTextFieldsIn } from '@/__generated__/data-con
 import getConjunctionUniqueEvent from '@/actions/getConjunctionUniqueEvent';
 import { getSession } from '@/actions/getSession';
 import { EventAlertReview } from '@/components/event-alert-edit/EventAlertReview';
+import { dayjs, FORMAT_FULL_DATE } from '@/libs/Dayjs';
 import { isAgencyApproverOrSuperuser } from '@/utils/Roles';
 
 type PageProps = {
@@ -16,9 +17,9 @@ export async function generateMetadata(props: PageProps) {
   const t = await getTranslations('Conjunction_alert_edit');
   const { shortId } = await props.params;
 
-  await getConjunctionUniqueEvent(shortId);
+  const event = await getConjunctionUniqueEvent(shortId);
   return {
-    title: t('title', { shortId }),
+    title: t('title', { primaryObject: event.primaryObjectCommonName ?? 'Unknown', secondaryObject: event.secondaryObjectCommonName ?? 'Unknown' }),
   };
 }
 
@@ -36,11 +37,14 @@ export default async function ConjunctionAlertEditReview(props: PageProps) {
   if (!searchParams) {
     redirect(`/conjunctions/${shortId}/alert`);
   }
+  const event = await getConjunctionUniqueEvent(shortId);
+  const title = t('title', { primaryObject: event.primaryObjectCommonName, secondaryObject: event.secondaryObjectCommonName });
 
   return (
     <div>
-      <h1 className="govuk-heading-xl mb-6">
-        {t('title', { shortId })}
+      <h1 className="govuk-heading-xl">
+        {title}
+        <span className="block text-lg">{dayjs(event.tca).format(FORMAT_FULL_DATE)}</span>
       </h1>
       <EventAlertReview shortId={shortId} values={searchParams} description={t('review_description', { shortId })} />
     </div>

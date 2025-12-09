@@ -9,6 +9,7 @@ type MapPoint = {
   latitude: number;
   longitude: number;
   region: string | null;
+  pass: number | null;
 };
 
 type ReportRespsponseData = {
@@ -28,7 +29,7 @@ type ReportRespsponseData = {
   }[];
 };
 
-const generateFeature = (point: MapPoint): Feature<Point> => ({
+const generateFeature = (point: MapPoint, type: 'overflight' | 'fragments' | 'flightpath'): Feature<Point> => ({
   type: 'Feature',
   geometry: {
     type: 'Point',
@@ -41,56 +42,76 @@ const generateFeature = (point: MapPoint): Feature<Point> => ({
           return jsonRegionsMap[last];
         }).join(', ')
       : null,
-    overflight: point.overflight,
-    longitude: point.longitude,
-    latitude: point.latitude,
+    type,
+    ...point,
   },
 });
 
 export async function getReentryAlertMapData(presignedUrl: string) {
-  const data = await fetch(presignedUrl);
+  const data = await fetch(presignedUrl, {
+    cache: 'no-store',
+    next: { revalidate: 0 },
+  });
   const reports: ReportRespsponseData[] = await data.json();
   const lastReport = reports[0];
-
-  const flightpathCollection: FeatureCollection<Point> = {
-    type: 'FeatureCollection',
-    features: [],
-  };
-
-  const fragmentsCollection: FeatureCollection<Point>[] = lastReport?.overflight_time.map((_, index) => ({
-    type: 'FeatureCollection',
-    id: `fragments-${index}`,
-    features: [],
-  })) || [];
-
-  const overflightCollection: FeatureCollection<Point>[] = lastReport?.overflight_time.map((_, index) => ({
-    type: 'FeatureCollection',
-    id: `overflight-${index}`,
-    features: [],
-  })) || [];
 
   if (!lastReport) {
     throw new Error('No reports found');
   }
 
-  for (const point of lastReport.map_points) {
-    if (!point.pass) {
-      flightpathCollection.features.push(generateFeature(point));
+  const flightpathsCollection = new Map<number, FeatureCollection<Point>>([
+    [0, {
+      type: 'FeatureCollection',
+      features: [],
+    }],
+  ]);
+  const fragmentsCollection = new Map<number, FeatureCollection<Point>>([
+    [0, {
+      type: 'FeatureCollection',
+      features: [],
+    }],
+  ]);
+
+  lastReport.overflight_time.forEach((_, index) => {
+    const number = index + 1;
+    flightpathsCollection.set(number, {
+      type: 'FeatureCollection',
+      features: [],
+    });
+    fragmentsCollection.set(number, {
+      type: 'FeatureCollection',
+      features: [],
+    });
+  });
+
+  const sortedPoints = lastReport.map_points.sort((a, b) => Date.parse(b.overflight) - Date.parse(a.overflight));
+
+  for (const point of sortedPoints) {
+    if (point.pass) {
+      flightpathsCollection.get(point.pass)?.features.push(generateFeature(point, 'overflight'));
+    } else {
+      flightpathsCollection.get(0)?.features.push(generateFeature(point, 'flightpath'));
     }
-    if (point.pass !== null) {
-      const index = point.pass - 1;
-      overflightCollection[index]?.features.push(generateFeature(point));
-      if (point.fragments.length > 0) {
-        for (const fragment of point.fragments) {
-          fragmentsCollection[index]?.features.push(generateFeature(fragment));
+    if (point.fragments.length > 0) {
+      for (const fragment of point.fragments) {
+        const fragmentPoint = {
+          ...fragment,
+          pass: point.pass,
+          overflight: point.overflight,
+        };
+        if (point.pass) {
+          fragmentsCollection.get(point.pass)?.features.push(generateFeature(fragmentPoint, 'fragments'));
+        } else {
+          fragmentsCollection.get(0)?.features.push(generateFeature(fragmentPoint, 'fragments'));
         }
       }
     }
   }
+
   return {
     overflightTime: lastReport.overflight_time,
-    flightpathCollection,
+    flightpathsCollection,
     fragmentsCollection,
-    overflightCollection,
+    // overflightCollection,
   };
 };

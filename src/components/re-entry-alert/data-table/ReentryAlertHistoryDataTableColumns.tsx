@@ -7,6 +7,7 @@ import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
 import { roundedPercent } from '@/utils/Math';
+import { renderRiskTag } from '@/utils/Risk';
 
 export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventReportOut>[] = [
   {
@@ -16,24 +17,31 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
     cell: ({ row }) => {
       const { reportNumber, shortId, presignedUrl } = row.original;
       const report = `Report ${reportNumber}`;
+      const isClosed = row.original.alertType.includes('closedown');
 
-      return presignedUrl
-        ? (
-            <Link
-              href={presignedUrl}
-              className="govuk-link flex items-center gap-2"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Download04Icon />
-              <span>
-                {shortId}
-                <br />
-                {report}
-              </span>
-            </Link>
-          )
-        : report;
+      return (
+        <>
+          {presignedUrl
+            ? (
+                <Link
+                  href={presignedUrl}
+                  className="govuk-link flex items-center gap-2"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Download04Icon />
+                  <span>
+                    {shortId}
+                    <br />
+                    {report}
+                  </span>
+                </Link>
+              )
+            : report}
+          {`\n`}
+          {isClosed && <Tag className="text-sm mt-2 ml-6">Closed</Tag>}
+        </>
+      );
     },
   },
   {
@@ -48,27 +56,11 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
   {
     header: 'Reentry_alert_history.risk',
     enableSorting: false,
-    cell: ({ row: { original: { probability } } }) => {
-      if (probability > 0.05) {
-        return (
-          <Tag color="red">High</Tag>
-        );
-      } else if (probability <= 0.05 && probability > 0.01) {
-        return (
-          <Tag color="yellow">
-            Medium
-          </Tag>
-        );
-      } else {
-        return (
-          <Tag color="green">Low</Tag>
-        );
-      }
-    },
+    cell: ({ row: { original: { fragmentsRisk } } }) => renderRiskTag(fragmentsRisk),
   },
   {
     header: 'Reentry_alert_history.probability',
-    accessorKey: 'probability',
+    accessorKey: 'atmosphericProbability',
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<number>();
@@ -81,7 +73,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();
-      return value[0] ? dayjs(value[0]).format(FORMAT_DATE_TIME) : 'Unknown';
+      return value[0] ? dayjs(value[0]).format(FORMAT_DATE_TIME) : '-';
     },
   },
 ];

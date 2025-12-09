@@ -28,10 +28,10 @@ const ObjectDataIngests = async () => {
 
   return (
     <>
-      <DataPerformanceChart latestIngestDate={latestIngestDate} sourceType="Satellite" xAxisTitle={t('x_axis_title')} legend={t('legend')} />
-      <DataPerformanceDataTable params={params} />
-      <DownloadData type={t('legend')} params={params} downloadAction={getExternalDataPerformance} />
-      <Details summary={t('details.title')}>
+      <DataPerformanceChart latestIngestDate={latestIngestDate} sourceType="Satellite" xAxisTitle={t('x_axis_title')} yAxisTitle={t('y_axis_title')} legend={t('legend')} ariaLabel="Object ingest" />
+      <DataPerformanceDataTable params={params} ariaLabel="Information on Object data ingests" />
+      <DownloadData type={t('legend')} params={params} downloadAction={getExternalDataPerformance} ariaLabel="Object data ingests" />
+      <Details summary={t.rich('details.title')}>
         {t.rich('details.content')}
       </Details>
     </>

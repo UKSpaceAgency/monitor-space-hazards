@@ -27,8 +27,8 @@ export const getMissDistanceChartDatasets = ({
         x: data.updateTime as any,
         y: data.missDistance as any,
       })),
-      borderColor: chartPalette.darkBlue,
-      backgroundColor: chartPalette.darkBlue,
+      borderColor: chartPalette.nspocBlue,
+      backgroundColor: chartPalette.nspocBlue,
     },
     {
       label: 'Radial',
@@ -36,8 +36,8 @@ export const getMissDistanceChartDatasets = ({
         x: data.updateTime as any,
         y: data.radialMissDistance as any,
       })),
-      borderColor: chartPalette.orange,
-      backgroundColor: chartPalette.orange,
+      borderColor: chartPalette.nspocRed,
+      backgroundColor: chartPalette.nspocRed,
     },
     {
       label: 'In-track',
@@ -45,8 +45,8 @@ export const getMissDistanceChartDatasets = ({
         x: data.updateTime as any,
         y: data.intrackMissDistance as any,
       })),
-      borderColor: chartPalette.darkPink,
-      backgroundColor: chartPalette.darkPink,
+      borderColor: chartPalette.nspocYellow,
+      backgroundColor: chartPalette.nspocYellow,
     },
     {
       label: 'Cross-track',
@@ -54,8 +54,8 @@ export const getMissDistanceChartDatasets = ({
         x: data.updateTime as any,
         y: data.crosstrackMissDistance as any,
       })),
-      borderColor: chartPalette.turquoise,
-      backgroundColor: chartPalette.turquoise,
+      borderColor: chartPalette.nspocGreen,
+      backgroundColor: chartPalette.nspocGreen,
     },
     ...(showSpecial
       ? [
@@ -68,7 +68,7 @@ export const getMissDistanceChartDatasets = ({
             })),
             pointStyle: 'triangle',
             pointRadius: 5,
-            backgroundColor: chartPalette.darkBlue,
+            backgroundColor: chartPalette.nspocBlue,
           },
           {
             label: 'Special ephemeris Radial',
@@ -79,7 +79,7 @@ export const getMissDistanceChartDatasets = ({
             })),
             pointStyle: 'triangle',
             pointRadius: 5,
-            backgroundColor: chartPalette.orange,
+            backgroundColor: chartPalette.nspocRed,
           },
           {
             label: 'Special ephemeris In-track',
@@ -90,7 +90,7 @@ export const getMissDistanceChartDatasets = ({
             })),
             pointStyle: 'triangle',
             pointRadius: 5,
-            backgroundColor: chartPalette.darkPink,
+            backgroundColor: chartPalette.nspocYellow,
           },
           {
             label: 'Special ephemeris Cross-track',
@@ -101,7 +101,7 @@ export const getMissDistanceChartDatasets = ({
             })),
             pointStyle: 'triangle',
             pointRadius: 5,
-            backgroundColor: chartPalette.turquoise,
+            backgroundColor: chartPalette.nspocGreen,
           },
         ]
       : []),

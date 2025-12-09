@@ -15,9 +15,10 @@ import { dataPerformanceColumns } from './DataPerformanceDataTableColumns';
 
 type DataPerformanceDataTableProps = {
   params: TypeGetExternalDataPerformanceParams;
+  ariaLabel?: string;
 };
 
-const DataPerformanceDataTable = ({ params }: DataPerformanceDataTableProps) => {
+const DataPerformanceDataTable = ({ params, ariaLabel }: DataPerformanceDataTableProps) => {
   const t = useTranslations('Tables.Performance_monitoring.data_performance');
 
   const { data, isFetching } = useQuery({
@@ -49,6 +50,7 @@ const DataPerformanceDataTable = ({ params }: DataPerformanceDataTableProps) => 
       queryKeys={[QUERY_KEYS.DataPerformance]}
       emptyLabel={t('empty_label')}
       initialSort={initialSort}
+      ariaLabel={ariaLabel}
     />
   );
 };

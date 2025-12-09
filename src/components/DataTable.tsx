@@ -34,11 +34,14 @@ export type DataTableProps<T extends RowData> = {
   // Extra
   stickyHeader?: true;
   largerText?: true;
+  focusable?: true;
   emptyLabel?: string;
+  ariaLabel?: string;
   manualSorting?: boolean;
+  enableSorting?: boolean;
 };
 
-const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText, sorting, emptyLabel = 'No data', manualSorting = true, onSortingChange, renderSubComponent }: DataTableProps<T>) => {
+const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText, sorting, emptyLabel = 'No data', focusable, ariaLabel, manualSorting = true, onSortingChange, renderSubComponent, enableSorting = true }: DataTableProps<T>) => {
   const t = useTranslations('Tables');
 
   const translatedColumns = useMemo(() => {
@@ -66,6 +69,7 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText,
       sorting,
     },
     manualSorting,
+    enableSorting,
     onSortingChange,
     getRowCanExpand: () => (!!renderSubComponent),
     getCoreRowModel: getCoreRowModel(),
@@ -91,7 +95,9 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText,
             key={header.id}
             scope="col"
             colSpan={header.colSpan}
-            style={{ minWidth: header.column.columnDef.minSize, width: `${header.getSize()}px`, maxWidth: header.column.columnDef.maxSize }}
+            style={{
+              width: header.getSize(),
+            }}
             className={clsx('govuk-table__header', {
               'border-0': stickyHeader,
             })}
@@ -112,13 +118,13 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText,
                     <span className="absolute top-0 right-0 h-full flex items-center">
                       {{
                         clear: (
-                          <span className="flex flex-col text-xxs">
+                          <span className="flex flex-col text-xxs" aria-hidden="true">
                             <span>▲</span>
                             <span>▼</span>
                           </span>
                         ),
-                        asc: <span className="text-xs">▲</span>,
-                        desc: <span className="text-xs">▼</span>,
+                        asc: <span className="text-xs" aria-hidden="true">▲</span>,
+                        desc: <span className="text-xs" aria-hidden="true">▼</span>,
                       }[header.column.getIsSorted() as string || 'clear']}
                     </span>
                   </button>
@@ -140,7 +146,7 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText,
   }
 
   return (
-    <Table className={`${largerText ? 'govuk-table' : 'govuk-!-font-size-16'}`} data-type="data">
+    <Table className={`${largerText ? 'govuk-table' : 'govuk-!-font-size-16'}`} data-type="data" aria-label={ariaLabel} tabIndex={focusable ? 0 : undefined}>
       <TableHead className={clsx({
         'sticky top-0 bg-white': stickyHeader,
       })}

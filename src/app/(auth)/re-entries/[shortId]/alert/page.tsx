@@ -1,12 +1,12 @@
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import { getReentryEvent } from '@/actions/getReentryEvent';
 import { getSession } from '@/actions/getSession';
 import { ReentryAlertPage } from '@/components/re-entry-alert/ReentryAlertPage';
 import NotificationBanner from '@/ui/notification-banner/notification-banner';
-import { isAgencyApproverOrSuperuser, isSatteliteUser } from '@/utils/Roles';
+import { isAgencyApproverOrSuperuser, isAgencyUser } from '@/utils/Roles';
 
 type PageProps = {
   params: Promise<{ shortId: string }>;
@@ -31,8 +31,8 @@ export default async function ReentryAlert({
   const role = session?.user.role;
   const { shortId } = await params;
 
-  if (isSatteliteUser(role)) {
-    return notFound();
+  if (!isAgencyUser(role)) {
+    return redirect(`/re-entries/${shortId}`);
   }
 
   return (

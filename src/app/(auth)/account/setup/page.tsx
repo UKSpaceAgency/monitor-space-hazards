@@ -1,14 +1,10 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 
 import { getUsersMe } from '@/actions/getUsersMe';
 import { auth } from '@/auth';
-import Button from '@/ui/button/button';
-import ButtonGroup from '@/ui/button-group/button-group';
-import NotificationBanner from '@/ui/notification-banner/notification-banner';
+import { SetupNotificationBanner } from '@/components/account/setup/SetupNotificationBanner';
 import TaskList from '@/ui/task-list/task-list';
-import { isAdmin } from '@/utils/Roles';
 
 export const metadata: Metadata = {
   title: 'Set up your account',
@@ -22,36 +18,7 @@ export default async function SetupPage() {
 
   return (
     <div>
-      <NotificationBanner status={isCompleted ? 'success' : 'important'}>
-        <h3 className="govuk-notification-banner__heading">
-          {t(isCompleted ? 'notification.completed' : 'notification.uncompleted')}
-        </h3>
-        {isCompleted && (
-          <ButtonGroup>
-            <Link href="/account">
-              <Button>
-                {t('notification.view_account_settings')}
-              </Button>
-            </Link>
-            {!isAdmin(session.user.role) && (
-              <Link href="/">
-                <Button className="govuk-button--secondary">
-                  {t('notification.view_home')}
-                </Button>
-              </Link>
-            )}
-            {isAdmin(session.user.role) && (
-              <Link
-                href="/account/add-new-user"
-              >
-                <Button className="govuk-button--secondary">
-                  {t('notification.add_users')}
-                </Button>
-              </Link>
-            )}
-          </ButtonGroup>
-        )}
-      </NotificationBanner>
+      <SetupNotificationBanner session={session} viewAccountSettingsText={t('notification.view_account_settings')} viewHomeText={t('notification.view_home')} addUsersText={t('notification.add_users')} notificationsLabel={t(isCompleted ? 'notification.completed' : 'notification.uncompleted')} />
       <div className="govuk-grid-row">
         <div className="govuk-grid-column-two-thirds">
           <h1 className="govuk-heading-xl">{t('title')}</h1>

@@ -1,42 +1,43 @@
 import { useTranslations } from 'next-intl';
 import type { ChangeEvent } from 'react';
 
-import Label from '@/ui/label/label';
 import Radios from '@/ui/radios/radios';
 
-export type MapType = 'light-v11' | 'satellite-streets-v12' | 'streets-v12';
+import { MapTypes } from './utils';
 
 type ReentryAlertMapTypeProps = {
-  value: MapType;
-  onChange: (value: MapType) => void;
+  value: MapTypes;
+  onChange: (value: MapTypes) => void;
 };
 
 const ReentryAlertMapType = ({ value, onChange }: ReentryAlertMapTypeProps) => {
   const t = useTranslations('OverflightMap');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    onChange(e.target.value as MapType);
+    onChange(e.target.value as MapTypes);
   };
 
   return (
-    <div>
-      <Label className="font-bold">{t('map_type')}</Label>
-      <Radios
-        small
-        value={value}
-        items={[{
-          children: 'Street',
-          value: 'streets-v12',
-        }, {
-          children: 'Map',
-          value: 'light-v11',
-        }, {
-          children: 'Satellite',
-          value: 'satellite-streets-v12',
-        }]}
-        onChange={handleChange}
-      />
-    </div>
+    <Radios
+      small
+      id="map_type"
+      legend={<h4>{t('map_type')}</h4>}
+      value={value}
+      items={[{
+        id: 'street',
+        children: 'Street',
+        value: MapTypes.streets,
+      }, {
+        id: 'map-type',
+        children: 'Map',
+        value: MapTypes.light,
+      }, {
+        id: 'satellite',
+        children: 'Satellite',
+        value: MapTypes.satellite,
+      }]}
+      onChange={handleChange}
+    />
   );
 };
 

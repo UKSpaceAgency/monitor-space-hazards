@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
@@ -8,7 +10,7 @@ import CookieBanner from '../cookie-banner/cookie-banner';
 export function Cookies() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [cookieConsent, setCookieConsent] = useState<
-  'granted' | 'denied' | undefined
+    'granted' | 'denied' | undefined
   >();
 
   useEffect(() => {
@@ -38,12 +40,14 @@ export function Cookies() {
             {
               actions: [
                 {
-                  children: 'Yes, I\'m OK with analytics cookies',
-                  onClick: () => setCookieConsent('granted'),
+                  'children': 'Yes, I\'m OK with analytics cookies',
+                  'onClick': () => setCookieConsent('granted'),
+                  'aria-label': 'Yes, I\'m OK with analytics cookie',
                 },
                 {
-                  children: 'No, do not use analytics cookies',
-                  onClick: () => setCookieConsent('denied'),
+                  'children': 'No, do not use analytics cookies',
+                  'onClick': () => setCookieConsent('denied'),
+                  'aria-label': 'No, do not use analytics cookies',
                 },
               ],
               children: [
@@ -63,29 +67,31 @@ export function Cookies() {
                 </p>,
               ],
               visible: cookieConsent === null,
-              heading: 'Can we use cookies in our services?',
+              heading: 'Cookies on Monitor Space Hazards',
             },
             {
               actions: [
                 {
-                  children: 'Hide this message',
-                  onClick: closeConsentForm,
+                  'children': 'Hide cookie message',
+                  'onClick': closeConsentForm,
+                  'aria-label': 'Hide cookie message',
                 },
               ],
               children:
-            'Your cookie preferences have been saved. You have accepted cookies.',
+              <p className="govuk-body">Your cookie preferences have been saved. You have accepted cookies.</p>,
               visible: cookieConsent === 'granted',
               role: 'alert',
             },
             {
               actions: [
                 {
-                  children: 'Hide this message',
-                  onClick: closeConsentForm,
+                  'children': 'Hide cookie message',
+                  'onClick': closeConsentForm,
+                  'aria-label': 'Hide cookie message',
                 },
               ],
               children:
-            'Your cookie preferences have been saved. You have rejected cookies.',
+              <p className="govuk-body">Your cookie preferences have been saved. You have rejected cookies.</p>,
               visible: cookieConsent === 'denied',
               role: 'alert',
             },

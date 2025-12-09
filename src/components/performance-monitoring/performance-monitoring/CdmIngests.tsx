@@ -29,10 +29,10 @@ const CdmIngests = async () => {
 
   return (
     <>
-      <DataPerformanceChart latestIngestDate={latestIngestDate} sourceType="CDM" xAxisTitle={t('x_axis_title')} legend={t('legend')} />
-      <DataPerformanceDataTable params={params} />
-      <DownloadData type={t('title')} params={params} downloadAction={getExternalDataPerformance} />
-      <Details summary={t('details.title')}>
+      <DataPerformanceChart latestIngestDate={latestIngestDate} sourceType="CDM" xAxisTitle={t('x_axis_title')} yAxisTitle={t('y_axis_title')} legend={t('legend')} ariaLabel="Conjunction Data Message" />
+      <DataPerformanceDataTable params={params} ariaLabel="Information on CDM Ingests" />
+      <DownloadData type={t('title')} params={params} downloadAction={getExternalDataPerformance} ariaLabel="Cdm Ingest" />
+      <Details summary={t.rich('details.title')}>
         {t.rich('details.content')}
       </Details>
     </>

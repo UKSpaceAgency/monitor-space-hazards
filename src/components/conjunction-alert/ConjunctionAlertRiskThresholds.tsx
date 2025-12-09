@@ -16,11 +16,10 @@ const ConjunctionAlertRiskThresholds = ({ dataPdf }: ConjunctionAlertRiskThresho
       <Table>
         <TableHead>
           <TableRow className="govuk-body-s">
-            <TableCellHeader className="w-1/3" />
-            <TableCellHeader colSpan={3}>{t('probability_of_collision.title')}</TableCellHeader>
+            <TableCellHeader colSpan={4}>{t('probability_of_collision.title')}</TableCellHeader>
           </TableRow>
           <TableRow className="govuk-body-s">
-            <TableCellHeader>{t('probability_of_collision.title')}</TableCellHeader>
+            <TableCellHeader>{t('predicted_conjunctions.title')}</TableCellHeader>
             <TableCellHeader>{t('probability_of_collision.low')}</TableCellHeader>
             <TableCellHeader>{t('probability_of_collision.medium')}</TableCellHeader>
             <TableCellHeader>{t('probability_of_collision.high')}</TableCellHeader>

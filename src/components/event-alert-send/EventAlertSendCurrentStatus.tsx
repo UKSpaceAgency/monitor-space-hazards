@@ -10,7 +10,7 @@ import type { EventAlertData, EventAlertType } from './EventAlertTypes';
 
 type EventAlertSendCurrentStatusProps = {
   type: EventAlertType;
-  detailsSummary: string;
+  detailsSummary: ReactNode;
   detailsContent: ReactNode;
   data: EventAlertData;
 };
@@ -18,7 +18,7 @@ type EventAlertSendCurrentStatusProps = {
 const EventAlertSendCurrentStatus = ({ type, detailsSummary, detailsContent, data }: EventAlertSendCurrentStatusProps) => {
   const t = useTranslations('Forms.Send_alert.Distribution_status');
 
-  const { isPriority, additionalRecipients } = data;
+  const { isPriority, isStandard, isUkSatellitesOnly, additionalRecipients } = data;
 
   return (
     <div>
@@ -37,29 +37,29 @@ const EventAlertSendCurrentStatus = ({ type, detailsSummary, detailsContent, dat
         </TableHead>
         <TableBody>
           <TableRow>
-            <TableCellHeader className="indent-10">
+            <TableCellHeader className="pl-10">
               {t('all_alerts', { type })}
             </TableCellHeader>
             <TableCell>
-              <Tag className="max-w-none">{t('sent_to_distribution_list')}</Tag>
+              {isStandard ? <Tag className="max-w-none">{t('sent_to_distribution_list')}</Tag> : <Tag color="grey" className="max-w-none">{t('not_sent_to_distribution_list')}</Tag>}
             </TableCell>
           </TableRow>
           {type === 're-entry' && (
             <TableRow>
-              <TableCellHeader className="indent-10">
+              <TableCellHeader className="pl-10">
                 {t('alert_for_uk', { type: capitalized(type) })}
               </TableCellHeader>
               <TableCell>
-                <Tag className="max-w-none">{t('sent_to_distribution_list')}</Tag>
+                {isUkSatellitesOnly ? <Tag className="max-w-none">{t('sent_to_distribution_list')}</Tag> : <Tag color="grey" className="max-w-none">{t('not_sent_to_distribution_list')}</Tag>}
               </TableCell>
             </TableRow>
           )}
           <TableRow>
-            <TableCellHeader className="indent-10">
+            <TableCellHeader className="pl-10">
               {t('priority_alert', { type })}
             </TableCellHeader>
             <TableCell>
-              {isPriority ? <Tag className="max-w-none">{t('sent_to_distribution_list')}</Tag> : <Tag color="grey" className="max-w-none">{t('not_sent to distribution list')}</Tag>}
+              {isPriority ? <Tag className="max-w-none">{t('sent_to_distribution_list')}</Tag> : <Tag color="grey" className="max-w-none">{t('not_sent_to_distribution_list')}</Tag>}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -68,7 +68,7 @@ const EventAlertSendCurrentStatus = ({ type, detailsSummary, detailsContent, dat
             </TableCellHeader>
           </TableRow>
           <TableRow>
-            <TableCellHeader className="indent-10">
+            <TableCellHeader className="pl-10">
               {t('individually_selected_recipients')}
             </TableCellHeader>
             <TableCell>

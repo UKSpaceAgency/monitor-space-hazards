@@ -17,6 +17,7 @@ const AdditionalInformationsTable = async ({ object, headerCellWidth }: Addition
   const headers = Array.isArray(object)
     ? [{
         className: 'w-1/3',
+        children: <div className="hidden">{t('Objects.description')}</div>,
       }, {
         className: 'w-1/3',
         children: t('Objects.primary'),
@@ -35,15 +36,15 @@ const AdditionalInformationsTable = async ({ object, headerCellWidth }: Addition
   }, {
     header: t('Additional.cross_section_avg'),
     accessorKey: 'crossSectionAvg',
-    renderCell: row => row.crossSectionAvg?.toFixed(3),
+    renderCell: row => row.crossSectionAvg?.toFixed(3) ?? '-',
   }, {
     header: t('Additional.cross_section_max'),
     accessorKey: 'crossSectionMax',
-    renderCell: row => row.crossSectionMax?.toFixed(3),
+    renderCell: row => row.crossSectionMax?.toFixed(3) ?? '-',
   }, {
     header: t('Additional.cross_section_min'),
     accessorKey: 'crossSectionMin',
-    renderCell: row => row.crossSectionMin?.toFixed(3),
+    renderCell: row => row.crossSectionMin?.toFixed(3) ?? '-',
   }, {
     header: t('Additional.height'),
     accessorKey: 'height',

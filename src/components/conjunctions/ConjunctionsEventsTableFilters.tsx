@@ -5,7 +5,6 @@ import { useTranslations } from 'next-intl';
 import { useCallback } from 'react';
 
 import type { ConjunctionsPageSearchParams } from '@/app/(auth)/conjunctions/page';
-import Details from '@/ui/details/details';
 import Radios from '@/ui/radios/radios';
 import Select from '@/ui/select/select';
 
@@ -15,7 +14,7 @@ type ConjunctionsEventsTableFiltersProps = {
 };
 
 const ConjunctionsEventsTableFilters = ({ params, showFilterRadios }: ConjunctionsEventsTableFiltersProps) => {
-  const t = useTranslations('Tables');
+  const t = useTranslations('Tables.Conjunctions.details');
 
   const { replace } = useRouter();
   const pathname = usePathname();
@@ -37,23 +36,25 @@ const ConjunctionsEventsTableFilters = ({ params, showFilterRadios }: Conjunctio
   );
 
   return (
-    <Details id="applySummary" summary={t('Conjunctions.details.summary')}>
-      {showFilterRadios && (
-        <>
+    <div>
+      <h4 className="govuk-heading-s mb-0">{t.rich('summary')}</h4>
+      <div className="flex flex-col md:flex-row gap-4 justify-between md:items-center border-b border-midGrey mb-4">
+        {showFilterRadios && (
           <Radios
             inline
+            aria-label="View events"
             items={[
               {
-                id: 'viewAll',
-                children: t('Conjunctions.details.option1'),
+                id: 'view_all',
+                children: t('option1'),
                 value: 'all',
                 name: 'report',
                 checked: params.report !== 'present',
                 onChange: handleRefreshParams,
               },
               {
-                id: 'viewOnly',
-                children: t('Conjunctions.details.option2'),
+                id: 'view_only',
+                children: t('option2'),
                 value: 'present',
                 name: 'report',
                 checked: params.report === 'present',
@@ -61,33 +62,32 @@ const ConjunctionsEventsTableFilters = ({ params, showFilterRadios }: Conjunctio
               },
             ]}
             id="hasReport"
+            className="m-0"
           />
-          <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
-        </>
-      )}
-      <Select
-        name="epoch"
-        id="epoch"
-        className="w-1/4"
-        label={t('Conjunctions.details.select_label')}
-        value={params.epoch ?? 'future'}
-        options={[
-          {
-            children: t('Conjunctions.details.all'),
-            value: 'all',
-          },
-          {
-            children: t('Conjunctions.details.upcoming'),
-            value: 'future',
-          },
-          {
-            children: t('Conjunctions.details.past'),
-            value: 'past',
-          },
-        ]}
-        onChange={handleRefreshParams}
-      />
-    </Details>
+        )}
+        <Select
+          name="epoch"
+          id="epoch"
+          label={t('select_label')}
+          value={params.epoch ?? 'future'}
+          options={[
+            {
+              children: t('all'),
+              value: 'all',
+            },
+            {
+              children: t('upcoming'),
+              value: 'future',
+            },
+            {
+              children: t('past'),
+              value: 'past',
+            },
+          ]}
+          onChange={handleRefreshParams}
+        />
+      </div>
+    </div>
   );
 };
 

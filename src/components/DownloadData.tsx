@@ -12,9 +12,10 @@ type DownloadDataProps<T extends object> = {
   type?: string;
   params: T;
   downloadAction: (params: T) => Promise<unknown>;
+  ariaLabel?: string;
 };
 
-const DownloadData = <T extends object>({ type = 'this table', params, downloadAction, ...rest }: DownloadDataProps<T>) => {
+const DownloadData = <T extends object>({ type = 'this table', params, downloadAction, ariaLabel, ...rest }: DownloadDataProps<T>) => {
   const t = useTranslations('Tables.Download');
   const [fetching, setFetching] = useState(false);
 
@@ -49,9 +50,9 @@ const DownloadData = <T extends object>({ type = 'this table', params, downloadA
               {t('text', { type })}
               {' '}
               [
-              <Tooltip label={t('json')}><button type="button" className="govuk-link text-blue" onClick={() => handleDownload('json')}>JSON</button></Tooltip>
+              <Tooltip label={t('json')}><button type="button" className="govuk-link text-blue" aria-label={`${ariaLabel} json download`} onClick={() => handleDownload('json')}>JSON</button></Tooltip>
               ] [
-              <Tooltip label={t('csv')}><button type="button" className="govuk-link text-blue" onClick={() => handleDownload('csv')}>CSV</button></Tooltip>
+              <Tooltip label={t('csv')}><button type="button" className="govuk-link text-blue" aria-label={`${ariaLabel} csv download`} onClick={() => handleDownload('csv')}>CSV</button></Tooltip>
               ]
             </>
           )}

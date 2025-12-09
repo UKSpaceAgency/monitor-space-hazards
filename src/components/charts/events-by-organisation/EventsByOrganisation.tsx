@@ -28,7 +28,7 @@ export function EventsByOrganizationChart({
               data.length > 0
                 ? [data[0]?.low ?? 0, data[0]?.medium ?? 0, data[0]?.high ?? 0]
                 : [],
-            backgroundColor: [chartPalette.darkBlue, chartPalette.midBlue, chartPalette.brightBlue],
+            backgroundColor: [chartPalette.nspocBlue, chartPalette.nspocRed, chartPalette.nspocYellow],
             borderWidth: 0,
           },
         ],
@@ -39,20 +39,20 @@ export function EventsByOrganizationChart({
           {
             label: t('<1e-5'),
             data: data.map(({ low }) => low ?? 0),
-            borderColor: chartPalette.darkBlue,
-            backgroundColor: chartPalette.darkBlue,
+            borderColor: chartPalette.nspocBlue,
+            backgroundColor: chartPalette.nspocBlue,
           },
           {
             label: t('<1e-3_and_>1e-5'),
             data: data.map(({ medium }) => medium ?? 0),
-            borderColor: chartPalette.midBlue,
-            backgroundColor: chartPalette.midBlue,
+            borderColor: chartPalette.nspocRed,
+            backgroundColor: chartPalette.nspocRed,
           },
           {
             label: t('>1e-3'),
             data: data.map(({ high }) => high ?? 0),
-            borderColor: chartPalette.brightBlue,
-            backgroundColor: chartPalette.brightBlue,
+            borderColor: chartPalette.nspocYellow,
+            backgroundColor: chartPalette.nspocYellow,
           },
         ],
       };
@@ -71,8 +71,10 @@ export function EventsByOrganizationChart({
   return (
     <BaseBar
       yAxisTitle={t('y_axis')}
+      xAxisTitle={t('x_axis')}
       title={title}
       data={datasets}
+      ariaLabel="Conjunction events by organisation"
       actionButtons={actionButtons}
       showTotal={!isSingle}
       showLegend={!isSingle}

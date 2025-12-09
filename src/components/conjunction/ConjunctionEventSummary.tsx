@@ -2,10 +2,8 @@ import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 
 import type { TypeEventSummaryOut, TypeSatelliteOut } from '@/__generated__/data-contracts';
-import { getUsersMe } from '@/actions/getUsersMe';
 import Button from '@/ui/button/button';
 import Details from '@/ui/details/details';
-import { isAgencyApprover } from '@/utils/Roles';
 
 import { ConjunctionEventSummaryTableInformationsTable } from './tables/ConjunctionEventSummaryTable';
 
@@ -28,8 +26,8 @@ const ConjunctionEventSummary = async ({
 }: ConjunctionEventSummaryProps) => {
   const t = await getTranslations('Tables.Conjunction');
 
-  const user = await getUsersMe();
-  const isUserAnalysist = isAgencyApprover(user.role);
+  // const user = await getUsersMe();
+  // const isUserAnalysist = isAgencyApprover(user.role);
 
   return (
     <>
@@ -67,19 +65,20 @@ const ConjunctionEventSummary = async ({
           </li>
         </ul>
         <ConjunctionEventSummaryTableInformationsTable data={uksa ? [spacetrack, uksa] : spacetrack} />
-        <Details summary={t('information_on_calculations.title')} data-pdf-ignore>
+        <Details summary={t.rich('information_on_calculations.title')} data-pdf-ignore>
           {t.rich('information_on_calculations.content')}
         </Details>
       </div>
       <div className="govuk-button-group">
-        {isUserAnalysist && (
+        {/* {isUserAnalysist && (
           <Link
             href={`/conjunctions/${shortId}/analysis-upload`}
           >
             <Button>{t('upload_analysis')}</Button>
           </Link>
-        )}
-        <Link
+        )} */}
+        <Button
+          as="link"
           href={{
             pathname: '/contact-analyst',
             query: {
@@ -87,11 +86,10 @@ const ConjunctionEventSummary = async ({
               callback: `/conjunctions/${shortId}`,
             },
           }}
+          aria-label={t('contact_analyst')}
         >
-          <Button className="govuk-button--secondary">
-            {t('contact_analyst')}
-          </Button>
-        </Link>
+          {t('contact_analyst')}
+        </Button>
       </div>
     </>
   );

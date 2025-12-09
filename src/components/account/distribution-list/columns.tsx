@@ -36,7 +36,7 @@ export const distributionListColumns: TranslatedColumnDef<TypeAlertSettingsDistr
     id: 'user_id',
     accessorKey: `user_id`,
     enableSorting: false,
-    header: () => <span style={{ visibility: 'hidden' }}></span>,
+    header: () => <span style={{ visibility: 'hidden' }}>Edit</span>,
     cell: ({ getValue }) => (
       <Link
         href={`/account/alert-settings/${getValue<string>()}`}

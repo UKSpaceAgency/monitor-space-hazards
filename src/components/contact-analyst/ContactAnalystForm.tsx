@@ -28,6 +28,7 @@ const ContactAnalystForm = ({ searchParams }: ContactAnalystFormProps) => {
   const { register, handleSubmit, formState: { errors } } = useForm<ContactAnalystSchema>({
     defaultValues: contactAnalystFormDefaultValues,
     resolver: zodResolver(contactAnalyst),
+    reValidateMode: 'onSubmit',
   });
 
   const onSubmit: SubmitHandler<ContactAnalystSchema> = async ({ messageContent }) => {
@@ -41,13 +42,15 @@ const ContactAnalystForm = ({ searchParams }: ContactAnalystFormProps) => {
     <form
       onSubmit={handleSubmit(onSubmit)}
     >
-      <FormErrorSummary i18path="Contact_analyst" errors={errors} />
+      <FormErrorSummary errors={errors} />
       <TextArea
         {...register('messageContent')}
         id="message"
         error={errors.messageContent?.message}
+        required
+        aria-label="Message Content"
       />
-      <Button type="submit">{t('submit')}</Button>
+      <Button type="submit" aria-label={t('submit')}>{t('submit')}</Button>
     </form>
   );
 };

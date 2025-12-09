@@ -6,8 +6,8 @@ import { useMemo, useState } from 'react';
 import type { StatsMonthlyOrganizationsType } from '@/actions/getStatsMonthlyOrganizations';
 import ToggleButtons from '@/ui/toggle-buttons/toggle-buttons';
 
+import BaseChart from '../base/BaseChart';
 import { chartPalette } from '../base/theme';
-import BaseBar from '../base-bar/BaseBar';
 
 type OrganisationsAndUsersProps = {
   data: StatsMonthlyOrganizationsType[];
@@ -15,21 +15,27 @@ type OrganisationsAndUsersProps = {
 
 const OrganisationsAndUsersChart = ({ data }: OrganisationsAndUsersProps) => {
   const t = useTranslations('Charts.Organisations_and_users');
-  const [showMonths, setShowMonths] = useState(0);
+
+  const [showMonths, setShowMonths] = useState(13);
+
+  const sliderData = data.slice(0, showMonths);
 
   const actionButtons = (
     <ToggleButtons
       name="organisations-and-users-data-range"
+      ariaLabel="Organisations and users"
       items={[
         {
+          id: '12_months',
           title: t('12_months'),
           ariaLabel: t('12_months'),
-          value: 12,
+          value: 13,
         },
         {
+          id: 'all_time',
           title: t('all_time'),
           ariaLabel: t('all_time'),
-          value: 0,
+          value: -1,
         },
       ]}
       active={showMonths}
@@ -39,33 +45,42 @@ const OrganisationsAndUsersChart = ({ data }: OrganisationsAndUsersProps) => {
   );
 
   const datasets = useMemo(() => {
-    const slicedData = data.slice(-showMonths);
     return {
-      labels: slicedData.map(({ month }) => month),
       datasets: [
         {
           label: t('users'),
-          data: slicedData.map(({ users }) => users),
-          borderColor: chartPalette.orange,
-          backgroundColor: chartPalette.orange,
+          data: sliderData.map(({ month, users }) => ({
+            x: month.getTime(),
+            y: users,
+          })),
+          borderColor: chartPalette.nspocBlue,
+          backgroundColor: chartPalette.nspocBlue,
         },
         {
           label: t('organisations'),
-          data: slicedData.map(({ organisations }) => organisations),
-          borderColor: chartPalette.darkBlue,
-          backgroundColor: chartPalette.darkBlue,
+          data: sliderData.map(({ month, organisations }) => ({
+            x: month.getTime(),
+            y: organisations,
+          })),
+          borderColor: chartPalette.nspocRed,
+          backgroundColor: chartPalette.nspocRed,
         },
       ],
     };
-  }, [data, showMonths, t]);
+  }, [t, sliderData]);
 
   return (
-    <BaseBar
+    <BaseChart
+      data={datasets}
+      name="organisations-and-users-chart"
       actionButtons={actionButtons}
       yAxisTitle={t('y_axis_title')}
-      data={datasets}
-      stacked={false}
+      xAxisTitle={t('x_axis_title')}
       showLegend
+      ariaLabel="Organisations and users"
+      legend={{
+        title: t('legend_title'),
+      }}
     />
   );
 };

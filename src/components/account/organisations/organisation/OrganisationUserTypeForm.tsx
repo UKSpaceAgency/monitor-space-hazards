@@ -1,7 +1,6 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 
@@ -28,6 +27,7 @@ const OrganisationUserTypeForm = ({ user }: OrganisationUserTypeFormProps) => {
   const { handleSubmit, register, reset, formState: { errors, isSubmitSuccessful } } = useForm({
     defaultValues: { role: user.role ?? 'AGENCY_USER' },
     resolver: zodResolver(roleUserSchema),
+    reValidateMode: 'onSubmit',
   });
 
   const onSubmit = async (data: RoleUserSchema) => {
@@ -39,19 +39,18 @@ const OrganisationUserTypeForm = ({ user }: OrganisationUserTypeFormProps) => {
     return (
       <div>
         <NotificationBanner status="success">
-          <h3 className="govuk-notification-banner__heading">
+          <p className="govuk-notification-banner__heading">
             {t('success')}
-          </h3>
+          </p>
         </NotificationBanner>
-        <Link
+        <Button
+          as="link"
           href={`/account/organisations/${user.organizationId}/${user.id}`}
+          className="govuk-button--secondary"
+          aria-label={tCommon('return', { to: 'user account details' })}
         >
-          <Button
-            className="govuk-button--secondary"
-          >
-            {tCommon('return', { to: 'user account details' })}
-          </Button>
-        </Link>
+          {tCommon('return', { to: 'user account details' })}
+        </Button>
       </div>
     );
   }
@@ -60,30 +59,32 @@ const OrganisationUserTypeForm = ({ user }: OrganisationUserTypeFormProps) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Radios
         id="role"
+        aria-label="Role"
+        required
         hint={t('role_hint')}
         error={errors.role?.message}
         items={Object.entries(AccountType).map(([key, value]) => ({
+          id: 'role',
           value: key,
           children: value,
           ...register('role'),
         }))}
       />
-      <Details summary={t('role_help.title')}>
+      <Details summary={t.rich('role_help.title')}>
         <RichText>
           {tags => t.rich('role_help.content', tags)}
         </RichText>
       </Details>
       <ButtonGroup>
-        <Link
+        <Button
+          as="link"
           href={`/account/organisations/${user.organizationId}/${user.id}`}
+          className="govuk-button--secondary"
+          aria-label={t('back')}
         >
-          <Button
-            className="govuk-button--secondary"
-          >
-            {t('back')}
-          </Button>
-        </Link>
-        <Button type="submit">{t('save')}</Button>
+          {t('back')}
+        </Button>
+        <Button type="submit" aria-label={t('save')}>{t('save')}</Button>
       </ButtonGroup>
     </form>
   );

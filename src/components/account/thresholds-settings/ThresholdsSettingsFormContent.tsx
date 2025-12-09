@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import type { FieldErrors, UseFormRegister } from 'react-hook-form';
 
@@ -33,27 +32,25 @@ const ThresholdsSettingsFormContent = ({ isSubmitting, register, errors }: Thres
         <TableBody>
           <TableRow>
             <TableCell className="align-center"><Label className="font-bold mb-0" htmlFor="poc_field">{t('PROBABILITY_OF_COLLISION')}</Label></TableCell>
-            <TableCell><Input id="poc_field" {...register('PROBABILITY_OF_COLLISION', { valueAsNumber: true })} className="mb-0" type="number" suffix="%" step={0.001} error={errors.PROBABILITY_OF_COLLISION?.message} /></TableCell>
+            <TableCell><Input id="poc_field" {...register('PROBABILITY_OF_COLLISION', { valueAsNumber: true })} required className="mb-0" type="number" suffix="%" step={0.0000001} error={errors.PROBABILITY_OF_COLLISION?.message} aria-label={t('PROBABILITY_OF_COLLISION')} /></TableCell>
           </TableRow>
           <TableRow>
             <TableCell className="align-center"><Label className="font-bold mb-0" htmlFor="total_miss_distance">{t('TOTAL_MISS_DISTANCE')}</Label></TableCell>
-            <TableCell><Input id="total_miss_distance" {...register('TOTAL_MISS_DISTANCE', { valueAsNumber: true })} className="mb-0" type="number" suffix="m" error={errors.TOTAL_MISS_DISTANCE?.message} /></TableCell>
+            <TableCell><Input id="total_miss_distance" {...register('TOTAL_MISS_DISTANCE', { valueAsNumber: true })} required className="mb-0" type="number" suffix="m" error={errors.TOTAL_MISS_DISTANCE?.message} aria-label={t('TOTAL_MISS_DISTANCE')} /></TableCell>
           </TableRow>
           <TableRow>
             <TableCell className="align-center"><Label className="font-bold mb-0" htmlFor="total_radial_distance">{t('MEAN_RADIAL_MISS_DISTANCE')}</Label></TableCell>
-            <TableCell><Input id="total_radial_distance" {...register('MEAN_RADIAL_MISS_DISTANCE', { valueAsNumber: true })} className="mb-0" type="number" suffix="m" error={errors.MEAN_RADIAL_MISS_DISTANCE?.message} /></TableCell>
+            <TableCell><Input id="total_radial_distance" {...register('MEAN_RADIAL_MISS_DISTANCE', { valueAsNumber: true })} required className="mb-0" type="number" suffix="m" error={errors.MEAN_RADIAL_MISS_DISTANCE?.message} aria-label={t('MEAN_RADIAL_MISS_DISTANCE')} /></TableCell>
           </TableRow>
           <TableRow>
             <TableCell className="align-center"><Label className="font-bold mb-0" htmlFor="time_to_conjunction">{t('TIME_TO_EVENT')}</Label></TableCell>
-            <TableCell><Input id="time_to_conjunction" {...register('TIME_TO_EVENT', { valueAsNumber: true })} className="mb-0" type="number" suffix="hours" error={errors.TIME_TO_EVENT?.message} /></TableCell>
+            <TableCell><Input id="time_to_conjunction" {...register('TIME_TO_EVENT', { valueAsNumber: true })} required className="mb-0" type="number" suffix="hours" error={errors.TIME_TO_EVENT?.message} aria-label={t('TIME_TO_EVENT')} /></TableCell>
           </TableRow>
         </TableBody>
       </Table>
       <ButtonGroup>
-        <Button type="submit" disabled={isSubmitting}>{tCommon('save_and_continue')}</Button>
-        <Link href="/account">
-          <Button variant="secondary">{tCommon('return', { to: 'Account' })}</Button>
-        </Link>
+        <Button type="submit" disabled={isSubmitting} aria-label={tCommon('save_and_continue')}>{tCommon('save_and_continue')}</Button>
+        <Button as="link" href="/account" variant="secondary" aria-label={tCommon('return', { to: 'Account' })}>{tCommon('return', { to: 'Account' })}</Button>
       </ButtonGroup>
     </div>
   );

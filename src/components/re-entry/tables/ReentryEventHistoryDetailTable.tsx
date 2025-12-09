@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import type { TypeTIPOut } from '@/__generated__/data-contracts';
 import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
-import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 
 type EventSummaryData = Pick<TypeTIPOut, 'externalId' | 'decayEpoch' | 'uncertaintyWindow' | 'direction' | 'latitude' | 'longitude' | 'inclination' | 'interest' | 'updatedAt'>;
 
@@ -23,7 +23,7 @@ const ReentryEventHistoryDetailTable = ({ row }: ReentryEventHistoryDetailTableP
   }, {
     header: t('predicted_reentry_time'),
     accessorKey: 'decayEpoch',
-    renderCell: row => dayjs(row.decayEpoch).format(FORMAT_DATE_TIME),
+    renderCell: row => dayjs(row.decayEpoch).format(FORMAT_FULL_DATE_TIME),
   }, {
     header: t('uncertainty_window'),
     accessorKey: 'uncertaintyWindow',
