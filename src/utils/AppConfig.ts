@@ -4,7 +4,7 @@ export const AppConfig = {
   defaultLocale: 'en',
   footerNavigation: [
     {
-      title: 'About',
+      title: 'About Monitor Space Hazards',
       items: [
         {
           children: 'Conjunction event analysis information',
@@ -18,11 +18,6 @@ export const AppConfig = {
         {
           children: 'Definitions',
           href: '/page/definitions',
-        },
-        {
-          children: 'Demonstration video',
-          href: 'https://www.youtube.com/watch?v=7xgaBjXGGNM',
-          target: '_blank',
         },
         {
           children: 'Performance monitoring',
@@ -65,28 +60,30 @@ export const AppConfig = {
           href: 'https://mys-tech-docs.onrender.com/ways-of-working/manage-ephemeris/manage-ephemeris.html',
           target: '_blank',
         },
+        {
+          children: 'Demonstration video',
+          href: 'https://www.youtube.com/watch?v=7xgaBjXGGNM',
+          target: '_blank',
+        },
       ],
     },
+  ],
+  footerLinks: [
     {
-      title: 'Legal terms',
-      items: [
-        {
-          children: 'Terms and conditions',
-          href: '/account/terms-and-conditions',
-        },
-        {
-          children: 'Data privacy notice',
-          href: '/data-privacy-notice',
-        },
-        {
-          children: 'Accessibility statement',
-          href: '/page/accessibility-statement',
-        },
-        {
-          children: 'Cookies',
-          href: '/cookies',
-        },
-      ],
+      children: 'Privacy',
+      href: '/data-privacy-notice',
+    },
+    {
+      children: 'Accessibility statement',
+      href: '/page/accessibility-statement',
+    },
+    {
+      children: 'Terms of use',
+      href: '/account/terms-and-conditions',
+    },
+    {
+      children: 'Cookies',
+      href: '/cookies',
     },
   ],
 };

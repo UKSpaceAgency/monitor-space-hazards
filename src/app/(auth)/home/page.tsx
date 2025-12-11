@@ -20,17 +20,12 @@ export default async function DashboardPage() {
 
   return (
     <div>
-      <div className="flex items-center mb-7">
-        <div className="flex-1">
-          <h1 className="govuk-heading-xl mb-0">{AppConfig.name}</h1>
-        </div>
-        <div>
+      <div className="-mt-5 md:-mt-10 mb-7 bg-[#D2E2F1] w-[100vw] left-1/2 right-1/2 relative -translate-x-1/2">
+        <div className="govuk-width-container py-10 flex flex-col gap-6">
           <Image src={nsocLogo} alt="National Space Operations Centre" width={180} height={81} priority />
+          <h1 className="govuk-heading-xl mb-0">{AppConfig.name}</h1>
+          <p className="govuk-body-l mb-0">{t('title')}</p>
         </div>
-      </div>
-      <div className="mb-12">
-        <h2 className="govuk-heading-m">{t('title')}</h2>
-        <p className="govuk-body mb-0">{t('content')}</p>
       </div>
       <div className="mb-8">
         <h3 className="govuk-heading-m">{t('services.key_services_title')}</h3>
