@@ -82,7 +82,7 @@ export const Map = ({ src, showLegend = true, ...props }: MapProps) => {
                   </table>
                 </td>
                 <td className="text-2xs">
-                  Chance fragments reach the ground
+                  Potential debris field
                 </td>
               </tr>
             </table>

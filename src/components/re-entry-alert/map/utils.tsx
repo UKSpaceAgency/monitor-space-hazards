@@ -35,7 +35,7 @@ export const RegionsGeoJson: Partial<Record<RegionsEnum, unknown>> = {
   ],
 };
 
-export const RegionColor = '#FFC000';
+export const RegionColor = '#FF0066';
 
 export const regionLayer = (region: string): FillLayerSpecification => ({
   id: region,
@@ -44,14 +44,14 @@ export const regionLayer = (region: string): FillLayerSpecification => ({
   paint: {
     'fill-color': RegionColor,
     'fill-outline-color': RegionColor,
-    'fill-opacity': 0.6,
+    'fill-opacity': 0.2,
   },
 });
 
 // here is flightpath color
 export const FlightpathColor = '#007CC8';
 export const FragmentColor = '#C00000';
-export const OverflightColor = '#92D050';
+export const OverflightColor = '#FFC000';
 
 export type OverflightType = 'FLIGHTPATH' | 'FRAGMENT' | string;
 
@@ -61,17 +61,32 @@ export const flightpathStyle = (index: number, visible: boolean): CircleLayerSpe
   source: `FLIGHTPATH-${index}`,
   paint: {
     'circle-color': index === 0 ? FlightpathColor : OverflightColor,
-    'circle-opacity': 0.2,
+    'circle-opacity': {
+      stops: [
+        [0, 0.5],
+        [2, 0.5],
+        [3, 0.5],
+        [4, 0.6],
+        [5, 0.6],
+        [7, 0.8],
+        [8, 0.8],
+        [10, 0.8],
+      ],
+    },
     'circle-blur': {
       stops: [
         [0, 1],
-        [5, 2],
+        [5, 1],
+        [10, 1],
       ],
     },
     'circle-radius': {
       stops: [
-        [0, 2],
-        [5, 10],
+        [0, 1],
+        [2, 2],
+        [3, 3],
+        [4, 4],
+        [5, 5],
       ],
     },
   },
@@ -87,17 +102,32 @@ export const fragmentsCircleStyle = (index: number, visible: boolean): CircleLay
   paint: {
     // Color changes based on the number of circles (fragments_number)
     'circle-color': FragmentColor,
-    'circle-opacity': 0.2,
+    'circle-opacity': {
+      stops: [
+        [0, 0.2],
+        [2, 0.2],
+        [3, 0.2],
+        [4, 0.2],
+        [5, 0.3],
+        [7, 0.3],
+        [8, 0.3],
+        [10, 0.3],
+      ],
+    },
     'circle-blur': {
       stops: [
-        [0, 1],
-        [5, 0.5],
+        [0, 2],
+        [5, 2.5],
+        [10, 3],
       ],
     },
     'circle-radius': {
       stops: [
-        [0, 2],
-        [5, 10],
+        [0, 1],
+        [2, 2],
+        [3, 4],
+        [4, 8],
+        [5, 16],
       ],
     },
   },
