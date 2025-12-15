@@ -39,7 +39,7 @@ export const ConjunctionEventDetails = ({ eventUrl, report, event, ...props }: C
 
   return (
     <Section {...props}>
-      <Table data={objectData} className="mb-4" forceAlignLeft />
+      <Table data={objectData} forceAlignLeft />
     </Section>
   );
 };

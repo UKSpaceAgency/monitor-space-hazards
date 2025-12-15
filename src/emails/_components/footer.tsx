@@ -24,7 +24,7 @@ export const Footer = ({ withPlaceholders, isNotification, isShort }: FooterProp
   const key = isShort ? 'content_short' : isNotification ? 'content_notification' : 'content';
 
   return (
-    <Section title={t('title')}>
+    <Section title={t('title')} className="pb-0">
       {t.rich(key, {
         p: chunks => <Text className="text-sm mt-0">{chunks}</Text>,
         nspocemail: chunks => <Link href="mailto:NSPOCincidents@ukspaceagency.gov.uk">{chunks}</Link>,

@@ -40,11 +40,11 @@ function FragmentationEmail({ event, report, screeningResults, withPlaceholders 
       withPlaceholders={withPlaceholders}
     >
       <Subheader risk={event.risk} />
-      <Section title={t('Fragmentation.event_summary_title')} className="!w-full mb-6">
-        <FragmentationEventSummary event={event} screeningResults={screeningResults} className="!w-full" />
+      <Section title={t('Fragmentation.event_summary_title')} className="!w-full">
+        <FragmentationEventSummary event={event} screeningResults={screeningResults} className="!w-full pb-4" />
         <Text className="mb-0">{t('utc_note')}</Text>
       </Section>
-      <Section title={t('Fragmentation.event_details_title')} className="!w-full mb-6">
+      <Section title={t('Fragmentation.event_details_title')} className="!w-full">
         {event.executive_summary_comment && (
           <>
             <Text className="text-sm mb-2 font-bold">{t('Fragmentation.Event_details.event_information')}</Text>
@@ -53,7 +53,7 @@ function FragmentationEmail({ event, report, screeningResults, withPlaceholders 
         )}
         <FragmentationEventDetails report={report} className="!w-full" />
       </Section>
-      <Section title={t('Fragmentation.Potential_impact_title')} className="!w-full mb-6">
+      <Section title={t('Fragmentation.Potential_impact_title')} className="!w-full">
         {event.spaceflight_risk_comment && (
           <>
             <Text className="text-sm mb-2 font-bold">{t('Fragmentation.Potential_impact.uk_risk')}</Text>

@@ -39,23 +39,23 @@ function ConjunctionEmail({ report, event, withPlaceholders }: ConjunctionEmailP
     >
       <Subheader risk={report.risk} />
       <Section title={t('Conjunction_alert.objects_title')}>
-        <ConjunctionObjects eventUrl={eventLink} event={event} report={report} className="pb-6" />
+        <ConjunctionObjects eventUrl={eventLink} event={event} report={report} />
       </Section>
       <Section title={t('Conjunction_alert.event_details_title')}>
         <ConjunctionEventSummary eventUrl={eventLink} event={event} report={report} className="pb-6" />
-        <Text>{t('utc_note')}</Text>
+        <Text className="pb-0 mb-0">{t('utc_note')}</Text>
       </Section>
       <Section title={t('Conjunction_alert.additional_event_details_title')}>
-        <ConjunctionAdditionalEventDetails report={report} className="pb-6" />
+        <ConjunctionAdditionalEventDetails report={report} />
       </Section>
       <Section title={t('Conjunction_alert.potential_impact_title')}>
-        <ConjunctionPotentialImpact report={report} event={event} className="pb-6" />
+        <ConjunctionPotentialImpact report={report} event={event} />
       </Section>
       <Section title={t('Conjunction_alert.additional_informations_title')}>
         <ConjunctionRecommendedActions report={report} event={event} />
         <ConjunctionPressAttention pressAttention={event.pressAttentionComment} />
+        <SignIn link={eventLink} />
       </Section>
-      <SignIn link={eventLink} />
     </Layout>
   );
 }
