@@ -71,19 +71,21 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
         {tReentryAlert.rich('Guidance_if_object_impacts_uk_interests.public_guidance_on_space_debris.content')}
       </div>
     ),
-  }, {
-    id: 'damages_liability_comment',
-    ariaLabel: tForm('type.damages_liability_comment'),
-    name: tForm('type.damages_liability_comment'),
-    defaultValue: event.damagesLiabilityComment,
-    type: 'text',
-    help: (
-      <div>
-        <p className="govuk-body">{tForm('hint')}</p>
-        {tReentryAlert.rich('Liability_for_damages.content', { licenseCountry: getFullCountry(event.licenseCountry) })}
-      </div>
-    ),
-  }, {
+  },
+  // {
+  //   id: 'damages_liability_comment',
+  //   ariaLabel: tForm('type.damages_liability_comment'),
+  //   name: tForm('type.damages_liability_comment'),
+  //   defaultValue: event.damagesLiabilityComment,
+  //   type: 'text',
+  //   help: (
+  //     <div>
+  //       <p className="govuk-body">{tForm('hint')}</p>
+  //       {tReentryAlert.rich('Liability_for_damages.content', { licenseCountry: getFullCountry(event.licenseCountry) })}
+  //     </div>
+  //   ),
+  // },
+  {
     id: 'press_attention_comment',
     ariaLabel: tForm('type.press_attention_comment'),
     name: tForm('type.press_attention_comment'),
