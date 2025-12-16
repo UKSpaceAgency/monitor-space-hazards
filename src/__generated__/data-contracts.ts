@@ -1329,6 +1329,18 @@ export type TypeExternalDataType =
   | "Conjunction Report"
   | "Fragmentation Report";
 
+/** FeedbackIn */
+export interface TypeFeedbackIn {
+  /**
+   * Satisfaction
+   * @min 1
+   * @max 5
+   */
+  satisfaction: number;
+  /** Details */
+  details: string;
+}
+
 /** FragmentationAlertSettings */
 export interface TypeFragmentationAlertSettings {
   /**
@@ -2389,7 +2401,7 @@ export type TypeReferenceFrame =
 export type TypeReportFlagSettings = "present" | "not_present" | "all";
 
 /** Risk */
-export type TypeRisk = "Low" | "Medium" | "High";
+export type TypeRisk = "Very low" | "Low" | "Medium" | "High";
 
 /** SatelliteObservationsData */
 export interface TypeSatelliteObservationsData {
@@ -2941,7 +2953,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2025-11-30T23:46:33.490045"
+   * @default "2025-12-16T09:39:56.237403"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -4046,7 +4058,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2025-12-01"
+   * @default "2026-01-01"
    */
   end_date?: string;
 }
@@ -4061,7 +4073,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2025-12-01"
+   * @default "2026-01-01"
    */
   end_date?: string;
 }
@@ -4076,7 +4088,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-12-01"
+   * @default "2026-01-01"
    */
   end_date?: string;
 }
@@ -4091,7 +4103,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-12-01"
+   * @default "2026-01-01"
    */
   end_date?: string;
 }
@@ -4106,7 +4118,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2025-12-01"
+   * @default "2026-01-01"
    */
   end_date?: string;
 }
@@ -4121,7 +4133,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2025-12-01"
+   * @default "2026-01-01"
    */
   end_date?: string;
 }
