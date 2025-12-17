@@ -2155,7 +2155,7 @@
   },
   "Fragmentations": {
     "title": "Track fragmentation events",
-    "section_title": "All fragmentation events (upcoming and past)",
+    "section_title": "All fragmentation events",
     "description": "This table contains all tracked tragmentation events, including fragmentation events that meet the UK Space Agency's thresholds for alerting UK government. For further detail on how risk and alert thresholds are defined, see 'Help with this table' below.",
     "search_bar": {
       "upcomingLabel": "Find a upcoming fragmentation event",
