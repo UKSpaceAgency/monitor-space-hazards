@@ -12,7 +12,6 @@ import { ReentryAlertImpactAirspaceAndMaritime } from './ReentryAlertImpactAirsp
 import { ReentryAlertImpactNation } from './ReentryAlertImpactNation';
 import { ReentryAlertImpactOverseas } from './ReentryAlertImpactOverseas';
 import { ReentryAlertImpactRegion } from './ReentryAlertImpactRegion';
-import { ReentryAlertLiabilityForDamages } from './ReentryAlertLiabilityForDamages';
 import { ReentryAlertPressAttention } from './ReentryAlertPressAttention';
 import { ReentryAlertRiskThresholds } from './ReentryAlertRiskThresholds';
 import { ReentryAlertAdditionalObjectDetailsTable } from './tables/ReentryAlertAdditionalObjectDetailsTable';
@@ -111,11 +110,11 @@ const ReentryAlertAccordion = ({
             heading: t('guidance_if_object_impacts_uk_interests'),
             content: <ReentryAlertGuidanceIfObjectImpactsUkInterests ukResponseComment={searchParams?.uk_response_comment ?? event.ukResponseComment} dataPdf={t('guidance_if_object_impacts_uk_interests')} />,
           },
-          {
-            id: 'liability_for_damages',
-            heading: t('liability_for_damages'),
-            content: <ReentryAlertLiabilityForDamages licenseCountry={event.licenseCountry} damagesLiabilityComment={searchParams?.damages_liability_comment ?? event.damagesLiabilityComment} dataPdf={t('liability_for_damages')} />,
-          },
+          // {
+          //   id: 'liability_for_damages',
+          //   heading: t('liability_for_damages'),
+          //   content: <ReentryAlertLiabilityForDamages licenseCountry={event.licenseCountry} damagesLiabilityComment={searchParams?.damages_liability_comment ?? event.damagesLiabilityComment} dataPdf={t('liability_for_damages')} />,
+          // },
           {
             id: 'press_attention',
             heading: t('press_attention'),

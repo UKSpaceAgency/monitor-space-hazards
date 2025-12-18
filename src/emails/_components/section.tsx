@@ -9,7 +9,7 @@ type SectionProps = {
 
 export const Section = ({ children, className, style, title }: SectionProps) => {
   return (
-    <EmailSection className={className} style={style}>
+    <EmailSection className={`${className} pb-8`} style={style}>
       <Heading className="text-base m-0">
         {title}
       </Heading>

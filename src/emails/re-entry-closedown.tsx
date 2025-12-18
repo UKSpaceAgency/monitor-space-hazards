@@ -42,11 +42,11 @@ function ReEntryClosedownEmail({ event, report, tip, withPlaceholders }: ReEntry
       <Subheader comment={event.closedComment} />
       <Section title={t('Reentry_alert.event_summary_title')}>
         <ReentryEventSummary event={event} tip={tip} showDirectionOfTravel className="pb-4" />
-        <Map src="{{WORLD_MAP.src}}" className="pb-4" width="580" />
+        <Map src="{{WORLD_MAP.src}}" width="580" />
       </Section>
       <Section title={t('Reentry_alert.regions_at_risk_title')}>
-        <ReentryAffectedRegions report={report} className="pb-4" />
-        <Text>{t('utc_note')}</Text>
+        <ReentryAffectedRegions report={report} />
+        <Text className="mb-0">{t('utc_note')}</Text>
       </Section>
       <Section title={t('Reentry_alert.additional_information_title')}>
         <ReentryEventInformationClosed event={event} />

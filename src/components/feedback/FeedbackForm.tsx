@@ -7,7 +7,7 @@ import { useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 
-import { env } from '@/libs/Env';
+import { postFeedback } from '@/actions/postFeedback';
 import Button from '@/ui/button/button';
 import Fieldset, { } from '@/ui/fieldset/fieldset';
 import Radios from '@/ui/radios/radios';
@@ -24,7 +24,6 @@ const FeedbackForm = () => {
   const router = useRouter();
 
   const { register, handleSubmit, formState: { errors }, setError } = useForm<FeedbackSchema>({
-    defaultValues: feedBackFormDefaultValues,
     resolver: zodResolver(feedbackSchema),
     reValidateMode: 'onSubmit',
   });
@@ -32,29 +31,11 @@ const FeedbackForm = () => {
   const onSubmit: SubmitHandler<FeedbackSchema> = async (data) => {
     setLoading(true);
 
-    // Check if feedback URL is configured
-    if (!env.NEXT_PUBLIC_FEEDBACK_URL) {
-      setError('root', {
-        message: 'Feedback submission is not configured. Please contact support.',
-      });
-      setLoading(false);
-      return;
-    }
-
-    const formData = new FormData();
-    Object.entries(data).forEach(([key, value]) => {
-      formData.append(key, value);
-    });
-
     try {
-      const response = await fetch(env.NEXT_PUBLIC_FEEDBACK_URL, {
-        method: 'POST',
-        body: formData,
+      await postFeedback({
+        satisfaction: Number(data.satisfaction),
+        details: data.details,
       });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
       router.push('/feedback/success');
     } catch (error) {
       console.error('Feedback submission error:', error);

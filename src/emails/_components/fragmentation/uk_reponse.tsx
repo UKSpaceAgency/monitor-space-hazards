@@ -6,27 +6,27 @@ import messages from '@/locales/en.json';
 import { Markdown } from '../markdown';
 import { Text } from '../text';
 
-type ReentryPressAttentionProps = {
-  pressAttention?: string | null;
+type FragmentationUkResponseProps = {
+  ukResponse?: string | null;
 };
 
-export const ReentryPressAttention = ({ pressAttention }: ReentryPressAttentionProps) => {
+const FragmentationUkResponse = ({ ukResponse }: FragmentationUkResponseProps) => {
   const t = createTranslator({
     locale: 'en',
-    namespace: 'Emails.Reentry_alert.Press_attention',
+    namespace: 'Emails.Fragmentation.Uk_response',
     messages,
   });
 
   return (
-    <Section className="!w-full pt-4">
+    <Section className="!w-full">
       <Text className="text-sm m-0 font-bold">{t('title')}</Text>
-      {pressAttention
+      {ukResponse
         ? (
-            <Markdown>
-              {pressAttention}
-            </Markdown>
+            <Markdown>{ukResponse}</Markdown>
           )
         : <Text>{t('empty')}</Text>}
     </Section>
   );
 };
+
+export { FragmentationUkResponse };

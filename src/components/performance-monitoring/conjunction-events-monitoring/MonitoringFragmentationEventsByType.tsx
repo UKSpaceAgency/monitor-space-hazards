@@ -21,13 +21,13 @@ const MonitoringFragmentationEventsByType = async () => {
     <>
       <h3 className="govuk-heading-s">{t('daily_title')}</h3>
       <MonitoringFragmentationEventsByTypeDaily />
-      <DownloadData params={params} downloadAction={getStatsFragmentationEventsType} ariaLabel="Daily Fragmentation events by type" />
+      <DownloadData type={t('daily_title')} params={params} downloadAction={getStatsFragmentationEventsType} ariaLabel="Daily Fragmentation events by type" />
       <Details summary={t.rich('daily_details.title')}>
         {t('daily_details.content')}
       </Details>
       <h3 className="govuk-heading-s">{t('monthly_title')}</h3>
       <MonitoringFragmentationEventsByTypeMonthly />
-      <DownloadData params={{}} downloadAction={getStatsMonthlyFragmentationEventsByObjectType} ariaLabel="Monthly Fragmentation events by type" />
+      <DownloadData type={t('monthly_title')} params={{}} downloadAction={getStatsMonthlyFragmentationEventsByObjectType} ariaLabel="Monthly Fragmentation events by type" />
       <Details summary={t.rich('monthly_details.title')}>
         {t('monthly_details.content')}
       </Details>

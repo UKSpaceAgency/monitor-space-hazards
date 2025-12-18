@@ -24,6 +24,7 @@ export const chartColors = [
   chartPalette.lightBlue,
   chartPalette.midBlue,
   chartPalette.brightBlue,
+  chartPalette.orange,
 ];
 
 export const brandColors = {

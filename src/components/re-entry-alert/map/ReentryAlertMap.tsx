@@ -19,7 +19,7 @@ import type { MapTooltipInfo } from './ReentryAlertMapTooltip';
 import { ReentryAlertMapType } from './ReentryAlertMapType';
 import { type MapView, ReentryAlertMapView } from './ReentryAlertMapView';
 import { ReentryAlertOverflights } from './ReentryAlertOverflights';
-import { flightpathHeatmapStyle, fragmentsHeatmapStyle, MapTypes, type OverflightType, regionLayer, RegionsGeoJson } from './utils';
+import { flightpathStyle, fragmentsCircleStyle, MapTypes, type OverflightType, regionLayer, RegionsGeoJson } from './utils';
 
 const ReentryAlertMapTooltip = dynamic(() => import('./ReentryAlertMapTooltip').then(mod => mod.ReentryAlertMapTooltip), {
   ssr: false,
@@ -91,6 +91,8 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
     setHoverInfo(hoveredFeature ? hoveredFeature.properties as MapTooltipInfo : null);
   }, []);
 
+  const sourceUrl = `https://www.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}`;
+
   return (
     <div className="bg-lightGrey p-3 mb-4" data-pdf="Re-entry map">
       <div className="relative w-full aspect-[1/1] md:aspect-[4/3] bg-[#364B69] mb-4" data-type="map" aria-label="Re-entry alert map">
@@ -156,18 +158,18 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
                 <Source
                   key={`FLIGHTPATH-${index}`}
                   type="geojson"
-                  data={`${window.location.origin}/reentry_event_reports/${reentryId}/${reportId}-overflight_features_${index}.geojson`}
+                  data={`${sourceUrl}/${reportId}-overflight_features_${index}.geojson`}
                 >
                   <Layer
-                    {...flightpathHeatmapStyle(index, types.includes('FLIGHTPATH') && flightpaths.includes(index))}
+                    {...flightpathStyle(index, types.includes('FLIGHTPATH') && flightpaths.includes(index))}
                     slot="middle"
                   />
                 </Source>
               ))}
               {flightpaths.map(index => (
-                <Source key={`FRAGMENT-${index}`} type="geojson" data={`${window.location.origin}/reentry_event_reports/${reentryId}/${reportId}-fragment_features_${index}.geojson`}>
+                <Source key={`FRAGMENT-${index}`} type="geojson" data={`${sourceUrl}/${reportId}-fragment_features_${index}.geojson`}>
                   <Layer
-                    {...fragmentsHeatmapStyle(index, types.includes('FRAGMENT') && flightpaths.includes(index))}
+                    {...fragmentsCircleStyle(index, types.includes('FRAGMENT') && flightpaths.includes(index))}
                     slot="middle"
                   />
                 </Source>
@@ -194,7 +196,7 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
         <ul className="flex gap-2 flex-wrap">
           <li>
             <a
-              href={`${window.location.origin}/reentry_event_reports/${reentryId}/${reportId}-overflight_features_0.geojson`}
+              href={`${sourceUrl}/${reportId}-overflight_features_0.geojson`}
               download={`${reentryId}-${reportId}-flightpath.geojson`}
               className="govuk-link text-blue"
               rel="noopener noreferrer"
@@ -211,7 +213,7 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
               <Fragment key={`DOWNLOADS-${index}`}>
                 <li>
                   <a
-                    href={`${window.location.origin}/reentry_event_reports/${reentryId}/${reportId}-overflight_features_${number}.geojson`}
+                    href={`${sourceUrl}/${reportId}-overflight_features_${number}.geojson`}
                     download={`${reentryId}-${reportId}-overflight_${number}.geojson`}
                     className="govuk-link text-blue"
                     rel="noopener noreferrer"
@@ -222,7 +224,7 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
                 </li>
                 <li>
                   <a
-                    href={`${window.location.origin}/reentry_event_reports/${reentryId}/${reportId}-fragment_features_${number}.geojson`}
+                    href={`${sourceUrl}/${reportId}-fragment_features_${number}.geojson`}
                     download={`${reentryId}-${reportId}-fragment_${number}.geojson`}
                     className="govuk-link text-blue"
                     rel="noopener noreferrer"

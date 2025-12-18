@@ -14,17 +14,19 @@ export type FragmentationEventsTypeChartProps = {
 export function FragmentationEventsTypeChart({ data, actionButtons }: FragmentationEventsTypeChartProps) {
   const t = useTranslations('Charts.Events_type');
 
+  const filteredData = [...data].filter(({ fragmentationType }) => fragmentationType !== 'Total');
+
   const datasets = {
-    labels: data.map(({ fragmentationType }) => fragmentationType),
+    labels: filteredData.map(({ fragmentationType }) => fragmentationType),
     datasets: [
       {
-        data: data.map(({ count }) => count),
+        data: filteredData.map(({ count }) => count),
         backgroundColor: chartColors,
       },
     ],
   };
 
-  return <BasePie data={datasets} actionButtons={actionButtons} legend={{ title: t('event_type') }} ariaLabel="Fragmentation events by type" />;
+  return <BasePie data={datasets} actionButtons={actionButtons} legend={{ title: t('fragmentation_type') }} ariaLabel="Fragmentation events by type" />;
 }
 
 export default FragmentationEventsTypeChart;

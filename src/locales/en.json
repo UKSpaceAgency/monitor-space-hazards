@@ -3,7 +3,6 @@
     "skip_content": "Skip to main content",
     "phase_banner": "This is a new service - your <feedback>feedback</feedback> will help us to improve it.",
     "navigation": {
-      "home": "Home",
       "conjunctions": "Conjunctions",
       "re-entries": "Re-entries",
       "satellites": "Satellites",
@@ -33,62 +32,36 @@
     }
   },
   "Dashboard": {
-    "title": "National Space Operations Centre Civil Warning and Protection Services",
+    "title": "UK space warning and protection services",
     "content": "National Space Operations Centre (NSpOC) Civil Warning and Protection Services support UK and international partners to manage space risks and hazards.",
     "services": {
-      "live": {
-        "title": "Live Services",
-        "items": {
-          "track_conjunctions": {
-            "title": "Track conjunction events (Monitor your satellites)",
-            "description": "In-space collision avoidance.",
-            "link": "/conjunctions"
-          },
-          "track_reentries": {
-            "title": "Track re-entry events",
-            "description": "Uncontrolled re-entry early warning.",
-            "link": "/re-entries"
-          },
-          "check_weather": {
-            "title": "Check space weather activity",
-            "description": "Space weather forecast and notifications.",
-            "link": "https://www.metoffice.gov.uk/weather/specialist-forecasts/space-weather"
-          }
-        }
-      },
-      "satellite_directory_and_statistics": {
-        "title": "Satellite Directory and Statistics",
-        "items": {
-          "view_uk_satellites": {
-            "title": "View UK-licensed satellites",
-            "description": "Data on UK-licensed satellites.",
-            "link": "/satellites"
-          },
-          "explore_statistics": {
-            "title": "Explore key statistics",
-            "description": "Statistics and trends.",
-            "link": "/performance-monitoring"
-          }
-        }
-      },
-      "account_and_information": {
-        "title": "Account Management and Additional Information",
-        "items": {
-          "view_roadmap": {
-            "title": "View Monitor Space Hazards roadmap",
-            "description": "Roadmap for current and future service developments.",
-            "link": "/page/roadmap"
-          },
-          "support_and_guidance": {
-            "title": "Access support and guidance",
-            "description": "Support and guidance for all active services.",
-            "link": "/page/support-and-guidance"
-          },
-          "change_account_settings": {
-            "title": "Change account settings",
-            "description": "Change notification settings, view T&Cs and see account details.",
-            "link": "/account"
-          }
+      "key_services_title": "Key services",
+      "all_services_title": "All services",
+      "items": {
+        "track_conjunctions": {
+          "title": "Track conjunction events",
+          "description": "In-space collision avoidance.",
+          "link": "/conjunctions"
+        },
+        "track_reentries": {
+          "title": "Track re-entry events",
+          "description": "Uncontrolled re-entry early warning.",
+          "link": "/re-entries"
+        },
+        "track_fragmentations": {
+          "title": "Track fragmentation events",
+          "description": "Space debris from objects",
+          "link": "/fragmentations"
+        },
+        "check_weather": {
+          "title": "Check space weather activity",
+          "description": "Space weather forecast and notifications.",
+          "link": "https://www.metoffice.gov.uk/weather/specialist-forecasts/space-weather"
+        },
+        "performance_monitoring": {
+          "title": "Performance monitoring and statistics",
+          "description": "Statistics and trends",
+          "link": "/performance-monitoring"
         }
       }
     },
@@ -471,6 +444,7 @@
       "total_events": "Total events across all organisations",
       "event_type": "Event type",
       "object_type": "Object type",
+      "fragmentation_type": "Fragmentation type",
       "details": {
         "title": "Help with this table<screenReaderOnly> - Events by type</screenReaderOnly>",
         "content": "This table shows the number of conjunction events between different object types."
@@ -545,6 +519,22 @@
       "modelled_fragments_apogee_label": "Modelled fragment apogee",
       "modelled_fragments_perigee_label": "Modelled fragment perigee",
       "toggle_observation_date": "Toggle observation date:"
+    },
+    "Monthly_fragmentation_events": {
+      "y_axis_title": "Number of events",
+      "x_axis_title": "Date",
+      "legend_title": "Fragmentation type",
+      "fragmentation_type": "Fragmentation type",
+      "accidental": "Accidental",
+      "aerodynamics": "Aerodynamics",
+      "anomalous": "Anomalous",
+      "collision": "Collision",
+      "deliberate": "Deliberate",
+      "electrical": "Electrical",
+      "explosion": "Explosion",
+      "propulsion": "Propulsion",
+      "small_impactor": "Small Impactor",
+      "unknown": "Unknown"
     }
   },
   "Conjunctions": {
@@ -787,8 +777,8 @@
     "Executive_summary": {
       "email_title": "Event Information:",
       "title": "Event summary",
-      "content": "The National Space Operations Centre is monitoring the upcoming re-entry event involving {commonName} from space into Earth's atmosphere, posing a potential risk to life and property on the ground. The event is assessed as <tag>{fragmentsRisk}</tag> risk, with a {fragmentsProbability} probability of debris impacting the UK. {licensingCountry} is liable for any damages and associated response or recovery costs. All re-entered debris should be considered as hazardous until proven otherwise.",
-      "closed_report": "The National Space Operations Centre has completed monitoring of the re-entry event involving {commonName}, which occurred on {date}. The event was assessed as <tag>{fragmentsRisk}</tag> risk, with a {fragmentsProbability} probability of debris impacting the UK. {licensingCountry} is liable for any damages and associated response or recovery costs. All re-entered debris should be considered as hazardous until proven otherwise.",
+      "content": "The National Space Operations Centre is monitoring the upcoming re-entry event involving {commonName} from space into Earth's atmosphere, posing a potential risk to life and property on the ground. The event is assessed as <tag>{fragmentsRisk}</tag> risk, with a {fragmentsProbability} probability of debris impacting the UK. The licensing country is {licensingCountry}. All re-entered debris should be considered as hazardous until proven otherwise.",
+      "closed_report": "The National Space Operations Centre has completed monitoring of the re-entry event involving {commonName}, which occurred on {date}. The event was assessed as <tag>{fragmentsRisk}</tag> risk, with a {fragmentsProbability} probability of debris impacting the UK. The licensing country is {licensingCountry}. All re-entered debris should be considered as hazardous until proven otherwise.",
       "risk_probabilities": "UK risk probabilities",
       "event_summary": "Event summary"
     },
@@ -811,7 +801,7 @@
       },
       "recovery_and_clean_up": {
         "title": "Recovery and clean up",
-        "content": "<p><bold>Decontamination:</bold> If the object is contaminated with hazardous material, it should be decontaminated. Decontamination is led by Defra who are the Lead Government Department for decontamination in England, in liaison with local authorities.</p><p><bold>Storage:</bold> The object should be sent to storage by a specialist supplier in the local area, as agreed and organised by Defra.</p><p><bold>Release:</bold> If the object has been declared safe (by Defra),  NSpOC will direct it's release to either: MOD Defence Intelligence if the object is of Chinese or Russian origin; the owner of the object or the state liable for the object, organised via the Foreign, Commonwealth and Development Office; or the Air Accident Investigation Bureau or the Civil Aviation Authority if the object is UK-licensed.</p><p><bold>Disposal:</bold> If the object cannot be declared safe or decontaminated, it should disposed of as per standard procedures held by Defra.</p><p><bold>Incident close down:</bold> When departments agree that recovery can be handled through Business As Usual structures, the incident can be closed down. The National Space Operations Centre and Cabinet Office will confirm close down of the event to all parties involved.</p>"
+        "content": "<p><bold>Decontamination:</bold> If the object is contaminated with hazardous material, it should be decontaminated. Decontamination is led by Defra who are the Lead Government Department for decontamination in England, in liaison with local authorities.</p><p><bold>Storage:</bold> The object should be sent to storage by a specialist supplier in the local area, as agreed and organised by Defra.</p><p><bold>Release:</bold> If the object has been declared safe (by Defra),  NSpOC will direct it's release to either: MOD Defence Intelligence if the object is of Chinese or Russian origin; the owner of the object or licensing country for the object, organised via the Foreign, Commonwealth and Development Office; or the Air Accident Investigation Bureau or the Civil Aviation Authority if the object is UK-licensed.</p><p><bold>Disposal:</bold> If the object cannot be declared safe or decontaminated, it should disposed of as per standard procedures held by Defra.</p><p><bold>Incident close down:</bold> When departments agree that recovery can be handled through Business As Usual structures, the incident can be closed down. The National Space Operations Centre and Cabinet Office will confirm close down of the event to all parties involved.</p>"
       },
       "risk": {
         "low": "<p>This event is assessed as <tag>Low</tag> risk.</p><p>This means it may happen and could have a negative impact on UK interests, but the overall likelihood is low.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, no significant action is required at this stage. Stakeholders should stay engaged with the National Space Operations Centre and consider any future updates before taking further action.</p>",
@@ -1194,7 +1184,7 @@
         "probability_of_collision": "Probability of collision",
         "poc_space_track": "Space-Track CDM",
         "poc_uksa": "NSpOC",
-        "total_miss_distance": "Miss Distance total (m)",
+        "total_miss_distance": "Total Miss Distance (m)",
         "tca_time": "Time of closest approach (TCA)",
         "date": "TCA Date",
         "time": "TCA Time (UTC)",
@@ -1537,8 +1527,23 @@
       },
       "fragmentation_events_by_type": {
         "type": "Type",
+        "fragmentation_type": "Fragmentation type",
         "fragmentation_events": "Fragmentation events",
         "this_table": "this table"
+      },
+      "fragmentation_events_by_type_monthly": {
+        "month": "Month",
+        "accidental": "Accidental",
+        "aerodynamics": "Aerodynamics",
+        "anomalous": "Anomalous",
+        "collision": "Collision",
+        "deliberate": "Deliberate",
+        "electrical": "Electrical",
+        "explosion": "Explosion",
+        "propulsion": "Propulsion",
+        "small_impactor": "Small Impactor",
+        "unknown": "Unknown",
+        "total": "Total"
       }
     },
     "Organisation_satellites": {
@@ -1743,7 +1748,8 @@
         "long_term_impact_comment": "Long term impact",
         "uk_response_comment": "UK response",
         "closed_comment": "Closed comment",
-        "spaceflight_risk_comment": "UK and Human Spaceflight risk"
+        "spaceflight_risk_comment": "UK and Human Spaceflight risk",
+        "orbital_analyst_comment": "Orbital analyst comment"
       },
       "manoeuvrable": {
         "unknown": "Unknown",
@@ -1971,8 +1977,8 @@
       },
       "Event_information": {
         "title": "Event Information",
-        "content": "<p>The National Space Operations Centre is monitoring the uncontrolled re-entry of <objectUrl>{commonName}</objectUrl>. This {objectType} presents a  <tag>{fragmentsRisk}</tag> risk to life and property on the ground.</p>\n<p><objectUrl>{commonName}</objectUrl> is expected to re-enter on <b>{date}.</b> This {objectType} has a <b>{riskProbability} probability of debris impacting the UK.</b></p>\n<p><b> {licensingCountry}</b> is liable for any damages and associated response or recovery costs.</p>",
-        "content_closed": "<p>The National Space Operations Centre has completed monitoring of the uncontrolled re-entry of <objectUrl>{commonName}</objectUrl>, which occurred on {date}. The event was assessed as <tag>{riskLevel}</tag> risk, with a {riskProbability} probability of debris impacting the UK. {licensingCountry} is liable for any damages and associated response or recovery costs.</p>",
+        "content": "<p>The National Space Operations Centre is monitoring the uncontrolled re-entry of <objectUrl>{commonName}</objectUrl>. This {objectType} presents a  <tag>{fragmentsRisk}</tag> risk to life and property on the ground.</p>\n<p><objectUrl>{commonName}</objectUrl> is expected to re-enter on <b>{date}.</b> This {objectType} has a <b>{riskProbability} probability of debris impacting the UK.</b></p>\n<p>The licensing country is <b> {licensingCountry}</b>.</p>",
+        "content_closed": "<p>The National Space Operations Centre has completed monitoring of the uncontrolled re-entry of <objectUrl>{commonName}</objectUrl>, which occurred on {date}. The event was assessed as <tag>{riskLevel}</tag> risk, with a {riskProbability} probability of debris impacting the UK. The licensing country is {licensingCountry}.</p>",
         "risk": {
           "low": "<p>This event is assessed as <tag>Low</tag> risk.</p><p>This means it may happen and could have a negative impact on UK interests, but the overall likelihood is low.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, no significant action is required at this stage. Stakeholders should stay engaged with the National Space Operations Centre and consider any future updates before taking further action.</p>",
           "medium": "<p>This event is assessed as <tag>Medium</tag> risk.</p><p>This means there is a higher-than-usual chance it could negatively affect UK interests. However, it is still more likely than not to pass without incident.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, no immediate significant action is needed, but stakeholders may consider raising awareness internally. Stakeholders should stay engaged with the National Space Operations Centre for updates.</p>",
@@ -2092,6 +2098,54 @@
       "content": "<p>The UK Space Agency's Monitor Space Hazards service has identified new conjunction events involving your satellites and crossing your thresholds. Additionally, one or more conjunction events crossing your thresholds has been updated. The links to the events and their time of closest approach are listed below.</p>",
       "updated": "Updated event(s)"
     },
+    "Fragmentation": {
+      "title": "Fragmentation Alert - Report {reportNumber}",
+      "event_summary_title": "Event Summary",
+      "event_details_title": "Event Details",
+      "Potential_impact_title": "Potential impact of event",
+      "guidance_title": "Guidance",
+      "Event_summary": {
+        "time": "Fragmentation Time",
+        "number_of_known_fragments": "Number of Known Fragments",
+        "number_of_modelled_fragments": "Modelled Number of Fragments",
+        "uk_satellites_affected": "UK Satellites with Increased Risk of Conjunction",
+        "affected_regime": "Affected Regime",
+        "potential_cause_of_fragmentation": "Potential Cause of Fragmentation"
+      },
+      "Event_details": {
+        "object_and_orbit_details": "Object and orbit details",
+        "primary": "Primary",
+        "secondary": "Secondary",
+        "event_information": "Event Information",
+        "object": "Object",
+        "object_type": "Object Type",
+        "norad_id": "NORAD ID",
+        "estimated_mass": "Estimated Mass",
+        "launch_date": "Launch Date",
+        "apogee": "Apogee",
+        "perigee": "Perigee",
+        "inclination": "Inclination",
+        "licensing_country": "Licensing Country"
+      },
+      "Potential_impact": {
+        "uk_risk": "UK and Human Spaceflight risk",
+        "uk_satellites_affected": "UK Satellites affected",
+        "content": "All UK satellites were screened against the current population of objects as well as the fragments generated by the breakup model. The 'Current’ column is the number of 5 km conjunction events the object currently has per week. The 'Predicted' column is the number of additional 5 km conjunction events that would be expected in the 7-day period after the event based on the predicted orbits outputted by the breakup model.",
+        "object": "Object",
+        "norad_id": "NORAD ID",
+        "estimated_mass": "Estimated Mass",
+        "current": "Current",
+        "predicted": "Predicted"
+      },
+      "Uk_response": {
+        "title": "UK Response",
+        "empty": "We are not currently aware of substantive UK response to this event."
+      },
+      "Press_attention": {
+        "title": "Press Attention",
+        "empty": "We are not currently aware of substantive press interest in this event."
+      }
+    },
     "Footer": {
       "title": "Support and Assistance",
       "content": "<p>For urgent enquiries about this event, email <nspocemail>NSPOCincidents@ukspaceagency.gov.uk</nspocemail>.</p><p><contact>Additional contact details</contact> are available via Monitor Space Hazards (for registered users).</p><p>We welcome your feedback and ideas to improve future reports. If you're not signed up to <link>Monitor Space Hazards</link> and would like access to the service, please contact us.</p><p>Monitor Space Hazards is a service provided by the UK Space Agency via the National Space Operations Centre.</p>",
@@ -2101,7 +2155,7 @@
   },
   "Fragmentations": {
     "title": "Track fragmentation events",
-    "section_title": "All fragmentation events (upcoming and past)",
+    "section_title": "All fragmentation events",
     "description": "This table contains all tracked tragmentation events, including fragmentation events that meet the UK Space Agency's thresholds for alerting UK government. For further detail on how risk and alert thresholds are defined, see 'Help with this table' below.",
     "search_bar": {
       "upcomingLabel": "Find a upcoming fragmentation event",
@@ -2196,7 +2250,7 @@
       },
       "priority": {
         "title": "Priority fragmentation alert",
-        "content": "<p>In addition to the standard distribution, the following teams are notified in specific circumstances:</p><list><item><b>If the UK is liable:</b> Department for Science, Innovation and Technology</item><item><b>If there is a potential risk to the International Space Station:</b> UK Space Agency Exploration team</item></list>"
+        "content": "<p>In addition to the standard distribution, the following teams are notified in specific circumstances:</p><list><item><b>If the licensing country is the UK:</b> Department for Science, Innovation and Technology</item><item><b>If there is a potential risk to the International Space Station:</b> UK Space Agency Exploration team</item></list>"
       }
     },
     "Further_information": {

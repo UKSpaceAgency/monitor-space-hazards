@@ -17,7 +17,7 @@ export const SignIn = ({ link }: SignInProps) => {
   });
 
   return (
-    <Text>
+    <Text className="mb-0">
       {t.rich('sign_in_to_monitor_space_hazards', {
         link: chunks => <Link href={link}>{chunks}</Link>,
       })}

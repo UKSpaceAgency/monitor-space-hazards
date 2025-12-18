@@ -161,15 +161,9 @@ export const { handlers, signIn, signOut, auth, unstable_update: update } = Next
         return token;
       } else {
         if (!token.refresh_token) {
-          // Return null to trigger session expiration and redirect to homepage
-          return null;
+          throw new TypeError('No refresh token found');
         }
-        const refreshedToken = await refreshAccessToken(token);
-        // If refresh failed, return null to trigger session expiration
-        if (refreshedToken.error === 'RefreshAccessTokenError') {
-          return null;
-        }
-        return refreshedToken;
+        return await refreshAccessToken(token);
       }
     },
     async session({ session, token }) {

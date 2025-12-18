@@ -1,9 +1,10 @@
 import Link from 'next/link';
 
-import type { TypeEventOut } from '@/__generated__/data-contracts';
+import type { TypeEventOut, TypeRisk } from '@/__generated__/data-contracts';
 import { dayjs, FORMAT_DATE_FULL_MONTH, FORMAT_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import { displayExponential } from '@/utils/Math';
+import { renderRiskTag } from '@/utils/Risk';
 
 export type ProbabilityUnitType = 'scientific' | 'percentage';
 
@@ -28,13 +29,8 @@ export const getConjunctionEventsColumns = ({
         accessorKey: 'risk',
         header: 'Conjunctions.table.risk',
         cell: ({ getValue }) => {
-          const value = getValue<string>();
-          if (value === 'High') {
-            return (
-              <strong className="govuk-tag govuk-tag--red">High</strong>
-            );
-          }
-          return '';
+          const value = getValue<TypeRisk>();
+          return renderRiskTag(value);
         },
       },
       {

@@ -46,6 +46,7 @@ import {
   TypeEventSummaryOut,
   TypeExternalDataPerformanceAggregateOut,
   TypeExternalDataPerformanceOut,
+  TypeFeedbackIn,
   TypeFragmentationEvent,
   TypeFragmentationEventAlertIn,
   TypeFragmentationEventAlertOut,
@@ -1073,6 +1074,24 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
   postMessagesContactAnalyst = (data: TypeContactAnalystIn, params: RequestParams = {}) =>
     this.request<any, void | TypeHTTPValidationError>({
       path: `/v1/messages/contact-analyst`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    }); /**
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
+   *
+   * @tags messages
+   * @name PostMessagesFeedback
+   * @summary Post Feedback
+   * @request POST:/v1/messages/feedback
+   * @secure
+   */
+  postMessagesFeedback = (data: TypeFeedbackIn, params: RequestParams = {}) =>
+    this.request<any, void | TypeHTTPValidationError>({
+      path: `/v1/messages/feedback`,
       method: "POST",
       body: data,
       secure: true,
