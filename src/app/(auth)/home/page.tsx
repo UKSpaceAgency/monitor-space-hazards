@@ -16,7 +16,8 @@ export default async function DashboardPage() {
   const session = await getSession();
   const messages = await getMessages() as IntlMessages;
   const allServicesItems = messages.Dashboard.services.items;
-  const keyServicesItems = pick(allServicesItems, ['track_conjunctions', 'track_reentries', 'track_fragmentations']);
+  // const keyServicesItems = pick(allServicesItems, ['track_conjunctions', 'track_reentries', 'track_fragmentations']);
+  const keyServicesItems = pick(allServicesItems, ['track_conjunctions', 'track_reentries']);
 
   return (
     <div>
@@ -56,7 +57,7 @@ export default async function DashboardPage() {
         <h3 className="govuk-heading-m">{t('services.all_services_title')}</h3>
         <div className="">
           {Object.keys(allServicesItems).filter((key) => {
-            if (key === 'track_reentries' && !isAgencyUser(session?.user?.role)) {
+            if ((key === 'track_reentries' && !isAgencyUser(session?.user?.role)) || key === 'track_fragmentations') {
               return false;
             }
             return true;
