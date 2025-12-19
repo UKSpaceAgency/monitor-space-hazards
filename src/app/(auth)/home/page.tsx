@@ -31,7 +31,7 @@ export default async function DashboardPage() {
         <h3 className="govuk-heading-m">{t('services.key_services_title')}</h3>
         <ul>
           {Object.keys(keyServicesItems).filter((key) => {
-            if (key === 'track_reentries' && !isAgencyUser(session?.user?.role)) {
+            if ((key === 'track_reentries' && !isAgencyUser(session?.user?.role)) || key === 'track_fragmentations') {
               return false;
             }
             return true;
@@ -61,7 +61,7 @@ export default async function DashboardPage() {
         <h3 className="govuk-heading-m">{t('services.all_services_title')}</h3>
         <div className="">
           {Object.keys(allServicesItems).filter((key) => {
-            if (key === 'track_reentries' && !isAgencyUser(session?.user?.role)) {
+            if ((key === 'track_reentries' && !isAgencyUser(session?.user?.role)) || key === 'track_fragmentations') {
               return false;
             }
             return true;
