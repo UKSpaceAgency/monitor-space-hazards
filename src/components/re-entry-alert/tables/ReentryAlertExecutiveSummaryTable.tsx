@@ -22,7 +22,7 @@ const ReentryAlertExecutiveSummaryTable = ({ event }: ReentryAlertExecutiveSumma
   }, {
     header: t('overflight_time'),
     accessorKey: 'overflightTime',
-    renderCell: ({ overflightTime }) => overflightTime[0] ? dayjs(overflightTime[0]).format(FORMAT_FULL_DATE_TIME) : '-',
+    renderCell: ({ overflightTime }) => overflightTime.length > 0 ? overflightTime.map(time => <span key={time} className="block">{dayjs(time).format(FORMAT_FULL_DATE_TIME)}</span>) : '-',
   }, {
     header: t('survivability_comment'),
     accessorKey: 'survivabilityComment',
