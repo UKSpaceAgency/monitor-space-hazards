@@ -91,7 +91,7 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
     setHoverInfo(hoveredFeature ? hoveredFeature.properties as MapTooltipInfo : null);
   }, []);
 
-  const sourceUrl = `https://www.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}`;
+  const sourceUrl = `${window.location.origin}/reentry_event_reports/${reentryId}`;
 
   return (
     <div className="bg-lightGrey p-3 mb-4" data-pdf="Re-entry map">
