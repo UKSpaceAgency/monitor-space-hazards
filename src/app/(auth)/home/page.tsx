@@ -30,7 +30,12 @@ export default async function DashboardPage() {
       <div className="mb-8">
         <h3 className="govuk-heading-m">{t('services.key_services_title')}</h3>
         <ul>
-          {Object.keys(keyServicesItems).map((key) => {
+          {Object.keys(keyServicesItems).filter((key) => {
+            if ((key === 'track_reentries' && !isAgencyUser(session?.user?.role)) || key === 'track_fragmentations') {
+              return false;
+            }
+            return true;
+          }).map((key) => {
             const title = t(`services.items.${key}.title` as MessageKeys<IntlMessages, 'Dashboard'>);
             const linkKey = `services.items.${key}.link` as MessageKeys<IntlMessages, 'Dashboard'>;
             const link = t.has(linkKey) ? t(linkKey) : null;
