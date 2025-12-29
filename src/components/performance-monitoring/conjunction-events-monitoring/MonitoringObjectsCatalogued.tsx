@@ -4,7 +4,7 @@ import { getStatsObjectsTracked } from '@/actions/getStatsObjectsTracked';
 import Details from '@/ui/details/details';
 
 const MonitoringObjectsCatalogued = async () => {
-  const t = await getTranslations('Performance_monitoring.conjunction_accordion.objects_catalogued');
+  const t = await getTranslations('Performance_monitoring.performance_accordion.objects_catalogued');
 
   const data = await getStatsObjectsTracked();
 

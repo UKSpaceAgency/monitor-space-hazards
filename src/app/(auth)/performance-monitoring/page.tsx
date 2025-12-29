@@ -23,30 +23,31 @@ export default async function PerformanceMonitoring() {
         title={t('performance_monitoring')}
         internalTitle={[
           {
-            text: t('service_usage'),
-            index: 5,
-          },
-          {
             text: t('conjunction_event_and_organisation_data'),
-            index: 6,
+            index: 4,
           },
           {
             text: t('reentry_event_and_organisation_data'),
-            index: 11,
+            index: 9,
           },
           {
             text: t('fragmentation_event_and_organisation_data'),
-            index: 12,
+            index: 10,
           },
+          {
+            text: t('service_usage'),
+            index: 11,
+          },
+
         ]}
         className="mb-8"
       />
 
       <MonitoringAccordion />
-      <MonitoringServiceUsageAccordion />
       <MonitoringConjunctionEventAccordion />
       <MonitoringReentryEventAccordion />
       <MonitoringFragmentationEventAccordion />
+      <MonitoringServiceUsageAccordion />
     </div>
   );
 }

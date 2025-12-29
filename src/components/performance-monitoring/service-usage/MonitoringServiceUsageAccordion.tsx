@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 
 import Accordion from '@/ui/accordion/accordion';
 
+import { NotificationsSent } from '../performance-monitoring/NotificationsSent';
 import { MonitoringOrganisationsAndUsers } from './MonitoringOrganisationsAndUsers';
 
 const MonitoringServiceUsageAccordion = async () => {
@@ -18,6 +19,11 @@ const MonitoringServiceUsageAccordion = async () => {
             id: 'organisationsAndUsers',
             heading: t('organisations_and_users.title'),
             content: <MonitoringOrganisationsAndUsers />,
+          },
+          {
+            id: 'notificationsSent',
+            heading: t('notifications_sent.title'),
+            content: <NotificationsSent />,
           },
         ]}
       />
