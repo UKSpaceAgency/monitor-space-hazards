@@ -5,6 +5,10 @@ import type { RequestParams } from '@/__generated__/http-client';
 import Api from '@/libs/Api';
 
 export async function getManoeuvrePlotsByEventEventShortId(query: TypeGetManoeuvrePlotsByEventEventShortIdParams, params: RequestParams = {}) {
-  const { data } = await Api.getManoeuvrePlotsByEventEventShortId(query, params);
-  return data;
-};
+  try {
+    const { data } = await Api.getManoeuvrePlotsByEventEventShortId(query, params);
+    return data;
+  } catch {
+    return [];
+  }
+}
