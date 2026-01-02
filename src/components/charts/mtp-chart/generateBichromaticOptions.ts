@@ -17,13 +17,13 @@ export const generateBichromaticOptions = (thresh: number): BichromaticOptions[]
     {
       thresh,
       label: `≥ ${exp(thresh)}`,
-      color: chartPalette.nspocYellow,
+      color: chartPalette.nspocRed,
       target: -1,
     },
     {
       thresh: nextThresh,
       label: `≥ ${exp(nextThresh)} and < ${exp(thresh)} `,
-      color: chartPalette.nspocRed,
+      color: chartPalette.nspocYellow,
       target: 0,
     },
     {

@@ -28,8 +28,7 @@ const ConjunctionAccordion = async ({
   const t = await getTranslations('Conjunction');
 
   const events = await getConjunctionEventsEventIdSummary({ eventId: shortId });
-  const plots = await getManoeuvrePlotsByEventEventShortId({ eventShortId: shortId });
-  const [latestPlot] = plots.sort((a, b) => new Date(b.tcaTime).getTime() - new Date(a.tcaTime).getTime());
+  const [latestPlot] = await getManoeuvrePlotsByEventEventShortId({ eventShortId: shortId, sort_by: 'cdm_external_id', sort_order: 'desc' });
 
   return (
     <Accordion
