@@ -1,3 +1,4 @@
+import { isNumber } from 'lodash';
 import { createTranslator } from 'next-intl';
 
 import type { TypeEventOut } from '@/__generated__/data-contracts';
@@ -32,7 +33,7 @@ const ConjunctionNotificationTable = ({ conjunctions, isAnalysis }: ConjunctionN
       {conjunction.secondaryObjectCommonName}
     </Link>,
     dayjs(conjunction.tcaTime).format(FORMAT_FULL_DATE_TIME_WITH_UTC),
-    conjunction.collisionProbability ? displayExponential(conjunction.collisionProbability, 4) : 'Unknown',
+    isNumber(conjunction.collisionProbability) ? displayExponential(conjunction.collisionProbability, 4) : 'Unknown',
   ]);
   return <DataTable headers={[t('objects'), t('tca'), t('poc')]} data={data} className="pb-6" />;
 };
