@@ -70,7 +70,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
   },
   {
     id: 'timeWindowStart',
-    accessorKey: 'timeWindowStart',
+    accessorKey: 'decayEpoch',
     header: 'Reentries.table.date',
     size: 150,
     cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_DATE_FULL_MONTH),
@@ -78,7 +78,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
   {
     id: 'time',
     enableSorting: false,
-    accessorKey: 'timeWindowStart',
+    accessorKey: 'decayEpoch',
     header: 'Reentries.table.time',
     size: 80,
     cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_TIME),
