@@ -69,7 +69,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     },
   },
   {
-    id: 'timeWindowStart',
+    id: 'decayEpoch',
     accessorKey: 'decayEpoch',
     header: 'Reentries.table.date',
     size: 150,
