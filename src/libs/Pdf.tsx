@@ -91,8 +91,80 @@ export const pdfStyles = StyleSheet.create({
   },
 });
 
+const renderTableCell = (cell: HTMLElement, cellIndex: number) => {
+  const tagClassList = (cell.firstChild as HTMLElement)?.classList;
+  const cellStyle = {
+    color: '#000000',
+    backgroundColor: 'transparent',
+  };
+  if (tagClassList?.contains('govuk-tag')) {
+    if (tagClassList.contains('govuk-tag--turquoise')) {
+      cellStyle.color = '#104040';
+      cellStyle.backgroundColor = '#d4ecea';
+    };
+    if (tagClassList.contains('govuk-tag--green')) {
+      cellStyle.color = '#005a30';
+      cellStyle.backgroundColor = '#cce2d8';
+    };
+    if (tagClassList.contains('govuk-tag--yellow')) {
+      cellStyle.color = '#594d00';
+      cellStyle.backgroundColor = '#fff6bf';
+    };
+    if (tagClassList.contains('govuk-tag--red')) {
+      cellStyle.color = '#8a0000';
+      cellStyle.backgroundColor = '#fde6e6';
+    };
+  }
+  if (cell.dataset.pdf === 'no') {
+    return null;
+  }
+  const innerHTML = cell.innerHTML;
+  const textContent = innerHTML
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<[^>]*>/g, '');
+  return (
+    <TD key={cellIndex} style={cell.tagName === 'TH' ? pdfStyles.tableCellHeader : { ...cellStyle }}>
+      {textContent}
+    </TD>
+  );
+};
+
+const renderPdfTableSection = (
+  headers: Element[],
+  rows: Element[],
+  startCol: number,
+  endCol: number,
+) => {
+  const currentColsNumber = endCol - startCol;
+  const colWeight = 1 / currentColsNumber;
+  const headerSlice = headers.slice(startCol, endCol);
+  const rowSlice = rows.map(row => [...row.children].slice(startCol, endCol));
+
+  return (
+    <Table style={pdfStyles.table} tdStyle={{ padding: '0.2cm' }} weightings={Array.from({ length: currentColsNumber }, () => colWeight)}>
+      {headers.length > 0 && (
+        <TR wrap={false}>
+          {headerSlice.map((header, index: number) => {
+            const colSpan = header.getAttribute('colSpan');
+            return (
+              <TD key={index} style={pdfStyles.tableCellHeader} weighting={colSpan ? Math.round((Number.parseInt(colSpan) / currentColsNumber) * 10) / 10 : colWeight}>
+                {header.textContent}
+              </TD>
+            );
+          })}
+        </TR>
+      )}
+      {rowSlice.map((cells, rowIndex: number) => (
+        <TR key={rowIndex} style={{ flexWrap: 'wrap', backgroundColor: rowIndex % 2 === 0 ? '#f0f0f0' : 'transparent' }} wrap={false}>
+          {cells.map((cell, cellIndex) => renderTableCell(cell as HTMLElement, cellIndex))}
+        </TR>
+      ))}
+    </Table>
+  );
+};
+
 const generatePdfTable = (table: HTMLElement) => {
-  const headers = table.querySelector('.govuk-table__head tr')?.children ?? [];
+  const headers = [...(table.querySelector('.govuk-table__head tr')?.children ?? [])];
   const caption = table.querySelector('.govuk-table__caption')?.innerHTML;
   const captionObject = <Text style={pdfStyles.subHeader}>{caption}</Text>;
 
@@ -101,66 +173,32 @@ const generatePdfTable = (table: HTMLElement) => {
   );
 
   const colsNumber = rows[0]?.children?.length || 1;
-  const colWeight = 1 / colsNumber;
 
+  // If more than 6 columns, split the table
+  if (colsNumber > 6) {
+    const tables: ReactElement[] = [];
+    const numTables = Math.ceil(colsNumber / 6);
+
+    for (let tableIndex = 0; tableIndex < numTables; tableIndex++) {
+      const startCol = tableIndex * 6;
+      const endCol = Math.min(startCol + 6, colsNumber);
+
+      tables.push(
+        <View key={tableIndex}>
+          {tableIndex === 0 && captionObject}
+          {renderPdfTableSection(headers, rows, startCol, endCol)}
+        </View>,
+      );
+    }
+
+    return <View>{tables}</View>;
+  }
+
+  // Original logic for tables with 6 or fewer columns
   return (
     <View>
       {captionObject}
-      <Table style={pdfStyles.table} tdStyle={{ padding: '0.2cm' }} weightings={Array.from({ length: colsNumber }, () => colWeight)}>
-        {headers.length > 0 && (
-          <TR wrap={false}>
-            {[...headers].map((header, index: number) => {
-              const colSpan = header.getAttribute('colSpan');
-              return (
-                <TD key={index} style={pdfStyles.tableCellHeader} weighting={colSpan ? Math.round((Number.parseInt(colSpan) / colsNumber) * 10) / 10 : colWeight}>
-                  {header.textContent}
-                </TD>
-              );
-            })}
-          </TR>
-        )}
-        {rows.map((row: { children: any }, rowIndex: number) => (
-          <TR key={rowIndex} style={{ flexWrap: 'wrap', backgroundColor: rowIndex % 2 === 0 ? '#f0f0f0' : 'transparent' }} wrap={false}>
-            {[...row.children].map((cell: HTMLElement, cellIndex: number) => {
-              const tagClassList = (cell.firstChild as HTMLElement)?.classList;
-              const cellStyle = {
-                color: '#000000',
-                backgroundColor: 'transparent',
-              };
-              if (tagClassList?.contains('govuk-tag')) {
-                if (tagClassList.contains('govuk-tag--turquoise')) {
-                  cellStyle.color = '#104040';
-                  cellStyle.backgroundColor = '#d4ecea';
-                };
-                if (tagClassList.contains('govuk-tag--green')) {
-                  cellStyle.color = '#005a30';
-                  cellStyle.backgroundColor = '#cce2d8';
-                };
-                if (tagClassList.contains('govuk-tag--yellow')) {
-                  cellStyle.color = '#594d00';
-                  cellStyle.backgroundColor = '#fff6bf';
-                };
-                if (tagClassList.contains('govuk-tag--red')) {
-                  cellStyle.color = '#8a0000';
-                  cellStyle.backgroundColor = '#fde6e6';
-                };
-              }
-              if (cell.dataset.pdf === 'no') {
-                return null;
-              }
-              const innerHTML = cell.innerHTML;
-              const textContent = innerHTML
-                .replace(/<br\s*\/?>/gi, '\n')
-                .replace(/<[^>]*>/g, '');
-              return (
-                <TD key={cellIndex} style={cell.tagName === 'TH' ? pdfStyles.tableCellHeader : { ...cellStyle }}>
-                  {textContent}
-                </TD>
-              );
-            })}
-          </TR>
-        ))}
-      </Table>
+      {renderPdfTableSection(headers, rows, 0, colsNumber)}
     </View>
   );
 };
