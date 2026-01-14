@@ -1040,12 +1040,12 @@
         "daily_title": "Total number of fragmentation events monitored and a breakdown of their type.",
         "daily_details": {
           "title": "Help with this table<screenReaderOnly>- Fragmentation events by type - Total number</screenReaderOnly>",
-          "content": "This table shows the number of fragmentation events by different object types and level of event."
+          "content": "This table shows the number of fragmentation events and the reason for the break up."
         },
         "monthly_title": "Monthly number of fragmentation events monitored and a breakdown of their type.",
         "monthly_details": {
           "title": "Help with this table<screenReaderOnly>- Fragmentation events by type -Monthly number</screenReaderOnly>",
-          "content": "Content"
+          "content": "This table shows the number of fragmentation events and the reason for the break up per month. "
         }
       }
     }
