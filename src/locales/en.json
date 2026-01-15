@@ -1709,6 +1709,7 @@
     "Feedback": {
       "title": "Give feedback on Monitor Space Hazards",
       "success": "Your feedback form has been submitted successfully",
+      "email_label": "Enter your email address here:",
       "very_satisfied": "Very satisfied",
       "satisfied": "Satisfied",
       "neither": "Neither satisfied of dissatisfied",

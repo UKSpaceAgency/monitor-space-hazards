@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 
+import { auth } from '@/auth';
 import { FeedbackForm } from '@/components/feedback/FeedbackForm';
 
 export const metadata: Metadata = {
@@ -9,11 +10,12 @@ export const metadata: Metadata = {
 
 export default async function FeedbackPage() {
   const t = await getTranslations('Feedback');
+  const session = await auth();
 
   return (
     <>
       <h1 className="govuk-heading-xl">{t('title')}</h1>
-      <FeedbackForm />
+      <FeedbackForm email={session?.user.email ?? ''} />
     </>
   );
 }

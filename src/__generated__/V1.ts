@@ -10,6 +10,10 @@
  */
 
 import {
+  TypeActivityEvent,
+  TypeActivityEventOut,
+  TypeActivityReport,
+  TypeActivityReportOut,
   TypeAlertDryRunOut,
   TypeAlertSettingsDistributionList,
   TypeAlertSettingsIn,
@@ -26,6 +30,7 @@ import {
   TypeBannerSchedulesOut,
   TypeBodyCreateAnalysisV1AnalysesPost,
   TypeBodyCreateEphemerisV1EphemerisPost,
+  TypeBodyPostActivityEventReportV1ActivityReportsPost,
   TypeBodyPostConjunctionReportV1ConjunctionReportsPost,
   TypeBodyPostFragmentationEventReportV1FragmentationReportsPost,
   TypeBodyUploadManoeuvrePlotFileV1ManoeuvrePlotsPost,
@@ -53,6 +58,9 @@ import {
   TypeFragmentationEventPatch,
   TypeFragmentationReport,
   TypeFragmentationReportOut,
+  TypeGetActivityEventsParams,
+  TypeGetActivityReportsActivityEventShortIdParams,
+  TypeGetActivityReportsParams,
   TypeGetAnalysesParams,
   TypeGetBannersMessagesCurrentParams,
   TypeGetBannersMessagesParams,
@@ -206,6 +214,206 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
   getAlertsUserUserId = (userId: string, params: RequestParams = {}) =>
     this.request<TypeAlertSettingsOut, TypeHTTPValidationError>({
       path: `/v1/alerts/user/${userId}`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets Activity Event list. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags activity-events
+   * @name GetActivityEvents
+   * @summary Gets Activity Events list
+   * @request GET:/v1/activity-events/
+   * @secure
+   */
+  getActivityEvents = (query?: TypeGetActivityEventsParams, params: RequestParams = {}) =>
+    this.request<TypeActivityEventOut[], void | TypeHTTPValidationError>({
+      path: `/v1/activity-events/`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets the latest Activity Event. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags activity-events
+   * @name GetActivityEventsLatest
+   * @summary Gets the latest Activity Events
+   * @request GET:/v1/activity-events/latest
+   * @secure
+   */
+  getActivityEventsLatest = (params: RequestParams = {}) =>
+    this.request<TypeActivityEvent, void>({
+      path: `/v1/activity-events/latest`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets Activity Event by short ID. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags activity-events
+   * @name GetActivityEventsByNoradIdNoradId
+   * @summary Gets Activity Events by NORAD ID
+   * @request GET:/v1/activity-events/by-norad-id/{norad_id}
+   * @secure
+   */
+  getActivityEventsByNoradIdNoradId = (noradId: string, params: RequestParams = {}) =>
+    this.request<TypeActivityEvent[], void | TypeHTTPValidationError>({
+      path: `/v1/activity-events/by-norad-id/${noradId}`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets Activity Events schema. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
+   *
+   * @tags activity-events
+   * @name GetActivityEventsSchema
+   * @summary Gets Activity Events schema
+   * @request GET:/v1/activity-events/schema
+   * @secure
+   */
+  getActivityEventsSchema = (params: RequestParams = {}) =>
+    this.request<object, void>({
+      path: `/v1/activity-events/schema`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets Activity Event by short ID.. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags activity-events
+   * @name GetActivityEventsShortId
+   * @summary Gets Activity Event by short ID
+   * @request GET:/v1/activity-events/{short_id}
+   * @secure
+   */
+  getActivityEventsShortId = (shortId: string, params: RequestParams = {}) =>
+    this.request<TypeActivityEvent, void | TypeHTTPValidationError>({
+      path: `/v1/activity-events/${shortId}`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Uploads Activity Report. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create|
+   *
+   * @tags activity-reports
+   * @name PostActivityReports
+   * @summary Uploads Activity Event Report
+   * @request POST:/v1/activity-reports/
+   * @secure
+   */
+  postActivityReports = (data: TypeBodyPostActivityEventReportV1ActivityReportsPost, params: RequestParams = {}) =>
+    this.request<TypeActivityReportOut, void | TypeHTTPValidationError>({
+      path: `/v1/activity-reports/`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.FormData,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets Activity Reports list. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags activity-reports
+   * @name GetActivityReports
+   * @summary Gets Activity Reports list
+   * @request GET:/v1/activity-reports/
+   * @secure
+   */
+  getActivityReports = (query?: TypeGetActivityReportsParams, params: RequestParams = {}) =>
+    this.request<TypeActivityReport[], void | TypeHTTPValidationError>({
+      path: `/v1/activity-reports/`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets Activity Report schema. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
+   *
+   * @tags activity-reports
+   * @name GetActivityReportsSchema
+   * @summary Gets Activity Report schema
+   * @request GET:/v1/activity-reports/schema
+   * @secure
+   */
+  getActivityReportsSchema = (params: RequestParams = {}) =>
+    this.request<object, void>({
+      path: `/v1/activity-reports/schema`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets Activity Report by database ID. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags activity-reports
+   * @name GetActivityReportsActivityReportId
+   * @summary Gets Activity Report by database ID
+   * @request GET:/v1/activity-reports/{activity_report_id}
+   * @secure
+   */
+  getActivityReportsActivityReportId = (activityReportId: string, params: RequestParams = {}) =>
+    this.request<TypeActivityReportOut, void | TypeHTTPValidationError>({
+      path: `/v1/activity-reports/${activityReportId}`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Deletes Activity Report by database ID |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete|
+   *
+   * @tags activity-reports
+   * @name DeleteActivityReportsActivityReportId
+   * @summary Deletes Activity Report by database ID
+   * @request DELETE:/v1/activity-reports/{activity_report_id}
+   * @secure
+   */
+  deleteActivityReportsActivityReportId = (activityReportId: string, params: RequestParams = {}) =>
+    this.request<any, void | TypeHTTPValidationError>({
+      path: `/v1/activity-reports/${activityReportId}`,
+      method: "DELETE",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets Activity Reports for a given Activity Event short ID. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags activity-reports
+   * @name GetActivityReportsActivityEventShortId
+   * @summary Gets Activity Reports for a given Activity Event short ID
+   * @request GET:/v1/activity-reports/activity-event/{short_id}
+   * @secure
+   */
+  getActivityReportsActivityEventShortId = (
+    { shortId, ...query }: TypeGetActivityReportsActivityEventShortIdParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeActivityReportOut[], void | TypeHTTPValidationError>({
+      path: `/v1/activity-reports/activity-event/${shortId}`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets latest Activity Report for a given Activity Event short ID. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View|
+   *
+   * @tags activity-reports
+   * @name GetActivityReportsActivityEventShortIdLatest
+   * @summary Gets latest Activity Report for a given Activity Event short ID
+   * @request GET:/v1/activity-reports/activity-event/{short_id}/latest
+   * @secure
+   */
+  getActivityReportsActivityEventShortIdLatest = (shortId: string, params: RequestParams = {}) =>
+    this.request<TypeActivityReportOut, void | TypeHTTPValidationError>({
+      path: `/v1/activity-reports/activity-event/${shortId}/latest`,
       method: "GET",
       secure: true,
       format: "json",
@@ -1081,7 +1289,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public|
+   * No description
    *
    * @tags messages
    * @name PostMessagesFeedback

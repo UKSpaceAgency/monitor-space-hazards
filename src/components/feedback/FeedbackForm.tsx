@@ -10,6 +10,7 @@ import { useForm } from 'react-hook-form';
 import { postFeedback } from '@/actions/postFeedback';
 import Button from '@/ui/button/button';
 import Fieldset, { } from '@/ui/fieldset/fieldset';
+import Input from '@/ui/input/input';
 import Radios from '@/ui/radios/radios';
 import TextArea from '@/ui/text-area/text-area';
 import type { FeedbackSchema } from '@/validations/feedbackSchema';
@@ -17,7 +18,7 @@ import { feedBackFormDefaultValues, feedbackSchema } from '@/validations/feedbac
 
 import { FormErrorSummary } from '../form/FormErrorSummary';
 
-const FeedbackForm = () => {
+const FeedbackForm = ({ email }: { email?: string }) => {
   const t = useTranslations('Forms.Feedback');
 
   const [loading, setLoading] = useState(false);
@@ -26,6 +27,9 @@ const FeedbackForm = () => {
   const { register, handleSubmit, formState: { errors }, setError } = useForm<FeedbackSchema>({
     resolver: zodResolver(feedbackSchema),
     reValidateMode: 'onSubmit',
+    defaultValues: {
+      email,
+    },
   });
 
   const onSubmit: SubmitHandler<FeedbackSchema> = async (data) => {
@@ -33,6 +37,7 @@ const FeedbackForm = () => {
 
     try {
       await postFeedback({
+        userEmail: data.email,
         satisfaction: Number(data.satisfaction),
         details: data.details,
       });
@@ -59,6 +64,16 @@ const FeedbackForm = () => {
           text: t('survey_label'),
         }}
       >
+        {!email && (
+          <Input
+            {...register('email')}
+            id="email"
+            label={t('email_label')}
+            error={errors.email?.message}
+            aria-label="Email"
+            autoComplete="email"
+          />
+        )}
         <Radios
           id="satisfaction"
           aria-label="Satisfaction"
