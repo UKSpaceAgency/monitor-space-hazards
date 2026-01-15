@@ -134,11 +134,21 @@ const renderPdfTableSection = (
   rows: Element[],
   startCol: number,
   endCol: number,
+  includeFirstCol: boolean = false,
 ) => {
-  const currentColsNumber = endCol - startCol;
+  const headerSlice = includeFirstCol && startCol > 0 && headers[0]
+    ? [headers[0], ...headers.slice(startCol, endCol)]
+    : headers.slice(startCol, endCol);
+
+  const rowSlice = includeFirstCol && startCol > 0
+    ? rows.map((row) => {
+        const cells = [...row.children];
+        return [cells[0], ...cells.slice(startCol, endCol)];
+      })
+    : rows.map(row => [...row.children].slice(startCol, endCol));
+
+  const currentColsNumber = headerSlice.length;
   const colWeight = 1 / currentColsNumber;
-  const headerSlice = headers.slice(startCol, endCol);
-  const rowSlice = rows.map(row => [...row.children].slice(startCol, endCol));
 
   return (
     <Table style={pdfStyles.table} tdStyle={{ padding: '0.2cm' }} weightings={Array.from({ length: currentColsNumber }, () => colWeight)}>
@@ -177,18 +187,33 @@ const generatePdfTable = (table: HTMLElement) => {
   // If more than 6 columns, split the table
   if (colsNumber > 6) {
     const tables: ReactElement[] = [];
-    const numTables = Math.ceil(colsNumber / 6);
+    // First table gets 6 columns, subsequent tables get first column + 5 more
+    const firstTableCols = 6;
+    const subsequentTableCols = 5;
 
-    for (let tableIndex = 0; tableIndex < numTables; tableIndex++) {
-      const startCol = tableIndex * 6;
-      const endCol = Math.min(startCol + 6, colsNumber);
+    // First table: columns 0-5
+    tables.push(
+      <View key={0}>
+        {captionObject}
+        {renderPdfTableSection(headers, rows, 0, firstTableCols, false)}
+      </View>,
+    );
+
+    // Subsequent tables: first column + next 5 columns
+    let currentCol = firstTableCols;
+    let tableIndex = 1;
+
+    while (currentCol < colsNumber) {
+      const endCol = Math.min(currentCol + subsequentTableCols, colsNumber);
 
       tables.push(
         <View key={tableIndex}>
-          {tableIndex === 0 && captionObject}
-          {renderPdfTableSection(headers, rows, startCol, endCol)}
+          {renderPdfTableSection(headers, rows, currentCol, endCol, true)}
         </View>,
       );
+
+      currentCol = endCol;
+      tableIndex++;
     }
 
     return <View>{tables}</View>;
@@ -198,7 +223,7 @@ const generatePdfTable = (table: HTMLElement) => {
   return (
     <View>
       {captionObject}
-      {renderPdfTableSection(headers, rows, 0, colsNumber)}
+      {renderPdfTableSection(headers, rows, 0, colsNumber, false)}
     </View>
   );
 };
