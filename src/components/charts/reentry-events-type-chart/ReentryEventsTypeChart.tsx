@@ -20,7 +20,7 @@ export function ReentryEventsTypeChart({ data, actionButtons }: ReentryEventsTyp
     datasets: [
       {
         data: filteredData.map(({ count }) => count),
-        backgroundColor: [chartPalette.nspocBlue, chartPalette.nspocRed, chartPalette.nspocYellow, chartPalette.lightPurple],
+        backgroundColor: [chartPalette.nspocBlue, chartPalette.nspocRed, chartPalette.nspocYellow, chartPalette.nspocGreen],
       },
     ],
   };
