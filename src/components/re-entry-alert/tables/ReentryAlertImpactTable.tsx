@@ -19,6 +19,7 @@ type ReentryAlertImpactTableProps = {
   caption?: string;
   impact: Record<string, TypeOverflightProbability>;
   byRegion: string;
+  isNation?: boolean;
 };
 
 type ProbabilityType = 'fragments_probability' | 'atmospheric_probability' | 'human_casualty_probability';
@@ -52,7 +53,7 @@ const getRegionDisplayName = (key: string): string => {
   return jsonRegionsMap[key] ?? key;
 };
 
-const ReentryAlertImpactTable = ({ caption, impact, byRegion }: ReentryAlertImpactTableProps) => {
+const ReentryAlertImpactTable = ({ caption, impact, byRegion, isNation }: ReentryAlertImpactTableProps) => {
   const t = useTranslations('Tables.Reentry_alert_impact');
 
   // State
@@ -94,7 +95,7 @@ const ReentryAlertImpactTable = ({ caption, impact, byRegion }: ReentryAlertImpa
       },
       {
         id: 'atmospheric_probability',
-        children: t('probability_of_atmospheric_entry'),
+        children: isNation ? t('probability_of_atmospheric_entry_nation') : t('probability_of_atmospheric_entry'),
       },
       // {
       //   id: 'human_casualty_probability',

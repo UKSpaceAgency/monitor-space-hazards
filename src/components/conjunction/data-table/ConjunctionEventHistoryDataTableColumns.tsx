@@ -33,7 +33,6 @@ export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummar
             `${row.original?.dataSource}: ID ${row.original?.cdmExternalId}`
           );
     },
-    enableSorting: false,
   },
   {
     accessorKey: 'updateTime',
@@ -45,7 +44,6 @@ export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummar
         <div>{dayjs(value).format(FORMAT_DATE_TIME)}</div>
       );
     },
-    enableSorting: false,
   },
   {
     accessorKey: 'collisionProbability',
@@ -55,13 +53,11 @@ export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummar
       const value = getValue<number | null>();
       return displayExponential(value, 4);
     },
-    enableSorting: false,
   },
   {
     accessorKey: 'missDistance',
     id: 'missDistance',
     header: 'Conjunction.event_history.total_miss_distance',
-    enableSorting: false,
   },
   {
     accessorKey: 'radialMissDistance',
@@ -72,7 +68,6 @@ export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummar
 
       return getAbsoluteValue(value);
     },
-    enableSorting: false,
   },
   {
     accessorKey: 'tcaTime',
@@ -83,6 +78,5 @@ export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummar
 
       return dayjs(value).format(FORMAT_DATE_TIME);
     },
-    enableSorting: false,
   },
 ];
