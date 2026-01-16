@@ -130,15 +130,24 @@ const renderTableCell = (cell: HTMLElement, cellIndex: number) => {
 };
 
 const renderPdfTableSection = (
-  headers: Element[],
+  headerRows: Element[][],
   rows: Element[],
   startCol: number,
   endCol: number,
   includeFirstCol: boolean = false,
 ) => {
-  const headerSlice = includeFirstCol && startCol > 0 && headers[0]
-    ? [headers[0], ...headers.slice(startCol, endCol)]
-    : headers.slice(startCol, endCol);
+  // Process header rows to slice appropriately
+  const processedHeaderRows = headerRows.map((headers) => {
+    if (headers.length === 0) {
+      return [];
+    }
+
+    const headerSlice = includeFirstCol && startCol > 0 && headers[0]
+      ? [headers[0], ...headers.slice(startCol, endCol)]
+      : headers.slice(startCol, endCol);
+
+    return headerSlice;
+  });
 
   const rowSlice = includeFirstCol && startCol > 0
     ? rows.map((row) => {
@@ -147,23 +156,34 @@ const renderPdfTableSection = (
       })
     : rows.map(row => [...row.children].slice(startCol, endCol));
 
-  const currentColsNumber = headerSlice.length;
+  // Calculate base column count from first header row
+  const baseColCount = processedHeaderRows.length > 0 && processedHeaderRows[0] && processedHeaderRows[0].length > 0
+    ? processedHeaderRows[0].reduce((acc, header) => {
+        const colSpan = Number.parseInt(header.getAttribute('colSpan') || '1');
+        return acc + colSpan;
+      }, 0)
+    : (endCol - startCol);
+
+  const currentColsNumber = baseColCount;
   const colWeight = 1 / currentColsNumber;
 
   return (
     <Table style={pdfStyles.table} tdStyle={{ padding: '0.2cm' }} weightings={Array.from({ length: currentColsNumber }, () => colWeight)}>
-      {headers.length > 0 && (
-        <TR wrap={false}>
-          {headerSlice.map((header, index: number) => {
-            const colSpan = header.getAttribute('colSpan');
-            return (
-              <TD key={index} style={pdfStyles.tableCellHeader} weighting={colSpan ? Math.round((Number.parseInt(colSpan) / currentColsNumber) * 10) / 10 : colWeight}>
-                {header.textContent}
-              </TD>
-            );
-          })}
-        </TR>
-      )}
+      {processedHeaderRows.map((headerSlice, headerRowIndex) => (
+        headerSlice.length > 0 && (
+          <TR key={`header-${headerRowIndex}`} wrap={false}>
+            {headerSlice.map((header, index: number) => {
+              const colSpan = Number.parseInt(header.getAttribute('colSpan') || '1');
+              const cellWeight = (colSpan / currentColsNumber);
+              return (
+                <TD key={index} style={pdfStyles.tableCellHeader} weighting={cellWeight}>
+                  {header.textContent}
+                </TD>
+              );
+            })}
+          </TR>
+        )
+      ))}
       {rowSlice.map((cells, rowIndex: number) => (
         <TR key={rowIndex} style={{ flexWrap: 'wrap', backgroundColor: rowIndex % 2 === 0 ? '#f0f0f0' : 'transparent' }} wrap={false}>
           {cells.map((cell, cellIndex) => renderTableCell(cell as HTMLElement, cellIndex))}
@@ -174,7 +194,10 @@ const renderPdfTableSection = (
 };
 
 const generatePdfTable = (table: HTMLElement) => {
-  const headers = [...(table.querySelector('.govuk-table__head tr')?.children ?? [])];
+  // Extract all header rows (supports multi-row headers)
+  const headerRowElements = [...(table.querySelectorAll('.govuk-table__head tr') || [])];
+  const headerRows = headerRowElements.map(row => [...row.children]);
+
   const caption = table.querySelector('.govuk-table__caption')?.innerHTML;
   const captionObject = <Text style={pdfStyles.subHeader}>{caption}</Text>;
 
@@ -195,7 +218,7 @@ const generatePdfTable = (table: HTMLElement) => {
     tables.push(
       <View key={0}>
         {captionObject}
-        {renderPdfTableSection(headers, rows, 0, firstTableCols, false)}
+        {renderPdfTableSection(headerRows, rows, 0, firstTableCols, false)}
       </View>,
     );
 
@@ -208,7 +231,7 @@ const generatePdfTable = (table: HTMLElement) => {
 
       tables.push(
         <View key={tableIndex}>
-          {renderPdfTableSection(headers, rows, currentCol, endCol, true)}
+          {renderPdfTableSection(headerRows, rows, currentCol, endCol, true)}
         </View>,
       );
 
@@ -223,7 +246,7 @@ const generatePdfTable = (table: HTMLElement) => {
   return (
     <View>
       {captionObject}
-      {renderPdfTableSection(headers, rows, 0, colsNumber, false)}
+      {renderPdfTableSection(headerRows, rows, 0, colsNumber, false)}
     </View>
   );
 };
