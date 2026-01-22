@@ -38,6 +38,7 @@ export const alertSettingsSchema = z.object({
     z.literal('all'),
     z.literal('none'),
     z.literal('priority'),
+    z.literal('closedown'),
   ]),
   receiveFragmentation: receiveDefault,
 });

@@ -2,11 +2,10 @@ import { getTranslations } from 'next-intl/server';
 
 import Accordion from '@/ui/accordion/accordion';
 
+import { MonitoringObjectsCatalogued } from '../conjunction-events-monitoring/MonitoringObjectsCatalogued';
 import { CdmIngests } from './CdmIngests';
-import { NotificationsSent } from './NotificationsSent';
 import { ObjectDataIngests } from './ObjectDataIngests';
 import { TipIngests } from './TipIngests';
-import { UksaAnalyses } from './UksaAnalyses';
 
 const MonitoringAccordion = async () => {
   const t = await getTranslations('Performance_monitoring.performance_accordion');
@@ -34,15 +33,20 @@ const MonitoringAccordion = async () => {
             content: <ObjectDataIngests />,
           },
           {
-            id: 'notificationsSent',
-            heading: t('notifications_sent.title'),
-            content: <NotificationsSent />,
+            id: 'objectsCatalogued',
+            heading: t('objects_catalogued.title'),
+            content: <MonitoringObjectsCatalogued />,
           },
-          {
-            id: 'uksa',
-            heading: t('uksa.title'),
-            content: <UksaAnalyses />,
-          },
+          // {
+          //   id: 'notificationsSent',
+          //   heading: t('notifications_sent.title'),
+          //   content: <NotificationsSent />,
+          // },
+          // {
+          //   id: 'uksa',
+          //   heading: t('uksa.title'),
+          //   content: <UksaAnalyses />,
+          // },
         ]}
       />
     </>

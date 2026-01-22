@@ -48,7 +48,7 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
   };
 
   return (
-    <div>
+    <div data-pdf-ignore>
       <fieldset>
         <legend className="govuk-fieldset__legend govuk-fieldset__legend--s"><h4>{t('legend')}</h4></legend>
         <div className="grid md:grid-cols-2 md:gap-4 govuk-checkboxes govuk-checkboxes--small md:py-4 md:pl-[25px]">

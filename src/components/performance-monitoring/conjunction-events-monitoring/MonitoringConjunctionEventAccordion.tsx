@@ -2,11 +2,11 @@ import { getTranslations } from 'next-intl/server';
 
 import Accordion from '@/ui/accordion/accordion';
 
+import { UksaAnalyses } from '../performance-monitoring/UksaAnalyses';
 import { MonitoringConjunctionEventsByType } from './MonitoringConjunctionEventsByType';
 import { MonitoringEventsByOrganisation } from './MonitoringEventsByOrganisation';
 import { MonitoringEventsByProbabilityOfCollision } from './MonitoringEventsByProbabilityOfCollision';
 import { MonitoringEventsBySatellite } from './MonitoringEventsBySatellite';
-import { MonitoringObjectsCatalogued } from './MonitoringObjectsCatalogued';
 
 const MonitoringConjunctionEventAccordion = async () => {
   const t = await getTranslations('Performance_monitoring.conjunction_accordion');
@@ -29,9 +29,9 @@ const MonitoringConjunctionEventAccordion = async () => {
             content: <MonitoringEventsByProbabilityOfCollision />,
           },
           {
-            id: 'objectsCatalogued',
-            heading: t('objects_catalogued.title'),
-            content: <MonitoringObjectsCatalogued />,
+            id: 'uksa',
+            heading: t('uksa.title'),
+            content: <UksaAnalyses />,
           },
           {
             id: 'conjunctionEventsByOrganisation',

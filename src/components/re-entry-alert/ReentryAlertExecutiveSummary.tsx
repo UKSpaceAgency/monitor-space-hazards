@@ -3,7 +3,7 @@ import { isNumber } from 'lodash';
 import type { RichTranslationValues } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
-import type { TypeReentryEventOut, TypeRisk } from '@/__generated__/data-contracts';
+import type { TypeReentryEventOut, TypeReentryEventReportOut, TypeRisk } from '@/__generated__/data-contracts';
 import { FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 import InsetText from '@/ui/inset-text/inset-text';
 import { roundedPercentage } from '@/utils/Math';
@@ -16,11 +16,12 @@ import { ReentryAlertRiskProbabilitiesTable } from './tables/ReentryAlertRiskPro
 
 type ReentryAlertExecutiveSummaryProps = {
   event: TypeReentryEventOut;
+  report: TypeReentryEventReportOut;
   executiveSummaryComment?: string | null;
   isClosed?: boolean;
 };
 
-const ReentryAlertExecutiveSummary = async ({ event, executiveSummaryComment, isClosed }: ReentryAlertExecutiveSummaryProps) => {
+const ReentryAlertExecutiveSummary = async ({ event, report, executiveSummaryComment, isClosed }: ReentryAlertExecutiveSummaryProps) => {
   const t = await getTranslations('Reentry_alert.Executive_summary');
 
   const haveRiskProbabilities = isNumber(event.atmosphericProbability) || isNumber(event.fragmentsProbability) || isNumber(event.humanCasualtyProbability);
@@ -65,7 +66,7 @@ const ReentryAlertExecutiveSummary = async ({ event, executiveSummaryComment, is
         </>
       )}
       <h3 className="govuk-heading-s">{t('event_summary')}</h3>
-      <ReentryAlertExecutiveSummaryTable event={event} />
+      <ReentryAlertExecutiveSummaryTable event={event} report={report} />
     </div>
   );
 };

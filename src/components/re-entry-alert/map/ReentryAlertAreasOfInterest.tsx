@@ -70,7 +70,7 @@ const ReentryAlertAreasOfInterest = ({ selected, onChange }: ReentryAlertAreasOf
   };
 
   return (
-    <div>
+    <div data-pdf-ignore>
       <h4 className="govuk-fieldset__legend govuk-fieldset__legend--s">{t('legend')}</h4>
       <Details summary={t.rich('help')} initiallyOpen>
         <fieldset className="grid grid-cols-2 gap-4">

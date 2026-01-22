@@ -28,11 +28,12 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
   const event = await getReentryEvent(shortId);
   const reports = await getReentryReports({ shortId });
   const title = t('title', { objectName: event.objectName });
-  const pdfTitle = t('pdf_title', { objectName: event.objectName, reportNumber: event.reentryReportNumber?.toString() });
 
   const lastReport = reports[reports.length - 1];
   const isClosed = lastReport?.alertType.includes('closedown');
   const closedComment = searchParams?.closed_comment ?? event.closedComment;
+
+  const pdfTitle = t(isClosed ? 'pdf_title_closed' : 'pdf_title', { objectName: event.objectName, reportNumber: event.reentryReportNumber?.toString() });
 
   if (!lastReport) {
     return redirect(`/re-entries/${shortId}`);
@@ -40,26 +41,29 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
 
   return (
     <div>
-      {isClosed
-      && (
-        <div className="flex items-center gap-4 mb-4">
-          <Tag>{t('closed')}</Tag>
-          {closedComment && (
-            <span>{closedComment}</span>
-          )}
-        </div>
-      )}
-      <h1 className="govuk-heading-xl">
-        {title}
-        <span className="block text-lg">{dayjs(event.decayEpoch).format(FORMAT_FULL_DATE)}</span>
-      </h1>
+      <div className="mb-8">
+        <h1 className="govuk-heading-xl mb-0">
+          {title}
+          <span className="block text-lg">{dayjs(event.decayEpoch).format(FORMAT_FULL_DATE)}</span>
+        </h1>
+        {isClosed
+        && (
+          <div className="flex items-center gap-4 mt-4">
+            <Tag>{t('closed')}</Tag>
+            {closedComment && (
+              <span>{closedComment}</span>
+            )}
+          </div>
+        )}
+      </div>
+
       <div>
         <ContentNavigation />
         <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
         <div className="md:col-span-3">
           {t.rich('report_info', { number: event.reentryReportNumber?.toString(), time: dayjs(event.updatedAt).format(FORMAT_DATE_TIME) })}
           <Suspense fallback={<Spinner />}>
-            <ReentryAlertExecutiveSummary event={event} executiveSummaryComment={searchParams?.executive_summary_comment ?? event.executiveSummaryComment} isClosed={isClosed} />
+            <ReentryAlertExecutiveSummary event={event} report={lastReport} executiveSummaryComment={searchParams?.executive_summary_comment ?? event.executiveSummaryComment} isClosed={isClosed} />
           </Suspense>
           <Suspense fallback={<Spinner />}>
             {lastReport?.id && (
@@ -72,7 +76,7 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
           </Suspense>
           <ReentryAlertNextUpdate shortId={shortId} />
           <ReentryAlertAccordion event={event} reports={reports} lastReport={lastReport} searchParams={searchParams} />
-          {footer || <ReentryAlertButtons pdfTitle={pdfTitle} />}
+          {footer || <ReentryAlertButtons pdfTitle={pdfTitle} pdfSubtitle={closedComment ?? undefined} />}
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { ContentNavigation } from '@/components/ContentNavigation';
 import { MonitoringConjunctionEventAccordion } from '@/components/performance-monitoring/conjunction-events-monitoring/MonitoringConjunctionEventAccordion';
+import { MonitoringFragmentationEventAccordion } from '@/components/performance-monitoring/conjunction-events-monitoring/MonitoringFragmentationEventAccordion';
 import { MonitoringReentryEventAccordion } from '@/components/performance-monitoring/conjunction-events-monitoring/MonitoringReentryEventAccordion';
 import { MonitoringAccordion } from '@/components/performance-monitoring/performance-monitoring/MonitoringAccordion';
 import { MonitoringServiceUsageAccordion } from '@/components/performance-monitoring/service-usage/MonitoringServiceUsageAccordion';
@@ -22,30 +23,31 @@ export default async function PerformanceMonitoring() {
         title={t('performance_monitoring')}
         internalTitle={[
           {
-            text: t('service_usage'),
-            index: 5,
-          },
-          {
             text: t('conjunction_event_and_organisation_data'),
-            index: 6,
+            index: 4,
           },
           {
             text: t('reentry_event_and_organisation_data'),
-            index: 11,
+            index: 9,
           },
           {
             text: t('fragmentation_event_and_organisation_data'),
-            index: 12,
+            index: 10,
           },
+          {
+            text: t('service_usage'),
+            index: 11,
+          },
+
         ]}
         className="mb-8"
       />
 
       <MonitoringAccordion />
-      <MonitoringServiceUsageAccordion />
       <MonitoringConjunctionEventAccordion />
       <MonitoringReentryEventAccordion />
-      {/* <MonitoringFragmentationEventAccordion /> */}
+      <MonitoringFragmentationEventAccordion />
+      <MonitoringServiceUsageAccordion />
     </div>
   );
 }

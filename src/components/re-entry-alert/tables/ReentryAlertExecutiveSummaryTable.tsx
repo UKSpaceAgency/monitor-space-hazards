@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
 
-import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
+import type { TypeReentryEventOut, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
 import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
@@ -10,10 +10,17 @@ type EventSummaryData = Pick<TypeReentryEventOut, 'timeWindowStart' | 'timeWindo
 
 type ReentryAlertExecutiveSummaryTableProps = {
   event: TypeReentryEventOut;
+  report: TypeReentryEventReportOut;
 };
 
-const ReentryAlertExecutiveSummaryTable = ({ event }: ReentryAlertExecutiveSummaryTableProps) => {
+const ReentryAlertExecutiveSummaryTable = ({ event, report }: ReentryAlertExecutiveSummaryTableProps) => {
   const t = useTranslations('Tables.Reentry_alert_executive_summary');
+
+  const data = {
+    ...event,
+    decayEpoch: report.decayEpoch,
+    uncertaintyWindow: report.uncertaintyWindow,
+  };
 
   const rows: InformationsTableRow<EventSummaryData>[] = [{
     header: t('time_window_world'),
@@ -39,7 +46,7 @@ const ReentryAlertExecutiveSummaryTable = ({ event }: ReentryAlertExecutiveSumma
     renderCell: ({ licenseCountry }) => getFullCountry(licenseCountry),
   }];
 
-  return <InformationsTable rows={rows} data={event} className="text-base" />;
+  return <InformationsTable rows={rows} data={data} className="text-base" />;
 };
 
 export { ReentryAlertExecutiveSummaryTable };

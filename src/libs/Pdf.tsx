@@ -40,6 +40,10 @@ export const pdfStyles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: '5px',
   },
+  headerSubtitle: {
+    fontSize: '12px',
+    marginBottom: '5px',
+  },
   contentsLink: {
     fontSize: '12px',
     padding: '2px 0',
@@ -89,10 +93,118 @@ export const pdfStyles = StyleSheet.create({
   uksaLogoContainer: {
     marginTop: '5px',
   },
+  map: {
+    marginBottom: '10px',
+  },
 });
 
+const renderTableCell = (cell: HTMLElement, cellIndex: number) => {
+  const tagClassList = (cell.firstChild as HTMLElement)?.classList;
+  const cellStyle = {
+    color: '#000000',
+    backgroundColor: 'transparent',
+  };
+  if (tagClassList?.contains('govuk-tag')) {
+    if (tagClassList.contains('govuk-tag--turquoise')) {
+      cellStyle.color = '#104040';
+      cellStyle.backgroundColor = '#d4ecea';
+    };
+    if (tagClassList.contains('govuk-tag--green')) {
+      cellStyle.color = '#005a30';
+      cellStyle.backgroundColor = '#cce2d8';
+    };
+    if (tagClassList.contains('govuk-tag--yellow')) {
+      cellStyle.color = '#594d00';
+      cellStyle.backgroundColor = '#fff6bf';
+    };
+    if (tagClassList.contains('govuk-tag--red')) {
+      cellStyle.color = '#8a0000';
+      cellStyle.backgroundColor = '#fde6e6';
+    };
+  }
+  if (cell.dataset.pdf === 'no') {
+    return null;
+  }
+  const innerHTML = cell.innerHTML;
+  const textContent = innerHTML
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<[^>]*>/g, '');
+  return (
+    <TD key={cellIndex} style={cell.tagName === 'TH' ? pdfStyles.tableCellHeader : { ...cellStyle }}>
+      {textContent}
+    </TD>
+  );
+};
+
+const renderPdfTableSection = (
+  headerRows: Element[][],
+  rows: Element[],
+  startCol: number,
+  endCol: number,
+  includeFirstCol: boolean = false,
+) => {
+  // Process header rows to slice appropriately
+  const processedHeaderRows = headerRows.map((headers) => {
+    if (headers.length === 0) {
+      return [];
+    }
+
+    const headerSlice = includeFirstCol && startCol > 0 && headers[0]
+      ? [headers[0], ...headers.slice(startCol, endCol)]
+      : headers.slice(startCol, endCol);
+
+    return headerSlice;
+  });
+
+  const rowSlice = includeFirstCol && startCol > 0
+    ? rows.map((row) => {
+        const cells = [...row.children];
+        return [cells[0], ...cells.slice(startCol, endCol)];
+      })
+    : rows.map(row => [...row.children].slice(startCol, endCol));
+
+  // Calculate base column count from first header row
+  const baseColCount = processedHeaderRows.length > 0 && processedHeaderRows[0] && processedHeaderRows[0].length > 0
+    ? processedHeaderRows[0].reduce((acc, header) => {
+        const colSpan = Number.parseInt(header.getAttribute('colSpan') || '1');
+        return acc + colSpan;
+      }, 0)
+    : (endCol - startCol);
+
+  const currentColsNumber = baseColCount;
+  const colWeight = 1 / currentColsNumber;
+
+  return (
+    <Table style={pdfStyles.table} tdStyle={{ padding: '0.2cm' }} weightings={Array.from({ length: currentColsNumber }, () => colWeight)}>
+      {processedHeaderRows.map((headerSlice, headerRowIndex) => (
+        headerSlice.length > 0 && (
+          <TR key={`header-${headerRowIndex}`} wrap={false}>
+            {headerSlice.map((header, index: number) => {
+              const colSpan = Number.parseInt(header.getAttribute('colSpan') || '1');
+              const cellWeight = (colSpan / currentColsNumber);
+              return (
+                <TD key={index} style={pdfStyles.tableCellHeader} weighting={cellWeight}>
+                  {header.textContent}
+                </TD>
+              );
+            })}
+          </TR>
+        )
+      ))}
+      {rowSlice.map((cells, rowIndex: number) => (
+        <TR key={rowIndex} style={{ flexWrap: 'wrap', backgroundColor: rowIndex % 2 === 0 ? '#f0f0f0' : 'transparent' }} wrap={false}>
+          {cells.map((cell, cellIndex) => renderTableCell(cell as HTMLElement, cellIndex))}
+        </TR>
+      ))}
+    </Table>
+  );
+};
+
 const generatePdfTable = (table: HTMLElement) => {
-  const headers = table.querySelector('.govuk-table__head tr')?.children ?? [];
+  // Extract all header rows (supports multi-row headers)
+  const headerRowElements = [...(table.querySelectorAll('.govuk-table__head tr') || [])];
+  const headerRows = headerRowElements.map(row => [...row.children]);
+
   const caption = table.querySelector('.govuk-table__caption')?.innerHTML;
   const captionObject = <Text style={pdfStyles.subHeader}>{caption}</Text>;
 
@@ -101,66 +213,47 @@ const generatePdfTable = (table: HTMLElement) => {
   );
 
   const colsNumber = rows[0]?.children?.length || 1;
-  const colWeight = 1 / colsNumber;
 
+  // If more than 6 columns, split the table
+  if (colsNumber > 6) {
+    const tables: ReactElement[] = [];
+    // First table gets 6 columns, subsequent tables get first column + 5 more
+    const firstTableCols = 6;
+    const subsequentTableCols = 5;
+
+    // First table: columns 0-5
+    tables.push(
+      <View key={0}>
+        {captionObject}
+        {renderPdfTableSection(headerRows, rows, 0, firstTableCols, false)}
+      </View>,
+    );
+
+    // Subsequent tables: first column + next 5 columns
+    let currentCol = firstTableCols;
+    let tableIndex = 1;
+
+    while (currentCol < colsNumber) {
+      const endCol = Math.min(currentCol + subsequentTableCols, colsNumber);
+
+      tables.push(
+        <View key={tableIndex}>
+          {renderPdfTableSection(headerRows, rows, currentCol, endCol, true)}
+        </View>,
+      );
+
+      currentCol = endCol;
+      tableIndex++;
+    }
+
+    return <View>{tables}</View>;
+  }
+
+  // Original logic for tables with 6 or fewer columns
   return (
     <View>
       {captionObject}
-      <Table style={pdfStyles.table} tdStyle={{ padding: '0.2cm' }} weightings={Array.from({ length: colsNumber }, () => colWeight)}>
-        {headers.length > 0 && (
-          <TR wrap={false}>
-            {[...headers].map((header, index: number) => {
-              const colSpan = header.getAttribute('colSpan');
-              return (
-                <TD key={index} style={pdfStyles.tableCellHeader} weighting={colSpan ? Math.round((Number.parseInt(colSpan) / colsNumber) * 10) / 10 : colWeight}>
-                  {header.textContent}
-                </TD>
-              );
-            })}
-          </TR>
-        )}
-        {rows.map((row: { children: any }, rowIndex: number) => (
-          <TR key={rowIndex} style={{ flexWrap: 'wrap', backgroundColor: rowIndex % 2 === 0 ? '#f0f0f0' : 'transparent' }} wrap={false}>
-            {[...row.children].map((cell: HTMLElement, cellIndex: number) => {
-              const tagClassList = (cell.firstChild as HTMLElement)?.classList;
-              const cellStyle = {
-                color: '#000000',
-                backgroundColor: 'transparent',
-              };
-              if (tagClassList?.contains('govuk-tag')) {
-                if (tagClassList.contains('govuk-tag--turquoise')) {
-                  cellStyle.color = '#104040';
-                  cellStyle.backgroundColor = '#d4ecea';
-                };
-                if (tagClassList.contains('govuk-tag--green')) {
-                  cellStyle.color = '#005a30';
-                  cellStyle.backgroundColor = '#cce2d8';
-                };
-                if (tagClassList.contains('govuk-tag--yellow')) {
-                  cellStyle.color = '#594d00';
-                  cellStyle.backgroundColor = '#fff6bf';
-                };
-                if (tagClassList.contains('govuk-tag--red')) {
-                  cellStyle.color = '#8a0000';
-                  cellStyle.backgroundColor = '#fde6e6';
-                };
-              }
-              if (cell.dataset.pdf === 'no') {
-                return null;
-              }
-              const innerHTML = cell.innerHTML;
-              const textContent = innerHTML
-                .replace(/<br\s*\/?>/gi, '\n')
-                .replace(/<[^>]*>/g, '');
-              return (
-                <TD key={cellIndex} style={cell.tagName === 'TH' ? pdfStyles.tableCellHeader : { ...cellStyle }}>
-                  {textContent}
-                </TD>
-              );
-            })}
-          </TR>
-        ))}
-      </Table>
+      {renderPdfTableSection(headerRows, rows, 0, colsNumber, false)}
     </View>
   );
 };
@@ -214,7 +307,7 @@ const generatePdfContent = (node: Element) => {
         if ((el as HTMLElement).dataset.type === 'map') {
           const chart = (node as HTMLElement).querySelector('.mapboxgl-canvas') as HTMLCanvasElement;
           if (chart) {
-            content.push(<Image src={chart.toDataURL('image/png', 1.0)} />);
+            content.push(<Image style={pdfStyles.map} src={chart.toDataURL('image/png', 1.0)} />);
           }
         }
         break;

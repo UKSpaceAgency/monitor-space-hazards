@@ -8,7 +8,7 @@ import Details from '@/ui/details/details';
 import { NotificationsSentDaily } from './NotificationsSentDaily';
 
 const NotificationsSent = async () => {
-  const t = await getTranslations('Performance_monitoring.performance_accordion.notifications_sent');
+  const t = await getTranslations('Performance_monitoring.service_usage_accordion.notifications_sent');
 
   const params: TypeGetStatsNotificationsSentParams = {
     limit: 9999,

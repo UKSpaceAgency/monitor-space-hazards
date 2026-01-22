@@ -8,14 +8,14 @@ import { generatePdfSections } from '@/libs/Pdf';
 import { PdfTemplate } from '@/templates/PdfTemplate';
 import Button from '@/ui/button/button';
 
-const PdfDownloadButton = ({ title }: { title: string }) => {
+const PdfDownloadButton = ({ title, subtitle }: { title: string; subtitle?: string }) => {
   const tCommon = useTranslations('Common');
   const [downloading, setDownloading] = useState(false);
-  const [instance, update] = usePDF({ document: <PdfTemplate title={title} sections={[]} /> });
+  const [instance, update] = usePDF({ document: <PdfTemplate title={title} subtitle={subtitle} sections={[]} /> });
 
   const handleDownload = () => {
     setDownloading(true);
-    update(<PdfTemplate title={title} sections={generatePdfSections()} />);
+    update(<PdfTemplate title={title} subtitle={subtitle} sections={generatePdfSections()} />);
   };
 
   useEffect(() => {

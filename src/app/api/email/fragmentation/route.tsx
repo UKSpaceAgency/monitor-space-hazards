@@ -1,19 +1,16 @@
 import { render } from '@react-email/render';
 
-import { getFragmentationEventScreeningResults } from '@/actions/getFragmentationEventScreeningResults';
 import FragmentationEmail from '@/emails/fragmentation';
 
 export async function POST(
   request: Request,
 ) {
   try {
-    const { event, report } = await request.json();
+    const { event, report, screeningResults } = await request.json();
 
-    if (!event || !report) {
+    if (!event || !report || !screeningResults) {
       return Response.json({ error: 'Invalid request' }, { status: 400, statusText: 'Invalid request' });
     }
-
-    const screeningResults = await getFragmentationEventScreeningResults(report.presigned_url);
 
     const html = await render(<FragmentationEmail event={event} report={report} screeningResults={screeningResults} withPlaceholders />);
 

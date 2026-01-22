@@ -61,7 +61,7 @@ export default async function DashboardPage() {
         <h3 className="govuk-heading-m">{t('services.all_services_title')}</h3>
         <div className="">
           {Object.keys(allServicesItems).filter((key) => {
-            if ((key === 'track_reentries' && !isAgencyUser(session?.user?.role)) || key === 'track_fragmentations') {
+            if (key === 'track_reentries' && !isAgencyUser(session?.user?.role)) {
               return false;
             }
             return true;

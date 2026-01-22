@@ -12,7 +12,7 @@ import { UksaAnalysesDaily } from './UksaAnalysesDaily';
 import { UksaAnalysesMonthly } from './UksaAnalysesMonthly';
 
 const UksaAnalyses = async () => {
-  const t = await getTranslations('Performance_monitoring.performance_accordion.uksa');
+  const t = await getTranslations('Performance_monitoring.conjunction_accordion.uksa');
 
   const params: TypeGetExternalDataPerformanceParams = {
     source_type: ['Manoeuvre Trade Space Plot', 'Analysis'],

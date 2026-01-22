@@ -9,6 +9,426 @@
  * ---------------------------------------------------------------
  */
 
+/** ActivityEvent */
+export interface TypeActivityEvent {
+  /**
+   * Id
+   * @format uuid
+   */
+  id?: string;
+  /**
+   * Created At
+   * @format date-time
+   */
+  created_at?: string;
+  /**
+   * Updated At
+   * @format date-time
+   */
+  updated_at?: string;
+  /** Short Id */
+  short_id: string;
+  /** Year */
+  year: number;
+  /** Event Number */
+  event_number: number;
+  /**
+   * Is Active
+   * @default true
+   */
+  is_active?: boolean;
+  /**
+   * Flag Date
+   * @format date-time
+   */
+  flag_date: string;
+  /** Flag Id */
+  flag_id: string;
+  /** Flag Count */
+  flag_count: number;
+  primary_flag: TypeActivityPrimaryFlag;
+  /**
+   * Priority Flag
+   * @default false
+   */
+  priority_flag?: boolean;
+  /** Flag Comment */
+  flag_comment?: string | null;
+  reason_for_flag?: TypeActivityReasonForFlag | null;
+  /** Total Tle Count This Month */
+  total_tle_count_this_month?: number | null;
+  /**
+   * Latest Tle Epoch
+   * @format date-time
+   */
+  latest_tle_epoch: string;
+  /** Report Number */
+  report_number: number;
+  /**
+   * Report Time
+   * @format date-time
+   */
+  report_time: string;
+  orbit_type: TypeAffectedRegime;
+  /** Common Name */
+  common_name: string;
+  /** Norad Id */
+  norad_id: string;
+  /** Object Type */
+  object_type?: string | null;
+  /** International Designator */
+  international_designator?: string | null;
+  /**
+   * Operator
+   * @format uuid
+   */
+  operator: string;
+  /** Licensing Country */
+  licensing_country?: string | null;
+  /** Period */
+  period?: number | null;
+  /** Apogee */
+  apogee?: number | null;
+  /** Perigee */
+  perigee?: number | null;
+  /** Altitude */
+  altitude: number;
+  /** Longitude */
+  longitude: number;
+  /** Inclination */
+  inclination?: number | null;
+}
+
+/** ActivityEventOut */
+export interface TypeActivityEventOut {
+  /**
+   * Id
+   * @format uuid
+   */
+  id?: string;
+  /**
+   * Created At
+   * @format date-time
+   */
+  created_at?: string;
+  /**
+   * Updated At
+   * @format date-time
+   */
+  updated_at?: string;
+  /** Short Id */
+  short_id: string;
+  /** Year */
+  year: number;
+  /** Event Number */
+  event_number: number;
+  /**
+   * Is Active
+   * @default true
+   */
+  is_active?: boolean;
+  /**
+   * Flag Date
+   * @format date-time
+   */
+  flag_date: string;
+  /** Flag Id */
+  flag_id: string;
+  /** Flag Count */
+  flag_count: number;
+  primary_flag: TypeActivityPrimaryFlag;
+  /**
+   * Priority Flag
+   * @default false
+   */
+  priority_flag?: boolean;
+  /** Flag Comment */
+  flag_comment?: string | null;
+  reason_for_flag?: TypeActivityReasonForFlag | null;
+  /** Total Tle Count This Month */
+  total_tle_count_this_month?: number | null;
+  /**
+   * Latest Tle Epoch
+   * @format date-time
+   */
+  latest_tle_epoch: string;
+  /** Report Number */
+  report_number: number;
+  /**
+   * Report Time
+   * @format date-time
+   */
+  report_time: string;
+  orbit_type: TypeAffectedRegime;
+  /** Common Name */
+  common_name: string;
+  /** Norad Id */
+  norad_id: string;
+  /** Object Type */
+  object_type?: string | null;
+  /** International Designator */
+  international_designator?: string | null;
+  /**
+   * Operator
+   * @format uuid
+   */
+  operator: string;
+  /** Licensing Country */
+  licensing_country?: string | null;
+  /** Period */
+  period?: number | null;
+  /** Apogee */
+  apogee?: number | null;
+  /** Perigee */
+  perigee?: number | null;
+  /** Altitude */
+  altitude: number;
+  /** Longitude */
+  longitude: number;
+  /** Inclination */
+  inclination?: number | null;
+  /** Operator Name */
+  operator_name: string;
+}
+
+/** ActivityEventsSortBy */
+export type TypeActivityEventsSortBy =
+  | "created_at"
+  | "updated_at"
+  | "flag_date"
+  | "norad_id"
+  | "short_id"
+  | "common_name"
+  | "operator_name"
+  | "orbit_type"
+  | "flag_id"
+  | "altitude"
+  | "longitude";
+
+/** ActivityPrimaryFlag */
+export type TypeActivityPrimaryFlag =
+  | "TLE Date Age"
+  | "Fixed SMA"
+  | "SMA Delta"
+  | "Fixed Inc"
+  | "Inc Delta"
+  | "Fixed Long"
+  | "Long Delta";
+
+/** ActivityReasonForFlag */
+export type TypeActivityReasonForFlag =
+  | "Unexpected position change"
+  | "Manoeuvre not as planned"
+  | "Manoeuvre as planned"
+  | "Missing data";
+
+/** ActivityReport */
+export interface TypeActivityReport {
+  /**
+   * Id
+   * @format uuid
+   */
+  id?: string;
+  /**
+   * Created At
+   * @format date-time
+   */
+  created_at?: string;
+  /**
+   * Updated At
+   * @format date-time
+   */
+  updated_at?: string;
+  /** Short Id */
+  short_id: string | null;
+  /** File Name */
+  file_name: string;
+  /**
+   * Is Active
+   * @default true
+   */
+  is_active?: boolean;
+  /**
+   * Flag Date
+   * @format date-time
+   */
+  flag_date: string;
+  /** Flag Id */
+  flag_id: string;
+  /** Flag Count */
+  flag_count: number;
+  primary_flag: TypeActivityPrimaryFlag;
+  /**
+   * Priority Flag
+   * @default false
+   */
+  priority_flag?: boolean;
+  /** Flag Comment */
+  flag_comment?: string | null;
+  /**
+   * Flag Ongoing
+   * @default false
+   */
+  flag_ongoing?: boolean;
+  reason_for_flag?: TypeActivityReasonForFlag | null;
+  /** Total Tle Count This Month */
+  total_tle_count_this_month?: number | null;
+  /**
+   * Latest Tle Epoch
+   * @format date-time
+   */
+  latest_tle_epoch: string;
+  /** Report Number */
+  report_number: number;
+  /**
+   * Report Time
+   * @format date-time
+   */
+  report_time: string;
+  orbit_type: TypeAffectedRegime;
+  /** Common Name */
+  common_name: string;
+  /** Norad Id */
+  norad_id: string;
+  /** Object Type */
+  object_type?: string | null;
+  /** International Designator */
+  international_designator?: string | null;
+  /**
+   * Operator
+   * @format uuid
+   */
+  operator: string;
+  /** Licensing Country */
+  licensing_country?: string | null;
+  /** Period */
+  period?: number | null;
+  /** Apogee */
+  apogee?: number | null;
+  /** Perigee */
+  perigee?: number | null;
+  /** Altitude */
+  altitude: number;
+  /** Longitude */
+  longitude: number;
+  /** Inclination */
+  inclination?: number | null;
+  /** Uploaded By Id */
+  uploaded_by_id?: string | null;
+  /** Deleted By Id */
+  deleted_by_id?: string | null;
+}
+
+/** ActivityReportOut */
+export interface TypeActivityReportOut {
+  /**
+   * Id
+   * @format uuid
+   */
+  id: string;
+  /**
+   * Created At
+   * @format date-time
+   */
+  created_at?: string;
+  /**
+   * Updated At
+   * @format date-time
+   */
+  updated_at?: string;
+  /** Activity Event Short Id */
+  activity_event_short_id: string;
+  /** File Name */
+  file_name: string;
+  /** Presigned Url */
+  presigned_url?: string | null;
+  /** Uploaded By Id */
+  uploaded_by_id?: string | null;
+  /** Deleted By Id */
+  deleted_by_id?: string | null;
+  /**
+   * Is Active
+   * @default true
+   */
+  is_active?: boolean;
+  /**
+   * Flag Date
+   * @format date-time
+   */
+  flag_date: string;
+  /** Flag Id */
+  flag_id: string;
+  /** Flag Count */
+  flag_count: number;
+  /** Primary Flag */
+  primary_flag: string;
+  /**
+   * Priority Flag
+   * @default false
+   */
+  priority_flag?: boolean;
+  /** Flag Comment */
+  flag_comment?: string | null;
+  /** Flag Status */
+  flag_status?: boolean | null;
+  reason_for_flag?: TypeActivityReasonForFlag | null;
+  /** Total Tle Count This Month */
+  total_tle_count_this_month?: number | null;
+  /**
+   * Latest Tle Epoch
+   * @format date-time
+   */
+  latest_tle_epoch: string;
+  /** Report Number */
+  report_number: number;
+  /**
+   * Report Time
+   * @format date-time
+   */
+  report_time: string;
+  orbit_type: TypeAffectedRegime;
+  /** Common Name */
+  common_name: string;
+  /** Norad Id */
+  norad_id: string;
+  /** Object Type */
+  object_type?: string | null;
+  /** International Designator */
+  international_designator?: string | null;
+  /**
+   * Operator
+   * @format uuid
+   */
+  operator: string;
+  /** Licensing Country */
+  licensing_country?: string | null;
+  /** Period */
+  period?: number | null;
+  /** Apogee */
+  apogee?: number | null;
+  /** Perigee */
+  perigee?: number | null;
+  /** Altitude */
+  altitude: number;
+  /** Longitude */
+  longitude: number;
+  /** Inclination */
+  inclination?: number | null;
+}
+
+/** ActivityReportsSortBy */
+export type TypeActivityReportsSortBy =
+  | "created_at"
+  | "updated_at"
+  | "flag_date"
+  | "norad_id"
+  | "short_id"
+  | "common_name"
+  | "operator_name"
+  | "orbit_type"
+  | "flag_id"
+  | "report_number";
+
 /** AffectedRegime */
 export type TypeAffectedRegime = "GEO" | "LEO" | "MEO" | "Lunar";
 
@@ -565,6 +985,15 @@ export interface TypeBodyCreateEphemerisV1EphemerisPost {
   /**
    * File
    * .oem compatible file. Filename MUST contain NORAD_ID and must match MEME_xxxxx_yyyy... pattern, where xxxxx is NORAD ID.
+   * @format binary
+   */
+  file: File;
+}
+
+/** Body_post_activity_event_report_v1_activity_reports__post */
+export interface TypeBodyPostActivityEventReportV1ActivityReportsPost {
+  /**
+   * File
    * @format binary
    */
   file: File;
@@ -1327,7 +1756,8 @@ export type TypeExternalDataType =
   | "Tracking and Impact Prediction"
   | "Reentry Event Report"
   | "Conjunction Report"
-  | "Fragmentation Report";
+  | "Fragmentation Report"
+  | "Satellite Activity Report";
 
 /** FeedbackIn */
 export interface TypeFeedbackIn {
@@ -1339,6 +1769,8 @@ export interface TypeFeedbackIn {
   satisfaction: number;
   /** Details */
   details: string;
+  /** Useremail */
+  userEmail?: string | null;
 }
 
 /** FragmentationAlertSettings */
@@ -1349,7 +1781,7 @@ export interface TypeFragmentationAlertSettings {
    */
   alert_type?: "fragmentation";
   /** Chosen Option */
-  chosen_option: "all" | "priority" | "none";
+  chosen_option: "all" | "priority" | "closedown" | "none";
   /**
    * Notification Types
    * @uniqueItems true
@@ -1447,7 +1879,7 @@ export interface TypeFragmentationEvent {
 /** FragmentationEventAlertIn */
 export interface TypeFragmentationEventAlertIn {
   /** Alerttype */
-  alertType: ("standard" | "priority")[];
+  alertType: ("priority" | "closedown")[];
   /** Additionalemails */
   additionalEmails: string[];
 }
@@ -2003,6 +2435,10 @@ export interface TypeReentryEvent {
   uncertaintyWindow?: number | null;
   /** Tipexternalid */
   tipExternalId: string;
+  /** Insertepoch */
+  insertEpoch?: string | null;
+  /** Tipcreationdate */
+  tipCreationDate?: string | null;
   /** Reentryreportnumber */
   reentryReportNumber?: number | null;
   /** Year */
@@ -2153,6 +2589,10 @@ export interface TypeReentryEventOut {
   uncertaintyWindow?: number | null;
   /** Tipexternalid */
   tipExternalId: string;
+  /** Insertepoch */
+  insertEpoch?: string | null;
+  /** Tipcreationdate */
+  tipCreationDate?: string | null;
   /** Reentryreportnumber */
   reentryReportNumber?: number | null;
   /** Year */
@@ -2814,6 +3254,8 @@ export interface TypeTIPOut {
    * @format date-time
    */
   creationDate: string;
+  /** Insertepoch */
+  insertEpoch: string | null;
   /**
    * Decayepoch
    * @format date-time
@@ -2953,7 +3395,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2025-12-16T09:39:56.237403"
+   * @default "2026-01-14T17:10:04.640179"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3204,6 +3646,89 @@ export interface TypeReentryEventReportImpact {
   overseas_territories_and_crown_dependencies: Record<string, TypeOverflightProbability>;
   /** Maritime And Airspace */
   maritime_and_airspace: Record<string, TypeOverflightProbability>;
+}
+
+export interface TypeGetActivityEventsParams {
+  /**
+   * Epoch
+   * @default "future"
+   */
+  epoch?: TypeEpoch;
+  /** Search Query */
+  search_query?: string | null;
+  /**
+   * Sort By
+   * @default "common_name"
+   */
+  sort_by?: TypeActivityEventsSortBy;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+}
+
+export interface TypeGetActivityReportsParams {
+  /**
+   * Sort By
+   * @default "flag_date"
+   */
+  sort_by?: TypeActivityReportsSortBy;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
+export interface TypeGetActivityReportsActivityEventShortIdParams {
+  /**
+   * Sort By
+   * @default "flag_date"
+   */
+  sort_by?: TypeActivityReportsSortBy;
+  /**
+   * Show Only Active
+   * @default false
+   */
+  show_only_active?: boolean;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+  /** Short Id */
+  shortId: string;
 }
 
 export interface TypeGetAnalysesParams {
@@ -4058,7 +4583,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2026-01-01"
+   * @default "2026-02-01"
    */
   end_date?: string;
 }
@@ -4073,7 +4598,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2026-01-01"
+   * @default "2026-02-01"
    */
   end_date?: string;
 }
@@ -4088,7 +4613,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-01-01"
+   * @default "2026-02-01"
    */
   end_date?: string;
 }
@@ -4103,7 +4628,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-01-01"
+   * @default "2026-02-01"
    */
   end_date?: string;
 }
@@ -4118,7 +4643,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-01-01"
+   * @default "2026-02-01"
    */
   end_date?: string;
 }
@@ -4133,7 +4658,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2026-01-01"
+   * @default "2026-02-01"
    */
   end_date?: string;
 }

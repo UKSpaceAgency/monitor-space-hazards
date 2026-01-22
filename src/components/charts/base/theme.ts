@@ -12,6 +12,13 @@ export const chartPalette = {
   nspocRed: '#C00000',
   nspocYellow: '#FFC000',
   nspocGreen: '#92D050',
+  rose: '#FF0066',
+  skin: '#F2AA84',
+  black: '#0B0C0C',
+  gray2: '#505A5F',
+  midGrey: '#B1B4B6',
+  lightGrey: '#F3F2F1',
+  white: '#FFFFFF',
 } as const;
 
 export const chartColors = [

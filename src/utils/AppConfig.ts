@@ -14,7 +14,10 @@ export const AppConfig = {
           children: 'Re-entry event analysis information',
           href: '/page/re-entry-analysis-information',
         },
-
+        {
+          children: 'Fragmentation event analysis information',
+          href: '/page/fragmentation-event-analysis-information',
+        },
         {
           children: 'Definitions',
           href: '/page/definitions',
