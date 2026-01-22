@@ -17,17 +17,18 @@ import { QUERY_KEYS } from '@/utils/QueryKeys';
 
 import { eventsByTypeDailyFragmentationMonitoringColumns } from './data-table/MonitoringFragmentationEventsByTypeDailyDataTableColumns';
 
-type DataRangeType = 'Last 7d' | 'Last 1 month' | 'Last 6 months';
+type DataRangeType = 7 | 30 | 180;
 
 const MonitoringFragmentationEventsByTypeDaily = () => {
   const t = useTranslations('Charts.Events_type');
+  const tActions = useTranslations('Charts.Actions');
 
   const params: TypeGetStatsEventsTypeParams = {
     start_date: TODAY_DATE_TIME.subtract(7, 'day').format(FORMAT_API_DATE_TIME),
     end_date: TODAY_DATE_TIME.format(FORMAT_API_DATE_TIME),
   };
 
-  const [dataRange, setDataRange] = useState<DataRangeType>('Last 7d');
+  const [dataRange, setDataRange] = useState<DataRangeType>(7);
   const [dates, setDates] = useState<{ startDate: string; endDate?: string }>({
     startDate: params.start_date ?? '',
     endDate: params.end_date ?? '',
@@ -49,19 +50,19 @@ const MonitoringFragmentationEventsByTypeDaily = () => {
     setDataRange(dataRange);
 
     switch (dataRange) {
-      case 'Last 7d':
+      case 7:
         setDates({
           startDate: TODAY_DATE_TIME.subtract(7, 'day').format(FORMAT_API_DATE_TIME),
           endDate: TODAY_DATE_TIME.format(FORMAT_API_DATE_TIME),
         });
         break;
-      case 'Last 1 month':
+      case 30:
         setDates({
           startDate: TODAY_DATE_TIME.subtract(1, 'month').format(FORMAT_API_DATE_TIME),
           endDate: TODAY_DATE_TIME.format(FORMAT_API_DATE_TIME),
         });
         break;
-      case 'Last 6 months':
+      case 180:
         setDates({
           startDate: TODAY_DATE_TIME.subtract(6, 'month').format(FORMAT_API_DATE_TIME),
           endDate: TODAY_DATE_TIME.format(FORMAT_API_DATE_TIME),
@@ -79,21 +80,21 @@ const MonitoringFragmentationEventsByTypeDaily = () => {
       items={[
         {
           id: 'last_7d',
-          title: t('last_7d'),
-          ariaLabel: 'Last 7 days',
-          value: 'Last 7d',
+          title: tActions('last_7_days'),
+          ariaLabel: tActions('last_7_days'),
+          value: 7,
         },
         {
           id: 'last_1_month',
-          title: t('last_1_month'),
-          ariaLabel: 'Last 1 month',
-          value: 'Last 1 month',
+          title: tActions('last_30_days'),
+          ariaLabel: tActions('last_30_days'),
+          value: 30,
         },
         {
           id: 'last_6_months',
-          title: t('last_6_months'),
-          ariaLabel: 'Last 6 months',
-          value: 'Last 6 months',
+          title: tActions('last_6_months'),
+          ariaLabel: tActions('last_6_months'),
+          value: 180,
         },
       ]}
       active={dataRange}
