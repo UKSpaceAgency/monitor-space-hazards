@@ -24,6 +24,7 @@ type DataPerformanceChartProps = {
 
 const DataPerformanceChart = ({ latestIngestDate, sourceType, xAxisTitle, yAxisTitle, legend, ariaLabel }: DataPerformanceChartProps) => {
   const t = useTranslations('Charts.Ingests');
+  const tActions = useTranslations('Charts.Actions');
 
   const params: TypeGetExternalDataPerformanceAggregatedParams = {
     limit: 9999,
@@ -81,20 +82,20 @@ const DataPerformanceChart = ({ latestIngestDate, sourceType, xAxisTitle, yAxisT
       items={[
         {
           id: '7d',
-          title: '7d',
-          ariaLabel: t('7_days'),
+          title: tActions('last_7_days'),
+          ariaLabel: tActions('last_7_days'),
           value: 7,
         },
         {
           id: '30d',
-          title: '30d',
-          ariaLabel: t('30_days'),
+          title: tActions('last_30_days'),
+          ariaLabel: tActions('last_30_days'),
           value: 31,
         },
         {
           id: 'all_time',
-          title: 'All',
-          ariaLabel: t('all_time'),
+          title: tActions('all_time'),
+          ariaLabel: tActions('all_time'),
           value: 0,
         },
       ]}

@@ -37,16 +37,6 @@ const MonitoringAccordion = async () => {
             heading: t('objects_catalogued.title'),
             content: <MonitoringObjectsCatalogued />,
           },
-          // {
-          //   id: 'notificationsSent',
-          //   heading: t('notifications_sent.title'),
-          //   content: <NotificationsSent />,
-          // },
-          // {
-          //   id: 'uksa',
-          //   heading: t('uksa.title'),
-          //   content: <UksaAnalyses />,
-          // },
         ]}
       />
     </>

@@ -78,11 +78,11 @@ export const AppConfig = {
     },
     {
       children: 'Accessibility statement',
-      href: '/page/accessibility-statement',
+      href: '/accessibility-statement',
     },
     {
       children: 'Terms of use',
-      href: '/account/terms-and-conditions',
+      href: '/terms-and-conditions',
     },
     {
       children: 'Cookies',
