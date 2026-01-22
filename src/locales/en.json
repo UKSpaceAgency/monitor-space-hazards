@@ -614,6 +614,7 @@
     "closed": "Closed",
     "title": "Conjunction alert for {primaryObject} vs {secondaryObject}",
     "pdf_title": "Conjunction alert for {primaryObject} vs {secondaryObject} - Report {reportNumber}",
+    "pdf_title_closed": "Conjunction alert for {primaryObject} vs {secondaryObject} - Report {reportNumber} (Closed)",
     "notification_banner": "You are able to <edit>edit this alert</edit> or <send>send this alert to additional recipients</send>",
     "report_info": "<p><bold>Report {number}</bold> updated on {time} UTC</p>",
     "accordion": {
@@ -754,6 +755,7 @@
     "notification_banner": "You are able to <edit>edit this alert</edit> or <send>send this alert to additional recipients</send>",
     "title": "Re-entry alert for {objectName}",
     "pdf_title": "Re-entry alert for {objectName} - Report {reportNumber}",
+    "pdf_title_closed": "Re-entry alert for {objectName} - Report {reportNumber} (Closed)",
     "report_info": "<p><bold>Report {number}</bold> updated on {time} UTC</p>",
     "accordion": {
       "event_details": "Event details",
