@@ -191,7 +191,7 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
           {/* <ReentryAlertMapLegend /> */}
         </Map>
       </div>
-      <div className="flex gap-2 items-center mb-6">
+      <div className="flex gap-2 items-center mb-6" data-pdf-ignore>
         <h4 className="govuk-body-s mb-0">Download re-entry geoJSON data:</h4>
         <ul className="flex gap-2 flex-wrap">
           <li>
@@ -239,13 +239,12 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
           })}
         </ul>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2">
+      <div className="grid grid-cols-1 md:grid-cols-2" data-pdf-ignore>
         <ReentryAlertMapType value={mapType} onChange={setMapType} />
         <ReentryAlertMapView value={mapView} onChange={setMapView} />
       </div>
       <ReentryAlertAreasOfInterest selected={regions} onChange={setRegions} />
-      <ReentryAlertOverflights types={types} setTypes={setTypes} overflights={overflightTime} selected={flightpaths} onChange={setFlightpaths} />
-
+      <ReentryAlertOverflights types={types} setTypes={setTypes} overflights={overflightTime} selected={flightpaths} onChange={setFlightpaths} data-pdf-ignore />
       <Details
         summary={detailsTitle}
         className="mb-0"

@@ -25,11 +25,12 @@ const ConjunctionAlertPage = async ({ shortId, searchParams, footer }: Conjuncti
   const event = await getConjunctionUniqueEvent(shortId);
   const reports = await getConjunctionReports({ shortId, show_only_active: false });
   const title = t('title', { primaryObject: event.primaryObjectCommonName, secondaryObject: event.secondaryObjectCommonName });
-  const pdfTitle = t('pdf_title', { primaryObject: event.primaryObjectCommonName, secondaryObject: event.secondaryObjectCommonName, reportNumber: event.reportNumber });
 
   const lastReport = reports[reports.length - 1];
   const isClosed = lastReport?.alertType.includes('closedown');
   const closedComment = searchParams?.closed_comment ?? event.closedComment;
+
+  const pdfTitle = t(isClosed ? 'pdf_title_closed' : 'pdf_title', { primaryObject: event.primaryObjectCommonName, secondaryObject: event.secondaryObjectCommonName, reportNumber: event.reportNumber });
 
   if (!lastReport) {
     notFound();
@@ -37,19 +38,21 @@ const ConjunctionAlertPage = async ({ shortId, searchParams, footer }: Conjuncti
 
   return (
     <div>
-      {isClosed
-      && (
-        <div className="flex items-center gap-4 mb-4">
-          <Tag>{t('closed')}</Tag>
-          {closedComment && (
-            <span>{closedComment}</span>
-          )}
-        </div>
-      )}
-      <h1 className="govuk-heading-xl">
-        {title}
-        <span className="block text-lg">{dayjs(event.tca).format(FORMAT_FULL_DATE)}</span>
-      </h1>
+      <div className="mb-8">
+        <h1 className="govuk-heading-xl">
+          {title}
+          <span className="block text-lg">{dayjs(event.tca).format(FORMAT_FULL_DATE)}</span>
+        </h1>
+        {isClosed
+        && (
+          <div className="flex items-center gap-4 mb-4">
+            <Tag>{t('closed')}</Tag>
+            {closedComment && (
+              <span>{closedComment}</span>
+            )}
+          </div>
+        )}
+      </div>
       <div className="grid md:grid-cols-4 gap-7">
         <ContentNavigation />
         <div className="md:col-span-3">
@@ -57,7 +60,7 @@ const ConjunctionAlertPage = async ({ shortId, searchParams, footer }: Conjuncti
           <ConjunctionAlertExecutiveSummary report={lastReport} executiveSummaryComment={searchParams?.executive_summary_comment ?? event.executiveSummaryComment} manoeuvreComment={searchParams?.manoeuvre_comment ?? event.manoeuvreComment} isClosed={isClosed} />
           <ConjunctionAlertNextUpdate shortId={shortId} />
           <ConjunctionAlertAccordion event={event} report={lastReport} reports={reports} searchParams={searchParams} />
-          {footer || <ConjunctionAlertPageButtons pdfTitle={pdfTitle} />}
+          {footer || <ConjunctionAlertPageButtons pdfTitle={pdfTitle} pdfSubtitle={closedComment ?? undefined} />}
         </div>
       </div>
     </div>

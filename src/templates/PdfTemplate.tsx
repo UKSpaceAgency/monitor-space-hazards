@@ -12,13 +12,14 @@ Font.register({ family: 'Arimo', fonts: [
 
 type PdfTemplateProps = {
   title: string;
+  subtitle?: string;
   sections: {
     title: string;
     content: ReactNode | ReactNode[];
   }[];
 };
 
-const PdfTemplate = ({ title, sections }: PdfTemplateProps) => {
+const PdfTemplate = ({ title, subtitle, sections }: PdfTemplateProps) => {
   return (
     <Document title={title}>
       <Page size="A4" style={pdfStyles.page}>
@@ -27,6 +28,7 @@ const PdfTemplate = ({ title, sections }: PdfTemplateProps) => {
             <Image src="/nspoclogo2.png" style={pdfStyles.nspocLogo} />
           </View>
           <Text style={pdfStyles.headerTitle}>{title}</Text>
+          {subtitle && <Text style={pdfStyles.headerSubtitle}>{subtitle}</Text>}
         </View>
         <View style={pdfStyles.section}>
           <Text style={pdfStyles.contentsTitle}>Contents</Text>

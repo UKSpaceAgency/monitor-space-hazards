@@ -12,14 +12,15 @@ const PdfDownloadButton = dynamic(() => import('../PdfDownloadButton').then(mod 
 
 type ReentryAlertButtonsProps = {
   pdfTitle: string;
+  pdfSubtitle?: string;
 };
 
-const ReentryAlertButtons = ({ pdfTitle }: ReentryAlertButtonsProps) => {
+const ReentryAlertButtons = ({ pdfTitle, pdfSubtitle }: ReentryAlertButtonsProps) => {
   const t = useTranslations('Common');
 
   return (
     <ButtonGroup>
-      <PdfDownloadButton title={pdfTitle} />
+      <PdfDownloadButton title={pdfTitle} subtitle={pdfSubtitle} />
       <Button as="link" href="/re-entries" variant="secondary" aria-label={t('return', { to: 'track re-entry events' })}>{t('return', { to: 'track re-entry events' })}</Button>
     </ButtonGroup>
   );

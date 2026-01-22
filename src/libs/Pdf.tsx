@@ -40,6 +40,10 @@ export const pdfStyles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: '5px',
   },
+  headerSubtitle: {
+    fontSize: '12px',
+    marginBottom: '5px',
+  },
   contentsLink: {
     fontSize: '12px',
     padding: '2px 0',
@@ -88,6 +92,9 @@ export const pdfStyles = StyleSheet.create({
   },
   uksaLogoContainer: {
     marginTop: '5px',
+  },
+  map: {
+    marginBottom: '10px',
   },
 });
 
@@ -300,7 +307,7 @@ const generatePdfContent = (node: Element) => {
         if ((el as HTMLElement).dataset.type === 'map') {
           const chart = (node as HTMLElement).querySelector('.mapboxgl-canvas') as HTMLCanvasElement;
           if (chart) {
-            content.push(<Image src={chart.toDataURL('image/png', 1.0)} />);
+            content.push(<Image style={pdfStyles.map} src={chart.toDataURL('image/png', 1.0)} />);
           }
         }
         break;
