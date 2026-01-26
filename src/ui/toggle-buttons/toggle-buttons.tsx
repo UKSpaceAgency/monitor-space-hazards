@@ -28,7 +28,7 @@ export function ToggleButtons({
 }: ToggleButtonsProps) {
   return (
     <Radios
-      className="inline-flex items-center md:h-[44px] mb-0"
+      className="md:inline-flex items-center md:h-[44px] mb-0"
       small
       inline
       name={name}

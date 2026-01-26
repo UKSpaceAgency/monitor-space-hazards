@@ -57,69 +57,77 @@ export function BasePie({
 
   return (
     <div className="p-4 bg-lightGrey" data-type="chart">
-      <div className="flex justify-between">{actionButtons}</div>
-      <div className="border border-black relative mx-0 my-auto bg-white flex items-center justify-center">
-        <div className="w-1/2 flex items-center justify-center">
-          <PieChartLegend
-            chartRef={chart}
-            legendItems={data.labels as string[]}
-            legendColors={(data.datasets[0]?.backgroundColor as string[]) ?? []}
-            ariaLabel={ariaLabel}
-            {...legend}
-          />
-        </div>
-        <div className="w-1/2">
-          <Pie
-            ref={chart}
-            aria-label={`${ariaLabel} Pie chart`}
-            data={data}
-            options={{
-              responsive: true,
-              aspectRatio: 1,
-              interaction: {
-                intersect: false,
-                mode: 'index',
-              },
-              layout: {
-                padding: {
-                  top: isMobile ? 5 : 20,
-                  right: isMobile ? 5 : 30,
-                  left: isMobile ? 5 : 20,
-                  bottom: isMobile ? 5 : 20,
-                },
-              },
-              plugins: {
-                legend: {
-                  display: false,
-                },
-              },
-            // plugins: {
-            //   legend: {
-            //     display: showLegend,
-            //     title: {
-            //       display: !!legend?.title,
-            //       text: legend?.title || '',
-            //       position: 'start',
-            //       font: {
-            //         size: isMobile ? 10 : 16,
-            //         weight: 'bold',
-            //       },
-            //     },
-            //     position: isMobile ? 'bottom' : 'left',
-            //     labels: {
-            //       usePointStyle: true,
-            //       pointStyle: 'rect',
-            //       font: {
-            //         size: isMobile ? 10 : 16,
-            //       },
-            //     },
-            //   },
-            // },
-            }}
-            plugins={[whiteBackgroundPlugin]}
-          />
-        </div>
-      </div>
+      <div className="flex justify-between mb-4 md:mb-0">{actionButtons}</div>
+      {data.datasets.some(dataset => dataset.data.some(data => data > 0))
+        ? (
+            <div className="border border-black relative mx-0 my-auto bg-white flex items-center justify-center">
+              <div className="w-1/2 flex items-center justify-center">
+                <PieChartLegend
+                  chartRef={chart}
+                  legendItems={data.labels as string[]}
+                  legendColors={(data.datasets[0]?.backgroundColor as string[]) ?? []}
+                  ariaLabel={ariaLabel}
+                  {...legend}
+                />
+              </div>
+              <div className="w-1/2">
+                <Pie
+                  ref={chart}
+                  aria-label={`${ariaLabel} Pie chart`}
+                  data={data}
+                  options={{
+                    responsive: true,
+                    aspectRatio: 1,
+                    interaction: {
+                      intersect: false,
+                      mode: 'index',
+                    },
+                    layout: {
+                      padding: {
+                        top: isMobile ? 5 : 20,
+                        right: isMobile ? 5 : 30,
+                        left: isMobile ? 5 : 20,
+                        bottom: isMobile ? 5 : 20,
+                      },
+                    },
+                    plugins: {
+                      legend: {
+                        display: false,
+                      },
+                    },
+                  // plugins: {
+                  //   legend: {
+                  //     display: showLegend,
+                  //     title: {
+                  //       display: !!legend?.title,
+                  //       text: legend?.title || '',
+                  //       position: 'start',
+                  //       font: {
+                  //         size: isMobile ? 10 : 16,
+                  //         weight: 'bold',
+                  //       },
+                  //     },
+                  //     position: isMobile ? 'bottom' : 'left',
+                  //     labels: {
+                  //       usePointStyle: true,
+                  //       pointStyle: 'rect',
+                  //       font: {
+                  //         size: isMobile ? 10 : 16,
+                  //       },
+                  //     },
+                  //   },
+                  // },
+                  }}
+                  plugins={[whiteBackgroundPlugin]}
+                />
+              </div>
+            </div>
+          )
+        : (
+            <div className="text-center my-4">
+              <p className="font-bold text-lg">No data available</p>
+            </div>
+          )}
     </div>
   );
 }

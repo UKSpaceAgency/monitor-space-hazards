@@ -108,8 +108,8 @@ export function BaseChart({
 
   return (
     <div className="p-4 bg-lightGrey" data-type="chart">
-      <div className="flex justify-between">
-        <div className="flex-1">
+      <div className="md:flex justify-between mb-4 md:mb-0">
+        <div className="md:flex-1">
           {actionButtons}
         </div>
         <ToggleButtons

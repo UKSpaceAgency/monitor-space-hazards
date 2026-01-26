@@ -95,9 +95,9 @@ const MonitoringConjunctionEventsByTypeDaily = () => {
         },
         {
           id: 'last_1_month',
-          title: t('last_1_month'),
-          ariaLabel: tActions('last_month'),
-          value: 31,
+          title: tActions('last_30_days'),
+          ariaLabel: tActions('last_30_days'),
+          value: 30,
         },
         {
           id: 'last_6_months',

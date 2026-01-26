@@ -75,8 +75,8 @@ const MonitoringFragmentationEventsByTypeDaily = () => {
 
   const actionButtons = (
     <ToggleButtons
-      name="reentry-events-by-type-daily"
-      ariaLabel="Reentry events by type"
+      name="fragmentation-events-by-type-daily"
+      ariaLabel="Fragmentation events by type"
       items={[
         {
           id: 'last_7d',

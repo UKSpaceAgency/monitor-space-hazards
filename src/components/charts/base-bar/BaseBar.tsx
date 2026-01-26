@@ -68,7 +68,7 @@ export function BaseBar({
 
   return (
     <div className="p-4 bg-lightGrey" data-type="chart">
-      <div className="flex justify-between">{actionButtons}</div>
+      <div className="flex justify-between mb-4 md:mb-0">{actionButtons}</div>
       {title}
       <div className="border border-black bg-white forced-color-adjust-none">
         <div className="relative w-full">

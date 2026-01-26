@@ -122,10 +122,10 @@ const MonitoringEventsByOrganisationContent = ({ isAnalysist }: PerformanceMonit
           value: 7,
         },
         {
-          id: 'last_1_month',
-          title: tActions('last_month'),
-          ariaLabel: tActions('last_month'),
-          value: 31,
+          id: 'last_30_days',
+          title: tActions('last_30_days'),
+          ariaLabel: tActions('last_30_days'),
+          value: 30,
         },
         {
           id: 'last_6_months',
