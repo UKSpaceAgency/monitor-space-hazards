@@ -45,13 +45,13 @@ export function BasePie({
   legend,
   ariaLabel,
 }: BasePieProps) {
-  const chart = useRef<ChartJS<'pie'>>({} as ChartJS<'pie'>);
+  const chart = useRef<ChartJS<'pie'>>(undefined);
   const [isMobile] = useInViewport();
 
   useEffect(() => {
     if (chart.current) {
       defaults.font.size = isMobile ? 10 : 12;
-      chart.current.resize();
+      chart.current?.resize();
     }
   }, [isMobile]);
 
