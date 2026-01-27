@@ -541,7 +541,7 @@
   },
   "Conjunctions": {
     "title": "Track conjunction events (Monitor your satellites)",
-    "section_title": "Conjunction events",
+    "section_title": "All conjunction events",
     "description": "This table shows upcoming conjunction events involving UK-licensed satellites by default. You can apply filters to view past events.",
     "search_bar": {
       "upcomingLabel": "Find a upcoming conjunction event",
@@ -730,7 +730,7 @@
   },
   "Reentries": {
     "title": "Track re-entry events",
-    "section_title": "All re-entry events (upcoming and past)",
+    "section_title": "All re-entry events",
     "content": "<p>This table contains all tracked re-entry events, including re-entry events that meet the National Space Operations Centre's thresholds for alerting UK government. For further detail on how risk and alert thresholds are defined, see 'Help with this table' below.</p>"
   },
   "Reentry": {
