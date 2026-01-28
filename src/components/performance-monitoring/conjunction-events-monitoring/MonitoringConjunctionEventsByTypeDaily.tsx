@@ -17,7 +17,7 @@ import { QUERY_KEYS } from '@/utils/QueryKeys';
 
 import { conjunctionEventsByTypeDailyColumns } from './data-table/MonitoringConjunctionEventsByTypeDailyDataTableColumns';
 
-type DataRangeType = 0 | 7 | 31 | 182;
+type DataRangeType = 0 | 7 | 30 | 182;
 
 const MonitoringConjunctionEventsByTypeDaily = () => {
   const t = useTranslations('Charts.Events_type');
@@ -54,15 +54,15 @@ const MonitoringConjunctionEventsByTypeDaily = () => {
           endDate: TODAY_DATE_TIME.format(FORMAT_API_DATE_TIME),
         });
         break;
-      case 31:
+      case 30:
         setDates({
-          startDate: TODAY_DATE_TIME.subtract(1, 'month').format(FORMAT_API_DATE_TIME),
+          startDate: TODAY_DATE_TIME.subtract(30, 'day').format(FORMAT_API_DATE_TIME),
           endDate: TODAY_DATE_TIME.format(FORMAT_API_DATE_TIME),
         });
         break;
       case 182:
         setDates({
-          startDate: TODAY_DATE_TIME.subtract(6, 'month').format(FORMAT_API_DATE_TIME),
+          startDate: TODAY_DATE_TIME.subtract(180, 'day').format(FORMAT_API_DATE_TIME),
           endDate: TODAY_DATE_TIME.format(FORMAT_API_DATE_TIME),
         });
         break;
