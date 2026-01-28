@@ -1286,7 +1286,8 @@
       "overflight": "Time of Closest Approach (UTC)"
     },
     "Reentries_summary": {
-      "upcoming_reentry": "Upcoming re-entry {item}",
+      "upcoming_reentry_alerts": "Upcoming risks to UK interests",
+      "upcoming_reentry_events_worldwide": "Upcoming re-entry events worldwide",
       "help": {
         "title": "Help with this table<screenReaderOnly> - UK risk probabilities</screenReaderOnly>",
         "content": "<p>This service tracks all upcoming re-entry events worldwide, including those which pose a risk to the UK. The service reports on two types of re-entry event.</p><list><item><bold>Upcoming risks to UK interests:</bold> all upcoming re-entry events that meet the National Space Operations Centre's thresholds for alerting UK government</item><item><bold>Upcoming re-entry events worldwide:</bold> all upcoming re-entry events worldwide, including those which have not met alerting thresholds</item></list>"
