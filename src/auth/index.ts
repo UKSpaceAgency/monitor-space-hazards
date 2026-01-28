@@ -124,7 +124,6 @@ export const { handlers, signIn, signOut, auth, unstable_update: update } = Next
         || request.nextUrl.pathname === '/contact-analyst'
         || request.nextUrl.pathname === '/feedback'
         || request.nextUrl.pathname === '/accessibility-statement'
-        || request.nextUrl.pathname === '/terms-and-conditions'
         || request.nextUrl.pathname.startsWith('/feedback/')
       ) {
         return true;

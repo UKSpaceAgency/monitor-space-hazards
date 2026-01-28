@@ -82,7 +82,7 @@ export const AppConfig = {
     },
     {
       children: 'Terms of use',
-      href: '/terms-and-conditions',
+      href: '/account/terms-and-conditions',
     },
     {
       children: 'Cookies',
