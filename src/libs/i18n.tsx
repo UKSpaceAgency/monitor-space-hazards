@@ -12,6 +12,7 @@ export const defaultTranslationValues: RichTranslationValues = {
   b: chunks => <b>{chunks}</b>,
   special: chunks => <strong className="govuk-tag">{chunks}</strong>,
   screenReaderOnly: chunks => <span className="sr-only">{chunks}</span>,
+  pdfhide: chunks => <span data-pdf-ignore>{chunks}</span>,
 };
 
 // Using internationalization in Server Components

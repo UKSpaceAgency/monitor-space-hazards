@@ -13,6 +13,7 @@ import { MonitoringEventsByProbabilityOfCollisionDataTable } from './data-table/
 
 const MonitoringEventsByProbabilityOfCollisionContent = () => {
   const t = useTranslations('Charts.Events_by_probability_of_collision');
+  const tActions = useTranslations('Charts.Actions');
   const [showMonths, setShowMonths] = useState(12);
 
   const actionButtons = (
@@ -22,14 +23,14 @@ const MonitoringEventsByProbabilityOfCollisionContent = () => {
       items={[
         {
           id: '12_months',
-          title: t('12_months'),
-          ariaLabel: t('12_months'),
+          title: tActions('last_12_months'),
+          ariaLabel: tActions('last_12_months'),
           value: 12,
         },
         {
           id: 'all_time',
-          title: t('all_time'),
-          ariaLabel: t('all_time'),
+          title: tActions('all_time'),
+          ariaLabel: tActions('all_time'),
           value: 0,
         },
       ]}

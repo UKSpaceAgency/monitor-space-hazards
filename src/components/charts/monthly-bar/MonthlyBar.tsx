@@ -29,8 +29,8 @@ const MonthlyBarChart = ({ data, yAxisTitle, xAxisTitle, stacked = false, legend
       items={[
         {
           id: '12_months',
-          title: t('12_months'),
-          ariaLabel: t('12_months'),
+          title: t('last_12_months'),
+          ariaLabel: t('last_12_months'),
           value: 12,
         },
         {

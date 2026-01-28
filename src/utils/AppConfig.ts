@@ -78,7 +78,7 @@ export const AppConfig = {
     },
     {
       children: 'Accessibility statement',
-      href: '/page/accessibility-statement',
+      href: '/accessibility-statement',
     },
     {
       children: 'Terms of use',

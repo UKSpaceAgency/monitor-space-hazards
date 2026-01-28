@@ -1,7 +1,7 @@
 import type { Chart as ChartJS, ChartType } from 'chart.js';
 import clsx from 'clsx';
 import type { ChangeEvent, CSSProperties, MutableRefObject } from 'react';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export type ChartLegendOptions = {
   interactive?: boolean;
@@ -30,6 +30,12 @@ export const PieChartLegend = ({
 }: ChartLegendProps) => {
   const [legendStatusMap, setLegendStatus] = useState<boolean[]>(Array(legendItems.length).fill(true));
 
+  useEffect(() => {
+    if (legendStatusMap.length !== legendItems.length) {
+      setLegendStatus(Array(legendItems.length).fill(true));
+    }
+  }, [legendItems, legendStatusMap.length]);
+
   const handleLegendClick = useCallback(({ target }: ChangeEvent<HTMLInputElement>) => {
     const index = Number.parseInt(target.value);
     if (chartRef.current) {
@@ -45,7 +51,7 @@ export const PieChartLegend = ({
       {title && <div><legend className="govuk-fieldset__legend text-xs md:text-xl m-0 p-1 font-bold text-nowrap ">{title}</legend></div>}
       <ul className="list-none">
         {legendItems.map((label, index) => {
-          const checked = legendStatusMap[index];
+          const checked = legendStatusMap[index] ?? true;
           return (
           // eslint-disable-next-line react/no-array-index-key
             <li key={`${index}-${label}`} className="block" aria-label={`Show/hide ${ariaLabel} ${label} data`}>

@@ -350,11 +350,13 @@
   },
   "Charts": {
     "Actions": {
-      "7_days": "7 days",
-      "30_days": "30 days",
+      "last_7_days": "Last 7 days",
+      "last_30_days": "Last 30 days",
+      "last_6_months": "Last 6 months",
+      "last_12_months": "Last 12 months",
       "all_time": "All time",
       "data_range": "Data range",
-      "12_months": "12 months"
+      "upcoming_events": "Upcoming events"
     },
     "Poc_chart": {
       "title": "Evolution of collision probability",
@@ -539,7 +541,7 @@
   },
   "Conjunctions": {
     "title": "Track conjunction events (Monitor your satellites)",
-    "section_title": "Conjunction events",
+    "section_title": "All conjunction events",
     "description": "This table shows upcoming conjunction events involving UK-licensed satellites by default. You can apply filters to view past events.",
     "search_bar": {
       "upcomingLabel": "Find a upcoming conjunction event",
@@ -728,7 +730,7 @@
   },
   "Reentries": {
     "title": "Track re-entry events",
-    "section_title": "All re-entry events (upcoming and past)",
+    "section_title": "All re-entry events",
     "content": "<p>This table contains all tracked re-entry events, including re-entry events that meet the National Space Operations Centre's thresholds for alerting UK government. For further detail on how risk and alert thresholds are defined, see 'Help with this table' below.</p>"
   },
   "Reentry": {
@@ -787,7 +789,7 @@
     "Map": {
       "details": {
         "title": "Help with this map",
-        "content": "<p>This map displays the predicted re-entry locations for the object over the UK and surrounding regions.</p><p>On this map you can:</p><list><item>Zoom and scroll to see potential re-entry locations across the world</item><item>Toggle to choose the map type, and view areas of interest</item><item>Use the overflight checkboxes to see overflights of interest</item><item>Click on a data point to see more information on the scenario</item></list><p>This map represents probability distributions and not definitive impact locations. Each spot shows a potential re-entry or debris location from one Monte-Carlo simulation run.</p><p>Regions with a higher density of data points indicate higher probability of re-entry or debris at that location, while less dense areas represent lower probability zones.</p><p>Re-entry predictions are highly sensitive to changing conditions and subject to change as new tracking data becomes available.</p>"
+        "content": "<p>This map displays the predicted re-entry locations for the object.</p><p>This map represents probability distributions and not definitive impact locations. Each spot shows a potential re-entry or debris location from one Monte-Carlo simulation run.</p><p>Regions with a higher density of data points indicate higher probability of re-entry or debris at that location, while less dense areas represent lower probability zones.</p><p>Re-entry predictions are highly sensitive to changing conditions and subject to change as new tracking data becomes available.</p><pdfhide><p>On this map you can:</p><list><item>Zoom and scroll to see potential re-entry locations across the world</item><item>Toggle to choose the map type, and view areas of interest</item><item>Use the overflight checkboxes to see overflights of interest</item><item>Click on a data point to see more information on the scenario</item></list></pdfhide>"
       },
       "see_further_information": "<p>See <link>Further information</link> for more detail on methodology used in this report and the organisations that have been sent this alert.</p>"
     },
@@ -1284,7 +1286,8 @@
       "overflight": "Time of Closest Approach (UTC)"
     },
     "Reentries_summary": {
-      "upcoming_reentry": "Upcoming re-entry {item}",
+      "upcoming_reentry_alerts": "Upcoming risks to UK interests",
+      "upcoming_reentry_events_worldwide": "Upcoming re-entry events worldwide",
       "help": {
         "title": "Help with this table<screenReaderOnly> - UK risk probabilities</screenReaderOnly>",
         "content": "<p>This service tracks all upcoming re-entry events worldwide, including those which pose a risk to the UK. The service reports on two types of re-entry event.</p><list><item><bold>Upcoming risks to UK interests:</bold> all upcoming re-entry events that meet the National Space Operations Centre's thresholds for alerting UK government</item><item><bold>Upcoming re-entry events worldwide:</bold> all upcoming re-entry events worldwide, including those which have not met alerting thresholds</item></list>"
