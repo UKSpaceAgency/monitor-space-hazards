@@ -3,7 +3,6 @@ import { getTranslations } from 'next-intl/server';
 
 import { ContentNavigation } from '@/components/ContentNavigation';
 import { MonitoringConjunctionEventAccordion } from '@/components/performance-monitoring/conjunction-events-monitoring/MonitoringConjunctionEventAccordion';
-import { MonitoringFragmentationEventAccordion } from '@/components/performance-monitoring/conjunction-events-monitoring/MonitoringFragmentationEventAccordion';
 import { MonitoringReentryEventAccordion } from '@/components/performance-monitoring/conjunction-events-monitoring/MonitoringReentryEventAccordion';
 import { MonitoringAccordion } from '@/components/performance-monitoring/performance-monitoring/MonitoringAccordion';
 import { MonitoringServiceUsageAccordion } from '@/components/performance-monitoring/service-usage/MonitoringServiceUsageAccordion';
@@ -46,7 +45,7 @@ export default async function PerformanceMonitoring() {
       <MonitoringAccordion />
       <MonitoringConjunctionEventAccordion />
       <MonitoringReentryEventAccordion />
-      <MonitoringFragmentationEventAccordion />
+      {/* <MonitoringFragmentationEventAccordion /> */}
       <MonitoringServiceUsageAccordion />
     </div>
   );

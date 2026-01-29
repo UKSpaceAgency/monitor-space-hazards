@@ -360,8 +360,7 @@ export interface TypeActivityReportOut {
   flag_id: string;
   /** Flag Count */
   flag_count: number;
-  /** Primary Flag */
-  primary_flag: string;
+  primary_flag: TypeActivityPrimaryFlag;
   /**
    * Priority Flag
    * @default false
@@ -2808,12 +2807,15 @@ export type TypeReentryEventSortBy =
   | "survivability"
   | "time_window_end"
   | "time_window_start"
+  | "decay_epoch"
   | "tip_external_id"
   | "uk_reentry_probability"
   | "human_casualty_probability"
   | "fragments_probability"
   | "overflight_time"
-  | "updated_at";
+  | "updated_at"
+  | "tip_creation_date"
+  | "insert_epoch";
 
 /** ReentryInterest */
 export type TypeReentryInterest = "low" | "high";
@@ -3395,7 +3397,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-01-14T17:10:04.640179"
+   * @default "2026-01-29T10:48:41.654889"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -4149,7 +4151,7 @@ export interface TypeGetReentryEventsParams {
   /**
    * Sort By
    * Sorting column
-   * @default "time_window_start"
+   * @default "decay_epoch"
    */
   sort_by?: TypeReentryEventSortBy;
   /**

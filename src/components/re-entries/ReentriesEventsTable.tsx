@@ -38,7 +38,7 @@ const ReentriesEventsTable = async ({ initialParams }: ReentriesEventsTableProps
   const latestCdms = await getCdmsLatest();
   const params: TypeGetReentryEventsParams = {
     ...initialParams,
-    sort_by: 'time_window_start',
+    sort_by: 'decay_epoch',
     sort_order: 'desc',
     limit: 50,
   };
