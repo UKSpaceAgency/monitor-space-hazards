@@ -29,13 +29,13 @@ export default async function PerformanceMonitoring() {
             text: t('reentry_event_and_organisation_data'),
             index: 9,
           },
-          {
-            text: t('fragmentation_event_and_organisation_data'),
-            index: 10,
-          },
+          // {
+          //   text: t('fragmentation_event_and_organisation_data'),
+          //   index: 10,
+          // },
           {
             text: t('service_usage'),
-            index: 11,
+            index: 10,
           },
 
         ]}
