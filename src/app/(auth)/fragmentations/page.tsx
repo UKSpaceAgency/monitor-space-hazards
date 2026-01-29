@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import type { TypeEpoch, TypeReportFlagSettings, TypeRisk } from '@/__generated__/data-contracts';
@@ -33,6 +34,7 @@ type PageProps = {
 };
 
 export default async function FragmentationsPage(props: PageProps) {
+  notFound();
   const t = await getTranslations('Fragmentations');
 
   const searchParams = await props.searchParams;
