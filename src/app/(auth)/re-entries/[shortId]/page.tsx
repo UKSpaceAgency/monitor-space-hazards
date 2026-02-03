@@ -13,7 +13,7 @@ import { ReentryEventSummary } from '@/components/re-entry/ReentryEventSummary';
 import { dayjs, FORMAT_FULL_DATE } from '@/libs/Dayjs';
 import NotificationBanner from '@/ui/notification-banner/notification-banner';
 import Spinner from '@/ui/spinner/spinner';
-import { isSatteliteUser } from '@/utils/Roles';
+import { isAgencyUser, isGovUser } from '@/utils/Roles';
 
 type PageProps = {
   params: Promise<{ shortId: string }>;
@@ -43,7 +43,7 @@ export default async function Reentry({
 
   return (
     <div>
-      {reports.length > 0 && !isSatteliteUser(session?.user.role) && (
+      {reports.length > 0 && (isAgencyUser(session?.user.role) || isGovUser(session?.user.role)) && (
         <NotificationBanner heading={t.rich('notification_banner', {
           preview: chunks => <Link className="govuk-link" href={`/re-entries/${shortId}/alert`}>{chunks}</Link>,
         })}

@@ -38,7 +38,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     id: 'objectName',
     accessorKey: 'objectName',
     header: 'Reentries.table.object',
-    cell: ({ row: { original: { objectName, objectType } } }) => `${objectName} ${objectType ? `(${objectType})` : ''}`,
+    cell: ({ row: { original: { objectName, objectType } } }) => `${objectName ?? 'Unknown object'} ${objectType ? `(${objectType})` : ''}`,
   },
   {
     id: 'noradId',
