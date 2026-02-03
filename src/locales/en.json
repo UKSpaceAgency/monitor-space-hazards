@@ -622,13 +622,18 @@
     "accordion": {
       "additional_event_details": "Additional event details",
       "potential_impact_of_event": "Potential impact of event",
+      "potential_impact": "Potential impact",
       "guidance_on_response": "Guidance on response",
       "additional_risk": "Additional risk to UK objects",
       "operator_view": "Operator view",
       "conjunction_event_history": "Conjunction event history",
       "alert_thresholds": "Alerting procedure",
       "risk_thresholds": "Risk thresholds",
-      "further_information": "Further information"
+      "further_information": "Further information",
+      "event_details": "Event details",
+      "guidance": "Guidance",
+      "additional_information": "Additional information",
+      "press_attention": "Press attention"
     },
     "Executive_summary": {
       "title": "Conjunction alert summary",
