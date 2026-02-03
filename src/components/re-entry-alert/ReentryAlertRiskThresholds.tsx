@@ -27,19 +27,19 @@ const ReentryAlertRiskThresholds = ({ dataPdf }: ReentryAlertRiskThresholdsProps
           <TableBody>
             <TableRow>
               <TableCell><Tag color="green">Low</Tag></TableCell>
-              <TableCell>{t('risk.low', { value: 2 })}</TableCell>
+              <TableCell>{t('risk.low', { value: 1 })}</TableCell>
               <TableCell>{t('risk.low', { value: 1 })}</TableCell>
               {/* <TableCell>{t('risk.low', { value: 0.1 })}</TableCell> */}
             </TableRow>
             <TableRow>
               <TableCell><Tag color="yellow">Medium</Tag></TableCell>
-              <TableCell>{t('risk.medium', { from: 2, to: 10 })}</TableCell>
+              <TableCell>{t('risk.medium', { from: 1, to: 5 })}</TableCell>
               <TableCell>{t('risk.medium', { from: 1, to: 5 })}</TableCell>
               {/* <TableCell>{t('risk.medium', { from: 0.1, to: 1 })}</TableCell> */}
             </TableRow>
             <TableRow>
               <TableCell><Tag color="red">High</Tag></TableCell>
-              <TableCell>{t('risk.high', { value: 10 })}</TableCell>
+              <TableCell>{t('risk.high', { value: 5 })}</TableCell>
               <TableCell>{t('risk.high', { value: 5 })}</TableCell>
               {/* <TableCell>{t('risk.high', { value: 1 })}</TableCell> */}
             </TableRow>

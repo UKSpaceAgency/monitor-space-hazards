@@ -1,11 +1,11 @@
 import { isNumber } from 'lodash';
 import Link from 'next/link';
 
-import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
+import type { TypeReentryEventOut, TypeRisk } from '@/__generated__/data-contracts';
 import { dayjs, FORMAT_DATE_FULL_MONTH, FORMAT_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
-import Tag from '@/ui/tag/tag';
 import { roundedFixed } from '@/utils/Math';
+import { renderRiskTag } from '@/utils/Risk';
 
 export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumnDef<TypeReentryEventOut>[] => [
   {
@@ -13,19 +13,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     accessorKey: 'fragmentsRisk',
     header: 'Reentries.table.risk',
     size: 100,
-    cell: ({ getValue }) => {
-      const classes = {
-        Low: 'govuk-tag--green',
-        Medium: 'govuk-tag--yellow',
-        High: 'govuk-tag--red',
-      };
-      const value = getValue<keyof typeof classes>();
-      return value
-        ? (
-            <Tag className={classes[value]}>{value}</Tag>
-          )
-        : '';
-    },
+    cell: ({ getValue }) => renderRiskTag(getValue<TypeRisk>() ?? 'None'),
   },
   {
     id: 'shortId',

@@ -60,7 +60,7 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
       <div>
         <ContentNavigation />
         <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
-        <div className="md:col-span-3">
+        <div>
           {t.rich('report_info', { number: event.reentryReportNumber?.toString(), time: dayjs(event.updatedAt).format(FORMAT_DATE_TIME) })}
           <Suspense fallback={<Spinner />}>
             <ReentryAlertExecutiveSummary event={event} report={lastReport} executiveSummaryComment={searchParams?.executive_summary_comment ?? event.executiveSummaryComment} isClosed={isClosed} />

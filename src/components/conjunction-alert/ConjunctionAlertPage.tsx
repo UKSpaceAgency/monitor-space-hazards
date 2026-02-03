@@ -53,9 +53,10 @@ const ConjunctionAlertPage = async ({ shortId, searchParams, footer }: Conjuncti
           </div>
         )}
       </div>
-      <div className="grid md:grid-cols-4 gap-7">
+      <div>
         <ContentNavigation />
-        <div className="md:col-span-3">
+        <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
+        <div>
           {t.rich('report_info', { number: lastReport.reportNumber.toString(), time: dayjs(lastReport.reportTime).format(FORMAT_DATE_TIME) })}
           <ConjunctionAlertExecutiveSummary report={lastReport} executiveSummaryComment={searchParams?.executive_summary_comment ?? event.executiveSummaryComment} manoeuvreComment={searchParams?.manoeuvre_comment ?? event.manoeuvreComment} isClosed={isClosed} />
           <ConjunctionAlertNextUpdate shortId={shortId} />

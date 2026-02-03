@@ -33,7 +33,7 @@ const ReentryAlertRiskProbabilitiesTable = ({ event }: ReentryAlertExecutiveSumm
                   <TableCellHeader>{t('probability_of_fragmentation')}</TableCellHeader>
                   <TableCell>{roundedPercent(event.fragmentsProbability)}</TableCell>
                   <TableCell>
-                    {renderRiskTag(event.fragmentsRisk)}
+                    {renderRiskTag(event.fragmentsRisk ?? 'None')}
                   </TableCell>
                 </TableRow>
               )
@@ -44,7 +44,7 @@ const ReentryAlertRiskProbabilitiesTable = ({ event }: ReentryAlertExecutiveSumm
                   <TableCellHeader>{t('probability_of_atmospheric_entry')}</TableCellHeader>
                   <TableCell>{roundedPercent(event.atmosphericProbability)}</TableCell>
                   <TableCell>
-                    {renderRiskTag(event.atmosphericRisk)}
+                    {renderRiskTag(event.atmosphericRisk ?? 'None')}
                   </TableCell>
                 </TableRow>
               )
