@@ -26,7 +26,7 @@ export const ReentryEventInformationClosed = ({ event }: ReentryEventInformation
   });
 
   const contentVariables: RichTranslationValues = {
-    commonName: event?.objectName ?? 'Unknown',
+    commonName: event?.objectName ?? 'an unknown object',
     objectType: event?.objectType ? `${event.objectName} ${objectTypeIndex[event.objectType as keyof typeof objectTypeIndex] ?? ''}` : '',
     date: `${dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME_WITH_UTC)} +/- ${event.uncertaintyWindow} minute(s)`,
     riskLevel: event?.atmosphericRisk ?? 'Low',
