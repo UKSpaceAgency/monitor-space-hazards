@@ -7,7 +7,7 @@ import { LicenseInformationsTable } from './tables/LicenseInformationsTable';
 import { OrbitalInformationsTable } from './tables/OrbitalInformationsTable';
 
 type SatelliteInformationProps = {
-  object: TypeSatelliteOut | TypeSatelliteOut[];
+  object: TypeSatelliteOut | TypeSatelliteOut[] | null;
   dataPdf?: string;
   haveAnchor?: boolean;
 };
@@ -18,9 +18,17 @@ const SatelliteInformation = ({ object, dataPdf, haveAnchor = true }: SatelliteI
     <div className="mb-12" data-pdf={dataPdf}>
       <h2 data-anchor={haveAnchor ? 'information' : undefined} className="govuk-heading-l">{t('title')}</h2>
       <p className="govuk-body">{t('content')}</p>
-      <BaseInformationsTable object={object} />
-      <LicenseInformationsTable object={object} />
-      <OrbitalInformationsTable object={object} />
+      {object
+        ? (
+            <>
+              <BaseInformationsTable object={object} />
+              <LicenseInformationsTable object={object} />
+              <OrbitalInformationsTable object={object} />
+            </>
+          )
+        : (
+            <p className="govuk-body">No satellite information available</p>
+          )}
     </div>
   );
 };

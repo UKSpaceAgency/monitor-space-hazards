@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import { getEphemerises } from '@/actions/getEphemerises';
@@ -40,6 +41,10 @@ export default async function Satellite(props: PageProps) {
     norad_id: noradId,
     sort_by: 'updated_at',
   });
+
+  if (!satellite.noradId) {
+    return notFound();
+  }
 
   return (
     <div>

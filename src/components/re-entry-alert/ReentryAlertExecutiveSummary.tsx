@@ -27,7 +27,7 @@ const ReentryAlertExecutiveSummary = async ({ event, report, executiveSummaryCom
   const haveRiskProbabilities = isNumber(event.atmosphericProbability) || isNumber(event.fragmentsProbability) || isNumber(event.humanCasualtyProbability);
 
   const contentVariables: RichTranslationValues = {
-    commonName: event?.objectName ?? 'Unknown',
+    commonName: event?.objectName ?? 'an unknown object',
     objectType: event?.objectType,
     date: dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME),
     atmosphericRisk: event?.atmosphericRisk ?? 'Low',

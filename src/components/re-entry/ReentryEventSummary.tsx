@@ -9,7 +9,7 @@ import { ReentryEventSummaryTable } from './tables/ReentryEventSummaryTable';
 
 type ReentryEventSummaryProps = {
   event: TypeReentryEventOut;
-  object: TypeSatelliteOut;
+  object: TypeSatelliteOut | null;
   shortId: string;
 };
 
@@ -24,7 +24,7 @@ const ReentryEventSummary = async ({ event, object, shortId }: ReentryEventSumma
       <p className="govuk-body">
         {t('reentering_object')}
         {' '}
-        <Link href={`/satellites/${event.noradId}`} className="govuk-link">{object.commonName}</Link>
+        {object ? <Link href={`/satellites/${event.noradId}`} className="govuk-link">{object.commonName}</Link> : 'Unknown object'}
       </p>
       {data[0] && <ReentryEventSummaryTable tip={data[0]} />}
       <Button as="link" href={`/contact-analyst?id=${shortId}&callback=/re-entries/${shortId}`} aria-label={t('contact_analyst')}>{t('contact_analyst')}</Button>

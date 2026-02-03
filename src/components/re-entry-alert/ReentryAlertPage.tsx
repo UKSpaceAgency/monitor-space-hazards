@@ -27,13 +27,13 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
   const t = await getTranslations('Reentry_alert');
   const event = await getReentryEvent(shortId);
   const reports = await getReentryReports({ shortId });
-  const title = t('title', { objectName: event.objectName });
+  const title = t('title', { objectName: event.objectName ?? 'Unknown object' });
 
   const lastReport = reports[reports.length - 1];
   const isClosed = lastReport?.alertType.includes('closedown');
   const closedComment = searchParams?.closed_comment ?? event.closedComment;
 
-  const pdfTitle = t(isClosed ? 'pdf_title_closed' : 'pdf_title', { objectName: event.objectName, reportNumber: event.reentryReportNumber?.toString() });
+  const pdfTitle = t(isClosed ? 'pdf_title_closed' : 'pdf_title', { objectName: event.objectName ?? 'Unknown object', reportNumber: event.reentryReportNumber?.toString() });
 
   if (!lastReport) {
     return redirect(`/re-entries/${shortId}`);

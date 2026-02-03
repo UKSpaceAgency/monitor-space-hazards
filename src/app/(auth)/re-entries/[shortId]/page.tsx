@@ -40,6 +40,7 @@ export default async function Reentry({
   const event = await getReentryEvent(shortId);
   const satellite = await getSatellite(event.noradId);
   const reports = await getReentryReports({ shortId });
+  const object = satellite?.noradId ? satellite : null;
 
   return (
     <div>
@@ -57,9 +58,9 @@ export default async function Reentry({
         <ContentNavigation />
         <div className="md:col-span-3">
           <Suspense fallback={<Spinner />}>
-            <ReentryEventSummary event={event} shortId={shortId} object={satellite} />
+            <ReentryEventSummary event={event} shortId={shortId} object={object} />
           </Suspense>
-          <ReentryAccordion object={satellite} noradId={event.noradId} />
+          <ReentryAccordion object={object} noradId={event.noradId} />
           <ReentryButtons title={t('title', { objectName: satellite.commonName })} />
         </div>
       </div>

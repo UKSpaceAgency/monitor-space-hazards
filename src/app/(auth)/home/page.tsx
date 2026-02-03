@@ -9,7 +9,7 @@ import { getSession } from '@/actions/getSession';
 import { UpcomingEvents } from '@/components/dashboard/UpcomingEvents';
 import nsocLogo from '@/public/nspoclogo2.png';
 import { AppConfig } from '@/utils/AppConfig';
-import { isAgencyUser } from '@/utils/Roles';
+import { isAgencyUser, isGovUser } from '@/utils/Roles';
 
 export default async function DashboardPage() {
   const t = await getTranslations('Dashboard');
@@ -32,7 +32,10 @@ export default async function DashboardPage() {
         <h3 className="govuk-heading-m">{t('services.key_services_title')}</h3>
         <ul>
           {Object.keys(keyServicesItems).filter((key) => {
-            if ((key === 'track_reentries' && !isAgencyUser(session?.user?.role)) || key === 'track_fragmentations') {
+            if (key === 're-track_reentries') {
+              return isAgencyUser(session?.user?.role) || isGovUser(session?.user?.role);
+            }
+            if (key === 'track_fragmentations') {
               return false;
             }
             return true;
@@ -62,7 +65,10 @@ export default async function DashboardPage() {
         <h3 className="govuk-heading-m">{t('services.all_services_title')}</h3>
         <div className="">
           {Object.keys(allServicesItems).filter((key) => {
-            if ((key === 'track_reentries' && !isAgencyUser(session?.user?.role)) || key === 'track_fragmentations') {
+            if (key === 're-track_reentries') {
+              return isAgencyUser(session?.user?.role) || isGovUser(session?.user?.role);
+            }
+            if (key === 'track_fragmentations') {
               return false;
             }
             return true;

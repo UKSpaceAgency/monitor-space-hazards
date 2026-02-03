@@ -2,6 +2,7 @@ import { isNumber } from 'lodash';
 import Link from 'next/link';
 
 import type { TypeReentryEventOut, TypeRisk } from '@/__generated__/data-contracts';
+import { objectTypeIndex } from '@/emails/_utils/utils';
 import { dayjs, FORMAT_DATE_FULL_MONTH, FORMAT_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import { roundedFixed } from '@/utils/Math';
@@ -38,7 +39,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     id: 'objectName',
     accessorKey: 'objectName',
     header: 'Reentries.table.object',
-    cell: ({ row: { original: { objectName, objectType } } }) => `${objectName ?? 'Unknown object'} ${objectType ? `(${objectType})` : ''}`,
+    cell: ({ row: { original: { objectName, objectType } } }) => `${objectName ?? 'Unknown object'.toUpperCase()} ${objectType ? `(${objectTypeIndex[objectType as keyof typeof objectTypeIndex].toUpperCase()})` : ''}`,
   },
   {
     id: 'noradId',
