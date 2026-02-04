@@ -32,7 +32,7 @@ export default async function DashboardPage() {
         <h3 className="govuk-heading-m">{t('services.key_services_title')}</h3>
         <ul>
           {Object.keys(keyServicesItems).filter((key) => {
-            if (key === 're-track_reentries') {
+            if (key === 'track_reentries') {
               return isAgencyUser(session?.user?.role) || isGovUser(session?.user?.role);
             }
             if (key === 'track_fragmentations') {
@@ -65,7 +65,7 @@ export default async function DashboardPage() {
         <h3 className="govuk-heading-m">{t('services.all_services_title')}</h3>
         <div className="">
           {Object.keys(allServicesItems).filter((key) => {
-            if (key === 're-track_reentries') {
+            if (key === 'track_reentries') {
               return isAgencyUser(session?.user?.role) || isGovUser(session?.user?.role);
             }
             if (key === 'track_fragmentations') {

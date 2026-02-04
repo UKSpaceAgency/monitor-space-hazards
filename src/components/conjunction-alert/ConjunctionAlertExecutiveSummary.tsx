@@ -34,7 +34,7 @@ const ConjunctionAlertExecutiveSummary = async ({ report, executiveSummaryCommen
 
   return (
     <div data-pdf={t('title')}>
-      <h2 data-anchor="information" className="govuk-heading-l">{t('title')}</h2>
+      <h2 data-anchor="event-summary" className="govuk-heading-l">{t('title')}</h2>
       {isClosed
         ? (
             <InsetText>
