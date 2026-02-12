@@ -55,13 +55,13 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
           <Checkbox id="show-flightpaths" full checked={types.includes('FLIGHTPATH')} value="FLIGHTPATH" onChange={handleTypeChange}>
             <span className="flex items-center gap-2">
               {t('show_flightpaths')}
-              <span className="block size-5 rounded-full border-4 border-[#007CC8]"></span>
+              <span className="block size-5 rounded-full bg-[#007CC8]"></span>
             </span>
           </Checkbox>
           <Checkbox id="show-fragments" full checked={types.includes('FRAGMENT')} value="FRAGMENT" onChange={handleTypeChange}>
             <span className="flex items-center gap-2">
               {t('show_fragments')}
-              <span className="block size-5 rounded-full border-4 border-[#C00000]"></span>
+              <span className="block size-5 rounded-full bg-[#C00000]"></span>
             </span>
           </Checkbox>
         </div>
