@@ -53,10 +53,16 @@ const ReentryAlertOverflights = ({ types, setTypes, overflights, selected, onCha
         <legend className="govuk-fieldset__legend govuk-fieldset__legend--s"><h4>{t('legend')}</h4></legend>
         <div className="grid md:grid-cols-2 md:gap-4 govuk-checkboxes govuk-checkboxes--small md:py-4 md:pl-[25px]">
           <Checkbox id="show-flightpaths" full checked={types.includes('FLIGHTPATH')} value="FLIGHTPATH" onChange={handleTypeChange}>
-            {t('show_flightpaths')}
+            <span className="flex items-center gap-2">
+              {t('show_flightpaths')}
+              <span className="block size-5 rounded-full border-4 border-[#007CC8]"></span>
+            </span>
           </Checkbox>
           <Checkbox id="show-fragments" full checked={types.includes('FRAGMENT')} value="FRAGMENT" onChange={handleTypeChange}>
-            {t('show_fragments')}
+            <span className="flex items-center gap-2">
+              {t('show_fragments')}
+              <span className="block size-5 rounded-full border-4 border-[#C00000]"></span>
+            </span>
           </Checkbox>
         </div>
       </fieldset>
