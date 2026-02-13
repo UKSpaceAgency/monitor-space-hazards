@@ -1,10 +1,10 @@
 'use server';
 
 export type AdditionalObjectRisk = {
-  objectName: string;
-  currentWeeklyEvents: number;
-  totalEventsFollowingWeek: number;
-  additionalEventsFollowingWeek: number;
+  object_name: string;
+  current_weekly_events: number;
+  total_events_following_week: number;
+  additional_events_following_week: number;
 };
 
 type ReportResponseData = {
