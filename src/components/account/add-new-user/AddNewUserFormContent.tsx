@@ -36,6 +36,10 @@ const roles = {
     'SATELLITE_OPERATOR',
     'SATELLITE_OPERATOR_USER',
   ]),
+  REGULATOR_ADMIN: pick<Record<TypeUserRole, string>, TypeUserRole>(AccountType, [
+    'REGULATOR_ADMIN',
+    'REGULATOR_USER',
+  ]),
 };
 
 type AddNewUserFormContentProps = {

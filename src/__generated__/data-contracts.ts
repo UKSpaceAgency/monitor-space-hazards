@@ -2319,6 +2319,8 @@ export interface TypeNotificationSettings {
   on_analysis_uploaded?: TypeNotificationType[];
   /** On Ephemeris Uploaded */
   on_ephemeris_uploaded?: TypeNotificationType[];
+  /** On Manoeuvre Plot Uploaded */
+  on_manoeuvre_plot_uploaded?: TypeNotificationType[];
   /** On User Added */
   on_user_added?: TypeNotificationType[];
   /** On User Removed */
@@ -3397,7 +3399,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-01-29T10:48:41.654889"
+   * @default "2026-02-12T22:40:40.925572"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3569,7 +3571,9 @@ export type TypeUserRole =
   | "AGENCY_ADMIN"
   | "AGENCY_ANALYST"
   | "AGENCY_APPROVER"
-  | "AGENCY_SUPERUSER";
+  | "AGENCY_SUPERUSER"
+  | "REGULATOR_USER"
+  | "REGULATOR_ADMIN";
 
 /** UserUpdate */
 export interface TypeUserUpdate {
@@ -4585,7 +4589,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2026-02-01"
+   * @default "2026-03-01"
    */
   end_date?: string;
 }
@@ -4600,7 +4604,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2026-02-01"
+   * @default "2026-03-01"
    */
   end_date?: string;
 }
@@ -4615,7 +4619,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-02-01"
+   * @default "2026-03-01"
    */
   end_date?: string;
 }
@@ -4630,7 +4634,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-02-01"
+   * @default "2026-03-01"
    */
   end_date?: string;
 }
@@ -4645,7 +4649,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-02-01"
+   * @default "2026-03-01"
    */
   end_date?: string;
 }
@@ -4660,7 +4664,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2026-02-01"
+   * @default "2026-03-01"
    */
   end_date?: string;
 }

@@ -21,7 +21,7 @@ const ConjunctionAlertHistoryDataTable = async ({ shortId, reports, dataPdf }: C
   };
 
   return (
-    <div data-pdf={dataPdf}>
+    <div data-pdf={dataPdf} className="overflow-auto">
       <DataTable
         columns={conjunctionAlertHistoryColumns}
         data={reports ?? []}
