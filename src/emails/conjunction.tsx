@@ -33,6 +33,8 @@ function ConjunctionEmail({ report, event, withPlaceholders }: ConjunctionEmailP
 
   return (
     <Layout
+      eventType="conjunction"
+      shortId={report.shortId}
       title={t('Conjunction_alert.title', { risk: report.risk, reportNumber: report.reportNumber })}
       subtitle={`${report.primaryObjectCommonName} vs ${report.secondaryObjectCommonName}`}
       withPlaceholders={withPlaceholders}

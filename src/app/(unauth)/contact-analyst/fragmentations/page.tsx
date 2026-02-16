@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ContactAnalyst(props: { searchParams: Promise<{ id: string; callback: string }> }) {
-  const t = await getTranslations('Contact_analyst');
+  const t = await getTranslations('Contact_analyst_fragmentations');
 
   const session = await getSession();
 

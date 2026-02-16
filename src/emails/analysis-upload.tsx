@@ -25,7 +25,7 @@ function AnalysisUploadEmail({ conjunctions, withPlaceholders }: AnalysisUploadE
   const url = `${env.NEXTAUTH_URL}/conjunctions`;
 
   return (
-    <Layout withPlaceholders={withPlaceholders} isNotification>
+    <Layout withPlaceholders={withPlaceholders} isNotification eventType="conjunction">
       <Section title={t('Analysis_upload.title')}>
         {t.rich('Analysis_upload.content', {
           p: chunks => <Text>{chunks}</Text>,

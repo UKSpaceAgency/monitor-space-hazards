@@ -25,7 +25,7 @@ function ConjunctionNotificationEmail({ conjunctions, withPlaceholders }: Conjun
   const url = `${env.NEXTAUTH_URL}/conjunctions`;
 
   return (
-    <Layout withPlaceholders={withPlaceholders} isNotification>
+    <Layout withPlaceholders={withPlaceholders} isNotification eventType="conjunction">
       <Section title={t('Conjunction_notification.title')}>
         {t.rich('Conjunction_notification.content', {
           p: chunks => <Text>{chunks}</Text>,

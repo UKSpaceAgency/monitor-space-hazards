@@ -121,7 +121,7 @@ export const { handlers, signIn, signOut, auth, unstable_update: update } = Next
 
       if (request.nextUrl.pathname === '/data-privacy-notice'
         || request.nextUrl.pathname === '/cookies'
-        || request.nextUrl.pathname === '/contact-analyst'
+        || request.nextUrl.pathname.startsWith('/contact-analyst/')
         || request.nextUrl.pathname === '/feedback'
         || request.nextUrl.pathname === '/accessibility-statement'
         || request.nextUrl.pathname.startsWith('/feedback/')

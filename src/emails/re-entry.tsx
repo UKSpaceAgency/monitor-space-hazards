@@ -37,6 +37,8 @@ function ReEntryEmail({ event, report, tip, withPlaceholders }: ReEntryEmailProp
 
   return (
     <Layout
+      eventType="re-entry"
+      shortId={event.shortId}
       title={t('Reentry_alert.title', { risk: event.fragmentsRisk, reportNumber: report.reportNumber })}
       subtitle={`${event.objectName} ${objectTypeIndex[event.objectType as keyof typeof objectTypeIndex] ?? ''}`}
       withPlaceholders={withPlaceholders}

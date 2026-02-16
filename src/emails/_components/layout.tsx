@@ -10,9 +10,11 @@ export type LayoutProps = {
   withPlaceholders: boolean;
   isNotification?: boolean;
   isShort?: boolean;
+  eventType?: 'conjunction' | 're-entry' | 'fragmentation';
+  shortId?: string;
 } & ComponentProps<'div'>;
 
-export function Layout({ title, subtitle, withPlaceholders, children, isNotification, isShort }: LayoutProps) {
+export function Layout({ title, subtitle, withPlaceholders, children, isNotification, isShort, eventType, shortId }: LayoutProps) {
   return (
     <Tailwind config={{
       theme: {
@@ -88,7 +90,7 @@ export function Layout({ title, subtitle, withPlaceholders, children, isNotifica
               withPlaceholders={withPlaceholders}
             />
             {children}
-            <Footer withPlaceholders={withPlaceholders} isNotification={isNotification} isShort={isShort} />
+            <Footer withPlaceholders={withPlaceholders} isNotification={isNotification} isShort={isShort} eventType={eventType} shortId={shortId} />
           </Container>
         </Body>
       </Html>

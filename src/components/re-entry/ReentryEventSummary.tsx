@@ -27,7 +27,7 @@ const ReentryEventSummary = async ({ event, object, shortId }: ReentryEventSumma
         {object ? <Link href={`/satellites/${event.noradId}`} className="govuk-link">{object.commonName}</Link> : 'Unknown object'}
       </p>
       {data[0] && <ReentryEventSummaryTable tip={data[0]} />}
-      <Button as="link" href={`/contact-analyst?id=${shortId}&callback=/re-entries/${shortId}`} aria-label={t('contact_analyst')}>{t('contact_analyst')}</Button>
+      <Button as="link" href={`/contact-analyst/reentries?id=${shortId}&callback=/re-entries/${shortId}`} aria-label={t('contact_analyst')}>{t('contact_analyst')}</Button>
     </div>
   );
 };

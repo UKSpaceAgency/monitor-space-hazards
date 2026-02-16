@@ -24,7 +24,7 @@ function NewEphemerisEmail({ commonName, noradId, withPlaceholders }: NewEphemer
   const url = `${env.NEXTAUTH_URL}/satellites/${noradId}`;
 
   return (
-    <Layout withPlaceholders={withPlaceholders} isNotification>
+    <Layout withPlaceholders={withPlaceholders} isNotification eventType="conjunction">
       <Section title={t('Conjunction_new_ephemeris.title', { commonName })}>
         {t.rich('Conjunction_new_ephemeris.content', {
           commonName,

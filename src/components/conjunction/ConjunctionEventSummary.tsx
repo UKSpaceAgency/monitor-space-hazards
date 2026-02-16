@@ -80,7 +80,7 @@ const ConjunctionEventSummary = async ({
         <Button
           as="link"
           href={{
-            pathname: '/contact-analyst',
+            pathname: '/contact-analyst/conjunctions',
             query: {
               id: shortId,
               callback: `/conjunctions/${shortId}`,

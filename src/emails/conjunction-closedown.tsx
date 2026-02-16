@@ -27,6 +27,8 @@ function ConjunctionClosedownEmail({ report, event, withPlaceholders }: Conjunct
 
   return (
     <Layout
+      eventType="conjunction"
+      shortId={report.shortId}
       title={t('Conjunction_alert.title_closed', { reportNumber: report.reportNumber })}
       subtitle={`${report.primaryObjectCommonName} vs ${report.secondaryObjectCommonName}`}
       withPlaceholders={withPlaceholders}
