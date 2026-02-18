@@ -1818,7 +1818,7 @@
         "status": "Status",
         "all_alerts": "Level 1 (Standard) {type} alerts distribution list",
         "alert_for_uk": "UK Satellites {type} alerts distribution list",
-        "priority_alert": "Level 2 (Priority) {type} alerts only distribution list",
+        "priority_alert": "Level 2 (Priority) {type} alerts distribution list",
         "using_individual_emails": "Using individual emails",
         "individually_selected_recipients": "Individually selected recipients",
         "sent_to_distribution_list": "Sent to distribution list",
