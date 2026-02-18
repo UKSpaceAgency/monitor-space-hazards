@@ -1661,7 +1661,7 @@
         "users": "Users",
         "adminsDescription": "can view information relevant to their organisation. Administrators can upload ephemeris data to the site where the satellite belongs to their organisation. Administrators can also view all user accounts for an organisation, and can add new users, and change or delete existing users.",
         "operatorsDescription": "can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site.",
-        "usersDescription": "can view information relevant for their organisation, but have no additional permissions within their organisation. TEST"
+        "usersDescription": "can view information relevant for their organisation, but have no additional permissions within their organisation. <p>Note: Public sector users (e.g. users in government and regulator organisations) can view all UK-licensed objects and related events. Operator organisations can only view information relating to their own assets. Not all role types are available to all organisations.</p>"
       }
     },
     "Schedule_banner": {
