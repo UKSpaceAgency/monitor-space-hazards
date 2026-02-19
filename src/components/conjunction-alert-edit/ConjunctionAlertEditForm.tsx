@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl';
 
 import type { TypeConjunctionReportOut, TypeRisk, TypeUniqueEventOut } from '@/__generated__/data-contracts';
 import { roundedPercent } from '@/utils/Math';
-import { renderRiskTag } from '@/utils/Risk';
+import { renderRiskTag } from '@/utils/Tags';
 
 import type { EventAlertFormField } from '../event-alert-edit/EventAlertEditForm';
 import { EventAlertEditForm } from '../event-alert-edit/EventAlertEditForm';

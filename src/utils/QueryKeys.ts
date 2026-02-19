@@ -2,6 +2,7 @@ export enum QUERY_KEYS {
   Conjunctions = 'conjunctions',
   Satellites = 'satellites',
   Analyses = 'analyses',
+  Activities = 'activities',
   Manoeuvres = 'manoeuvres',
   Reentries = 'reentries',
   Fragmentations = 'fragmentations',

@@ -5,6 +5,7 @@
     "navigation": {
       "conjunctions": "Conjunctions",
       "re-entries": "Re-entries",
+      "monitoring": "Monitoring",
       "fragmentations": "Fragmentations",
       "satellites": "Satellites",
       "account": "Account"
@@ -911,6 +912,18 @@
       "content": "<h3>Distribution lists</h3><p>Visit View Distribution Lists in your Account to view and manage all current distribution lists.</p><h3>Level 1 (Standard) re-entry alert</h3><p>If this report is classified as a Level 1 (Standard) re-entry alert, it has been distributed only to key UK Government organisations (for example the National Space Operations Centre, Ministry of Defence and Civil Aviation Authority) and international partners.</p><p>The criteria for producing a Level 1 (Standard) re-entry alert is as follows:</p><list><item>Less than 36 hours until re-entry, and one or more of the following:</item><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland, and/or</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories, and/or</item><item>Press interest, and/or</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Level 2 (Priority) re-entry alert</h3><p>If this report is classified as a Level 2 (Priority) re-entry alert, it has been distributed only to specific users directly involved in the Government response.</p><p>Please note: distribution lists for Level 1 and Level 2 alerts are separate. Recipients will only receive reports for the level(s) for which they are specifically included.</p><p>The criteria for producing a Level 2 (Priority) re-entry alert is as follows:</p><list><item>Debris likely to survive to the ground, and one or more of the following:</item><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis, and/or</item><item>UK-licensed object, and/or</item><item>Significant press interest, and/or</item><item>Nominated for escalation by the National Space Operations Centre</item></list>"
     }
   },
+  "Monitoring": {
+    "title": "Monitor UK satellite activity",
+    "description": "<p>This table contains information on any changes to the status and positions of UK-licensed satellites.</p><p>These changes in status are identified through 4 different types of flags related to satellite position, manoeuvres undertaken, and data quality. More detail on each flag can be found by clicking on the flag ID.</p>",
+    "search_bar": {
+      "label": "Search satellites",
+      "placeholder": "Search by satellite name or ID"
+    },
+    "help": {
+      "title": "Help with this table<screenReaderOnly> - Activities</screenReaderOnly>",
+      "content": "<list><item>Select the <b>event ID</b> for more information on the satellite monitoring flag.</item><item>Select the <b>object</b> for more information about the satellite in question.</item><item>Select the <b>operator name</b> for an overview of all that operator's satellites.</item><item>Sort the satellites according to criteria by clicking on the relevant <b>heading.</b></item><item>Filter the list of satellites by clicking <b>Apply filters to this table</b> below the search bar.</item></list><p>This table includes most recent satellite monitoring flags as of 16/02/26 09:28:23 UTC.</p>"
+    }
+  },
   "Performance_monitoring": {
     "title": "Performance monitoring and statistics",
     "description": "This page shows both performance data for the Monitor Space Hazards service and more detailed information about the object and conjunction event data processed by the service. This data is broken down by organisation and by satellite.",
@@ -1116,7 +1129,8 @@
         "conjunction_reports": "conjunction reports",
         "reentry_events": "re-entry events",
         "reentry_reports": "re-entry reports",
-        "fragmentation_events": "fragmentation events"
+        "fragmentation_events": "fragmentation events",
+        "activities": "activities"
       }
     },
     "Analysis_data": {
@@ -1617,6 +1631,26 @@
       "number_of_fragments": "Number of known fragments",
       "modelled_fragments": "Modelled number of fragments",
       "fragmentation_risk": "Fragmentation risk"
+    },
+    "Activities": {
+      "details": {
+        "summary": "Apply filters to this table:",
+        "option1": "View all events and alerts",
+        "option2": "Only view conjunction alerts",
+        "all": "All",
+        "upcoming": "Upcoming",
+        "past": "Past",
+        "select_label": "Filter by"
+      },
+      "reason_for_flag": "Reason for flag",
+      "short_id": "Event ID",
+      "common_name": "Object",
+      "operator_name": "Operator",
+      "norad_id": "NORAD ID",
+      "flag_date": "Date of flag",
+      "orbit_type": "Orbit",
+      "altitude": "Altitude (km)",
+      "longitude": "Longitude (°)"
     }
   },
   "Forms": {

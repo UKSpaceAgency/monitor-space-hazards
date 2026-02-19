@@ -5,7 +5,7 @@ import type { TypeReentryEventOut, TypeRisk } from '@/__generated__/data-contrac
 import { FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 import { roundedPercentage } from '@/utils/Math';
 import { getFullCountry } from '@/utils/Regions';
-import { renderRiskTag } from '@/utils/Risk';
+import { renderRiskTag } from '@/utils/Tags';
 
 import type { EventAlertFormField } from '../event-alert-edit/EventAlertEditForm';
 import { EventAlertEditForm } from '../event-alert-edit/EventAlertEditForm';

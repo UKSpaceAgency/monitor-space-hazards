@@ -6,7 +6,7 @@ import type { TypeConjunctionReportOut, TypeRisk } from '@/__generated__/data-co
 import { dayjs, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 import InsetText from '@/ui/inset-text/inset-text';
 import { roundedPercent } from '@/utils/Math';
-import { renderRiskTag } from '@/utils/Risk';
+import { renderRiskTag } from '@/utils/Tags';
 
 import { Markdown } from '../Markdown';
 import { ConjunctionAlertExecutiveSummaryTable } from './tables/ConjunctionAlertExecutiveSummaryTable';

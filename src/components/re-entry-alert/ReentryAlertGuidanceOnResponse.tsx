@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl';
 
 import type { TypeRisk } from '@/__generated__/data-contracts';
-import { renderRiskTag } from '@/utils/Risk';
+import { renderRiskTag } from '@/utils/Tags';
 
 import { Markdown } from '../Markdown';
 

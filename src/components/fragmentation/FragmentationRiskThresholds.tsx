@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl';
 
 import Details from '@/ui/details/details';
 import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
-import { renderRiskTag } from '@/utils/Risk';
+import { renderRiskTag } from '@/utils/Tags';
 
 type FragmentationRiskThresholdsProps = {
   dataPdf?: string;

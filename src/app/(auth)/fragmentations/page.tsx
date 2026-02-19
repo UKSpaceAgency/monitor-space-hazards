@@ -5,7 +5,7 @@ import { FragmentationsEventsTable } from '@/components/fragmentations/Fragmenta
 import { SearchBar } from '@/components/SearchBar';
 import Details from '@/ui/details/details';
 import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
-import { renderRiskTag } from '@/utils/Risk';
+import { renderRiskTag } from '@/utils/Tags';
 
 const getSearchBarLabel = async (epoch: TypeEpoch | undefined): Promise<string> => {
   const t = await getTranslations('Fragmentations');

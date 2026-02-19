@@ -5,7 +5,7 @@ import { getFragmentationEventScreeningResults } from '@/actions/getFragmentatio
 import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
-import { renderRiskTag } from '@/utils/Risk';
+import { renderRiskTag } from '@/utils/Tags';
 
 type EventSummaryData = Pick<TypeFragmentationReportOut, 'primary_object_common_name' | 'event_epoch' | 'primary_object_inclination' | 'known_fragments' | 'modelled_fragments' | 'risk' | 'affected_regime' | 'primary_object_type' | 'primary_object_licensing_country' | 'fragmentation_type'>;
 
