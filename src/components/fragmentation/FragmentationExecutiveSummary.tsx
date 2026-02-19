@@ -2,7 +2,7 @@ import type { RichTranslationValues } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
 import type { TypeFragmentationEvent, TypeFragmentationReportOut, TypeRisk } from '@/__generated__/data-contracts';
-import { renderRiskTag } from '@/utils/Risk';
+import { renderRiskTag } from '@/utils/Tags';
 
 import { Markdown } from '../Markdown';
 import { FragmentationExecutiveSummaryTable } from './tables/FragmentationExecutiveSummaryTable';

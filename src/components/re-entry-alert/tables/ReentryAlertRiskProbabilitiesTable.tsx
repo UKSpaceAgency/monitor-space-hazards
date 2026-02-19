@@ -5,7 +5,7 @@ import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
 import Details from '@/ui/details/details';
 import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
 import { roundedPercent } from '@/utils/Math';
-import { renderRiskTag } from '@/utils/Risk';
+import { renderRiskTag } from '@/utils/Tags';
 
 type EventSummaryData = Pick<TypeReentryEventOut, 'fragmentsProbability' | 'fragmentsRisk' | 'atmosphericProbability' | 'atmosphericRisk' | 'humanCasualtyProbability' | 'humanCasualtyRisk'>;
 

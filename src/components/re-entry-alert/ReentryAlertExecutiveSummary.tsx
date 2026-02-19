@@ -8,7 +8,7 @@ import { FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 import InsetText from '@/ui/inset-text/inset-text';
 import { roundedPercentage } from '@/utils/Math';
 import { getFullCountry } from '@/utils/Regions';
-import { renderRiskTag } from '@/utils/Risk';
+import { renderRiskTag } from '@/utils/Tags';
 
 import { Markdown } from '../Markdown';
 import { ReentryAlertExecutiveSummaryTable } from './tables/ReentryAlertExecutiveSummaryTable';

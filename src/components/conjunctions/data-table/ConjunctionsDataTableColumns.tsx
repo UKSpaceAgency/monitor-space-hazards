@@ -4,7 +4,7 @@ import type { TypeEventOut, TypeRisk } from '@/__generated__/data-contracts';
 import { dayjs, FORMAT_DATE_FULL_MONTH, FORMAT_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import { displayExponential } from '@/utils/Math';
-import { renderRiskTag } from '@/utils/Risk';
+import { renderRiskTag } from '@/utils/Tags';
 
 export type ProbabilityUnitType = 'scientific' | 'percentage';
 
