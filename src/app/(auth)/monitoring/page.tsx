@@ -4,7 +4,6 @@ import { Suspense } from 'react';
 
 import type { TypeGetActivityEventsParams } from '@/__generated__/data-contracts';
 import { getActivityEvents } from '@/actions/getActivityEvents';
-import { ActivitiesEventsTableFilters } from '@/components/activities/ActivitiesEventsTableFilters';
 import { ActivitiesDataTable } from '@/components/activities/data-table/ActivitiesDataTable';
 import { SearchBar } from '@/components/SearchBar';
 import Details from '@/ui/details/details';
@@ -37,7 +36,6 @@ export default async function MonitoringPage(props: PageProps) {
       <h1 className="govuk-heading-xl">{t('title')}</h1>
       {t.rich('description')}
       <SearchBar label={t('search_bar.label')} id="satellites_search_bar" placeholder={t('search_bar.placeholder')} ariaLabel="Satellite Search Bar" />
-      <ActivitiesEventsTableFilters params={params} showFilterRadios />
       <Suspense fallback={<Spinner />}>
         <ActivitiesDataTable initialData={initialData} params={params} />
       </Suspense>
