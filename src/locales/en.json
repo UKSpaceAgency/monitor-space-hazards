@@ -917,18 +917,6 @@
       "content": "<list><item>Select the <b>event ID</b> for more information on the satellite monitoring flag.</item><item>Select the <b>object</b> for more information about the satellite in question.</item><item>Select the <b>operator name</b> for an overview of all that operator's satellites.</item><item>Sort the satellites according to criteria by clicking on the relevant <b>heading.</b></item><item>Filter the list of satellites by clicking <b>Apply filters to this table</b> below the search bar.</item></list><p>This table includes most recent satellite monitoring flags as of 16/02/26 09:28:23 UTC.</p>"
     }
   },
-  "Monitoring": {
-    "title": "Monitor UK satellite activity",
-    "description": "<p>This table contains information on any changes to the status and positions of UK-licensed satellites.</p><p>These changes in status are identified through 4 different types of flags related to satellite position, manoeuvres undertaken, and data quality. More detail on each flag can be found by clicking on the flag ID.</p>",
-    "search_bar": {
-      "label": "Search satellites",
-      "placeholder": "Search by satellite name or ID"
-    },
-    "help": {
-      "title": "Help with this table<screenReaderOnly> - Activities</screenReaderOnly>",
-      "content": "<list><item>Select the <b>event ID</b> for more information on the satellite monitoring flag.</item><item>Select the <b>object</b> for more information about the satellite in question.</item><item>Select the <b>operator name</b> for an overview of all that operator's satellites.</item><item>Sort the satellites according to criteria by clicking on the relevant <b>heading.</b></item><item>Filter the list of satellites by clicking <b>Apply filters to this table</b> below the search bar.</item></list><p>This table includes most recent satellite monitoring flags as of 16/02/26 09:28:23 UTC.</p>"
-    }
-  },
   "Performance_monitoring": {
     "title": "Performance monitoring and statistics",
     "description": "This page shows both performance data for the Monitor Space Hazards service and more detailed information about the object and conjunction event data processed by the service. This data is broken down by organisation and by satellite.",
@@ -2311,14 +2299,7 @@
       }
     },
     "Alerting_procedure": {
-      "standard": {
-        "title": "Level 2 (Priority) fragmentation alert",
-        "content": "<p>If this report is classified as a Level 2 (Priority) fragmentation alert,  it has been distributed only to key UK Government organisations (for example the National Space Operations Centre, Ministry of Defence and Civil Aviation Authority) and international partners.</p><p>The criteria for producing a Level 2 (Priority) fragmentation alert are as follows:</p><list><item>The event involves a UK satellite, and/or</item><item>The event generates more than 50 pieces of debris and presents a high risk to UK licensed objects or human spaceflight, and/or</item><item>The event is likely to generate press interest</item></list>"
-      },
-      "priority": {
-        "title": "Level 2 (Priority) fragmentation alert",
-        "content": "<h3>Level 2 (Priority) fragmentation alert</h3><p>The criteria for producing a Level 2 (Priority) fragmentation alert are as follows:</p><list><item>The event involves a UK satellite, and/or</item><item>The event generates more than 50 pieces of debris and presents a high risk to UK licensed objects or human spaceflight, and/or</item><item>The event is likely to generate press interest</item></list><h3>Alert distribution</h3><p>If this report is classified as a Level 2 (Priority) fragmentation alert,  it has been distributed only to key UK Government organisations (for example the National Space Operations Centre, Ministry of Defence and Civil Aviation Authority) and international partners.</p><p>In addition to the Level 2 (Priority) distribution, the following teams are notified in specific circumstances:</p><list><item>If the licensing country is the UK: Department for Science, Innovation and Technology</item><item>If there is a potential risk to the International Space Station: UK Space Agency Exploration team</item></list>"
-      }
+      "content": "<p><b>Level 1 (Standard) fragmentation alert</b></p><p>The criteria for producing a Level 1 (Standard) fragmentation alert are as follows:</p><list><item>The event involves a UK satellite, and/or</item><item>The event generates more than 50 pieces of debris and presents a high risk to UK licensed objects or human spaceflight, and/or</item><item>The event is likely to generate press interest</item></list><p><b>Alert distribution</b></p><p>If this report is classified as a Level 1 (Standard) fragmentation alert, it has been distributed only to key UK Government organisations (for example the National Space Operations Centre, Ministry of Defence and Civil Aviation Authority) and international partners.</p><p>In addition to the Level 1 (Standard) distribution, the following teams are notified in specific circumstances:</p><list><item>If the licensing country is the UK: Department for Science, Innovation and Technology</item><item>If there is a potential risk to the International Space Station: UK Space Agency Exploration team</item></list><p>Please note: each distribution list is separate. Recipients will only receive reports for the distribution lists for which they are specifically included.</p>"
     },
     "Further_information": {
       "fragmentation_event_analysis_information": "Fragmentation event analysis information",
