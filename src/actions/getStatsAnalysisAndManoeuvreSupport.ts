@@ -5,39 +5,39 @@ import type { TypeExternalDataProvider, TypeExternalDataType, TypeGetExternalDat
 import { getExternalDataPerformanceAggregated } from './getExternalDataPerformanceAggregated';
 
 export type AnalysisAndManoeuvreSupportStatsType = {
-  sourceType: TypeExternalDataType;
-  sourceProvider: TypeExternalDataProvider;
+  source_type: TypeExternalDataType;
+  source_provider: TypeExternalDataProvider;
   date: string;
-  analysesCount: number;
-  manoeuvreSupportCount: number;
+  analyses_count: number;
+  manoeuvre_support_count: number;
 };
 
 export async function getStatsAnalysisAndManoeuvreSupport(query?: TypeGetExternalDataPerformanceAggregatedParams) {
   const data = await getExternalDataPerformanceAggregated(query);
 
-  const filteredData = data.filter(item => item.sourceType === 'Analysis' || item.sourceType === 'Manoeuvre Trade Space Plot');
+  const filteredData = data.filter(item => item.source_type === 'Analysis' || item.source_type === 'Manoeuvre Trade Space Plot');
 
   const groupedData = filteredData.reduce((acc, item) => {
-    const { sourceType, sourceProvider, ingestionDate, ingestionSum } = item;
+    const { source_type, source_provider, ingestion_date, ingestion_sum } = item;
 
-    const key = ingestionDate;
+    const key = ingestion_date;
 
     if (!acc[key]) {
       acc[key] = {
-        sourceType: sourceType as TypeExternalDataType,
-        sourceProvider: sourceProvider as TypeExternalDataProvider,
-        date: ingestionDate,
-        analysesCount: 0,
-        manoeuvreSupportCount: 0,
+        source_type: source_type as TypeExternalDataType,
+        source_provider: source_provider as TypeExternalDataProvider,
+        date: ingestion_date,
+        analyses_count: 0,
+        manoeuvre_support_count: 0,
       };
     }
 
-    switch (sourceType) {
+    switch (source_type) {
       case 'Analysis':
-        acc[key].analysesCount = ingestionSum || 0;
+        acc[key].analyses_count = ingestion_sum || 0;
         break;
       case 'Manoeuvre Trade Space Plot':
-        acc[key].manoeuvreSupportCount = ingestionSum || 0;
+        acc[key].manoeuvre_support_count = ingestion_sum || 0;
         break;
     }
 

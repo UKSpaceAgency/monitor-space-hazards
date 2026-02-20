@@ -25,18 +25,18 @@ const ScheduleBannerForm = ({ templates }: ScheduleBannerFormProps) => {
 
   const { register, handleSubmit, setValue, watch, resetField } = useForm<TypeBannerScheduleIn>({
     defaultValues: {
-      messageId: templates[0]?.id,
-      broadcastStart: startDate.toJSON(),
-      broadcastEnd: dayjs(startDate).add(1, 'year').toJSON(),
+      message_id: templates[0]?.id,
+      broadcast_start: startDate.toJSON(),
+      broadcast_end: dayjs(startDate).add(1, 'year').toJSON(),
     },
     reValidateMode: 'onSubmit',
   });
 
-  const onSubmit = ({ broadcastStart, broadcastEnd, messageId }: TypeBannerScheduleIn) => {
+  const onSubmit = ({ broadcast_start, broadcast_end, message_id }: TypeBannerScheduleIn) => {
     const params = new URLSearchParams({
-      broadcastStart,
-      broadcastEnd,
-      messageId,
+      broadcast_start,
+      broadcast_end,
+      message_id,
     });
 
     push(`/account/incident-banner/schedule/confirm/?${params.toString()}`);

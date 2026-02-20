@@ -30,7 +30,7 @@ const ConjunctionObjectData = async ({ primaryObject, secondaryObject }: Conjunc
       <h3 className="govuk-heading-s govuk-!-margin-top-6 govuk-!-margin-bottom-0">
         {t('additional_object_summary.title')}
       </h3>
-      {t.rich('additional_object_summary.content', { updateTime: dayjs(primaryObject.esaUpdateTime).format(FORMAT_DATE_TIME) }) }
+      {t.rich('additional_object_summary.content', { updateTime: dayjs(primaryObject.esa_update_time).format(FORMAT_DATE_TIME) }) }
       <AdditionalInformationsTable object={dataArray} headerCellWidth="sm" />
     </div>
   );

@@ -24,12 +24,12 @@ const OrganisationsTable = ({ organisations }: OrganisationsSummaryProps) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {organisations.map(({ id, name, satellitesCount, accountsCount, createdAt }) => (
+          {organisations.map(({ id, name, satellites_count, accounts_count, created_at }) => (
             <TableRow key={id}>
               <TableCell><Link className="govuk-link" href={`/account/organisations/${id}`}>{name}</Link></TableCell>
-              <TableCell>{satellitesCount}</TableCell>
-              <TableCell>{accountsCount}</TableCell>
-              <TableCell>{dayjs(createdAt).format(FORMAT_SHORT_DATE)}</TableCell>
+              <TableCell>{satellites_count}</TableCell>
+              <TableCell>{accounts_count}</TableCell>
+              <TableCell>{dayjs(created_at).format(FORMAT_SHORT_DATE)}</TableCell>
             </TableRow>
           ))}
         </TableBody>

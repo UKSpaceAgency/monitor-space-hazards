@@ -14,12 +14,12 @@ const ReentriesSummaryTable = async () => {
 
   const baseInformations: InformationsTableRow<TypeReentryEventCount>[] = [{
     header: t('upcoming_reentry_alerts'),
-    renderCell: row => <div className="govuk-!-text-align-right">{row.reentryEventAlertCount}</div>,
-    accessorKey: 'reentryEventAlertCount',
+    renderCell: row => <div className="govuk-!-text-align-right">{row.reentry_event_alert_count}</div>,
+    accessorKey: 'reentry_event_alert_count',
   }, {
     header: t('upcoming_reentry_events_worldwide'),
-    renderCell: row => <div className="govuk-!-text-align-right">{row.reentryEventTotalCount}</div>,
-    accessorKey: 'reentryEventTotalCount',
+    renderCell: row => <div className="govuk-!-text-align-right">{row.reentry_event_total_count}</div>,
+    accessorKey: 'reentry_event_total_count',
   }];
 
   return (

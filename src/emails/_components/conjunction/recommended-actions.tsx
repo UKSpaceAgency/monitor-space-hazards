@@ -26,7 +26,7 @@ export const ConjunctionRecommendedActions = ({ report, event, ...props }: Conju
       {t.rich('content', {
         p: chunks => <Text>{chunks}</Text>,
       })}
-      {event.ukResponseComment && <Markdown>{event.ukResponseComment}</Markdown>}
+      {event.uk_response_comment && <Markdown>{event.uk_response_comment}</Markdown>}
     </Section>
   );
 };

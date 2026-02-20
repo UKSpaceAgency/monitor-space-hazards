@@ -14,10 +14,10 @@ export type ConjunctionEventsTypeChartProps = {
 export function ConjunctionEventsTypeChart({ data, actionButtons }: ConjunctionEventsTypeChartProps) {
   const t = useTranslations('Charts.Events_type');
 
-  const filteredData = [...data].filter(({ eventType }) => eventType !== t('total_events'));
+  const filteredData = [...data].filter(({ event_type }) => event_type !== t('total_events'));
 
   const datasets = {
-    labels: filteredData.map(({ eventType }) => eventType),
+    labels: filteredData.map(({ event_type }) => event_type),
     datasets: [
       {
         data: filteredData.map(({ count }) => count),

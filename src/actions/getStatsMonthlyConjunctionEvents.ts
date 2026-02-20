@@ -31,9 +31,9 @@ export async function getStatsMonthlyConjunctionEvents({ months }: StatsMonthlyC
     const groupedByMonth = groupBy(data, 'month');
 
     const groupedData = Object.entries(groupedByMonth).map(([month, events]) => {
-      const high = events.find(event => event.collisionProbabilityRange === '> 1e-3')?.count ?? 0;
-      const medium = events.find(event => event.collisionProbabilityRange === '1e-3 .. 1e-5')?.count ?? 0;
-      const low = events.find(event => event.collisionProbabilityRange === '< 1e-5')?.count ?? 0;
+      const high = events.find(event => event.collision_probability_range === '> 1e-3')?.count ?? 0;
+      const medium = events.find(event => event.collision_probability_range === '1e-3 .. 1e-5')?.count ?? 0;
+      const low = events.find(event => event.collision_probability_range === '< 1e-5')?.count ?? 0;
       return {
         month: dayjs(month).format('MM/YYYY'),
         high,

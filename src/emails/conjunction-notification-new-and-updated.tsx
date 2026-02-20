@@ -44,20 +44,20 @@ function ConjunctionNotificationNewAndUpdatedEmail({ newConjunctions, updatedCon
 ConjunctionNotificationNewAndUpdatedEmail.PreviewProps = {
   newConjunctions: [
     {
-      shortId: '123',
-      primaryObjectCommonName: 'Primary Object',
-      secondaryObjectCommonName: 'Secondary Object',
-      tcaTime: '2021-01-01T00:00:00Z',
-      collisionProbability: 0.5,
+      short_id: '123',
+      primary_object_common_name: 'Primary Object',
+      secondary_object_common_name: 'Secondary Object',
+      tca_time: '2021-01-01T00:00:00Z',
+      collision_probability: 0.5,
     },
   ],
   updatedConjunctions: [
     {
-      shortId: '123',
-      primaryObjectCommonName: 'Primary Object',
-      secondaryObjectCommonName: 'Secondary Object',
-      tcaTime: '2021-01-01T00:00:00Z',
-      collisionProbability: 0.5,
+      short_id: '123',
+      primary_object_common_name: 'Primary Object',
+      secondary_object_common_name: 'Secondary Object',
+      tca_time: '2021-01-01T00:00:00Z',
+      collision_probability: 0.5,
     },
   ],
 };

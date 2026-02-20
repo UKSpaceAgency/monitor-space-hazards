@@ -13,10 +13,10 @@ const ConjunctionAlertAdditionalEventDetailsTable = ({ report }: ConjunctionAler
 
   const rows: InformationsTableRow<Partial<TypeConjunctionReportOut>>[] = [{
     header: t('predicted_miss_distance'),
-    accessorKey: 'missDistance',
+    accessorKey: 'miss_distance',
   }, {
     header: t('impact_speed'),
-    accessorKey: 'impactSpeed',
+    accessorKey: 'impact_speed',
   }, {
     header: t('altitude'),
     accessorKey: 'altitude',
@@ -25,10 +25,10 @@ const ConjunctionAlertAdditionalEventDetailsTable = ({ report }: ConjunctionAler
     renderCell: ({ latitude, longitude }) => `${latitude}, ${longitude}`,
   }, {
     header: t('predicted_number_of_fragments'),
-    accessorKey: 'predictedFragments',
+    accessorKey: 'predicted_fragments',
   }, {
     header: t('potential_increase'),
-    accessorKey: 'increaseInFutureCollisions',
+    accessorKey: 'increase_in_future_collisions',
   }];
 
   return <InformationsTable rows={rows} data={report} />;

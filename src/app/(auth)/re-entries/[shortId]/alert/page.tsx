@@ -19,7 +19,7 @@ export async function generateMetadata({
   const { shortId } = await params;
   const event = await getReentryEvent(shortId);
   return {
-    title: t('title', { objectName: event.objectName ?? 'Unknown object' }),
+    title: t('title', { objectName: event.object_name ?? 'Unknown object' }),
   };
 }
 

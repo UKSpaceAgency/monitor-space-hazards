@@ -21,17 +21,17 @@ export const ReentryRiskProbabilities = ({ event, ...props }: ReentryRiskProbabi
 
   const data = [{
     type: t('debris_impact'),
-    probability: event.fragmentsProbability,
-    risk: event.fragmentsRisk,
+    probability: event.fragments_probability,
+    risk: event.fragments_risk,
   }, {
     type: t('reentry_over_uk'),
-    probability: event.atmosphericProbability,
-    risk: event.atmosphericRisk,
+    probability: event.atmospheric_probability,
+    risk: event.atmospheric_risk,
   }];
   // }, {
   //   type: t('uk_casuality_risk'),
-  //   probability: event.humanCasualtyProbability,
-  //   risk: event.humanCasualtyRisk,
+  //   probability: event.human_casualty_probability,
+  //   risk: event.human_casualty_risk,
   // }];
 
   return (

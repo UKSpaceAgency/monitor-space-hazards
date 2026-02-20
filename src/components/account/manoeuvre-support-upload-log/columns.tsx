@@ -19,21 +19,21 @@ export const getManoeuvreDataTableColumns = ({
   del,
 }: ManoeuvreTableColumnsProps): TranslatedColumnDef<TypeManoeuvrePlotWithUserMetadataOut>[] => [
   {
-    id: 'createdAt',
-    accessorKey: 'createdAt',
+    id: 'created_at',
+    accessorKey: 'created_at',
     header: 'Manoeuvre_data.date',
     cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_DATE_TIME),
     size: 150,
   },
   {
-    id: 'uploadedByEmail',
-    accessorKey: 'uploadedByEmail',
+    id: 'uploaded_by_email',
+    accessorKey: 'uploaded_by_email',
     header: 'Manoeuvre_data.user_email',
     size: 350,
   },
   {
-    id: 'eventShortId',
-    accessorKey: 'eventShortId',
+    id: 'event_short_id',
+    accessorKey: 'event_short_id',
     header: 'Manoeuvre_data.event_id',
     cell: ({ getValue }) => {
       const value = getValue<string>();
@@ -46,7 +46,7 @@ export const getManoeuvreDataTableColumns = ({
     size: 200,
   },
   {
-    id: 'uploadedById',
+    id: 'uploaded_by_id',
     accessorKey: 'id',
     header: 'Manoeuvre_data.file_uploaded',
     cell: ({ getValue }) => {
@@ -81,7 +81,7 @@ export const getManoeuvreDataTableColumns = ({
           {del}
           <span className="govuk-visually-hidden">
             mtp for
-            {row?.original?.eventShortId}
+            {row?.original?.event_short_id}
           </span>
         </Link>
       </div>

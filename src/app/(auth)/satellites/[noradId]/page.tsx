@@ -26,7 +26,7 @@ export async function generateMetadata({
   const { noradId } = await params;
   const satellite = await getSatellite(noradId);
   return {
-    title: satellite.commonName,
+    title: satellite.common_name,
   };
 }
 
@@ -42,13 +42,13 @@ export default async function Satellite(props: PageProps) {
     sort_by: 'updated_at',
   });
 
-  if (!satellite.noradId) {
+  if (!satellite.norad_id) {
     return notFound();
   }
 
   return (
     <div>
-      <h1 className="govuk-heading-xl">{satellite.commonName}</h1>
+      <h1 className="govuk-heading-xl">{satellite.common_name}</h1>
       <div className="grid md:grid-cols-4 gap-7">
         <ContentNavigation />
         <article className="md:col-span-3">

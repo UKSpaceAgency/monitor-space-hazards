@@ -22,14 +22,14 @@ const ConjunctionAlertExecutiveSummary = async ({ report, executiveSummaryCommen
   const t = await getTranslations('Conjunction_alert.Executive_summary');
 
   const contentVariables: RichTranslationValues = {
-    primaryObject: report.primaryObjectCommonName,
-    secondaryObject: report.secondaryObjectCommonName,
-    primaryObjectUrl: chunks => <Link href={`/satellites/${report.primaryObjectNoradId}`}>{chunks}</Link>,
-    secondaryObjectUrl: chunks => <Link href={`/satellites/${report.secondaryObjectNoradId}`}>{chunks}</Link>,
+    primaryObject: report.primary_object_common_name,
+    secondaryObject: report.secondary_object_common_name,
+    primaryObjectUrl: chunks => <Link href={`/satellites/${report.primary_object_norad_id}`}>{chunks}</Link>,
+    secondaryObjectUrl: chunks => <Link href={`/satellites/${report.secondary_object_norad_id}`}>{chunks}</Link>,
     risk: report.risk,
-    collisionProbability: roundedPercent(report.collisionProbability),
+    collisionProbability: roundedPercent(report.collision_probability),
     tag: chunks => renderRiskTag(chunks as TypeRisk),
-    date: dayjs(report.tcaTime).format(FORMAT_FULL_DATE_TIME),
+    date: dayjs(report.tca_time).format(FORMAT_FULL_DATE_TIME),
   };
 
   return (

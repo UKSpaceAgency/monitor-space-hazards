@@ -15,11 +15,11 @@ export const addNewUserSchema = z.object({
     if (!value) {
       return value;
     }
-    const phoneNumber = parsePhoneNumber(value, {
+    const phone_number = parsePhoneNumber(value, {
       defaultCountry: 'GB',
     });
 
-    if (!phoneNumber?.isValid()) {
+    if (!phone_number?.isValid()) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: 'Enter a phone number, like 01632 960 001, 07700 900 982 or +44 808 157 0192',
@@ -27,7 +27,7 @@ export const addNewUserSchema = z.object({
       return z.NEVER;
     }
 
-    return phoneNumber.formatInternational();
+    return phone_number.formatInternational();
   }).optional(),
   role: getZodEnumFromObjectKeys<typeof AccountType>(AccountType, {
     invalid_type_error: 'Select an account type',

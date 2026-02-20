@@ -31,10 +31,10 @@ const ContactAnalystForm = ({ searchParams }: ContactAnalystFormProps) => {
     reValidateMode: 'onSubmit',
   });
 
-  const onSubmit: SubmitHandler<ContactAnalystSchema> = async ({ messageContent }) => {
+  const onSubmit: SubmitHandler<ContactAnalystSchema> = async ({ message_content }) => {
     await postMessagesContactAnalyst({
-      eventId: id,
-      messageContent,
+      event_id: id,
+      message_content,
     }, callback);
   };
 
@@ -44,9 +44,9 @@ const ContactAnalystForm = ({ searchParams }: ContactAnalystFormProps) => {
     >
       <FormErrorSummary errors={errors} />
       <TextArea
-        {...register('messageContent')}
+        {...register('message_content')}
         id="message"
-        error={errors.messageContent?.message}
+        error={errors.message_content?.message}
         required
         aria-label="Message Content"
       />

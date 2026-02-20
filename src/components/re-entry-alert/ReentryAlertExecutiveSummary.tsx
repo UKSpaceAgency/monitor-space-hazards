@@ -24,21 +24,21 @@ type ReentryAlertExecutiveSummaryProps = {
 const ReentryAlertExecutiveSummary = async ({ event, report, executiveSummaryComment, isClosed }: ReentryAlertExecutiveSummaryProps) => {
   const t = await getTranslations('Reentry_alert.Executive_summary');
 
-  const haveRiskProbabilities = isNumber(event.atmosphericProbability) || isNumber(event.fragmentsProbability) || isNumber(event.humanCasualtyProbability);
+  const haveRiskProbabilities = isNumber(event.atmospheric_probability) || isNumber(event.fragments_probability) || isNumber(event.human_casualty_probability);
 
   const contentVariables: RichTranslationValues = {
-    commonName: event?.objectName ?? 'an unknown object',
-    objectType: event?.objectType,
-    date: dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME),
-    atmosphericRisk: event?.atmosphericRisk ?? 'Low',
-    atmosphericProbability: roundedPercentage(event?.atmosphericProbability ?? 0),
-    fragmentsRisk: event?.fragmentsRisk ?? 'Low',
-    fragmentsProbability: roundedPercentage(event?.fragmentsProbability ?? 0),
-    // humanCasualtyRisk: event?.humanCasualtyRisk ?? 'Low',
-    // humanCasualtyProbability: roundedPercentage(event?.humanCasualtyProbability ?? 0),
-    riskLevel: event?.fragmentsRisk ?? 'Low',
-    riskProbability: roundedPercentage(event?.fragmentsProbability ?? 0),
-    licensingCountry: getFullCountry(event.licenseCountry),
+    commonName: event?.object_name ?? 'an unknown object',
+    objectType: event?.object_type,
+    date: dayjs(event.decay_epoch).format(FORMAT_FULL_DATE_TIME),
+    atmosphericRisk: event?.atmospheric_risk ?? 'Low',
+    atmospheric_probability: roundedPercentage(event?.atmospheric_probability ?? 0),
+    fragmentsRisk: event?.fragments_risk ?? 'Low',
+    fragmentsProbability: roundedPercentage(event?.fragments_probability ?? 0),
+    // human_casualty_risk: event?.human_casualty_risk ?? 'Low',
+    // humanCasualtyProbability: roundedPercentage(event?.human_casualty_probability ?? 0),
+    riskLevel: event?.fragments_risk ?? 'Low',
+    riskProbability: roundedPercentage(event?.fragments_probability ?? 0),
+    licensingCountry: getFullCountry(event.license_country),
     tag: chunks => renderRiskTag(chunks as TypeRisk),
   };
 

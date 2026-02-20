@@ -3,8 +3,8 @@ import type { TranslatedColumnDef } from '@/types';
 
 export const eventsByTypeDailyFragmentationMonitoringColumns: TranslatedColumnDef<TypeStatisticsFragmentationEventsCountByFragmentationType>[] = [
   {
-    accessorKey: 'fragmentationType',
-    id: 'fragmentationType',
+    accessorKey: 'fragmentation_type',
+    id: 'fragmentation_type',
     header: 'Performance_monitoring.fragmentation_events_by_type.fragmentation_type',
     enableSorting: false,
   },

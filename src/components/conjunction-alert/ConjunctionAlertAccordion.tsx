@@ -46,12 +46,12 @@ const ConjunctionAlertAccordion = ({
           {
             id: 'conjunction_event_history',
             heading: t('conjunction_event_history'),
-            content: <ConjunctionAlertHistoryDataTable shortId={event.shortId} reports={reports} dataPdf={t('conjunction_event_history')} />,
+            content: <ConjunctionAlertHistoryDataTable shortId={event.short_id} reports={reports} dataPdf={t('conjunction_event_history')} />,
           },
           {
             id: 'operator_view',
             heading: t('operator_view'),
-            content: <ConjunctionAlertOperatorView shortId={event.shortId} />,
+            content: <ConjunctionAlertOperatorView shortId={event.short_id} />,
           },
         ]}
       />
@@ -64,13 +64,13 @@ const ConjunctionAlertAccordion = ({
             id: 'potential_impact_of_event',
             heading: t('potential_impact_of_event'),
             content: (
-              <ConjunctionAlertPotentialImpact immediateImpactComment={searchParams?.immediate_impact_comment ?? event.immediateImpactComment} shortTermImpactComment={searchParams?.short_term_impact_comment ?? event.shortTermImpactComment} longTermImpactComment={searchParams?.long_term_impact_comment ?? event.longTermImpactComment} dataPdf={t('potential_impact_of_event')} />
+              <ConjunctionAlertPotentialImpact immediateImpactComment={searchParams?.immediate_impact_comment ?? event.immediate_impact_comment} shortTermImpactComment={searchParams?.short_term_impact_comment ?? event.short_term_impact_comment} longTermImpactComment={searchParams?.long_term_impact_comment ?? event.long_term_impact_comment} dataPdf={t('potential_impact_of_event')} />
             ),
           },
           {
             id: 'additional_risk',
             heading: t('additional_risk'),
-            content: <ConjunctionAlertAdditionalRisk presignedUrl={report.presignedUrl as string} dataPdf={t('additional_risk')} />,
+            content: <ConjunctionAlertAdditionalRisk presignedUrl={report.presigned_url as string} dataPdf={t('additional_risk')} />,
           },
         ]}
       />
@@ -83,13 +83,13 @@ const ConjunctionAlertAccordion = ({
             id: 'guidance_on_response',
             heading: t('guidance_on_response'),
             content: (
-              <ConjunctionAlertGuidanceOnResponse ukResponseComment={searchParams?.uk_response_comment ?? event.ukResponseComment} dataPdf={t('guidance_on_response')} />
+              <ConjunctionAlertGuidanceOnResponse ukResponseComment={searchParams?.uk_response_comment ?? event.uk_response_comment} dataPdf={t('guidance_on_response')} />
             ),
           },
           {
             id: 'press_attention',
             heading: t('press_attention'),
-            content: <ConjunctionAlertPressAttention pressAttentionComment={searchParams?.press_attention_comment ?? event.pressAttentionComment} dataPdf={t('press_attention')} />,
+            content: <ConjunctionAlertPressAttention pressAttentionComment={searchParams?.press_attention_comment ?? event.press_attention_comment} dataPdf={t('press_attention')} />,
           },
         ]}
       />

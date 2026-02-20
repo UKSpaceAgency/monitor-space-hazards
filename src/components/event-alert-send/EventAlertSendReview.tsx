@@ -15,7 +15,7 @@ type EventAlertSendReviewProps = {
   type: EventAlertType;
   shortId: string;
   data: EventAlertSearchParams;
-  action: (id: string, data: { alertType: any[]; additionalEmails: string[] }) => Promise<void>;
+  action: (id: string, data: { alert_type: any[]; additional_emails: string[] }) => Promise<void>;
 };
 
 const EventAlertSendReview = ({ type, shortId, data, action }: EventAlertSendReviewProps) => {
@@ -36,8 +36,8 @@ const EventAlertSendReview = ({ type, shortId, data, action }: EventAlertSendRev
     ].filter(Boolean) as ('standard' | 'priority' | 'uk-licensed' | 'closedown')[];
 
     action(shortId, {
-      alertType,
-      additionalEmails: data.additionalRecipients ? data.additionalRecipients.split(/[,;]+/).map(r => r.trim()) : [],
+      alert_type: alertType,
+      additional_emails: data.additionalRecipients ? data.additionalRecipients.split(/[,;]+/).map(r => r.trim()) : [],
     });
   };
 

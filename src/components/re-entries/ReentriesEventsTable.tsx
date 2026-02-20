@@ -53,7 +53,7 @@ const ReentriesEventsTable = async ({ initialParams }: ReentriesEventsTableProps
       <ReentriesDataTable params={params} initialData={initialData} haveAccessToAlerts={isAgencyUser(role) || isGovUser(role)} />
       <div className="govuk-inset-text">
         {t('reentries_events_as_of')}
-        {dayjs(latestCdms.data.updatedAt).format(FORMAT_DATE_TIME)}
+        {dayjs(latestCdms.data.updated_at).format(FORMAT_DATE_TIME)}
       </div>
     </div>
   );

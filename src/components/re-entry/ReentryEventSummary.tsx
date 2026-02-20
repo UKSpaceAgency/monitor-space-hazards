@@ -16,7 +16,7 @@ type ReentryEventSummaryProps = {
 const ReentryEventSummary = async ({ event, object, shortId }: ReentryEventSummaryProps) => {
   const t = await getTranslations('Reentry.Event_summary');
 
-  const { data } = await Api.getTipsNoradId({ noradId: event.noradId });
+  const { data } = await Api.getTipsNoradId({ noradId: event.norad_id });
 
   return (
     <div data-pdf={t('title')}>
@@ -24,7 +24,7 @@ const ReentryEventSummary = async ({ event, object, shortId }: ReentryEventSumma
       <p className="govuk-body">
         {t('reentering_object')}
         {' '}
-        {object ? <Link href={`/satellites/${event.noradId}`} className="govuk-link">{object.commonName}</Link> : 'Unknown object'}
+        {object ? <Link href={`/satellites/${event.norad_id}`} className="govuk-link">{object.common_name}</Link> : 'Unknown object'}
       </p>
       {data[0] && <ReentryEventSummaryTable tip={data[0]} />}
       <Button as="link" href={`/contact-analyst/reentries?id=${shortId}&callback=/re-entries/${shortId}`} aria-label={t('contact_analyst')}>{t('contact_analyst')}</Button>

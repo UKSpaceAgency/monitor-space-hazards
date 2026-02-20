@@ -7,10 +7,10 @@ import ExpandedButton from '@/ui/button/expanded-button';
 export const reentryEventHistoryColumns: TranslatedColumnDef<TypeTIPOut>[] = [
   {
     header: 'Reentry_event_history.data_source',
-    id: 'dataSource',
+    id: 'data_source',
     enableSorting: false,
     cell: ({ row }) => {
-      const { source, externalId } = row.original;
+      const { source, external_id } = row.original;
       return row.getCanExpand()
         ? (
             <ExpandedButton
@@ -20,18 +20,18 @@ export const reentryEventHistoryColumns: TranslatedColumnDef<TypeTIPOut>[] = [
               aria-label="Find more information on the TIP"
             >
               <span>
-                {`${source} TIP: ID ${externalId}`}
+                {`${source} TIP: ID ${external_id}`}
               </span>
             </ExpandedButton>
           )
         : (
-            `${source} TIP: ID ${externalId}`
+            `${source} TIP: ID ${external_id}`
           );
     },
   },
   {
     header: 'Reentry_event_history.time_of_update',
-    accessorKey: 'updatedAt',
+    accessorKey: 'updated_at',
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();
@@ -40,7 +40,7 @@ export const reentryEventHistoryColumns: TranslatedColumnDef<TypeTIPOut>[] = [
   },
   {
     header: 'Reentry_event_history.predicted_reentry_time',
-    accessorKey: 'decayEpoch',
+    accessorKey: 'decay_epoch',
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();
@@ -49,7 +49,7 @@ export const reentryEventHistoryColumns: TranslatedColumnDef<TypeTIPOut>[] = [
   },
   {
     header: 'Reentry_event_history.uncertainty_window',
-    accessorKey: 'uncertaintyWindow',
+    accessorKey: 'uncertainty_window',
     enableSorting: false,
   },
 ];

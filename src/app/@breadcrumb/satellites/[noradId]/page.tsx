@@ -21,7 +21,7 @@ export default async function BreadcrumbSatelliteSlot({
           <BreadcrumbLink href="/satellites">{t('satellites')}</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <BreadcrumbPage>{satellite.commonName}</BreadcrumbPage>
+          <BreadcrumbPage>{satellite.common_name}</BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>

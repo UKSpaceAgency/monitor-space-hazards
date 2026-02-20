@@ -12,26 +12,26 @@ import { renderRiskTag } from '@/utils/Tags';
 export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventReportOut>[] = [
   {
     header: 'Reentry_alert_history.report_number',
-    id: 'reportNumber',
+    id: 'report_number',
     enableSorting: false,
     cell: ({ row }) => {
-      const { reportNumber, shortId, presignedUrl } = row.original;
-      const report = `Report ${reportNumber}`;
-      const isClosed = row.original.alertType.includes('closedown');
+      const { report_number, short_id, presigned_url } = row.original;
+      const report = `Report ${report_number}`;
+      const isClosed = row.original.alert_type.includes('closedown');
 
       return (
         <>
-          {presignedUrl
+          {presigned_url
             ? (
                 <Link
-                  href={presignedUrl}
+                  href={presigned_url}
                   className="govuk-link flex items-center gap-2"
                   target="_blank"
                   rel="noreferrer"
                 >
                   <Download04Icon />
                   <span>
-                    {shortId}
+                    {short_id}
                     <br />
                     {report}
                   </span>
@@ -46,7 +46,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
   },
   {
     header: 'Reentry_alert_history.report_time',
-    accessorKey: 'reportTime',
+    accessorKey: 'report_time',
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();
@@ -56,11 +56,11 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
   {
     header: 'Reentry_alert_history.risk',
     enableSorting: false,
-    cell: ({ row: { original: { fragmentsRisk } } }) => renderRiskTag(fragmentsRisk ?? 'None'),
+    cell: ({ row: { original: { fragments_risk } } }) => renderRiskTag(fragments_risk ?? 'None'),
   },
   {
     header: 'Reentry_alert_history.probability',
-    accessorKey: 'atmosphericProbability',
+    accessorKey: 'atmospheric_probability',
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<number>();
@@ -69,7 +69,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
   },
   {
     header: 'Reentry_alert_history.overflight',
-    accessorKey: 'overflightTime',
+    accessorKey: 'overflight_time',
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();

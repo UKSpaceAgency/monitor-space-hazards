@@ -21,25 +21,25 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
     id: 'closed_comment',
     ariaLabel: 'Closed comment',
     name: tForm('type.closed_comment'),
-    defaultValue: event.closedComment ?? '',
+    defaultValue: event.closed_comment ?? '',
     type: 'text',
     help: tForm.rich('closed_comment_hint'),
   }, {
     id: 'executive_summary_comment',
     ariaLabel: 'Exec summary',
     name: tForm('type.executive_summary_comment'),
-    defaultValue: event.executiveSummaryComment,
+    defaultValue: event.executive_summary_comment,
     type: 'text',
     help: (
       <div>
         <p>{tForm('hint')}</p>
         {t.rich('Executive_summary.content', {
-          primaryObject: report.primaryObjectCommonName || 'Unknown',
-          secondaryObject: report.secondaryObjectCommonName || 'Unknown',
-          primaryObjectUrl: chunks => <Link href={`/satellites/${report.primaryObjectNoradId}`}>{chunks}</Link>,
-          secondaryObjectUrl: chunks => <Link href={`/satellites/${report.secondaryObjectNoradId}`}>{chunks}</Link>,
+          primaryObject: report.primary_object_common_name || 'Unknown',
+          secondaryObject: report.secondary_object_common_name || 'Unknown',
+          primaryObjectUrl: chunks => <Link href={`/satellites/${report.primary_object_norad_id}`}>{chunks}</Link>,
+          secondaryObjectUrl: chunks => <Link href={`/satellites/${report.secondary_object_norad_id}`}>{chunks}</Link>,
           risk: report.risk,
-          collisionProbability: roundedPercent(report.collisionProbability),
+          collisionProbability: roundedPercent(report.collision_probability),
           tag: chunks => renderRiskTag(chunks as TypeRisk),
         })}
       </div>
@@ -48,13 +48,13 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
     id: 'manoeuvre_comment',
     ariaLabel: 'Manoeuvre addition',
     name: tForm('type.manoeuvre_comment'),
-    defaultValue: event.manoeuvreComment || '',
+    defaultValue: event.manoeuvre_comment || '',
     type: 'text',
     help: (
       <div>
         <p>{tForm('manoeuvrable.hint')}</p>
         {/* {t.rich('Operator_view.content', {
-          link: chunks => <Link className="govuk-link" href={`/conjunctions/${event.shortId}`}>{chunks}</Link>,
+          link: chunks => <Link className="govuk-link" href={`/conjunctions/${event.short_id}`}>{chunks}</Link>,
         })} */}
       </div>
     ),
@@ -62,43 +62,43 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
     id: 'immediate_impact_comment',
     ariaLabel: 'Immediate impact addition',
     name: tForm('type.immediate_impact'),
-    defaultValue: event.immediateImpactComment,
+    defaultValue: event.immediate_impact_comment,
     type: 'text',
     help: (
       <div>
         <p>{tForm('hint_replace')}</p>
-        <p>{event.immediateImpactComment ?? tForm('hint_empty')}</p>
+        <p>{event.immediate_impact_comment ?? tForm('hint_empty')}</p>
       </div>
     ),
   }, {
     id: 'short_term_impact_comment',
     ariaLabel: 'Short term impact addition',
     name: tForm('type.short_term_impact'),
-    defaultValue: event.shortTermImpactComment,
+    defaultValue: event.short_term_impact_comment,
     type: 'text',
     help: (
       <div>
         <p>{tForm('hint_replace')}</p>
-        <p>{event.shortTermImpactComment ?? tForm('hint_empty')}</p>
+        <p>{event.short_term_impact_comment ?? tForm('hint_empty')}</p>
       </div>
     ),
   }, {
     id: 'long_term_impact_comment',
     ariaLabel: 'Long term impact addition',
     name: tForm('type.long_term_impact'),
-    defaultValue: event.longTermImpactComment,
+    defaultValue: event.long_term_impact_comment,
     type: 'text',
     help: (
       <div>
         <p>{tForm('hint_replace')}</p>
-        <p>{event.longTermImpactComment ?? tForm('hint_empty')}</p>
+        <p>{event.long_term_impact_comment ?? tForm('hint_empty')}</p>
       </div>
     ),
   }, {
     id: 'uk_response_comment',
     ariaLabel: 'UK response addition',
     name: tForm('type.uk_response_comment'),
-    defaultValue: event.ukResponseComment,
+    defaultValue: event.uk_response_comment,
     type: 'text',
     help: (
       <div>
@@ -110,7 +110,7 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
     id: 'press_attention_comment',
     ariaLabel: 'Press attention addition',
     name: tForm('type.press_attention_comment'),
-    defaultValue: event.pressAttentionComment,
+    defaultValue: event.press_attention_comment,
     type: 'text',
     help: (
       <div>

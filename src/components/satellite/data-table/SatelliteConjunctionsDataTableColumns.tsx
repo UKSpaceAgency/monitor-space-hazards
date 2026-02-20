@@ -9,8 +9,8 @@ import { displayExponential } from '@/utils/Math';
 
 export const satteliteConjunctionColumns: TranslatedColumnDef<TypeEventOut>[] = [
   {
-    id: 'shortId',
-    accessorKey: 'shortId',
+    id: 'short_id',
+    accessorKey: 'short_id',
     header: 'Conjunctions.table.event_id',
     cell: ({ getValue }) => {
       const value = getValue<string>();
@@ -22,50 +22,50 @@ export const satteliteConjunctionColumns: TranslatedColumnDef<TypeEventOut>[] = 
     },
   },
   {
-    id: 'secondaryObjectCommonName',
-    accessorKey: 'secondaryObjectCommonName',
+    id: 'secondary_object_common_name',
+    accessorKey: 'secondary_object_common_name',
     header: 'Conjunctions.table.secondary_object',
   },
   {
-    id: 'collisionProbability',
-    accessorKey: 'collisionProbability',
+    id: 'collision_probability',
+    accessorKey: 'collision_probability',
     header: 'Conjunctions.table.poc_space_track',
     size: 200,
     cell: ({ getValue }) => {
-      const collisionProbability = getValue<number>();
-      if (collisionProbability === undefined) {
+      const collision_probability = getValue<number>();
+      if (collision_probability === undefined) {
         return '-';
       }
-      return displayExponential(collisionProbability, 4);
+      return displayExponential(collision_probability, 4);
     },
   },
   {
-    id: 'collisionProbabilityUksa',
-    accessorKey: 'collisionProbabilityUksa',
+    id: 'collision_probability_uksa',
+    accessorKey: 'collision_probability_uksa',
     header: 'Conjunctions.table.poc_uksa',
     cell: ({ getValue }) => {
-      const collisionProbability = getValue<number>();
-      if (collisionProbability === undefined) {
+      const collision_probability = getValue<number>();
+      if (collision_probability === undefined) {
         return '-';
       }
-      return displayExponential(collisionProbability, 4);
+      return displayExponential(collision_probability, 4);
     },
   },
   {
-    id: 'missDistance',
-    accessorKey: 'missDistance',
+    id: 'miss_distance',
+    accessorKey: 'miss_distance',
     header: 'Conjunctions.table.total_miss_distance',
   },
   {
-    id: 'tcaTime',
-    accessorKey: 'tcaTime',
+    id: 'tca_time',
+    accessorKey: 'tca_time',
     header: 'Conjunctions.table.date',
     cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_DATE_FULL_MONTH),
   },
   {
     id: 'time',
     enableSorting: false,
-    accessorKey: 'tcaTime',
+    accessorKey: 'tca_time',
     header: 'Conjunctions.table.time',
     cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_TIME),
   },

@@ -38,7 +38,7 @@ const ConjunctionsEventsTable = async ({ params }: ConjunctionsEventsTableProps)
       <DownloadData type={t('Download.types.conjunction_events')} params={params} downloadAction={downloadData} ariaLabel="Conjunction events" />
       <div className="govuk-inset-text">
         {t('Conjunctions.conjunctions_events_as_of')}
-        {dayjs(latestCdms.data.updatedAt).format(FORMAT_DATE_TIME)}
+        {dayjs(latestCdms.data.updated_at).format(FORMAT_DATE_TIME)}
       </div>
     </>
   );

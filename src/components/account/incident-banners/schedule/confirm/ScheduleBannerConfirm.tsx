@@ -37,8 +37,8 @@ const ScheduleBannerConfirm = ({ title, banner }: ScheduleBannerConfirmProps) =>
         <TopNotificationBanner status="success" heading={t('Success_banner.title', { title })} aria-label="Set up incident banner" id="success-incident-banner">
           <p className="govuk-body">
             {t('Success_banner.content', {
-              from: dayjs(banner.broadcastStart).format(FORMAT_DATE_TIME),
-              to: dayjs(banner.broadcastEnd).format(FORMAT_DATE_TIME),
+              from: dayjs(banner.broadcast_start).format(FORMAT_DATE_TIME),
+              to: dayjs(banner.broadcast_end).format(FORMAT_DATE_TIME),
             })}
           </p>
           <ButtonGroup>

@@ -39,76 +39,76 @@ const ConjunctionAlertExecutiveSummaryTable = ({ report, manoeuvreComment }: Con
     },
   }, {
     header: t('tca'),
-    renderCell: ({ tcaTime }) => tcaTime ? dayjs(tcaTime).format(FORMAT_DATE_TIME) : 'Unknown',
+    renderCell: ({ tca_time }) => tca_time ? dayjs(tca_time).format(FORMAT_DATE_TIME) : 'Unknown',
   }, {
     header: t('poc'),
-    accessorKey: 'collisionProbability',
-    renderCell: ({ collisionProbability }) => collisionProbability ? roundedPercent(collisionProbability) : '-',
+    accessorKey: 'collision_probability',
+    renderCell: ({ collision_probability }) => collision_probability ? roundedPercent(collision_probability) : '-',
   }, {
     header: t('manoeuvre_expected'),
-    renderCell: ({ manoeuvreExpected }) => `${manoeuvreExpected ? `${manoeuvreExpected}. ` : ''}${manoeuvreComment}`,
+    renderCell: ({ manoeuvre_expected }) => `${manoeuvre_expected ? `${manoeuvre_expected}. ` : ''}${manoeuvreComment}`,
   }, {
     header: t('primary_object'),
-    renderCell: ({ primaryObjectCommonName, primaryObjectNoradId }) => (
-      <Link className="govuk-link" href={`/satellites/${primaryObjectNoradId}`}>
-        {primaryObjectCommonName}
+    renderCell: ({ primary_object_common_name, primary_object_norad_id }) => (
+      <Link className="govuk-link" href={`/satellites/${primary_object_norad_id}`}>
+        {primary_object_common_name}
       </Link>
     ),
   }, {
     header: t('licensing_country'),
     cellProps: { className: 'pl-10' },
-    renderCell: ({ primaryObjectLicensingCountry }) => getFullCountry(primaryObjectLicensingCountry),
+    renderCell: ({ primary_object_licensing_country }) => getFullCountry(primary_object_licensing_country),
   }, {
     header: t('object_type'),
     cellProps: { className: 'pl-10' },
-    accessorKey: 'primaryObjectType',
+    accessorKey: 'primary_object_type',
   }, {
     header: t('mass'),
     cellProps: { className: 'pl-10' },
-    accessorKey: 'primaryObjectMass',
+    accessorKey: 'primary_object_mass',
   }, {
     header: t('manoeuvrable'),
     cellProps: { className: 'pl-10' },
-    accessorKey: 'primaryObjectManoeuvrable',
+    accessorKey: 'primary_object_manoeuvrable',
   }, {
     header: t('norad_id'),
     cellProps: { className: 'pl-10' },
-    accessorKey: 'primaryObjectNoradId',
+    accessorKey: 'primary_object_norad_id',
   }, {
     header: t('object_mission'),
     cellProps: { className: 'pl-10' },
-    accessorKey: 'primaryObjectMission',
+    accessorKey: 'primary_object_mission',
   }, {
     header: t('secondary_object'),
-    renderCell: ({ secondaryObjectCommonName, secondaryObjectNoradId }) => (
-      <Link className="govuk-link" href={`/satellites/${secondaryObjectNoradId}`}>
-        {secondaryObjectCommonName}
+    renderCell: ({ secondary_object_common_name, secondary_object_norad_id }) => (
+      <Link className="govuk-link" href={`/satellites/${secondary_object_norad_id}`}>
+        {secondary_object_common_name}
       </Link>
     ),
   }, {
     header: t('licensing_country'),
     cellProps: { className: 'pl-10' },
-    renderCell: ({ secondaryObjectLicensingCountry }) => getFullCountry(secondaryObjectLicensingCountry),
+    renderCell: ({ secondary_object_licensing_country }) => getFullCountry(secondary_object_licensing_country),
   }, {
     header: t('object_type'),
     cellProps: { className: 'pl-10' },
-    accessorKey: 'secondaryObjectType',
+    accessorKey: 'secondary_object_type',
   }, {
     header: t('mass'),
     cellProps: { className: 'pl-10' },
-    accessorKey: 'secondaryObjectMass',
+    accessorKey: 'secondary_object_mass',
   }, {
     header: t('manoeuvrable'),
     cellProps: { className: 'pl-10' },
-    accessorKey: 'secondaryObjectManoeuvrable',
+    accessorKey: 'secondary_object_manoeuvrable',
   }, {
     header: t('norad_id'),
     cellProps: { className: 'pl-10' },
-    accessorKey: 'secondaryObjectNoradId',
+    accessorKey: 'secondary_object_norad_id',
   }, {
     header: t('object_mission'),
     cellProps: { className: 'pl-10' },
-    accessorKey: 'secondaryObjectMission',
+    accessorKey: 'secondary_object_mission',
   }];
 
   return <InformationsTable rows={rows} data={report} />;

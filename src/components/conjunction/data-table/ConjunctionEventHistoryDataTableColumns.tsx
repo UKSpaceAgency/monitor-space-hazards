@@ -7,8 +7,8 @@ import { displayExponential, getAbsoluteValue } from '@/utils/Math';
 
 export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummaryOut>[] = [
   {
-    accessorKey: 'dataSource',
-    id: 'dataSource',
+    accessorKey: 'data_source',
+    id: 'data_source',
     header: 'Conjunction.event_history.data_source',
     cell: ({ row }) => {
       return row.getCanExpand()
@@ -18,9 +18,9 @@ export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummar
               onClick={row.getToggleExpandedHandler()}
             >
               <span>
-                {`${row.original?.dataSource}: ID ${row.original?.cdmExternalId}`}
+                {`${row.original?.data_source}: ID ${row.original?.cdm_external_id}`}
               </span>
-              {row.original.primaryObjectCdmType
+              {row.original.primary_object_cdm_type
               === 'Special owner/operator ephemeris' && (
                 <>
                   {' '}
@@ -30,13 +30,13 @@ export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummar
             </ExpandedButton>
           )
         : (
-            `${row.original?.dataSource}: ID ${row.original?.cdmExternalId}`
+            `${row.original?.data_source}: ID ${row.original?.cdm_external_id}`
           );
     },
   },
   {
-    accessorKey: 'updateTime',
-    id: 'updateTime',
+    accessorKey: 'update_time',
+    id: 'update_time',
     header: 'Conjunction.event_history.time_of_update',
     cell: ({ getValue }) => {
       const value = getValue<string>();
@@ -46,8 +46,8 @@ export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummar
     },
   },
   {
-    accessorKey: 'collisionProbability',
-    id: 'collisionProbability',
+    accessorKey: 'collision_probability',
+    id: 'collision_probability',
     header: 'Conjunction.event_history.probability_of_collision',
     cell: ({ getValue }) => {
       const value = getValue<number | null>();
@@ -55,13 +55,13 @@ export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummar
     },
   },
   {
-    accessorKey: 'missDistance',
-    id: 'missDistance',
+    accessorKey: 'miss_distance',
+    id: 'miss_distance',
     header: 'Conjunction.event_history.total_miss_distance',
   },
   {
-    accessorKey: 'radialMissDistance',
-    id: 'radialMissDistance',
+    accessorKey: 'radial_miss_distance',
+    id: 'radial_miss_distance',
     header: 'Conjunction.event_history.radial_miss_distance',
     cell: ({ getValue }) => {
       const value = getValue<number>();
@@ -70,8 +70,8 @@ export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummar
     },
   },
   {
-    accessorKey: 'tcaTime',
-    id: 'tcaTime',
+    accessorKey: 'tca_time',
+    id: 'tca_time',
     header: 'Conjunction.event_history.time_of_closest_approach',
     cell: ({ getValue }) => {
       const value = getValue<string>();

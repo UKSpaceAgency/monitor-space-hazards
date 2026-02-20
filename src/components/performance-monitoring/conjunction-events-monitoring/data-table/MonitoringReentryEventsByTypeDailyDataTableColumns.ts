@@ -3,8 +3,8 @@ import type { TranslatedColumnDef } from '@/types';
 
 export const eventsByTypeDailyReentryMonitoringColumns: TranslatedColumnDef<TypeStatisticsReentryEventsAndAlertsCount>[] = [
   {
-    accessorKey: 'objectType',
-    id: 'objectType',
+    accessorKey: 'object_type',
+    id: 'object_type',
     header: 'Performance_monitoring.reentry_events_by_type.type',
     enableSorting: false,
   },

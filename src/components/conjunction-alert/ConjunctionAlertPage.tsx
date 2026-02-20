@@ -24,13 +24,13 @@ const ConjunctionAlertPage = async ({ shortId, searchParams, footer }: Conjuncti
   const t = await getTranslations('Conjunction_alert');
   const event = await getConjunctionUniqueEvent(shortId);
   const reports = await getConjunctionReports({ shortId, show_only_active: false });
-  const title = t('title', { primaryObject: event.primaryObjectCommonName, secondaryObject: event.secondaryObjectCommonName });
+  const title = t('title', { primaryObject: event.primary_object_common_name, secondaryObject: event.secondary_object_common_name });
 
   const lastReport = reports[reports.length - 1];
-  const isClosed = lastReport?.alertType.includes('closedown');
-  const closedComment = searchParams?.closed_comment ?? event.closedComment;
+  const isClosed = lastReport?.alert_type.includes('closedown');
+  const closedComment = searchParams?.closed_comment ?? event.closed_comment;
 
-  const pdfTitle = t(isClosed ? 'pdf_title_closed' : 'pdf_title', { primaryObject: event.primaryObjectCommonName, secondaryObject: event.secondaryObjectCommonName, reportNumber: event.reportNumber });
+  const pdfTitle = t(isClosed ? 'pdf_title_closed' : 'pdf_title', { primaryObject: event.primary_object_common_name, secondaryObject: event.secondary_object_common_name, reportNumber: event.report_number });
 
   if (!lastReport) {
     notFound();
@@ -57,8 +57,8 @@ const ConjunctionAlertPage = async ({ shortId, searchParams, footer }: Conjuncti
         <ContentNavigation />
         <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
         <div>
-          {t.rich('report_info', { number: lastReport.reportNumber.toString(), time: dayjs(lastReport.reportTime).format(FORMAT_DATE_TIME) })}
-          <ConjunctionAlertExecutiveSummary report={lastReport} executiveSummaryComment={searchParams?.executive_summary_comment ?? event.executiveSummaryComment} manoeuvreComment={searchParams?.manoeuvre_comment ?? event.manoeuvreComment} isClosed={isClosed} />
+          {t.rich('report_info', { number: lastReport.report_number.toString(), time: dayjs(lastReport.report_time).format(FORMAT_DATE_TIME) })}
+          <ConjunctionAlertExecutiveSummary report={lastReport} executiveSummaryComment={searchParams?.executive_summary_comment ?? event.executive_summary_comment} manoeuvreComment={searchParams?.manoeuvre_comment ?? event.manoeuvre_comment} isClosed={isClosed} />
           <ConjunctionAlertNextUpdate shortId={shortId} />
           <ConjunctionAlertAccordion event={event} report={lastReport} reports={reports} searchParams={searchParams} />
           {footer || <ConjunctionAlertPageButtons pdfTitle={pdfTitle} pdfSubtitle={closedComment ?? undefined} />}

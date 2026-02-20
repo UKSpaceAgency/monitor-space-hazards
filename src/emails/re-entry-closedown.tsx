@@ -31,17 +31,17 @@ function ReEntryClosedownEmail({ event, report, tip, withPlaceholders }: ReEntry
     messages,
   });
 
-  const eventLink = `${env.NEXTAUTH_URL}/re-entries/${event.shortId}/alert`;
+  const eventLink = `${env.NEXTAUTH_URL}/re-entries/${event.short_id}/alert`;
 
   return (
     <Layout
       eventType="re-entry"
-      shortId={event.shortId}
-      title={t('Reentry_alert.title_closed', { reportNumber: report.reportNumber })}
-      subtitle={`${event.objectName} ${objectTypeIndex[event.objectType as keyof typeof objectTypeIndex] ?? ''}`}
+      shortId={event.short_id}
+      title={t('Reentry_alert.title_closed', { reportNumber: report.report_number })}
+      subtitle={`${event.object_name} ${objectTypeIndex[event.object_type as keyof typeof objectTypeIndex] ?? ''}`}
       withPlaceholders={withPlaceholders}
     >
-      <Subheader comment={event.closedComment} />
+      <Subheader comment={event.closed_comment} />
       <Section title={t('Reentry_alert.event_summary_title')}>
         <ReentryEventSummary event={event} tip={tip} showDirectionOfTravel className="pb-4" />
         <Map src="{{WORLD_MAP.src}}" width="580" />
@@ -53,7 +53,7 @@ function ReEntryClosedownEmail({ event, report, tip, withPlaceholders }: ReEntry
       <Section title={t('Reentry_alert.additional_information_title')}>
         <ReentryEventInformationClosed event={event} />
         <ReentryHandlingSpaceDebris event={event} />
-        <ReentryPressAttention pressAttention={event.pressAttentionComment} />
+        <ReentryPressAttention pressAttention={event.press_attention_comment} />
         <SignIn link={eventLink} />
       </Section>
     </Layout>
@@ -63,21 +63,21 @@ function ReEntryClosedownEmail({ event, report, tip, withPlaceholders }: ReEntry
 ReEntryClosedownEmail.PreviewProps = {
   pageUrl: 'https://www.dev.monitor-space-hazards.service.gov.uk',
   event: {
-    closedComment: 'Closed comment',
-    objectName: 'Falcon 9 Second Stage',
-    objectType: 'R/B',
-    estimatedMass: 4000,
-    decayEpoch: '2024-01-20T10:00:00Z',
-    uncertaintyWindow: 120,
-    overflightTime: ['2024-01-20T09:30:00Z', '2024-01-20T10:30:00Z'],
-    atmosphericRisk: 'High',
-    atmosphericProbability: 0.85,
-    licensedCountry: 'United States',
-    shortId: '1234567890',
-    noradId: '1234567890',
-    ukResponseComment: 'Recovery and clean up',
-    pressAttentionComment: 'Press attention',
-    executiveSummaryComment: 'Executive summary',
+    closed_comment: 'Closed comment',
+    object_name: 'Falcon 9 Second Stage',
+    object_type: 'R/B',
+    estimated_mass: 4000,
+    decay_epoch: '2024-01-20T10:00:00Z',
+    uncertainty_window: 120,
+    overflight_time: ['2024-01-20T09:30:00Z', '2024-01-20T10:30:00Z'],
+    atmospheric_risk: 'High',
+    atmospheric_probability: 0.85,
+    licensed_country: 'United States',
+    short_id: '1234567890',
+    norad_id: '1234567890',
+    uk_response_comment: 'Recovery and clean up',
+    press_attention_comment: 'Press attention',
+    executive_summary_comment: 'Executive summary',
   },
   tip: {
     direction: 'ascending',

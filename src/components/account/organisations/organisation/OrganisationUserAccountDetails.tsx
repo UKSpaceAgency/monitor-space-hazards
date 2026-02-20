@@ -25,8 +25,8 @@ const OrganisationUserAccountDetails = ({ user }: OrganisationUserAccountDetails
 
   const confirmDelete = useCallback(async () => {
     await deleteUser(user.id);
-    replace(`/account/organisations/${user.organizationId}?deletionUserSucceeded=true`);
-  }, [replace, user.id, user.organizationId]);
+    replace(`/account/organisations/${user.organization_id}?deletionUserSucceeded=true`);
+  }, [replace, user.id, user.organization_id]);
 
   useEffect(() => {
     if (confirmMessage) {
@@ -85,7 +85,7 @@ const OrganisationUserAccountDetails = ({ user }: OrganisationUserAccountDetails
         )}
         <Button
           as="link"
-          href={`/account/organisations/${user.organizationId}`}
+          href={`/account/organisations/${user.organization_id}`}
           className="govuk-button--secondary"
           aria-label="Return to user accounts"
         >

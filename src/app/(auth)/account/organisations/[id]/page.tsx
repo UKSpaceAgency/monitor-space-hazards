@@ -51,7 +51,7 @@ export default async function OrganisationPage({
     <div>
       <OrganisationUserDeletionSucceededBanner showBanner={deletionUserSucceeded === 'true'} buttonText={t('banner.close_button')} message={t('banner.success_message', { organisationName: organisation.name })} />
       <h1 className="govuk-heading-xl">{organisation.name}</h1>
-      <OrganisationSummary satellites={organisation.satellitesCount} users={organisation.accountsCount} />
+      <OrganisationSummary satellites={organisation.satellites_count} users={organisation.accounts_count} />
       <Suspense fallback={<Spinner />}>
         <OrganisationSatellites organisationId={organisation.id as string} />
         <OrganisationUsers organisationId={organisation.id as string} />

@@ -13,10 +13,10 @@ export type ReentryEventsTypeChartProps = {
 
 export function ReentryEventsTypeChart({ data, actionButtons }: ReentryEventsTypeChartProps) {
   const t = useTranslations('Charts.Events_type');
-  const filteredData = [...data].filter(({ objectType }) => objectType !== 'Total');
+  const filteredData = [...data].filter(({ object_type }) => object_type !== 'Total');
 
   const datasets = {
-    labels: filteredData.map(({ objectType }) => objectType),
+    labels: filteredData.map(({ object_type }) => object_type),
     datasets: [
       {
         data: filteredData.map(({ count }) => count),

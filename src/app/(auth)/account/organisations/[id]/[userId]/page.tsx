@@ -23,7 +23,7 @@ export default async function OrganisationUserPage({
   const { userId, id } = await params;
 
   const user = await getUsersById(userId);
-  const organisation = await getOrganisation(user.organizationId);
+  const organisation = await getOrganisation(user.organization_id);
   const session = await getSession();
 
   if (!isOrgAdmin(session?.user.role)) {
@@ -72,7 +72,7 @@ export default async function OrganisationUserPage({
               children: t('phone'),
             },
             value: {
-              children: user.phoneNumber,
+              children: user.phone_number,
             },
             actions: [
               {

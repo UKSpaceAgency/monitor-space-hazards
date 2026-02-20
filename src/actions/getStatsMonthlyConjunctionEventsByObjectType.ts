@@ -20,10 +20,10 @@ export async function getStatsMonthlyConjunctionEventsByObjectType(query?: TypeG
   const groupedByMonth = groupBy(data, 'month');
 
   const groupedData = Object.entries(groupedByMonth).map(([month, events]) => {
-    const DEBRIS = events.find(event => event.eventType === 'Events with debris')?.count || 0;
-    const ANOTHER_SATELLITE = events.find(event => event.eventType === 'Events with another satellite')?.count || 0;
-    const WITH_UK_SATELLITES = events.find(event => event.eventType === 'Events with two UK-licensed satellites')?.count || 0;
-    const OTHER = events.find(event => event.eventType === 'Events with other objects (unknown/rocket body)')?.count || 0;
+    const DEBRIS = events.find(event => event.event_type === 'Events with debris')?.count || 0;
+    const ANOTHER_SATELLITE = events.find(event => event.event_type === 'Events with another satellite')?.count || 0;
+    const WITH_UK_SATELLITES = events.find(event => event.event_type === 'Events with two UK-licensed satellites')?.count || 0;
+    const OTHER = events.find(event => event.event_type === 'Events with other objects (unknown/rocket body)')?.count || 0;
     return {
       month: dayjs(month).format('MM/YYYY'),
       DEBRIS,

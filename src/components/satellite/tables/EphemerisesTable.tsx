@@ -22,7 +22,7 @@ type EphemerisesTableProps = {
 
 const EphemerisesTable = ({ data, showDeleteButton }: EphemerisesTableProps) => {
   const t = useTranslations('Tables.Ephemerises');
-  const [ephemerisToDelete, setEphemerisToDelete] = useState<{ id: string; fileName: string } | null>(null);
+  const [ephemerisToDelete, setEphemerisToDelete] = useState<{ id: string; file_name: string } | null>(null);
 
   const { mutate, isIdle, isSuccess, isPending } = useMutation({
     mutationKey: ['delete-ephemeris'],
@@ -31,11 +31,11 @@ const EphemerisesTable = ({ data, showDeleteButton }: EphemerisesTableProps) => 
     },
   });
 
-  const downloadFile = async (id: string, fileName: string) => {
+  const downloadFile = async (id: string, file_name: string) => {
     const data = await getEphemeris(id);
     if (data) {
       const file = createTXT(data);
-      saveAs(file, fileName);
+      saveAs(file, file_name);
     }
   };
 
@@ -44,16 +44,16 @@ const EphemerisesTable = ({ data, showDeleteButton }: EphemerisesTableProps) => 
       {ephemerisToDelete && isIdle && (
         <NotificationBanner
           status="error"
-          heading={t('Confirm_banner.title', { fileName: ephemerisToDelete.fileName })}
+          heading={t('Confirm_banner.title', { file_name: ephemerisToDelete.file_name })}
           aria-label="Ephemeris delete banner"
         >
           <div className="govuk-button-group">
             {ephemerisToDelete.id && (
-              <Button className="govuk-button--warning" onClick={() => mutate(ephemerisToDelete.id)} aria-label={`Yes, delete ${ephemerisToDelete.fileName}`}>
+              <Button className="govuk-button--warning" onClick={() => mutate(ephemerisToDelete.id)} aria-label={`Yes, delete ${ephemerisToDelete.file_name}`}>
                 {t('Confirm_banner.yes')}
               </Button>
             )}
-            <Button className="govuk-button--secondary" onClick={() => setEphemerisToDelete(null)} aria-label={`Cancel, deleting ${ephemerisToDelete.fileName}`}>
+            <Button className="govuk-button--secondary" onClick={() => setEphemerisToDelete(null)} aria-label={`Cancel, deleting ${ephemerisToDelete.file_name}`}>
               {t('Confirm_banner.no')}
             </Button>
           </div>
@@ -61,7 +61,7 @@ const EphemerisesTable = ({ data, showDeleteButton }: EphemerisesTableProps) => 
       )}
       {ephemerisToDelete && isSuccess && (
         <NotificationBanner status="success" aria-label="Ephemeris success banner">
-          {t('Success_banner.title', { fileName: ephemerisToDelete.fileName })}
+          {t('Success_banner.title', { file_name: ephemerisToDelete.file_name })}
         </NotificationBanner>
       )}
       <Table>
@@ -80,8 +80,8 @@ const EphemerisesTable = ({ data, showDeleteButton }: EphemerisesTableProps) => 
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map(({ id, fileName, startTime, stopTime, isActive }) => {
-            const shortFileName = fileName.split('/').pop() || '';
+          {data.map(({ id, file_name, start_time, stop_time, is_active }) => {
+            const shortFileName = file_name.split('/').pop() || '';
             return (
               <TableRow key={id}>
                 <TableCell>
@@ -92,21 +92,21 @@ const EphemerisesTable = ({ data, showDeleteButton }: EphemerisesTableProps) => 
                   )}
                 </TableCell>
                 <TableCell>
-                  {dayjs(startTime).format(FORMAT_DATE_TIME)}
+                  {dayjs(start_time).format(FORMAT_DATE_TIME)}
                 </TableCell>
                 <TableCell>
-                  {dayjs(stopTime).format(FORMAT_DATE_TIME)}
+                  {dayjs(stop_time).format(FORMAT_DATE_TIME)}
                 </TableCell>
                 <TableCell>
-                  {!isActive
+                  {!is_active
                     ? <Tag color="red">{t('deleted')}</Tag>
                     : (
                         showDeleteButton
                           ? (
-                              <button type="button" className="govuk-link text-blue" onClick={() => id && setEphemerisToDelete({ id, fileName: shortFileName })} disabled={isPending} aria-label={t('delete')}>
+                              <button type="button" className="govuk-link text-blue" onClick={() => id && setEphemerisToDelete({ id, file_name: shortFileName })} disabled={isPending} aria-label={t('delete')}>
                                 {t('delete')}
                                 <span className="govuk-visually-hidden">
-                                  {fileName}
+                                  {file_name}
                                 </span>
                               </button>
                             )

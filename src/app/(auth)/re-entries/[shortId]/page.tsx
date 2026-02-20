@@ -25,9 +25,9 @@ export async function generateMetadata({
   const t = await getTranslations('Reentry');
   const { shortId } = await params;
   const event = await getReentryEvent(shortId);
-  const satellite = await getSatellite(event.noradId);
+  const satellite = await getSatellite(event.norad_id);
   return {
-    title: t('title', { objectName: satellite.commonName }),
+    title: t('title', { objectName: satellite.common_name }),
   };
 }
 
@@ -38,9 +38,9 @@ export default async function Reentry({
   const session = await getSession();
   const { shortId } = await params;
   const event = await getReentryEvent(shortId);
-  const satellite = await getSatellite(event.noradId);
+  const satellite = await getSatellite(event.norad_id);
   const reports = await getReentryReports({ shortId });
-  const object = satellite?.noradId ? satellite : null;
+  const object = satellite?.norad_id ? satellite : null;
 
   return (
     <div>
@@ -51,8 +51,8 @@ export default async function Reentry({
         />
       )}
       <h1 className="govuk-heading-xl">
-        {t('title', { objectName: satellite.commonName })}
-        <span className="block text-lg">{dayjs(event.decayEpoch).format(FORMAT_FULL_DATE)}</span>
+        {t('title', { objectName: satellite.common_name })}
+        <span className="block text-lg">{dayjs(event.decay_epoch).format(FORMAT_FULL_DATE)}</span>
       </h1>
       <div className="grid md:grid-cols-4 gap-7">
         <ContentNavigation />
@@ -60,8 +60,8 @@ export default async function Reentry({
           <Suspense fallback={<Spinner />}>
             <ReentryEventSummary event={event} shortId={shortId} object={object} />
           </Suspense>
-          <ReentryAccordion object={object} noradId={event.noradId} />
-          <ReentryButtons title={t('title', { objectName: satellite.commonName })} />
+          <ReentryAccordion object={object} noradId={event.norad_id} />
+          <ReentryButtons title={t('title', { objectName: satellite.common_name })} />
         </div>
       </div>
     </div>

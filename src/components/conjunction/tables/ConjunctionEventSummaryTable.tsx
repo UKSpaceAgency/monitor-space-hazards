@@ -10,7 +10,7 @@ import { displayExponential, getAbsoluteValue, rounded } from '@/utils/Math';
 
 type ConjunctionEventSummaryTableInformations = Pick<
   TypeEventSummaryOut,
-'cdmExternalId' | 'collisionProbability' | 'collisionProbabilityMethod' | 'tcaTime' | 'missDistance' | 'radialMissDistance' | 'intrackMissDistance' | 'crosstrackMissDistance' | 'updateTime' | 'primaryObjectSize' | 'secondaryObjectSize' | 'primaryObjectCdmType'
+'cdm_external_id' | 'collision_probability' | 'collision_probability_method' | 'tca_time' | 'miss_distance' | 'radial_miss_distance' | 'intrack_miss_distance' | 'crosstrack_miss_distance' | 'update_time' | 'primary_object_size' | 'secondary_object_size' | 'primary_object_cdm_type'
 >;
 
 type ConjunctionEventSummaryTableInformationsTableProps = {
@@ -32,51 +32,51 @@ const ConjunctionEventSummaryTableInformationsTable = ({ data }: ConjunctionEven
 
   const baseInformations: InformationsTableRow<ConjunctionEventSummaryTableInformations>[] = [{
     header: t('summary_list.cdm_id'),
-    accessorKey: 'cdmExternalId',
+    accessorKey: 'cdm_external_id',
     renderCell: row => (
       <>
-        {row.cdmExternalId}
-        {row.primaryObjectCdmType === 'Special owner/operator ephemeris' && <Tag className="ml-2">{t('summary_list.special')}</Tag>}
+        {row.cdm_external_id}
+        {row.primary_object_cdm_type === 'Special owner/operator ephemeris' && <Tag className="ml-2">{t('summary_list.special')}</Tag>}
       </>
     ),
   }, {
     header: t('summary_list.probability_of_collision'),
-    accessorKey: 'collisionProbability',
-    renderCell: row => displayExponential(row.collisionProbability, 4) ?? '-',
+    accessorKey: 'collision_probability',
+    renderCell: row => displayExponential(row.collision_probability, 4) ?? '-',
   }, {
     header: t('summary_list.probability_of_collision_calc_method'),
-    accessorKey: 'collisionProbabilityMethod',
+    accessorKey: 'collision_probability_method',
   }, {
     header: t('summary_list.time_of_closest_approach'),
-    renderCell: row => dayjs(row.tcaTime).format(FORMAT_DATE_TIME),
-    accessorKey: 'tcaTime',
+    renderCell: row => dayjs(row.tca_time).format(FORMAT_DATE_TIME),
+    accessorKey: 'tca_time',
   }, {
     header: t('summary_list.total_miss_distance'),
-    accessorKey: 'missDistance',
+    accessorKey: 'miss_distance',
   }, {
     header: t('summary_list.radial_miss_distance'),
-    renderCell: row => getAbsoluteValue(row.radialMissDistance),
-    accessorKey: 'radialMissDistance',
+    renderCell: row => getAbsoluteValue(row.radial_miss_distance),
+    accessorKey: 'radial_miss_distance',
   }, {
     header: t('summary_list.in_track_miss_distance'),
-    renderCell: row => getAbsoluteValue(row.intrackMissDistance),
-    accessorKey: 'intrackMissDistance',
+    renderCell: row => getAbsoluteValue(row.intrack_miss_distance),
+    accessorKey: 'intrack_miss_distance',
   }, {
     header: t('summary_list.cross_track_miss_distance'),
-    renderCell: row => getAbsoluteValue(row.crosstrackMissDistance),
-    accessorKey: 'crosstrackMissDistance',
+    renderCell: row => getAbsoluteValue(row.crosstrack_miss_distance),
+    accessorKey: 'crosstrack_miss_distance',
   }, {
     header: t('summary_list.time_of_update'),
-    renderCell: row => dayjs(row.updateTime).format(FORMAT_DATE_TIME),
-    accessorKey: 'updateTime',
+    renderCell: row => dayjs(row.update_time).format(FORMAT_DATE_TIME),
+    accessorKey: 'update_time',
   }, {
     header: t('summary_list.primary_object_size'),
-    accessorKey: 'primaryObjectSize',
-    renderCell: row => row.primaryObjectSize ? rounded(row.primaryObjectSize) : '-',
+    accessorKey: 'primary_object_size',
+    renderCell: row => row.primary_object_size ? rounded(row.primary_object_size) : '-',
   }, {
     header: t('summary_list.secondary_object_size'),
-    accessorKey: 'secondaryObjectSize',
-    renderCell: row => row.secondaryObjectSize ? rounded(row.secondaryObjectSize) : '-',
+    accessorKey: 'secondary_object_size',
+    renderCell: row => row.secondary_object_size ? rounded(row.secondary_object_size) : '-',
   }];
 
   return <InformationsTable headers={eventDetailsHeaders} rows={baseInformations} data={data} headerCellWidth="sm" />;

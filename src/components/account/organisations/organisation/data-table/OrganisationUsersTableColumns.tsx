@@ -7,11 +7,11 @@ import { AccountType } from '@/utils/Roles';
 
 export const organisationUsersTableColumns: TranslatedColumnDef<TypeUserOut>[] = [
   {
-    accessorKey: 'lastName',
-    id: 'lastName',
+    accessorKey: 'last_name',
+    id: 'last_name',
     header: 'Organisation_users.name',
     cell: ({ row }) =>
-      `${row.original.firstName} ${row.original.lastName}`,
+      `${row.original.first_name} ${row.original.last_name}`,
   },
   {
     accessorKey: 'role',
@@ -26,16 +26,16 @@ export const organisationUsersTableColumns: TranslatedColumnDef<TypeUserOut>[] =
     header: 'Organisation_users.email',
   },
   {
-    accessorKey: 'phoneNumber',
-    id: 'phoneNumber',
+    accessorKey: 'phone_number',
+    id: 'phone_number',
     header: 'Organisation_users.phone_number',
   },
   {
-    accessorKey: 'accountDetailsConfirmedAt',
-    id: 'accountDetailsConfirmedAt',
+    accessorKey: 'account_details_confirmed_at',
+    id: 'account_details_confirmed_at',
     header: 'Organisation_users.registered',
     cell: ({ row }) =>
-      row.original.accountDetailsConfirmedAt ? dayjs(row.original.accountDetailsConfirmedAt).format(FORMAT_SHORT_DATE) : '-',
+      row.original.account_details_confirmed_at ? dayjs(row.original.account_details_confirmed_at).format(FORMAT_SHORT_DATE) : '-',
   },
   {
     id: 'id',
@@ -44,7 +44,7 @@ export const organisationUsersTableColumns: TranslatedColumnDef<TypeUserOut>[] =
     header: () => <span style={{ visibility: 'hidden' }}>Edit</span>,
     cell: ({ row }) => (
       <Link
-        href={`/account/organisations/${row.original.organizationId}/${row.original.id}`}
+        href={`/account/organisations/${row.original.organization_id}/${row.original.id}`}
         className="govuk-link"
       >
         Edit

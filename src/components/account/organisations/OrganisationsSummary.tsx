@@ -26,7 +26,7 @@ const OrganisationsSummary = ({ organisations }: OrganisationsSummaryProps) => {
             children: t('total_sats'),
           },
           value: {
-            children: <span className="block text-right">{organisations.reduce((acc, curr) => acc + curr.satellitesCount, 0)}</span>,
+            children: <span className="block text-right">{organisations.reduce((acc, curr) => acc + curr.satellites_count, 0)}</span>,
           },
         },
       ]}

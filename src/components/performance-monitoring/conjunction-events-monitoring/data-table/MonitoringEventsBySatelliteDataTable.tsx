@@ -31,7 +31,7 @@ const MonitoringEventsBySatelliteDataTable = ({ isAnalysist }: MonitoringEventsB
   });
 
   const organisations = useMemo(() => {
-    return uniq((data || []).map(obj => obj.organizationName))
+    return uniq((data || []).map(obj => obj.organization_name))
       .sort()
       .map(organisationName => ({
         children: organisationName,
@@ -40,7 +40,7 @@ const MonitoringEventsBySatelliteDataTable = ({ isAnalysist }: MonitoringEventsB
   }, [data]);
 
   const tableData = useMemo(() => {
-    return organisation ? (data || []).filter(obj => obj.organizationName === organisation) : data || [];
+    return organisation ? (data || []).filter(obj => obj.organization_name === organisation) : data || [];
   }, [organisation, data]);
 
   const selectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {

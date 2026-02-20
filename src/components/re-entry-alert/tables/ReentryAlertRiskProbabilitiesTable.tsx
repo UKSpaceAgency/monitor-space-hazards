@@ -7,7 +7,7 @@ import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } fro
 import { roundedPercent } from '@/utils/Math';
 import { renderRiskTag } from '@/utils/Tags';
 
-type EventSummaryData = Pick<TypeReentryEventOut, 'fragmentsProbability' | 'fragmentsRisk' | 'atmosphericProbability' | 'atmosphericRisk' | 'humanCasualtyProbability' | 'humanCasualtyRisk'>;
+type EventSummaryData = Pick<TypeReentryEventOut, 'fragments_probability' | 'fragments_risk' | 'atmospheric_probability' | 'atmospheric_risk' | 'human_casualty_probability' | 'human_casualty_risk'>;
 
 type ReentryAlertExecutiveSummaryTableProps = {
   event: EventSummaryData;
@@ -27,35 +27,35 @@ const ReentryAlertRiskProbabilitiesTable = ({ event }: ReentryAlertExecutiveSumm
           </TableRow>
         </TableHead>
         <TableBody>
-          {isNumber(event.fragmentsProbability)
+          {isNumber(event.fragments_probability)
             ? (
                 <TableRow>
                   <TableCellHeader>{t('probability_of_fragmentation')}</TableCellHeader>
-                  <TableCell>{roundedPercent(event.fragmentsProbability)}</TableCell>
+                  <TableCell>{roundedPercent(event.fragments_probability)}</TableCell>
                   <TableCell>
-                    {renderRiskTag(event.fragmentsRisk ?? 'None')}
+                    {renderRiskTag(event.fragments_risk ?? 'None')}
                   </TableCell>
                 </TableRow>
               )
             : null}
-          {isNumber(event.atmosphericProbability)
+          {isNumber(event.atmospheric_probability)
             ? (
                 <TableRow>
                   <TableCellHeader>{t('probability_of_atmospheric_entry')}</TableCellHeader>
-                  <TableCell>{roundedPercent(event.atmosphericProbability)}</TableCell>
+                  <TableCell>{roundedPercent(event.atmospheric_probability)}</TableCell>
                   <TableCell>
-                    {renderRiskTag(event.atmosphericRisk ?? 'None')}
+                    {renderRiskTag(event.atmospheric_risk ?? 'None')}
                   </TableCell>
                 </TableRow>
               )
             : null}
-          {/* {isNumber(event.humanCasualtyProbability)
+          {/* {isNumber(event.human_casualty_probability)
             ? (
                 <TableRow>
                   <TableCellHeader>{t('probability_of_human_casualty')}</TableCellHeader>
-                  <TableCell>{roundedPercent(event.humanCasualtyProbability)}</TableCell>
+                  <TableCell>{roundedPercent(event.human_casualty_probability)}</TableCell>
                   <TableCell>
-                    {renderRiskTag(event.humanCasualtyRisk)}
+                    {renderRiskTag(event.human_casualty_risk)}
                   </TableCell>
                 </TableRow>
               )

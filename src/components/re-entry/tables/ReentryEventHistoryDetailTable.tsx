@@ -8,7 +8,7 @@ import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs, FORMAT_DATE_TIME, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 
-type EventSummaryData = Pick<TypeTIPOut, 'externalId' | 'decayEpoch' | 'uncertaintyWindow' | 'direction' | 'latitude' | 'longitude' | 'inclination' | 'interest' | 'updatedAt'>;
+type EventSummaryData = Pick<TypeTIPOut, 'external_id' | 'decay_epoch' | 'uncertainty_window' | 'direction' | 'latitude' | 'longitude' | 'inclination' | 'interest' | 'updated_at'>;
 
 type ReentryEventHistoryDetailTableProps = {
   row: Row<TypeTIPOut>;
@@ -19,14 +19,14 @@ const ReentryEventHistoryDetailTable = ({ row }: ReentryEventHistoryDetailTableP
 
   const rows: InformationsTableRow<EventSummaryData>[] = [{
     header: t('tip_id'),
-    accessorKey: 'externalId',
+    accessorKey: 'external_id',
   }, {
     header: t('predicted_reentry_time'),
-    accessorKey: 'decayEpoch',
-    renderCell: row => dayjs(row.decayEpoch).format(FORMAT_FULL_DATE_TIME),
+    accessorKey: 'decay_epoch',
+    renderCell: row => dayjs(row.decay_epoch).format(FORMAT_FULL_DATE_TIME),
   }, {
     header: t('uncertainty_window'),
-    accessorKey: 'uncertaintyWindow',
+    accessorKey: 'uncertainty_window',
   }, {
     header: t('direction_of_travel'),
     accessorKey: 'direction',
@@ -46,8 +46,8 @@ const ReentryEventHistoryDetailTable = ({ row }: ReentryEventHistoryDetailTableP
     renderCell: row => row.interest === 'high' ? 'Yes' : 'No',
   }, {
     header: t('time_of_update'),
-    accessorKey: 'updatedAt',
-    renderCell: row => dayjs(row.updatedAt).format(FORMAT_DATE_TIME),
+    accessorKey: 'updated_at',
+    renderCell: row => dayjs(row.updated_at).format(FORMAT_DATE_TIME),
   }];
 
   return <InformationsTable reducedFont rows={rows} data={row.original} dataPdfIgnore />;

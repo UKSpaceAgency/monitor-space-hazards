@@ -433,12 +433,12 @@ export type TypeAffectedRegime = "GEO" | "LEO" | "MEO" | "Lunar";
 
 /** AlertDryRunOut */
 export interface TypeAlertDryRunOut {
-  /** Emailrecipients */
-  emailRecipients: TypeUserOut[];
-  /** Smsrecipients */
-  smsRecipients: TypeUserOut[];
-  /** Additionalemails */
-  additionalEmails: string[];
+  /** Email Recipients */
+  email_recipients: TypeUserOut[];
+  /** Sms Recipients */
+  sms_recipients: TypeUserOut[];
+  /** Additional Emails */
+  additional_emails: string[];
 }
 
 /** AlertSettingsDistributionList */
@@ -587,86 +587,86 @@ export interface TypeAnalysisOut {
    */
   id?: string;
   /**
-   * Createdat
+   * Created At
    * @format date-time
    */
-  createdAt?: string;
+  created_at?: string;
   /**
-   * Updatedat
+   * Updated At
    * @format date-time
    */
-  updatedAt?: string;
+  updated_at?: string;
   /**
-   * Tcatime
+   * Tca Time
    * @format date-time
    */
-  tcaTime: string;
+  tca_time: string;
   /**
-   * Collisionprobability
+   * Collision Probability
    * @min 0
    * @max 1
    */
-  collisionProbability: number;
-  /** Collisionprobabilitymethod */
-  collisionProbabilityMethod: string;
+  collision_probability: number;
+  /** Collision Probability Method */
+  collision_probability_method: string;
   /**
-   * Updatetime
+   * Update Time
    * @format date-time
    */
-  updateTime: string;
-  /** Cdmexternalid */
-  cdmExternalId: string;
+  update_time: string;
+  /** Cdm External Id */
+  cdm_external_id: string;
   /**
-   * Isactive
+   * Is Active
    * @default true
    */
-  isActive?: boolean | null;
-  /** Missdistance */
-  missDistance: number;
-  /** Radialmissdistance */
-  radialMissDistance?: number | null;
-  /** Intrackmissdistance */
-  intrackMissDistance?: number | null;
-  /** Crosstrackmissdistance */
-  crosstrackMissDistance?: number | null;
-  missDistanceUncertainty?: TypeMissDistanceUncertainty | null;
+  is_active?: boolean | null;
+  /** Miss Distance */
+  miss_distance: number;
+  /** Radial Miss Distance */
+  radial_miss_distance?: number | null;
+  /** Intrack Miss Distance */
+  intrack_miss_distance?: number | null;
+  /** Crosstrack Miss Distance */
+  crosstrack_miss_distance?: number | null;
+  miss_distance_uncertainty?: TypeMissDistanceUncertainty | null;
   /** Altitude */
   altitude?: number | null;
   /** Latitude */
   latitude?: number | null;
   /** Longitude */
   longitude?: number | null;
-  /** Relativevelocity */
-  relativeVelocity?: number | null;
-  /** Combinedmass */
-  combinedMass?: number | null;
-  /** Possiblefragments */
-  possibleFragments?: number | null;
-  /** Primaryobjectnoradid */
-  primaryObjectNoradId: string;
-  /** Secondaryobjectnoradid */
-  secondaryObjectNoradId: string;
-  primaryObjectObservationsData?: TypeSatelliteObservationsData | null;
-  secondaryObjectObservationsData?: TypeSatelliteObservationsData | null;
+  /** Relative Velocity */
+  relative_velocity?: number | null;
+  /** Combined Mass */
+  combined_mass?: number | null;
+  /** Possible Fragments */
+  possible_fragments?: number | null;
+  /** Primary Object Norad Id */
+  primary_object_norad_id: string;
+  /** Secondary Object Norad Id */
+  secondary_object_norad_id: string;
+  primary_object_observations_data?: TypeSatelliteObservationsData | null;
+  secondary_object_observations_data?: TypeSatelliteObservationsData | null;
   /**
-   * Eventid
+   * Event Id
    * @format uuid
    */
-  eventId: string;
-  /** Eventshortid */
-  eventShortId: string;
-  /** Uploadedbyid */
-  uploadedById?: string | null;
-  /** Deletedbyid */
-  deletedById?: string | null;
-  /** Restoredbyid */
-  restoredById?: string | null;
-  /** Uploadedbyemail */
-  uploadedByEmail?: string | null;
-  /** Deletedbyemail */
-  deletedByEmail?: string | null;
-  /** Restoredbyemail */
-  restoredByEmail?: string | null;
+  event_id: string;
+  /** Event Short Id */
+  event_short_id: string;
+  /** Uploaded By Id */
+  uploaded_by_id?: string | null;
+  /** Deleted By Id */
+  deleted_by_id?: string | null;
+  /** Restored By Id */
+  restored_by_id?: string | null;
+  /** Uploaded By Email */
+  uploaded_by_email?: string | null;
+  /** Deleted By Email */
+  deleted_by_email?: string | null;
+  /** Restored By Email */
+  restored_by_email?: string | null;
 }
 
 /** AreaOfInterest */
@@ -722,10 +722,10 @@ export interface TypeBannerMessageIn {
   /** Title */
   title: string;
   /**
-   * Isactive
+   * Is Active
    * @default true
    */
-  isActive?: boolean;
+  is_active?: boolean;
 }
 
 /** BannerMessageSeverity */
@@ -734,10 +734,10 @@ export type TypeBannerMessageSeverity = "Low" | "Medium" | "High";
 /** BannerMessageUpdate */
 export interface TypeBannerMessageUpdate {
   /**
-   * Messageid
+   * Message Id
    * @format uuid
    */
-  messageId: string;
+  message_id: string;
   /** Content */
   content?: string | null;
   /** @default "Low" */
@@ -745,10 +745,10 @@ export interface TypeBannerMessageUpdate {
   /** Title */
   title?: string | null;
   /**
-   * Isactive
+   * Is Active
    * @default true
    */
-  isActive?: boolean | null;
+  is_active?: boolean | null;
 }
 
 /** BannerMessagesBroadcastedOut */
@@ -759,47 +759,47 @@ export interface TypeBannerMessagesBroadcastedOut {
    */
   id?: string;
   /**
-   * Createdat
+   * Created At
    * @format date-time
    */
-  createdAt?: string;
+  created_at?: string;
   /**
-   * Updatedat
+   * Updated At
    * @format date-time
    */
-  updatedAt?: string;
+  updated_at?: string;
   /** Content */
   content: string;
   severity?: TypeBannerMessageSeverity | null;
   /** Title */
   title: string;
-  /** Isactive */
-  isActive: boolean;
+  /** Is Active */
+  is_active: boolean;
   /**
-   * Createdbyid
+   * Created By Id
    * @format uuid
    */
-  createdById: string;
+  created_by_id: string;
   /**
-   * Broadcaststart
+   * Broadcast Start
    * @format date-time
    */
-  broadcastStart: string;
+  broadcast_start: string;
   /**
-   * Broadcastend
+   * Broadcast End
    * @format date-time
    */
-  broadcastEnd: string;
+  broadcast_end: string;
   /**
-   * Messageid
+   * Message Id
    * @format uuid
    */
-  messageId: string;
+  message_id: string;
   /**
-   * Setbyid
+   * Set By Id
    * @format uuid
    */
-  setById: string;
+  set_by_id: string;
 }
 
 /** BannerMessagesOut */
@@ -810,33 +810,33 @@ export interface TypeBannerMessagesOut {
    */
   id?: string;
   /**
-   * Createdat
+   * Created At
    * @format date-time
    */
-  createdAt?: string;
+  created_at?: string;
   /**
-   * Updatedat
+   * Updated At
    * @format date-time
    */
-  updatedAt?: string;
+  updated_at?: string;
   /** Content */
   content: string;
   severity?: TypeBannerMessageSeverity | null;
   /** Title */
   title: string;
-  /** Isactive */
-  isActive: boolean;
+  /** Is Active */
+  is_active: boolean;
   /**
-   * Createdbyid
+   * Created By Id
    * @format uuid
    */
-  createdById: string;
+  created_by_id: string;
   /** Email */
   email: string;
-  /** Firstname */
-  firstName?: string | null;
-  /** Lastname */
-  lastName?: string | null;
+  /** First Name */
+  first_name?: string | null;
+  /** Last Name */
+  last_name?: string | null;
 }
 
 /** BannerMessagesSortBy */
@@ -886,25 +886,25 @@ export interface TypeBannerSchedule {
 /** BannerScheduleIn */
 export interface TypeBannerScheduleIn {
   /**
-   * Broadcaststart
+   * Broadcast Start
    * @format date-time
    */
-  broadcastStart: string;
+  broadcast_start: string;
   /**
-   * Broadcastend
+   * Broadcast End
    * @format date-time
    */
-  broadcastEnd: string;
+  broadcast_end: string;
   /**
-   * Isactive
+   * Is Active
    * @default true
    */
-  isActive?: boolean;
+  is_active?: boolean;
   /**
-   * Messageid
+   * Message Id
    * @format uuid
    */
-  messageId: string;
+  message_id: string;
 }
 
 /** BannerSchedulesOut */
@@ -915,37 +915,37 @@ export interface TypeBannerSchedulesOut {
    */
   id?: string;
   /**
-   * Createdat
+   * Created At
    * @format date-time
    */
-  createdAt?: string;
+  created_at?: string;
   /**
-   * Updatedat
+   * Updated At
    * @format date-time
    */
-  updatedAt?: string;
+  updated_at?: string;
   /**
-   * Broadcaststart
+   * Broadcast Start
    * @format date-time
    */
-  broadcastStart: string;
+  broadcast_start: string;
   /**
-   * Broadcastend
+   * Broadcast End
    * @format date-time
    */
-  broadcastEnd: string;
-  /** Isactive */
-  isActive: boolean;
+  broadcast_end: string;
+  /** Is Active */
+  is_active: boolean;
   /**
-   * Messageid
+   * Message Id
    * @format uuid
    */
-  messageId: string;
+  message_id: string;
   /**
-   * Setbyid
+   * Set By Id
    * @format uuid
    */
-  setById: string;
+  set_by_id: string;
   /** Title */
   title: string;
   /** Content */
@@ -1052,22 +1052,22 @@ export interface TypeCDMOut {
    */
   id?: string;
   /**
-   * Createdat
+   * Created At
    * @format date-time
    */
-  createdAt?: string;
+  created_at?: string;
   /**
-   * Updatedat
+   * Updated At
    * @format date-time
    */
-  updatedAt?: string;
-  /** Externalid */
-  externalId?: string | null;
+  updated_at?: string;
+  /** External Id */
+  external_id?: string | null;
   /**
-   * Eventid
+   * Event Id
    * @format uuid
    */
-  eventId: string;
+  event_id: string;
 }
 
 /** CDMType */
@@ -1097,45 +1097,45 @@ export interface TypeConjunctionAlertSettings {
 
 /** ConjunctionEventAlertIn */
 export interface TypeConjunctionEventAlertIn {
-  /** Alerttype */
-  alertType: ("standard" | "priority" | "uk-licensed" | "closedown")[];
-  /** Additionalemails */
-  additionalEmails: string[];
+  /** Alert Type */
+  alert_type: ("standard" | "priority" | "uk-licensed" | "closedown")[];
+  /** Additional Emails */
+  additional_emails: string[];
 }
 
 /** ConjunctionEventAlertOut */
 export interface TypeConjunctionEventAlertOut {
-  /** Conjunctioneventshortid */
-  conjunctionEventShortId: string;
+  /** Conjunction Event Short Id */
+  conjunction_event_short_id: string;
   /**
-   * Conjunctionreportid
+   * Conjunction Report Id
    * @format uuid
    */
-  conjunctionReportId: string;
-  /** Alerttype */
-  alertType: ("standard" | "priority" | "uk-licensed" | "closedown")[];
-  /** Additionalrecipients */
-  additionalRecipients: string[] | null;
-  /** Emailnotificationsendingstatus */
-  emailNotificationSendingStatus: "scheduled" | "in-progress" | "delivered";
-  /** Smsnotificationsendingstatus */
-  smsNotificationSendingStatus: "scheduled" | "in-progress" | "delivered";
+  conjunction_report_id: string;
+  /** Alert Type */
+  alert_type: ("standard" | "priority" | "uk-licensed" | "closedown")[];
+  /** Additional Recipients */
+  additional_recipients: string[] | null;
+  /** Email Notification Sending Status */
+  email_notification_sending_status: "scheduled" | "in-progress" | "delivered";
+  /** Sms Notification Sending Status */
+  sms_notification_sending_status: "scheduled" | "in-progress" | "delivered";
 }
 
 /** ConjunctionEventCount */
 export interface TypeConjunctionEventCount {
   /**
-   * Conjunctioneventalertcount
+   * Conjunction Event Alert Count
    * @default 0
    */
-  conjunctionEventAlertCount?: number;
+  conjunction_event_alert_count?: number;
   /**
-   * Conjunctioneventnormalcount
+   * Conjunction Event Normal Count
    * @default 0
    */
-  conjunctionEventNormalCount?: number;
-  /** Conjunctioneventtotalcount */
-  conjunctionEventTotalCount: number;
+  conjunction_event_normal_count?: number;
+  /** Conjunction Event Total Count */
+  conjunction_event_total_count: number;
 }
 
 /** ConjunctionReportOut */
@@ -1146,113 +1146,113 @@ export interface TypeConjunctionReportOut {
    */
   id?: string;
   /**
-   * Createdat
+   * Created At
    * @format date-time
    */
-  createdAt?: string;
+  created_at?: string;
   /**
-   * Updatedat
+   * Updated At
    * @format date-time
    */
-  updatedAt?: string;
-  /** Shortid */
-  shortId: string;
-  /** Reportnumber */
-  reportNumber: number;
-  /** Reporttime */
-  reportTime?: string | null;
+  updated_at?: string;
+  /** Short Id */
+  short_id: string;
+  /** Report Number */
+  report_number: number;
+  /** Report Time */
+  report_time?: string | null;
   risk: TypeRisk;
-  /** Closedcomment */
-  closedComment?: string | null;
-  /** Alerttype */
-  alertType: ("priority" | "standard" | "uk-licensed" | "closedown")[];
-  /** Tcatime */
-  tcaTime?: string | null;
-  /** Collisionprobability */
-  collisionProbability: number;
-  /** Manoeuvreexpected */
-  manoeuvreExpected?: string | null;
-  /** Primaryobjectcommonname */
-  primaryObjectCommonName: string;
-  /** Primaryobjectnoradid */
-  primaryObjectNoradId: string;
-  /** Primaryobjectlicensingcountry */
-  primaryObjectLicensingCountry?: string | null;
-  /** Primaryobjecttype */
-  primaryObjectType?: string | null;
-  /** Primaryobjectmission */
-  primaryObjectMission?: string | null;
-  /** Primaryobjectmass */
-  primaryObjectMass?: number | null;
-  /** Primaryobjectmanoeuvrable */
-  primaryObjectManoeuvrable?: string | null;
-  /** Secondaryobjectcommonname */
-  secondaryObjectCommonName: string;
-  /** Secondaryobjectnoradid */
-  secondaryObjectNoradId: string;
-  /** Secondaryobjectlicensingcountry */
-  secondaryObjectLicensingCountry?: string | null;
-  /** Secondaryobjecttype */
-  secondaryObjectType?: string | null;
-  /** Secondaryobjectmission */
-  secondaryObjectMission?: string | null;
-  /** Secondaryobjectmass */
-  secondaryObjectMass?: number | null;
-  /** Secondaryobjectmanoeuvrable */
-  secondaryObjectManoeuvrable?: string | null;
-  /** Executivesummarycomment */
-  executiveSummaryComment?: string | null;
-  /** Manoeuvrecomment */
-  manoeuvreComment?: string | null;
-  /** Immediateimpactcomment */
-  immediateImpactComment?: string | null;
-  /** Shorttermimpactcomment */
-  shortTermImpactComment?: string | null;
-  /** Riskataltitudecomment */
-  riskAtAltitudeComment?: string | null;
-  /** Longtermimpactcomment */
-  longTermImpactComment?: string | null;
-  /** Ukresponsecomment */
-  ukResponseComment?: string | null;
-  /** Pressattentioncomment */
-  pressAttentionComment?: string | null;
-  /** Missdistance */
-  missDistance?: number | null;
-  /** Impactspeed */
-  impactSpeed?: number | null;
+  /** Closed Comment */
+  closed_comment?: string | null;
+  /** Alert Type */
+  alert_type: ("priority" | "standard" | "uk-licensed" | "closedown")[];
+  /** Tca Time */
+  tca_time?: string | null;
+  /** Collision Probability */
+  collision_probability: number;
+  /** Manoeuvre Expected */
+  manoeuvre_expected?: string | null;
+  /** Primary Object Common Name */
+  primary_object_common_name: string;
+  /** Primary Object Norad Id */
+  primary_object_norad_id: string;
+  /** Primary Object Licensing Country */
+  primary_object_licensing_country?: string | null;
+  /** Primary Object Type */
+  primary_object_type?: string | null;
+  /** Primary Object Mission */
+  primary_object_mission?: string | null;
+  /** Primary Object Mass */
+  primary_object_mass?: number | null;
+  /** Primary Object Manoeuvrable */
+  primary_object_manoeuvrable?: string | null;
+  /** Secondary Object Common Name */
+  secondary_object_common_name: string;
+  /** Secondary Object Norad Id */
+  secondary_object_norad_id: string;
+  /** Secondary Object Licensing Country */
+  secondary_object_licensing_country?: string | null;
+  /** Secondary Object Type */
+  secondary_object_type?: string | null;
+  /** Secondary Object Mission */
+  secondary_object_mission?: string | null;
+  /** Secondary Object Mass */
+  secondary_object_mass?: number | null;
+  /** Secondary Object Manoeuvrable */
+  secondary_object_manoeuvrable?: string | null;
+  /** Executive Summary Comment */
+  executive_summary_comment?: string | null;
+  /** Manoeuvre Comment */
+  manoeuvre_comment?: string | null;
+  /** Immediate Impact Comment */
+  immediate_impact_comment?: string | null;
+  /** Short Term Impact Comment */
+  short_term_impact_comment?: string | null;
+  /** Risk At Altitude Comment */
+  risk_at_altitude_comment?: string | null;
+  /** Long Term Impact Comment */
+  long_term_impact_comment?: string | null;
+  /** Uk Response Comment */
+  uk_response_comment?: string | null;
+  /** Press Attention Comment */
+  press_attention_comment?: string | null;
+  /** Miss Distance */
+  miss_distance?: number | null;
+  /** Impact Speed */
+  impact_speed?: number | null;
   /** Altitude */
   altitude?: number | null;
   /** Latitude */
   latitude?: number | null;
   /** Longitude */
   longitude?: number | null;
-  /** Predictedfragments */
-  predictedFragments?: number | null;
-  /** Increaseinfuturecollisions */
-  increaseInFutureCollisions?: number | null;
+  /** Predicted Fragments */
+  predicted_fragments?: number | null;
+  /** Increase In Future Collisions */
+  increase_in_future_collisions?: number | null;
   /**
-   * Isactive
+   * Is Active
    * @default true
    */
-  isActive?: boolean;
-  /** Uploadedbyid */
-  uploadedById?: string | null;
-  /** Deletedbyid */
-  deletedById?: string | null;
-  /** Presignedurl */
-  presignedUrl?: string | null;
-  /** Filename */
-  fileName: string;
+  is_active?: boolean;
+  /** Uploaded By Id */
+  uploaded_by_id?: string | null;
+  /** Deleted By Id */
+  deleted_by_id?: string | null;
+  /** Presigned Url */
+  presigned_url?: string | null;
+  /** File Name */
+  file_name: string;
 }
 
 /** ContactAnalystIn */
 export interface TypeContactAnalystIn {
-  /** Eventid */
-  eventId: string;
-  /** Messagecontent */
-  messageContent?: string | null;
-  /** Ccemail */
-  ccEmail?: string | null;
+  /** Event Id */
+  event_id: string;
+  /** Message Content */
+  message_content?: string | null;
+  /** Cc Email */
+  cc_email?: string | null;
 }
 
 /** DataSource */
@@ -1260,10 +1260,10 @@ export type TypeDataSource = "Space-Track CDM" | "UKSA Analysis";
 
 /** DataSourcesOut */
 export interface TypeDataSourcesOut {
-  /** Spacetrackcdm */
-  spaceTrackCdm: TypeEventDataSource[];
-  /** Uksaanalysis */
-  uksaAnalysis: TypeEventDataSource[];
+  /** Space Track Cdm */
+  space_track_cdm: TypeEventDataSource[];
+  /** Uksa Analysis */
+  uksa_analysis: TypeEventDataSource[];
 }
 
 /** EphemerisOut */
@@ -1274,44 +1274,44 @@ export interface TypeEphemerisOut {
    */
   id?: string;
   /**
-   * Createdat
+   * Created At
    * @format date-time
    */
-  createdAt?: string;
+  created_at?: string;
   /**
-   * Updatedat
+   * Updated At
    * @format date-time
    */
-  updatedAt?: string;
-  /** Isactive */
-  isActive?: boolean | null;
+  updated_at?: string;
+  /** Is Active */
+  is_active?: boolean | null;
   /**
-   * Creationdate
+   * Creation Date
    * @format date-time
    */
-  creationDate: string;
+  creation_date: string;
   /** Originator */
   originator: string;
-  /** Objectname */
-  objectName: string;
-  /** Internationaldesignator */
-  internationalDesignator: string;
-  refFrame: TypeReferenceFrame;
-  timeSystem: TypeTimeSystem;
+  /** Object Name */
+  object_name: string;
+  /** International Designator */
+  international_designator: string;
+  ref_frame: TypeReferenceFrame;
+  time_system: TypeTimeSystem;
   /**
-   * Starttime
+   * Start Time
    * @format date-time
    */
-  startTime: string;
+  start_time: string;
   /**
-   * Stoptime
+   * Stop Time
    * @format date-time
    */
-  stopTime: string;
-  /** Centername */
-  centerName: string;
-  /** Filename */
-  fileName: string;
+  stop_time: string;
+  /** Center Name */
+  center_name: string;
+  /** File Name */
+  file_name: string;
   /** Satellite */
   satellite: string;
   /**
@@ -1320,18 +1320,18 @@ export interface TypeEphemerisOut {
    */
   uploader: string;
   /**
-   * Uploaderorganization
+   * Uploader Organization
    * @format uuid
    */
-  uploaderOrganization: string;
-  /** Deletedbyid */
-  deletedById?: string | null;
-  /** Restoredbyid */
-  restoredById?: string | null;
-  /** Uploadedbyemail */
-  uploadedByEmail?: string | null;
-  /** Uploadedbyorganizationname */
-  uploadedByOrganizationName?: string | null;
+  uploader_organization: string;
+  /** Deleted By Id */
+  deleted_by_id?: string | null;
+  /** Restored By Id */
+  restored_by_id?: string | null;
+  /** Uploaded By Email */
+  uploaded_by_email?: string | null;
+  /** Uploaded By Organization Name */
+  uploaded_by_organization_name?: string | null;
 }
 
 /** EphemerisSortBy */
@@ -1357,74 +1357,74 @@ export interface TypeEventCDMOut {
    */
   id?: string;
   /**
-   * Createdat
+   * Created At
    * @format date-time
    */
-  createdAt?: string;
+  created_at?: string;
   /**
-   * Updatedat
+   * Updated At
    * @format date-time
    */
-  updatedAt?: string;
-  /** Shortid */
-  shortId: string;
-  /** Primaryobjectnoradid */
-  primaryObjectNoradId: string;
-  /** Secondaryobjectnoradid */
-  secondaryObjectNoradId: string;
-  /** Primaryobjectcommonname */
-  primaryObjectCommonName?: string | null;
-  /** Secondaryobjectcommonname */
-  secondaryObjectCommonName?: string | null;
+  updated_at?: string;
+  /** Short Id */
+  short_id: string;
+  /** Primary Object Norad Id */
+  primary_object_norad_id: string;
+  /** Secondary Object Norad Id */
+  secondary_object_norad_id: string;
+  /** Primary Object Common Name */
+  primary_object_common_name?: string | null;
+  /** Secondary Object Common Name */
+  secondary_object_common_name?: string | null;
   /**
-   * Tcatime
+   * Tca Time
    * @format date-time
    */
-  tcaTime: string;
-  /** Collisionprobability */
-  collisionProbability?: number | null;
-  /** Collisionprobabilitymethod */
-  collisionProbabilityMethod?: string | null;
-  dataSource: TypeDataSource;
-  /** Missdistance */
-  missDistance: number;
-  /** Radialmissdistance */
-  radialMissDistance?: number | null;
-  /** Intrackmissdistance */
-  intrackMissDistance?: number | null;
-  /** Crosstrackmissdistance */
-  crosstrackMissDistance?: number | null;
+  tca_time: string;
+  /** Collision Probability */
+  collision_probability?: number | null;
+  /** Collision Probability Method */
+  collision_probability_method?: string | null;
+  data_source: TypeDataSource;
+  /** Miss Distance */
+  miss_distance: number;
+  /** Radial Miss Distance */
+  radial_miss_distance?: number | null;
+  /** Intrack Miss Distance */
+  intrack_miss_distance?: number | null;
+  /** Crosstrack Miss Distance */
+  crosstrack_miss_distance?: number | null;
   /** Altitude */
   altitude?: number | null;
   /** Latitude */
   latitude?: number | null;
   /** Longitude */
   longitude?: number | null;
-  /** Relativevelocity */
-  relativeVelocity?: number | null;
-  /** Combinedmass */
-  combinedMass?: number | null;
-  /** Possiblefragments */
-  possibleFragments?: number | null;
-  /** Cdmcreationdate */
-  cdmCreationDate?: string | null;
-  /** Cdmexternalid */
-  cdmExternalId: string;
+  /** Relative Velocity */
+  relative_velocity?: number | null;
+  /** Combined Mass */
+  combined_mass?: number | null;
+  /** Possible Fragments */
+  possible_fragments?: number | null;
+  /** Cdm Creation Date */
+  cdm_creation_date?: string | null;
+  /** Cdm External Id */
+  cdm_external_id: string;
 }
 
 /** EventDataSource */
 export interface TypeEventDataSource {
-  dataSource?: TypeDataSource | null;
-  /** Datareceived */
-  dataReceived?: string | null;
-  /** Observationsnumber */
-  observationsNumber?: number | null;
-  /** Observationstimespan */
-  observationsTimespan?: number | null;
-  /** Noradid */
-  noradId: string;
-  /** Ephemerisname */
-  ephemerisName?: string | null;
+  data_source?: TypeDataSource | null;
+  /** Data Received */
+  data_received?: string | null;
+  /** Observations Number */
+  observations_number?: number | null;
+  /** Observations Timespan */
+  observations_timespan?: number | null;
+  /** Norad Id */
+  norad_id: string;
+  /** Ephemeris Name */
+  ephemeris_name?: string | null;
 }
 
 /** EventForAnalysisOut */
@@ -1510,74 +1510,74 @@ export interface TypeEventOut {
    */
   id?: string;
   /**
-   * Createdat
+   * Created At
    * @format date-time
    */
-  createdAt?: string;
+  created_at?: string;
   /**
-   * Updatedat
+   * Updated At
    * @format date-time
    */
-  updatedAt?: string;
-  /** Shortid */
-  shortId: string;
-  /** Primaryobjectnoradid */
-  primaryObjectNoradId: string;
-  /** Secondaryobjectnoradid */
-  secondaryObjectNoradId: string;
-  /** Primaryobjectcommonname */
-  primaryObjectCommonName?: string | null;
-  /** Secondaryobjectcommonname */
-  secondaryObjectCommonName?: string | null;
+  updated_at?: string;
+  /** Short Id */
+  short_id: string;
+  /** Primary Object Norad Id */
+  primary_object_norad_id: string;
+  /** Secondary Object Norad Id */
+  secondary_object_norad_id: string;
+  /** Primary Object Common Name */
+  primary_object_common_name?: string | null;
+  /** Secondary Object Common Name */
+  secondary_object_common_name?: string | null;
   /**
-   * Tcatime
+   * Tca Time
    * @format date-time
    */
-  tcaTime: string;
-  /** Collisionprobability */
-  collisionProbability?: number | null;
-  /** Collisionprobabilitymethod */
-  collisionProbabilityMethod?: string | null;
-  dataSource: TypeDataSource;
-  /** Missdistance */
-  missDistance: number;
-  /** Radialmissdistance */
-  radialMissDistance?: number | null;
-  /** Intrackmissdistance */
-  intrackMissDistance?: number | null;
-  /** Crosstrackmissdistance */
-  crosstrackMissDistance?: number | null;
+  tca_time: string;
+  /** Collision Probability */
+  collision_probability?: number | null;
+  /** Collision Probability Method */
+  collision_probability_method?: string | null;
+  data_source: TypeDataSource;
+  /** Miss Distance */
+  miss_distance: number;
+  /** Radial Miss Distance */
+  radial_miss_distance?: number | null;
+  /** Intrack Miss Distance */
+  intrack_miss_distance?: number | null;
+  /** Crosstrack Miss Distance */
+  crosstrack_miss_distance?: number | null;
   /** Altitude */
   altitude?: number | null;
   /** Latitude */
   latitude?: number | null;
   /** Longitude */
   longitude?: number | null;
-  /** Relativevelocity */
-  relativeVelocity?: number | null;
-  /** Combinedmass */
-  combinedMass?: number | null;
-  /** Possiblefragments */
-  possibleFragments?: number | null;
-  /** Cdmcreationdate */
-  cdmCreationDate?: string | null;
-  /** Cdmexternalid */
-  cdmExternalId?: string | null;
-  userInterest: TypeUserInterest;
-  additionalAnalysis?: TypeAdditionalAnalysis | null;
-  /** Reportnumber */
-  reportNumber?: number | null;
-  /** Collisionprobabilityuksa */
-  collisionProbabilityUksa?: number | null;
+  /** Relative Velocity */
+  relative_velocity?: number | null;
+  /** Combined Mass */
+  combined_mass?: number | null;
+  /** Possible Fragments */
+  possible_fragments?: number | null;
+  /** Cdm Creation Date */
+  cdm_creation_date?: string | null;
+  /** Cdm External Id */
+  cdm_external_id?: string | null;
+  user_interest: TypeUserInterest;
+  additional_analysis?: TypeAdditionalAnalysis | null;
+  /** Report Number */
+  report_number?: number | null;
+  /** Collision Probability Uksa */
+  collision_probability_uksa?: number | null;
   risk?: TypeRisk | null;
 }
 
 /** EventSatellitesOut */
 export interface TypeEventSatellitesOut {
-  /** Shortid */
-  shortId: string;
-  primaryObject: TypeSatelliteOut;
-  secondaryObject: TypeSatelliteOut | null;
+  /** Short Id */
+  short_id: string;
+  primary_object: TypeSatelliteOut;
+  secondary_object: TypeSatelliteOut | null;
 }
 
 /** EventSummaryOut */
@@ -1587,63 +1587,63 @@ export interface TypeEventSummaryOut {
    * @format uuid
    */
   id: string;
-  /** Shortid */
-  shortId: string;
+  /** Short Id */
+  short_id: string;
   /**
-   * Updatetime
+   * Update Time
    * @format date-time
    */
-  updateTime: string;
-  /** Cdmid */
-  cdmId?: string | null;
-  /** Cdmexternalid */
-  cdmExternalId: string;
-  /** Primaryobjectephemerisname */
-  primaryObjectEphemerisName?: string | null;
-  /** Secondaryobjectephemerisname */
-  secondaryObjectEphemerisName?: string | null;
-  /** Primaryobjectnoradid */
-  primaryObjectNoradId: string;
-  /** Secondaryobjectnoradid */
-  secondaryObjectNoradId: string;
+  update_time: string;
+  /** Cdm Id */
+  cdm_id?: string | null;
+  /** Cdm External Id */
+  cdm_external_id: string;
+  /** Primary Object Ephemeris Name */
+  primary_object_ephemeris_name?: string | null;
+  /** Secondary Object Ephemeris Name */
+  secondary_object_ephemeris_name?: string | null;
+  /** Primary Object Norad Id */
+  primary_object_norad_id: string;
+  /** Secondary Object Norad Id */
+  secondary_object_norad_id: string;
   /**
-   * Tcatime
+   * Tca Time
    * @format date-time
    */
-  tcaTime: string;
-  /** Collisionprobability */
-  collisionProbability?: number | null;
-  /** Collisionprobabilitymethod */
-  collisionProbabilityMethod?: string | null;
-  dataSource: TypeDataSource;
-  /** Missdistance */
-  missDistance: number;
-  /** Radialmissdistance */
-  radialMissDistance?: number | null;
-  /** Intrackmissdistance */
-  intrackMissDistance?: number | null;
-  /** Crosstrackmissdistance */
-  crosstrackMissDistance?: number | null;
-  primaryObjectUncertainties?: TypePositionUncertainty | null;
-  secondaryObjectUncertainties?: TypePositionUncertainty | null;
-  primaryObjectCdmType?: TypeCDMType | null;
-  secondaryObjectCdmType?: TypeCDMType | null;
+  tca_time: string;
+  /** Collision Probability */
+  collision_probability?: number | null;
+  /** Collision Probability Method */
+  collision_probability_method?: string | null;
+  data_source: TypeDataSource;
+  /** Miss Distance */
+  miss_distance: number;
+  /** Radial Miss Distance */
+  radial_miss_distance?: number | null;
+  /** Intrack Miss Distance */
+  intrack_miss_distance?: number | null;
+  /** Crosstrack Miss Distance */
+  crosstrack_miss_distance?: number | null;
+  primary_object_uncertainties?: TypePositionUncertainty | null;
+  secondary_object_uncertainties?: TypePositionUncertainty | null;
+  primary_object_cdm_type?: TypeCDMType | null;
+  secondary_object_cdm_type?: TypeCDMType | null;
   /** Altitude */
   altitude?: number | null;
   /** Latitude */
   latitude?: number | null;
   /** Longitude */
   longitude?: number | null;
-  /** Relativevelocity */
-  relativeVelocity?: number | null;
-  /** Combinedmass */
-  combinedMass?: number | null;
-  /** Possiblefragments */
-  possibleFragments?: number | null;
-  /** Primaryobjectsize */
-  primaryObjectSize?: number | null;
-  /** Secondaryobjectsize */
-  secondaryObjectSize?: number | null;
+  /** Relative Velocity */
+  relative_velocity?: number | null;
+  /** Combined Mass */
+  combined_mass?: number | null;
+  /** Possible Fragments */
+  possible_fragments?: number | null;
+  /** Primary Object Size */
+  primary_object_size?: number | null;
+  /** Secondary Object Size */
+  secondary_object_size?: number | null;
 }
 
 /** EventsByCDMExternalIDSortBy */
@@ -1689,17 +1689,17 @@ export type TypeEventsSortBy =
 
 /** ExternalDataPerformanceAggregateOut */
 export interface TypeExternalDataPerformanceAggregateOut {
-  /** Sourcetype */
-  sourceType: string;
-  /** Sourceprovider */
-  sourceProvider: string;
-  /** Ingestionsum */
-  ingestionSum?: number | null;
+  /** Source Type */
+  source_type: string;
+  /** Source Provider */
+  source_provider: string;
+  /** Ingestion Sum */
+  ingestion_sum?: number | null;
   /**
-   * Ingestiondate
+   * Ingestion Date
    * @format date-time
    */
-  ingestionDate: string;
+  ingestion_date: string;
 }
 
 /** ExternalDataPerformanceItemsSortBy */
@@ -1720,26 +1720,26 @@ export interface TypeExternalDataPerformanceOut {
    */
   id?: string;
   /**
-   * Createdat
+   * Created At
    * @format date-time
    */
-  createdAt?: string;
+  created_at?: string;
   /**
-   * Updatedat
+   * Updated At
    * @format date-time
    */
-  updatedAt?: string;
-  sourceProvider: TypeExternalDataProvider;
-  sourceType: TypeExternalDataType;
+  updated_at?: string;
+  source_provider: TypeExternalDataProvider;
+  source_type: TypeExternalDataType;
   /**
-   * Ingestionstart
+   * Ingestion Start
    * @format date-time
    */
-  ingestionStart: string;
-  /** Ingestionend */
-  ingestionEnd?: string | null;
-  /** Itemsfetched */
-  itemsFetched?: number | null;
+  ingestion_start: string;
+  /** Ingestion End */
+  ingestion_end?: string | null;
+  /** Items Fetched */
+  items_fetched?: number | null;
 }
 
 /** ExternalDataProvider */
@@ -1768,8 +1768,8 @@ export interface TypeFeedbackIn {
   satisfaction: number;
   /** Details */
   details: string;
-  /** Useremail */
-  userEmail?: string | null;
+  /** User Email */
+  user_email?: string | null;
 }
 
 /** FragmentationAlertSettings */
@@ -1877,32 +1877,32 @@ export interface TypeFragmentationEvent {
 
 /** FragmentationEventAlertIn */
 export interface TypeFragmentationEventAlertIn {
-  /** Alerttype */
-  alertType: ("priority" | "closedown")[];
-  /** Additionalemails */
-  additionalEmails: string[];
+  /** Alert Type */
+  alert_type: ("priority" | "closedown")[];
+  /** Additional Emails */
+  additional_emails: string[];
 }
 
 /** FragmentationEventAlertOut */
 export interface TypeFragmentationEventAlertOut {
   /**
-   * Fragmentationeventid
+   * Fragmentation Event Id
    * @format uuid
    */
-  fragmentationEventId: string;
+  fragmentation_event_id: string;
   /**
-   * Fragmentationreportid
+   * Fragmentation Report Id
    * @format uuid
    */
-  fragmentationReportId: string;
-  /** Alerttype */
-  alertType: ("standard" | "priority")[];
-  /** Additionalrecipients */
-  additionalRecipients: string[] | null;
-  /** Emailnotificationsendingstatus */
-  emailNotificationSendingStatus: "scheduled" | "in-progress" | "delivered";
-  /** Smsnotificationsendingstatus */
-  smsNotificationSendingStatus: "scheduled" | "in-progress" | "delivered";
+  fragmentation_report_id: string;
+  /** Alert Type */
+  alert_type: ("standard" | "priority")[];
+  /** Additional Recipients */
+  additional_recipients: string[] | null;
+  /** Email Notification Sending Status */
+  email_notification_sending_status: "scheduled" | "in-progress" | "delivered";
+  /** Sms Notification Sending Status */
+  sms_notification_sending_status: "scheduled" | "in-progress" | "delivered";
 }
 
 /** FragmentationEventPatch */
@@ -2228,20 +2228,20 @@ export interface TypeManoeuvrePlotMetadataOut {
    */
   id: string;
   /**
-   * Tcatime
+   * Tca Time
    * @format date-time
    */
-  tcaTime: string;
-  /** Eventshortid */
-  eventShortId: string;
-  /** Cdmexternalid */
-  cdmExternalId: string;
-  /** Primaryobjectnoradid */
-  primaryObjectNoradId: string;
-  /** Secondaryobjectnoradid */
-  secondaryObjectNoradId: string;
-  /** Filename */
-  fileName: string;
+  tca_time: string;
+  /** Event Short Id */
+  event_short_id: string;
+  /** Cdm External Id */
+  cdm_external_id: string;
+  /** Primary Object Norad Id */
+  primary_object_norad_id: string;
+  /** Secondary Object Norad Id */
+  secondary_object_norad_id: string;
+  /** File Name */
+  file_name: string;
 }
 
 /** ManoeuvrePlotMetadataSortBy */
@@ -2256,10 +2256,10 @@ export type TypeManoeuvrePlotMetadataSortBy =
 
 /** ManoeuvrePlotOut */
 export interface TypeManoeuvrePlotOut {
-  /** Filename */
-  fileName: string;
-  /** Presignedurl */
-  presignedUrl: string;
+  /** File Name */
+  file_name: string;
+  /** Presigned Url */
+  presigned_url: string;
 }
 
 /** ManoeuvrePlotWithUserMetadataOut */
@@ -2270,29 +2270,29 @@ export interface TypeManoeuvrePlotWithUserMetadataOut {
    */
   id: string;
   /**
-   * Createdat
+   * Created At
    * @format date-time
    */
-  createdAt: string;
+  created_at: string;
   /**
-   * Tcatime
+   * Tca Time
    * @format date-time
    */
-  tcaTime: string;
-  /** Eventshortid */
-  eventShortId: string;
-  /** Cdmexternalid */
-  cdmExternalId: string;
-  /** Primaryobjectnoradid */
-  primaryObjectNoradId: string;
-  /** Secondaryobjectnoradid */
-  secondaryObjectNoradId: string;
-  /** Uploadedbyemail */
-  uploadedByEmail: string | null;
-  /** Uploadedbyid */
-  uploadedById: string | null;
-  /** Filename */
-  fileName: string;
+  tca_time: string;
+  /** Event Short Id */
+  event_short_id: string;
+  /** Cdm External Id */
+  cdm_external_id: string;
+  /** Primary Object Norad Id */
+  primary_object_norad_id: string;
+  /** Secondary Object Norad Id */
+  secondary_object_norad_id: string;
+  /** Uploaded By Email */
+  uploaded_by_email: string | null;
+  /** Uploaded By Id */
+  uploaded_by_id: string | null;
+  /** File Name */
+  file_name: string;
 }
 
 /** MissDistanceUncertainty */
@@ -2340,37 +2340,37 @@ export interface TypeOrganizationOut {
    */
   id?: string;
   /**
-   * Createdat
+   * Created At
    * @format date-time
    */
-  createdAt?: string;
+  created_at?: string;
   /**
-   * Updatedat
+   * Updated At
    * @format date-time
    */
-  updatedAt?: string;
+  updated_at?: string;
   /** Name */
   name: string;
-  /** Emaildomain */
-  emailDomain: string;
-  /** Allowedroles */
-  allowedRoles?: TypeUserRole[] | null;
-  /** Accountscount */
-  accountsCount: number;
-  /** Adminaccountscount */
-  adminAccountsCount: number;
-  /** Satellitescount */
-  satellitesCount: number;
+  /** Email Domain */
+  email_domain: string;
+  /** Allowed Roles */
+  allowed_roles?: TypeUserRole[] | null;
+  /** Accounts Count */
+  accounts_count: number;
+  /** Admin Accounts Count */
+  admin_accounts_count: number;
+  /** Satellites Count */
+  satellites_count: number;
 }
 
 /** PositionUncertainty */
 export interface TypePositionUncertainty {
-  /** Radialpositionuncertainty */
-  radialPositionUncertainty: number;
-  /** Intrackpositionuncertainty */
-  intrackPositionUncertainty: number;
-  /** Crosstrackpositionuncertainty */
-  crosstrackPositionUncertainty: number;
+  /** Radial Position Uncertainty */
+  radial_position_uncertainty: number;
+  /** Intrack Position Uncertainty */
+  intrack_position_uncertainty: number;
+  /** Crosstrack Position Uncertainty */
+  crosstrack_position_uncertainty: number;
 }
 
 /** ReentryAlertSettings */
@@ -2407,150 +2407,150 @@ export interface TypeReentryEvent {
    */
   id?: string;
   /**
-   * Createdat
+   * Created At
    * @format date-time
    */
-  createdAt?: string;
+  created_at?: string;
   /**
-   * Updatedat
+   * Updated At
    * @format date-time
    */
-  updatedAt?: string;
-  /** Shortid */
-  shortId: string;
-  /** Noradid */
-  noradId: string;
+  updated_at?: string;
+  /** Short Id */
+  short_id: string;
+  /** Norad Id */
+  norad_id: string;
   /**
-   * Timewindowstart
+   * Time Window Start
    * @format date-time
    */
-  timeWindowStart: string;
+  time_window_start: string;
   /**
-   * Timewindowend
+   * Time Window End
    * @format date-time
    */
-  timeWindowEnd: string;
-  /** Decayepoch */
-  decayEpoch?: string | null;
-  /** Uncertaintywindow */
-  uncertaintyWindow?: number | null;
-  /** Tipexternalid */
-  tipExternalId: string;
-  /** Insertepoch */
-  insertEpoch?: string | null;
-  /** Tipcreationdate */
-  tipCreationDate?: string | null;
-  /** Reentryreportnumber */
-  reentryReportNumber?: number | null;
+  time_window_end: string;
+  /** Decay Epoch */
+  decay_epoch?: string | null;
+  /** Uncertainty Window */
+  uncertainty_window?: number | null;
+  /** Tip External Id */
+  tip_external_id: string;
+  /** Insert Epoch */
+  insert_epoch?: string | null;
+  /** Tip Creation Date */
+  tip_creation_date?: string | null;
+  /** Reentry Report Number */
+  reentry_report_number?: number | null;
   /** Year */
   year: number;
-  /** Eventnumber */
-  eventNumber: number;
-  /** Closedcomment */
-  closedComment?: string | null;
-  /** Atmosphericprobability */
-  atmosphericProbability?: number | null;
-  atmosphericRisk?: TypeRisk | null;
-  /** Fragmentsprobability */
-  fragmentsProbability?: number | null;
-  fragmentsRisk?: TypeRisk | null;
-  /** Fragmentsnumber */
-  fragmentsNumber?: number | null;
-  /** Humancasualtyprobability */
-  humanCasualtyProbability?: number | null;
-  humanCasualtyRisk?: TypeRisk | null;
-  /** Overflighttime */
-  overflightTime: string[];
+  /** Event Number */
+  event_number: number;
+  /** Closed Comment */
+  closed_comment?: string | null;
+  /** Atmospheric Probability */
+  atmospheric_probability?: number | null;
+  atmospheric_risk?: TypeRisk | null;
+  /** Fragments Probability */
+  fragments_probability?: number | null;
+  fragments_risk?: TypeRisk | null;
+  /** Fragments Number */
+  fragments_number?: number | null;
+  /** Human Casualty Probability */
+  human_casualty_probability?: number | null;
+  human_casualty_risk?: TypeRisk | null;
+  /** Overflight Time */
+  overflight_time: string[];
   survivability?: TypeReentrySurvivability | null;
-  /** Survivabilitycomment */
-  survivabilityComment?: string | null;
-  /** Executivesummarycomment */
-  executiveSummaryComment?: string | null;
-  /** Immediateresponsecomment */
-  immediateResponseComment?: string | null;
-  /** Ukresponsecomment */
-  ukResponseComment?: string | null;
-  /** Damagesliabilitycomment */
-  damagesLiabilityComment?: string | null;
-  /** Pressattentioncomment */
-  pressAttentionComment?: string | null;
-  /** Objectname */
-  objectName?: string | null;
-  /** Objecttype */
-  objectType?: string | null;
-  /** Estimatedmass */
-  estimatedMass?: number | null;
-  /** Licensecountry */
-  licenseCountry?: string | null;
-  /** Internationaldesignator */
-  internationalDesignator?: string | null;
-  /** Objectheight */
-  objectHeight?: number | null;
-  /** Objectwidth */
-  objectWidth?: number | null;
-  /** Objectspan */
-  objectSpan?: number | null;
-  /** Launchingyear */
-  launchingYear?: number | null;
+  /** Survivability Comment */
+  survivability_comment?: string | null;
+  /** Executive Summary Comment */
+  executive_summary_comment?: string | null;
+  /** Immediate Response Comment */
+  immediate_response_comment?: string | null;
+  /** Uk Response Comment */
+  uk_response_comment?: string | null;
+  /** Damages Liability Comment */
+  damages_liability_comment?: string | null;
+  /** Press Attention Comment */
+  press_attention_comment?: string | null;
+  /** Object Name */
+  object_name?: string | null;
+  /** Object Type */
+  object_type?: string | null;
+  /** Estimated Mass */
+  estimated_mass?: number | null;
+  /** License Country */
+  license_country?: string | null;
+  /** International Designator */
+  international_designator?: string | null;
+  /** Object Height */
+  object_height?: number | null;
+  /** Object Width */
+  object_width?: number | null;
+  /** Object Span */
+  object_span?: number | null;
+  /** Launching Year */
+  launching_year?: number | null;
   /** Apogee */
   apogee?: number | null;
   /** Perigee */
   perigee?: number | null;
   /** Inclination */
   inclination?: number | null;
-  /** Approvedbyid */
-  approvedById?: string | null;
-  /** Approvedat */
-  approvedAt?: string | null;
+  /** Approved By Id */
+  approved_by_id?: string | null;
+  /** Approved At */
+  approved_at?: string | null;
 }
 
 /** ReentryEventAlertIn */
 export interface TypeReentryEventAlertIn {
-  /** Alerttype */
-  alertType: ("standard" | "priority" | "uk-licensed" | "closedown")[];
+  /** Alert Type */
+  alert_type: ("standard" | "priority" | "uk-licensed" | "closedown")[];
   /**
-   * Additionalemails
+   * Additional Emails
    * @default []
    */
-  additionalEmails?: string[];
+  additional_emails?: string[];
 }
 
 /** ReentryEventAlertOut */
 export interface TypeReentryEventAlertOut {
   /**
-   * Reentryeventid
+   * Reentry Event Id
    * @format uuid
    */
-  reentryEventId: string;
+  reentry_event_id: string;
   /**
-   * Reentryreportid
+   * Reentry Report Id
    * @format uuid
    */
-  reentryReportId: string;
-  /** Alerttype */
-  alertType: ("standard" | "priority" | "uk-licensed" | "closedown")[];
-  /** Additionalrecipients */
-  additionalRecipients: string[] | null;
-  /** Emailnotificationsendingstatus */
-  emailNotificationSendingStatus: "scheduled" | "in-progress" | "delivered";
-  /** Smsnotificationsendingstatus */
-  smsNotificationSendingStatus: "scheduled" | "in-progress" | "delivered";
+  reentry_report_id: string;
+  /** Alert Type */
+  alert_type: ("standard" | "priority" | "uk-licensed" | "closedown")[];
+  /** Additional Recipients */
+  additional_recipients: string[] | null;
+  /** Email Notification Sending Status */
+  email_notification_sending_status: "scheduled" | "in-progress" | "delivered";
+  /** Sms Notification Sending Status */
+  sms_notification_sending_status: "scheduled" | "in-progress" | "delivered";
 }
 
 /** ReentryEventCount */
 export interface TypeReentryEventCount {
   /**
-   * Reentryeventalertcount
+   * Reentry Event Alert Count
    * @default 0
    */
-  reentryEventAlertCount?: number;
+  reentry_event_alert_count?: number;
   /**
-   * Reentryeventnormalcount
+   * Reentry Event Normal Count
    * @default 0
    */
-  reentryEventNormalCount?: number;
-  /** Reentryeventtotalcount */
-  reentryEventTotalCount: number;
+  reentry_event_normal_count?: number;
+  /** Reentry Event Total Count */
+  reentry_event_total_count: number;
 }
 
 /** ReentryEventOut */
@@ -2561,105 +2561,105 @@ export interface TypeReentryEventOut {
    */
   id?: string;
   /**
-   * Createdat
+   * Created At
    * @format date-time
    */
-  createdAt?: string;
+  created_at?: string;
   /**
-   * Updatedat
+   * Updated At
    * @format date-time
    */
-  updatedAt?: string;
-  /** Shortid */
-  shortId: string;
-  /** Noradid */
-  noradId: string;
+  updated_at?: string;
+  /** Short Id */
+  short_id: string;
+  /** Norad Id */
+  norad_id: string;
   /**
-   * Timewindowstart
+   * Time Window Start
    * @format date-time
    */
-  timeWindowStart: string;
+  time_window_start: string;
   /**
-   * Timewindowend
+   * Time Window End
    * @format date-time
    */
-  timeWindowEnd: string;
-  /** Decayepoch */
-  decayEpoch?: string | null;
-  /** Uncertaintywindow */
-  uncertaintyWindow?: number | null;
-  /** Tipexternalid */
-  tipExternalId: string;
-  /** Insertepoch */
-  insertEpoch?: string | null;
-  /** Tipcreationdate */
-  tipCreationDate?: string | null;
-  /** Reentryreportnumber */
-  reentryReportNumber?: number | null;
+  time_window_end: string;
+  /** Decay Epoch */
+  decay_epoch?: string | null;
+  /** Uncertainty Window */
+  uncertainty_window?: number | null;
+  /** Tip External Id */
+  tip_external_id: string;
+  /** Insert Epoch */
+  insert_epoch?: string | null;
+  /** Tip Creation Date */
+  tip_creation_date?: string | null;
+  /** Reentry Report Number */
+  reentry_report_number?: number | null;
   /** Year */
   year: number;
-  /** Eventnumber */
-  eventNumber: number;
-  /** Closedcomment */
-  closedComment?: string | null;
-  /** Atmosphericprobability */
-  atmosphericProbability?: number | null;
-  atmosphericRisk?: TypeRisk | null;
-  /** Fragmentsprobability */
-  fragmentsProbability?: number | null;
-  fragmentsRisk?: TypeRisk | null;
-  /** Fragmentsnumber */
-  fragmentsNumber?: number | null;
-  /** Humancasualtyprobability */
-  humanCasualtyProbability?: number | null;
-  humanCasualtyRisk?: TypeRisk | null;
-  /** Overflighttime */
-  overflightTime: string[];
+  /** Event Number */
+  event_number: number;
+  /** Closed Comment */
+  closed_comment?: string | null;
+  /** Atmospheric Probability */
+  atmospheric_probability?: number | null;
+  atmospheric_risk?: TypeRisk | null;
+  /** Fragments Probability */
+  fragments_probability?: number | null;
+  fragments_risk?: TypeRisk | null;
+  /** Fragments Number */
+  fragments_number?: number | null;
+  /** Human Casualty Probability */
+  human_casualty_probability?: number | null;
+  human_casualty_risk?: TypeRisk | null;
+  /** Overflight Time */
+  overflight_time: string[];
   survivability?: TypeReentrySurvivability | null;
-  /** Survivabilitycomment */
-  survivabilityComment?: string | null;
-  /** Executivesummarycomment */
-  executiveSummaryComment?: string | null;
-  /** Immediateresponsecomment */
-  immediateResponseComment?: string | null;
-  /** Ukresponsecomment */
-  ukResponseComment?: string | null;
-  /** Damagesliabilitycomment */
-  damagesLiabilityComment?: string | null;
-  /** Pressattentioncomment */
-  pressAttentionComment?: string | null;
-  /** Objectname */
-  objectName?: string | null;
-  /** Objecttype */
-  objectType?: string | null;
-  /** Estimatedmass */
-  estimatedMass?: number | null;
-  /** Licensecountry */
-  licenseCountry?: string | null;
-  /** Internationaldesignator */
-  internationalDesignator?: string | null;
-  /** Objectheight */
-  objectHeight?: number | null;
-  /** Objectwidth */
-  objectWidth?: number | null;
-  /** Objectspan */
-  objectSpan?: number | null;
-  /** Launchingyear */
-  launchingYear?: number | null;
+  /** Survivability Comment */
+  survivability_comment?: string | null;
+  /** Executive Summary Comment */
+  executive_summary_comment?: string | null;
+  /** Immediate Response Comment */
+  immediate_response_comment?: string | null;
+  /** Uk Response Comment */
+  uk_response_comment?: string | null;
+  /** Damages Liability Comment */
+  damages_liability_comment?: string | null;
+  /** Press Attention Comment */
+  press_attention_comment?: string | null;
+  /** Object Name */
+  object_name?: string | null;
+  /** Object Type */
+  object_type?: string | null;
+  /** Estimated Mass */
+  estimated_mass?: number | null;
+  /** License Country */
+  license_country?: string | null;
+  /** International Designator */
+  international_designator?: string | null;
+  /** Object Height */
+  object_height?: number | null;
+  /** Object Width */
+  object_width?: number | null;
+  /** Object Span */
+  object_span?: number | null;
+  /** Launching Year */
+  launching_year?: number | null;
   /** Apogee */
   apogee?: number | null;
   /** Perigee */
   perigee?: number | null;
   /** Inclination */
   inclination?: number | null;
-  /** Approvedbyid */
-  approvedById?: string | null;
-  /** Approvedat */
-  approvedAt?: string | null;
-  /** Licensedcountry */
-  licensedCountry?: string | null;
-  /** Ukreentryprobability */
-  ukReentryProbability?: string | null;
+  /** Approved By Id */
+  approved_by_id?: string | null;
+  /** Approved At */
+  approved_at?: string | null;
+  /** Licensed Country */
+  licensed_country?: string | null;
+  /** Uk Reentry Probability */
+  uk_reentry_probability?: string | null;
 }
 
 /** ReentryEventPatch */
@@ -2686,98 +2686,98 @@ export interface TypeReentryEventReportOut {
    */
   id?: string;
   /**
-   * Createdat
+   * Created At
    * @format date-time
    */
-  createdAt?: string;
+  created_at?: string;
   /**
-   * Updatedat
+   * Updated At
    * @format date-time
    */
-  updatedAt?: string;
-  /** Shortid */
-  shortId: string;
-  /** Noradid */
-  noradId: string;
-  /** Tipexternalid */
-  tipExternalId?: string | null;
+  updated_at?: string;
+  /** Short Id */
+  short_id: string;
+  /** Norad Id */
+  norad_id: string;
+  /** Tip External Id */
+  tip_external_id?: string | null;
   /**
-   * Timewindowstart
+   * Time Window Start
    * @format date-time
    */
-  timeWindowStart: string;
+  time_window_start: string;
   /**
-   * Timewindowend
+   * Time Window End
    * @format date-time
    */
-  timeWindowEnd: string;
+  time_window_end: string;
   /**
-   * Decayepoch
+   * Decay Epoch
    * @format date-time
    */
-  decayEpoch: string;
-  /** Uncertaintywindow */
-  uncertaintyWindow?: number | null;
-  /** Reportnumber */
-  reportNumber: number;
-  /** Closedcomment */
-  closedComment?: string | null;
-  /** Executivesummarycomment */
-  executiveSummaryComment?: string | null;
-  /** Immediateresponsecomment */
-  immediateResponseComment?: string | null;
-  /** Ukresponsecomment */
-  ukResponseComment?: string | null;
-  /** Damagesliabilitycomment */
-  damagesLiabilityComment?: string | null;
-  /** Pressattentioncomment */
-  pressAttentionComment?: string | null;
-  /** Alerttype */
-  alertType: ("priority" | "standard" | "uk-licensed" | "closedown")[];
+  decay_epoch: string;
+  /** Uncertainty Window */
+  uncertainty_window?: number | null;
+  /** Report Number */
+  report_number: number;
+  /** Closed Comment */
+  closed_comment?: string | null;
+  /** Executive Summary Comment */
+  executive_summary_comment?: string | null;
+  /** Immediate Response Comment */
+  immediate_response_comment?: string | null;
+  /** Uk Response Comment */
+  uk_response_comment?: string | null;
+  /** Damages Liability Comment */
+  damages_liability_comment?: string | null;
+  /** Press Attention Comment */
+  press_attention_comment?: string | null;
+  /** Alert Type */
+  alert_type: ("priority" | "standard" | "uk-licensed" | "closedown")[];
   /**
-   * Reporttime
+   * Report Time
    * @format date-time
    */
-  reportTime: string;
-  /** Atmosphericprobability */
-  atmosphericProbability: number;
-  atmosphericRisk?: TypeRisk | null;
-  /** Fragmentsprobability */
-  fragmentsProbability?: number | null;
-  fragmentsRisk?: TypeRisk | null;
-  /** Fragmentsnumber */
-  fragmentsNumber?: number | null;
-  /** Humancasualtyprobability */
-  humanCasualtyProbability?: number | null;
-  humanCasualtyRisk?: TypeRisk | null;
+  report_time: string;
+  /** Atmospheric Probability */
+  atmospheric_probability: number;
+  atmospheric_risk?: TypeRisk | null;
+  /** Fragments Probability */
+  fragments_probability?: number | null;
+  fragments_risk?: TypeRisk | null;
+  /** Fragments Number */
+  fragments_number?: number | null;
+  /** Human Casualty Probability */
+  human_casualty_probability?: number | null;
+  human_casualty_risk?: TypeRisk | null;
   survivability: TypeReentrySurvivability;
-  /** Survivabilitycomment */
-  survivabilityComment?: string | null;
-  /** Overflighttime */
-  overflightTime: string[];
+  /** Survivability Comment */
+  survivability_comment?: string | null;
+  /** Overflight Time */
+  overflight_time: string[];
   /**
-   * Isactive
+   * Is Active
    * @default true
    */
-  isActive?: boolean;
-  /** Objectname */
-  objectName?: string | null;
-  /** Objecttype */
-  objectType?: string | null;
-  /** Estimatedmass */
-  estimatedMass?: number | null;
+  is_active?: boolean;
+  /** Object Name */
+  object_name?: string | null;
+  /** Object Type */
+  object_type?: string | null;
+  /** Estimated Mass */
+  estimated_mass?: number | null;
   /** Licensing Country */
   licensing_country?: string | null;
-  /** Internationaldesignator */
-  internationalDesignator?: string | null;
-  /** Objectheight */
-  objectHeight?: number | null;
-  /** Objectwidth */
-  objectWidth?: number | null;
-  /** Objectspan */
-  objectSpan?: number | null;
-  /** Launchingyear */
-  launchingYear?: number | null;
+  /** International Designator */
+  international_designator?: string | null;
+  /** Object Height */
+  object_height?: number | null;
+  /** Object Width */
+  object_width?: number | null;
+  /** Object Span */
+  object_span?: number | null;
+  /** Launching Year */
+  launching_year?: number | null;
   /** Apogee */
   apogee?: number | null;
   /** Perigee */
@@ -2786,16 +2786,16 @@ export interface TypeReentryEventReportOut {
   inclination?: number | null;
   impact?: TypeReentryEventReportImpact | null;
   /**
-   * Filename
+   * File Name
    * @default "unknown-filename.json"
    */
-  fileName?: string;
-  /** Uploadedbyid */
-  uploadedById?: string | null;
-  /** Deletedbyid */
-  deletedById?: string | null;
-  /** Presignedurl */
-  presignedUrl?: string | null;
+  file_name?: string;
+  /** Uploaded By Id */
+  uploaded_by_id?: string | null;
+  /** Deleted By Id */
+  deleted_by_id?: string | null;
+  /** Presigned Url */
+  presigned_url?: string | null;
 }
 
 /** ReentryEventSortBy */
@@ -2867,21 +2867,21 @@ export interface TypeSatelliteObservationsData {
 
 /** SatelliteOrganizationOut */
 export interface TypeSatelliteOrganizationOut {
-  /** Noradid */
-  noradId: string;
-  /** Commonname */
-  commonName: string;
+  /** Norad Id */
+  norad_id: string;
+  /** Common Name */
+  common_name: string;
   /**
-   * Organizationid
+   * Organization Id
    * @format uuid
    */
-  organizationId: string;
-  /** Organizationname */
-  organizationName?: string | null;
-  /** Internationaldesignator */
-  internationalDesignator: string;
-  /** Esadiscosid */
-  esaDiscosId?: string | null;
+  organization_id: string;
+  /** Organization Name */
+  organization_name?: string | null;
+  /** International Designator */
+  international_designator: string;
+  /** Esa Discos Id */
+  esa_discos_id?: string | null;
 }
 
 /** SatelliteOut */
@@ -2891,26 +2891,26 @@ export interface TypeSatelliteOut {
    * @format uuid
    */
   id: string;
-  /** Ismonitored */
-  isMonitored: boolean;
-  /** Commonname */
-  commonName: string;
-  /** Noradid */
-  noradId?: string | null;
-  /** Esaupdatetime */
-  esaUpdateTime?: string | null;
-  /** Esadiscosid */
-  esaDiscosId?: string | null;
-  /** Internationaldesignator */
-  internationalDesignator: string;
-  /** Objecttype */
-  objectType?: string | null;
-  /** Licensecountry */
-  licenseCountry?: string | null;
-  /** Launchdate */
-  launchDate?: string | null;
-  /** Launchsite */
-  launchSite?: string | null;
+  /** Is Monitored */
+  is_monitored: boolean;
+  /** Common Name */
+  common_name: string;
+  /** Norad Id */
+  norad_id?: string | null;
+  /** Esa Update Time */
+  esa_update_time?: string | null;
+  /** Esa Discos Id */
+  esa_discos_id?: string | null;
+  /** International Designator */
+  international_designator: string;
+  /** Object Type */
+  object_type?: string | null;
+  /** License Country */
+  license_country?: string | null;
+  /** Launch Date */
+  launch_date?: string | null;
+  /** Launch Site */
+  launch_site?: string | null;
   /** Apogee */
   apogee?: string | null;
   /** Perigee */
@@ -2919,8 +2919,8 @@ export interface TypeSatelliteOut {
   inclination?: number | null;
   /** Period */
   period?: number | null;
-  /** Organizationid */
-  organizationId?: string | null;
+  /** Organization Id */
+  organization_id?: string | null;
   /** Mass */
   mass?: number | null;
   /** Height */
@@ -2933,16 +2933,16 @@ export interface TypeSatelliteOut {
   diameter?: number | null;
   /** Span */
   span?: number | null;
-  /** Crosssectionmin */
-  crossSectionMin?: number | null;
-  /** Crosssectionavg */
-  crossSectionAvg?: number | null;
-  /** Crosssectionmax */
-  crossSectionMax?: number | null;
+  /** Cross Section Min */
+  cross_section_min?: number | null;
+  /** Cross Section Avg */
+  cross_section_avg?: number | null;
+  /** Cross Section Max */
+  cross_section_max?: number | null;
   /** Shape */
   shape?: string | null;
-  /** Objectclass */
-  objectClass?: string | null;
+  /** Object Class */
+  object_class?: string | null;
 }
 
 /** SatelliteUpdateIn */
@@ -2963,26 +2963,26 @@ export interface TypeSatelliteWithMetadataOut {
    * @format uuid
    */
   id: string;
-  /** Ismonitored */
-  isMonitored: boolean;
-  /** Commonname */
-  commonName: string;
-  /** Noradid */
-  noradId?: string | null;
-  /** Esaupdatetime */
-  esaUpdateTime?: string | null;
-  /** Esadiscosid */
-  esaDiscosId?: string | null;
-  /** Internationaldesignator */
-  internationalDesignator: string;
-  /** Objecttype */
-  objectType?: string | null;
-  /** Licensecountry */
-  licenseCountry?: string | null;
-  /** Launchdate */
-  launchDate?: string | null;
-  /** Launchsite */
-  launchSite?: string | null;
+  /** Is Monitored */
+  is_monitored: boolean;
+  /** Common Name */
+  common_name: string;
+  /** Norad Id */
+  norad_id?: string | null;
+  /** Esa Update Time */
+  esa_update_time?: string | null;
+  /** Esa Discos Id */
+  esa_discos_id?: string | null;
+  /** International Designator */
+  international_designator: string;
+  /** Object Type */
+  object_type?: string | null;
+  /** License Country */
+  license_country?: string | null;
+  /** Launch Date */
+  launch_date?: string | null;
+  /** Launch Site */
+  launch_site?: string | null;
   /** Apogee */
   apogee?: string | null;
   /** Perigee */
@@ -2991,8 +2991,8 @@ export interface TypeSatelliteWithMetadataOut {
   inclination?: number | null;
   /** Period */
   period?: number | null;
-  /** Organizationid */
-  organizationId?: string | null;
+  /** Organization Id */
+  organization_id?: string | null;
   /** Mass */
   mass?: number | null;
   /** Height */
@@ -3005,26 +3005,26 @@ export interface TypeSatelliteWithMetadataOut {
   diameter?: number | null;
   /** Span */
   span?: number | null;
-  /** Crosssectionmin */
-  crossSectionMin?: number | null;
-  /** Crosssectionavg */
-  crossSectionAvg?: number | null;
-  /** Crosssectionmax */
-  crossSectionMax?: number | null;
+  /** Cross Section Min */
+  cross_section_min?: number | null;
+  /** Cross Section Avg */
+  cross_section_avg?: number | null;
+  /** Cross Section Max */
+  cross_section_max?: number | null;
   /** Shape */
   shape?: string | null;
-  /** Objectclass */
-  objectClass?: string | null;
+  /** Object Class */
+  object_class?: string | null;
   /** Metadata */
   metadata: object;
 }
 
 /** SatellitesCountByOrganizationOut */
 export interface TypeSatellitesCountByOrganizationOut {
-  /** Organizationname */
-  organizationName: string;
-  /** Satellitescount */
-  satellitesCount: number;
+  /** Organization Name */
+  organization_name: string;
+  /** Satellites Count */
+  satellites_count: number;
 }
 
 /** SatellitesInOrganizationsSortBy */
@@ -3047,8 +3047,8 @@ export type TypeSortOrder = "asc" | "desc";
 
 /** StatisticsConjunctionEventsByObjectTypeMonthlyCount */
 export interface TypeStatisticsConjunctionEventsByObjectTypeMonthlyCount {
-  /** Eventtype */
-  eventType?: string | null;
+  /** Event Type */
+  event_type?: string | null;
   /** Month */
   month?: string | null;
   /** Count */
@@ -3063,8 +3063,8 @@ export interface TypeStatisticsConjunctionEventsCount {
 
 /** StatisticsConjunctionEventsMonthlyCount */
 export interface TypeStatisticsConjunctionEventsMonthlyCount {
-  /** Collisionprobabilityrange */
-  collisionProbabilityRange: string;
+  /** Collision Probability Range */
+  collision_probability_range: string;
   /** Month */
   month?: string | null;
   /** Count */
@@ -3079,43 +3079,43 @@ export interface TypeStatisticsEventsByOrganization {
   id?: string | null;
   /** Events */
   events: number;
-  /** Collisionprobabilityrange */
-  collisionProbabilityRange: string;
+  /** Collision Probability Range */
+  collision_probability_range: string;
 }
 
 /** StatisticsEventsBySatellite */
 export interface TypeStatisticsEventsBySatellite {
-  /** Commonname */
-  commonName: string;
-  /** Noradid */
-  noradId: string;
+  /** Common Name */
+  common_name: string;
+  /** Norad Id */
+  norad_id: string;
   /** Events */
   events: number;
-  /** Collisionprobabilityrange */
-  collisionProbabilityRange: string;
-  /** Organizationname */
-  organizationName: string;
+  /** Collision Probability Range */
+  collision_probability_range: string;
+  /** Organization Name */
+  organization_name: string;
 }
 
 /** StatisticsEventsType */
 export interface TypeStatisticsEventsType {
-  /** Eventtype */
-  eventType: string;
+  /** Event Type */
+  event_type: string;
   /** Count */
   count: number;
 }
 
 /** StatisticsFragmentationEventsAndAlertsCount */
 export interface TypeStatisticsFragmentationEventsAndAlertsCount {
-  /** Objecttype */
-  objectType: string;
+  /** Object Type */
+  object_type: string;
   /** Count */
   count: number;
 }
 
 /** StatisticsFragmentationEventsByFragmentationTypeMonthlyCount */
 export interface TypeStatisticsFragmentationEventsByFragmentationTypeMonthlyCount {
-  fragmentationType: TypeFragmentationType;
+  fragmentation_type: TypeFragmentationType;
   /** Month */
   month?: string | null;
   /** Count */
@@ -3124,8 +3124,8 @@ export interface TypeStatisticsFragmentationEventsByFragmentationTypeMonthlyCoun
 
 /** StatisticsFragmentationEventsByObjectTypeMonthlyCount */
 export interface TypeStatisticsFragmentationEventsByObjectTypeMonthlyCount {
-  /** Objecttype */
-  objectType?: string | null;
+  /** Object Type */
+  object_type?: string | null;
   /** Month */
   month?: string | null;
   /** Count */
@@ -3134,8 +3134,8 @@ export interface TypeStatisticsFragmentationEventsByObjectTypeMonthlyCount {
 
 /** StatisticsFragmentationEventsCountByFragmentationType */
 export interface TypeStatisticsFragmentationEventsCountByFragmentationType {
-  /** Fragmentationtype */
-  fragmentationType: string;
+  /** Fragmentation Type */
+  fragmentation_type: string;
   /** Count */
   count: number;
 }
@@ -3150,8 +3150,8 @@ export interface TypeStatisticsFragmentationEventsMonthlyCount {
 
 /** StatisticsHighestUpcomingCollisionProbability */
 export interface TypeStatisticsHighestUpcomingCollisionProbability {
-  /** Collisionprobability */
-  collisionProbability: number;
+  /** Collision Probability */
+  collision_probability: number;
 }
 
 /** StatisticsMonthlyCount */
@@ -3168,8 +3168,8 @@ export interface TypeStatisticsMonthlyRunningSum {
   month: string;
   /** Count */
   count: number;
-  /** Runningtotal */
-  runningTotal: number;
+  /** Running Total */
+  running_total: number;
 }
 
 /** StatisticsNotificationsSent */
@@ -3192,8 +3192,8 @@ export interface TypeStatisticsReentryEventReportsCount {
 
 /** StatisticsReentryEventsAndAlertsCount */
 export interface TypeStatisticsReentryEventsAndAlertsCount {
-  /** Objecttype */
-  objectType: string;
+  /** Object Type */
+  object_type: string;
   /** Count */
   count: number;
 }
@@ -3204,14 +3204,14 @@ export interface TypeStatisticsReentryEventsAndAlertsMonthlyCount {
   month: string;
   /** Count */
   count: number;
-  /** Alertcount */
-  alertCount: number;
+  /** Alert Count */
+  alert_count: number;
 }
 
 /** StatisticsReentryEventsByObjectTypeMonthlyCount */
 export interface TypeStatisticsReentryEventsByObjectTypeMonthlyCount {
-  /** Objecttype */
-  objectType?: string | null;
+  /** Object Type */
+  object_type?: string | null;
   /** Month */
   month?: string | null;
   /** Count */
@@ -3226,8 +3226,8 @@ export interface TypeStatisticsReentryEventsCount {
 
 /** StatisticsSatelliteTracked */
 export interface TypeStatisticsSatelliteTracked {
-  /** Objecttype */
-  objectType: string;
+  /** Object Type */
+  object_type: string;
   /** Count */
   count: number;
 }
@@ -3240,33 +3240,33 @@ export interface TypeTIPOut {
    */
   id?: string;
   /**
-   * Createdat
+   * Created At
    * @format date-time
    */
-  createdAt?: string;
+  created_at?: string;
   /**
-   * Updatedat
+   * Updated At
    * @format date-time
    */
-  updatedAt?: string;
-  /** Noradid */
-  noradId: string;
-  /** Externalid */
-  externalId: string;
+  updated_at?: string;
+  /** Norad Id */
+  norad_id: string;
+  /** External Id */
+  external_id: string;
   /**
-   * Creationdate
+   * Creation Date
    * @format date-time
    */
-  creationDate: string;
-  /** Insertepoch */
-  insertEpoch: string | null;
+  creation_date: string;
+  /** Insert Epoch */
+  insert_epoch: string | null;
   /**
-   * Decayepoch
+   * Decay Epoch
    * @format date-time
    */
-  decayEpoch: string;
-  /** Uncertaintywindow */
-  uncertaintyWindow: number;
+  decay_epoch: string;
+  /** Uncertainty Window */
+  uncertainty_window: number;
   direction: TypeReentryDirection;
   /** Latitude */
   latitude: number;
@@ -3277,29 +3277,29 @@ export interface TypeTIPOut {
   orbit: number;
   /** Inclination */
   inclination: number;
-  /** Nextreporttime */
-  nextReportTime?: number | null;
+  /** Next Report Time */
+  next_report_time?: number | null;
   /** @default "SpaceTrack" */
   source?: TypeExternalDataProvider;
   /**
-   * Timewindowstart
+   * Time Window Start
    * @format date-time
    */
-  timeWindowStart?: string;
+  time_window_start?: string;
   /**
-   * Timewindowend
+   * Time Window End
    * @format date-time
    */
-  timeWindowEnd: string;
+  time_window_end: string;
   /**
-   * Isactive
+   * Is Active
    * @default true
    */
-  isActive?: boolean;
-  /** Uploadedbyid */
-  uploadedById?: string | null;
-  /** Deletedbyid */
-  deletedById?: string | null;
+  is_active?: boolean;
+  /** Uploaded By Id */
+  uploaded_by_id?: string | null;
+  /** Deleted By Id */
+  deleted_by_id?: string | null;
 }
 
 /** Threshold */
@@ -3333,73 +3333,73 @@ export type TypeTimeSystem =
 
 /** UniqueEventOut */
 export interface TypeUniqueEventOut {
-  /** Shortid */
-  shortId: string;
+  /** Short Id */
+  short_id: string;
   /**
-   * Createdat
+   * Created At
    * @format date-time
    */
-  createdAt?: string;
+  created_at?: string;
   /**
-   * Updatedat
+   * Updated At
    * @format date-time
    */
-  updatedAt?: string;
-  /** Primaryobjectnoradid */
-  primaryObjectNoradId: string;
-  /** Secondaryobjectnoradid */
-  secondaryObjectNoradId: string;
-  /** Primaryobjectcommonname */
-  primaryObjectCommonName?: string | null;
-  /** Secondaryobjectcommonname */
-  secondaryObjectCommonName?: string | null;
+  updated_at?: string;
+  /** Primary Object Norad Id */
+  primary_object_norad_id: string;
+  /** Secondary Object Norad Id */
+  secondary_object_norad_id: string;
+  /** Primary Object Common Name */
+  primary_object_common_name?: string | null;
+  /** Secondary Object Common Name */
+  secondary_object_common_name?: string | null;
   /**
    * Tca
    * @format date-time
    */
   tca: string;
-  /** Maximumcollisionprobability */
-  maximumCollisionProbability?: number | null;
-  /** Reportnumber */
-  reportNumber?: number | null;
+  /** Maximum Collision Probability */
+  maximum_collision_probability?: number | null;
+  /** Report Number */
+  report_number?: number | null;
   risk?: TypeRisk | null;
-  /** Closedcomment */
-  closedComment?: string | null;
-  /** Executivesummarycomment */
-  executiveSummaryComment?: string | null;
-  /** Immediateimpactcomment */
-  immediateImpactComment?: string | null;
-  /** Longtermimpactcomment */
-  longTermImpactComment?: string | null;
-  /** Manoeuvrecomment */
-  manoeuvreComment?: string | null;
-  /** Pressattentioncomment */
-  pressAttentionComment?: string | null;
-  /** Riskataltitudecomment */
-  riskAtAltitudeComment?: string | null;
-  /** Shorttermimpactcomment */
-  shortTermImpactComment?: string | null;
-  /** Ukresponsecomment */
-  ukResponseComment?: string | null;
-  /** Missdistance */
-  missDistance?: number | null;
-  /** Radialmissdistance */
-  radialMissDistance?: number | null;
-  /** Collisionprobabilityuksa */
-  collisionProbabilityUksa?: number | null;
-  /** Collisionprobabilityst */
-  collisionProbabilitySt?: number | null;
-  /** Cdmexternalid */
-  cdmExternalId?: string | null;
-  /** Cdmcreationdate */
-  cdmCreationDate?: string | null;
+  /** Closed Comment */
+  closed_comment?: string | null;
+  /** Executive Summary Comment */
+  executive_summary_comment?: string | null;
+  /** Immediate Impact Comment */
+  immediate_impact_comment?: string | null;
+  /** Long Term Impact Comment */
+  long_term_impact_comment?: string | null;
+  /** Manoeuvre Comment */
+  manoeuvre_comment?: string | null;
+  /** Press Attention Comment */
+  press_attention_comment?: string | null;
+  /** Risk At Altitude Comment */
+  risk_at_altitude_comment?: string | null;
+  /** Short Term Impact Comment */
+  short_term_impact_comment?: string | null;
+  /** Uk Response Comment */
+  uk_response_comment?: string | null;
+  /** Miss Distance */
+  miss_distance?: number | null;
+  /** Radial Miss Distance */
+  radial_miss_distance?: number | null;
+  /** Collision Probability Uksa */
+  collision_probability_uksa?: number | null;
+  /** Collision Probability St */
+  collision_probability_st?: number | null;
+  /** Cdm External Id */
+  cdm_external_id?: string | null;
+  /** Cdm Creation Date */
+  cdm_creation_date?: string | null;
 }
 
 /** UniqueEventUpdateTextFieldsIn */
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-02-12T22:40:40.925572"
+   * @default "2026-02-20T09:39:30.634690"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3536,28 +3536,28 @@ export interface TypeUserOut {
    * @format uuid
    */
   id: string;
-  /** Firstname */
-  firstName?: string | null;
-  /** Lastname */
-  lastName?: string | null;
+  /** First Name */
+  first_name?: string | null;
+  /** Last Name */
+  last_name?: string | null;
   /**
    * Email
    * @format email
    */
   email: string;
-  /** Phonenumber */
-  phoneNumber?: string | null;
+  /** Phone Number */
+  phone_number?: string | null;
   /** @default "SATELLITE_OPERATOR_USER" */
   role?: TypeUserRole;
-  /** Isactive */
-  isActive: boolean;
+  /** Is Active */
+  is_active: boolean;
   /**
-   * Organizationid
+   * Organization Id
    * @format uuid
    */
-  organizationId: string;
-  /** Accountdetailsconfirmedat */
-  accountDetailsConfirmedAt?: string | null;
+  organization_id: string;
+  /** Account Details Confirmed At */
+  account_details_confirmed_at?: string | null;
 }
 
 /** UserRole */
@@ -3613,15 +3613,15 @@ export interface TypeValidationError {
 
 /** _AdditionalAnalysis */
 export interface TypeAdditionalAnalysis {
-  /** Collisionprobability */
-  collisionProbability: number;
-  /** Collisionprobabilitymethod */
-  collisionProbabilityMethod: string;
+  /** Collision Probability */
+  collision_probability: number;
+  /** Collision Probability Method */
+  collision_probability_method: string;
   /**
-   * Updatetime
+   * Update Time
    * @format date-time
    */
-  updateTime: string;
+  update_time: string;
 }
 
 /** _OverflightProbability */

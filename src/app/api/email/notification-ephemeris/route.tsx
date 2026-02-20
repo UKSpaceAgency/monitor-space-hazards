@@ -6,13 +6,13 @@ export async function POST(
   request: Request,
 ) {
   try {
-    const { commonName, noradId } = await request.json();
+    const { common_name, norad_id } = await request.json();
 
-    if (!commonName || !noradId) {
+    if (!common_name || !norad_id) {
       return Response.json({ error: 'Invalid request' }, { status: 400, statusText: 'Invalid request' });
     }
 
-    const html = await render(<NewEphemerisEmail commonName={commonName} noradId={noradId} withPlaceholders />);
+    const html = await render(<NewEphemerisEmail commonName={common_name} noradId={norad_id} withPlaceholders />);
 
     return Response.json({
       html,

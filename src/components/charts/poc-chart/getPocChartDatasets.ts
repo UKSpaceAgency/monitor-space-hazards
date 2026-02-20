@@ -18,12 +18,12 @@ export const getPocChartDatasets = ({ sortedData, specialData, showSpecial, tca 
       label: 'Space-Track',
       data: sortedData
         .filter(
-          data => data.primaryObjectCdmType !== 'Special owner/operator ephemeris'
-            && data.dataSource === 'Space-Track CDM',
+          data => data.primary_object_cdm_type !== 'Special owner/operator ephemeris'
+            && data.data_source === 'Space-Track CDM',
         )
         .map(data => ({
-          x: data.updateTime as any,
-          y: data.collisionProbability as any,
+          x: data.update_time as any,
+          y: data.collision_probability as any,
         })),
       borderColor: brandColors.SpaceTrack,
       backgroundColor: brandColors.SpaceTrack,
@@ -32,12 +32,12 @@ export const getPocChartDatasets = ({ sortedData, specialData, showSpecial, tca 
       label: 'UKSA',
       data: sortedData
         .filter(
-          data => data.primaryObjectCdmType !== 'Special owner/operator ephemeris'
-            && data.dataSource !== 'Space-Track CDM',
+          data => data.primary_object_cdm_type !== 'Special owner/operator ephemeris'
+            && data.data_source !== 'Space-Track CDM',
         )
         .map(data => ({
-          x: data.updateTime as any,
-          y: data.collisionProbability as any,
+          x: data.update_time as any,
+          y: data.collision_probability as any,
         })),
       borderColor: brandColors.UKSA,
       backgroundColor: brandColors.UKSA,
@@ -48,8 +48,8 @@ export const getPocChartDatasets = ({ sortedData, specialData, showSpecial, tca 
             label: 'Special ephemeris',
             type: 'scatter' as const,
             data: specialData.map(data => ({
-              x: data.updateTime as any,
-              y: data.collisionProbability as any,
+              x: data.update_time as any,
+              y: data.collision_probability as any,
             })),
             pointStyle: 'triangle',
             pointRadius: 5,
@@ -59,7 +59,7 @@ export const getPocChartDatasets = ({ sortedData, specialData, showSpecial, tca 
       : []),
   ],
   labels: eachDayOfInterval({
-    start: dayjs(sortedData[0]?.updateTime),
+    start: dayjs(sortedData[0]?.update_time),
     end: dayjs(tca).add(1, 'day'),
   }),
 });

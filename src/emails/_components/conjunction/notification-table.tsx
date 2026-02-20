@@ -25,15 +25,15 @@ const ConjunctionNotificationTable = ({ conjunctions, isAnalysis }: ConjunctionN
   const url = `${env.NEXTAUTH_URL}/conjunctions`;
 
   const data = conjunctions.map(conjunction => [
-    <Link key={conjunction.shortId} href={`${url}/${conjunction.shortId}`}>
-      {conjunction.primaryObjectCommonName}
+    <Link key={conjunction.short_id} href={`${url}/${conjunction.short_id}`}>
+      {conjunction.primary_object_common_name}
       {' '}
       vs
       {' '}
-      {conjunction.secondaryObjectCommonName}
+      {conjunction.secondary_object_common_name}
     </Link>,
-    dayjs(conjunction.tcaTime).format(FORMAT_FULL_DATE_TIME_WITH_UTC),
-    isNumber(conjunction.collisionProbability) ? displayExponential(conjunction.collisionProbability, 4) : 'Unknown',
+    dayjs(conjunction.tca_time).format(FORMAT_FULL_DATE_TIME_WITH_UTC),
+    isNumber(conjunction.collision_probability) ? displayExponential(conjunction.collision_probability, 4) : 'Unknown',
   ]);
   return <DataTable headers={[t('objects'), t('tca'), t('poc')]} data={data} className="pb-6" />;
 };

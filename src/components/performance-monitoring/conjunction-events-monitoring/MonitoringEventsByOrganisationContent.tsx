@@ -20,7 +20,7 @@ type PerformanceMonitoringConjunctionEventsByOrganisationContentProps = {
   isAnalysist: boolean;
 };
 
-type DataRangeType = 0 | 7 | 31 | 182;
+type DataRangeType = 0 | 7 | 30 | 182;
 
 const MonitoringEventsByOrganisationContent = ({ isAnalysist }: PerformanceMonitoringConjunctionEventsByOrganisationContentProps) => {
   const t = useTranslations('Charts.Events_by_organisation');
@@ -64,7 +64,7 @@ const MonitoringEventsByOrganisationContent = ({ isAnalysist }: PerformanceMonit
   }, [data]);
 
   const filteredData = useMemo(() => {
-    return [...(organisation ? (data || []).filter(obj => obj.name === organisation) : data || [])].sort((a, b) => b.totalEvents - a.totalEvents);
+    return [...(organisation ? (data || []).filter(obj => obj.name === organisation) : data || [])].sort((a, b) => b.total_events - a.total_events);
   }, [organisation, data]);
 
   const selectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -82,7 +82,7 @@ const MonitoringEventsByOrganisationContent = ({ isAnalysist }: PerformanceMonit
           endDate: TODAY_DATE_TIME.format(FORMAT_API_DATE_TIME),
         });
         break;
-      case 31:
+      case 30:
         setDates({
           startDate: TODAY_DATE_TIME.subtract(1, 'month').format(FORMAT_API_DATE_TIME),
           endDate: TODAY_DATE_TIME.format(FORMAT_API_DATE_TIME),

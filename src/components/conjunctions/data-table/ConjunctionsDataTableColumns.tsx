@@ -20,7 +20,7 @@ export const getConjunctionEventsColumns = ({
   probabilityUnit,
 }: ConjunctionsDataTableColumns): TranslatedColumnDef<TypeEventOut>[] => [
   {
-    id: 'baseData',
+    id: 'base_data',
     header: 'Conjunctions.table.event_information',
     enableSorting: false,
     columns: [
@@ -34,13 +34,13 @@ export const getConjunctionEventsColumns = ({
         },
       },
       {
-        id: 'shortId',
-        accessorKey: 'shortId',
+        id: 'short_id',
+        accessorKey: 'short_id',
         header: 'Conjunctions.table.event_id',
-        cell: ({ getValue, row: { original: { reportNumber } } }) => {
+        cell: ({ getValue, row: { original: { report_number } } }) => {
           const value = getValue<string>();
 
-          const href = reportNumber && reportNumber > 0 && haveAccessToAlerts
+          const href = report_number && report_number > 0 && haveAccessToAlerts
             ? `/conjunctions/${value}/alert`
             : `/conjunctions/${value}`;
 
@@ -59,12 +59,12 @@ export const getConjunctionEventsColumns = ({
     enableSorting: false,
     columns: [
       {
-        id: 'primaryObjectCommonName',
-        accessorKey: 'primaryObjectCommonName',
+        id: 'primary_object_common_name',
+        accessorKey: 'primary_object_common_name',
         header: 'Conjunctions.table.primary_object',
         cell: ({ row, getValue }) => (
           <Link
-            href={`/satellites/${row?.original.primaryObjectNoradId}`}
+            href={`/satellites/${row?.original.primary_object_norad_id}`}
             className="govuk-link"
           >
             {getValue<string>()}
@@ -72,8 +72,8 @@ export const getConjunctionEventsColumns = ({
         ),
       },
       {
-        id: 'secondaryObjectCommonName',
-        accessorKey: 'secondaryObjectCommonName',
+        id: 'secondary_object_common_name',
+        accessorKey: 'secondary_object_common_name',
         header: 'Conjunctions.table.secondary_object',
         cell: ({ row, getValue }) => {
           const value = getValue<string>();
@@ -83,7 +83,7 @@ export const getConjunctionEventsColumns = ({
             return isAnalyst
               ? (
                   <Link
-                    href={`/satellites/${row?.original.secondaryObjectNoradId}`}
+                    href={`/satellites/${row?.original.secondary_object_norad_id}`}
                     className="govuk-link"
                   >
                     {value}
@@ -98,45 +98,45 @@ export const getConjunctionEventsColumns = ({
     ],
   },
   {
-    id: 'probabilityOfCollision',
+    id: 'probability_of_collision',
     header: 'Conjunctions.table.probability_of_collision',
     columns: [
       {
-        id: 'collisionProbability',
-        accessorKey: 'collisionProbability',
+        id: 'collision_probability',
+        accessorKey: 'collision_probability',
         header: 'Conjunctions.table.poc_space_track',
         size: 200,
         cell: ({ getValue }) => {
-          const collisionProbability = getValue<number>();
-          if (collisionProbability === undefined) {
+          const collision_probability = getValue<number>();
+          if (collision_probability === undefined) {
             return '-';
           }
 
           if (probabilityUnit === 'percentage') {
-            return `${(collisionProbability * 100).toFixed(2)}%`;
+            return `${(collision_probability * 100).toFixed(2)}%`;
           }
-          return displayExponential(collisionProbability, 4);
+          return displayExponential(collision_probability, 4);
         },
       },
       {
-        id: 'collisionProbabilityUksa',
-        accessorKey: 'collisionProbabilityUksa',
+        id: 'collision_probability_uksa',
+        accessorKey: 'collision_probability_uksa',
         header: 'Conjunctions.table.poc_uksa',
         cell: ({ getValue }) => {
-          const collisionProbability = getValue<number>();
-          if (collisionProbability === undefined) {
+          const collision_probability = getValue<number>();
+          if (collision_probability === undefined) {
             return '-';
           }
 
           if (probabilityUnit === 'percentage') {
-            return `${(collisionProbability * 100).toFixed(2)}%`;
+            return `${(collision_probability * 100).toFixed(2)}%`;
           }
-          return displayExponential(collisionProbability, 4);
+          return displayExponential(collision_probability, 4);
         },
       },
       {
-        id: 'missDistance',
-        accessorKey: 'missDistance',
+        id: 'miss_distance',
+        accessorKey: 'miss_distance',
         header: 'Conjunctions.table.total_miss_distance',
       },
     ],
@@ -146,8 +146,8 @@ export const getConjunctionEventsColumns = ({
     enableSorting: false,
     columns: [
       {
-        id: 'tcaTime',
-        accessorKey: 'tcaTime',
+        id: 'tca_time',
+        accessorKey: 'tca_time',
         header: 'Conjunctions.table.date',
         cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_DATE_FULL_MONTH),
       },
@@ -155,7 +155,7 @@ export const getConjunctionEventsColumns = ({
         id: 'time',
         enableSorting: false,
         header: 'Conjunctions.table.time',
-        cell: ({ row }) => dayjs(row.original.tcaTime).format(FORMAT_TIME),
+        cell: ({ row }) => dayjs(row.original.tca_time).format(FORMAT_TIME),
       },
     ],
   },

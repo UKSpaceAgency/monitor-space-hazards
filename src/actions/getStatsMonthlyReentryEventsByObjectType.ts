@@ -20,10 +20,10 @@ export async function getStatsMonthlyReentryEventsByObjectType(query?: TypeGetSt
   const groupedByMonth = groupBy(data, 'month');
 
   const groupedData = Object.entries(groupedByMonth).map(([month, events]) => {
-    const DEBRIS = events.find(event => event.objectType === 'Debris')?.count || 0;
-    const PAYLOAD = events.find(event => event.objectType === 'Payload')?.count || 0;
-    const ROCKET_BODY = events.find(event => event.objectType === 'Rocket Body')?.count || 0;
-    const UNKNOWN = events.find(event => event.objectType === 'Unknown')?.count || 0;
+    const DEBRIS = events.find(event => event.object_type === 'Debris')?.count || 0;
+    const PAYLOAD = events.find(event => event.object_type === 'Payload')?.count || 0;
+    const ROCKET_BODY = events.find(event => event.object_type === 'Rocket Body')?.count || 0;
+    const UNKNOWN = events.find(event => event.object_type === 'Unknown')?.count || 0;
     return {
       month: dayjs(month).format('MM/YYYY'),
       DEBRIS,

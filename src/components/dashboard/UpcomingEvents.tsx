@@ -20,7 +20,7 @@ const UpcomingEvents = async ({ className, title, conjunctionTitle, reentryTitle
     },
     // {
     //   title: highestPocTitle,
-    //   value: displayExponential(highestPOC.data.collisionProbability, 3),
+    //   value: displayExponential(highestPOC.data.collision_probability, 3),
     // },
     {
       title: reentryTitle,

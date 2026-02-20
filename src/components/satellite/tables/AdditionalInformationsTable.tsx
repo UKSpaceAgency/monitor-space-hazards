@@ -4,7 +4,7 @@ import type { TypeSatelliteOut } from '@/__generated__/data-contracts';
 import type { InformationsTableHeaderWidth, InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 
-type AdditionalInformations = Pick<TypeSatelliteOut, 'shape' | 'mass' | 'crossSectionAvg' | 'crossSectionMax' | 'crossSectionMin' | 'height' | 'width' | 'depth' | 'span' | 'diameter'>;
+type AdditionalInformations = Pick<TypeSatelliteOut, 'shape' | 'mass' | 'cross_section_avg' | 'cross_section_max' | 'cross_section_min' | 'height' | 'width' | 'depth' | 'span' | 'diameter'>;
 
 type AdditionalInformationsTableProps = {
   object: AdditionalInformations | AdditionalInformations[];
@@ -35,16 +35,16 @@ const AdditionalInformationsTable = async ({ object, headerCellWidth }: Addition
     accessorKey: 'mass',
   }, {
     header: t('Additional.cross_section_avg'),
-    accessorKey: 'crossSectionAvg',
-    renderCell: row => row.crossSectionAvg?.toFixed(3) ?? '-',
+    accessorKey: 'cross_section_avg',
+    renderCell: row => row.cross_section_avg?.toFixed(3) ?? '-',
   }, {
     header: t('Additional.cross_section_max'),
-    accessorKey: 'crossSectionMax',
-    renderCell: row => row.crossSectionMax?.toFixed(3) ?? '-',
+    accessorKey: 'cross_section_max',
+    renderCell: row => row.cross_section_max?.toFixed(3) ?? '-',
   }, {
     header: t('Additional.cross_section_min'),
-    accessorKey: 'crossSectionMin',
-    renderCell: row => row.crossSectionMin?.toFixed(3) ?? '-',
+    accessorKey: 'cross_section_min',
+    renderCell: row => row.cross_section_min?.toFixed(3) ?? '-',
   }, {
     header: t('Additional.height'),
     accessorKey: 'height',

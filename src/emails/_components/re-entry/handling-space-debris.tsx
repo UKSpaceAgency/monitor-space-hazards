@@ -35,10 +35,10 @@ export const ReentryHandlingSpaceDebris = ({ event }: ReentryHandlingSpaceDebris
           ul: chunks => <ul className="list-disc pl-4">{chunks}</ul>,
           li: chunks => <li className="text-sm">{chunks}</li>,
         })}
-        {event?.ukResponseComment
+        {event?.uk_response_comment
         && (
           <Markdown>
-            {event.ukResponseComment}
+            {event.uk_response_comment}
           </Markdown>
         )}
       </Section>

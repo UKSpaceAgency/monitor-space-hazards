@@ -20,9 +20,9 @@ export async function generateMetadata(props: PageProps) {
   const t = await getTranslations('Reentry_alert_edit');
   const { shortId } = await props.params;
   const event = await getReentryEvent(shortId);
-  const satellite = await getSatellite(event.noradId);
+  const satellite = await getSatellite(event.norad_id);
   return {
-    title: t('title', { objectName: satellite.commonName }),
+    title: t('title', { objectName: satellite.common_name }),
   };
 }
 

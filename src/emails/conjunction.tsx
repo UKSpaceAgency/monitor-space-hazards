@@ -29,14 +29,14 @@ function ConjunctionEmail({ report, event, withPlaceholders }: ConjunctionEmailP
     messages,
   });
 
-  const eventLink = `${env.NEXTAUTH_URL}/conjunctions/${report.shortId}/alert`;
+  const eventLink = `${env.NEXTAUTH_URL}/conjunctions/${report.short_id}/alert`;
 
   return (
     <Layout
       eventType="conjunction"
-      shortId={report.shortId}
-      title={t('Conjunction_alert.title', { risk: report.risk, reportNumber: report.reportNumber })}
-      subtitle={`${report.primaryObjectCommonName} vs ${report.secondaryObjectCommonName}`}
+      shortId={report.short_id}
+      title={t('Conjunction_alert.title', { risk: report.risk, reportNumber: report.report_number })}
+      subtitle={`${report.primary_object_common_name} vs ${report.secondary_object_common_name}`}
       withPlaceholders={withPlaceholders}
     >
       <Subheader risk={report.risk} />
@@ -55,7 +55,7 @@ function ConjunctionEmail({ report, event, withPlaceholders }: ConjunctionEmailP
       </Section>
       <Section title={t('Conjunction_alert.additional_informations_title')}>
         <ConjunctionRecommendedActions report={report} event={event} />
-        <ConjunctionPressAttention pressAttention={event.pressAttentionComment} />
+        <ConjunctionPressAttention pressAttention={event.press_attention_comment} />
         <SignIn link={eventLink} />
       </Section>
     </Layout>
@@ -70,39 +70,39 @@ ConjunctionEmail.PreviewProps = {
   },
   report: {
     id: '550e8400-e29b-41d4-a716-446655440000',
-    createdAt: '2024-01-20T08:00:00Z',
-    updatedAt: '2024-01-20T08:00:00Z',
-    shortId: 'CONJ-2024-001',
-    reportNumber: 1,
-    reportTime: '2024-01-20T08:00:00Z',
+    created_at: '2024-01-20T08:00:00Z',
+    updated_at: '2024-01-20T08:00:00Z',
+    short_id: 'CONJ-2024-001',
+    report_number: 1,
+    report_time: '2024-01-20T08:00:00Z',
     risk: 'Low',
-    alertType: ['priority', 'uk-licensed'],
-    tcaTime: '2024-01-20T10:30:00Z',
-    collisionProbability: 0.85,
-    manoeuvreExpected: 'Likely',
+    alert_type: ['priority', 'uk-licensed'],
+    tca_time: '2024-01-20T10:30:00Z',
+    collision_probability: 0.85,
+    manoeuvre_expected: 'Likely',
     manoeuvreAddition: 'Primary object will perform avoidance manoeuvre',
-    primaryObjectCommonName: 'Starlink-1234',
-    primaryObjectNoradId: '12345',
-    primaryObjectLicensingCountry: 'GB',
-    primaryObjectType: 'Communication',
-    primaryObjectMission: 'Broadband Internet',
-    primaryObjectMass: 260,
-    primaryObjectManoeuvrable: 'Yes',
-    secondaryObjectCommonName: 'Cosmos-2251 Debris',
-    secondaryObjectNoradId: '33753',
-    secondaryObjectLicensingCountry: 'RU',
-    secondaryObjectType: 'Debris',
-    secondaryObjectMission: 'N/A',
-    secondaryObjectMass: 5,
-    secondaryObjectManoeuvrable: 'No',
+    primary_object_common_name: 'Starlink-1234',
+    primary_object_norad_id: '12345',
+    primary_object_licensing_country: 'GB',
+    primary_object_type: 'Communication',
+    primary_object_mission: 'Broadband Internet',
+    primary_object_mass: 260,
+    primary_object_manoeuvrable: 'Yes',
+    secondary_object_common_name: 'Cosmos-2251 Debris',
+    secondary_object_norad_id: '33753',
+    secondary_object_licensing_country: 'RU',
+    secondary_object_type: 'Debris',
+    secondary_object_mission: 'N/A',
+    secondary_object_mass: 5,
+    secondary_object_manoeuvrable: 'No',
     pressAttentionAddition: 'This conjunction involves a UK-licensed satellite and requires immediate attention.',
-    missDistance: 1000,
-    impactSpeed: 1000,
+    miss_distance: 1000,
+    impact_speed: 1000,
     altitude: 1000,
     latitude: 1000,
     longitude: 1000,
-    predictedFragments: 1000,
-    increaseInFutureCollisions: 1000,
+    predicted_fragments: 1000,
+    increase_in_future_collisions: 1000,
     immediateImpactAddition: 'This is a test immediate impact addition',
     ukResponseAddition: 'This is a test UK response addition',
   },
