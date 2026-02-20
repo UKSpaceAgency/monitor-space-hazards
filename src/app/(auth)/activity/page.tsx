@@ -19,8 +19,8 @@ type PageProps = {
   }>;
 };
 
-export default async function MonitoringPage(props: PageProps) {
-  const t = await getTranslations('Monitoring');
+export default async function ActivitiesPage(props: PageProps) {
+  const t = await getTranslations('Activity');
 
   const searchParams = await props.searchParams;
 
