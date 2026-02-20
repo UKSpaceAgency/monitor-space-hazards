@@ -5,8 +5,8 @@
     "navigation": {
       "conjunctions": "Conjunctions",
       "re-entries": "Re-entries",
-      "monitoring": "Monitoring",
       "activity": "Activity",
+      "fragmentations": "Fragmentations",
       "satellites": "Satellites",
       "account": "Account"
     },

@@ -49,8 +49,10 @@ const EventAlertSendForm = ({ type, defaultValues }: EventAlertSendFormProps) =>
 
   const onSubmit = async (data: FormData) => {
     const searchParams = new URLSearchParams();
+    if (type !== 'fragmentation') {
+      searchParams.set('isPriority', data.isPriority.toString());
+    }
     searchParams.set('isStandard', data.isStandard.toString());
-    searchParams.set('isPriority', data.isPriority.toString());
     if (type === 're-entry') {
       searchParams.set('isUkSatellitesOnly', data.isUkSatellitesOnly.toString());
     }
@@ -81,10 +83,10 @@ const EventAlertSendForm = ({ type, defaultValues }: EventAlertSendFormProps) =>
       <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
       <p className="govuk-body">{t('Change_distribution.hint')}</p>
       <Checkbox {...register('isStandard')}>{t('Distribution_status.all_alerts', { type })}</Checkbox>
+      {type !== 'fragmentation' && <Checkbox {...register('isPriority')}>{t('Distribution_status.priority_alert', { type })}</Checkbox>}
       {type === 're-entry' && (
         <Checkbox {...register('isUkSatellitesOnly')}>{t('Distribution_status.alert_for_uk', { type: capitalized(type) })}</Checkbox>
       )}
-      <Checkbox {...register('isPriority')}>{t('Distribution_status.priority_alert', { type })}</Checkbox>
       <Checkboxes items={[{
         ...register('haveAdditionalRecipients'),
         children: t('Distribution_status.individually_selected_recipients', { type }),
