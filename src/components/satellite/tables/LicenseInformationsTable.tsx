@@ -6,7 +6,7 @@ import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs } from '@/libs/Dayjs';
 import { getFullCountry } from '@/utils/Regions';
 
-type LicenseSatelliteInformations = Pick<TypeSatelliteOut, 'license_country' | 'launch_site' | 'launch_date' >;
+export type LicenseSatelliteInformations = Pick<TypeSatelliteOut, 'license_country' | 'launch_site' | 'launch_date' >;
 
 type LicenseInformationsTableProps = {
   object: LicenseSatelliteInformations | LicenseSatelliteInformations[];

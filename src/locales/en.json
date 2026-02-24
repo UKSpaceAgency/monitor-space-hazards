@@ -942,6 +942,31 @@
       }
     }
   },
+  "Activity": {
+    "title": "Monitoring flag {shortId}",
+    "description": "Activity",
+    "accordion": {
+      "object_data": "Object data",
+      "operator_support": "Operator support"
+    },
+    "Event_summary": {
+      "title": "Event summary",
+      "content": "dadada",
+      "contact_analyst": "Contact a UKSA orbital analyst",
+      "help": {
+        "title": "Help with this summary",
+        "content": "This flag has been uploaded by UKSA's orbital analysis team as they have verified an object change that exceeds tolerance thresholds for TLE age."
+      }
+    },
+    "Object_data": {
+      "title": "Object data",
+      "content": "Space-Track is the main source of object data.",
+      "additional_object_summary": {
+        "title": "Additional object data",
+        "content": "<p>ESA DISCOS provides additional object data where available. Contact ESA DISCOS if your satellite data is incorrect.</p><p>ESA DISCOS data was last updated on: {updateTime} UTC</p>"
+      }
+    }
+  },
   "Performance_monitoring": {
     "title": "Performance monitoring and statistics",
     "description": "This page shows both performance data for the Monitor Space Hazards service and more detailed information about the object and conjunction event data processed by the service. This data is broken down by organisation and by satellite.",
