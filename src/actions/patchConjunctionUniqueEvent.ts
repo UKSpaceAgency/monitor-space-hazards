@@ -8,8 +8,8 @@ import Api from '@/libs/Api';
 
 import { REVALIDATION_TAGS } from './tags';
 
-export async function patchConjunctionUniqueEvent(shortId: string, data: TypeUniqueEventUpdateTextFieldsIn) {
-  await Api.patchConjunctionEventsUniqueEventShortId(shortId, data);
+export async function patchConjunctionUniqueEvent(short_id: string, data: TypeUniqueEventUpdateTextFieldsIn) {
+  await Api.patchConjunctionEventsUniqueEventShortId(short_id, data);
   revalidateTag(REVALIDATION_TAGS.GET_CONJUNCTION_UNIQUE_EVENT);
-  redirect(`/conjunctions/${shortId}/alert`);
+  redirect(`/conjunctions/${short_id}/alert`);
 }

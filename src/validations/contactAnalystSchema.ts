@@ -1,11 +1,11 @@
 import { z } from 'zod';
 
 export const contactAnalystFormDefaultValues = {
-  messageContent: '',
+  message_content: '',
 };
 
 export const contactAnalyst = z.object({
-  messageContent: z.string()
+  message_content: z.string()
     .min(1, 'Enter a message')
     .max(2000, 'Enter a message that is 2000 characters or fewer.'),
 });

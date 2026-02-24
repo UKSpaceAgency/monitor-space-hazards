@@ -33,21 +33,23 @@ function ReEntryEmail({ event, report, tip, withPlaceholders }: ReEntryEmailProp
     messages,
   });
 
-  const eventLink = `${env.NEXTAUTH_URL}/re-entries/${event.shortId}/alert`;
+  const eventLink = `${env.NEXTAUTH_URL}/re-entries/${event.short_id}/alert`;
 
   return (
     <Layout
-      title={t('Reentry_alert.title', { risk: event.fragmentsRisk, reportNumber: report.reportNumber })}
-      subtitle={`${event.objectName} ${objectTypeIndex[event.objectType as keyof typeof objectTypeIndex] ?? ''}`}
+      eventType="re-entry"
+      shortId={event.short_id}
+      title={t('Reentry_alert.title', { risk: event.fragments_risk, reportNumber: report.report_number })}
+      subtitle={`${event.object_name} ${objectTypeIndex[event.object_type as keyof typeof objectTypeIndex] ?? ''}`}
       withPlaceholders={withPlaceholders}
     >
-      <Subheader risk={event.fragmentsRisk} />
+      <Subheader risk={event.fragments_risk} />
       <Section title={t('Reentry_alert.risk_probabilities_title')} className="!w-full">
         <ReentryRiskProbabilities event={event} className="!w-full" />
       </Section>
       <Section title={t('Reentry_alert.event_summary_title')}>
         <ReentryEventSummary event={event} tip={tip} className="pb-6" />
-        {event.overflightTime.length > 0 && <Map src="{{MAP.src}}" className="pb-6" showLegend={false} />}
+        {event.overflight_time.length > 0 && <Map src="{{MAP.src}}" className="pb-6" showLegend={false} />}
         <Map src="{{WORLD_MAP.src}}" />
       </Section>
       <Section title={t('Reentry_alert.regions_at_risk_title')}>
@@ -60,7 +62,7 @@ function ReEntryEmail({ event, report, tip, withPlaceholders }: ReEntryEmailProp
       <Section title={t('Reentry_alert.additional_information_title')}>
         <ReentryEventInformation event={event} />
         <ReentryHandlingSpaceDebris event={event} />
-        <ReentryPressAttention pressAttention={event.pressAttentionComment} />
+        <ReentryPressAttention pressAttention={event.press_attention_comment} />
         <SignIn link={eventLink} />
       </Section>
     </Layout>
@@ -73,22 +75,22 @@ ReEntryEmail.PreviewProps = {
     direction: 'ascending',
   },
   event: {
-    objectName: 'Falcon 9 Second Stage',
-    objectType: 'ROCKET BODY',
-    estimatedMass: 4000,
-    decayEpoch: '2024-01-20T10:00:00Z',
-    uncertaintyWindow: 120,
-    overflightTime: ['2024-01-20T09:30:00Z', '2024-01-20T10:30:00Z'],
-    atmosphericRisk: 'High',
-    atmosphericProbability: 0.85,
-    fragmentsRisk: 'High',
-    fragmentsProbability: 0.85,
-    licensedCountry: 'United States',
-    shortId: '1234567890',
-    noradId: '1234567890',
-    ukResponseComment: 'Recovery and clean up',
-    pressAttentionComment: 'Press attention',
-    executiveSummaryComment: 'Executive summary',
+    object_name: 'Falcon 9 Second Stage',
+    object_type: 'ROCKET BODY',
+    estimated_mass: 4000,
+    decay_epoch: '2024-01-20T10:00:00Z',
+    uncertainty_window: 120,
+    overflight_time: ['2024-01-20T09:30:00Z', '2024-01-20T10:30:00Z'],
+    atmospheric_risk: 'High',
+    atmospheric_probability: 0.85,
+    fragments_risk: 'High',
+    fragments_probability: 0.85,
+    licensed_country: 'United States',
+    short_id: '1234567890',
+    norad_id: '1234567890',
+    uk_response_comment: 'Recovery and clean up',
+    press_attention_comment: 'Press attention',
+    executive_summary_comment: 'Executive summary',
   },
   report: {
     impact: {

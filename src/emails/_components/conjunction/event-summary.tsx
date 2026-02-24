@@ -28,27 +28,27 @@ export const ConjunctionEventSummary = ({ eventUrl, report, event, ...props }: C
   });
 
   const data = [
-    [t('report_number'), report.reportNumber],
-    [t('predicted_time_of_closest_approach'), report.tcaTime ? dayjs(report.tcaTime).format(FORMAT_FULL_DATE_TIME_WITH_UTC) : 'Unknown'],
-    [t('probability_of_collision'), `${roundedFixed(report.collisionProbability ?? 0)}%`],
-    [t('manoeuvre_expected'), report.manoeuvreExpected],
+    [t('report_number'), report.report_number],
+    [t('predicted_time_of_closest_approach'), report.tca_time ? dayjs(report.tca_time).format(FORMAT_FULL_DATE_TIME_WITH_UTC) : 'Unknown'],
+    [t('probability_of_collision'), `${roundedFixed(report.collision_probability ?? 0)}%`],
+    [t('manoeuvre_expected'), report.manoeuvre_expected],
   ];
 
   return (
     <Section {...props}>
       <Table data={data} className="pb-6" />
       {t.rich('content', {
-        primaryObject: report.primaryObjectCommonName,
-        secondaryObject: report.secondaryObjectCommonName,
+        primaryObject: report.primary_object_common_name,
+        secondaryObject: report.secondary_object_common_name,
         risk: report.risk,
-        probability: roundedPercent(report.collisionProbability ?? 0),
+        probability: roundedPercent(report.collision_probability ?? 0),
         eventUrl: chunks => <Link href={eventUrl}>{chunks}</Link>,
         tag: chunks => renderRiskTag(chunks as TypeRisk),
         p: chunks => <Text className="m-0">{chunks}</Text>,
       })}
-      {event?.executiveSummaryComment && (
+      {event?.executive_summary_comment && (
         <Markdown>
-          {event.executiveSummaryComment}
+          {event.executive_summary_comment}
         </Markdown>
       )}
     </Section>

@@ -8,7 +8,7 @@ import Api from '@/libs/Api';
 export async function getConjunctionReports(params: TypeGetConjunctionReportsConjunctionEventShortIdParams) {
   try {
     const { data } = await Api.getConjunctionReportsConjunctionEventShortId(params);
-    return sortBy(data, 'reportNumber');
+    return sortBy(data, 'report_number');
   } catch {
     return [];
   }

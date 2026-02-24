@@ -9,7 +9,7 @@ import { ReentryFurtherInformation } from './ReentryFurhterInformation';
 
 type ReentryAccordionProps = {
   noradId: string;
-  object: TypeSatelliteOut;
+  object: TypeSatelliteOut | null;
 };
 
 const ReentryAccordion = ({

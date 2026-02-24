@@ -12,7 +12,7 @@ const LastIntegration = async () => {
     sort_order: 'desc',
   });
 
-  const ingestionStart = data.length ? data[0]?.ingestionStart : null;
+  const ingestionStart = data.length ? data[0]?.ingestion_start : null;
 
   return ingestionStart
     ? (

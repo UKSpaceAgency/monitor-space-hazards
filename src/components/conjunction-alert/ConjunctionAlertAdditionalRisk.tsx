@@ -6,7 +6,6 @@ import { ConjunctionAlertAdditionalRiskTable } from './data-table/ConjunctionAle
 
 const ConjunctionAlertAdditionalRisk = async ({ presignedUrl, dataPdf }: { presignedUrl: string; dataPdf?: string }) => {
   const t = await getTranslations('Conjunction_alert.Additional_risk_to_objects');
-
   const data = await getConjunctionEventAdditionalRisk(presignedUrl);
 
   return (

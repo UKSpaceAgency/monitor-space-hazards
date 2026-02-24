@@ -24,7 +24,7 @@ export async function generateMetadata({
   const { shortId } = await params;
   const event = await getConjunctionEventsSatelliteEventShortId(shortId);
   return {
-    title: event.shortId,
+    title: event.short_id,
   };
 }
 
@@ -34,10 +34,10 @@ export default async function ConjunctionPage({
   const t = await getTranslations('Conjunction');
   const session = await getSession();
   const { shortId } = await params;
-  const { primaryObject, secondaryObject } = await getConjunctionEventsSatelliteEventShortId(shortId);
+  const { primary_object, secondary_object } = await getConjunctionEventsSatelliteEventShortId(shortId);
   const { event, spacetrack, uksa } = await getConjunctionEvent({ eventId: shortId });
   const reports = await getConjunctionReports({ shortId });
-  const isSpecial = event.primaryObjectCdmType === 'Special owner/operator ephemeris';
+  const isSpecial = event.primary_object_cdm_type === 'Special owner/operator ephemeris';
 
   return (
     <>
@@ -59,15 +59,15 @@ export default async function ConjunctionPage({
               shortId={shortId}
               spacetrack={spacetrack}
               uksa={uksa}
-              primaryObject={primaryObject}
-              secondaryObject={secondaryObject}
+              primaryObject={primary_object}
+              secondaryObject={secondary_object}
               isSpecial={isSpecial}
             />
           )}
           <ConjunctionAccordion
             shortId={shortId}
-            primaryObject={primaryObject}
-            secondaryObject={secondaryObject}
+            primaryObject={primary_object}
+            secondaryObject={secondary_object}
             isSpecial={isSpecial}
           />
           <ConjunctionButtons title={t('title', { id: shortId })} />

@@ -111,6 +111,15 @@ export const isAgencyApproverOrSuperuser = (role: Nullable<TypeUserRole>): boole
   return !!role && agencyApproverRoles.includes(role);
 };
 
+export const isRegulator = (role: Nullable<TypeUserRole>): boolean => {
+  const regulatorRoles: TypeUserRole[] = [
+    'REGULATOR_USER',
+    'REGULATOR_ADMIN',
+  ];
+
+  return !!role && regulatorRoles.includes(role);
+};
+
 export const AccountType: Record<TypeUserRole, string> = {
   AGENCY_ADMIN: 'Agency Admin',
   AGENCY_ANALYST: 'Agency Analyst',
@@ -122,6 +131,8 @@ export const AccountType: Record<TypeUserRole, string> = {
   SATELLITE_OPERATOR_ADMIN: 'Satellite Admin',
   SATELLITE_OPERATOR_USER: 'Satellite User',
   SATELLITE_OPERATOR: 'Satellite Operator',
+  REGULATOR_USER: 'Regulator User',
+  REGULATOR_ADMIN: 'Regulator Admin',
 };
 
 export const UserRoles = {
@@ -144,5 +155,9 @@ export const UserRoles = {
     'SATELLITE_OPERATOR_ADMIN',
     'SATELLITE_OPERATOR',
     'SATELLITE_OPERATOR_USER',
+  ]),
+  REGULATOR_ADMIN: pick<Record<TypeUserRole, string>, TypeUserRole>(AccountType, [
+    'REGULATOR_ADMIN',
+    'REGULATOR_USER',
   ]),
 };

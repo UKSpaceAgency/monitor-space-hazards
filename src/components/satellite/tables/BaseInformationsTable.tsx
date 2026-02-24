@@ -5,7 +5,7 @@ import type { TypeSatelliteOut } from '@/__generated__/data-contracts';
 import type { InformationsTableHeaderWidth, InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 
-type BaseSatelliteInformations = Pick<TypeSatelliteOut, 'commonName' | 'noradId' | 'internationalDesignator' | 'objectType'>;
+export type BaseSatelliteInformations = Pick<TypeSatelliteOut, 'common_name' | 'norad_id' | 'international_designator' | 'object_type'>;
 
 type BaseInformationsTableProps = {
   object: BaseSatelliteInformations | BaseSatelliteInformations[];
@@ -31,17 +31,17 @@ const BaseInformationsTable = async ({ object, headerCellWidth, showLink }: Base
 
   const baseInformations: InformationsTableRow<BaseSatelliteInformations>[] = [{
     header: t('Base.common_name'),
-    accessorKey: 'commonName',
-    renderCell: row => showLink ? <Link className="govuk-link" href={`/satellites/${row.noradId}`}>{row.commonName}</Link> : <div>{row.commonName}</div>,
+    accessorKey: 'common_name',
+    renderCell: row => showLink ? <Link className="govuk-link" href={`/satellites/${row.norad_id}`}>{row.common_name}</Link> : <div>{row.common_name}</div>,
   }, {
     header: t('Base.norad_id'),
-    accessorKey: 'noradId',
+    accessorKey: 'norad_id',
   }, {
     header: t('Base.international_designator'),
-    accessorKey: 'internationalDesignator',
+    accessorKey: 'international_designator',
   }, {
     header: t('Base.object_type'),
-    accessorKey: 'objectType',
+    accessorKey: 'object_type',
   }];
 
   return <InformationsTable headers={headers} rows={baseInformations} data={object} headerCellWidth={headerCellWidth} />;

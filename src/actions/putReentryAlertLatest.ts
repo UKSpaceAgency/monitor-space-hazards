@@ -8,8 +8,8 @@ import Api from '@/libs/Api';
 
 import { REVALIDATION_TAGS } from './tags';
 
-export async function putReentryAlertLatest(shortId: string, data: TypeReentryEventAlertIn) {
-  await Api.putReentryEventsShortIdAlertsLatest(shortId, data);
+export async function putReentryAlertLatest(short_id: string, data: TypeReentryEventAlertIn) {
+  await Api.putReentryEventsShortIdAlertsLatest(short_id, data);
   revalidateTag(REVALIDATION_TAGS.GET_REENTRY_ALERT_LATEST);
-  redirect(`/re-entries/${shortId}/alert/send-alert/success`);
+  redirect(`/re-entries/${short_id}/alert/send-alert/success`);
 }

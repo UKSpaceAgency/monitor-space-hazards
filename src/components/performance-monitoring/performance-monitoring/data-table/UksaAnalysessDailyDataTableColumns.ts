@@ -4,8 +4,8 @@ import type { TranslatedColumnDef } from '@/types';
 
 export const uksaAnalysesDailyColumns: TranslatedColumnDef<AnalysisAndManoeuvreSupportStatsType>[] = [
   {
-    accessorKey: 'sourceProvider',
-    id: 'sourceProvider',
+    accessorKey: 'source_provider',
+    id: 'source_provider',
     header: 'Performance_monitoring.analyses_and_manoeuvre_support.source',
     enableSorting: false,
   },

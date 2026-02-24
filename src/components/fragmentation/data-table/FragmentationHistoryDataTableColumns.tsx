@@ -10,7 +10,7 @@ import Tag from '@/ui/tag/tag';
 export const fragmentationHistoryColumns: TranslatedColumnDef<TypeFragmentationReportOut>[] = [
   {
     header: 'Fragmentation_history.report_number',
-    id: 'reportNumber',
+    id: 'report_number',
     enableSorting: false,
     cell: ({ row }) => {
       const { report_number, short_id, presigned_url } = row.original;

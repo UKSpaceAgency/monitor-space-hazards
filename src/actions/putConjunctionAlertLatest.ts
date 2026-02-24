@@ -8,8 +8,8 @@ import Api from '@/libs/Api';
 
 import { REVALIDATION_TAGS } from './tags';
 
-export async function putConjunctionAlertLatest(shortId: string, data: TypeConjunctionEventAlertIn) {
-  await Api.putConjunctionEventsShortIdAlertsLatest(shortId, data);
+export async function putConjunctionAlertLatest(short_id: string, data: TypeConjunctionEventAlertIn) {
+  await Api.putConjunctionEventsShortIdAlertsLatest(short_id, data);
   revalidateTag(REVALIDATION_TAGS.GET_CONJUNCTION_ALERT_LATEST);
-  redirect(`/conjunctions/${shortId}/alert/send-alert/success`);
+  redirect(`/conjunctions/${short_id}/alert/send-alert/success`);
 }

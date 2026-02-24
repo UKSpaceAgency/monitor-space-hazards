@@ -20,7 +20,7 @@ export async function generateMetadata(props: PageProps) {
   const { shortId } = await props.params;
   const event = await getConjunctionUniqueEvent(shortId);
   return {
-    title: t('title', { primaryObject: event.primaryObjectCommonName ?? 'Unknown', secondaryObject: event.secondaryObjectCommonName ?? 'Unknown' }),
+    title: t('title', { primaryObject: event.primary_object_common_name ?? 'Unknown', secondaryObject: event.secondary_object_common_name ?? 'Unknown' }),
   };
 }
 

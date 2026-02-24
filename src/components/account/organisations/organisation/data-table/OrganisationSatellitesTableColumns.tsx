@@ -7,37 +7,37 @@ import { getFullCountry } from '@/utils/Regions';
 
 export const organisationSatellitesTableColumns: TranslatedColumnDef<TypeSatelliteOut>[] = [
   {
-    accessorKey: 'commonName',
-    id: 'commonName',
+    accessorKey: 'common_name',
+    id: 'common_name',
     header: 'Organisation_satellites.common_name',
-    cell: ({ row }) => <Link className="govuk-link" href={`/satellites/${row.original.noradId}`}>{row.original.commonName}</Link>,
+    cell: ({ row }) => <Link className="govuk-link" href={`/satellites/${row.original.norad_id}`}>{row.original.common_name}</Link>,
   },
   {
-    accessorKey: 'noradId',
-    id: 'noradId',
+    accessorKey: 'norad_id',
+    id: 'norad_id',
     header: 'Organisation_satellites.norad_id',
-    cell: ({ row }) => row.original.noradId,
+    cell: ({ row }) => row.original.norad_id,
   },
   {
-    accessorKey: 'internationalDesignator',
-    id: 'internationalDesignator',
+    accessorKey: 'international_designator',
+    id: 'international_designator',
     header: 'Organisation_satellites.international_designator',
   },
   {
-    accessorKey: 'licenseCountry',
-    id: 'licenseCountry',
+    accessorKey: 'license_country',
+    id: 'license_country',
     header: 'Organisation_satellites.country',
-    cell: ({ row }) => getFullCountry(row.original.licenseCountry),
+    cell: ({ row }) => getFullCountry(row.original.license_country),
   },
   {
-    accessorKey: 'launchSite',
-    id: 'launchSite',
+    accessorKey: 'launch_site',
+    id: 'launch_site',
     header: 'Organisation_satellites.launch_site',
   },
   {
-    accessorKey: 'launchDate',
-    id: 'launchDate',
+    accessorKey: 'launch_date',
+    id: 'launch_date',
     header: 'Organisation_satellites.launch_date',
-    cell: ({ row }) => dayjs(row.original.launchDate).format(FORMAT_SHORT_DATE),
+    cell: ({ row }) => dayjs(row.original.launch_date).format(FORMAT_SHORT_DATE),
   },
 ];

@@ -24,21 +24,21 @@ const ScheduleBannerFormTime = ({ setValue, watch, resetField }: ScheduleBannerF
   const t = useTranslations('Forms.Schedule_banner');
   const [activateTime, setActivateTime] = useState<ActivateTime>(ActivateTime.NOW);
 
-  const startDate = watch('broadcastStart');
-  const endDate = watch('broadcastEnd');
+  const startDate = watch('broadcast_start');
+  const endDate = watch('broadcast_end');
 
   const setStartDate = (date: string) => {
-    setValue('broadcastStart', date);
+    setValue('broadcast_start', date);
   };
 
   const setEndDate = (date: string) => {
-    setValue('broadcastEnd', date);
+    setValue('broadcast_end', date);
   };
 
   useEffect(() => {
     if (activateTime === ActivateTime.NOW) {
-      resetField('broadcastStart');
-      resetField('broadcastEnd');
+      resetField('broadcast_start');
+      resetField('broadcast_end');
     }
   }, [activateTime, resetField]);
 

@@ -32,18 +32,18 @@ const AnalysisAndManoeuvreSupportChart = ({
       datasets: [
         {
           label: t('analysis_received'),
-          data: data.map(({ analysesCount, date }) => ({
+          data: data.map(({ analyses_count, date }) => ({
             x: date as unknown as number,
-            y: analysesCount,
+            y: analyses_count,
           })),
           borderColor: chartPalette.nspocBlue,
           backgroundColor: chartPalette.nspocBlue,
         },
         {
           label: t('manoeuvre_received'),
-          data: data.map(({ manoeuvreSupportCount, date }) => ({
+          data: data.map(({ manoeuvre_support_count, date }) => ({
             x: date as unknown as number,
-            y: manoeuvreSupportCount,
+            y: manoeuvre_support_count,
           })),
           borderColor: chartPalette.nspocRed,
           backgroundColor: chartPalette.nspocRed,

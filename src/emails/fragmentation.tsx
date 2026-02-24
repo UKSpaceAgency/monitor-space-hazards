@@ -35,6 +35,8 @@ function FragmentationEmail({ event, report, screeningResults, withPlaceholders 
 
   return (
     <Layout
+      eventType="fragmentation"
+      shortId={event.short_id}
       title={t('Fragmentation.title', { reportNumber: report.report_number })}
       subtitle={`${event.primary_object_common_name} ${event.secondary_object_common_name ? `vs ${event.secondary_object_common_name}` : ''}`}
       withPlaceholders={withPlaceholders}

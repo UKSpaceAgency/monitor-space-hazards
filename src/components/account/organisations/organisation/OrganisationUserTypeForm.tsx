@@ -45,7 +45,7 @@ const OrganisationUserTypeForm = ({ user }: OrganisationUserTypeFormProps) => {
         </NotificationBanner>
         <Button
           as="link"
-          href={`/account/organisations/${user.organizationId}/${user.id}`}
+          href={`/account/organisations/${user.organization_id}/${user.id}`}
           className="govuk-button--secondary"
           aria-label={tCommon('return', { to: 'user account details' })}
         >
@@ -78,7 +78,7 @@ const OrganisationUserTypeForm = ({ user }: OrganisationUserTypeFormProps) => {
       <ButtonGroup>
         <Button
           as="link"
-          href={`/account/organisations/${user.organizationId}/${user.id}`}
+          href={`/account/organisations/${user.organization_id}/${user.id}`}
           className="govuk-button--secondary"
           aria-label={t('back')}
         >

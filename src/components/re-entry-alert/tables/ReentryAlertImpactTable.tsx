@@ -43,9 +43,9 @@ const formatProbability = (value: number | null | undefined): string => {
   return value ? `${roundedPercent(value)}` : '-';
 };
 
-const formatOverflightTime = (overflightTime: string[] | null | undefined, index: number): string => {
-  return overflightTime && overflightTime[index]
-    ? dayjs(overflightTime[index]).format(FORMAT_DATE_TIME)
+const formatOverflightTime = (overflight_time: string[] | null | undefined, index: number): string => {
+  return overflight_time && overflight_time[index]
+    ? dayjs(overflight_time[index]).format(FORMAT_DATE_TIME)
     : '-';
 };
 

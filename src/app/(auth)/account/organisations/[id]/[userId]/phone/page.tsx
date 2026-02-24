@@ -30,7 +30,7 @@ export default async function OrganisationUserPhonePage({
   return (
     <div>
       <h1 className="govuk-heading-xl">{t('title')}</h1>
-      <p className="govuk-body">{t('users_current_address', { phone: user.phoneNumber })}</p>
+      <p className="govuk-body">{t('users_current_address', { phone: user.phone_number })}</p>
       <OrganisationUserPhoneForm user={user} />
     </div>
   );

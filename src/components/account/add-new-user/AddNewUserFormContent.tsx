@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import type { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 import type { TypeOrganizationOut, TypeUserRole } from '@/__generated__/data-contracts';
+import RichText from '@/components/RichText';
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
 import Details from '@/ui/details/details';
@@ -35,6 +36,10 @@ const roles = {
     'SATELLITE_OPERATOR_ADMIN',
     'SATELLITE_OPERATOR',
     'SATELLITE_OPERATOR_USER',
+  ]),
+  REGULATOR_ADMIN: pick<Record<TypeUserRole, string>, TypeUserRole>(AccountType, [
+    'REGULATOR_ADMIN',
+    'REGULATOR_USER',
   ]),
 };
 
@@ -86,18 +91,9 @@ const AddNewUserFormContent = ({ organizations, isSubmitting, register, role, er
       </Fieldset>
 
       <Details summary={t.rich('help.title')}>
-        <p>
-          <b className="mr-1">{t('help.admins')}</b>
-          {t('help.adminsDescription')}
-        </p>
-        <p>
-          <b className="mr-1">{t('help.operators')}</b>
-          {t('help.operatorsDescription')}
-        </p>
-        <p>
-          <b className="mr-1">{t('help.users')}</b>
-          {t('help.usersDescription')}
-        </p>
+        <RichText>
+          {tags => t.rich('help.content', tags)}
+        </RichText>
       </Details>
 
       <ButtonGroup>

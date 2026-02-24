@@ -3,18 +3,19 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { signOut, useSession } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 import { useMessages, useTranslations } from 'next-intl';
 import { useState } from 'react';
-
-import { isAgencyUser } from '@/utils/Roles';
 
 export const Navigation = () => {
   const t = useTranslations('Template');
   const messages = useMessages() as IntlMessages;
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   const keys = Object.keys(messages.Template.navigation).filter((key) => {
-    if (key === 're-entries' && !isAgencyUser(session?.user?.role)) {
+    // if (key === 're-entries') {
+    //   return isAgencyUser(session?.user?.role) || isGovUser(session?.user?.role);
+    // }
+    if (key === 're-entries' || key === 'fragmentations' || key === 'activity') {
       return false;
     }
     return true;

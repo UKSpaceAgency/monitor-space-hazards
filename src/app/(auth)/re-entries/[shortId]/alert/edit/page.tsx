@@ -18,9 +18,9 @@ export async function generateMetadata({
   const t = await getTranslations('Reentry_alert_edit');
   const { shortId } = await params;
   const event = await getReentryEvent(shortId);
-  const satellite = await getSatellite(event.noradId);
+  const satellite = await getSatellite(event.norad_id);
   return {
-    title: t('title', { objectName: satellite.commonName }),
+    title: t('title', { objectName: satellite.common_name }),
   };
 }
 
@@ -41,8 +41,8 @@ export default async function ReentryAlertEdit({
   return (
     <div>
       <h1 className="govuk-heading-xl mb-6">
-        {t('title', { objectName: event.objectName })}
-        <span className="block text-lg">{dayjs(event.decayEpoch).format(FORMAT_FULL_DATE)}</span>
+        {t('title', { objectName: event.object_name })}
+        <span className="block text-lg">{dayjs(event.decay_epoch).format(FORMAT_FULL_DATE)}</span>
       </h1>
       {t.rich('content')}
       <ReentryAlertEditForm event={event} />

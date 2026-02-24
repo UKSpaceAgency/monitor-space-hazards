@@ -42,10 +42,10 @@ export default async function ReentryAlertSend({
   });
 
   const defaultValues = {
-    isStandard: alert.alertType.includes('standard'),
-    isPriority: alert.alertType.includes('priority'),
-    isUkSatellitesOnly: alert.alertType.includes('uk-licensed'),
-    additionalRecipients: alert.additionalRecipients?.join('; ') || '',
+    isStandard: alert.alert_type.includes('standard'),
+    isPriority: alert.alert_type.includes('priority'),
+    isUkSatellitesOnly: alert.alert_type.includes('uk-licensed'),
+    additionalRecipients: alert.additional_recipients?.join('; ') || '',
   };
 
   return <EventAlertSend type="re-entry" data={defaultValues} content={t.rich('content')} detailsSummary={t('alert_criteria_help.title')} detailsContent={detailsContent} />;

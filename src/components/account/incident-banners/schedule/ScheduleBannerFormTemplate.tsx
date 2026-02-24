@@ -39,7 +39,7 @@ const ScheduleBannerFormTemplate = ({ register, templates }: BannerTemplateProps
           value: template.id,
           className: 'w-full',
           children: renderTemplate(template),
-          ...register('messageId'),
+          ...register('message_id'),
         }))}
       />
     </div>

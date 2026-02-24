@@ -37,7 +37,7 @@ const FeedbackForm = ({ email }: { email?: string }) => {
 
     try {
       await postFeedback({
-        userEmail: data.email,
+        user_email: data.email,
         satisfaction: Number(data.satisfaction),
         details: data.details,
       });

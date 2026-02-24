@@ -6,7 +6,7 @@ import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs } from '@/libs/Dayjs';
 import { getFullCountry } from '@/utils/Regions';
 
-type LicenseSatelliteInformations = Pick<TypeSatelliteOut, 'licenseCountry' | 'launchSite' | 'launchDate' >;
+export type LicenseSatelliteInformations = Pick<TypeSatelliteOut, 'license_country' | 'launch_site' | 'launch_date' >;
 
 type LicenseInformationsTableProps = {
   object: LicenseSatelliteInformations | LicenseSatelliteInformations[];
@@ -31,15 +31,15 @@ const LicenseInformationsTable = async ({ object, headerCellWidth }: LicenseInfo
 
   const baseInformations: InformationsTableRow<LicenseSatelliteInformations>[] = [{
     header: t('License.country'),
-    accessorKey: 'licenseCountry',
-    renderCell: row => getFullCountry(row.licenseCountry) ?? '-',
+    accessorKey: 'license_country',
+    renderCell: row => getFullCountry(row.license_country) ?? '-',
   }, {
     header: t('License.launching_site'),
-    accessorKey: 'launchSite',
+    accessorKey: 'launch_site',
   }, {
     header: t('License.launch_date'),
-    accessorKey: 'launchDate',
-    renderCell: row => row.launchDate ? dayjs(row.launchDate).format('YYYY') : '-',
+    accessorKey: 'launch_date',
+    renderCell: row => row.launch_date ? dayjs(row.launch_date).format('YYYY') : '-',
   }];
 
   return <InformationsTable caption={t('License.caption')} headers={headers} rows={baseInformations} data={object} headerCellWidth={headerCellWidth} />;

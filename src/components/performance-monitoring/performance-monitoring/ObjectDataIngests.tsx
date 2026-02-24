@@ -24,7 +24,7 @@ const ObjectDataIngests = async () => {
     limit: 1,
   });
 
-  const latestIngestDate = latestIngestArray[0]?.ingestionEnd ? dayjs(latestIngestArray[0]?.ingestionEnd).format(FORMAT_DATE_TIME) : t('unknown');
+  const latestIngestDate = latestIngestArray[0]?.ingestion_end ? dayjs(latestIngestArray[0]?.ingestion_end).format(FORMAT_DATE_TIME) : t('unknown');
 
   return (
     <>

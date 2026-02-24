@@ -26,13 +26,13 @@ export const ReentryEventInformationClosed = ({ event }: ReentryEventInformation
   });
 
   const contentVariables: RichTranslationValues = {
-    commonName: event?.objectName ?? 'Unknown',
-    objectType: event?.objectType ? `${event.objectName} ${objectTypeIndex[event.objectType as keyof typeof objectTypeIndex] ?? ''}` : '',
-    date: `${dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME_WITH_UTC)} +/- ${event.uncertaintyWindow} minute(s)`,
-    riskLevel: event?.atmosphericRisk ?? 'Low',
-    riskProbability: roundedPercentage(event?.atmosphericProbability ?? 0),
-    licensingCountry: getFullCountry(event.licenseCountry),
-    objectUrl: chunks => <Link href={`${env.NEXTAUTH_URL}/re-entries/${event.shortId}/alert`}>{chunks}</Link>,
+    commonName: event?.object_name ?? 'an unknown object',
+    objectType: event?.object_type ? `${event.object_name} ${objectTypeIndex[event.object_type as keyof typeof objectTypeIndex] ?? ''}` : '',
+    date: `${dayjs(event.decay_epoch).format(FORMAT_FULL_DATE_TIME_WITH_UTC)} +/- ${event.uncertainty_window} minute(s)`,
+    riskLevel: event?.atmospheric_risk ?? 'Low',
+    riskProbability: roundedPercentage(event?.atmospheric_probability ?? 0),
+    licensingCountry: getFullCountry(event.license_country),
+    objectUrl: chunks => <Link href={`${env.NEXTAUTH_URL}/re-entries/${event.short_id}/alert`}>{chunks}</Link>,
     tag: chunks => renderRiskTag(chunks as TypeRisk),
     p: chunks => <Text>{chunks}</Text>,
   };
@@ -41,10 +41,10 @@ export const ReentryEventInformationClosed = ({ event }: ReentryEventInformation
     <Section>
       <Text className="text-sm m-0 font-bold">{t('title')}</Text>
       {t.rich('content_closed', contentVariables)}
-      {event?.executiveSummaryComment
+      {event?.executive_summary_comment
       && (
         <Markdown>
-          {event.executiveSummaryComment}
+          {event.executive_summary_comment}
         </Markdown>
       )}
     </Section>

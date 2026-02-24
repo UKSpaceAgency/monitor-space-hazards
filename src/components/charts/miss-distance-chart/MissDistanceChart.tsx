@@ -14,14 +14,14 @@ import { getMissDistanceChartDatasets } from './getMissDistanceChartDatasets';
 
 export type MissDistanceChartDataType = Pick<
   TypeEventSummaryOut,
-  | 'dataSource'
-  | 'updateTime'
-  | 'radialMissDistance'
-  | 'crosstrackMissDistance'
-  | 'intrackMissDistance'
-  | 'missDistance'
-  | 'tcaTime'
-  | 'primaryObjectCdmType'
+  | 'data_source'
+  | 'update_time'
+  | 'radial_miss_distance'
+  | 'crosstrack_miss_distance'
+  | 'intrack_miss_distance'
+  | 'miss_distance'
+  | 'tca_time'
+  | 'primary_object_cdm_type'
 >[];
 
 export type MissDistanceChartProps = {
@@ -38,19 +38,19 @@ export function MissDistanceChart({ data, isSpecial }: MissDistanceChartProps) {
     () =>
       data.map(item => ({
         ...item,
-        crosstrackMissDistance: getAbsoluteValue(item.crosstrackMissDistance ?? 0),
-        intrackMissDistance: getAbsoluteValue(item.intrackMissDistance ?? 0),
-        radialMissDistance: getAbsoluteValue(item.radialMissDistance ?? 0),
-        missDistance: getAbsoluteValue(item.missDistance ?? 0),
+        crosstrack_miss_distance: getAbsoluteValue(item.crosstrack_miss_distance ?? 0),
+        intrack_miss_distance: getAbsoluteValue(item.intrack_miss_distance ?? 0),
+        radial_miss_distance: getAbsoluteValue(item.radial_miss_distance ?? 0),
+        miss_distance: getAbsoluteValue(item.miss_distance ?? 0),
       })),
     [data],
   );
 
-  const sortedData = useMemo(() => absoluteData.sort((a, b) => Date.parse(a.updateTime) - Date.parse(b.updateTime)), [absoluteData]);
-  const sortedDataWithoutEphemerises = useMemo(() => sortedData.filter(data => !isSpecial && data.dataSource === 'Space-Track CDM'), [isSpecial, sortedData]);
-  const sortedDataEphemerises = useMemo(() => sortedData.filter(data => data.primaryObjectCdmType === 'Special owner/operator ephemeris'), []);
+  const sortedData = useMemo(() => absoluteData.sort((a, b) => Date.parse(a.update_time) - Date.parse(b.update_time)), [absoluteData]);
+  const sortedDataWithoutEphemerises = useMemo(() => sortedData.filter(data => !isSpecial && data.data_source === 'Space-Track CDM'), [isSpecial, sortedData]);
+  const sortedDataEphemerises = useMemo(() => sortedData.filter(data => data.primary_object_cdm_type === 'Special owner/operator ephemeris'), []);
 
-  const tca = useMemo(() => sortedData[sortedData.length - 1]?.tcaTime, [sortedData]);
+  const tca = useMemo(() => sortedData[sortedData.length - 1]?.tca_time, [sortedData]);
 
   const datasets: ChartData = getMissDistanceChartDatasets({ sortedDataWithoutEphemerises, sortedData, sortedDataEphemerises, showSpecial, tca });
 

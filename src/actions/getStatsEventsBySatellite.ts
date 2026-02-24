@@ -9,22 +9,22 @@ export type EventsBySatelliteType = {
   low: number;
   medium: number;
   high: number;
-  organizationName: string;
+  organization_name: string;
 };
 
 export async function getStatsEventsBySatellite(query?: TypeGetStatsEventsBySatelliteParams): Promise<EventsBySatelliteType[]> {
   const { data } = await Api.getStatsEventsBySatellite(query);
 
   const groupedData = data.reduce((acc, item) => {
-    const { commonName, noradId, events, collisionProbabilityRange, organizationName } = item;
+    const { common_name, norad_id, events, collision_probability_range, organization_name } = item;
 
-    const key = noradId;
+    const key = norad_id;
 
     if (!acc[key]) {
-      acc[key] = { name: commonName, id: noradId, organizationName, low: 0, medium: 0, high: 0 };
+      acc[key] = { name: common_name, id: norad_id, organization_name, low: 0, medium: 0, high: 0 };
     }
 
-    switch (collisionProbabilityRange) {
+    switch (collision_probability_range) {
       case '< 1e-5':
         acc[key].low = events;
         break;

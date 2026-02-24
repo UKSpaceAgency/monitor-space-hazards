@@ -4,31 +4,31 @@ import { rounded } from '@/utils/Math';
 
 export const conjunctionAlertAdditionalRiskTableColumns: TranslatedColumnDef<AdditionalObjectRisk>[] = [
   {
-    accessorKey: 'objectName',
+    accessorKey: 'object_name',
     header: 'Conjunction_alert_additional_risk.object_name',
   },
   {
-    accessorKey: 'currentWeeklyEvents',
+    accessorKey: 'current_weekly_events',
     header: 'Conjunction_alert_additional_risk.current_weekly_events',
     cell: ({ getValue }) => {
       const value = getValue<number>();
-      return rounded(value, 1);
+      return value ? rounded(value, 1) : '-';
     },
   },
   {
-    accessorKey: 'totalEventsFollowingWeek',
+    accessorKey: 'total_events_following_week',
     header: 'Conjunction_alert_additional_risk.predicted_total_events',
     cell: ({ getValue }) => {
       const value = getValue<number>();
-      return rounded(value, 1);
+      return value ? rounded(value, 1) : '-';
     },
   },
   {
-    accessorKey: 'additionalEventsFollowingWeek',
+    accessorKey: 'additional_events_following_week',
     header: 'Conjunction_alert_additional_risk.predicted_additional_events',
     cell: ({ getValue }) => {
       const value = getValue<number>();
-      return rounded(value, 1);
+      return value ? rounded(value, 1) : '-';
     },
   },
 ];

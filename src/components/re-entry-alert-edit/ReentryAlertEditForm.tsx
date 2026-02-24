@@ -5,7 +5,7 @@ import type { TypeReentryEventOut, TypeRisk } from '@/__generated__/data-contrac
 import { FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 import { roundedPercentage } from '@/utils/Math';
 import { getFullCountry } from '@/utils/Regions';
-import { renderRiskTag } from '@/utils/Risk';
+import { renderRiskTag } from '@/utils/Tags';
 
 import type { EventAlertFormField } from '../event-alert-edit/EventAlertEditForm';
 import { EventAlertEditForm } from '../event-alert-edit/EventAlertEditForm';
@@ -22,27 +22,27 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     id: 'closed_comment',
     ariaLabel: 'Closed comment',
     name: tForm('type.closed_comment'),
-    defaultValue: event.closedComment ?? '',
+    defaultValue: event.closed_comment ?? '',
     type: 'text',
     help: tForm.rich('closed_comment_hint'),
   }, {
     id: 'executive_summary_comment',
     ariaLabel: 'Exec summary',
     name: tForm('type.executive_summary_comment'),
-    defaultValue: event.executiveSummaryComment,
+    defaultValue: event.executive_summary_comment,
     type: 'text',
     help: (
       <div>
         <p className="govuk-body">{tForm('hint')}</p>
         {tReentryAlert.rich('Executive_summary.content', {
-          commonName: event?.objectName ?? 'Unknown',
-          objectType: event?.objectType,
-          date: dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME),
-          riskLevel: event?.fragmentsRisk ?? 'Low',
-          riskProbability: roundedPercentage(event?.fragmentsProbability ?? 0),
-          fragmentsRisk: event?.fragmentsRisk,
-          fragmentsProbability: roundedPercentage(event?.fragmentsProbability ?? 0),
-          licensingCountry: getFullCountry(event.licenseCountry),
+          commonName: event?.object_name ?? 'Unknown',
+          objectType: event?.object_type,
+          date: dayjs(event.decay_epoch).format(FORMAT_FULL_DATE_TIME),
+          riskLevel: event?.fragments_risk ?? 'Low',
+          riskProbability: roundedPercentage(event?.fragments_probability ?? 0),
+          fragmentsRisk: event?.fragments_risk,
+          fragmentsProbability: roundedPercentage(event?.fragments_probability ?? 0),
+          licensingCountry: getFullCountry(event.license_country),
           tag: chunks => renderRiskTag(chunks as TypeRisk),
         })}
       </div>
@@ -51,19 +51,19 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     id: 'immediate_response_comment',
     ariaLabel: 'Immediate response',
     name: tForm('type.immediate_impact_comment'),
-    defaultValue: event.immediateResponseComment,
+    defaultValue: event.immediate_response_comment,
     type: 'text',
     help: (
       <div>
         <p className="govuk-body">{tForm('hint')}</p>
-        {tReentryAlert.rich(`Guidance_on_response.risk.${event?.atmosphericRisk?.toLowerCase() as 'low' | 'medium' | 'high' ?? 'low'}`, { tag: chunks => renderRiskTag(chunks as TypeRisk) })}
+        {tReentryAlert.rich(`Guidance_on_response.risk.${event?.atmospheric_risk?.toLowerCase() as 'low' | 'medium' | 'high' ?? 'low'}`, { tag: chunks => renderRiskTag(chunks as TypeRisk) })}
       </div>
     ),
   }, {
     id: 'uk_response_comment',
     ariaLabel: tForm('type.uk_response_comment'),
     name: tForm('type.uk_response_comment'),
-    defaultValue: event.ukResponseComment,
+    defaultValue: event.uk_response_comment,
     type: 'text',
     help: (
       <div>
@@ -76,12 +76,12 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
   //   id: 'damages_liability_comment',
   //   ariaLabel: tForm('type.damages_liability_comment'),
   //   name: tForm('type.damages_liability_comment'),
-  //   defaultValue: event.damagesLiabilityComment,
+  //   defaultValue: event.damages_liability_comment,
   //   type: 'text',
   //   help: (
   //     <div>
   //       <p className="govuk-body">{tForm('hint')}</p>
-  //       {tReentryAlert.rich('Liability_for_damages.content', { licenseCountry: getFullCountry(event.licenseCountry) })}
+  //       {tReentryAlert.rich('Liability_for_damages.content', { license_country: getFullCountry(event.license_country) })}
   //     </div>
   //   ),
   // },
@@ -89,7 +89,7 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     id: 'press_attention_comment',
     ariaLabel: tForm('type.press_attention_comment'),
     name: tForm('type.press_attention_comment'),
-    defaultValue: event.pressAttentionComment,
+    defaultValue: event.press_attention_comment,
     type: 'text',
     help: tForm.rich('press_attention_hint'),
   }];

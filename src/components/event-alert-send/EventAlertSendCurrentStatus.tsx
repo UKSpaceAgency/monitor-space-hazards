@@ -44,6 +44,16 @@ const EventAlertSendCurrentStatus = ({ type, detailsSummary, detailsContent, dat
               {isStandard ? <Tag className="max-w-none">{t('sent_to_distribution_list')}</Tag> : <Tag color="grey" className="max-w-none">{t('not_sent_to_distribution_list')}</Tag>}
             </TableCell>
           </TableRow>
+          {type !== 'fragmentation' && (
+            <TableRow>
+              <TableCellHeader className="pl-10">
+                {t('priority_alert', { type })}
+              </TableCellHeader>
+              <TableCell>
+                {isPriority ? <Tag className="max-w-none">{t('sent_to_distribution_list')}</Tag> : <Tag color="grey" className="max-w-none">{t('not_sent_to_distribution_list')}</Tag>}
+              </TableCell>
+            </TableRow>
+          )}
           {type === 're-entry' && (
             <TableRow>
               <TableCellHeader className="pl-10">
@@ -54,14 +64,6 @@ const EventAlertSendCurrentStatus = ({ type, detailsSummary, detailsContent, dat
               </TableCell>
             </TableRow>
           )}
-          <TableRow>
-            <TableCellHeader className="pl-10">
-              {t('priority_alert', { type })}
-            </TableCellHeader>
-            <TableCell>
-              {isPriority ? <Tag className="max-w-none">{t('sent_to_distribution_list')}</Tag> : <Tag color="grey" className="max-w-none">{t('not_sent_to_distribution_list')}</Tag>}
-            </TableCell>
-          </TableRow>
           <TableRow>
             <TableCellHeader colSpan={2}>
               {t('using_individual_emails')}

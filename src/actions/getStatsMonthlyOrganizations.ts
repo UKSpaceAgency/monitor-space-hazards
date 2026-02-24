@@ -16,8 +16,8 @@ export async function getStatsMonthlyOrganizations(query?: TypeGetStatsMonthlyOr
 
   const data = organisations.map((org, index) => ({
     month: dayjs(org.month).toDate(),
-    organisations: org.runningTotal,
-    users: users?.[index]?.runningTotal ?? 0,
+    organisations: org.running_total,
+    users: users?.[index]?.running_total ?? 0,
   }));
 
   return data;

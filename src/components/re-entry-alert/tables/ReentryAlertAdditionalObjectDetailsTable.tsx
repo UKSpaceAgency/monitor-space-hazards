@@ -5,7 +5,7 @@ import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
 import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 
-type ObjectDetailsData = Pick<TypeReentryEventOut, 'internationalDesignator' | 'noradId' | 'objectHeight' | 'objectSpan' | 'launchingYear' | 'apogee' | 'perigee' | 'inclination'>;
+type ObjectDetailsData = Pick<TypeReentryEventOut, 'international_designator' | 'norad_id' | 'object_height' | 'object_span' | 'launching_year' | 'apogee' | 'perigee' | 'inclination'>;
 
 type ReentryAlertAdditionalObjectDetailsTableProps = {
   event: TypeReentryEventOut;
@@ -22,25 +22,25 @@ const ReentryAlertAdditionalObjectDetailsTable = ({ event, dataPdf }: ReentryAle
 
   const objectDetailsRows: InformationsTableRow<ObjectDetailsData>[] = [{
     header: t('international_designator'),
-    accessorKey: 'internationalDesignator',
+    accessorKey: 'international_designator',
     cellProps: {
       className: 'pl-10',
     },
   }, {
     header: t('norad_id'),
-    accessorKey: 'noradId',
+    accessorKey: 'norad_id',
     cellProps: {
       className: 'pl-10',
     },
   }, {
     header: t('object_dimensions'),
-    renderCell: ({ objectHeight, objectSpan }) => objectHeight && objectSpan ? `${t('height')} ${objectHeight}m x ${t('span')} ${objectSpan}m` : '-',
+    renderCell: ({ object_height, object_span }) => object_height && object_span ? `${t('height')} ${object_height}m x ${t('span')} ${object_span}m` : '-',
     cellProps: {
       className: 'pl-10',
     },
   }, {
     header: t('launching_year'),
-    accessorKey: 'launchingYear',
+    accessorKey: 'launching_year',
     cellProps: {
       className: 'pl-10',
     },

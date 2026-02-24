@@ -11,26 +11,26 @@ import { roundedPercent } from '@/utils/Math';
 export const conjunctionAlertHistoryColumns: TranslatedColumnDef<TypeConjunctionReportOut>[] = [
   {
     header: 'Conjunction_alert_history.report_number',
-    id: 'reportNumber',
+    id: 'report_number',
     enableSorting: false,
     cell: ({ row }) => {
-      const { reportNumber, shortId, presignedUrl } = row.original;
-      const report = `Report ${reportNumber}`;
-      const isClosed = row.original.alertType.includes('closedown');
+      const { report_number, short_id, presigned_url } = row.original;
+      const report = `Report ${report_number}`;
+      const isClosed = row.original.alert_type.includes('closedown');
 
       return (
         <>
-          {presignedUrl
+          {presigned_url
             ? (
                 <Link
-                  href={presignedUrl}
+                  href={presigned_url}
                   className="govuk-link flex items-center gap-2"
                   target="_blank"
                   rel="noreferrer"
                 >
                   <Download04Icon />
                   <span>
-                    {shortId}
+                    {short_id}
                     <br />
                     {report}
                   </span>
@@ -45,7 +45,7 @@ export const conjunctionAlertHistoryColumns: TranslatedColumnDef<TypeConjunction
   },
   {
     header: 'Conjunction_alert_history.report_time',
-    accessorKey: 'reportTime',
+    accessorKey: 'report_time',
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();
@@ -77,7 +77,7 @@ export const conjunctionAlertHistoryColumns: TranslatedColumnDef<TypeConjunction
   },
   {
     header: 'Conjunction_alert_history.probability',
-    accessorKey: 'collisionProbability',
+    accessorKey: 'collision_probability',
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<number>();
@@ -86,7 +86,7 @@ export const conjunctionAlertHistoryColumns: TranslatedColumnDef<TypeConjunction
   },
   {
     header: 'Conjunction_alert_history.overflight',
-    accessorKey: 'tcaTime',
+    accessorKey: 'tca_time',
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();

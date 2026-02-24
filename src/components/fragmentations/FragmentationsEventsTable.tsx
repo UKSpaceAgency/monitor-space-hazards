@@ -32,7 +32,7 @@ const FragmentationsEventsTable = async ({ params }: FragmentationsEventsTablePr
       <DownloadData type={t('Download.types.fragmentation_events')} params={params} downloadAction={downloadData} ariaLabel="Fragmentation events" />
       <div className="govuk-inset-text">
         {t('Fragmentations.fragmentations_events_as_of')}
-        {dayjs(latestCdms.data.updatedAt).format(FORMAT_DATE_TIME)}
+        {dayjs(latestCdms.data.updated_at).format(FORMAT_DATE_TIME)}
       </div>
     </>
   );

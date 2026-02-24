@@ -25,7 +25,7 @@ function AnalysisUploadEmail({ conjunctions, withPlaceholders }: AnalysisUploadE
   const url = `${env.NEXTAUTH_URL}/conjunctions`;
 
   return (
-    <Layout withPlaceholders={withPlaceholders} isNotification>
+    <Layout withPlaceholders={withPlaceholders} isNotification eventType="conjunction">
       <Section title={t('Analysis_upload.title')}>
         {t.rich('Analysis_upload.content', {
           p: chunks => <Text>{chunks}</Text>,
@@ -41,11 +41,11 @@ function AnalysisUploadEmail({ conjunctions, withPlaceholders }: AnalysisUploadE
 AnalysisUploadEmail.PreviewProps = {
   conjunctions: [
     {
-      shortId: '123',
-      primaryObjectCommonName: 'Primary Object',
-      secondaryObjectCommonName: 'Secondary Object',
-      tcaTime: '2021-01-01T00:00:00Z',
-      collisionProbability: 0.5,
+      short_id: '123',
+      primary_object_common_name: 'Primary Object',
+      secondary_object_common_name: 'Secondary Object',
+      tca_time: '2021-01-01T00:00:00Z',
+      collision_probability: 0.5,
     },
   ],
 };

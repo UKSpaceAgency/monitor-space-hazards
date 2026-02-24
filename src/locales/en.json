@@ -5,6 +5,8 @@
     "navigation": {
       "conjunctions": "Conjunctions",
       "re-entries": "Re-entries",
+      "fragmentations": "Fragmentations",
+      "activity": "Activity",
       "satellites": "Satellites",
       "account": "Account"
     },
@@ -132,16 +134,38 @@
     "title": "Data Privacy Notice",
     "button": "Download data privacy notice"
   },
-  "Contact_analyst": {
-    "title": "Operations support",
+  "Contact_analyst_conjunctions": {
+    "title": "Operations support - conjunction events",
     "content": "<p>NSpOC orbital analysts are available Monday to Sunday, 8am to 4pm. Your message will be triaged and an analyst will get back to you as soon as possible.</p><p>NSpOC orbital analysts <bold>can</bold> provide:</p><list><item>Further detail on their calculations</item><item>An indication on whether further analysis of an event is possible</item></list><p>NSpOC orbital analysts <bold>cannot</bold> provide:</p><list><item>Advice on how you should manoeuvre your satellite</item><item>Analysis on a planned manoeuvre</item></list>",
-    "event_id": "Conjunction event ID or Re-entry event ID",
+    "event_id": "Conjunction event ID",
     "email_address": "Your email address",
     "submit": "Submit",
     "Send": {
       "title": "Your message has been sent to an orbital analyst.",
       "content": "Your message will be triaged and an analyst will get back to you as soon as possible."
     }
+  },
+  "Contact_analyst_reentries": {
+    "title": "Operations support - re-entry events",
+    "content": "<p>NSpOC orbital analysts are available Monday to Sunday, 8am to 4pm. Your message will be triaged and an analyst will get back to you as soon as possible.</p><p>NSpOC orbital analysts <bold>can</bold> provide:</p><list><item>Further detail on their calculations</item><item>An indication on whether further analysis of an event is possible</item></list>",
+    "event_id": "Re-entry event ID",
+    "email_address": "Your email address",
+    "submit": "Submit",
+    "Send": {
+      "title": "Your message has been sent to an orbital analyst.",
+      "content": "Your message will be triaged and an analyst will get back to you as soon as possible."
+    }
+  },
+  "Contact_analyst_fragmentations": {
+    "title": "Operations support - fragmentation events",
+    "content": "<p>NSpOC orbital analysts are available Monday to Sunday, 8am to 4pm. Your message will be triaged and an analyst will get back to you as soon as possible.</p><p>NSpOC orbital analysts <bold>can</bold> provide:</p><list><item>Further detail on their calculations</item><item>An indication on whether further analysis of an event is possible</item></list>",
+    "event_id": "Fragmentation event ID",
+    "email_address": "Your email address",
+    "submit": "Submit"
+  },
+  "Contact_analyst_send": {
+    "title": "Your message has been sent to an orbital analyst.",
+    "content": "Your message will be triaged and an analyst will get back to you as soon as possible."
   },
   "Credentials": {
     "title": "Credentials for API authentication",
@@ -289,11 +313,11 @@
       "distribution_list": "Distribution lists for {type} events",
       "conjunctions_help": {
         "summary": "Conjunction alert criteria",
-        "content": "<h3>Standard conjunction alert</h3><p>There are various criteria which determine if alerts are produced about conjunction events. These criteria vary by type of object.</p><p><bold>For UK-licensed objects:</bold></p><list><item>Less than 5 days until Time of Closest Approach</item><item>More than 0.1% probability of collision</item><item>Press interest</item></list><p><bold>For non-UK objects:</bold></p><list><item>Less than 5 days until Time of Closest Approach, with:</item><list><item>Low risk or higher</item><item>No manoeuvre expected</item></list></list><p><bold>For all objects:</bold></p><list><item>If nominated for escalation by the National Space Operations Centre</item></list><h3>Priority conjunction alert</h3><p><bold>For UK-licensed objects:</bold></p><list><item>More than 1% probability of collision</item><item>No manoeuvre expected</item></list><p><bold>For non-UK objects:</bold></p><list><item>More than 5% probability of collision</item><item>No manoeuvre expected</item><item>Significant press interest</item></list>"
+        "content": "<h3>Level 1 (Standard) conjunction alert</h3><p>The criteria for producing a Level 1 (Standard) conjunction alert is as follows:</p><p>For UK-licensed objects:</p><list><item>Less than 5 days until Time of Closest Approach, and</item><item>More than 0.1% probability of collision, and</item><item>Press interest</item></list><p>For non-UK objects:</p><list><item>Less than 5 days until Time of Closest Approach, and</item><item>Classified as Low Risk or higher, and</item><item>No manoeuvre expected</item></list><p>For all objects:</p><list><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Level 2 (Priority) conjunction alert</h3><p>The criteria for producing a Level 2 (Priority) conjunction alert is as follows:</p><p>For UK-licensed objects:</p><list><item>More than 1% probability of collision, and</item><item>No manoeuvre expected</item></list><p>For non-UK objects:</p><list><item>More than 5% probability of collision, and</item><item>No manoeuvre expected, and</item><item>Significant press interest</item></list><p>For all objects:</p><list><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Alert distribution</h3><p>If this report is classified as a Level 1 (Standard) conjunction alert, it has been distributed only to key UK Government organisations (for example the National Space Operations Centre, Ministry of Defence and Civil Aviation Authority) and international partners.</p><p>If this report is classified as a Level 2 (Priority) conjunction alert, it has been distributed only to specific users directly involved in the Government response.</p><p>Please note: distribution lists for Level 1 and Level 2 alerts are separate. Recipients will only receive reports for the level(s) for which they are specifically included.</p>"
       },
       "reentry_help": {
         "summary": "Re-entry alert criteria",
-        "content": "<h3>Standard re-entry alert</h3><p>If this report is classified as a standard re-entry alert, then it has been distributed only to key UK government organisations (National Space Operations Centre, Ministry of Defence, Cabinet Office, Civil Aviation Authority) and international partners.</p><p><bold>The criteria for producing a standard re-entry alert is less than 36 hours until re-entry and one of the following:</bold></p><list><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories</item><item>Any UK-licensed object (except designed for demise)</item><item>Press interest</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Priority re-entry alert</h3><p>If this report is classified as a priority re-entry alert, then it has been distributed more widely across UK devolved and central government departments.</p><p><bold>The criteria for producing a priority re-entry alert is debris likely to survive to the ground and one of the following:</bold></p><list><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis)</item><item>UK-licensed object</item><item>Significant press interest</item></list>"
+        "content": "<h3>Level 1 (Standard) re-entry alert</h3><p>The criteria for producing a Level 1 (Standard) re-entry alert is as follows:</p><list><item>Less than 36 hours until re-entry, and one or more of the following:</item><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland, and/or</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories, and/or</item><item>Press interest, and/or</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Level 2 (Priority) re-entry alert</h3><p>The criteria for producing a Level 2 (Priority) re-entry alert is as follows:</p><list><item>Debris likely to survive to the ground, and one or more of the following:</item><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis, and/or</item><item>UK-licensed object, and/or</item><item>Significant press interest, and/or</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Alert distribution</h3><p>If this report is classified as a Level 1 (Standard) re-entry alert, it has been distributed only to key UK Government organisations (for example the National Space Operations Centre, Ministry of Defence and Civil Aviation Authority) and international partners.</p><p>If this report is classified as a Level 2 (Priority) re-entry alert, it has been distributed only to specific users directly involved in the Government response.</p><p>Please note: distribution lists for Level 1 and Level 2 alerts are separate. Recipients will only receive reports for the level(s) for which they are specifically included.</p>"
       }
     }
   },
@@ -622,13 +646,18 @@
     "accordion": {
       "additional_event_details": "Additional event details",
       "potential_impact_of_event": "Potential impact of event",
+      "potential_impact": "Potential impact",
       "guidance_on_response": "Guidance on response",
       "additional_risk": "Additional risk to UK objects",
       "operator_view": "Operator view",
       "conjunction_event_history": "Conjunction event history",
       "alert_thresholds": "Alerting procedure",
       "risk_thresholds": "Risk thresholds",
-      "further_information": "Further information"
+      "further_information": "Further information",
+      "event_details": "Event details",
+      "guidance": "Guidance",
+      "additional_information": "Additional information",
+      "press_attention": "Press attention"
     },
     "Executive_summary": {
       "title": "Conjunction alert summary",
@@ -683,7 +712,7 @@
       "content": "<p>The satellite operator of the UK-licensed object has been notified of the conjunction event via the Monitor space hazards platform. <link>Click to see the information that operators have received.</link></p>"
     },
     "Alert_thresholds": {
-      "content": "<p><bold>Standard conjunction alert:</bold> If this report is classified as a standard conjunction alert, then it has been distributed only to key UK government organisations (NSpOC, Ministry of Defence, Cabinet Office) and international partners.</p><p><bold>Priority conjunction alert:</bold> If this report is classified as a priority conjunction alert, then it has been distributed more widely across UK devolved and central government department.</p>\n\n<p>There are various criteria which determine if alerts are produced about conjunction events. These criteria vary by type of object.</p><p><bold>For UK-licensed objects:</bold></p><p>Less than 5 days until Time of Closest Approach, with:</p><list><item>More than 0.1% probability of collision</item><item>OR press interest</item></list><p><bold>For non-UK objects:</bold></p><p>Less than 5 days until Time of Closest Approach, with:</p><list><item>Low risk or higher</item><item>AND no manoeuvre expected</item></list><p><bold>For all objects:</bold></p><p>If nominated for escalation by the National Space Operations Centre</p>"
+      "content": "<h3>Level 1 (Standard) conjunction alert</h3><p>The criteria for producing a Level 1 (Standard) conjunction alert is as follows:</p><p>For UK-licensed objects:</p><list><item>Less than 5 days until Time of Closest Approach, and</item><item>More than 0.1% probability of collision, and</item><item>Press interest</item></list><p>For non-UK objects:</p><list><item>Less than 5 days until Time of Closest Approach, and</item><item>Classified as Low Risk or higher, and</item><item>No manoeuvre expected</item></list><p>For all objects:</p><list><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Level 2 (Priority) conjunction alert</h3><p>The criteria for producing a Level 2 (Priority) conjunction alert is as follows:</p><p>For UK-licensed objects:</p><list><item>More than 1% probability of collision, and</item><item>No manoeuvre expected</item></list><p>For non-UK objects:</p><list><item>More than 5% probability of collision, and</item><item>No manoeuvre expected, and</item><item>Significant press interest</item></list><p>For all objects:</p><list><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Alert distribution</h3><p>If this report is classified as a Level 1 (Standard) conjunction alert, it has been distributed only to key UK Government organisations (for example the National Space Operations Centre, Ministry of Defence and Civil Aviation Authority) and international partners.</p><p>If this report is classified as a Level 2 (Priority) conjunction alert, it has been distributed only to specific users directly involved in the Government response.</p><p>Please note: distribution lists for Level 1 and Level 2 alerts are separate. Recipients will only receive reports for the level(s) for which they are specifically included.</p>"
     },
     "Risk_thresholds": {
       "content": "<p>Risk thresholds are calculated accounting for the probability of the collision between the two objects (as calculated by Space-Track), and the average number of additional conjunction events that the collision would create for UK satellites.</p><p>Any event with an expected maneouvre is automatically categorised as `Low risk`.</p>",
@@ -722,10 +751,10 @@
   },
   "Conjunction_alert_send": {
     "title": "Send alert to additional recipients",
-    "content": "<p>This page shows you the current distribution status of the conjunction alert and allows you to manually distribute the alert to additional recipients.</p><p>If it is not already, you can choose to make the alert a priority conjunction alert. In addition, you can manually select individual emails to send the alert to or send the alert again to other distribution lists.</p>",
+    "content": "<p>This page shows the current distribution status of the alert.</p><p>You can send the alert to additional distribution lists or individual recipients.</p> ",
     "alert_criteria_help": {
       "title": "Distribution lists and conjunction alert criteria",
-      "content": "<h3>Standard conjunction alert</h3><p>There are various criteria which determine if alerts are produced about conjunction events. These criteria vary by type of object.</p><p><bold>For UK-licensed objects:</bold></p><list><item>Less than 5 days until Time of Closest Approach</item><item>More than 0.1% probability of collision</item><item>Press interest</item></list><p><bold>For non-UK objects:</bold></p><list><item>Less than 5 days until Time of Closest Approach, with:</item><list><item>Low risk or higher</item><item>No manoeuvre expected</item></list></list><p><bold>For all objects:</bold></p><list><item>If nominated for escalation by the National Space Operations Centre</item></list><h3>Priority conjunction alert</h3><p><bold>For UK-licensed objects:</bold></p><list><item>More than 1% probability of collision</item><item>No manoeuvre expected</item></list><p><bold>For non-UK objects:</bold></p><list><item>More than 5% probability of collision</item><item>No manoeuvre expected</item><item>Significant press interest</item></list>"
+      "content": "<h3>Level 1 (Standard) conjunction alert</h3><p>The criteria for producing a Level 1 (Standard) conjunction alert is as follows:</p><p>For UK-licensed objects:</p><list><item>Less than 5 days until Time of Closest Approach, and</item><item>More than 0.1% probability of collision, and</item><item>Press interest</item></list><p>For non-UK objects:</p><list><item>Less than 5 days until Time of Closest Approach, and</item><item>Classified as Low Risk or higher, and</item><item>No manoeuvre expected</item></list><p>For all objects:</p><list><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Level 2 (Priority) conjunction alert</h3><p>The criteria for producing a Level 2 (Priority) conjunction alert is as follows:</p><p>For UK-licensed objects:</p><list><item>More than 1% probability of collision, and</item><item>No manoeuvre expected</item></list><p>For non-UK objects:</p><list><item>More than 5% probability of collision, and</item><item>No manoeuvre expected, and</item><item>Significant press interest</item></list><p>For all objects:</p><list><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Alert distribution</h3><p>If this report is classified as a Level 1 (Standard) conjunction alert, it has been distributed only to key UK Government organisations (for example the National Space Operations Centre, Ministry of Defence and Civil Aviation Authority) and international partners.</p><p>If this report is classified as a Level 2 (Priority) conjunction alert, it has been distributed only to specific users directly involved in the Government response.</p><p>Please note: distribution lists for Level 1 and Level 2 alerts are separate. Recipients will only receive reports for the level(s) for which they are specifically included.</p>"
     }
   },
   "Reentries": {
@@ -848,14 +877,7 @@
       }
     },
     "Alerting_procedure": {
-      "standard_alert": {
-        "title": "Standard re-entry alert",
-        "content": "<p>If this report is classified as a standard re-entry alert, then it has been distributed only to key UK government organisations (National Space Operations Centre, Ministry of Defence, Cabinet Office, Civil Aviation Authority) and international partners.</p><p>The criteria for producing a standard re-entry alert is less than 36 hours until re-entry and one of the following:</p><list><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories</item><item>Any UK-licensed object (except designed for demise)</item><item>Press interest</item><item>Nominated for escalation by the National Space Operations Centre</item></list>"
-      },
-      "priority_alert": {
-        "title": "Priority re-entry alert",
-        "content": "<p>If this report is classified as a priority re-entry alert, then it has been distributed more widely across UK devolved and central government departments.</p><p>The criteria for producing a priority re-entry alert is debris likely to survive to the ground and one of the following:</p><list><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis)</item><item>UK-licensed object</item><item>Significant press interest</item></list>"
-      }
+      "content": "<h3>Level 1 (Standard) re-entry alert</h3><p>The criteria for producing a Level 1 (Standard) re-entry alert is as follows:</p><list><item>Less than 36 hours until re-entry, and one or more of the following:</item><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland, and/or</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories, and/or</item><item>Press interest, and/or</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Level 2 (Priority) re-entry alert</h3><p>The criteria for producing a Level 2 (Priority) re-entry alert is as follows:</p><list><item>Debris likely to survive to the ground, and one or more of the following:</item><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis, and/or</item><item>UK-licensed object, and/or</item><item>Significant press interest, and/or</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Alert distribution</h3><p>If this report is classified as a Level 1 (Standard) re-entry alert, it has been distributed only to key UK Government organisations (for example the National Space Operations Centre, Ministry of Defence and Civil Aviation Authority) and international partners.</p><p>If this report is classified as a Level 2 (Priority) re-entry alert, it has been distributed only to specific users directly involved in the Government response.</p><p>Please note: distribution lists for Level 1 and Level 2 alerts are separate. Recipients will only receive reports for the level(s) for which they are specifically included.</p>"
     },
     "Further_information": {
       "content": "To understand more about how this data was generated by the  NSpOC, see:",
@@ -877,10 +899,47 @@
   },
   "Reentry_alert_send": {
     "title": "Send alert to additional recipients",
-    "content": "<p>This page shows you the current distribution status of the re-entry alert and allows you to manually distribute the alert to additional recipients.</p><p>If it is not already, you can choose to make the alert a priority re-entry alert. In addition, you can manually select individual emails to send the alert to or send the alert again to other distribution lists.</p>",
+    "content": "<p>This page shows the current distribution status of the alert.</p>\n<p>You can send the alert to additional distribution lists or individual recipients.</p>",
     "alert_criteria_help": {
       "title": "Distribution lists and re-entry alert criteria",
-      "content": "<h3>Distribution lists:</h3><p>You are able to view which distribution list users are currently on in the account section (<link>View distribution lists</link>)</p><h3>Standard re-entry alert</h3><p><bold>The criteria for producing a standard re-entry alert is less than 36 hours until re-entry and one of the following:</bold></p><list><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories</item><item>Any UK-licensed object (except designed for demise)</item><item>Press interest</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Priority re-entry alert:</h3><p><bold>The criteria for producing a priority re-entry alert is debris likely to survive to the ground and one of the following:</bold></p><list><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis)</item><item>UK-licensed object</item><item>Significant press interest</item></list>"
+      "content": "<h3>Level 1 (Standard) re-entry alert</h3><p>The criteria for producing a Level 1 (Standard) re-entry alert is as follows:</p><list><item>Less than 36 hours until re-entry, and one or more of the following:</item><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland, and/or</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories, and/or</item><item>Press interest, and/or</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Level 2 (Priority) re-entry alert</h3><p>The criteria for producing a Level 2 (Priority) re-entry alert is as follows:</p><list><item>Debris likely to survive to the ground, and one or more of the following:</item><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis, and/or</item><item>UK-licensed object, and/or</item><item>Significant press interest, and/or</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Alert distribution</h3><p>If this report is classified as a Level 1 (Standard) re-entry alert, it has been distributed only to key UK Government organisations (for example the National Space Operations Centre, Ministry of Defence and Civil Aviation Authority) and international partners.</p><p>If this report is classified as a Level 2 (Priority) re-entryalert, it has been distributed only to specific users directly involved in the Government response.</p><p>Please note: distribution lists for Level 1 and Level 2 alerts are separate. Recipients will only receive reports for the level(s) for which they are specifically included.</p>"
+    }
+  },
+  "Activities": {
+    "title": "Track UK satellite activity",
+    "description": "<p>This table contains information on any changes to the status and positions of UK-licensed satellites.</p><p>These changes in status are identified through 4 different types of flags related to satellite position, manoeuvres undertaken, and data quality. More detail on each flag can be found by clicking on the flag ID.</p>",
+    "search_bar": {
+      "label": "Search satellites",
+      "placeholder": "Search by satellite name or ID"
+    },
+    "help": {
+      "title": "Help with this table<screenReaderOnly> - Activities</screenReaderOnly>",
+      "content": "<list><item>Select the <b>event ID</b> for more information on the satellite activity.</item><item>Select the <b>object</b> for more information about the satellite in question.</item><item>Select the <b>operator name</b> for an overview of that operator's satellites.</item><item>Sort the satellites according to criteria by clicking on the relevant <b>heading.</b></item><item>Filter the list of satellites by clicking <b>Apply filters to this table</b> below the search bar.</item></list>"
+    }
+  },
+  "Activity": {
+    "title": "Activity flag {shortId}",
+    "description": "Activity",
+    "accordion": {
+      "object_data": "Object data",
+      "operator_support": "Operator support"
+    },
+    "Event_summary": {
+      "title": "Event summary",
+      "content": "dadada",
+      "contact_analyst": "Contact a UKSA orbital analyst",
+      "help": {
+        "title": "Help with this summary",
+        "content": "This flag has been uploaded by UKSA's orbital analysis team as they have verified an object change that exceeds tolerance thresholds for TLE age."
+      }
+    },
+    "Object_data": {
+      "title": "Object data",
+      "content": "Space-Track is the main source of object data.",
+      "additional_object_summary": {
+        "title": "Additional object data",
+        "content": "<p>ESA DISCOS provides additional object data where available. Contact ESA DISCOS if your satellite data is incorrect.</p><p>ESA DISCOS data was last updated on: {updateTime} UTC</p>"
+      }
     }
   },
   "Performance_monitoring": {
@@ -1088,7 +1147,8 @@
         "conjunction_reports": "conjunction reports",
         "reentry_events": "re-entry events",
         "reentry_reports": "re-entry reports",
-        "fragmentation_events": "fragmentation events"
+        "fragmentation_events": "fragmentation events",
+        "activities": "activities"
       }
     },
     "Analysis_data": {
@@ -1589,6 +1649,26 @@
       "number_of_fragments": "Number of known fragments",
       "modelled_fragments": "Modelled number of fragments",
       "fragmentation_risk": "Fragmentation risk"
+    },
+    "Activities": {
+      "details": {
+        "summary": "Apply filters to this table:",
+        "option1": "View all events and alerts",
+        "option2": "Only view conjunction alerts",
+        "all": "All",
+        "upcoming": "Upcoming",
+        "past": "Past",
+        "select_label": "Filter by"
+      },
+      "reason_for_flag": "Reason for flag",
+      "short_id": "Event ID",
+      "common_name": "Object",
+      "operator_name": "Operator",
+      "norad_id": "NORAD ID",
+      "flag_date": "Date of flag",
+      "orbit_type": "Orbit",
+      "altitude": "Altitude (km)",
+      "longitude": "Longitude (°)"
     }
   },
   "Forms": {
@@ -1623,17 +1703,10 @@
       "select_account_type": "Select an account type",
       "select_account_type_hint": "What type of access will this user require to Monitor Space Hazards?",
       "role": "Role",
-      "help_summary": "What can these accounts do?",
-      "help_content": "<p><bold>Admins</bold> can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site. Administrators can also view all user accounts for an organisation, and can add new users, and change or delete existing users.</p><p><bold>Operators</bold> can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site.</p><p><bold>Users</bold> can view information on their organisation's satellites and the upcoming conjunction events involving them.</p>",
       "submit": "Add user",
       "help": {
         "title": "What can these accounts do?",
-        "admins": "Admins",
-        "operators": "Operators",
-        "users": "Users",
-        "adminsDescription": "can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site. Administrators can also view all user accounts for an organisation, and can add new users, and change or delete existing users.",
-        "operatorsDescription": "can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site.",
-        "usersDescription": "can view information on their organisation's satellites and the upcoming conjunction events involving them."
+        "content": "<p><bold>Admins</bold> can view information relevant to their organisation. Administrators can upload ephemeris data to the site where the satellite belongs to their organisation. Administrators can also view all user accounts for an organisation, and can add new users, and change or delete existing users.</p><p><bold>Operators</bold> can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site.</p><p><bold>Users</bold> can view information relevant for their organisation, but have no additional permissions within their organisation.</p><p>Note: Public sector users (e.g. users in government and regulator organisations) can view all UK-licensed objects and related events. Operator organisations can only view information relating to their own assets. Not all role types are available to all organisations.</p>"
       }
     },
     "Schedule_banner": {
@@ -1668,40 +1741,40 @@
       "their_which": "Which {type} alerts would you like the user to receive?",
       "select_one_option": "Select one option.",
       "no_conjunction_alerts": "No conjunction alerts",
-      "receive_all_conjunction_alerts": "Receive all conjunction alerts",
-      "recommended_for": "Recommended for National Space Operations Centre, Civil Aviation Authority and Ministry of Defence",
-      "only_priority_conjunction_alerts": "Only priority conjunction alerts",
-      "recommended_for_all_other": "Recommended for all other government departments",
+      "receive_all_conjunction_alerts": "Level 1 (Standard) conjunction alerts",
+      "recommended_for": "Recommended for National Space Operations Centre, Civil Aviation Authority, Ministry of Defence, and international partners",
+      "only_priority_conjunction_alerts": "Level 2 (Priority) conjunction alerts",
+      "recommended_for_all_other": "Recommended for users likely to be involved in the government response",
       "recommended_for_all_users": "Recommended for all users",
       "re_entry_alerts": "Re-entry alerts",
       "no_re_entry_alerts": "No re-entry alerts",
-      "all_re_entry_alerts": "All re-entry alerts for {whose} areas of interest",
+      "all_re_entry_alerts": "Level 1 (Standard) re-entry alerts for {whose} areas of interest",
       "recommended_for_uk": "Recommended for National Space Operations Centre, Civil Aviation Authority, Ministry of Defence and international partners",
       "re_entry_alerts_for_uk": "Re-entry alerts for UK satellites only",
       "recommended_for_foreign": "Recommended for Foreign, Commonwealth and Development Office (FCDO) and Department of Business, Energy and Industrial Strategy (BEIS) teams concerned with UK liability",
-      "only_priority_re_entry": "Only priority re-entry alerts for {whose} areas of interest",
+      "only_priority_re_entry": "Level 2 (Priority) re-entry alerts for {whose} areas of interest",
       "how_would_you_like_conjunction": "How would you like to receive conjunction alerts?",
       "how_would_you_like_re_entry": "How would you like to receive re-entry alerts?",
       "select_the_areas_of_interest": "Select the {whose} areas of interest:",
       "notifications_for_re_entries": "Notifications for re-entries over non UK nations are currently only distributed in the case of the re-entering object being a UK licensed satellite.",
       "fragmentation_alerts": "Fragmentation alerts",
       "how_would_you_like_fragmentation": "How would you like to receive fragmentation alerts?",
-      "only_priority_fragmentation_alerts": "Only priority fragmentation alerts",
-      "receive_all_fragmentation_alerts": "Receive all fragmentation alerts",
+      "only_priority_fragmentation_alerts": "Only Level 1 (Standard) fragmentation alerts",
+      "receive_all_fragmentation_alerts": "Level 1 (Standard) fragmentation alerts",
       "no_fragmentation_alerts": "Do not receive fragmentation alerts",
       "sms": "SMS",
       "email": "Email",
       "help_reentry": {
-        "title": "Criteria for priority re-entry alerts",
-        "content": "<h3>Standard re-entry alert</h3><p>If this report is classified as a standard re-entry alert, then it has been distributed only to key UK government organisations (National Space Operations Centre, Ministry of Defence, Cabinet Office, Civil Aviation Authority) and international partners.</p><h4>The criteria for producing a standard re-entry alert is less than 36 hours until re-entry and one of the following:</h4><list><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories</item><item>Any UK-licensed object (except designed for demise)</item><item>Press interest</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Priority re-entry alert</h3><p>If this report is classified as a priority re-entry alert, then it has been distributed more widely across UK devolved and central government departments.</p><h4>The criteria for producing a priority re-entry alert is debris likely to survive to the ground and one of the following:</h4><list><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis)</item><item>UK-licensed object</item><item>Significant press interest</item></list>"
+        "title": "Re-entry alert criteria",
+        "content": "<h3>Level 1 (Standard) re-entry alert</h3><p>The criteria for producing a Level 1 (Standard) re-entry alert is as follows:</p><list><item>Less than 36 hours until re-entry, and one or more of the following:</item><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland, and/or</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories, and/or</item><item>Press interest, and/or</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Level 2 (Priority) re-entry alert</h3><p>The criteria for producing a Level 2 (Priority) re-entry alert is as follows:</p><list><item>Debris likely to survive to the ground, and one or more of the following:</item><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis, and/or</item><item>UK-licensed object, and/or</item><item>Significant press interest, and/or</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Alert distribution</h3><p>If this report is classified as a Level 1 (Standard) re-entry alert, it has been distributed only to key UK Government organisations (for example the National Space Operations Centre, Ministry of Defence and Civil Aviation Authority) and international partners.</p><p>If this report is classified as a Level 2 (Priority) re-entry alert, it has been distributed only to specific users directly involved in the Government response.</p><p>Please note: distribution lists for Level 1 and Level 2 alerts are separate. Recipients will only receive reports for the level(s) for which they are specifically included.</p>"
       },
       "help_conjunctions": {
-        "title": "Criteria for priority conjunction alerts",
-        "content": "<h3>Standard conjunction alert</h3><p>There are various criteria which determine if alerts are produced about conjunction events. These criteria vary by type of object.</p><h4>For UK-licensed objects:</h4><list><item>Less than 5 days until Time of Closest Approach</item><item>More than 0.1% probability of collision</item><item>Press interest</item></list><h4>For non-UK objects:</h4><list><item>Less than 5 days until Time of Closest Approach, with:</item><list><item>Low risk or higher</item><item>No manoeuvre expected</item></list></list><h4>For all objects:</h4><list><item>If nominated for escalation by the National Space Operations Centre</item></list><h3>Priority conjunction alert</h3><h4>For UK-licensed objects:</h4><list><item>More than 1% probability of collision</item><item>No manoeuvre expected</item></list><h4>For non-UK objects:</h4><list><item>More than 5% probability of collision</item><item>No manoeuvre expected</item><item>Significant press interest</item></list>"
+        "title": "Conjunction alert criteria",
+        "content": "<h3>Level 1 (Standard) conjunction alert</h3><p>The criteria for producing a Level 1 (Standard) conjunction alert is as follows:</p><p>For UK-licensed objects:</p><list><item>Less than 5 days until Time of Closest Approach, and</item><item>More than 0.1% probability of collision, and</item><item>Press interest</item></list><p>For non-UK objects:</p><list><item>Less than 5 days until Time of Closest Approach, and</item><item>Classified as Low Risk or higher, and</item><item>No manoeuvre expected</item></list><p>For all objects:</p><list><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Level 2 (Priority) conjunction alert</h3><p>The criteria for producing a Level 2 (Priority) conjunction alert is as follows:</p><p>For UK-licensed objects:</p><list><item>More than 1% probability of collision, and</item><item>No manoeuvre expected</item></list><p>For non-UK objects:</p><list><item>More than 5% probability of collision, and</item><item>No manoeuvre expected, and</item><item>Significant press interest</item></list><p>For all objects:</p><list><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Alert distribution</h3><p>If this report is classified as a Level 1 (Standard) conjunction alert, it has been distributed only to key UK Government organisations (for example the National Space Operations Centre, Ministry of Defence and Civil Aviation Authority) and international partners.</p><p>If this report is classified as a Level 2 (Priority) conjunction alert, it has been distributed only to specific users directly involved in the Government response.</p><p>Please note: distribution lists for Level 1 and Level 2 alerts are separate. Recipients will only receive reports for the level(s) for which they are specifically included.</p>"
       },
       "help_fragmentation": {
-        "title": "Criteria for priority fragmentation alerts",
-        "content": "<h3>Standard fragmentation alert</h3><p>There are various criteria which determine if alerts are produced about fragmentation events. These criteria vary by type of object.</p><h4>For UK-licensed objects:</h4><list><item>Less than 5 days until Time of Closest Approach</item><item>More than 0.1% probability of collision</item><item>Press interest</item></list><h4>For non-UK objects:</h4><list><item>Less than 5 days until Time of Closest Approach, with:</item><list><item>Low risk or higher</item><item>No manoeuvre expected</item></list></list><h4>For all objects:</h4><list><item>If nominated for escalation by the National Space Operations Centre</item></list><h3>Priority fragmentation alert</h3><h4>For UK-licensed objects:</h4><list><item>More than 1% probability of collision</item><item>No manoeuvre expected</item></list><h4>For non-UK objects:</h4><list><item>More than 5% probability of collision</item><item>No manoeuvre expected</item><item>Significant press interest</item></list>"
+        "title": "Fragmentation alert criteria",
+        "content": "<h3>Level 1 (Standard) fragmentation alert</h3><p>The criteria for producing a Level 1 (Standard) fragmentation alert are as follows:</p><list><item>The event involves a UK satellite, and/or</item><item>The event generates more than 50 pieces of debris and presents a high risk to UK licensed objects or human spaceflight, and/or</item><item>The event is likely to generate press interest</item></list><h3>Alert distribution</h3><p>If this report is classified as a Level 1 (Standard) fragmentation alert,  it has been distributed to key UK Government organisations (for example the National Space Operations Centre, Ministry of Defence and Civil Aviation Authority) and international partners.</p><p>In addition to the Level 1 (Standard) distribution, the following teams are notified in specific circumstances:</p><list><item>If the licensing country is the UK: Department for Science, Innovation and Technology</item><item>If there is a potential risk to the International Space Station: UK Space Agency Exploration team</item></list>"
       },
       "panel": {
         "title": "Alert settings changed",
@@ -1788,9 +1861,9 @@
         "title": "Current alert distribution status",
         "using_distribution_lists": "Using distribution lists",
         "status": "Status",
-        "all_alerts": "All {type} alerts distribution list",
-        "alert_for_uk": "{type} alerts for UK Satellites distribution list",
-        "priority_alert": "Priority {type} alerts only distribution list",
+        "all_alerts": "Level 1 (Standard) {type} alerts distribution list",
+        "alert_for_uk": "UK Satellites {type} alerts distribution list",
+        "priority_alert": "Level 2 (Priority) {type} alerts distribution list",
         "using_individual_emails": "Using individual emails",
         "individually_selected_recipients": "Individually selected recipients",
         "sent_to_distribution_list": "Sent to distribution list",
@@ -1798,16 +1871,16 @@
       },
       "Change_distribution": {
         "title": "Choose who to alert",
-        "hint": "Select whether you would like to make an alert 'priority' before it meets the automatic distribution criteria, send to individual emails or send the alert again to other distribution lists. Select all that apply.",
+        "hint": "Select all that apply.",
         "individually_selected_recipients_hint": "If you wish to send the alert to individual recipients not currently receiving alerts, you can do so here.",
         "individually_selected_recipients_label": "Provide individual email addresses to receive alerts about this event in the box below. Separate each email address with a semi-colon."
       },
       "Review": {
         "title": "Review your alert before sending",
         "hint": "Ensure that all the appropriate individuals and government agencies have been selected before sending alerts. The button below will send alerts automatically.",
-        "make_this_priority": "Send to priority {type} alerts distribution list:",
-        "make_this_standard": "Send to all {type} alerts distribution list:",
-        "make_this_uk_satellites_only": "Send to UK satellites only {type} alert distribution list:",
+        "make_this_priority": "Send to Level 2 (Priority) {type} alerts distribution list:",
+        "make_this_standard": "Send to Level 1 (Standard) {type} alerts distribution list:",
+        "make_this_uk_satellites_only": "Send to UK satellites {type} alert distribution list:",
         "send_alerts_to_selected_users": "Send alerts to selected users:",
         "change": "Change",
         "send_alerts": "Send alerts",
@@ -1835,7 +1908,7 @@
       "role_hint": "Select an account type",
       "role_help": {
         "title": "What can these accounts do?",
-        "content": "<p><bold>Admins</bold> can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site. Administrators can also view all user accounts for an organisation, and can add new users, and change or delete existing users.</p><p><bold>Operators</bold> can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site.</p><p><bold>Users</bold> can view information on their organisation's satellites and the upcoming conjunction events involving them.</p>"
+        "content": "<p><bold>Admins</bold> can view information relevant to their organisation. Administrators can upload ephemeris data to the site where the satellite belongs to their organisation. Administrators can also view all user accounts for an organisation, and can add new users, and change or delete existing users.</p><p><bold>Operators</bold> can view information on their organisation's satellites and the upcoming conjunction events involving them, and can upload ephemeris data to the site.</p><p><bold>Users</bold> can view information relevant for their organisation, but have no additional permissions within their organisation.</p><p>Note: Public sector users (e.g. users in government and regulator organisations) can view all UK-licensed objects and related events. Operator organisations can only view information relating to their own assets. Not all role types are available to all organisations.</p>"
       },
       "success": "Account details updated"
     }
@@ -1864,6 +1937,7 @@
     "edit_alert_settings": "Edit alert settings"
   },
   "Breadcrumb": {
+    "activity": "Activity",
     "account": "Account",
     "add-banner": "Add new banner",
     "add-new-user": "Add a new user",
@@ -2251,14 +2325,7 @@
       }
     },
     "Alerting_procedure": {
-      "standard": {
-        "title": "Standard fragmentation alert",
-        "content": "<p>If this report is classified as a standard fragmentation alert, then it has been distributed to key UK government organisations (National Space Operations Centre, Ministry of Defence, Cabinet Office, Civil Aviation Authority), UK devolved and central government departments and international partners.</p><p>The criteria for producing a standard fragmentation alert are as follows:</p><list><item>The event involves a UK satellite</item><item>The event generates more than 50 pieces of debris and presents a high risk to UK licensed objects or human spaceflight</item><item>The event is likely to generate press interest</item></list>"
-      },
-      "priority": {
-        "title": "Priority fragmentation alert",
-        "content": "<p>In addition to the standard distribution, the following teams are notified in specific circumstances:</p><list><item><b>If the licensing country is the UK:</b> Department for Science, Innovation and Technology</item><item><b>If there is a potential risk to the International Space Station:</b> UK Space Agency Exploration team</item></list>"
-      }
+      "content": "<p><b>Level 1 (Standard) fragmentation alert</b></p><p>The criteria for producing a Level 1 (Standard) fragmentation alert are as follows:</p><list><item>The event involves a UK satellite, and/or</item><item>The event generates more than 50 pieces of debris and presents a high risk to UK licensed objects or human spaceflight, and/or</item><item>The event is likely to generate press interest</item></list><p><b>Alert distribution</b></p><p>If this report is classified as a Level 1 (Standard) fragmentation alert, it has been distributed only to key UK Government organisations (for example the National Space Operations Centre, Ministry of Defence and Civil Aviation Authority) and international partners.</p><p>In addition to the Level 1 (Standard) distribution, the following teams are notified in specific circumstances:</p><list><item>If the licensing country is the UK: Department for Science, Innovation and Technology</item><item>If there is a potential risk to the International Space Station: UK Space Agency Exploration team</item></list><p>Please note: each distribution list is separate. Recipients will only receive reports for the distribution lists for which they are specifically included.</p>"
     },
     "Further_information": {
       "fragmentation_event_analysis_information": "Fragmentation event analysis information",
@@ -2279,10 +2346,10 @@
   },
   "Fragmentation_alert_send": {
     "title": "Send alert to additional recipients",
-    "content": "<p>This page shows you the current distribution status of the fragmentation event and allows you to manually distribute the alert to additional recipients.</p><p>If it is not already, you can choose to make the event a priority fragmentation event. You are also able to manually select individual emails to send the alert to.</p>",
+    "content": "<p>This page shows the current distribution status of the alert.</p>\n<p>You can send the alert to additional distribution lists or individual recipients.</p>",
     "alert_criteria_help": {
       "title": "Distribution lists and fragmentation alert criteria",
-      "content": "<p><bold>Distribution lists:</bold></p><p>You are able to what distribution list users are currently on in the account section (<link>View distribution lists</link>)</p><p><b>Priority fragmentation alert criteria for automatic distribution:</b></p><list><item>More than 5% increase in potential collisions with UK satellites and/or Human Spaceflight missions</item><item>OR significant press interest</item></list><p>You can use this page to make an event 'priority' before it meets the automatic distribution criteria.</p>"
+      "content": "<h3>Level 1 (Standard) fragmentation alert</h3><p>The criteria for producing a Level 1 (Standard) fragmentation alert are as follows:</p><list><item>The event involves a UK satellite, and/or</item><item>The event generates more than 50 pieces of debris and presents a high risk to UK licensed objects or human spaceflight, and/or</item><item>The event is likely to generate press interest</item></list><h3>Alert distribution</h3><p>If this report is classified as a Level  1 (Standard) fragmentation alert,  it has been distributed only to key UK Government organisations (for example the National Space Operations Centre, Ministry of Defence and Civil Aviation Authority) and international partners.</p><p>In addition to the Level  1 (Standard) distribution, the following teams are notified in specific circumstances:</p><list><item>If the licensing country is the UK: Department for Science, Innovation and Technology</item><item>If there is a potential risk to the International Space Station: UK Space Agency Exploration team</item></list>"
     }
   }
 }

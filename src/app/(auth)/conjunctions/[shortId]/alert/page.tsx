@@ -19,7 +19,7 @@ export async function generateMetadata({
   const { shortId } = await params;
   const event = await getConjunctionUniqueEvent(shortId);
   return {
-    title: t('title', { primaryObject: event.primaryObjectCommonName, secondaryObject: event.secondaryObjectCommonName }),
+    title: t('title', { primaryObject: event.primary_object_common_name, secondaryObject: event.secondary_object_common_name }),
   };
 }
 

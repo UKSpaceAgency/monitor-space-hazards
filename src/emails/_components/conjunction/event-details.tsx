@@ -27,10 +27,10 @@ export const ConjunctionEventDetails = ({ eventUrl, report, event, ...props }: C
   const objectData = [
     [t('details'), t.rich('details_content', { link: chunks => <Link href={eventUrl}>{chunks}</Link> })],
     [t('event_summary'), t.rich('event_summary_content', {
-      primaryObject: report.primaryObjectCommonName,
-      secondaryObject: report.secondaryObjectCommonName,
+      primaryObject: report.primary_object_common_name,
+      secondaryObject: report.secondary_object_common_name,
       risk: report.risk,
-      probability: roundedPercent(report.collisionProbability ?? 0),
+      probability: roundedPercent(report.collision_probability ?? 0),
       eventUrl: chunks => <Link href={eventUrl}>{chunks}</Link>,
       tag: chunks => renderRiskTag(chunks as TypeRisk),
       p: chunks => <Text className="m-0">{chunks}</Text>,

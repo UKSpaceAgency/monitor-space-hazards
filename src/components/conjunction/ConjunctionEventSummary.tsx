@@ -44,10 +44,10 @@ const ConjunctionEventSummary = async ({
           <li>
             {t('primary_object')}
             <Link
-              href={`/satellites/${primaryObject.noradId}`}
+              href={`/satellites/${primaryObject.norad_id}`}
               className="govuk-link"
             >
-              {primaryObject.commonName ?? t('unknown')}
+              {primaryObject.common_name ?? t('unknown')}
             </Link>
           </li>
           <li>
@@ -56,10 +56,10 @@ const ConjunctionEventSummary = async ({
               ? (t('unknown'))
               : (
                   <Link
-                    href={`/satellites/${secondaryObject.noradId}`}
+                    href={`/satellites/${secondaryObject.norad_id}`}
                     className="govuk-link"
                   >
-                    {secondaryObject.commonName}
+                    {secondaryObject.common_name}
                   </Link>
                 )}
           </li>
@@ -80,7 +80,7 @@ const ConjunctionEventSummary = async ({
         <Button
           as="link"
           href={{
-            pathname: '/contact-analyst',
+            pathname: '/contact-analyst/conjunctions',
             query: {
               id: shortId,
               callback: `/conjunctions/${shortId}`,

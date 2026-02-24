@@ -19,7 +19,7 @@
     "codegen": "vite-node generateApi.ts",
     "push-i18n": "crowdin upload sources",
     "pull-i18n": "crowdin download sources",
-    "email": "email dev --dir ./src/emails"
+    "email": "SKIP_ENV_VALIDATION=true email dev --dir ./src/emails"
   },
   "dependencies": {
     "@ag-media/react-pdf-table": "^2.0.1",

@@ -12,11 +12,11 @@ const ObjectsTracked = async ({ title, className }: ObjectsTrackedProps) => {
     <div className={className}>
       <h2 className="govuk-heading-m pb-5 mb-8 border-b border-midGrey">{title}</h2>
       <div className="grid grid-cols-3 gap-6 md:grid-cols-5 md:gap-4">
-        {data.map(({ objectType, count }, index) => (
+        {data.map(({ object_type, count }, index) => (
           // eslint-disable-next-line react/no-array-index-key
           <div key={index}>
             <p className="govuk-heading-l">{count}</p>
-            <h4 className="govuk-heading-s mb-0">{objectType}</h4>
+            <h4 className="govuk-heading-s mb-0">{object_type}</h4>
           </div>
         ))}
       </div>

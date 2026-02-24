@@ -23,10 +23,10 @@ export const ConjunctionObjects = ({ eventUrl, report, event, ...props }: Conjun
   });
 
   const objectData = [
-    [t('object_name'), report.primaryObjectCommonName, report.secondaryObjectCommonName],
-    [t('object_type'), report.primaryObjectType, report.secondaryObjectType],
-    [t('norad_id'), report.primaryObjectNoradId, report.secondaryObjectNoradId],
-    [t('licensing_country'), getFullCountry(report.primaryObjectLicensingCountry), getFullCountry(report.secondaryObjectLicensingCountry)],
+    [t('object_name'), report.primary_object_common_name, report.secondary_object_common_name],
+    [t('object_type'), report.primary_object_type, report.secondary_object_type],
+    [t('norad_id'), report.primary_object_norad_id, report.secondary_object_norad_id],
+    [t('licensing_country'), getFullCountry(report.primary_object_licensing_country), getFullCountry(report.secondary_object_licensing_country)],
   ];
 
   return (

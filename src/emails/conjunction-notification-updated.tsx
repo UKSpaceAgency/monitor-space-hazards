@@ -25,7 +25,7 @@ function ConjunctionNotificationUpdatedEmail({ conjunctions, withPlaceholders }:
   const url = `${env.NEXTAUTH_URL}/conjunctions`;
 
   return (
-    <Layout withPlaceholders={withPlaceholders} isNotification>
+    <Layout withPlaceholders={withPlaceholders} isNotification eventType="conjunction">
       <Section title={t('Conjunction_notification_updated.title')}>
         {t.rich('Conjunction_notification_updated.content', {
           p: chunks => <Text>{chunks}</Text>,
@@ -41,11 +41,11 @@ function ConjunctionNotificationUpdatedEmail({ conjunctions, withPlaceholders }:
 ConjunctionNotificationUpdatedEmail.PreviewProps = {
   conjunctions: [
     {
-      shortId: '123',
-      primaryObjectCommonName: 'Primary Object',
-      secondaryObjectCommonName: 'Secondary Object',
-      tcaTime: '2021-01-01T00:00:00Z',
-      collisionProbability: 0.5,
+      short_id: '123',
+      primary_object_common_name: 'Primary Object',
+      secondary_object_common_name: 'Secondary Object',
+      tca_time: '2021-01-01T00:00:00Z',
+      collision_probability: 0.5,
     },
   ],
 };

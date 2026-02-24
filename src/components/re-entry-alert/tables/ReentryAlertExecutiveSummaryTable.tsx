@@ -6,7 +6,7 @@ import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 import { getFullCountry } from '@/utils/Regions';
 
-type EventSummaryData = Pick<TypeReentryEventOut, 'timeWindowStart' | 'timeWindowEnd' | 'decayEpoch' | 'uncertaintyWindow' | 'overflightTime' | 'survivability' | 'survivabilityComment' | 'objectName' | 'estimatedMass' | 'licenseCountry'>;
+type EventSummaryData = Pick<TypeReentryEventOut, 'time_window_start' | 'time_window_end' | 'decay_epoch' | 'uncertainty_window' | 'overflight_time' | 'survivability' | 'survivability_comment' | 'object_name' | 'estimated_mass' | 'license_country'>;
 
 type ReentryAlertExecutiveSummaryTableProps = {
   event: TypeReentryEventOut;
@@ -18,32 +18,32 @@ const ReentryAlertExecutiveSummaryTable = ({ event, report }: ReentryAlertExecut
 
   const data = {
     ...event,
-    decayEpoch: report.decayEpoch,
-    uncertaintyWindow: report.uncertaintyWindow,
+    decay_epoch: report.decay_epoch,
+    uncertainty_window: report.uncertainty_window,
   };
 
   const rows: InformationsTableRow<EventSummaryData>[] = [{
     header: t('time_window_world'),
-    accessorKey: 'decayEpoch',
-    renderCell: ({ decayEpoch, uncertaintyWindow }) => `${dayjs(decayEpoch).format(FORMAT_FULL_DATE_TIME)} +/- ${uncertaintyWindow} minute(s)`,
+    accessorKey: 'decay_epoch',
+    renderCell: ({ decay_epoch, uncertainty_window }) => `${dayjs(decay_epoch).format(FORMAT_FULL_DATE_TIME)} +/- ${uncertainty_window} minute(s)`,
   }, {
     header: t('overflight_time'),
-    accessorKey: 'overflightTime',
-    renderCell: ({ overflightTime }) => overflightTime.length > 0 ? overflightTime.map(time => <span key={time} className="block">{dayjs(time).format(FORMAT_FULL_DATE_TIME)}</span>) : '-',
+    accessorKey: 'overflight_time',
+    renderCell: ({ overflight_time }) => overflight_time.length > 0 ? overflight_time.map(time => <span key={time} className="block">{dayjs(time).format(FORMAT_FULL_DATE_TIME)}</span>) : '-',
   }, {
     header: t('survivability_comment'),
-    accessorKey: 'survivabilityComment',
-    renderCell: ({ survivability, survivabilityComment }) => `${survivability ? `${survivability}. ` : ''}${survivabilityComment}`,
+    accessorKey: 'survivability_comment',
+    renderCell: ({ survivability, survivability_comment }) => `${survivability ? `${survivability}. ` : ''}${survivability_comment}`,
   }, {
     header: t('object'),
-    accessorKey: 'objectName',
+    accessorKey: 'object_name',
   }, {
     header: t('estimated_mass'),
-    accessorKey: 'estimatedMass',
+    accessorKey: 'estimated_mass',
   }, {
     header: t('licensing_country'),
-    accessorKey: 'licenseCountry',
-    renderCell: ({ licenseCountry }) => getFullCountry(licenseCountry),
+    accessorKey: 'license_country',
+    renderCell: ({ license_country }) => getFullCountry(license_country),
   }];
 
   return <InformationsTable rows={rows} data={data} className="text-base" />;

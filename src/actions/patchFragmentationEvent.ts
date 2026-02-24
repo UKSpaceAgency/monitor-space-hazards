@@ -8,8 +8,8 @@ import Api from '@/libs/Api';
 
 import { REVALIDATION_TAGS } from './tags';
 
-export async function patchFragmentationEvent(shortId: string, data: TypeFragmentationEventPatch) {
-  await Api.patchFragmentationEventsShortId(shortId, data);
+export async function patchFragmentationEvent(short_id: string, data: TypeFragmentationEventPatch) {
+  await Api.patchFragmentationEventsShortId(short_id, data);
   revalidateTag(REVALIDATION_TAGS.GET_FRAGMENTATION_EVENT);
-  redirect(`/fragmentations/${shortId}`);
+  redirect(`/fragmentations/${short_id}`);
 }

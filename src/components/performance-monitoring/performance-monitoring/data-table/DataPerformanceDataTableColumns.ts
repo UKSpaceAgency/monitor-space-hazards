@@ -6,22 +6,22 @@ import type { TranslatedColumnDef } from '@/types';
 
 export const dataPerformanceColumns: TranslatedColumnDef<TypeExternalDataPerformanceOut>[] = [
   {
-    accessorKey: 'sourceProvider',
-    id: 'sourceProvider',
+    accessorKey: 'source_provider',
+    id: 'source_provider',
     size: 100,
     header: 'Performance_monitoring.data_performance.source',
     enableSorting: false,
   },
   {
-    accessorKey: 'sourceType',
-    id: 'sourceType',
+    accessorKey: 'source_type',
+    id: 'source_type',
     size: 100,
     header: 'Performance_monitoring.data_performance.type_of_source',
     enableSorting: false,
   },
   {
-    accessorKey: 'ingestionStart',
-    id: 'ingestionStart',
+    accessorKey: 'ingestion_start',
+    id: 'ingestion_start',
     header: 'Performance_monitoring.data_performance.ingestion_start',
     cell: ({ getValue }) => {
       const date = getValue<Date>();
@@ -31,8 +31,8 @@ export const dataPerformanceColumns: TranslatedColumnDef<TypeExternalDataPerform
     enableSorting: false,
   },
   {
-    accessorKey: 'ingestionEnd',
-    id: 'ingestionEnd',
+    accessorKey: 'ingestion_end',
+    id: 'ingestion_end',
     header: 'Performance_monitoring.data_performance.ingestion_stop',
     cell: ({ getValue }) => {
       const date = getValue<Date>();
@@ -42,8 +42,8 @@ export const dataPerformanceColumns: TranslatedColumnDef<TypeExternalDataPerform
     enableSorting: false,
   },
   {
-    accessorKey: 'itemsFetched',
-    id: 'itemsFetched',
+    accessorKey: 'items_fetched',
+    id: 'items_fetched',
     header: 'Performance_monitoring.data_performance.number_of_items_fetched',
     enableSorting: false,
   },

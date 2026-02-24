@@ -23,15 +23,15 @@ const AnalysisNotificationTable = ({ conjunctions }: AnalysisNotificationTablePr
   const url = `${env.NEXTAUTH_URL}/conjunctions`;
 
   const data = conjunctions.map(conjunction => [
-    <Link key={conjunction.shortId} href={`${url}/${conjunction.shortId}`}>
-      {conjunction.primaryObjectCommonName}
+    <Link key={conjunction.short_id} href={`${url}/${conjunction.short_id}`}>
+      {conjunction.primary_object_common_name}
       {' '}
       vs
       {' '}
-      {conjunction.secondaryObjectCommonName}
+      {conjunction.secondary_object_common_name}
     </Link>,
     dayjs(conjunction.tca).format(FORMAT_FULL_DATE_TIME_WITH_UTC),
-    conjunction.collisionProbabilityUksa ? displayExponential(conjunction.collisionProbabilityUksa, 4) : '-',
+    conjunction.collision_probability_uksa ? displayExponential(conjunction.collision_probability_uksa, 4) : '-',
   ]);
   return <DataTable headers={[t('objects'), t('tca'), t('poc')]} data={data} className="pb-6" />;
 };

@@ -1,41 +1,30 @@
 import { isNumber } from 'lodash';
 import Link from 'next/link';
 
-import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
+import type { TypeReentryEventOut, TypeRisk } from '@/__generated__/data-contracts';
+import { objectTypeIndex } from '@/emails/_utils/utils';
 import { dayjs, FORMAT_DATE_FULL_MONTH, FORMAT_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
-import Tag from '@/ui/tag/tag';
 import { roundedFixed } from '@/utils/Math';
+import { renderRiskTag } from '@/utils/Tags';
 
 export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumnDef<TypeReentryEventOut>[] => [
   {
     id: 'uk_reentry_probability',
-    accessorKey: 'fragmentsRisk',
+    accessorKey: 'fragments_risk',
     header: 'Reentries.table.risk',
     size: 100,
-    cell: ({ getValue }) => {
-      const classes = {
-        Low: 'govuk-tag--green',
-        Medium: 'govuk-tag--yellow',
-        High: 'govuk-tag--red',
-      };
-      const value = getValue<keyof typeof classes>();
-      return value
-        ? (
-            <Tag className={classes[value]}>{value}</Tag>
-          )
-        : '';
-    },
+    cell: ({ getValue }) => renderRiskTag(getValue<TypeRisk>() ?? 'None'),
   },
   {
-    id: 'shortId',
-    accessorKey: 'shortId',
+    id: 'short_id',
+    accessorKey: 'short_id',
     header: 'Reentries.table.event_id',
     size: 100,
-    cell: ({ getValue, row: { original: { reentryReportNumber } } }) => {
+    cell: ({ getValue, row: { original: { reentry_report_number } } }) => {
       const value = getValue<string>();
 
-      const href = reentryReportNumber && reentryReportNumber > 0 && haveAccessToAlerts
+      const href = reentry_report_number && reentry_report_number > 0 && haveAccessToAlerts
         ? `/re-entries/${value}/alert`
         : `/re-entries/${value}`;
 
@@ -47,20 +36,20 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     },
   },
   {
-    id: 'objectName',
-    accessorKey: 'objectName',
+    id: 'object_name',
+    accessorKey: 'object_name',
     header: 'Reentries.table.object',
-    cell: ({ row: { original: { objectName, objectType } } }) => `${objectName} ${objectType ? `(${objectType})` : ''}`,
+    cell: ({ row: { original: { object_name, object_type } } }) => `${object_name ?? 'Unknown object'.toUpperCase()} ${object_type ? `(${objectTypeIndex[object_type as keyof typeof objectTypeIndex].toUpperCase()})` : ''}`,
   },
   {
-    id: 'noradId',
-    accessorKey: 'noradId',
+    id: 'norad_id',
+    accessorKey: 'norad_id',
     header: 'Reentries.table.norad_id',
     size: 100,
   },
   {
-    id: 'fragmentsProbability',
-    accessorKey: 'fragmentsProbability',
+    id: 'fragments_probability',
+    accessorKey: 'fragments_probability',
     header: 'Reentries.table.probability_of_fragmentation',
     size: 70,
     cell: ({ getValue }) => {
@@ -69,8 +58,8 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     },
   },
   {
-    id: 'decayEpoch',
-    accessorKey: 'decayEpoch',
+    id: 'decay_epoch',
+    accessorKey: 'decay_epoch',
     header: 'Reentries.table.date',
     size: 150,
     cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_DATE_FULL_MONTH),
@@ -78,15 +67,15 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
   {
     id: 'time',
     enableSorting: false,
-    accessorKey: 'decayEpoch',
+    accessorKey: 'decay_epoch',
     header: 'Reentries.table.time',
     size: 80,
     cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_TIME),
   },
   {
-    id: 'uncertaintyWindow',
+    id: 'uncertainty_window',
     enableSorting: false,
-    accessorKey: 'uncertaintyWindow',
+    accessorKey: 'uncertainty_window',
     header: 'Reentries.table.window',
     size: 70,
     cell: ({ getValue }) => `+/- ${getValue<number>()}`,

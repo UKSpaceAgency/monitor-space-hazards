@@ -11,48 +11,6 @@ export type FragmentationEventsTypeChartProps = {
   actionButtons: ReactNode;
 };
 
-// Colour code
-
-// Explosion
-
-// #007CC8
-
-// Collision
-
-// #C00000
-
-// Unknown/Anomalous
-
-// #FFC000
-
-// Accidental
-
-// #92D050
-
-// Deliberate
-
-// #FF0066
-
-// Propulsion
-
-// #F2AA84
-
-// Electrical
-
-// #0B0C0C
-
-// Propulsion
-
-// #505A5F
-
-// Small Impactor
-
-// #B1B4B6
-
-// Aerodynamics
-
-// #F3F2F1
-
 export function FragmentationEventsTypeChart({ data, actionButtons }: FragmentationEventsTypeChartProps) {
   const t = useTranslations('Charts.Events_type');
 
@@ -62,16 +20,16 @@ export function FragmentationEventsTypeChart({ data, actionButtons }: Fragmentat
     const backgroundColors: string[] = [];
     const borderColors: string[] = [];
 
-    const ACCIDENTAL = data.find(({ fragmentationType }) => fragmentationType === 'Accidental')?.count || 0;
-    const AERODYNAMICS = data.find(({ fragmentationType }) => fragmentationType === 'Aerodynamics')?.count || 0;
-    const ANOMALOUS = data.find(({ fragmentationType }) => fragmentationType === 'Anomalous')?.count || 0;
-    const COLLISION = data.find(({ fragmentationType }) => fragmentationType === 'Collision')?.count || 0;
-    const DELIBERATE = data.find(({ fragmentationType }) => fragmentationType === 'Deliberate')?.count || 0;
-    const ELECTRICAL = data.find(({ fragmentationType }) => fragmentationType === 'Electrical')?.count || 0;
-    const EXPLOSION = data.find(({ fragmentationType }) => fragmentationType === 'Explosion')?.count || 0;
-    const PROPULSION = data.find(({ fragmentationType }) => fragmentationType === 'Propulsion')?.count || 0;
-    const SMALL_IMPACTOR = data.find(({ fragmentationType }) => fragmentationType === 'Small Impactor')?.count || 0;
-    const UNKNOWN = data.find(({ fragmentationType }) => fragmentationType === 'Unknown')?.count || 0;
+    const ACCIDENTAL = data.find(({ fragmentation_type }) => fragmentation_type === 'Accidental')?.count || 0;
+    const AERODYNAMICS = data.find(({ fragmentation_type }) => fragmentation_type === 'Aerodynamics')?.count || 0;
+    const ANOMALOUS = data.find(({ fragmentation_type }) => fragmentation_type === 'Anomalous')?.count || 0;
+    const COLLISION = data.find(({ fragmentation_type }) => fragmentation_type === 'Collision')?.count || 0;
+    const DELIBERATE = data.find(({ fragmentation_type }) => fragmentation_type === 'Deliberate')?.count || 0;
+    const ELECTRICAL = data.find(({ fragmentation_type }) => fragmentation_type === 'Electrical')?.count || 0;
+    const EXPLOSION = data.find(({ fragmentation_type }) => fragmentation_type === 'Explosion')?.count || 0;
+    const PROPULSION = data.find(({ fragmentation_type }) => fragmentation_type === 'Propulsion')?.count || 0;
+    const SMALL_IMPACTOR = data.find(({ fragmentation_type }) => fragmentation_type === 'Small Impactor')?.count || 0;
+    const UNKNOWN = data.find(({ fragmentation_type }) => fragmentation_type === 'Unknown')?.count || 0;
 
     if (EXPLOSION > 0) {
       labels.push('Explosion');

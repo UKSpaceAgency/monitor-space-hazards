@@ -73,11 +73,11 @@ const ScheduledBannersTable = ({ banners }: ScheduledBannersTableProps) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {banners.map(({ id, title, broadcastStart, broadcastEnd }) => (
+                {banners.map(({ id, title, broadcast_start, broadcast_end }) => (
                   <TableRow key={id}>
                     <TableCell className="align-middle">{title}</TableCell>
                     <TableCell className="align-middle">
-                      {`${dayjs(broadcastStart).format(FORMAT_DATE_TIME)} ${dayjs(broadcastEnd).format(FORMAT_DATE_TIME)}`}
+                      {`${dayjs(broadcast_start).format(FORMAT_DATE_TIME)} ${dayjs(broadcast_end).format(FORMAT_DATE_TIME)}`}
                     </TableCell>
                     <TableCell className="align-middle">
                       <Button variant="warning" className="m-0" onClick={() => setBannerToRemove({ title, id })} aria-label={t('remove')}>

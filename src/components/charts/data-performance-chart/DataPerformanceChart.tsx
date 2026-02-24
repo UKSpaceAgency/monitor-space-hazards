@@ -44,17 +44,17 @@ const DataPerformanceChart = ({ latestIngestDate, sourceType, xAxisTitle, yAxisT
     refetchOnWindowFocus: false,
   });
 
-  const ingestsData = (data || []).filter(item => item.sourceType === sourceType);
-  const esaDiscosData = ingestsData.filter(item => item.sourceProvider === 'ESADiscos');
-  const spaceTrackData = ingestsData.filter(item => item.sourceProvider === 'SpaceTrack');
+  const ingestsData = (data || []).filter(item => item.source_type === sourceType);
+  const esaDiscosData = ingestsData.filter(item => item.source_provider === 'ESADiscos');
+  const spaceTrackData = ingestsData.filter(item => item.source_provider === 'SpaceTrack');
 
   const datasets = {
     datasets: [
       {
         label: t('space_track'),
         data: spaceTrackData.map(data => ({
-          x: data.ingestionDate as unknown as number,
-          y: data.ingestionSum as number,
+          x: data.ingestion_date as unknown as number,
+          y: data.ingestion_sum as number,
         })),
         borderColor: chartPalette.nspocBlue,
         backgroundColor: chartPalette.nspocBlue,
@@ -64,8 +64,8 @@ const DataPerformanceChart = ({ latestIngestDate, sourceType, xAxisTitle, yAxisT
             {
               label: t('esa_discos'),
               data: esaDiscosData.map(data => ({
-                x: data.ingestionDate as unknown as number,
-                y: data.ingestionSum as number,
+                x: data.ingestion_date as unknown as number,
+                y: data.ingestion_sum as number,
               })),
               borderColor: chartPalette.nspocRed,
               backgroundColor: chartPalette.nspocRed,

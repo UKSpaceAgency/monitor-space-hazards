@@ -23,7 +23,7 @@ export default async function BannerConfirmSchedulePage(props: {
   }
 
   const { data: templates } = await Api.getBannersMessages();
-  const template = templates.find(template => template.id === searchParams.messageId);
+  const template = templates.find(template => template.id === searchParams.message_id);
   if (!template) {
     redirect('/account/incident-banner');
   }
@@ -51,7 +51,7 @@ export default async function BannerConfirmSchedulePage(props: {
           children: t('active_time'),
         },
         value: {
-          children: `${dayjs(searchParams.broadcastStart).format(FORMAT_DATE_TIME)} to ${dayjs(searchParams.broadcastEnd).format(FORMAT_DATE_TIME)}`,
+          children: `${dayjs(searchParams.broadcast_start).format(FORMAT_DATE_TIME)} to ${dayjs(searchParams.broadcast_end).format(FORMAT_DATE_TIME)}`,
         },
       }]}
       />

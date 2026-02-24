@@ -2,7 +2,7 @@ import type { RichTranslationValues } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
 import type { TypeFragmentationEvent, TypeFragmentationReportOut, TypeRisk } from '@/__generated__/data-contracts';
-import { renderRiskTag } from '@/utils/Risk';
+import { renderRiskTag } from '@/utils/Tags';
 
 import { Markdown } from '../Markdown';
 import { FragmentationExecutiveSummaryTable } from './tables/FragmentationExecutiveSummaryTable';
@@ -23,7 +23,7 @@ const FragmentationExecutiveSummary = async ({ event, report, execSummaryComment
 
   return (
     <div data-pdf={t('title')}>
-      <h2 data-anchor="information" className="govuk-heading-l">{t('title')}</h2>
+      <h2 data-anchor="event-summary" className="govuk-heading-l">{t('title')}</h2>
       {execSummaryComment && (
         <Markdown>
           {execSummaryComment}

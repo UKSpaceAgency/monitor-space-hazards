@@ -12,11 +12,11 @@ import { displayExponential } from '@/utils/Math';
 import BaseChart from '../base/BaseChart';
 import { getPocChartDatasets } from './getPocChartDatasets';
 
-export type PocChartDataType = Pick<TypeEventSummaryOut, | 'updateTime'
-  | 'dataSource'
-  | 'collisionProbability'
-  | 'tcaTime'
-  | 'primaryObjectCdmType'>[];
+export type PocChartDataType = Pick<TypeEventSummaryOut, | 'update_time'
+  | 'data_source'
+  | 'collision_probability'
+  | 'tca_time'
+  | 'primary_object_cdm_type'>[];
 
 export type PocChartProps = {
   data: PocChartDataType;
@@ -27,17 +27,17 @@ export function PocChart({ data }: PocChartProps) {
   const [showSpecial, setShowSpecial] = useState(true);
 
   const sortedData = useMemo(
-    () => data.sort((a, b) => Date.parse(a.updateTime) - Date.parse(b.updateTime)),
+    () => data.sort((a, b) => Date.parse(a.update_time) - Date.parse(b.update_time)),
     [data],
   );
 
   const tca = useMemo(
-    () => sortedData[sortedData.length - 1]?.tcaTime,
+    () => sortedData[sortedData.length - 1]?.tca_time,
     [sortedData],
   );
 
   const specialData = useMemo(
-    () => sortedData.filter(data => data.primaryObjectCdmType === 'Special owner/operator ephemeris'),
+    () => sortedData.filter(data => data.primary_object_cdm_type === 'Special owner/operator ephemeris'),
     [sortedData],
   );
 

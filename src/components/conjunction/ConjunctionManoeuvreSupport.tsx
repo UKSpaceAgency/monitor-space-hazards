@@ -16,7 +16,7 @@ const ConjunctionManoeuvreSupport = async ({ plot }: ConjunctionManoeuvreSupport
 
   try {
     const { data } = await getManoeuvrePlotsManoeuvrePlotId(plot?.id);
-    const manoeuvrePlot = await getManoeuvrePlot(data.presignedUrl);
+    const manoeuvrePlot = await getManoeuvrePlot(data.presigned_url);
 
     return <MtpChart manoeuvrePlot={manoeuvrePlot} dataPdf={t('title')} />;
   } catch {

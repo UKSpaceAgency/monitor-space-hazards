@@ -12,7 +12,7 @@ const FragmentationNextUpdate = ({ shortId }: FragmentationNextUpdateProps) => {
     <div>
       <h3 className="govuk-heading-m">{t('title')}</h3>
       <p className="govuk-body">{t('content')}</p>
-      <Button as="link" aria-label={t('contact_analyst')} href={`/contact-analyst?id=${shortId}&callback=/re-entries/${shortId}/alert`}>{t('contact_analyst')}</Button>
+      <Button as="link" aria-label={t('contact_analyst')} href={`/contact-analyst/fragmentations?id=${shortId}&callback=/fragmentations/${shortId}/alert`}>{t('contact_analyst')}</Button>
     </div>
   );
 };

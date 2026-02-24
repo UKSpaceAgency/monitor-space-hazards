@@ -15,7 +15,7 @@ type EventAlertSendReviewProps = {
   type: EventAlertType;
   shortId: string;
   data: EventAlertSearchParams;
-  action: (id: string, data: { alertType: any[]; additionalEmails: string[] }) => Promise<void>;
+  action: (id: string, data: { alert_type: any[]; additional_emails: string[] }) => Promise<void>;
 };
 
 const EventAlertSendReview = ({ type, shortId, data, action }: EventAlertSendReviewProps) => {
@@ -36,8 +36,8 @@ const EventAlertSendReview = ({ type, shortId, data, action }: EventAlertSendRev
     ].filter(Boolean) as ('standard' | 'priority' | 'uk-licensed' | 'closedown')[];
 
     action(shortId, {
-      alertType,
-      additionalEmails: data.additionalRecipients ? data.additionalRecipients.split(/[,;]+/).map(r => r.trim()) : [],
+      alert_type: alertType,
+      additional_emails: data.additionalRecipients ? data.additionalRecipients.split(/[,;]+/).map(r => r.trim()) : [],
     });
   };
 
@@ -53,6 +53,13 @@ const EventAlertSendReview = ({ type, shortId, data, action }: EventAlertSendRev
             <TableCell>{data.isStandard === 'true' ? 'Yes' : 'No'}</TableCell>
             <TableCell className="w-20 text-right"><Link className="govuk-link" href={prevPageUrl}>{t('change')}</Link></TableCell>
           </TableRow>
+          {type !== 'fragmentation' && (
+            <TableRow>
+              <TableCellHeader className="w-1/3">{t('make_this_priority', { type })}</TableCellHeader>
+              <TableCell>{data.isPriority === 'true' ? 'Yes' : 'No'}</TableCell>
+              <TableCell className="w-20 text-right"><Link className="govuk-link" href={prevPageUrl}>{t('change')}</Link></TableCell>
+            </TableRow>
+          )}
           {type === 're-entry' && (
             <TableRow>
               <TableCellHeader className="w-1/3">{t('make_this_uk_satellites_only', { type })}</TableCellHeader>
@@ -60,11 +67,6 @@ const EventAlertSendReview = ({ type, shortId, data, action }: EventAlertSendRev
               <TableCell className="w-20 text-right"><Link className="govuk-link" href={prevPageUrl}>{t('change')}</Link></TableCell>
             </TableRow>
           )}
-          <TableRow>
-            <TableCellHeader className="w-1/3">{t('make_this_priority', { type })}</TableCellHeader>
-            <TableCell>{data.isPriority === 'true' ? 'Yes' : 'No'}</TableCell>
-            <TableCell className="w-20 text-right"><Link className="govuk-link" href={prevPageUrl}>{t('change')}</Link></TableCell>
-          </TableRow>
           <TableRow>
             <TableCellHeader className="w-1/3">{t('send_alerts_to_selected_users')}</TableCellHeader>
             <TableCell className="text-ellipsis">{data.additionalRecipients.split(/[,;]+/).join('; ') || '-'}</TableCell>

@@ -23,16 +23,16 @@ export const ReentryEventDetails = ({ event, report, ...props }: ReentryEventDet
   });
 
   const data = [
-    [t('re_entry_time'), `${dayjs(event.decayEpoch).format(FORMAT_FULL_DATE_TIME_WITH_UTC)} +/- ${event.uncertaintyWindow} minute(s)`],
-    [t('object_name'), event.objectName],
-    [t('object_type'), `${event.objectType ? objectTypeIndex[event.objectType as keyof typeof objectTypeIndex] : 'Unknown'}`],
-    [t('norad_id'), event.noradId],
-    [t('estimated_mass'), `${event.estimatedMass ?? 'Unknown'} kg`],
-    [t('height'), `${event.objectHeight ?? 'Unknown'} m`],
-    [t('width'), `${event.objectWidth ?? 'Unknown'} m`],
-    [t('licensing_country'), getFullCountry(event.licenseCountry) ?? 'Unknown'],
-    [t('expected_survivability'), `${event.survivability ? `${event.survivability}. ` : ''}${event.survivabilityComment ?? 'Unknown'}`],
-    [t('report_number'), report.reportNumber],
+    [t('re_entry_time'), `${dayjs(event.decay_epoch).format(FORMAT_FULL_DATE_TIME_WITH_UTC)} +/- ${event.uncertainty_window} minute(s)`],
+    [t('object_name'), event.object_name],
+    [t('object_type'), `${event.object_type ? objectTypeIndex[event.object_type as keyof typeof objectTypeIndex] : 'Unknown'}`],
+    [t('norad_id'), event.norad_id],
+    [t('estimated_mass'), `${event.estimated_mass ?? 'Unknown'} kg`],
+    [t('height'), `${event.object_height ?? 'Unknown'} m`],
+    [t('width'), `${event.object_width ?? 'Unknown'} m`],
+    [t('licensing_country'), getFullCountry(event.license_country) ?? 'Unknown'],
+    [t('expected_survivability'), `${event.survivability ? `${event.survivability}. ` : ''}${event.survivability_comment ?? 'Unknown'}`],
+    [t('report_number'), report.report_number],
   ];
   return <Table data={data} {...props} />;
 };

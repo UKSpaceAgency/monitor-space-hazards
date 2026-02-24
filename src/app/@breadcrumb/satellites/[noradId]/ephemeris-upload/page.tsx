@@ -21,7 +21,7 @@ export default async function BreadcrumbSatelliteSlot({
           <BreadcrumbLink href="/satellites">{t('satellites')}</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <BreadcrumbLink href={`/satellites/${noradId}`}>{satellite.commonName}</BreadcrumbLink>
+          <BreadcrumbLink href={`/satellites/${noradId}`}>{satellite.common_name}</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbItem>
           <BreadcrumbPage>{t('ephemeris-upload')}</BreadcrumbPage>

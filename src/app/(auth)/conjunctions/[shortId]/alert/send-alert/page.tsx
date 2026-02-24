@@ -41,9 +41,9 @@ export default async function ConjunctionAlertSend({
   });
 
   const defaultValues = {
-    isStandard: alert.alertType.includes('standard'),
-    isPriority: alert.alertType.includes('priority'),
-    additionalRecipients: alert.additionalRecipients?.join('; ') || '',
+    isStandard: alert.alert_type.includes('standard'),
+    isPriority: alert.alert_type.includes('priority'),
+    additionalRecipients: alert.additional_recipients?.join('; ') || '',
   };
 
   return <EventAlertSend type="conjunction" data={defaultValues} content={t.rich('content')} detailsSummary={t('alert_criteria_help.title')} detailsContent={detailsContent} />;

@@ -8,7 +8,7 @@ import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 
 type ConjunctionEventHistoryDetailInformations = Pick<
   TypeEventSummaryOut & TypeDataSourcesOut,
-'primaryObjectCdmType' | 'primaryObjectEphemerisName' | 'updateTime' | 'spaceTrackCdm' | 'primaryObjectUncertainties' | 'secondaryObjectCdmType' | 'secondaryObjectUncertainties'
+'primary_object_cdm_type' | 'primary_object_ephemeris_name' | 'update_time' | 'space_track_cdm' | 'primary_object_uncertainties' | 'secondary_object_cdm_type' | 'secondary_object_uncertainties'
 >;
 
 type ConjunctionEventHistoryDetailTableProps = {
@@ -22,61 +22,61 @@ const ConjunctionEventHistoryDetailTable = ({ object }: ConjunctionEventHistoryD
 
   const rows: InformationsTableRow<ConjunctionEventHistoryDetailInformations>[] = [{
     header: t('event_history.sub_table.primary_object'),
-    accessorKey: 'primaryObjectCdmType',
+    accessorKey: 'primary_object_cdm_type',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.ephemeris_file_name')}</div>,
-    accessorKey: 'primaryObjectEphemerisName',
+    accessorKey: 'primary_object_ephemeris_name',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.data_received')}</div>,
-    renderCell: row => dayjs(row.updateTime).format(FORMAT_DATE_TIME),
-    accessorKey: 'updateTime',
+    renderCell: row => dayjs(row.update_time).format(FORMAT_DATE_TIME),
+    accessorKey: 'update_time',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.number_of_observations')}</div>,
-    renderCell: row => row.spaceTrackCdm[0]?.observationsNumber,
-    accessorKey: 'spaceTrackCdm',
+    renderCell: row => row.space_track_cdm[0]?.observations_number,
+    accessorKey: 'space_track_cdm',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.time_span_of_observations')}</div>,
-    renderCell: row => row.spaceTrackCdm[0]?.observationsTimespan,
-    accessorKey: 'spaceTrackCdm',
+    renderCell: row => row.space_track_cdm[0]?.observations_timespan,
+    accessorKey: 'space_track_cdm',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.position_radial')}</div>,
-    renderCell: row => displayRoundedNumber(row.primaryObjectUncertainties?.radialPositionUncertainty),
-    accessorKey: 'primaryObjectUncertainties',
+    renderCell: row => displayRoundedNumber(row.primary_object_uncertainties?.radial_position_uncertainty),
+    accessorKey: 'primary_object_uncertainties',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.position_in_track')}</div>,
-    renderCell: row => displayRoundedNumber(row.primaryObjectUncertainties?.intrackPositionUncertainty),
-    accessorKey: 'primaryObjectUncertainties',
+    renderCell: row => displayRoundedNumber(row.primary_object_uncertainties?.intrack_position_uncertainty),
+    accessorKey: 'primary_object_uncertainties',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.position_cross_track')}</div>,
-    renderCell: row => displayRoundedNumber(row.primaryObjectUncertainties?.crosstrackPositionUncertainty),
-    accessorKey: 'primaryObjectUncertainties',
+    renderCell: row => displayRoundedNumber(row.primary_object_uncertainties?.crosstrack_position_uncertainty),
+    accessorKey: 'primary_object_uncertainties',
   }, {
     header: t('event_history.sub_table.secondary_object'),
-    accessorKey: 'secondaryObjectCdmType',
+    accessorKey: 'secondary_object_cdm_type',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.data_received')}</div>,
-    renderCell: row => dayjs(row.updateTime).format(FORMAT_DATE_TIME),
-    accessorKey: 'updateTime',
+    renderCell: row => dayjs(row.update_time).format(FORMAT_DATE_TIME),
+    accessorKey: 'update_time',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.number_of_observations')}</div>,
-    renderCell: row => row.spaceTrackCdm[1]?.observationsNumber,
-    accessorKey: 'spaceTrackCdm',
+    renderCell: row => row.space_track_cdm[1]?.observations_number,
+    accessorKey: 'space_track_cdm',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.time_span_of_observations')}</div>,
-    renderCell: row => row.spaceTrackCdm[1]?.observationsTimespan,
-    accessorKey: 'spaceTrackCdm',
+    renderCell: row => row.space_track_cdm[1]?.observations_timespan,
+    accessorKey: 'space_track_cdm',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.position_radial')}</div>,
-    renderCell: row => displayRoundedNumber(row.secondaryObjectUncertainties?.radialPositionUncertainty),
-    accessorKey: 'secondaryObjectUncertainties',
+    renderCell: row => displayRoundedNumber(row.secondary_object_uncertainties?.radial_position_uncertainty),
+    accessorKey: 'secondary_object_uncertainties',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.position_in_track')}</div>,
-    renderCell: row => displayRoundedNumber(row.secondaryObjectUncertainties?.intrackPositionUncertainty),
-    accessorKey: 'secondaryObjectUncertainties',
+    renderCell: row => displayRoundedNumber(row.secondary_object_uncertainties?.intrack_position_uncertainty),
+    accessorKey: 'secondary_object_uncertainties',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.position_cross_track')}</div>,
-    renderCell: row => displayRoundedNumber(row.secondaryObjectUncertainties?.crosstrackPositionUncertainty),
-    accessorKey: 'secondaryObjectUncertainties',
+    renderCell: row => displayRoundedNumber(row.secondary_object_uncertainties?.crosstrack_position_uncertainty),
+    accessorKey: 'secondary_object_uncertainties',
   }];
 
   return <InformationsTable rows={rows} data={object} reducedFont headerCellWidth="sm" dataPdfIgnore />;

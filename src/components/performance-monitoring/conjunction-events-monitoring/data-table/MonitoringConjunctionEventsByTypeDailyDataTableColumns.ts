@@ -3,8 +3,8 @@ import type { TranslatedColumnDef } from '@/types';
 
 export const conjunctionEventsByTypeDailyColumns: TranslatedColumnDef<TypeStatisticsEventsType>[] = [
   {
-    accessorKey: 'eventType',
-    id: 'eventType',
+    accessorKey: 'event_type',
+    id: 'event_type',
     header: 'Performance_monitoring.conjunction_events_by_type.type',
     enableSorting: false,
   },

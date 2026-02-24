@@ -16,21 +16,21 @@ type AnalysisDataTableColumnsProps = {
 
 export const getAnalysisDataTableColumns = ({ handleDelete, handleDownload, json, del, deleted }: AnalysisDataTableColumnsProps): TranslatedColumnDef<TypeAnalysisOut>[] => [
   {
-    id: 'createdAt',
-    accessorKey: 'createdAt',
+    id: 'created_at',
+    accessorKey: 'created_at',
     header: 'Analysis_data.date',
     cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_DATE_TIME),
     size: 150,
   },
   {
-    id: 'uploadedByEmail',
-    accessorKey: 'uploadedByEmail',
+    id: 'uploaded_by_email',
+    accessorKey: 'uploaded_by_email',
     header: 'Analysis_data.user_email',
     size: 350,
   },
   {
-    id: 'eventShortId',
-    accessorKey: 'eventShortId',
+    id: 'event_short_id',
+    accessorKey: 'event_short_id',
     header: 'Analysis_data.event_id',
     cell: ({ getValue }) => {
       const value = getValue<string>();
@@ -43,7 +43,7 @@ export const getAnalysisDataTableColumns = ({ handleDelete, handleDownload, json
     size: 200,
   },
   {
-    id: 'uploadedById',
+    id: 'uploaded_by_id',
     accessorKey: 'id',
     header: 'Analysis_data.file_uploaded',
     cell: ({ getValue }) => {
@@ -63,8 +63,8 @@ export const getAnalysisDataTableColumns = ({ handleDelete, handleDownload, json
     size: 300,
   },
   {
-    id: 'isActive',
-    accessorKey: 'isActive',
+    id: 'is_active',
+    accessorKey: 'is_active',
     enableSorting: false,
     header: () => <span className="invisible">Action</span>,
     cell: ({ getValue, row }) => {
@@ -81,7 +81,7 @@ export const getAnalysisDataTableColumns = ({ handleDelete, handleDownload, json
                 {del}
                 <span className="govuk-visually-hidden">
                   analysis for
-                  {row?.original?.eventShortId}
+                  {row?.original?.event_short_id}
                 </span>
               </Link>
             </div>

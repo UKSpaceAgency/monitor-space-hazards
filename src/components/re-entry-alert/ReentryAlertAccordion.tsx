@@ -10,8 +10,6 @@ import { ReentryAlertGuidanceIfObjectImpactsUkInterests } from './ReentryAlertGu
 import { ReentryAlertGuidanceOnResponse } from './ReentryAlertGuidanceOnResponse';
 import { ReentryAlertImpactAirspaceAndMaritime } from './ReentryAlertImpactAirspaceAndMaritime';
 import { ReentryAlertImpactNation } from './ReentryAlertImpactNation';
-import { ReentryAlertImpactOverseas } from './ReentryAlertImpactOverseas';
-import { ReentryAlertImpactRegion } from './ReentryAlertImpactRegion';
 import { ReentryAlertPressAttention } from './ReentryAlertPressAttention';
 import { ReentryAlertRiskThresholds } from './ReentryAlertRiskThresholds';
 import { ReentryAlertAdditionalObjectDetailsTable } from './tables/ReentryAlertAdditionalObjectDetailsTable';
@@ -50,7 +48,7 @@ const ReentryAlertAccordion = ({
           {
             id: 'alert_history',
             heading: t('alert_history'),
-            content: <ReentryAlertHistoryDataTable shortId={event.shortId} reports={reports} dataPdf={t('alert_history')} />,
+            content: <ReentryAlertHistoryDataTable shortId={event.short_id} reports={reports} dataPdf={t('alert_history')} />,
           },
         ]}
       />
@@ -68,22 +66,22 @@ const ReentryAlertAccordion = ({
                 ),
               }]
             : []),
-          {
-            id: 'potential_impact_uk_region',
-            heading: t('potential_impact_uk_region'),
-            content: (
-              <ReentryAlertImpactRegion england={impacts?.england} ireland={impacts?.northern_ireland} wales={impacts?.wales} scotland={impacts?.scotland} dataPdf={t('potential_impact_uk_region')} />
-            ),
-          },
-          ...(impacts?.overseas_territories_and_crown_dependencies
-            ? [{
-                id: 'potential_impact_overseas_territory',
-                heading: t('potential_impact_overseas_territory'),
-                content: (
-                  <ReentryAlertImpactOverseas impact={impacts.overseas_territories_and_crown_dependencies} dataPdf={t('potential_impact_overseas_territory')} />
-                ),
-              }]
-            : []),
+          // {
+          //   id: 'potential_impact_uk_region',
+          //   heading: t('potential_impact_uk_region'),
+          //   content: (
+          //     <ReentryAlertImpactRegion england={impacts?.england} ireland={impacts?.northern_ireland} wales={impacts?.wales} scotland={impacts?.scotland} dataPdf={t('potential_impact_uk_region')} />
+          //   ),
+          // },
+          // ...(impacts?.overseas_territories_and_crown_dependencies
+          //   ? [{
+          //       id: 'potential_impact_overseas_territory',
+          //       heading: t('potential_impact_overseas_territory'),
+          //       content: (
+          //         <ReentryAlertImpactOverseas impact={impacts.overseas_territories_and_crown_dependencies} dataPdf={t('potential_impact_overseas_territory')} />
+          //       ),
+          //     }]
+          //   : []),
           ...(impacts?.maritime_and_airspace
             ? [{
                 id: 'potential_impact_airspace_and_maritime',
@@ -103,12 +101,12 @@ const ReentryAlertAccordion = ({
           {
             id: 'guidance_on_response',
             heading: t('guidance_on_response'),
-            content: <ReentryAlertGuidanceOnResponse risk={lastReport?.fragmentsRisk} immediateResponseComment={searchParams?.immediate_response_comment ?? event.immediateResponseComment} dataPdf={t('guidance_on_response')} />,
+            content: <ReentryAlertGuidanceOnResponse risk={lastReport?.fragments_risk} immediateResponseComment={searchParams?.immediate_response_comment ?? event.immediate_response_comment} dataPdf={t('guidance_on_response')} />,
           },
           {
             id: 'guidance_if_object_impacts_uk_interests',
             heading: t('guidance_if_object_impacts_uk_interests'),
-            content: <ReentryAlertGuidanceIfObjectImpactsUkInterests ukResponseComment={searchParams?.uk_response_comment ?? event.ukResponseComment} dataPdf={t('guidance_if_object_impacts_uk_interests')} />,
+            content: <ReentryAlertGuidanceIfObjectImpactsUkInterests ukResponseComment={searchParams?.uk_response_comment ?? event.uk_response_comment} dataPdf={t('guidance_if_object_impacts_uk_interests')} />,
           },
           // {
           //   id: 'liability_for_damages',
@@ -118,7 +116,7 @@ const ReentryAlertAccordion = ({
           {
             id: 'press_attention',
             heading: t('press_attention'),
-            content: <ReentryAlertPressAttention pressAttentionComment={searchParams?.press_attention_comment ?? event.pressAttentionComment} dataPdf={t('press_attention')} />,
+            content: <ReentryAlertPressAttention pressAttentionComment={searchParams?.press_attention_comment ?? event.press_attention_comment} dataPdf={t('press_attention')} />,
           },
         ]}
       />

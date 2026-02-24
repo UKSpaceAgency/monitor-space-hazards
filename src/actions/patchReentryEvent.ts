@@ -8,8 +8,8 @@ import Api from '@/libs/Api';
 
 import { REVALIDATION_TAGS } from './tags';
 
-export async function patchReentryEvent(shortId: string, data: TypeReentryEventPatch) {
-  await Api.patchReentryEventsShortId(shortId, data);
+export async function patchReentryEvent(short_id: string, data: TypeReentryEventPatch) {
+  await Api.patchReentryEventsShortId(short_id, data);
   revalidateTag(REVALIDATION_TAGS.GET_REENTRY_EVENT);
-  redirect(`/re-entries/${shortId}/alert`);
+  redirect(`/re-entries/${short_id}/alert`);
 }
