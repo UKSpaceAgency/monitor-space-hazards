@@ -906,7 +906,7 @@
     }
   },
   "Activities": {
-    "title": "Monitor UK satellite activity",
+    "title": "Track UK satellite activity",
     "description": "<p>This table contains information on any changes to the status and positions of UK-licensed satellites.</p><p>These changes in status are identified through 4 different types of flags related to satellite position, manoeuvres undertaken, and data quality. More detail on each flag can be found by clicking on the flag ID.</p>",
     "search_bar": {
       "label": "Search satellites",
@@ -914,7 +914,32 @@
     },
     "help": {
       "title": "Help with this table<screenReaderOnly> - Activities</screenReaderOnly>",
-      "content": "<list><item>Select the <b>event ID</b> for more information on the satellite monitoring flag.</item><item>Select the <b>object</b> for more information about the satellite in question.</item><item>Select the <b>operator name</b> for an overview of all that operator's satellites.</item><item>Sort the satellites according to criteria by clicking on the relevant <b>heading.</b></item><item>Filter the list of satellites by clicking <b>Apply filters to this table</b> below the search bar.</item></list><p>This table includes most recent satellite monitoring flags as of 16/02/26 09:28:23 UTC.</p>"
+      "content": "<list><item>Select the <b>event ID</b> for more information on the satellite activity.</item><item>Select the <b>object</b> for more information about the satellite in question.</item><item>Select the <b>operator name</b> for an overview of that operator's satellites.</item><item>Sort the satellites according to criteria by clicking on the relevant <b>heading.</b></item><item>Filter the list of satellites by clicking <b>Apply filters to this table</b> below the search bar.</item></list>"
+    }
+  },
+  "Activity": {
+    "title": "Activity event {shortId}",
+    "description": "Activity",
+    "accordion": {
+      "object_data": "Object data",
+      "operator_support": "Operator support"
+    },
+    "Event_summary": {
+      "title": "Event summary",
+      "content": "dadada",
+      "contact_analyst": "Contact a UKSA orbital analyst",
+      "help": {
+        "title": "Help with this summary",
+        "content": "This flag has been uploaded by UKSA's orbital analysis team as they have verified an object change that exceeds tolerance thresholds for TLE age."
+      }
+    },
+    "Object_data": {
+      "title": "Object data",
+      "content": "Space-Track is the main source of object data.",
+      "additional_object_summary": {
+        "title": "Additional object data",
+        "content": "<p>ESA DISCOS provides additional object data where available. Contact ESA DISCOS if your satellite data is incorrect.</p><p>ESA DISCOS data was last updated on: {updateTime} UTC</p>"
+      }
     }
   },
   "Activity": {
