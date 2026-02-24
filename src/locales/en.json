@@ -5,8 +5,8 @@
     "navigation": {
       "conjunctions": "Conjunctions",
       "re-entries": "Re-entries",
-      "activity": "Activity",
       "fragmentations": "Fragmentations",
+      "activity": "Activity",
       "satellites": "Satellites",
       "account": "Account"
     },
@@ -905,8 +905,8 @@
       "content": "<h3>Level 1 (Standard) re-entry alert</h3><p>The criteria for producing a Level 1 (Standard) re-entry alert is as follows:</p><list><item>Less than 36 hours until re-entry, and one or more of the following:</item><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland, and/or</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories, and/or</item><item>Press interest, and/or</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Level 2 (Priority) re-entry alert</h3><p>The criteria for producing a Level 2 (Priority) re-entry alert is as follows:</p><list><item>Debris likely to survive to the ground, and one or more of the following:</item><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis, and/or</item><item>UK-licensed object, and/or</item><item>Significant press interest, and/or</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Alert distribution</h3><p>If this report is classified as a Level 1 (Standard) re-entry alert, it has been distributed only to key UK Government organisations (for example the National Space Operations Centre, Ministry of Defence and Civil Aviation Authority) and international partners.</p><p>If this report is classified as a Level 2 (Priority) re-entryalert, it has been distributed only to specific users directly involved in the Government response.</p><p>Please note: distribution lists for Level 1 and Level 2 alerts are separate. Recipients will only receive reports for the level(s) for which they are specifically included.</p>"
     }
   },
-  "Activity": {
-    "title": "Monitor UK satellite activity",
+  "Activities": {
+    "title": "Track UK satellite activity",
     "description": "<p>This table contains information on any changes to the status and positions of UK-licensed satellites.</p><p>These changes in status are identified through 4 different types of flags related to satellite position, manoeuvres undertaken, and data quality. More detail on each flag can be found by clicking on the flag ID.</p>",
     "search_bar": {
       "label": "Search satellites",
@@ -914,7 +914,32 @@
     },
     "help": {
       "title": "Help with this table<screenReaderOnly> - Activities</screenReaderOnly>",
-      "content": "<list><item>Select the <b>event ID</b> for more information on the satellite monitoring flag.</item><item>Select the <b>object</b> for more information about the satellite in question.</item><item>Select the <b>operator name</b> for an overview of all that operator's satellites.</item><item>Sort the satellites according to criteria by clicking on the relevant <b>heading.</b></item><item>Filter the list of satellites by clicking <b>Apply filters to this table</b> below the search bar.</item></list><p>This table includes most recent satellite monitoring flags as of 16/02/26 09:28:23 UTC.</p>"
+      "content": "<list><item>Select the <b>event ID</b> for more information on the satellite activity.</item><item>Select the <b>object</b> for more information about the satellite in question.</item><item>Select the <b>operator name</b> for an overview of that operator's satellites.</item><item>Sort the satellites according to criteria by clicking on the relevant <b>heading.</b></item><item>Filter the list of satellites by clicking <b>Apply filters to this table</b> below the search bar.</item></list>"
+    }
+  },
+  "Activity": {
+    "title": "Activity event {shortId}",
+    "description": "Activity",
+    "accordion": {
+      "object_data": "Object data",
+      "operator_support": "Operator support"
+    },
+    "Event_summary": {
+      "title": "Event summary",
+      "content": "dadada",
+      "contact_analyst": "Contact a UKSA orbital analyst",
+      "help": {
+        "title": "Help with this summary",
+        "content": "This flag has been uploaded by UKSA's orbital analysis team as they have verified an object change that exceeds tolerance thresholds for TLE age."
+      }
+    },
+    "Object_data": {
+      "title": "Object data",
+      "content": "Space-Track is the main source of object data.",
+      "additional_object_summary": {
+        "title": "Additional object data",
+        "content": "<p>ESA DISCOS provides additional object data where available. Contact ESA DISCOS if your satellite data is incorrect.</p><p>ESA DISCOS data was last updated on: {updateTime} UTC</p>"
+      }
     }
   },
   "Performance_monitoring": {
@@ -1912,6 +1937,7 @@
     "edit_alert_settings": "Edit alert settings"
   },
   "Breadcrumb": {
+    "activity": "Activity",
     "account": "Account",
     "add-banner": "Add new banner",
     "add-new-user": "Add a new user",
