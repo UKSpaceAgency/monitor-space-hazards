@@ -23,7 +23,7 @@ export const activitiesColumns: TranslatedColumnDef<TypeActivityEventOut>[] = [
       const value = getValue<string>();
       return (
         <Link
-          href={`/activities/${value}`}
+          href={`/activity/${value}`}
           className="govuk-link"
         >
           {value}

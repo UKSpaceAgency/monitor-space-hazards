@@ -5,7 +5,7 @@ import type { TypeSatelliteOut } from '@/__generated__/data-contracts';
 import type { InformationsTableHeaderWidth, InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 
-type BaseSatelliteInformations = Pick<TypeSatelliteOut, 'common_name' | 'norad_id' | 'international_designator' | 'object_type'>;
+export type BaseSatelliteInformations = Pick<TypeSatelliteOut, 'common_name' | 'norad_id' | 'international_designator' | 'object_type'>;
 
 type BaseInformationsTableProps = {
   object: BaseSatelliteInformations | BaseSatelliteInformations[];
