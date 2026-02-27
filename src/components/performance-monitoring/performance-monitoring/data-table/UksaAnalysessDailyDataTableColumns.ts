@@ -21,14 +21,14 @@ export const uksaAnalysesDailyColumns: TranslatedColumnDef<AnalysisAndManoeuvreS
     enableSorting: false,
   },
   {
-    accessorKey: 'analysesCount',
-    id: 'analysesCount',
+    accessorKey: 'analyses_count',
+    id: 'analyses_count',
     header: 'Performance_monitoring.analyses_and_manoeuvre_support.numbers_of_analyses',
     enableSorting: false,
   },
   {
-    accessorKey: 'manoeuvreSupportCount',
-    id: 'manoeuvreSupportCount',
+    accessorKey: 'manoeuvre_support_count',
+    id: 'manoeuvre_support_count',
     header: 'Performance_monitoring.analyses_and_manoeuvre_support.numbers_of_manoeuvre',
     enableSorting: false,
   },

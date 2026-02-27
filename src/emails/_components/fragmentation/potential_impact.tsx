@@ -39,9 +39,9 @@ export const FragmentationPotentialImpact = ({ data, ...props }: FragmentationPo
             <Column className="w-1/5 p-2 text-center">{object_name}</Column>
             <Column className="w-1/5 p-2 text-center">{norad_id}</Column>
             <Column className="w-1/5 p-2 text-center">
-              {mass}
-              {' '}
-              kg
+              {mass
+                ? `${mass} kg`
+                : 'Unknown'}
             </Column>
             <Column className="w-1/5 p-2 text-center">{current_tally}</Column>
             <Column className="w-1/5 p-2 text-center">{fragments_tally}</Column>

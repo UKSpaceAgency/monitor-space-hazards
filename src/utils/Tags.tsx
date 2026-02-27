@@ -1,14 +1,16 @@
-import type { TypeActivityReasonForFlag, TypeRisk } from '@/__generated__/data-contracts';
+import type { TypeActivityReasonForFlag } from '@/__generated__/data-contracts';
 import Tag from '@/ui/tag/tag';
 
-const riskClasses = {
-  Low: 'govuk-tag--green',
-  Medium: 'govuk-tag--yellow',
-  High: 'govuk-tag--red',
-  None: 'govuk-tag--grey',
+export const riskClasses = {
+  'Low': 'govuk-tag--green',
+  'Very low': 'govuk-tag--green',
+  'Medium': 'govuk-tag--yellow',
+  'High': 'govuk-tag--red',
+  'Pending': 'govuk-tag--blue',
+  'None': 'govuk-tag--grey',
 };
 
-export const renderRiskTag = (risk: TypeRisk | null | undefined | 'None') => risk
+export const renderRiskTag = (risk: typeof riskClasses[keyof typeof riskClasses] | null | undefined | 'None') => risk
   ? (
       <Tag className={riskClasses[risk as unknown as keyof typeof riskClasses]}>
         {risk}

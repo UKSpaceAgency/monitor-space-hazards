@@ -14,8 +14,8 @@ export default async function DashboardPage() {
   // const session = await getSession();
   const messages = await getMessages() as IntlMessages;
   const allServicesItems = messages.Dashboard.services.items;
-  const keyServicesItems = pick(allServicesItems, ['track_conjunctions', 'track_reentries']);
-  // const keyServicesItems = pick(allServicesItems, ['track_conjunctions', 'track_reentries', 'track_fragmentations']);
+  // const keyServicesItems = pick(allServicesItems, ['track_conjunctions', 'track_reentries']);
+  const keyServicesItems = pick(allServicesItems, ['track_conjunctions', 'track_reentries', 'track_fragmentations']);
 
   return (
     <div>

@@ -6,6 +6,7 @@ import { objectTypeIndex } from '@/emails/_utils/utils';
 import { dayjs, FORMAT_DATE_FULL_MONTH, FORMAT_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import { roundedFixed } from '@/utils/Math';
+import type { riskClasses } from '@/utils/Tags';
 import { renderRiskTag } from '@/utils/Tags';
 
 export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumnDef<TypeReentryEventOut>[] => [
@@ -14,7 +15,15 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     accessorKey: 'fragments_risk',
     header: 'Reentries.table.risk',
     size: 100,
-    cell: ({ getValue }) => renderRiskTag(getValue<TypeRisk>() ?? 'None'),
+    cell: ({ getValue, row: { original: { object_name } } }) => {
+      const value = getValue<TypeRisk>();
+      let risk: typeof riskClasses[keyof typeof riskClasses] | null | undefined | 'None' = value;
+      if (!value) {
+        risk = object_name?.toLowerCase().includes('starlink') ? 'Very low' : 'Pending';
+      }
+
+      return renderRiskTag(risk);
+    },
   },
   {
     id: 'short_id',
