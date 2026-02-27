@@ -177,11 +177,11 @@
   },
   "Event_notification_thresholds_settings": {
     "title": "Set your conjunction event notification thresholds",
-    "content": "<p>We will send you notifications when the probability of collision, total miss distance and mean radial miss distance meets threshold and the time to conjunction event is below the threshold you have set.</p><p>You are responsible for the safe operation of your satellites and should choose settings which allow you to do this.</p><p>The default settings are examples of thresholds, not recommendations.</p>"
+    "content": "<p>We will send you notifications about events which meet the thresholds you have set for each criteria.</p><p>You are responsible for the safe operation of your satellites and should choose settings which allow you to do this.</p><p>The default settings are examples of thresholds, not recommendations.</p>"
   },
   "Notification_settings": {
     "title": "Choose your notification settings",
-    "content": "<p>New event notifications will be collated and sent in one email and/or SMS every 12 hours.</p><p>Choose which notifications you wish to receive. Uncheck boxes where you do not wish to receive notifications.</p>"
+    "content": "<p>New event notifications will be collated and sent in one email and/or SMS every 2 hours.</p><p>Choose which notifications you wish to receive. Uncheck boxes where you do not wish to receive notifications.</p>"
   },
   "Add_new_user": {
     "title": "Add a new user",
@@ -292,7 +292,7 @@
     "description": "View all NSpOC analysis uploaded to Monitor Space Hazards for UK conjunction events.",
     "help": {
       "title": "Help with this table <screenReaderOnly> - Uploaded analyses</screenReaderOnly>",
-      "description1": "Select the file to view the analysis.",
+      "description1": "Select the file to view the analysis. ",
       "description2": "Select delete to permanently remove the analysis from the service."
     }
   },
@@ -302,7 +302,7 @@
     "help": {
       "title": "Help with this table<screenReaderOnly> - Uploaded manoeuvres</screenReaderOnly>",
       "description1": "Select the file to view the manoeuvre support.",
-      "description2": "Select delete to permanently remove the file from the service."
+      "description2": " Select delete to permanently remove the file from the service."
     }
   },
   "Distribution_lists": {
@@ -579,7 +579,7 @@
     },
     "help2": {
       "title": "Help with this table<screenReaderOnly> - Conjunction events</screenReaderOnly>",
-      "content": "<p>This table shows upcoming conjunction events involving UK-licensed satellites by default. You can apply filters to view past events.</p><p>Select the <bold>event ID</bold> to view more information</p><p>Each event ID or row represents <bold>one conjunction event </bold> including all related Conjunction Data Messages (CDMs) and NSpOC analysis.</p><p>The <bold>your interest</bold> column contains HIGH labels for events that meet your thresholds for notifications.</p>"
+      "content": "<p>This table shows upcoming conjunction events involving UK-licensed satellites by default. You can apply filters to view past events.</p><p>Select the <bold>event ID</bold> to view more information</p><p>Each event ID or row represents <bold>one conjunction event </bold> including all related Conjunction Data Messages (CDMs) and NSpOC analysis.</p>"
     }
   },
   "Conjunction": {
