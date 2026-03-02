@@ -28,6 +28,10 @@ ol.govuk-list {
   }
 }
 
+.govuk-service-navigation__link {
+  color: var(--govuk-link-colour, #1a65a6);
+}
+
 .govuk-hint {
   p,
   ul {
