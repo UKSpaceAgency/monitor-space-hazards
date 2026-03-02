@@ -1,24 +1,16 @@
 import clsx from 'clsx';
 import type { HTMLAttributes } from 'react';
 
+export type TagColor = 'grey' | 'green' | 'teal' | 'blue' | 'purple' | 'magenta' | 'red' | 'orange' | 'yellow';
+
 export type TagProps = {
-  color?:
-    | 'grey'
-    | 'purple'
-    | 'turquoise'
-    | 'blue'
-    | 'light-blue'
-    | 'yellow'
-    | 'orange'
-    | 'red'
-    | 'pink'
-    | 'green';
+  color?: TagColor;
 } & HTMLAttributes<HTMLDivElement>;
 
 export function Tag({ className, color, ...props }: TagProps) {
   return (
     <strong
-      className={clsx('govuk-tag forced-color-adjust-none', className, {
+      className={clsx('govuk-tag', className, {
         [`govuk-tag--${color as string}`]: color,
       })}
       {...props}
