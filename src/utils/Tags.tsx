@@ -3,7 +3,7 @@ import type { TagColor } from '@/ui/tag/tag';
 import Tag from '@/ui/tag/tag';
 
 export const riskClasses: Record<string, TagColor> = {
-  'Very low': 'teal',
+  'Very low': 'grey',
   'Low': 'green',
   'Medium': 'yellow',
   'High': 'red',

@@ -8,6 +8,7 @@ import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import type { MapRef } from 'react-map-gl';
 import Map, { Layer, Source } from 'react-map-gl';
 
+import type { TypeTIPOut } from '@/__generated__/data-contracts';
 import { env } from '@/libs/Env';
 import Details from '@/ui/details/details';
 import { RegionsEnum } from '@/utils/Regions';
@@ -42,18 +43,20 @@ type ReentryAlertMapProps = {
   reentryId: string;
   reportId: string;
   overflightTime: string[];
+  isClosed?: boolean;
+  tip?: TypeTIPOut;
   detailsTitle?: string;
   detailsContent?: ReactNode;
 };
 
-const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, detailsContent }: ReentryAlertMapProps) => {
+const ReentryAlertMap = ({ reentryId, reportId, overflightTime, isClosed, tip, detailsTitle, detailsContent }: ReentryAlertMapProps) => {
   const t = useTranslations('OverflightMap.overflights');
   const mapRef = useRef<MapRef | null>(null);
   const [mapType, setMapType] = useState<MapTypes>(MapTypes.streets);
   const [mapView, setMapView] = useState<MapView>('globe');
   const [regions, setRegions] = useState<RegionsEnum[]>([]);
   const [types, setTypes] = useState<OverflightType[]>(['FLIGHTPATH', 'FRAGMENT']);
-  const [flightpaths, setFlightpaths] = useState<number[]>([0]);
+  const [flightpaths, setFlightpaths] = useState<number[]>([]);
   const [hoverInfo, setHoverInfo] = useState<MapTooltipInfo | null>(null);
   const [isStyleLoaded, setIsStyleLoaded] = useState<boolean>(false);
 
@@ -91,7 +94,7 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
     setHoverInfo(hoveredFeature ? hoveredFeature.properties as MapTooltipInfo : null);
   }, []);
 
-  const sourceUrl = `${window.location.origin}/reentry_event_reports/${reentryId}`;
+  const sourceUrl = `https://www.dev.monitor-space-hazards.service.gov.uk/reentry_event_reports/${reentryId}`;
 
   return (
     <div className="bg-lightGrey p-3 mb-4" data-pdf="Re-entry map">
@@ -104,7 +107,13 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
             name: mapView,
           }}
           preserveDrawingBuffer
-          initialViewState={initialViewState as any}
+          initialViewState={isClosed && tip
+            ? {
+                latitude: tip.latitude,
+                longitude: tip.longitude,
+                zoom: 3,
+              }
+            : initialViewState as any}
           interactiveLayerIds={['land', ...flightpaths.reduce<string[]>((acc, curr) => {
             return [...acc, `FLIGHTPATH-${curr}`, `FRAGMENT-${curr}`];
           }, [])]}
