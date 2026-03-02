@@ -56,7 +56,7 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, isClosed, tip, d
   const [mapView, setMapView] = useState<MapView>('globe');
   const [regions, setRegions] = useState<RegionsEnum[]>([]);
   const [types, setTypes] = useState<OverflightType[]>(['FLIGHTPATH', 'FRAGMENT']);
-  const [flightpaths, setFlightpaths] = useState<number[]>([]);
+  const [flightpaths, setFlightpaths] = useState<number[]>([0]);
   const [hoverInfo, setHoverInfo] = useState<MapTooltipInfo | null>(null);
   const [isStyleLoaded, setIsStyleLoaded] = useState<boolean>(false);
 
