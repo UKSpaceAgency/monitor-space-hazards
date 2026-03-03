@@ -120,6 +120,15 @@ export const isRegulator = (role: Nullable<TypeUserRole>): boolean => {
   return !!role && regulatorRoles.includes(role);
 };
 
+export const isInternationalUser = (role: Nullable<TypeUserRole>): boolean => {
+  const internationalUserRoles: TypeUserRole[] = [
+    'INTERNATIONAL_USER',
+    'INTERNATIONAL_ADMIN',
+  ];
+
+  return !!role && internationalUserRoles.includes(role);
+};
+
 export const AccountType: Record<TypeUserRole, string> = {
   AGENCY_ADMIN: 'Agency Admin',
   AGENCY_ANALYST: 'Agency Analyst',
@@ -133,6 +142,8 @@ export const AccountType: Record<TypeUserRole, string> = {
   SATELLITE_OPERATOR: 'Satellite Operator',
   REGULATOR_USER: 'Regulator User',
   REGULATOR_ADMIN: 'Regulator Admin',
+  INTERNATIONAL_USER: 'International User',
+  INTERNATIONAL_ADMIN: 'International Admin',
 };
 
 export const UserRoles = {
@@ -159,5 +170,9 @@ export const UserRoles = {
   REGULATOR_ADMIN: pick<Record<TypeUserRole, string>, TypeUserRole>(AccountType, [
     'REGULATOR_ADMIN',
     'REGULATOR_USER',
+  ]),
+  INTERNATIONAL_ADMIN: pick<Record<TypeUserRole, string>, TypeUserRole>(AccountType, [
+    'INTERNATIONAL_ADMIN',
+    'INTERNATIONAL_USER',
   ]),
 };

@@ -1828,7 +1828,7 @@ export interface TypeFragmentationEvent {
   /** Conjunction Event Id */
   conjunction_event_id?: string | null;
   /** Alert Type */
-  alert_type: "priority" | "closedown";
+  alert_type: ("standard" | "priority" | "uk-licensed" | "closedown")[];
   /** Executive Summary Comment */
   executive_summary_comment?: string | null;
   /** Closed Comment */
@@ -1878,7 +1878,7 @@ export interface TypeFragmentationEvent {
 /** FragmentationEventAlertIn */
 export interface TypeFragmentationEventAlertIn {
   /** Alert Type */
-  alert_type: ("priority" | "closedown")[];
+  alert_type: ("standard" | "priority" | "uk-licensed" | "closedown")[];
   /** Additional Emails */
   additional_emails: string[];
 }
@@ -1896,7 +1896,7 @@ export interface TypeFragmentationEventAlertOut {
    */
   fragmentation_report_id: string;
   /** Alert Type */
-  alert_type: ("standard" | "priority")[];
+  alert_type: ("standard" | "priority" | "uk-licensed" | "closedown")[];
   /** Additional Recipients */
   additional_recipients: string[] | null;
   /** Email Notification Sending Status */
@@ -1976,7 +1976,7 @@ export interface TypeFragmentationReport {
   conjunction_event_id?: string | null;
   risk?: TypeRisk | null;
   /** Alert Type */
-  alert_type: "priority" | "closedown";
+  alert_type: ("standard" | "priority" | "uk-licensed" | "closedown")[];
   /** Executive Summary Comment */
   executive_summary_comment?: string | null;
   /** Closed Comment */
@@ -2097,7 +2097,7 @@ export interface TypeFragmentationReportOut {
   /** Risk */
   risk?: string | null;
   /** Alert Type */
-  alert_type: "priority" | "closedown";
+  alert_type: ("priority" | "standard" | "uk-licensed" | "closedown")[];
   /** File Name */
   file_name: string;
   /** Presigned Url */
@@ -3399,7 +3399,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-02-20T09:39:30.634690"
+   * @default "2026-02-28T22:50:51.881984"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3567,6 +3567,8 @@ export type TypeUserRole =
   | "SATELLITE_OPERATOR_ADMIN"
   | "GOVERNMENT_USER"
   | "GOVERNMENT_ADMIN"
+  | "INTERNATIONAL_USER"
+  | "INTERNATIONAL_ADMIN"
   | "AGENCY_USER"
   | "AGENCY_ADMIN"
   | "AGENCY_ANALYST"
