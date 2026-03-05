@@ -10,6 +10,7 @@ import { ReentryAlertGuidanceIfObjectImpactsUkInterests } from './ReentryAlertGu
 import { ReentryAlertGuidanceOnResponse } from './ReentryAlertGuidanceOnResponse';
 import { ReentryAlertImpactAirspaceAndMaritime } from './ReentryAlertImpactAirspaceAndMaritime';
 import { ReentryAlertImpactNation } from './ReentryAlertImpactNation';
+import { ReentryAlertImpactOverseas } from './ReentryAlertImpactOverseas';
 import { ReentryAlertPressAttention } from './ReentryAlertPressAttention';
 import { ReentryAlertRiskThresholds } from './ReentryAlertRiskThresholds';
 import { ReentryAlertAdditionalObjectDetailsTable } from './tables/ReentryAlertAdditionalObjectDetailsTable';
@@ -73,15 +74,15 @@ const ReentryAlertAccordion = ({
           //     <ReentryAlertImpactRegion england={impacts?.england} ireland={impacts?.northern_ireland} wales={impacts?.wales} scotland={impacts?.scotland} dataPdf={t('potential_impact_uk_region')} />
           //   ),
           // },
-          // ...(impacts?.overseas_territories_and_crown_dependencies
-          //   ? [{
-          //       id: 'potential_impact_overseas_territory',
-          //       heading: t('potential_impact_overseas_territory'),
-          //       content: (
-          //         <ReentryAlertImpactOverseas impact={impacts.overseas_territories_and_crown_dependencies} dataPdf={t('potential_impact_overseas_territory')} />
-          //       ),
-          //     }]
-          //   : []),
+          ...(impacts?.overseas_territories_and_crown_dependencies
+            ? [{
+                id: 'potential_impact_overseas_territory',
+                heading: t('potential_impact_overseas_territory'),
+                content: (
+                  <ReentryAlertImpactOverseas impact={impacts.overseas_territories_and_crown_dependencies} dataPdf={t('potential_impact_overseas_territory')} />
+                ),
+              }]
+            : []),
           ...(impacts?.maritime_and_airspace
             ? [{
                 id: 'potential_impact_airspace_and_maritime',

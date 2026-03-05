@@ -25,15 +25,15 @@ const FragmentationRiskThresholds = ({ dataPdf }: FragmentationRiskThresholdsPro
           <TableBody>
             <TableRow>
               <TableCell>{renderRiskTag('Low')}</TableCell>
-              <TableCell>{t('risk.low', { value: 50 })}</TableCell>
+              <TableCell>{t('risk.less_than', { value: 50 })}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>{renderRiskTag('Medium')}</TableCell>
-              <TableCell>{t('risk.medium', { from: 50, to: 500 })}</TableCell>
+              <TableCell>{t('risk.between', { from: 50, to: 500 })}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>{renderRiskTag('High')}</TableCell>
-              <TableCell>{t('risk.high', { value: 500 })}</TableCell>
+              <TableCell>{t('risk.more_than', { value: 500 })}</TableCell>
             </TableRow>
           </TableBody>
         </Table>

@@ -5,7 +5,7 @@ import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs, FORMAT_DATE_TIME, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 
-type EventSummaryData = Pick<TypeTIPOut, 'external_id' | 'decay_epoch' | 'uncertainty_window' | 'direction' | 'latitude' | 'longitude' | 'inclination' | 'interest' | 'updated_at'>;
+type EventSummaryData = Pick<TypeTIPOut, 'external_id' | 'decay_epoch' | 'uncertainty_window' | 'direction' | 'latitude' | 'longitude' | 'inclination' | 'interest' | 'updated_at' | 'source'>;
 
 type ReentryEventSummaryTableProps = {
   tip: TypeTIPOut;
@@ -17,6 +17,9 @@ const ReentryEventSummaryTable = ({ tip }: ReentryEventSummaryTableProps) => {
   const rows: InformationsTableRow<EventSummaryData>[] = [{
     header: t('tip_id'),
     accessorKey: 'external_id',
+  }, {
+    header: t('source'),
+    accessorKey: 'source',
   }, {
     header: t('predicted_reentry_time'),
     accessorKey: 'decay_epoch',
