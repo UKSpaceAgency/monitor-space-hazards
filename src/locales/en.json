@@ -867,9 +867,9 @@
       "probability_of_ground": "Probability of debris impact in UK",
       "probability_of_human_casualty": "Probability of UK casualty risk",
       "risk": {
-        "low": "Less than {value}%",
-        "medium": "{from}% - {to}%",
-        "high": "More than {value}%"
+        "less_than": "Less than {value}%",
+        "between": "{from}% - {to}%",
+        "more_than": "More than {value}%"
       },
       "details": {
         "title": "Help with this table<screenReaderOnly> - Risk thresholds</screenReaderOnly>",
@@ -1373,7 +1373,7 @@
         "empty_list_info": "No re-entry events have been found",
         "event_details": "Event details",
         "object_details": "Object details",
-        "risk": "Risk",
+        "risk": "Risk to UK interests",
         "event_id": "Event ID",
         "object": "Object",
         "norad_id": "NORAD ID",
@@ -1386,6 +1386,7 @@
     },
     "Reentry_event_summary": {
       "tip_id": "TIP ID",
+      "source": "TIP source",
       "predicted_reentry_time": "Predicted re-entry time (UTC)",
       "uncertainty_window": "Uncertainty window for predicted re-entry time (mins)",
       "direction_of_travel": "Direction of travel",
@@ -2315,9 +2316,9 @@
       "risk_level": "Risk level",
       "number_of_fragments": "Number of fragments",
       "risk": {
-        "low": "Less than {value}",
-        "medium": "{from} - {to}",
-        "high": "More than {value}"
+        "less_than": "Less than {value}",
+        "between": "{from} - {to}",
+        "more_than": "More than {value}"
       },
       "help": {
         "title": "Help with this table<screenReaderOnly> - Risk thresholds</screenReaderOnly>",
