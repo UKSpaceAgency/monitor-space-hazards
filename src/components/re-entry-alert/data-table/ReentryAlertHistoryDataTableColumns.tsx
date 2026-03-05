@@ -60,7 +60,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
   },
   {
     header: 'Reentry_alert_history.probability',
-    accessorKey: 'atmospheric_probability',
+    accessorKey: 'fragments_probability',
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<number>();
