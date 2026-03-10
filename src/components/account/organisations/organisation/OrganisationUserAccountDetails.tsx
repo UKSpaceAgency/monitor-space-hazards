@@ -9,7 +9,6 @@ import { deleteUser } from '@/actions/deleteUser';
 import { TopNotificationBanner } from '@/components/TopNotificationBanner';
 import Button from '@/ui/button/button';
 import ButtonGroup from '@/ui/button-group/button-group';
-import { isAgencyUser, isGovUser } from '@/utils/Roles';
 
 type OrganisationUserAccountDetailsProps = {
   user: TypeUserOut;
@@ -78,11 +77,11 @@ const OrganisationUserAccountDetails = ({ user }: OrganisationUserAccountDetails
         >
           {t('delete_user')}
         </Button>
-        {(isAgencyUser(user.role) || isGovUser(user.role)) && (
+        {/* {(isAgencyUser(user.role) || isGovUser(user.role)) && (
           <Button as="link" href={`/account/alert-settings/${user.id}`} aria-label="Edit alert settings">
             {t('edit_alert_settings')}
           </Button>
-        )}
+        )} */}
         <Button
           as="link"
           href={`/account/organisations/${user.organization_id}`}
