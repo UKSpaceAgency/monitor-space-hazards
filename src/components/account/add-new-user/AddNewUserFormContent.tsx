@@ -41,6 +41,10 @@ const roles = {
     'REGULATOR_ADMIN',
     'REGULATOR_USER',
   ]),
+  INTERNATIONAL_ADMIN: pick<Record<TypeUserRole, string>, TypeUserRole>(AccountType, [
+    'INTERNATIONAL_ADMIN',
+    'INTERNATIONAL_USER',
+  ]),
 };
 
 type AddNewUserFormContentProps = {

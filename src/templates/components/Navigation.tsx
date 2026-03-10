@@ -14,11 +14,14 @@ export const Navigation = () => {
   const messages = useMessages() as IntlMessages;
   const { data: session } = useSession();
   const keys = Object.keys(messages.Template.navigation).filter((key) => {
+    if (key === 'fragmentations' || key === 'activity') {
+      return false;
+    }
     if (key === 'conjunctions') {
       return !isInternationalUser(session?.user?.role);
     }
     if (key === 're-entries') {
-      return isAgencyUser(session?.user?.role) || isGovUser(session?.user?.role);
+      return isAgencyUser(session?.user?.role) || isGovUser(session?.user?.role) || isInternationalUser(session?.user?.role);
     }
     // if (key === 're-entries' || key === 'fragmentations' || key === 'activity') {
     //   return false;

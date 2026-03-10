@@ -51,10 +51,12 @@ const ReentriesEventsTable = async ({ initialParams }: ReentriesEventsTableProps
       <SearchBar label={`${searchBarLabel}:`} id="reentries_search_bar" placeholder={t('search_bar.placeholder')} ariaLabel={searchBarLabel} />
       <ReentriesEventsTableFilters showFilterRadios={!isSatteliteUser(session?.user.role)} />
       <ReentriesDataTable params={params} initialData={initialData} haveAccessToAlerts={isAgencyUser(role) || isGovUser(role)} />
-      <div className="govuk-inset-text">
-        {t('reentries_events_as_of')}
-        {dayjs(latestCdms.data.updated_at).format(FORMAT_DATE_TIME)}
-      </div>
+      {latestCdms?.data && (
+        <div className="govuk-inset-text">
+          {t('reentries_events_as_of')}
+          {dayjs(latestCdms.data.updated_at).format(FORMAT_DATE_TIME)}
+        </div>
+      )}
     </div>
   );
 };

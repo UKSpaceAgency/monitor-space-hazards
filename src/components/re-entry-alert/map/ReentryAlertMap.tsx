@@ -59,6 +59,11 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, isClosed, tip, d
   const [flightpaths, setFlightpaths] = useState<number[]>([0]);
   const [hoverInfo, setHoverInfo] = useState<MapTooltipInfo | null>(null);
   const [isStyleLoaded, setIsStyleLoaded] = useState<boolean>(false);
+  const [sourceUrl, setSourceUrl] = useState<string>('');
+
+  useEffect(() => {
+    setSourceUrl(`${window.location.origin}/reentry_event_reports/${reentryId}`);
+  }, [reentryId]);
 
   useEffect(() => {
     setFlightpaths(flightpaths => [...new Set([...flightpaths, ...overflightTime.map((_, index) => index + 1)])]);
@@ -93,8 +98,6 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, isClosed, tip, d
     // prettier-ignore
     setHoverInfo(hoveredFeature ? hoveredFeature.properties as MapTooltipInfo : null);
   }, []);
-
-  const sourceUrl = `${window.location.origin}/reentry_event_reports/${reentryId}`;
 
   return (
     <div className="bg-lightGrey p-3 mb-4" data-pdf="Re-entry map">

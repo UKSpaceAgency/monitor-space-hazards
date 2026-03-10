@@ -10,7 +10,6 @@ import Accordion from '@/ui/accordion/accordion';
 import Button from '@/ui/button/button';
 import Checkboxes from '@/ui/checkboxes/checkboxes';
 import Panel from '@/ui/panel/panel';
-import Radios from '@/ui/radios/radios';
 import WarningText from '@/ui/warning-text/warning-text';
 import type { AlertSettingsSchema } from '@/validations/alertSettingsSchema';
 
@@ -69,16 +68,16 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
   const onSubmit: SubmitHandler<AlertSettingsSchema> = async (data) => {
     const payload: TypeAlertSettingsIn = {
       conjunction_alert_settings: {
-        chosen_option: data.conjunctionAlerts,
+        chosen_options: data.conjunctionAlerts,
         notification_types: data.receiveConjunction,
       },
       reentry_alert_settings: {
-        chosen_option: data.reEntryAlerts,
+        chosen_options: data.reEntryAlerts,
         notification_types: data.receiveReEntry,
         areas_of_interest: data.areasOfInterest,
       },
       fragmentation_alert_settings: {
-        chosen_option: data.fragmentationAlerts,
+        chosen_options: data.fragmentationAlerts,
         notification_types: data.receiveFragmentation,
       },
     };
@@ -124,9 +123,7 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                         heading: t('conjunction_alerts'),
                         content: (
                           <>
-                            <Radios
-                              id="conjunctionAlerts"
-                              required
+                            <Checkboxes
                               aria-label="Conjunction Alerts"
                               legend={t(
                                 `${selfEdit ? 'self_which' : 'their_which'}`,
@@ -134,13 +131,8 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                               )}
                               hint={t('select_one_option')}
                               items={[{
-                                id: 'no_conjunction_alerts',
-                                value: 'none',
-                                children: t('no_conjunction_alerts'),
-                                ...register('conjunctionAlerts'),
-                              }, {
                                 id: 'receive_all_conjunction_alerts',
-                                value: 'all',
+                                value: 'standard',
                                 children: t('receive_all_conjunction_alerts'),
                                 hint: t('recommended_for'),
                                 ...register('conjunctionAlerts'),

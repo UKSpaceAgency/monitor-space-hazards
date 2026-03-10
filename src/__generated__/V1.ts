@@ -92,12 +92,19 @@ import {
   TypeGetStatsCountConjunctionEventsParams,
   TypeGetStatsCountReentryEventsParams,
   TypeGetStatsCountReentryReportsParams,
+  TypeGetStatsEventsByOrganizationAggregatedParams,
   TypeGetStatsEventsByOrganizationParams,
+  TypeGetStatsEventsBySatelliteAggregatedParams,
   TypeGetStatsEventsBySatelliteParams,
+  TypeGetStatsEventsTypeAggregatedParams,
   TypeGetStatsEventsTypeParams,
   TypeGetStatsFragmentationEventsByFragmentationTypeParams,
   TypeGetStatsFragmentationEventsParams,
+  TypeGetStatsMakeEventsSatelliteAggregatedParams,
+  TypeGetStatsMakeEventsTypeAggregatedParams,
   TypeGetStatsMonthlyAnalysesParams,
+  TypeGetStatsMonthlyConjunctionEventsAggregatedParams,
+  TypeGetStatsMonthlyConjunctionEventsByObjectTypeAggregatedParams,
   TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams,
   TypeGetStatsMonthlyConjunctionEventsParams,
   TypeGetStatsMonthlyFragmentationEventsByFragmentationTypeParams,
@@ -119,6 +126,7 @@ import {
   TypeManoeuvrePlotOut,
   TypeManoeuvrePlotWithUserMetadataOut,
   TypeOrganizationOut,
+  TypeOrganizationWithCountOfEventsByProbabilityAggregated,
   TypePostConjunctionReportsParams,
   TypePostReentryEventReportsParams,
   TypePostTipsParams,
@@ -137,8 +145,11 @@ import {
   TypeStatisticsConjunctionEventsByObjectTypeMonthlyCount,
   TypeStatisticsConjunctionEventsCount,
   TypeStatisticsConjunctionEventsMonthlyCount,
+  TypeStatisticsConjunctionEventsMonthlyCountAggregated,
+  TypeStatisticsConjunctionEventsMonthlyCountByProbabilityAggregated,
   TypeStatisticsEventsByOrganization,
   TypeStatisticsEventsBySatellite,
+  TypeStatisticsEventsBySatelliteAggregated,
   TypeStatisticsEventsType,
   TypeStatisticsFragmentationEventsAndAlertsCount,
   TypeStatisticsFragmentationEventsByFragmentationTypeMonthlyCount,
@@ -1919,6 +1930,60 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
+   * @description ## Description Returns number of Events between different types of objects, ie. between UK licensed satellites, debris or non-UK licensed satellites. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Trigger| |Regulator user|-| |Regulator admin|-|
+   *
+   * @tags stats
+   * @name GetStatsMakeEventsSatelliteAggregated
+   * @summary Make Events Object Aggregated
+   * @request GET:/v1/stats/make-events-satellite-aggregated
+   * @secure
+   */
+  getStatsMakeEventsSatelliteAggregated = (
+    query?: TypeGetStatsMakeEventsSatelliteAggregatedParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<any, void | TypeHTTPValidationError>({
+      path: `/v1/stats/make-events-satellite-aggregated`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Returns number of Events between different types of objects, ie. between UK licensed satellites, debris or non-UK licensed satellites. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Trigger| |Regulator user|-| |Regulator admin|-|
+   *
+   * @tags stats
+   * @name GetStatsMakeEventsTypeAggregated
+   * @summary Make Events Type Aggregated
+   * @request GET:/v1/stats/make-events-type-aggregated
+   * @secure
+   */
+  getStatsMakeEventsTypeAggregated = (query?: TypeGetStatsMakeEventsTypeAggregatedParams, params: RequestParams = {}) =>
+    this.request<any, void | TypeHTTPValidationError>({
+      path: `/v1/stats/make-events-type-aggregated`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Returns number of Events between different types of objects, ie. between UK licensed satellites, debris or non-UK licensed satellites. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   *
+   * @tags stats
+   * @name GetStatsEventsTypeAggregated
+   * @summary Get number of Events, broken down by type of object involved in the Event using aggregated table
+   * @request GET:/v1/stats/events-type-aggregated
+   * @secure
+   */
+  getStatsEventsTypeAggregated = (query?: TypeGetStatsEventsTypeAggregatedParams, params: RequestParams = {}) =>
+    this.request<TypeStatisticsEventsType[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/events-type-aggregated`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
    * @description ## Description Returns number of Events between different types of objects, ie. between UK licensed satellites, debris or non-UK licensed satellites. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags stats
@@ -1953,6 +2018,26 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
+   * @description ## Description Gets the number of Events per organization, groupped into probability of collision ranges: 0..1e-5..1e-3..1. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   *
+   * @tags stats
+   * @name GetStatsEventsByOrganizationAggregated
+   * @summary Get number of Events, broken down by Organization involved in the Event
+   * @request GET:/v1/stats/events-by-organization-aggregated
+   * @secure
+   */
+  getStatsEventsByOrganizationAggregated = (
+    query?: TypeGetStatsEventsByOrganizationAggregatedParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeOrganizationWithCountOfEventsByProbabilityAggregated[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/events-by-organization-aggregated`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
    * @description ## Description Gets number of Events groupped by satellites and probability of collision. Superusers and Analysts can choose Organization satellites belong to. Other users can only see Events/Satellites from their organization. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags stats
@@ -1964,6 +2049,26 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
   getStatsEventsBySatellite = (query?: TypeGetStatsEventsBySatelliteParams, params: RequestParams = {}) =>
     this.request<TypeStatisticsEventsBySatellite[], void | TypeHTTPValidationError>({
       path: `/v1/stats/events-by-satellite`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets number of Events groupped by satellites and probability of collision. Superusers and Analysts can choose Organization satellites belong to. Other users can only see Events/Satellites from their organization. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   *
+   * @tags stats
+   * @name GetStatsEventsBySatelliteAggregated
+   * @summary Get number of Events, broken down by Satellite involved in the Event
+   * @request GET:/v1/stats/events-by-satellite-aggregated
+   * @secure
+   */
+  getStatsEventsBySatelliteAggregated = (
+    query?: TypeGetStatsEventsBySatelliteAggregatedParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeStatisticsEventsBySatelliteAggregated[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/events-by-satellite-aggregated`,
       method: "GET",
       query: query,
       secure: true,
@@ -2149,6 +2254,46 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
   getStatsMonthlyConjunctionEvents = (query?: TypeGetStatsMonthlyConjunctionEventsParams, params: RequestParams = {}) =>
     this.request<TypeStatisticsConjunctionEventsMonthlyCount[], void | TypeHTTPValidationError>({
       path: `/v1/stats/monthly/conjunction-events`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Get monthly count of Conjunction Events in probability ranges, within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   *
+   * @tags stats
+   * @name GetStatsMonthlyConjunctionEventsAggregated
+   * @summary Get monthly count of Conjunction Events with probability ranges
+   * @request GET:/v1/stats/monthly/conjunction-events-aggregated
+   * @secure
+   */
+  getStatsMonthlyConjunctionEventsAggregated = (
+    query?: TypeGetStatsMonthlyConjunctionEventsAggregatedParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeStatisticsConjunctionEventsMonthlyCountByProbabilityAggregated[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/monthly/conjunction-events-aggregated`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Get monthly count of Conjunction Events with object type, within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   *
+   * @tags stats
+   * @name GetStatsMonthlyConjunctionEventsByObjectTypeAggregated
+   * @summary Get monthly count of Conjunction Events with object type
+   * @request GET:/v1/stats/monthly/conjunction-events-by-object-type-aggregated
+   * @secure
+   */
+  getStatsMonthlyConjunctionEventsByObjectTypeAggregated = (
+    query?: TypeGetStatsMonthlyConjunctionEventsByObjectTypeAggregatedParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeStatisticsConjunctionEventsMonthlyCountAggregated[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/monthly/conjunction-events-by-object-type-aggregated`,
       method: "GET",
       query: query,
       secure: true,

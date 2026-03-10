@@ -31,6 +31,8 @@ export const isOrgAdmin = (role: Nullable<TypeUserRole>): boolean => {
     'AGENCY_SUPERUSER',
     'GOVERNMENT_ADMIN',
     'SATELLITE_OPERATOR_ADMIN',
+    'INTERNATIONAL_ADMIN',
+    'REGULATOR_ADMIN',
   ];
 
   return !!(role && orgAdminRoles.includes(role));

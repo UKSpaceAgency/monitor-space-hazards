@@ -29,7 +29,7 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
             content: (
               <div className="overflow-auto">
                 <DataTable
-                  data={alerts.filter(alert => alert.conjunction_alert_settings?.chosen_option === 'all')}
+                  data={alerts.filter(alert => alert.conjunction_alert_settings?.chosen_options?.includes('standard'))}
                   columns={distributionListColumns}
                   largerText
                 />
@@ -42,7 +42,7 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
             content: (
               <div className="overflow-auto">
                 <DataTable
-                  data={alerts.filter(alert => alert.conjunction_alert_settings?.chosen_option === 'priority')}
+                  data={alerts.filter(alert => alert.conjunction_alert_settings?.chosen_options?.includes('priority'))}
                   columns={distributionListColumns}
                   largerText
                 />
@@ -69,7 +69,7 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
             content: (
               <div className="overflow-auto">
                 <DataTable
-                  data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_option === 'all')}
+                  data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_options?.includes('standard'))}
                   columns={distributionListColumns}
                   largerText
                 />
@@ -82,7 +82,7 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
             content: (
               <div className="overflow-auto">
                 <DataTable
-                  data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_option === 'uk-licensed')}
+                  data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_options?.includes('uk-licensed'))}
                   columns={distributionListColumns}
                   largerText
                 />
@@ -95,7 +95,7 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
             content: (
               <div className="overflow-auto">
                 <DataTable
-                  data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_option === 'priority')}
+                  data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_options?.includes('priority'))}
                   columns={distributionListColumns}
                   largerText
                 />

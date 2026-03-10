@@ -9,9 +9,12 @@ export const riskClasses: Record<string, TagColor> = {
   'High': 'red',
   'Pending': 'blue',
   'None': 'grey',
+  'No': 'grey',
 };
 
-export const renderRiskTag = (risk: TypeRisk | 'None' | 'Pending' | null | undefined) => risk
+type TypeRiskTag = TypeRisk | 'No' | 'None' | 'Pending' | null | undefined;
+
+export const renderRiskTag = (risk: TypeRiskTag) => risk
   ? (
       <Tag color={riskClasses[risk as unknown as keyof typeof riskClasses]}>
         {risk}
