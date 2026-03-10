@@ -11,6 +11,13 @@ type ReentryEventSummaryTableProps = {
   tip: TypeTIPOut;
 };
 
+const Sources = {
+  SpaceTrack: 'Space-Track',
+  ESADiscos: 'ESA DISCOS',
+  UKSA: 'UKSA',
+  Operator: 'Operator',
+} as const;
+
 const ReentryEventSummaryTable = ({ tip }: ReentryEventSummaryTableProps) => {
   const t = useTranslations('Tables.Reentry_event_summary');
 
@@ -20,6 +27,7 @@ const ReentryEventSummaryTable = ({ tip }: ReentryEventSummaryTableProps) => {
   }, {
     header: t('source'),
     accessorKey: 'source',
+    renderCell: row => Sources[row.source as keyof typeof Sources],
   }, {
     header: t('predicted_reentry_time'),
     accessorKey: 'decay_epoch',
