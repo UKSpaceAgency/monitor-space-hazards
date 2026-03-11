@@ -1354,7 +1354,8 @@
       "help": {
         "title": "Help with this table<screenReaderOnly> - UK risk probabilities</screenReaderOnly>",
         "content": "<p>This service tracks all upcoming re-entry events worldwide, including those which pose a risk to the UK. The service reports on two types of re-entry event.</p><list><item><bold>Upcoming risks to UK:</bold> all upcoming re-entry events that meet the National Space Operations Centre's thresholds for alerting UK government</item><item><bold>Upcoming re-entry events worldwide:</bold> all upcoming re-entry events worldwide, including those which have not met alerting thresholds</item></list>"
-      }
+      },
+      "warning": "Events in this table show the risk to the UK mainland only. Risk levels for other UK interests may differ and can be viewed on the event page."
     },
     "Reentries": {
       "search_bar": {
@@ -1376,7 +1377,7 @@
         "empty_list_info": "No re-entry events have been found",
         "event_details": "Event details",
         "object_details": "Object details",
-        "risk": "Risk to UK interests",
+        "risk": "Risk to UK",
         "event_id": "Event ID",
         "object": "Object",
         "norad_id": "NORAD ID",
