@@ -6,7 +6,7 @@ import { getCdmsLatest } from '@/actions/getCdmsLatest';
 import { getReentryEvents } from '@/actions/getReentryEvents';
 import { getSession } from '@/actions/getSession';
 import { FORMAT_DATE_TIME } from '@/libs/Dayjs';
-import { isAgencyUser, isGovUser, isSatteliteUser } from '@/utils/Roles';
+import { isAgencyUser, isGovUser, isInternationalUser, isSatteliteUser } from '@/utils/Roles';
 
 import { SearchBar } from '../SearchBar';
 import { ReentriesDataTable } from './data-table/ReentriesDataTable';
@@ -50,7 +50,7 @@ const ReentriesEventsTable = async ({ initialParams }: ReentriesEventsTableProps
     <div>
       <SearchBar label={`${searchBarLabel}:`} id="reentries_search_bar" placeholder={t('search_bar.placeholder')} ariaLabel={searchBarLabel} />
       <ReentriesEventsTableFilters showFilterRadios={!isSatteliteUser(session?.user.role)} />
-      <ReentriesDataTable params={params} initialData={initialData} haveAccessToAlerts={isAgencyUser(role) || isGovUser(role)} />
+      <ReentriesDataTable params={params} initialData={initialData} haveAccessToAlerts={isAgencyUser(role) || isGovUser(role) || isInternationalUser(role)} />
       {latestCdms?.data && (
         <div className="govuk-inset-text">
           {t('reentries_events_as_of')}

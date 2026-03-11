@@ -13,7 +13,7 @@ import Fieldset from '@/ui/fieldset/fieldset';
 import Input from '@/ui/input/input';
 import Radios from '@/ui/radios/radios';
 import Select from '@/ui/select/select';
-import { AccountType } from '@/utils/Roles';
+import { AccountType, isInternationalUser, isRegulator } from '@/utils/Roles';
 import type { AddNewUserSchema } from '@/validations/addNewUserSchema';
 
 const roles = {
@@ -60,15 +60,17 @@ const AddNewUserFormContent = ({ organizations, isSubmitting, register, role, er
 
   return (
     <div>
-      <Select
-        label={t('organization_id')}
-        {...register('organization_id')}
-        error={errors.organization_id?.message}
-        options={organizations.map(({ id, name }) => ({
-          value: id,
-          label: name,
-        }))}
-      />
+      {!(isInternationalUser(role) || isRegulator(role)) && (
+        <Select
+          label={t('organization_id')}
+          {...register('organization_id')}
+          error={errors.organization_id?.message}
+          options={organizations.map(({ id, name }) => ({
+            value: id,
+            label: name,
+          }))}
+        />
+      )}
       <Input {...register('first_name')} required id="first_name" label={t('first_name')} error={errors.first_name?.message} aria-label="First Name" autoComplete="first_name" />
       <Input {...register('last_name')} required id="last_name" label={t('last_name')} error={errors.last_name?.message} aria-label="Last Name" autoComplete="last_name" />
       <Input {...register('email')} required id="email" label={t('email')} error={errors.email?.message} aria-label="Email" autoComplete="email" />
