@@ -5,7 +5,7 @@ import { getConjunctionEventsList } from '@/actions/getConjunctionEventsList';
 import { getSession } from '@/actions/getSession';
 import type { ConjunctionsPageSearchParams } from '@/app/(auth)/conjunctions/page';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
-import { isAgencyUser, isAnalysist, isGovUser } from '@/utils/Roles';
+import { isAnalysist, isSatteliteUser } from '@/utils/Roles';
 
 import { DownloadData } from '../DownloadData';
 import { ConjunctionsDataTable } from './data-table/ConjunctionsDataTable';
@@ -33,7 +33,7 @@ const ConjunctionsEventsTable = async ({ params }: ConjunctionsEventsTableProps)
         conjunctions={conjunctions}
         params={params}
         isAnalyst={isAnalysist(role)}
-        haveAccessToAlerts={isAgencyUser(role) || isGovUser(role)}
+        haveAccessToAlerts={!isSatteliteUser(role)}
       />
       <DownloadData type={t('Download.types.conjunction_events')} params={params} downloadAction={downloadData} ariaLabel="Conjunction events" />
       {latestCdms && (

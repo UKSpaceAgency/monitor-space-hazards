@@ -6,7 +6,7 @@ import { getReentryEvent } from '@/actions/getReentryEvent';
 import { getSession } from '@/actions/getSession';
 import { ReentryAlertPage } from '@/components/re-entry-alert/ReentryAlertPage';
 import NotificationBanner from '@/ui/notification-banner/notification-banner';
-import { isAgencyApproverOrSuperuser, isAgencyUser, isGovUser, isInternationalUser } from '@/utils/Roles';
+import { isAgencyApproverOrSuperuser, isSatteliteUser } from '@/utils/Roles';
 
 type PageProps = {
   params: Promise<{ shortId: string }>;
@@ -31,7 +31,7 @@ export default async function ReentryAlert({
   const role = session?.user.role;
   const { shortId } = await params;
 
-  if (!(isAgencyUser(role) || isGovUser(role) || isInternationalUser(role))) {
+  if (isSatteliteUser(role)) {
     return redirect(`/re-entries/${shortId}`);
   }
 

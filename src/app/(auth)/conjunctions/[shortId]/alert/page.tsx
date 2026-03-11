@@ -1,12 +1,12 @@
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import getConjunctionUniqueEvent from '@/actions/getConjunctionUniqueEvent';
 import { getSession } from '@/actions/getSession';
 import { ConjunctionAlertPage } from '@/components/conjunction-alert/ConjunctionAlertPage';
 import NotificationBanner from '@/ui/notification-banner/notification-banner';
-import { isAgencyApproverOrSuperuser, isAgencyUser, isGovUser, isInternationalUser } from '@/utils/Roles';
+import { isAgencyApproverOrSuperuser, isInternationalUser, isSatteliteUser } from '@/utils/Roles';
 
 type PageProps = {
   params: Promise<{ shortId: string }>;
@@ -31,7 +31,11 @@ export default async function ConjunctionAlert({
   const role = session?.user.role;
   const { shortId } = await params;
 
-  if (!(isAgencyUser(role) || isGovUser(role) || isInternationalUser(role))) {
+  if (isInternationalUser(role)) {
+    notFound();
+  }
+
+  if (isSatteliteUser(role)) {
     return redirect(`/conjunctions/${shortId}`);
   }
 
