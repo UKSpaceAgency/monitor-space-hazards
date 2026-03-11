@@ -1,7 +1,7 @@
 import type { TypeGetReentryEventsParams } from '@/__generated__/data-contracts';
 import { getReentryEvents } from '@/actions/getReentryEvents';
 import { getSession } from '@/actions/getSession';
-import { isAgencyUser, isGovUser } from '@/utils/Roles';
+import { isSatteliteUser } from '@/utils/Roles';
 
 import { ReentriesAlertsDataTable } from './data-table/ReentriesAlertsDataTable';
 
@@ -18,7 +18,7 @@ const ReentriesAlertsTable = async () => {
   }
 
   return (
-    <ReentriesAlertsDataTable data={data} haveAccessToAlerts={isAgencyUser(session?.user.role) || isGovUser(session?.user.role)} />
+    <ReentriesAlertsDataTable data={data} haveAccessToAlerts={!isSatteliteUser(session?.user.role)} />
   );
 };
 

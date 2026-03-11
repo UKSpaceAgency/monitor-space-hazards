@@ -30,10 +30,12 @@ const FragmentationsEventsTable = async ({ params }: FragmentationsEventsTablePr
         params={params}
       />
       <DownloadData type={t('Download.types.fragmentation_events')} params={params} downloadAction={downloadData} ariaLabel="Fragmentation events" />
-      <div className="govuk-inset-text">
-        {t('Fragmentations.fragmentations_events_as_of')}
-        {dayjs(latestCdms.data.updated_at).format(FORMAT_DATE_TIME)}
-      </div>
+      {latestCdms && (
+        <div className="govuk-inset-text">
+          {t('Fragmentations.fragmentations_events_as_of')}
+          {dayjs(latestCdms.data.updated_at).format(FORMAT_DATE_TIME)}
+        </div>
+      )}
     </>
   );
 };

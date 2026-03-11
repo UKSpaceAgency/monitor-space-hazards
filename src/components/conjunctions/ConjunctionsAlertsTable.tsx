@@ -1,7 +1,7 @@
 import type { TypeGetConjunctionEventsListParams } from '@/__generated__/data-contracts';
 import { getConjunctionEventsList } from '@/actions/getConjunctionEventsList';
 import { getSession } from '@/actions/getSession';
-import { isAgencyUser, isAnalysist, isGovUser } from '@/utils/Roles';
+import { isAnalysist, isSatteliteUser } from '@/utils/Roles';
 
 import { ConjunctionsAlertsDataTable } from './data-table/ConjunctionsAlertsDataTable';
 
@@ -19,7 +19,7 @@ const ConjunctionsAlertsTable = async () => {
 
   return (
     <div className="max-h-[500px] overflow-auto">
-      <ConjunctionsAlertsDataTable data={data} isAnalyst={isAnalysist(session?.user.role)} haveAccessToAlerts={isAgencyUser(session?.user.role) || isGovUser(session?.user.role)} />
+      <ConjunctionsAlertsDataTable data={data} isAnalyst={isAnalysist(session?.user.role)} haveAccessToAlerts={!isSatteliteUser(session?.user.role)} />
     </div>
   );
 };

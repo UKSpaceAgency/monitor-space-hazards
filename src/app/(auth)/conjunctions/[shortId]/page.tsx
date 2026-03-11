@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import { getConjunctionEvent } from '@/actions/getConjunctionEvent';
@@ -11,7 +12,7 @@ import { ConjunctionEventSummary } from '@/components/conjunction/ConjunctionEve
 import { ContentNavigation } from '@/components/ContentNavigation';
 import NotificationBanner from '@/ui/notification-banner/notification-banner';
 import Tag from '@/ui/tag/tag';
-import { isSatteliteUser } from '@/utils/Roles';
+import { isInternationalUser, isSatteliteUser } from '@/utils/Roles';
 
 type PageProps = {
   params: Promise<{ shortId: string }>;
@@ -38,6 +39,10 @@ export default async function ConjunctionPage({
   const { event, spacetrack, uksa } = await getConjunctionEvent({ eventId: shortId });
   const reports = await getConjunctionReports({ shortId });
   const isSpecial = event.primary_object_cdm_type === 'Special owner/operator ephemeris';
+
+  if (isInternationalUser(session?.user.role)) {
+    notFound();
+  }
 
   return (
     <>

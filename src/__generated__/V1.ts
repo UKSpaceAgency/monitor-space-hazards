@@ -92,12 +92,19 @@ import {
   TypeGetStatsCountConjunctionEventsParams,
   TypeGetStatsCountReentryEventsParams,
   TypeGetStatsCountReentryReportsParams,
+  TypeGetStatsEventsByOrganizationAggregatedParams,
   TypeGetStatsEventsByOrganizationParams,
+  TypeGetStatsEventsBySatelliteAggregatedParams,
   TypeGetStatsEventsBySatelliteParams,
+  TypeGetStatsEventsTypeAggregatedParams,
   TypeGetStatsEventsTypeParams,
   TypeGetStatsFragmentationEventsByFragmentationTypeParams,
   TypeGetStatsFragmentationEventsParams,
+  TypeGetStatsMakeEventsSatelliteAggregatedParams,
+  TypeGetStatsMakeEventsTypeAggregatedParams,
   TypeGetStatsMonthlyAnalysesParams,
+  TypeGetStatsMonthlyConjunctionEventsAggregatedParams,
+  TypeGetStatsMonthlyConjunctionEventsByObjectTypeAggregatedParams,
   TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams,
   TypeGetStatsMonthlyConjunctionEventsParams,
   TypeGetStatsMonthlyFragmentationEventsByFragmentationTypeParams,
@@ -119,6 +126,7 @@ import {
   TypeManoeuvrePlotOut,
   TypeManoeuvrePlotWithUserMetadataOut,
   TypeOrganizationOut,
+  TypeOrganizationWithCountOfEventsByProbabilityAggregated,
   TypePostConjunctionReportsParams,
   TypePostReentryEventReportsParams,
   TypePostTipsParams,
@@ -137,8 +145,11 @@ import {
   TypeStatisticsConjunctionEventsByObjectTypeMonthlyCount,
   TypeStatisticsConjunctionEventsCount,
   TypeStatisticsConjunctionEventsMonthlyCount,
+  TypeStatisticsConjunctionEventsMonthlyCountAggregated,
+  TypeStatisticsConjunctionEventsMonthlyCountByProbabilityAggregated,
   TypeStatisticsEventsByOrganization,
   TypeStatisticsEventsBySatellite,
+  TypeStatisticsEventsBySatelliteAggregated,
   TypeStatisticsEventsType,
   TypeStatisticsFragmentationEventsAndAlertsCount,
   TypeStatisticsFragmentationEventsByFragmentationTypeMonthlyCount,
@@ -169,7 +180,7 @@ import { ContentType, HttpClient, RequestParams } from "./http-client";
 
 export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
   /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|View| |Agency superuser|View| |Regulator user|-| |Regulator admin|View|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|View| |Agency superuser|View| |Regulator user|-| |Regulator admin|View|
    *
    * @tags alerts
    * @name GetAlerts
@@ -185,7 +196,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|Update| |Agency superuser|Update| |Regulator user|-| |Regulator admin|Update|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|Update| |Agency superuser|Update| |Regulator user|-| |Regulator admin|Update|
    *
    * @tags alerts
    * @name PatchAlertsUserUserId
@@ -203,7 +214,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|View| |Agency superuser|View| |Regulator user|-| |Regulator admin|View|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|View| |Agency superuser|View| |Regulator user|-| |Regulator admin|View|
    *
    * @tags alerts
    * @name GetAlertsUserUserId
@@ -219,7 +230,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Activity Event list. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Activity Event list. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags activity-events
    * @name GetActivityEvents
@@ -236,7 +247,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets the latest Activity Event. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets the latest Activity Event. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags activity-events
    * @name GetActivityEventsLatest
@@ -252,7 +263,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Activity Event by short ID. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Activity Event by short ID. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags activity-events
    * @name GetActivityEventsByNoradIdNoradId
@@ -268,7 +279,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Activity Events schema. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Gets Activity Events schema. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags activity-events
    * @name GetActivityEventsSchema
@@ -284,7 +295,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Activity Event by short ID.. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Activity Event by short ID.. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags activity-events
    * @name GetActivityEventsShortId
@@ -300,7 +311,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Uploads Activity Report. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create| |Regulator user|-| |Regulator admin|-|
+   * @description ## Description Uploads Activity Report. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create| |Regulator user|-| |Regulator admin|-|
    *
    * @tags activity-reports
    * @name PostActivityReports
@@ -318,7 +329,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Activity Reports list. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Activity Reports list. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags activity-reports
    * @name GetActivityReports
@@ -335,7 +346,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Activity Report schema. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Gets Activity Report schema. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags activity-reports
    * @name GetActivityReportsSchema
@@ -351,7 +362,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Activity Report by database ID. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Activity Report by database ID. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags activity-reports
    * @name GetActivityReportsActivityReportId
@@ -367,7 +378,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Deletes Activity Report by database ID |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|-|
+   * @description ## Description Deletes Activity Report by database ID |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|-|
    *
    * @tags activity-reports
    * @name DeleteActivityReportsActivityReportId
@@ -383,7 +394,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Activity Reports for a given Activity Event short ID. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Activity Reports for a given Activity Event short ID. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags activity-reports
    * @name GetActivityReportsActivityEventShortId
@@ -403,7 +414,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets latest Activity Report for a given Activity Event short ID. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets latest Activity Report for a given Activity Event short ID. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags activity-reports
    * @name GetActivityReportsActivityEventShortIdLatest
@@ -419,7 +430,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Get a full list of uploaded analyses. The list may be sorted by users who uploaded, deleted or restored analyses. It`s also useful when sorted by collision probability or miss distances to check for erroneous uploads. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Get a full list of uploaded analyses. The list may be sorted by users who uploaded, deleted or restored analyses. It`s also useful when sorted by collision probability or miss distances to check for erroneous uploads. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags analyses
    * @name GetAnalyses
@@ -436,7 +447,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Allows upload of a single or list of analyses. It`s possible to upload analyses matching the same event short ID. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create| |Regulator user|-| |Regulator admin|-|
+   * @description ## Description Allows upload of a single or list of analyses. It`s possible to upload analyses matching the same event short ID. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create| |Regulator user|-| |Regulator admin|-|
    *
    * @tags analyses
    * @name PostAnalyses
@@ -454,7 +465,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gives ability to soft-delete the uploaded analysis. The data is not entirely deleted, it`s marked as inactive (not showing in frontend) but still accessible for monitoring and audit purposes. Soft deletion gives the possibility to restore the analysis in the future. Internal analysis database ID is required to fetch the data. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|-|
+   * @description ## Description Gives ability to soft-delete the uploaded analysis. The data is not entirely deleted, it`s marked as inactive (not showing in frontend) but still accessible for monitoring and audit purposes. Soft deletion gives the possibility to restore the analysis in the future. Internal analysis database ID is required to fetch the data. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|-|
    *
    * @tags analyses
    * @name DeleteAnalysesAnalysisId
@@ -469,7 +480,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       secure: true,
       ...params,
     }); /**
-   * @description ## Description Gets detailed information about a single analysis. Internal analysis database ID is required to fetch the data. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets detailed information about a single analysis. Internal analysis database ID is required to fetch the data. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags analyses
    * @name GetAnalysesAnalysisId
@@ -485,7 +496,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets list of banner messages. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|View| |Regulator user|-| |Regulator admin|-|
+   * @description ## Description Gets list of banner messages. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|View| |Regulator user|-| |Regulator admin|-|
    *
    * @tags banners
    * @name GetBannersMessages
@@ -502,7 +513,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Create a banner message. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Create| |Regulator user|-| |Regulator admin|-|
+   * @description ## Description Create a banner message. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Create| |Regulator user|-| |Regulator admin|-|
    *
    * @tags banners
    * @name PostBannersMessages
@@ -520,7 +531,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Modify a banner message. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Update| |Regulator user|-| |Regulator admin|-|
+   * @description ## Description Modify a banner message. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Update| |Regulator user|-| |Regulator admin|-|
    *
    * @tags banners
    * @name PatchBannersMessages
@@ -538,7 +549,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets currently broadcasted banner messages. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Gets currently broadcasted banner messages. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags banners
    * @name GetBannersMessagesCurrent
@@ -555,7 +566,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Soft-delete (set is_active=False) a banner message. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|-|
+   * @description ## Description Soft-delete (set is_active=False) a banner message. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|-|
    *
    * @tags banners
    * @name DeleteBannersMessagesMessageId
@@ -570,7 +581,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       secure: true,
       ...params,
     }); /**
-   * @description ## Description Gets a list of defined banner schedules. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|View| |Regulator user|-| |Regulator admin|-|
+   * @description ## Description Gets a list of defined banner schedules. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|View| |Regulator user|-| |Regulator admin|-|
    *
    * @tags banners
    * @name GetBannersSchedules
@@ -587,7 +598,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Creates a schedule for a given banner message. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Create| |Regulator user|-| |Regulator admin|-|
+   * @description ## Description Creates a schedule for a given banner message. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Create| |Regulator user|-| |Regulator admin|-|
    *
    * @tags banners
    * @name PostBannersSchedules
@@ -605,7 +616,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Soft-deletes a schedule. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|-|
+   * @description ## Description Soft-deletes a schedule. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|-|
    *
    * @tags banners
    * @name DeleteBannersSchedulesScheduleId
@@ -620,7 +631,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       secure: true,
       ...params,
     }); /**
-   * @description Gives the CDM ID and date/time of the last ingested SpaceTrack CDM. Useful for checking if the ingestion process is alive and SpaceTrack is properly responding. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description Gives the CDM ID and date/time of the last ingested SpaceTrack CDM. Useful for checking if the ingestion process is alive and SpaceTrack is properly responding. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags cdms
    * @name GetCdmsLatest
@@ -636,7 +647,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags conjunction-events
    * @name GetConjunctionEventsShortIdAlertsLatest
@@ -652,7 +663,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|Put| |Agency superuser|Put| |Regulator user|-| |Regulator admin|Put|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|Put| |Agency superuser|Put| |Regulator user|-| |Regulator admin|Put|
    *
    * @tags conjunction-events
    * @name PutConjunctionEventsShortIdAlertsLatest
@@ -674,7 +685,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|Put| |Agency superuser|Put| |Regulator user|-| |Regulator admin|Put|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|Put| |Agency superuser|Put| |Regulator user|-| |Regulator admin|Put|
    *
    * @tags conjunction-events
    * @name PutConjunctionEventsShortIdAlertsLatestDryRun
@@ -696,7 +707,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags conjunction-reports
    * @name GetConjunctionReportsSchema
@@ -712,7 +723,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Create Conjunction Report and saves its metadata in database and original file in S3 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create| |Regulator user|-| |Regulator admin|-|
+   * @description ## Description Create Conjunction Report and saves its metadata in database and original file in S3 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create| |Regulator user|-| |Regulator admin|-|
    *
    * @tags conjunction-reports
    * @name PostConjunctionReports
@@ -735,7 +746,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets list of Conjunction Reports data by Conjunction Event short ID ie. bqqxxjo-rrvnper-xkgorz |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets list of Conjunction Reports data by Conjunction Event short ID ie. bqqxxjo-rrvnper-xkgorz |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags conjunction-reports
    * @name GetConjunctionReportsConjunctionEventShortId
@@ -755,7 +766,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Conjunction Report data by UUID |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Conjunction Report data by UUID |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags conjunction-reports
    * @name GetConjunctionReportsConjunctionReportId
@@ -771,7 +782,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description Soft-delete uploaded Conjunction Report metadata setting is_active flag to False thus not showing in frontend. Still accessible for monitoring and audit purposes. The S3 file containing the full file is left intact. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|-|
+   * @description Soft-delete uploaded Conjunction Report metadata setting is_active flag to False thus not showing in frontend. Still accessible for monitoring and audit purposes. The S3 file containing the full file is left intact. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|-|
    *
    * @tags conjunction-reports
    * @name DeleteConjunctionReportsConjunctionReportId
@@ -786,7 +797,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       secure: true,
       ...params,
     }); /**
-   * @description ## Description Provides a list of uploaded ephemeris files. The list can be sorted by organizations that own satellites or by satellite name. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Provides a list of uploaded ephemeris files. The list can be sorted by organizations that own satellites or by satellite name. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags ephemeris
    * @name GetEphemeris
@@ -803,7 +814,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Allows operators to upload their ephemeris files. Ephemeris files have to be named in a special way according to Space-Track standards to include satellite NORAD ID, otherwise they will be rejected. They also have to be in line with the .oem file format guidelines. More information can be found at the links below: - [OEM file format definition](https://public.ccsds.org/Pubs/502x0b3e1.pdf) - [File naming convention from Space-Track Handbook for Operators (see page 23)](https://www.space-track.org/documents/Spaceflight_Safety_Handbook_for_Operators.pdf) |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|Create within Organisation| |Satellite operator admin|Create within Organisation| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create| |Regulator user|-| |Regulator admin|Create|
+   * @description ## Description Allows operators to upload their ephemeris files. Ephemeris files have to be named in a special way according to Space-Track standards to include satellite NORAD ID, otherwise they will be rejected. They also have to be in line with the .oem file format guidelines. More information can be found at the links below: - [OEM file format definition](https://public.ccsds.org/Pubs/502x0b3e1.pdf) - [File naming convention from Space-Track Handbook for Operators (see page 23)](https://www.space-track.org/documents/Spaceflight_Safety_Handbook_for_Operators.pdf) |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|Create within Organisation| |Satellite operator admin|Create within Organisation| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create| |Regulator user|-| |Regulator admin|Create|
    *
    * @tags ephemeris
    * @name PostEphemeris
@@ -821,7 +832,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets the ephemeris file copy identical to the original upload. Internal database ID is required to get the file. The response is the text file in key-value .oem format. Filename is created after the CREATION_DATE from the ephemeris file to avoid accidental overwrites when similarly named files would be downloaded. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets the ephemeris file copy identical to the original upload. Internal database ID is required to get the file. The response is the text file in key-value .oem format. Filename is created after the CREATION_DATE from the ephemeris file to avoid accidental overwrites when similarly named files would be downloaded. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags ephemeris
    * @name GetEphemerisEphemerisId
@@ -837,7 +848,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Soft-delete an ephemeris, mark ephemeris in DB as is_active = False, allowing later restoration. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|Delete within Organisation| |Satellite operator admin|Delete within Organisation| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|Delete| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|Delete|
+   * @description ## Description Soft-delete an ephemeris, mark ephemeris in DB as is_active = False, allowing later restoration. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|Delete within Organisation| |Satellite operator admin|Delete within Organisation| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|Delete| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|Delete|
    *
    * @tags ephemeris
    * @name DeleteEphemerisEphemerisId
@@ -852,7 +863,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       secure: true,
       ...params,
     }); /**
-   * @description ## Description Restore a soft-deleted ephemeris, mark ephemeris in DB as is_active = True. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|Delete within Organisation| |Satellite operator admin|Delete within Organisation| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|Delete| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|Delete|
+   * @description ## Description Restore a soft-deleted ephemeris, mark ephemeris in DB as is_active = True. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|Delete within Organisation| |Satellite operator admin|Delete within Organisation| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|Delete| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|Delete|
    *
    * @tags ephemeris
    * @name PostEphemerisEphemerisIdRestore
@@ -867,7 +878,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       secure: true,
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags external-data-performance
    * @name GetExternalDataPerformance
@@ -884,7 +895,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags external-data-performance
    * @name GetExternalDataPerformanceAggregated
@@ -904,7 +915,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Fragmentation Event list. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Fragmentation Event list. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags fragmentation-events
    * @name GetFragmentationEvents
@@ -921,7 +932,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets the latest Fragmentation Event. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets the latest Fragmentation Event. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags fragmentation-events
    * @name GetFragmentationEventsLatest
@@ -937,7 +948,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Fragmentation Event by short ID.. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Fragmentation Event by short ID.. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags fragmentation-events
    * @name GetFragmentationEventsByNoradIdNoradId
@@ -953,7 +964,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Fragmentation Events schema. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Gets Fragmentation Events schema. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags fragmentation-events
    * @name GetFragmentationEventsSchema
@@ -969,7 +980,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Fragmentation Event by short ID.. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Fragmentation Event by short ID.. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags fragmentation-events
    * @name GetFragmentationEventsShortId
@@ -985,7 +996,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Update Fragmentation Event by short ID. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Update| |Agency approver|Update| |Agency superuser|Update| |Regulator user|-| |Regulator admin|Update|
+   * @description ## Description Update Fragmentation Event by short ID. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Update| |Agency approver|Update| |Agency superuser|Update| |Regulator user|-| |Regulator admin|Update|
    *
    * @tags fragmentation-events
    * @name PatchFragmentationEventsShortId
@@ -1003,7 +1014,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags fragmentation-events
    * @name GetFragmentationEventsShortIdAlertsLatest
@@ -1019,7 +1030,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|Put| |Agency superuser|Put| |Regulator user|-| |Regulator admin|Put|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|Put| |Agency superuser|Put| |Regulator user|-| |Regulator admin|Put|
    *
    * @tags fragmentation-events
    * @name PutFragmentationEventsShortIdAlertsLatest
@@ -1041,7 +1052,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|Put| |Agency superuser|Put| |Regulator user|-| |Regulator admin|Put|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|Put| |Agency superuser|Put| |Regulator user|-| |Regulator admin|Put|
    *
    * @tags fragmentation-events
    * @name PutFragmentationEventsShortIdAlertsLatestDryRun
@@ -1063,7 +1074,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Uploads Fragmentation Event Report. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create| |Regulator user|-| |Regulator admin|-|
+   * @description ## Description Uploads Fragmentation Event Report. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create| |Regulator user|-| |Regulator admin|-|
    *
    * @tags fragmentation-reports
    * @name PostFragmentationReports
@@ -1084,7 +1095,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Fragmentation Event Reports list. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Fragmentation Event Reports list. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags fragmentation-reports
    * @name GetFragmentationReports
@@ -1101,7 +1112,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Fragmentation Event Report schema. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Gets Fragmentation Event Report schema. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags fragmentation-reports
    * @name GetFragmentationReportsSchema
@@ -1117,7 +1128,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Fragmentation Event Report by database ID. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Fragmentation Event Report by database ID. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags fragmentation-reports
    * @name GetFragmentationReportsFragmentationReportId
@@ -1133,7 +1144,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Deletes Fragmentation Event Report by database ID |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|-|
+   * @description ## Description Deletes Fragmentation Event Report by database ID |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|-|
    *
    * @tags fragmentation-reports
    * @name DeleteFragmentationReportsFragmentationReportId
@@ -1149,7 +1160,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Fragmentation Event Report for a given Fragmentation Event short ID. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Fragmentation Event Report for a given Fragmentation Event short ID. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags fragmentation-reports
    * @name GetFragmentationReportsFragmentationEventShortId
@@ -1169,7 +1180,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets the latest Fragmentation Event Report for a given Fragmentation Event short ID. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets the latest Fragmentation Event Report for a given Fragmentation Event short ID. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags fragmentation-reports
    * @name GetFragmentationReportsFragmentationEventShortIdLatest
@@ -1185,7 +1196,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Manoeuvre Plot file metadata with given ID |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Manoeuvre Plot file metadata with given ID |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags manoeuvre_plots
    * @name GetManoeuvrePlotsManoeuvrePlotId
@@ -1201,7 +1212,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description Soft-delete uploaded Manoeuvre Plot metadata setting is_active flag to False thus not showing in frontend. Still accessible for monitoring and audit purposes. The S3 file containing the full file is left intact. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|Delete| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|Delete|
+   * @description Soft-delete uploaded Manoeuvre Plot metadata setting is_active flag to False thus not showing in frontend. Still accessible for monitoring and audit purposes. The S3 file containing the full file is left intact. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|Delete| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|Delete|
    *
    * @tags manoeuvre_plots
    * @name DeleteManoeuvrePlotsManoeuvrePlotId
@@ -1216,7 +1227,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       secure: true,
       ...params,
     }); /**
-   * @description ## Description Create Manoeuvre Plot file metadata in database and stores actual file in S3 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create| |Regulator user|-| |Regulator admin|Create|
+   * @description ## Description Create Manoeuvre Plot file metadata in database and stores actual file in S3 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create| |Regulator user|-| |Regulator admin|Create|
    *
    * @tags manoeuvre_plots
    * @name PostManoeuvrePlots
@@ -1234,7 +1245,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Manoeuvre Plot file list with user metadata (uploaders, deleters etc) |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Manoeuvre Plot file list with user metadata (uploaders, deleters etc) |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags manoeuvre_plots
    * @name GetManoeuvrePlots
@@ -1251,7 +1262,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Manoeuvre Plot file metadata list by Event short ID |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Manoeuvre Plot file metadata list by Event short ID |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags manoeuvre_plots
    * @name GetManoeuvrePlotsByEventEventShortId
@@ -1271,7 +1282,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Sends a message to pre-defined analyst email address. We allow all events for all users here. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Sends a message to pre-defined analyst email address. We allow all events for all users here. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags messages
    * @name PostMessagesContactAnalyst
@@ -1307,7 +1318,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets list of all organizations with the number of user and admin accounts. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets list of all organizations with the number of user and admin accounts. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags organizations
    * @name GetOrganizations
@@ -1323,7 +1334,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags reentry-event-reports
    * @name GetReentryEventReportsSchema
@@ -1339,7 +1350,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Create Reentry Event Report and saves its metadata in database and original file in S3 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create| |Regulator user|-| |Regulator admin|-|
+   * @description ## Description Create Reentry Event Report and saves its metadata in database and original file in S3 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create| |Regulator user|-| |Regulator admin|-|
    *
    * @tags reentry-event-reports
    * @name PostReentryEventReports
@@ -1362,7 +1373,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets list of Reentry Event Reports data by Reentry Event short ID ie. RE25-0031 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets list of Reentry Event Reports data by Reentry Event short ID ie. RE25-0031 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags reentry-event-reports
    * @name GetReentryEventReportsReentryEventShortId
@@ -1382,7 +1393,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Reentry Event Report data by UUID |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Reentry Event Report data by UUID |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags reentry-event-reports
    * @name GetReentryEventReportsReentryEventReportId
@@ -1398,7 +1409,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description Soft-delete uploaded Reentry Event Report metadata setting is_active flag to False thus not showing in frontend. Still accessible for monitoring and audit purposes. The S3 file containing the full file is left intact. Revert some fields in Reentry Event |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|Delete| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|-|
+   * @description Soft-delete uploaded Reentry Event Report metadata setting is_active flag to False thus not showing in frontend. Still accessible for monitoring and audit purposes. The S3 file containing the full file is left intact. Revert some fields in Reentry Event |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|Delete| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|-|
    *
    * @tags reentry-event-reports
    * @name DeleteReentryEventReportsReentryEventReportId
@@ -1413,7 +1424,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       secure: true,
       ...params,
     }); /**
-   * @description ## Description Get count of Reentry Events with or without reports. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Get count of Reentry Events with or without reports. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags reentry-events
    * @name GetReentryEventsStats
@@ -1430,7 +1441,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets the latest Reentry Event. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets the latest Reentry Event. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags reentry-events
    * @name GetReentryEventsLatest
@@ -1446,7 +1457,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Reentry Event by short ID.. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Reentry Event by short ID.. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags reentry-events
    * @name GetReentryEventsByNoradIdNoradId
@@ -1462,7 +1473,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Reentry Event data by Reentry Event short ID ie. RE25-0031 |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Reentry Event data by Reentry Event short ID ie. RE25-0031 |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags reentry-events
    * @name GetReentryEventsShortId
@@ -1478,7 +1489,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Updates Reentry Event data by Reentry Event short ID ie. RE25-0031 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|Update| |Agency analyst|Update| |Agency approver|Update| |Agency superuser|Update| |Regulator user|-| |Regulator admin|Update|
+   * @description ## Description Updates Reentry Event data by Reentry Event short ID ie. RE25-0031 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|Update| |Agency analyst|Update| |Agency approver|Update| |Agency superuser|Update| |Regulator user|-| |Regulator admin|Update|
    *
    * @tags reentry-events
    * @name PatchReentryEventsShortId
@@ -1496,7 +1507,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags reentry-events
    * @name GetReentryEventsShortIdAlertsLatest
@@ -1512,7 +1523,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|Put| |Agency superuser|Put| |Regulator user|-| |Regulator admin|Put|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|Put| |Agency superuser|Put| |Regulator user|-| |Regulator admin|Put|
    *
    * @tags reentry-events
    * @name PutReentryEventsShortIdAlertsLatest
@@ -1530,7 +1541,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|Put| |Agency superuser|Put| |Regulator user|-| |Regulator admin|Put|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|Put| |Agency superuser|Put| |Regulator user|-| |Regulator admin|Put|
    *
    * @tags reentry-events
    * @name PutReentryEventsShortIdAlertsLatestDryRun
@@ -1552,7 +1563,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets list of Reentry Events with sorting |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets list of Reentry Events with sorting |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags reentry-events
    * @name GetReentryEvents
@@ -1569,7 +1580,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Provides a list of events with metadata (userInterest column). On the user application, this is presented on the /events page. It`s useful when the user needs to look at the past events or tries to find events specific to a single satellite. It`s possible to search with LIKE pattern (ie. when looking for all satellites matching some pattern in their names). It`s also possible to find events with the biggest probability of collision or the lowest miss distance. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Provides a list of events with metadata (userInterest column). On the user application, this is presented on the /events page. It`s useful when the user needs to look at the past events or tries to find events specific to a single satellite. It`s possible to search with LIKE pattern (ie. when looking for all satellites matching some pattern in their names). It`s also possible to find events with the biggest probability of collision or the lowest miss distance. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags conjunction-events
    * @name GetConjunctionEvents
@@ -1586,7 +1597,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Provides a list of events with metadata (userInterest column). On the user application, this is presented on the /events page. Works only for future events (TCA time in future). It`s possible to search with LIKE pattern (ie. when looking for all satellites matching some pattern in their names). It`s also possible to find events with the biggest probability of collision or the lowest miss distance. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Provides a list of events with metadata (userInterest column). On the user application, this is presented on the /events page. Works only for future events (TCA time in future). It`s possible to search with LIKE pattern (ie. when looking for all satellites matching some pattern in their names). It`s also possible to find events with the biggest probability of collision or the lowest miss distance. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags conjunction-events
    * @name GetConjunctionEventsFutureEvents
@@ -1603,7 +1614,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description --- |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description --- |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags conjunction-events
    * @name GetConjunctionEventsForAnalysis
@@ -1620,7 +1631,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Returns the list of Events (based on single CDMs) that have TCA time in future and have probability of collision greater than 1e5 and they don't have an analysis yet. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Returns the list of Events (based on single CDMs) that have TCA time in future and have probability of collision greater than 1e5 and they don't have an analysis yet. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags conjunction-events
    * @name GetConjunctionEventsFutureEventsForAnalysis
@@ -1640,7 +1651,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Provides a list of events with metadata (userInterest column). On the user application, this is presented on the /events page. It`s useful when the user needs to look at the past events or tries to find events specific to a single satellite. It`s possible to search with LIKE pattern (ie. when looking for all satellites matching some pattern in their names). It`s also possible to find events with the biggest probability of collision or the lowest miss distance. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Provides a list of events with metadata (userInterest column). On the user application, this is presented on the /events page. It`s useful when the user needs to look at the past events or tries to find events specific to a single satellite. It`s possible to search with LIKE pattern (ie. when looking for all satellites matching some pattern in their names). It`s also possible to find events with the biggest probability of collision or the lowest miss distance. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags conjunction-events
    * @name GetConjunctionEventsList
@@ -1657,7 +1668,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Get count of Conjunction Events with or without reports. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Get count of Conjunction Events with or without reports. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags conjunction-events
    * @name GetConjunctionEventsStats
@@ -1674,7 +1685,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Returns summary data for an Event with provided short ID (in the format of bmqvgba-kkjodd-pgnnc). Data can be taken from Analysis or from CDMs (the most recent type is returned). |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Returns summary data for an Event with provided short ID (in the format of bmqvgba-kkjodd-pgnnc). Data can be taken from Analysis or from CDMs (the most recent type is returned). |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags conjunction-events
    * @name GetConjunctionEventsEventIdSummary
@@ -1694,7 +1705,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Used for providing Data Sources part of a single Event page. Data is provided in order for primary and secondary object. Optional SpaceTrack CDM ID can be used to provide not the most recent CDM/Analysis but those for selected CDM ID. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Used for providing Data Sources part of a single Event page. Data is provided in order for primary and secondary object. Optional SpaceTrack CDM ID can be used to provide not the most recent CDM/Analysis but those for selected CDM ID. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags conjunction-events
    * @name GetConjunctionEventsEventIdDataSources
@@ -1714,7 +1725,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets series of events where one of these events was built upon a given SpaceTrack CDM. Events can be then sorted by CDM IDs to obtain other CDMs and check SpaceTrack source. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets series of events where one of these events was built upon a given SpaceTrack CDM. Events can be then sorted by CDM IDs to obtain other CDMs and check SpaceTrack source. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags conjunction-events
    * @name GetConjunctionEventsCdmExternalId
@@ -1734,7 +1745,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets primary and secondary Satellite data involved in a single Conjunction Event. Primary satellite must be available for user's organization. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets primary and secondary Satellite data involved in a single Conjunction Event. Primary satellite must be available for user's organization. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags conjunction-events
    * @name GetConjunctionEventsSatelliteEventShortId
@@ -1750,7 +1761,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Updates Conjunction Event data by Event short ID |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|Update| |Agency analyst|Update| |Agency approver|Update| |Agency superuser|Update| |Regulator user|-| |Regulator admin|Update|
+   * @description ## Description Updates Conjunction Event data by Event short ID |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|Update| |Agency analyst|Update| |Agency approver|Update| |Agency superuser|Update| |Regulator user|-| |Regulator admin|Update|
    *
    * @tags conjunction-events
    * @name PatchConjunctionEventsUniqueEventShortId
@@ -1772,7 +1783,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Conjunction Event data by Event short ID from unique_events table |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Conjunction Event data by Event short ID from unique_events table |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags conjunction-events
    * @name GetConjunctionEventsUniqueEventShortId
@@ -1803,7 +1814,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       secure: true,
       ...params,
     }); /**
-   * @description ## Description Returns a detailed list of satellites. Provides ability to search with simple text search to find groups of satellites matching the same pattern. Available satellites are filtered by user. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Returns a detailed list of satellites. Provides ability to search with simple text search to find groups of satellites matching the same pattern. Available satellites are filtered by user. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags satellites
    * @name GetSatellitesWithMetadata
@@ -1820,7 +1831,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Lists Satellites with organization data. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Lists Satellites with organization data. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags satellites
    * @name GetSatellitesMonitored
@@ -1837,7 +1848,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Satellite count within organizations and total count. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Satellite count within organizations and total count. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags satellites
    * @name GetSatellitesByOrganizations
@@ -1854,7 +1865,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Provides detailed information about a single satellite and its organization. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Provides detailed information about a single satellite and its organization. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags satellites
    * @name GetSatellitesNoradId
@@ -1870,7 +1881,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Updates satellite organization bindings. Internal database satellite ID is required to do so. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Update| |Regulator user|-| |Regulator admin|Update|
+   * @description ## Description Updates satellite organization bindings. Internal database satellite ID is required to do so. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Update| |Regulator user|-| |Regulator admin|Update|
    *
    * @tags satellites
    * @name PatchSatellitesSatelliteId
@@ -1887,7 +1898,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       type: ContentType.Json,
       ...params,
     }); /**
-   * @description ## Description Starts Satellite data ingestion process by querying ESA Discos API. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Trigger| |Regulator user|-| |Regulator admin|-|
+   * @description ## Description Starts Satellite data ingestion process by querying ESA Discos API. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Trigger| |Regulator user|-| |Regulator admin|-|
    *
    * @tags satellites
    * @name PostSatellitesEsaIntegration
@@ -1903,7 +1914,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets number of CDMs, Ephemeris, Satellites and Events in the DB |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Gets number of CDMs, Ephemeris, Satellites and Events in the DB |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags stats
    * @name GetStats
@@ -1919,7 +1930,61 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Returns number of Events between different types of objects, ie. between UK licensed satellites, debris or non-UK licensed satellites. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Returns number of Events between different types of objects, ie. between UK licensed satellites, debris or non-UK licensed satellites. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Trigger| |Regulator user|-| |Regulator admin|-|
+   *
+   * @tags stats
+   * @name GetStatsMakeEventsSatelliteAggregated
+   * @summary Make Events Object Aggregated
+   * @request GET:/v1/stats/make-events-satellite-aggregated
+   * @secure
+   */
+  getStatsMakeEventsSatelliteAggregated = (
+    query?: TypeGetStatsMakeEventsSatelliteAggregatedParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<any, void | TypeHTTPValidationError>({
+      path: `/v1/stats/make-events-satellite-aggregated`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Returns number of Events between different types of objects, ie. between UK licensed satellites, debris or non-UK licensed satellites. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Trigger| |Regulator user|-| |Regulator admin|-|
+   *
+   * @tags stats
+   * @name GetStatsMakeEventsTypeAggregated
+   * @summary Make Events Type Aggregated
+   * @request GET:/v1/stats/make-events-type-aggregated
+   * @secure
+   */
+  getStatsMakeEventsTypeAggregated = (query?: TypeGetStatsMakeEventsTypeAggregatedParams, params: RequestParams = {}) =>
+    this.request<any, void | TypeHTTPValidationError>({
+      path: `/v1/stats/make-events-type-aggregated`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Returns number of Events between different types of objects, ie. between UK licensed satellites, debris or non-UK licensed satellites. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   *
+   * @tags stats
+   * @name GetStatsEventsTypeAggregated
+   * @summary Get number of Events, broken down by type of object involved in the Event using aggregated table
+   * @request GET:/v1/stats/events-type-aggregated
+   * @secure
+   */
+  getStatsEventsTypeAggregated = (query?: TypeGetStatsEventsTypeAggregatedParams, params: RequestParams = {}) =>
+    this.request<TypeStatisticsEventsType[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/events-type-aggregated`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Returns number of Events between different types of objects, ie. between UK licensed satellites, debris or non-UK licensed satellites. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags stats
    * @name GetStatsEventsType
@@ -1936,7 +2001,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets the number of Events per organization, groupped into probability of collision ranges: 0..1e-5..1e-3..1. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets the number of Events per organization, groupped into probability of collision ranges: 0..1e-5..1e-3..1. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags stats
    * @name GetStatsEventsByOrganization
@@ -1953,7 +2018,27 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets number of Events groupped by satellites and probability of collision. Superusers and Analysts can choose Organization satellites belong to. Other users can only see Events/Satellites from their organization. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets the number of Events per organization, groupped into probability of collision ranges: 0..1e-5..1e-3..1. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   *
+   * @tags stats
+   * @name GetStatsEventsByOrganizationAggregated
+   * @summary Get number of Events, broken down by Organization involved in the Event
+   * @request GET:/v1/stats/events-by-organization-aggregated
+   * @secure
+   */
+  getStatsEventsByOrganizationAggregated = (
+    query?: TypeGetStatsEventsByOrganizationAggregatedParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeOrganizationWithCountOfEventsByProbabilityAggregated[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/events-by-organization-aggregated`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets number of Events groupped by satellites and probability of collision. Superusers and Analysts can choose Organization satellites belong to. Other users can only see Events/Satellites from their organization. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags stats
    * @name GetStatsEventsBySatellite
@@ -1970,7 +2055,27 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets number of Satellites groupped by type (debris/payload/etc) |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Gets number of Events groupped by satellites and probability of collision. Superusers and Analysts can choose Organization satellites belong to. Other users can only see Events/Satellites from their organization. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   *
+   * @tags stats
+   * @name GetStatsEventsBySatelliteAggregated
+   * @summary Get number of Events, broken down by Satellite involved in the Event
+   * @request GET:/v1/stats/events-by-satellite-aggregated
+   * @secure
+   */
+  getStatsEventsBySatelliteAggregated = (
+    query?: TypeGetStatsEventsBySatelliteAggregatedParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeStatisticsEventsBySatelliteAggregated[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/events-by-satellite-aggregated`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets number of Satellites groupped by type (debris/payload/etc) |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags stats
    * @name GetStatsObjectsTracked
@@ -1986,7 +2091,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets number of Notifications groupped by type (email/SMS) and date (days, months) |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Gets number of Notifications groupped by type (email/SMS) and date (days, months) |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags stats
    * @name GetStatsNotificationsSent
@@ -2003,7 +2108,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets a total number of past or upcoming Conjunction Events |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Gets a total number of past or upcoming Conjunction Events |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags stats
    * @name GetStatsCountConjunctionEvents
@@ -2020,7 +2125,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets the highest collision probability in upcoming Conjunction Events from unique_events table |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Gets the highest collision probability in upcoming Conjunction Events from unique_events table |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags stats
    * @name GetStatsHighestCollisionProbability
@@ -2036,7 +2141,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets a total number of Reentry Events |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Gets a total number of Reentry Events |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags stats
    * @name GetStatsCountReentryEvents
@@ -2053,7 +2158,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets a total number of Reentry Reports |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Gets a total number of Reentry Reports |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags stats
    * @name GetStatsCountReentryReports
@@ -2070,7 +2175,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Get monthly count of Analyses in a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Get monthly count of Analyses in a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags stats
    * @name GetStatsMonthlyAnalyses
@@ -2087,7 +2192,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Get monthly running sum & count of Users in a date range, rounded to months by toc_accepted_at column |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Get monthly running sum & count of Users in a date range, rounded to months by toc_accepted_at column |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags stats
    * @name GetStatsMonthlyUsers
@@ -2104,7 +2209,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Get monthly running sum & count of Organizations in a date range, rounded to months by created_at column |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Get monthly running sum & count of Organizations in a date range, rounded to months by created_at column |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags stats
    * @name GetStatsMonthlyOrganizations
@@ -2121,7 +2226,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Get monthly count of Manouvre Trade Space Plots in a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Get monthly count of Manouvre Trade Space Plots in a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags stats
    * @name GetStatsMonthlyManoeuvrePlots
@@ -2138,7 +2243,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Get monthly count of Conjunction Events in probability ranges, within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Get monthly count of Conjunction Events in probability ranges, within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags stats
    * @name GetStatsMonthlyConjunctionEvents
@@ -2155,7 +2260,47 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Get monthly count of Conjunction Events with object type, within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Get monthly count of Conjunction Events in probability ranges, within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   *
+   * @tags stats
+   * @name GetStatsMonthlyConjunctionEventsAggregated
+   * @summary Get monthly count of Conjunction Events with probability ranges
+   * @request GET:/v1/stats/monthly/conjunction-events-aggregated
+   * @secure
+   */
+  getStatsMonthlyConjunctionEventsAggregated = (
+    query?: TypeGetStatsMonthlyConjunctionEventsAggregatedParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeStatisticsConjunctionEventsMonthlyCountByProbabilityAggregated[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/monthly/conjunction-events-aggregated`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Get monthly count of Conjunction Events with object type, within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   *
+   * @tags stats
+   * @name GetStatsMonthlyConjunctionEventsByObjectTypeAggregated
+   * @summary Get monthly count of Conjunction Events with object type
+   * @request GET:/v1/stats/monthly/conjunction-events-by-object-type-aggregated
+   * @secure
+   */
+  getStatsMonthlyConjunctionEventsByObjectTypeAggregated = (
+    query?: TypeGetStatsMonthlyConjunctionEventsByObjectTypeAggregatedParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeStatisticsConjunctionEventsMonthlyCountAggregated[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/monthly/conjunction-events-by-object-type-aggregated`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Get monthly count of Conjunction Events with object type, within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags stats
    * @name GetStatsMonthlyConjunctionEventsByObjectType
@@ -2175,7 +2320,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets monthly number of Satellites by their launch date |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Gets monthly number of Satellites by their launch date |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags stats
    * @name GetStatsMonthlyObjectsLaunched
@@ -2192,7 +2337,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Get monthly count of Reentry Events with corresponding Alerts, within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Get monthly count of Reentry Events with corresponding Alerts, within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags stats
    * @name GetStatsMonthlyReentryEvents
@@ -2209,7 +2354,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Get monthly count of Reentry Events with object type, within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Get monthly count of Reentry Events with object type, within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags stats
    * @name GetStatsMonthlyReentryEventsByObjectType
@@ -2229,7 +2374,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Get count of Reentry Events with object type within a date range. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Get count of Reentry Events with object type within a date range. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags stats
    * @name GetStatsReentryEvents
@@ -2246,7 +2391,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Get count of Fragmentation Events with object type within a date range. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Get count of Fragmentation Events with object type within a date range. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags stats
    * @name GetStatsFragmentationEvents
@@ -2263,7 +2408,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Get count of Fragmentation Events with fragmentation type within a date range. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Get count of Fragmentation Events with fragmentation type within a date range. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags stats
    * @name GetStatsFragmentationEventsByFragmentationType
@@ -2283,7 +2428,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Get monthly count of Fragmentation Events within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Get monthly count of Fragmentation Events within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags stats
    * @name GetStatsMonthlyFragmentationEvents
@@ -2303,7 +2448,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Get monthly count of Fragmentation Events with object type, within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Get monthly count of Fragmentation Events with object type, within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags stats
    * @name GetStatsMonthlyFragmentationEventsByObjectType
@@ -2323,7 +2468,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Get monthly count of Fragmentation Events with fragmentation type, within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Get monthly count of Fragmentation Events with fragmentation type, within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags stats
    * @name GetStatsMonthlyFragmentationEventsByFragmentationType
@@ -2343,7 +2488,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Creates Tracking and Impact Prediction data in the database |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create| |Regulator user|-| |Regulator admin|-|
+   * @description ## Description Creates Tracking and Impact Prediction data in the database |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create| |Regulator user|-| |Regulator admin|-|
    *
    * @tags tracking-impact-prediction
    * @name PostTips
@@ -2366,7 +2511,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description Returns the most recent ingested Tracking and Impact Prediction message |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description Returns the most recent ingested Tracking and Impact Prediction message |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags tracking-impact-prediction
    * @name GetTipsLatest
@@ -2383,7 +2528,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description Returns Tracking and Impact Prediction messages by NORAD ID ordered by TIP external ID (newest first) |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description Returns Tracking and Impact Prediction messages by NORAD ID ordered by TIP external ID (newest first) |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags tracking-impact-prediction
    * @name GetTipsNoradId
@@ -2400,7 +2545,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description Soft-delete uploaded TIP by setting marked is_active flag to False thus not showing in frontend. Still accessible for monitoring and audit purposes. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|-|
+   * @description Soft-delete uploaded TIP by setting marked is_active flag to False thus not showing in frontend. Still accessible for monitoring and audit purposes. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Delete| |Agency approver|Delete| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|-|
    *
    * @tags tracking-impact-prediction
    * @name DeleteTipsTipId
@@ -2415,7 +2560,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       secure: true,
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|View| |Government admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags users
    * @name GetUsersMeAlertSettings
@@ -2431,7 +2576,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|Create| |Government admin|Create| |Agency user|Create| |Agency admin|Create| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create| |Regulator user|Create| |Regulator admin|Create|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|Create| |Government admin|Create| |International user|Create| |International admin|Create| |Agency user|Create| |Agency admin|Create| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create| |Regulator user|Create| |Regulator admin|Create|
    *
    * @tags users
    * @name PostUsersMeAlertSettings
@@ -2449,7 +2594,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets list of users with metadata in their organization. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View within Organisation| |Government admin|View within Organisation| |Agency user|View within Organisation| |Agency admin|View within Organisation| |Agency analyst|View within Organisation| |Agency approver|View| |Agency superuser|View| |Regulator user|View within Organisation| |Regulator admin|View within Organisation|
+   * @description ## Description Gets list of users with metadata in their organization. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View within Organisation| |Government admin|View within Organisation| |International user|View within Organisation| |International admin|View within Organisation| |Agency user|View within Organisation| |Agency admin|View within Organisation| |Agency analyst|View within Organisation| |Agency approver|View| |Agency superuser|View| |Regulator user|View within Organisation| |Regulator admin|View within Organisation|
    *
    * @tags users
    * @name GetUsers
@@ -2465,7 +2610,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|Create within Organisation| |Government user|-| |Government admin|Create within Organisation| |Agency user|-| |Agency admin|Create within Organisation| |Agency analyst|Create within Organisation| |Agency approver|Create| |Agency superuser|Create| |Regulator user|-| |Regulator admin|Create within Organisation|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|Create within Organisation| |Government user|-| |Government admin|Create within Organisation| |International user|-| |International admin|Create within Organisation| |Agency user|-| |Agency admin|Create within Organisation| |Agency analyst|Create within Organisation| |Agency approver|Create| |Agency superuser|Create| |Regulator user|-| |Regulator admin|Create within Organisation|
    *
    * @tags users
    * @name PostUsers
@@ -2483,7 +2628,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets full information about logged-in user (notification settings and thresholds, personal information) |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Gets full information about logged-in user (notification settings and thresholds, personal information) |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags users
    * @name GetUsersMe
@@ -2499,7 +2644,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Update information about yourself. |User Role|Permissions| |-|-| |Satellite operator user|Update| |Satellite operator|Update| |Satellite operator admin|Update| |Government user|Update| |Government admin|Update| |Agency user|Update| |Agency admin|Update| |Agency analyst|Update| |Agency approver|Update| |Agency superuser|Update| |Regulator user|Update| |Regulator admin|Update|
+   * @description ## Description Update information about yourself. |User Role|Permissions| |-|-| |Satellite operator user|Update| |Satellite operator|Update| |Satellite operator admin|Update| |Government user|Update| |Government admin|Update| |International user|Update| |International admin|Update| |Agency user|Update| |Agency admin|Update| |Agency analyst|Update| |Agency approver|Update| |Agency superuser|Update| |Regulator user|Update| |Regulator admin|Update|
    *
    * @tags users
    * @name PatchUsersMe
@@ -2517,7 +2662,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags users
    * @name GetUsersMeLogout
@@ -2532,7 +2677,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       secure: true,
       ...params,
     }); /**
-   * @description ## Description Generate client credentials. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   * @description ## Description Generate client credentials. |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
    *
    * @tags users
    * @name PostUsersMeClientCredentials
@@ -2548,7 +2693,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Retrieves specific user. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|View within Organisation| |Government user|-| |Government admin|View within Organisation| |Agency user|-| |Agency admin|View within Organisation| |Agency analyst|View within Organisation| |Agency approver|View| |Agency superuser|View| |Regulator user|-| |Regulator admin|View within Organisation|
+   * @description ## Description Retrieves specific user. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|View within Organisation| |Government user|-| |Government admin|View within Organisation| |International user|-| |International admin|View within Organisation| |Agency user|-| |Agency admin|View within Organisation| |Agency analyst|View within Organisation| |Agency approver|View| |Agency superuser|View| |Regulator user|-| |Regulator admin|View within Organisation|
    *
    * @tags users
    * @name GetUsersUserId
@@ -2564,7 +2709,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Updates information about specific user. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|Update within Organisation| |Government user|-| |Government admin|Update within Organisation| |Agency user|-| |Agency admin|Update within Organisation| |Agency analyst|Update within Organisation| |Agency approver|Update within Organisation| |Agency superuser|Update| |Regulator user|-| |Regulator admin|Update within Organisation|
+   * @description ## Description Updates information about specific user. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|Update within Organisation| |Government user|-| |Government admin|Update within Organisation| |International user|-| |International admin|Update within Organisation| |Agency user|-| |Agency admin|Update within Organisation| |Agency analyst|Update within Organisation| |Agency approver|Update within Organisation| |Agency superuser|Update| |Regulator user|-| |Regulator admin|Update within Organisation|
    *
    * @tags users
    * @name PatchUsersUserId
@@ -2582,7 +2727,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Soft-deletes user and deletes it permanently from Auth0. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|Delete within Organisation| |Government user|-| |Government admin|Delete within Organisation| |Agency user|-| |Agency admin|Delete within Organisation| |Agency analyst|Delete within Organisation| |Agency approver|Delete| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|Delete within Organisation|
+   * @description ## Description Soft-deletes user and deletes it permanently from Auth0. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|Delete within Organisation| |Government user|-| |Government admin|Delete within Organisation| |International user|-| |International admin|Delete within Organisation| |Agency user|-| |Agency admin|Delete within Organisation| |Agency analyst|Delete within Organisation| |Agency approver|Delete| |Agency superuser|Delete| |Regulator user|-| |Regulator admin|Delete within Organisation|
    *
    * @tags users
    * @name DeleteUsersUserId

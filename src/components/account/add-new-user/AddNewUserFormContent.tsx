@@ -1,6 +1,5 @@
 'use client';
 
-import { pick } from 'lodash';
 import { useTranslations } from 'next-intl';
 import type { FieldErrors, UseFormRegister } from 'react-hook-form';
 
@@ -13,35 +12,8 @@ import Fieldset from '@/ui/fieldset/fieldset';
 import Input from '@/ui/input/input';
 import Radios from '@/ui/radios/radios';
 import Select from '@/ui/select/select';
-import { AccountType } from '@/utils/Roles';
+import { AccountType, isAgencyApproverOrSuperuser, UserRoles } from '@/utils/Roles';
 import type { AddNewUserSchema } from '@/validations/addNewUserSchema';
-
-const roles = {
-  AGENCY_SUPERUSER: AccountType,
-  AGENCY_APPROVER: AccountType,
-  AGENCY_ADMIN: pick<Record<TypeUserRole, string>, TypeUserRole>(AccountType, [
-    'AGENCY_ADMIN',
-    'AGENCY_USER',
-  ]),
-  AGENCY_ANALYST: pick<Record<TypeUserRole, string>, TypeUserRole>(AccountType, [
-    'AGENCY_ADMIN',
-    'AGENCY_ANALYST',
-    'AGENCY_USER',
-  ]),
-  GOVERNMENT_ADMIN: pick<Record<TypeUserRole, string>, TypeUserRole>(AccountType, [
-    'GOVERNMENT_ADMIN',
-    'GOVERNMENT_USER',
-  ]),
-  SATELLITE_OPERATOR_ADMIN: pick<Record<TypeUserRole, string>, TypeUserRole>(AccountType, [
-    'SATELLITE_OPERATOR_ADMIN',
-    'SATELLITE_OPERATOR',
-    'SATELLITE_OPERATOR_USER',
-  ]),
-  REGULATOR_ADMIN: pick<Record<TypeUserRole, string>, TypeUserRole>(AccountType, [
-    'REGULATOR_ADMIN',
-    'REGULATOR_USER',
-  ]),
-};
 
 type AddNewUserFormContentProps = {
   organizations: TypeOrganizationOut[];
@@ -56,15 +28,17 @@ const AddNewUserFormContent = ({ organizations, isSubmitting, register, role, er
 
   return (
     <div>
-      <Select
-        label={t('organization_id')}
-        {...register('organization_id')}
-        error={errors.organization_id?.message}
-        options={organizations.map(({ id, name }) => ({
-          value: id,
-          label: name,
-        }))}
-      />
+      {isAgencyApproverOrSuperuser(role) && (
+        <Select
+          label={t('organization_id')}
+          {...register('organization_id')}
+          error={errors.organization_id?.message}
+          options={organizations.map(({ id, name }) => ({
+            value: id,
+            label: name,
+          }))}
+        />
+      )}
       <Input {...register('first_name')} required id="first_name" label={t('first_name')} error={errors.first_name?.message} aria-label="First Name" autoComplete="first_name" />
       <Input {...register('last_name')} required id="last_name" label={t('last_name')} error={errors.last_name?.message} aria-label="Last Name" autoComplete="last_name" />
       <Input {...register('email')} required id="email" label={t('email')} error={errors.email?.message} aria-label="Email" autoComplete="email" />
@@ -73,14 +47,14 @@ const AddNewUserFormContent = ({ organizations, isSubmitting, register, role, er
         text: t('select_account_type'),
       }}
       >
-        {role in roles && (
+        {role in UserRoles && (
           <Radios
             id="role"
             required
             aria-label="Role"
             hint={t('select_account_type_hint')}
             error={errors.role?.message}
-            items={Object.keys(roles[role as keyof typeof roles]).map(key => ({
+            items={Object.keys(UserRoles[role as keyof typeof UserRoles]).map(key => ({
               id: `role-${key}`,
               value: key,
               children: AccountType[key as keyof typeof AccountType],

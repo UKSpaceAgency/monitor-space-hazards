@@ -1,6 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 
@@ -12,7 +13,7 @@ import ButtonGroup from '@/ui/button-group/button-group';
 import Details from '@/ui/details/details';
 import NotificationBanner from '@/ui/notification-banner/notification-banner';
 import Radios from '@/ui/radios/radios';
-import { AccountType } from '@/utils/Roles';
+import { AccountType, UserRoles } from '@/utils/Roles';
 import type { RoleUserSchema } from '@/validations/roleUserSchema';
 import { roleUserSchema } from '@/validations/roleUserSchema';
 
@@ -23,6 +24,9 @@ type OrganisationUserTypeFormProps = {
 const OrganisationUserTypeForm = ({ user }: OrganisationUserTypeFormProps) => {
   const t = useTranslations('Forms.User_edit');
   const tCommon = useTranslations('Common');
+  const { data: session } = useSession();
+
+  const userRole = session?.user.role;
 
   const { handleSubmit, register, reset, formState: { errors, isSubmitSuccessful } } = useForm({
     defaultValues: { role: user.role ?? 'AGENCY_USER' },
@@ -57,19 +61,21 @@ const OrganisationUserTypeForm = ({ user }: OrganisationUserTypeFormProps) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Radios
-        id="role"
-        aria-label="Role"
-        required
-        hint={t('role_hint')}
-        error={errors.role?.message}
-        items={Object.entries(AccountType).map(([key, value]) => ({
-          id: 'role',
-          value: key,
-          children: value,
-          ...register('role'),
-        }))}
-      />
+      {userRole && userRole in UserRoles && (
+        <Radios
+          id="role"
+          required
+          aria-label="Role"
+          hint={t('role_hint')}
+          error={errors.role?.message}
+          items={Object.keys(UserRoles[userRole as keyof typeof UserRoles]).map(key => ({
+            id: `role-${key}`,
+            value: key,
+            children: AccountType[key as keyof typeof AccountType],
+            ...register('role'),
+          }))}
+        />
+      )}
       <Details summary={t.rich('role_help.title')}>
         <RichText>
           {tags => t.rich('role_help.content', tags)}

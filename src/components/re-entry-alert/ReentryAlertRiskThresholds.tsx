@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl';
 
 import Details from '@/ui/details/details';
 import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
-import Tag from '@/ui/tag/tag';
+import { renderRiskTag } from '@/utils/Tags';
 
 type ReentryAlertRiskThresholdsProps = {
   dataPdf?: string;
@@ -26,21 +26,27 @@ const ReentryAlertRiskThresholds = ({ dataPdf }: ReentryAlertRiskThresholdsProps
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell><Tag color="green">Low</Tag></TableCell>
-              <TableCell>{t('risk.low', { value: 1 })}</TableCell>
-              <TableCell>{t('risk.low', { value: 1 })}</TableCell>
+              <TableCell>{renderRiskTag('Very low')}</TableCell>
+              <TableCell>{t('risk.less_than', { value: 0.1 })}</TableCell>
+              <TableCell>{t('risk.less_than', { value: 0.1 })}</TableCell>
               {/* <TableCell>{t('risk.low', { value: 0.1 })}</TableCell> */}
             </TableRow>
             <TableRow>
-              <TableCell><Tag color="yellow">Medium</Tag></TableCell>
-              <TableCell>{t('risk.medium', { from: 1, to: 5 })}</TableCell>
-              <TableCell>{t('risk.medium', { from: 1, to: 5 })}</TableCell>
+              <TableCell>{renderRiskTag('Low')}</TableCell>
+              <TableCell>{t('risk.between', { from: 0.1, to: 1 })}</TableCell>
+              <TableCell>{t('risk.between', { from: 0.1, to: 1 })}</TableCell>
+              {/* <TableCell>{t('risk.low', { value: 0.1 })}</TableCell> */}
+            </TableRow>
+            <TableRow>
+              <TableCell>{renderRiskTag('Medium')}</TableCell>
+              <TableCell>{t('risk.between', { from: 1, to: 5 })}</TableCell>
+              <TableCell>{t('risk.between', { from: 1, to: 5 })}</TableCell>
               {/* <TableCell>{t('risk.medium', { from: 0.1, to: 1 })}</TableCell> */}
             </TableRow>
             <TableRow>
-              <TableCell><Tag color="red">High</Tag></TableCell>
-              <TableCell>{t('risk.high', { value: 5 })}</TableCell>
-              <TableCell>{t('risk.high', { value: 5 })}</TableCell>
+              <TableCell>{renderRiskTag('High')}</TableCell>
+              <TableCell>{t('risk.more_than', { value: 5 })}</TableCell>
+              <TableCell>{t('risk.more_than', { value: 5 })}</TableCell>
               {/* <TableCell>{t('risk.high', { value: 1 })}</TableCell> */}
             </TableRow>
           </TableBody>

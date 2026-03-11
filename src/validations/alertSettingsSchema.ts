@@ -6,21 +6,17 @@ const receiveDefault = z.array(z.enum([
 ]));
 
 export const alertSettingsSchema = z.object({
-  conjunctionAlerts: z.union([
-    z.literal('all'),
-    z.literal('none'),
-    z.literal('priority'),
-    z.literal('uk-licensed'),
-    z.literal('closedown'),
-  ]),
+  conjunctionAlerts: z.array(z.enum([
+    'priority',
+    'uk-licensed',
+    'standard',
+  ])),
   receiveConjunction: receiveDefault,
-  reEntryAlerts: z.union([
-    z.literal('all'),
-    z.literal('none'),
-    z.literal('priority'),
-    z.literal('uk-licensed'),
-    z.literal('closedown'),
-  ]),
+  reEntryAlerts: z.array(z.enum([
+    'priority',
+    'uk-licensed',
+    'standard',
+  ])),
   receiveReEntry: receiveDefault,
   areasOfInterest: z.array(z.enum([
     'ENGLAND',
@@ -34,12 +30,10 @@ export const alertSettingsSchema = z.object({
     'SCOTLAND_FIR',
     'REST_OF_THE_WORLD',
   ])),
-  fragmentationAlerts: z.union([
-    z.literal('all'),
-    z.literal('none'),
-    z.literal('priority'),
-    z.literal('closedown'),
-  ]),
+  fragmentationAlerts: z.array(z.enum([
+    'priority',
+    'standard',
+  ])),
   receiveFragmentation: receiveDefault,
 });
 

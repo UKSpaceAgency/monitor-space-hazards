@@ -22,12 +22,12 @@ export default async function AlertSettingsPage() {
   }
 
   const defaultValues: AlertSettingsSchema = {
-    conjunctionAlerts: alertSettings.conjunction_alert_settings?.chosen_option || 'none',
+    conjunctionAlerts: alertSettings.conjunction_alert_settings?.chosen_options || [],
     receiveConjunction: alertSettings.conjunction_alert_settings?.notification_types || [],
-    reEntryAlerts: alertSettings.reentry_alert_settings?.chosen_option || 'none',
+    reEntryAlerts: alertSettings.reentry_alert_settings?.chosen_options || [],
     receiveReEntry: alertSettings.reentry_alert_settings?.notification_types || [],
     areasOfInterest: alertSettings.reentry_alert_settings?.areas_of_interest || [],
-    fragmentationAlerts: alertSettings.fragmentation_alert_settings?.chosen_option || 'none',
+    fragmentationAlerts: alertSettings.fragmentation_alert_settings?.chosen_options || [],
     receiveFragmentation: alertSettings.fragmentation_alert_settings?.notification_types || [],
   };
 

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 
@@ -11,7 +12,7 @@ import { ConjunctionsSummaryTable } from '@/components/conjunctions/Conjunctions
 import { SearchBar } from '@/components/SearchBar';
 import Details from '@/ui/details/details';
 import Spinner from '@/ui/spinner/spinner';
-import { isSatteliteUser } from '@/utils/Roles';
+import { isInternationalUser, isSatteliteUser } from '@/utils/Roles';
 
 const getSearchBarLabel = async (epoch: TypeEpoch | undefined): Promise<string> => {
   const t = await getTranslations('Conjunctions');
@@ -50,6 +51,10 @@ export default async function ConjunctionsPage(props: PageProps) {
   const params: ConjunctionsPageSearchParams = searchParams || {};
 
   const searchBarLabel = await getSearchBarLabel(params.epoch);
+
+  if (isInternationalUser(session?.user.role)) {
+    notFound();
+  }
 
   return (
     <div>

@@ -2,6 +2,18 @@ import type { TypeRisk } from '@/__generated__/data-contracts';
 import { jsonRegionsMap } from '@/utils/Regions';
 
 export const riskColours = {
+  'No': {
+    background: '#cce2d8',
+    text: '#005a30',
+  },
+  'None': {
+    background: '#cce2d8',
+    text: '#005a30',
+  },
+  'Pending': {
+    background: '#cce2d8',
+    text: '#005a30',
+  },
   'Very low': {
     background: '#cce2d8',
     text: '#005a30',

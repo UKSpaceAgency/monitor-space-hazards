@@ -837,6 +837,9 @@
         "content": "<p><bold>Decontamination:</bold> If the object is contaminated with hazardous material, it should be decontaminated. Decontamination is led by Defra who are the Lead Government Department for decontamination in England, in liaison with local authorities.</p><p><bold>Storage:</bold> The object should be sent to storage by a specialist supplier in the local area, as agreed and organised by Defra.</p><p><bold>Release:</bold> If the object has been declared safe (by Defra),  NSpOC will direct it's release to either: MOD Defence Intelligence if the object is of Chinese or Russian origin; the owner of the object or licensing country for the object, organised via the Foreign, Commonwealth and Development Office; or the Air Accident Investigation Bureau or the Civil Aviation Authority if the object is UK-licensed.</p><p><bold>Disposal:</bold> If the object cannot be declared safe or decontaminated, it should disposed of as per standard procedures held by Defra.</p><p><bold>Incident close down:</bold> When departments agree that recovery can be handled through Business As Usual structures, the incident can be closed down. The National Space Operations Centre and Cabinet Office will confirm close down of the event to all parties involved.</p>"
       },
       "risk": {
+        "none": "<p>This event is assessed as <tag>No</tag> risk.</p><p>This means there is no risk to the UK but may still pose a risk to other areas of interest.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, no significant action is required at this stage. Stakeholders should stay engaged with the National Space Operations Centre and consider any future updates before taking further action.</p>",
+        "pending": "<p>This event is currently <tag>Pending</tag> analysis.</p><p>This means the event is still being assessed</p><p>Stakeholders should stay engaged with the National Space Operations Centre and consider any future updates before taking further action.</p>",
+        "very_low": "<p>This event is assessed as <tag>Very low</tag> risk.</p><p>This means it may happen and could have a negative impact on UK interests, but the overall likelihood is very low.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, no significant action is required at this stage. Stakeholders should stay engaged with the National Space Operations Centre and consider any future updates before taking further action.</p>",
         "low": "<p>This event is assessed as <tag>Low</tag> risk.</p><p>This means it may happen and could have a negative impact on UK interests, but the overall likelihood is low.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, no significant action is required at this stage. Stakeholders should stay engaged with the National Space Operations Centre and consider any future updates before taking further action.</p>",
         "medium": "<p>This event is assessed as <tag>Medium</tag> risk.</p><p>This means there is a higher-than-usual chance it could negatively affect UK interests. However, it is still more likely than not to pass without incident.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, no immediate significant action is needed, but stakeholders may consider raising awareness internally. Stakeholders should stay engaged with the National Space Operations Centre for updates.</p>",
         "high": "<p>This event is assessed as <tag>High</tag> risk.</p><p>This means there is a significantly higher-than-usual chance it could negatively affect UK interests. However, it is still more likely than not to pass without incident.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, stakeholders should ensure internal awareness, review response plans and stay engaged with the National Space Operations Centre for updates.</p>"
@@ -867,9 +870,9 @@
       "probability_of_ground": "Probability of debris impact in UK",
       "probability_of_human_casualty": "Probability of UK casualty risk",
       "risk": {
-        "low": "Less than {value}%",
-        "medium": "{from}% - {to}%",
-        "high": "More than {value}%"
+        "less_than": "Less than {value}%",
+        "between": "{from}% - {to}%",
+        "more_than": "More than {value}%"
       },
       "details": {
         "title": "Help with this table<screenReaderOnly> - Risk thresholds</screenReaderOnly>",
@@ -1228,7 +1231,7 @@
     "Conjunctions": {
       "details": {
         "summary": "Apply filters to this table:",
-        "option1": "View all events and alerts",
+        "option1": "View all conjunction events and alerts",
         "option2": "Only view conjunction alerts",
         "all": "All",
         "upcoming": "Upcoming",
@@ -1346,12 +1349,13 @@
       "overflight": "Time of Closest Approach (UTC)"
     },
     "Reentries_summary": {
-      "upcoming_reentry_alerts": "Upcoming risks to UK interests",
+      "upcoming_reentry_alerts": "Upcoming risks to UK",
       "upcoming_reentry_events_worldwide": "Upcoming re-entry events worldwide",
       "help": {
         "title": "Help with this table<screenReaderOnly> - UK risk probabilities</screenReaderOnly>",
-        "content": "<p>This service tracks all upcoming re-entry events worldwide, including those which pose a risk to the UK. The service reports on two types of re-entry event.</p><list><item><bold>Upcoming risks to UK interests:</bold> all upcoming re-entry events that meet the National Space Operations Centre's thresholds for alerting UK government</item><item><bold>Upcoming re-entry events worldwide:</bold> all upcoming re-entry events worldwide, including those which have not met alerting thresholds</item></list>"
-      }
+        "content": "<p>This service tracks all upcoming re-entry events worldwide, including those which pose a risk to the UK. The service reports on two types of re-entry event.</p><list><item><bold>Upcoming risks to UK:</bold> all upcoming re-entry events that meet the National Space Operations Centre's thresholds for alerting UK government</item><item><bold>Upcoming re-entry events worldwide:</bold> all upcoming re-entry events worldwide, including those which have not met alerting thresholds</item></list>"
+      },
+      "warning": "This table focuses on risk to the UK. Select the Event ID to view additional analysis and risk information for the UK Overseas Territories and Crown Dependencies."
     },
     "Reentries": {
       "search_bar": {
@@ -1362,7 +1366,7 @@
       },
       "filters": {
         "summary": "Apply filters to this table:",
-        "option1": "View all events and alerts",
+        "option1": "View all re-entry events and alerts",
         "option2": "Only view re-entry alerts",
         "all": "All",
         "upcoming": "Upcoming",
@@ -1373,7 +1377,7 @@
         "empty_list_info": "No re-entry events have been found",
         "event_details": "Event details",
         "object_details": "Object details",
-        "risk": "Risk",
+        "risk": "Risk to UK",
         "event_id": "Event ID",
         "object": "Object",
         "norad_id": "NORAD ID",
@@ -1386,6 +1390,7 @@
     },
     "Reentry_event_summary": {
       "tip_id": "TIP ID",
+      "source": "TIP source",
       "predicted_reentry_time": "Predicted re-entry time (UTC)",
       "uncertainty_window": "Uncertainty window for predicted re-entry time (mins)",
       "direction_of_travel": "Direction of travel",
@@ -1653,7 +1658,7 @@
     "Activities": {
       "details": {
         "summary": "Apply filters to this table:",
-        "option1": "View all events and alerts",
+        "option1": "View all activity events and alerts",
         "option2": "Only view conjunction alerts",
         "all": "All",
         "upcoming": "Upcoming",
@@ -1815,6 +1820,7 @@
         "exec_summary": "Executive Summary",
         "executive_summary_comment": "Executive Summary",
         "immediate_response": "Guidance on response",
+        "immediate_response_comment": "Guidance on response",
         "immediate_impact_comment": "Immediate response",
         "recovery_and_clean_up": "Guidance if object impacts UK interests",
         "damages_liability_comment": "Liability for damages",
@@ -2315,9 +2321,9 @@
       "risk_level": "Risk level",
       "number_of_fragments": "Number of fragments",
       "risk": {
-        "low": "Less than {value}",
-        "medium": "{from} - {to}",
-        "high": "More than {value}"
+        "less_than": "Less than {value}",
+        "between": "{from} - {to}",
+        "more_than": "More than {value}"
       },
       "help": {
         "title": "Help with this table<screenReaderOnly> - Risk thresholds</screenReaderOnly>",

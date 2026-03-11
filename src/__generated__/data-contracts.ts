@@ -217,9 +217,9 @@ export type TypeActivityPrimaryFlag =
 
 /** ActivityReasonForFlag */
 export type TypeActivityReasonForFlag =
-  | "Unexpected position change"
-  | "Manoeuvre not as planned"
-  | "Manoeuvre as planned"
+  | "Position change"
+  | "Manoeuvre (unplanned)"
+  | "Manoeuvre (planned)"
   | "Missing data";
 
 /** ActivityReport */
@@ -476,6 +476,9 @@ export interface TypeAlertSettingsOut {
   reentry_alert_settings?: TypeReentryAlertSettings | null;
   fragmentation_alert_settings?: TypeFragmentationAlertSettings | null;
 }
+
+/** AlertType */
+export type TypeAlertType = "standard" | "priority" | "uk-licensed" | "closedown" | "update";
 
 /** AnalysesSortBy */
 export type TypeAnalysesSortBy =
@@ -1085,8 +1088,11 @@ export interface TypeConjunctionAlertSettings {
    * @default "conjunction"
    */
   alert_type?: "conjunction";
-  /** Chosen Option */
-  chosen_option: "all" | "priority" | "uk-licensed" | "closedown" | "none";
+  /**
+   * Chosen Options
+   * @default []
+   */
+  chosen_options?: ("standard" | "priority" | "uk-licensed")[];
   /**
    * Notification Types
    * @uniqueItems true
@@ -1098,7 +1104,7 @@ export interface TypeConjunctionAlertSettings {
 /** ConjunctionEventAlertIn */
 export interface TypeConjunctionEventAlertIn {
   /** Alert Type */
-  alert_type: ("standard" | "priority" | "uk-licensed" | "closedown")[];
+  alert_type: TypeAlertType[];
   /** Additional Emails */
   additional_emails: string[];
 }
@@ -1113,7 +1119,7 @@ export interface TypeConjunctionEventAlertOut {
    */
   conjunction_report_id: string;
   /** Alert Type */
-  alert_type: ("standard" | "priority" | "uk-licensed" | "closedown")[];
+  alert_type: TypeAlertType[];
   /** Additional Recipients */
   additional_recipients: string[] | null;
   /** Email Notification Sending Status */
@@ -1165,7 +1171,7 @@ export interface TypeConjunctionReportOut {
   /** Closed Comment */
   closed_comment?: string | null;
   /** Alert Type */
-  alert_type: ("priority" | "standard" | "uk-licensed" | "closedown")[];
+  alert_type: TypeAlertType[];
   /** Tca Time */
   tca_time?: string | null;
   /** Collision Probability */
@@ -1779,8 +1785,11 @@ export interface TypeFragmentationAlertSettings {
    * @default "fragmentation"
    */
   alert_type?: "fragmentation";
-  /** Chosen Option */
-  chosen_option: "all" | "priority" | "closedown" | "none";
+  /**
+   * Chosen Options
+   * @default []
+   */
+  chosen_options?: ("standard" | "priority")[];
   /**
    * Notification Types
    * @uniqueItems true
@@ -1828,7 +1837,7 @@ export interface TypeFragmentationEvent {
   /** Conjunction Event Id */
   conjunction_event_id?: string | null;
   /** Alert Type */
-  alert_type: "priority" | "closedown";
+  alert_type: TypeAlertType[];
   /** Executive Summary Comment */
   executive_summary_comment?: string | null;
   /** Closed Comment */
@@ -1878,7 +1887,7 @@ export interface TypeFragmentationEvent {
 /** FragmentationEventAlertIn */
 export interface TypeFragmentationEventAlertIn {
   /** Alert Type */
-  alert_type: ("priority" | "closedown")[];
+  alert_type: TypeAlertType[];
   /** Additional Emails */
   additional_emails: string[];
 }
@@ -1896,7 +1905,7 @@ export interface TypeFragmentationEventAlertOut {
    */
   fragmentation_report_id: string;
   /** Alert Type */
-  alert_type: ("standard" | "priority")[];
+  alert_type: TypeAlertType[];
   /** Additional Recipients */
   additional_recipients: string[] | null;
   /** Email Notification Sending Status */
@@ -1976,7 +1985,7 @@ export interface TypeFragmentationReport {
   conjunction_event_id?: string | null;
   risk?: TypeRisk | null;
   /** Alert Type */
-  alert_type: "priority" | "closedown";
+  alert_type: TypeAlertType[];
   /** Executive Summary Comment */
   executive_summary_comment?: string | null;
   /** Closed Comment */
@@ -2097,7 +2106,7 @@ export interface TypeFragmentationReportOut {
   /** Risk */
   risk?: string | null;
   /** Alert Type */
-  alert_type: "priority" | "closedown";
+  alert_type: TypeAlertType[];
   /** File Name */
   file_name: string;
   /** Presigned Url */
@@ -2363,6 +2372,25 @@ export interface TypeOrganizationOut {
   satellites_count: number;
 }
 
+/** OrganizationWithCountOfEventsByProbabilityAggregated */
+export interface TypeOrganizationWithCountOfEventsByProbabilityAggregated {
+  /**
+   * Organization Id
+   * @format uuid
+   */
+  organization_id: string;
+  /** Organization Name */
+  organization_name: string;
+  /** < 1E-5 */
+  "< 1e-5": number;
+  /** 1E-3 .. 1E-5 */
+  "1e-3 .. 1e-5": number;
+  /** > 1E-3 */
+  "> 1e-3": number;
+  /** Total */
+  total: number | null;
+}
+
 /** PositionUncertainty */
 export interface TypePositionUncertainty {
   /** Radial Position Uncertainty */
@@ -2380,8 +2408,11 @@ export interface TypeReentryAlertSettings {
    * @default "reentry"
    */
   alert_type?: "reentry";
-  /** Chosen Option */
-  chosen_option: "all" | "priority" | "uk-licensed" | "closedown" | "none";
+  /**
+   * Chosen Options
+   * @default []
+   */
+  chosen_options?: ("standard" | "priority" | "uk-licensed")[];
   /**
    * Areas Of Interest
    * @uniqueItems true
@@ -2507,7 +2538,7 @@ export interface TypeReentryEvent {
 /** ReentryEventAlertIn */
 export interface TypeReentryEventAlertIn {
   /** Alert Type */
-  alert_type: ("standard" | "priority" | "uk-licensed" | "closedown")[];
+  alert_type: TypeAlertType[];
   /**
    * Additional Emails
    * @default []
@@ -2528,7 +2559,7 @@ export interface TypeReentryEventAlertOut {
    */
   reentry_report_id: string;
   /** Alert Type */
-  alert_type: ("standard" | "priority" | "uk-licensed" | "closedown")[];
+  alert_type: TypeAlertType[];
   /** Additional Recipients */
   additional_recipients: string[] | null;
   /** Email Notification Sending Status */
@@ -2733,7 +2764,7 @@ export interface TypeReentryEventReportOut {
   /** Press Attention Comment */
   press_attention_comment?: string | null;
   /** Alert Type */
-  alert_type: ("priority" | "standard" | "uk-licensed" | "closedown")[];
+  alert_type: TypeAlertType[];
   /**
    * Report Time
    * @format date-time
@@ -2845,7 +2876,7 @@ export type TypeReferenceFrame =
 export type TypeReportFlagSettings = "present" | "not_present" | "all";
 
 /** Risk */
-export type TypeRisk = "Very low" | "Low" | "Medium" | "High";
+export type TypeRisk = "None" | "Very low" | "Low" | "Medium" | "High" | "Pending";
 
 /** SatelliteObservationsData */
 export interface TypeSatelliteObservationsData {
@@ -3071,6 +3102,36 @@ export interface TypeStatisticsConjunctionEventsMonthlyCount {
   count: number;
 }
 
+/** StatisticsConjunctionEventsMonthlyCountAggregated */
+export interface TypeStatisticsConjunctionEventsMonthlyCountAggregated {
+  /** Events With Debris */
+  "Events with debris": number;
+  /** Events With Another Satellite */
+  "Events with another satellite": number;
+  /** Events With Two Uk-Licensed Satellites */
+  "Events with two UK-licensed satellites": number;
+  /** Events With Other Objects (Unknown/Rocket Body) */
+  "Events with other objects (unknown/rocket body)": number;
+  /** Total Events Across All Organisations */
+  "Total events across all organisations": number;
+  /** Month */
+  month?: string | null;
+}
+
+/** StatisticsConjunctionEventsMonthlyCountByProbabilityAggregated */
+export interface TypeStatisticsConjunctionEventsMonthlyCountByProbabilityAggregated {
+  /** Month */
+  month?: string | null;
+  /** < 1E-5 */
+  "< 1e-5": number;
+  /** 1E-3 .. 1E-5 */
+  "1e-3 .. 1e-5": number;
+  /** > 1E-3 */
+  "> 1e-3": number;
+  /** Total */
+  total: number | null;
+}
+
 /** StatisticsEventsByOrganization */
 export interface TypeStatisticsEventsByOrganization {
   /** Name */
@@ -3095,6 +3156,24 @@ export interface TypeStatisticsEventsBySatellite {
   collision_probability_range: string;
   /** Organization Name */
   organization_name: string;
+}
+
+/** StatisticsEventsBySatelliteAggregated */
+export interface TypeStatisticsEventsBySatelliteAggregated {
+  /** Satellite Common Name */
+  satellite_common_name: string;
+  /** Satellite Norad Id */
+  satellite_norad_id: string;
+  /** Organization Name */
+  organization_name: string;
+  /** < 1E-5 */
+  "< 1e-5": number;
+  /** 1E-3 .. 1E-5 */
+  "1e-3 .. 1e-5": number;
+  /** > 1E-3 */
+  "> 1e-3": number;
+  /** Total */
+  total: number | null;
 }
 
 /** StatisticsEventsType */
@@ -3399,7 +3478,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-02-20T09:39:30.634690"
+   * @default "2026-03-10T14:05:40.348413"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3567,6 +3646,8 @@ export type TypeUserRole =
   | "SATELLITE_OPERATOR_ADMIN"
   | "GOVERNMENT_USER"
   | "GOVERNMENT_ADMIN"
+  | "INTERNATIONAL_USER"
+  | "INTERNATIONAL_ADMIN"
   | "AGENCY_USER"
   | "AGENCY_ADMIN"
   | "AGENCY_ANALYST"
@@ -4502,6 +4583,23 @@ export interface TypeGetSatellitesByOrganizationsParams {
   sort_order?: TypeSortOrder;
 }
 
+export interface TypeGetStatsMakeEventsSatelliteAggregatedParams {
+  /** Start Date */
+  start_date?: string | null;
+}
+
+export interface TypeGetStatsMakeEventsTypeAggregatedParams {
+  /** Start Date */
+  start_date?: string | null;
+}
+
+export interface TypeGetStatsEventsTypeAggregatedParams {
+  /** Start Date */
+  start_date?: string | null;
+  /** End Date */
+  end_date?: string | null;
+}
+
 export interface TypeGetStatsEventsTypeParams {
   /** Start Date */
   start_date?: string | null;
@@ -4516,7 +4614,26 @@ export interface TypeGetStatsEventsByOrganizationParams {
   end_date?: string | null;
 }
 
+export interface TypeGetStatsEventsByOrganizationAggregatedParams {
+  /** Start Date */
+  start_date?: string | null;
+  /** End Date */
+  end_date?: string | null;
+}
+
 export interface TypeGetStatsEventsBySatelliteParams {
+  /** Start Date */
+  start_date?: string | null;
+  /** End Date */
+  end_date?: string | null;
+  /**
+   * Organization Id
+   * @default "all"
+   */
+  organization_id?: string | "all";
+}
+
+export interface TypeGetStatsEventsBySatelliteAggregatedParams {
   /** Start Date */
   start_date?: string | null;
   /** End Date */
@@ -4589,7 +4706,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2026-03-01"
+   * @default "2026-04-01"
    */
   end_date?: string;
 }
@@ -4604,7 +4721,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2026-03-01"
+   * @default "2026-04-01"
    */
   end_date?: string;
 }
@@ -4619,7 +4736,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-03-01"
+   * @default "2026-04-01"
    */
   end_date?: string;
 }
@@ -4634,7 +4751,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-03-01"
+   * @default "2026-04-01"
    */
   end_date?: string;
 }
@@ -4649,7 +4766,37 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-03-01"
+   * @default "2026-04-01"
+   */
+  end_date?: string;
+}
+
+export interface TypeGetStatsMonthlyConjunctionEventsAggregatedParams {
+  /**
+   * Start Date
+   * @format date
+   * @default "2022-01-01"
+   */
+  start_date?: string;
+  /**
+   * End Date
+   * @format date
+   * @default "2026-04-01"
+   */
+  end_date?: string;
+}
+
+export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeAggregatedParams {
+  /**
+   * Start Date
+   * @format date
+   * @default "2022-01-01"
+   */
+  start_date?: string;
+  /**
+   * End Date
+   * @format date
+   * @default "2026-04-01"
    */
   end_date?: string;
 }
@@ -4664,7 +4811,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2026-03-01"
+   * @default "2026-04-01"
    */
   end_date?: string;
 }

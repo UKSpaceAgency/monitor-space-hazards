@@ -28,7 +28,7 @@ const ConjunctionAlertRiskThresholds = ({ dataPdf }: ConjunctionAlertRiskThresho
         <TableBody>
           <TableRow className="govuk-body-s">
             <TableCellHeader>{t('predicted_conjunctions.low')}</TableCellHeader>
-            <TableCell><Tag color="turquoise">Very Low</Tag></TableCell>
+            <TableCell><Tag color="teal">Very Low</Tag></TableCell>
             <TableCell><Tag color="green">Low</Tag></TableCell>
             <TableCell><Tag color="yellow">Medium</Tag></TableCell>
           </TableRow>

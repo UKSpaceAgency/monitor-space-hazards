@@ -25,14 +25,13 @@ const ReentryAlertExecutiveSummary = async ({ event, report, executiveSummaryCom
   const t = await getTranslations('Reentry_alert.Executive_summary');
 
   const haveRiskProbabilities = isNumber(event.atmospheric_probability) || isNumber(event.fragments_probability) || isNumber(event.human_casualty_probability);
-
   const contentVariables: RichTranslationValues = {
     commonName: event?.object_name ?? 'an unknown object',
     objectType: event?.object_type,
     date: dayjs(event.decay_epoch).format(FORMAT_FULL_DATE_TIME),
     atmosphericRisk: event?.atmospheric_risk ?? 'Low',
     atmospheric_probability: roundedPercentage(event?.atmospheric_probability ?? 0),
-    fragmentsRisk: event?.fragments_risk ?? 'Low',
+    fragmentsRisk: event?.fragments_risk ? event.fragments_risk === 'None' ? 'No' : event.fragments_risk : 'Low',
     fragmentsProbability: roundedPercentage(event?.fragments_probability ?? 0),
     // human_casualty_risk: event?.human_casualty_risk ?? 'Low',
     // humanCasualtyProbability: roundedPercentage(event?.human_casualty_probability ?? 0),
