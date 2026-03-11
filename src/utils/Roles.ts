@@ -113,7 +113,7 @@ export const isAgencyApproverOrSuperuser = (role: Nullable<TypeUserRole>): boole
   return !!role && agencyApproverRoles.includes(role);
 };
 
-export const isRegulator = (role: Nullable<TypeUserRole>): boolean => {
+export const isRegulatorUser = (role: Nullable<TypeUserRole>): boolean => {
   const regulatorRoles: TypeUserRole[] = [
     'REGULATOR_USER',
     'REGULATOR_ADMIN',

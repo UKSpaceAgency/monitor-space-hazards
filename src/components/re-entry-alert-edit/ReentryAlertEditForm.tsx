@@ -56,7 +56,7 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     help: (
       <div>
         <p className="govuk-body">{tForm('hint')}</p>
-        {tReentryAlert.rich(`Guidance_on_response.risk.${event?.atmospheric_risk?.toLowerCase() as 'low' | 'medium' | 'high' ?? 'low'}`, { tag: chunks => renderRiskTag(chunks as TypeRisk) })}
+        {tReentryAlert.rich(`Guidance_on_response.risk.${event?.atmospheric_risk?.replace(' ', '_')?.toLowerCase() as 'low' | 'medium' | 'high' ?? 'low'}`, { tag: chunks => renderRiskTag(chunks as TypeRisk) })}
       </div>
     ),
   }, {

@@ -14,7 +14,7 @@ type ReentryAlertGuidanceOnResponseProps = {
 const ReentryAlertGuidanceOnResponse = ({ risk, immediateResponseComment, dataPdf }: ReentryAlertGuidanceOnResponseProps) => {
   const t = useTranslations('Reentry_alert.Guidance_on_response');
 
-  const riskLevel = risk?.toLowerCase() as 'low' | 'medium' | 'high' || 'low';
+  const riskLevel = risk?.replace(' ', '_')?.toLowerCase() as 'low' | 'medium' | 'high' || 'low';
 
   return (
     <div data-pdf={dataPdf}>
