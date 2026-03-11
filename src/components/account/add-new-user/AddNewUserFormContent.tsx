@@ -13,7 +13,7 @@ import Fieldset from '@/ui/fieldset/fieldset';
 import Input from '@/ui/input/input';
 import Radios from '@/ui/radios/radios';
 import Select from '@/ui/select/select';
-import { AccountType, isGovUser, isInternationalUser, isRegulator } from '@/utils/Roles';
+import { AccountType, isAgencyApproverOrSuperuser } from '@/utils/Roles';
 import type { AddNewUserSchema } from '@/validations/addNewUserSchema';
 
 const roles = {
@@ -60,7 +60,7 @@ const AddNewUserFormContent = ({ organizations, isSubmitting, register, role, er
 
   return (
     <div>
-      {!(isInternationalUser(role) || isRegulator(role) || isGovUser(role)) && (
+      {isAgencyApproverOrSuperuser(role) && (
         <Select
           label={t('organization_id')}
           {...register('organization_id')}

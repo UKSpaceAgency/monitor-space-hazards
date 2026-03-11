@@ -9,7 +9,7 @@ import { getSession } from '@/actions/getSession';
 import { UpcomingEvents } from '@/components/dashboard/UpcomingEvents';
 import nsocLogo from '@/public/nspoclogo2.png';
 import { AppConfig } from '@/utils/AppConfig';
-import { isAgencyUser, isGovUser, isInternationalUser } from '@/utils/Roles';
+import { isAgencyUser, isGovUser, isInternationalUser, isRegulatorUser } from '@/utils/Roles';
 
 export default async function DashboardPage() {
   const t = await getTranslations('Dashboard');
@@ -22,7 +22,7 @@ export default async function DashboardPage() {
       return !isInternationalUser(session?.user?.role);
     }
     if (key === 'track_reentries') {
-      return isAgencyUser(session?.user?.role) || isGovUser(session?.user?.role);
+      return isAgencyUser(session?.user?.role) || isGovUser(session?.user?.role) || isRegulatorUser(session?.user?.role);
     }
     return true;
   });
@@ -75,7 +75,7 @@ export default async function DashboardPage() {
               return !isInternationalUser(session?.user?.role);
             }
             if (key === 'track_reentries') {
-              return isAgencyUser(session?.user?.role) || isGovUser(session?.user?.role);
+              return isAgencyUser(session?.user?.role) || isGovUser(session?.user?.role) || isInternationalUser(session?.user?.role) || isRegulatorUser(session?.user?.role);
             }
             // if (key === 'track_reentries' || key === 'track_fragmentations') {
             //   return false;

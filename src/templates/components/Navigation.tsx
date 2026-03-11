@@ -7,7 +7,7 @@ import { signOut, useSession } from 'next-auth/react';
 import { useMessages, useTranslations } from 'next-intl';
 import { useState } from 'react';
 
-import { isAgencyUser, isGovUser, isInternationalUser } from '@/utils/Roles';
+import { isAgencyUser, isGovUser, isInternationalUser, isRegulatorUser } from '@/utils/Roles';
 
 export const Navigation = () => {
   const t = useTranslations('Template');
@@ -21,7 +21,7 @@ export const Navigation = () => {
       return !isInternationalUser(session?.user?.role);
     }
     if (key === 're-entries') {
-      return isAgencyUser(session?.user?.role) || isGovUser(session?.user?.role) || isInternationalUser(session?.user?.role);
+      return isAgencyUser(session?.user?.role) || isGovUser(session?.user?.role) || isInternationalUser(session?.user?.role) || isRegulatorUser(session?.user?.role);
     }
     // if (key === 're-entries' || key === 'fragmentations' || key === 'activity') {
     //   return false;
