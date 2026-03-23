@@ -139,6 +139,10 @@ export default async function AccountPage() {
                   title: t('view_your_account_activity.manoeuvre_support_uploads'),
                   href: '/account/manoeuvre-support-upload-log',
                 },
+                {
+                  title: t('view_your_account_activity.ephemeris_uploads'),
+                  href: '/account/ephemeris-upload-log',
+                },
               ]}
             />
           </>

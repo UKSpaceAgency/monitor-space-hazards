@@ -50,7 +50,7 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
   }, {
     id: 'immediate_response_comment',
     ariaLabel: 'Immediate response',
-    name: tForm('type.immediate_impact_comment'),
+    name: tForm('type.guidance_on_response'),
     defaultValue: event.immediate_response_comment,
     type: 'text',
     help: (

@@ -163,7 +163,6 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                           <>
                             <Checkboxes
                               id="reEntryAlerts"
-                              required
                               aria-label="Re-entry Alerts"
                               legend={t(
                                 `${selfEdit ? 'self_which' : 'their_which'}`,
@@ -171,27 +170,22 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                               )}
                               hint={t('select_one_option')}
                               items={[{
-                                id: 'no_re_entry_alerts',
-                                value: 'none',
-                                children: t('no_re_entry_alerts'),
-                                ...register('reEntryAlerts'),
-                              }, {
                                 id: 'all_re_entry_alerts',
-                                value: 'all',
+                                value: 'standard',
                                 children: t('all_re_entry_alerts', { whose: selfEdit ? 'your' : 'user\'s' }),
                                 hint: t('recommended_for_uk'),
-                                ...register('reEntryAlerts'),
-                              }, {
-                                id: 're_entry_alerts_for_uk',
-                                value: 'uk-licensed',
-                                children: t('re_entry_alerts_for_uk'),
-                                hint: t('recommended_for_foreign'),
                                 ...register('reEntryAlerts'),
                               }, {
                                 id: 'only_priority_re_entry',
                                 value: 'priority',
                                 children: t('only_priority_re_entry', { whose: selfEdit ? 'your' : 'user\'s' }),
                                 hint: t('recommended_for_all_other'),
+                                ...register('reEntryAlerts'),
+                              }, {
+                                id: 're_entry_alerts_for_uk',
+                                value: 'uk-licensed',
+                                children: t('re_entry_alerts_for_uk'),
+                                hint: t('recommended_for_foreign'),
                                 ...register('reEntryAlerts'),
                               }]}
                             />
@@ -226,7 +220,6 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                           <>
                             <Checkboxes
                               id="fragmentationAlerts"
-                              required
                               aria-label="Fragmentation Alerts"
                               legend={t(
                                 `${selfEdit ? 'self_which' : 'their_which'}`,
@@ -234,15 +227,16 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                               )}
                               hint={t('select_one_option')}
                               items={[{
-                                id: 'no_fragmentation_alerts',
-                                value: 'none',
-                                children: t('no_fragmentation_alerts'),
-                                ...register('fragmentationAlerts'),
-                              }, {
                                 id: 'receive_all_fragmentation_alerts',
-                                value: 'all',
+                                value: 'standard',
                                 children: t('receive_all_fragmentation_alerts'),
                                 hint: t('recommended_for_all_users'),
+                                ...register('fragmentationAlerts'),
+                              }, {
+                                id: 'only_priority_fragmentation',
+                                value: 'priority',
+                                children: t('only_priority_fragmentation'),
+                                hint: t('recommended_for_all_other'),
                                 ...register('fragmentationAlerts'),
                               }]}
                             />

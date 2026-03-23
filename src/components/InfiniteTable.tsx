@@ -27,7 +27,7 @@ const InfiniteTable = <T extends RowData, K extends object>({ initialData, param
   const { data, fetchNextPage, isFetching, hasNextPage } = useInfiniteQuery({
     queryKey: [...queryKeys, sortBy, sortOrder, params],
     queryFn: async ({ pageParam }) => {
-      return await fetcher({ ...params, offset: pageParam, sort_order: sortOrder, sort_by: sortBy });
+      return await fetcher({ ...params, offset: pageParam, ...(sortOrder !== undefined && { sort_order: sortOrder }), ...(sortBy !== undefined && { sort_by: sortBy }) });
     },
     initialPageParam: 0,
     initialData: { pages: [initialData], pageParams: [0] },
