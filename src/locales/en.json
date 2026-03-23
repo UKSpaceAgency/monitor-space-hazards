@@ -1746,7 +1746,7 @@
       "conjunction_alerts": "Conjunction alerts",
       "self_which": "Which {type} alerts would you like to receive?",
       "their_which": "Which {type} alerts would you like the user to receive?",
-      "select_one_option": "Select one option.",
+      "select_one_option": "Select all alerts you wish to receive. Distribution lists for Level 1 and Level 2 alerts are separate, so you will only receive alerts for the level(s) selected.",
       "no_conjunction_alerts": "No conjunction alerts",
       "receive_all_conjunction_alerts": "Level 1 (Standard) conjunction alerts",
       "recommended_for": "Recommended for National Space Operations Centre, Civil Aviation Authority, Ministry of Defence, and international partners",
