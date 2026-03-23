@@ -9,6 +9,26 @@
  * ---------------------------------------------------------------
  */
 
+/** ActivityAlertSettings */
+export interface TypeActivityAlertSettings {
+  /**
+   * Alert Type
+   * @default "activity"
+   */
+  alert_type?: "activity";
+  /**
+   * Chosen Options
+   * @default []
+   */
+  chosen_options?: ("standard" | "priority")[];
+  /**
+   * Notification Types
+   * @uniqueItems true
+   * @default []
+   */
+  notification_types?: TypeNotificationType[];
+}
+
 /** ActivityEvent */
 export interface TypeActivityEvent {
   /**
@@ -97,6 +117,36 @@ export interface TypeActivityEvent {
   longitude: number;
   /** Inclination */
   inclination?: number | null;
+}
+
+/** ActivityEventAlertIn */
+export interface TypeActivityEventAlertIn {
+  /** Alert Type */
+  alert_type: TypeAlertType[];
+  /**
+   * Additional Emails
+   * @default []
+   */
+  additional_emails?: string[];
+}
+
+/** ActivityEventAlertOut */
+export interface TypeActivityEventAlertOut {
+  /** Activity Event Short Id */
+  activity_event_short_id: string;
+  /**
+   * Activity Report Id
+   * @format uuid
+   */
+  activity_report_id: string;
+  /** Alert Type */
+  alert_type: TypeAlertType[];
+  /** Additional Recipients */
+  additional_recipients: string[] | null;
+  /** Email Notification Sending Status */
+  email_notification_sending_status: "scheduled" | "in-progress" | "delivered";
+  /** Sms Notification Sending Status */
+  sms_notification_sending_status: "scheduled" | "in-progress" | "delivered";
 }
 
 /** ActivityEventOut */
@@ -461,6 +511,7 @@ export interface TypeAlertSettingsDistributionList {
   conjunction_alert_settings: TypeConjunctionAlertSettings | null;
   reentry_alert_settings: TypeReentryAlertSettings | null;
   fragmentation_alert_settings: TypeFragmentationAlertSettings | null;
+  activity_alert_settings?: TypeActivityAlertSettings | null;
 }
 
 /** AlertSettingsIn */
@@ -468,6 +519,8 @@ export interface TypeAlertSettingsIn {
   conjunction_alert_settings: TypeConjunctionAlertSettings;
   reentry_alert_settings: TypeReentryAlertSettings;
   fragmentation_alert_settings: TypeFragmentationAlertSettings;
+  /** @default {"alert_type":"activity","chosen_options":[],"notification_types":[]} */
+  activity_alert_settings?: TypeActivityAlertSettings;
 }
 
 /** AlertSettingsOut */
@@ -475,6 +528,7 @@ export interface TypeAlertSettingsOut {
   conjunction_alert_settings?: TypeConjunctionAlertSettings | null;
   reentry_alert_settings?: TypeReentryAlertSettings | null;
   fragmentation_alert_settings?: TypeFragmentationAlertSettings | null;
+  activity_alert_settings?: TypeActivityAlertSettings | null;
 }
 
 /** AlertType */
@@ -3478,7 +3532,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-03-10T14:05:40.348413"
+   * @default "2026-03-20T09:00:28.454755"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3708,11 +3762,11 @@ export interface TypeAdditionalAnalysis {
 /** _OverflightProbability */
 export interface TypeOverflightProbability {
   /** Atmospheric Probability */
-  atmospheric_probability: number;
+  atmospheric_probability?: number | null;
   /** Fragments Probability */
-  fragments_probability: number;
+  fragments_probability?: number | null;
   /** Human Casualty Probability */
-  human_casualty_probability: number;
+  human_casualty_probability?: number | null;
   /** Overflight Time */
   overflight_time?: string[] | null;
 }
