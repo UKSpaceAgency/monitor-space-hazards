@@ -309,9 +309,7 @@
     "title": "View distribution lists",
     "description": "We will send notifications according to the distribution lists outlined on this page.",
     "accordion": {
-      "receive_alerts_standard": "Receive Level 1 (Standard) {type} alerts",
-      "receive_alerts_priority": "Receive Level 2 (Priority) {type} alerts",
-      "receive_alerts_uk_satellites_only": "UK Satellites Re-entry alerts distribution list",
+      "receive_alerts": "Receive {item} alerts",
       "distribution_list": "Distribution lists for {type} events",
       "conjunctions_help": {
         "summary": "Conjunction alert criteria",
