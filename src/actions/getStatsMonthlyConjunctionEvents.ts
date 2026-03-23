@@ -1,8 +1,6 @@
 'use server';
 
-import { groupBy } from 'lodash';
-
-import type { TypeGetStatsMonthlyConjunctionEventsParams } from '@/__generated__/data-contracts';
+import type { TypeGetStatsMonthlyConjunctionEventsAggregatedParams } from '@/__generated__/data-contracts';
 import Api from '@/libs/Api';
 import { dayjs, FORMAT_API_DATE } from '@/libs/Dayjs';
 
@@ -18,7 +16,7 @@ export type StatsMonthlyConjunctionEvent = {
 };
 
 export async function getStatsMonthlyConjunctionEvents({ months }: StatsMonthlyConjunctionEventsParams): Promise<StatsMonthlyConjunctionEvent[]> {
-  const queryParams: TypeGetStatsMonthlyConjunctionEventsParams = {
+  const queryParams: TypeGetStatsMonthlyConjunctionEventsAggregatedParams = {
     end_date: dayjs().format(FORMAT_API_DATE),
   };
   if (months) {
@@ -26,23 +24,18 @@ export async function getStatsMonthlyConjunctionEvents({ months }: StatsMonthlyC
   }
 
   try {
-    const { data } = await Api.getStatsMonthlyConjunctionEvents(queryParams);
+    const { data } = await Api.getStatsMonthlyConjunctionEventsAggregated(queryParams);
 
-    const groupedByMonth = groupBy(data, 'month');
+    if (data.length === 0) {
+      return [];
+    }
 
-    const groupedData = Object.entries(groupedByMonth).map(([month, events]) => {
-      const high = events.find(event => event.collision_probability_range === '> 1e-3')?.count ?? 0;
-      const medium = events.find(event => event.collision_probability_range === '1e-3 .. 1e-5')?.count ?? 0;
-      const low = events.find(event => event.collision_probability_range === '< 1e-5')?.count ?? 0;
-      return {
-        month: dayjs(month).format('MM/YYYY'),
-        high,
-        medium,
-        low,
-      };
-    });
-
-    return groupedData;
+    return data.map(item => ({
+      month: item.month ?? '',
+      low: item['< 1e-5'] ?? 0,
+      medium: item['1e-3 .. 1e-5'] ?? 0,
+      high: item['> 1e-3'] ?? 0,
+    }));
   } catch (error) {
     console.error(error);
     return [];
