@@ -75,7 +75,9 @@ export default async function DashboardPage() {
               return !isSatteliteUser(session?.user?.role);
             }
             if (key === 'track_fragmentations') {
-              return !isSatteliteUser(session?.user?.role) || !isInternationalUser(session?.user?.role);
+              // Only hide 'fragmentations' for Satellite users and International users;
+              // everyone else should see it
+              return !isSatteliteUser(session?.user?.role) && !isInternationalUser(session?.user?.role);
             }
             if (key === 'track_conjunctions') {
               return !isInternationalUser(session?.user?.role);
