@@ -21,7 +21,7 @@ export const Navigation = () => {
       return !isSatteliteUser(session?.user?.role);
     }
     if (key === 'fragmentations') {
-      return !isSatteliteUser(session?.user?.role) || !isInternationalUser(session?.user?.role);
+      return !isSatteliteUser(session?.user?.role) && !isInternationalUser(session?.user?.role);
     }
     if (key === 'conjunctions') {
       return !isInternationalUser(session?.user?.role);
