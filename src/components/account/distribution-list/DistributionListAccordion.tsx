@@ -25,7 +25,7 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
         initialItems={[
           {
             id: 'all-conjunction',
-            heading: t('receive_alerts', { item: 'all conjunction' }),
+            heading: t('receive_alerts_standard', { type: 'conjunction' }),
             content: (
               <div className="overflow-auto">
                 <DataTable
@@ -38,7 +38,7 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
           },
           {
             id: 'only-priority-conjunctions',
-            heading: t('receive_alerts', { item: 'only priority conjunction' }),
+            heading: t('receive_alerts_priority', { type: 'conjunction' }),
             content: (
               <div className="overflow-auto">
                 <DataTable
@@ -65,7 +65,7 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
         initialItems={[
           {
             id: 'all-re-entries',
-            heading: t('receive_alerts', { item: 'all re-entry' }),
+            heading: t('receive_alerts_standard', { type: 're-entry' }),
             content: (
               <div className="overflow-auto">
                 <DataTable
@@ -77,12 +77,12 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
             ),
           },
           {
-            id: 'only-uk-re-entries',
-            heading: t('receive_alerts', { item: 'only for UK satellites' }),
+            id: 'only-priority-re-entries',
+            heading: t('receive_alerts_priority', { type: 're-entry' }),
             content: (
               <div className="overflow-auto">
                 <DataTable
-                  data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_options?.includes('uk-licensed'))}
+                  data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_options?.includes('priority'))}
                   columns={distributionListColumns}
                   largerText
                 />
@@ -90,12 +90,12 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
             ),
           },
           {
-            id: 'only-priority-re-entries',
-            heading: t('receive_alerts', { item: 'only priority re-entry' }),
+            id: 'only-uk-re-entries',
+            heading: t('receive_alerts_uk_satellites_only'),
             content: (
               <div className="overflow-auto">
                 <DataTable
-                  data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_options?.includes('priority'))}
+                  data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_options?.includes('uk-licensed'))}
                   columns={distributionListColumns}
                   largerText
                 />

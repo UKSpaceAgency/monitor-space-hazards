@@ -14,14 +14,20 @@ export const Navigation = () => {
   const messages = useMessages() as IntlMessages;
   const { data: session } = useSession();
   const keys = Object.keys(messages.Template.navigation).filter((key) => {
-    if (key === 'fragmentations' || key === 'activity') {
+    if (key === 'activity') {
       return false;
+    }
+    if (key === 're-entries') {
+      return !isSatteliteUser(session?.user?.role);
+    }
+    if (key === 'fragmentations') {
+      return !isSatteliteUser(session?.user?.role) && !isInternationalUser(session?.user?.role);
     }
     if (key === 'conjunctions') {
       return !isInternationalUser(session?.user?.role);
     }
-    if (key === 're-entries') {
-      return !isSatteliteUser(session?.user?.role);
+    if (key === 'satellites') {
+      return !isInternationalUser(session?.user?.role);
     }
     // if (key === 're-entries' || key === 'fragmentations' || key === 'activity') {
     //   return false;

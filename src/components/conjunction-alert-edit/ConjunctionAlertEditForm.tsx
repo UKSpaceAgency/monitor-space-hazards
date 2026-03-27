@@ -97,7 +97,7 @@ const ConjunctionAlertEditForm = ({ event, report }: ConjunctionAlertEditFormPro
   }, {
     id: 'uk_response_comment',
     ariaLabel: 'UK response addition',
-    name: tForm('type.uk_response_comment'),
+    name: tForm('type.guidance_on_response'),
     defaultValue: event.uk_response_comment,
     type: 'text',
     help: (

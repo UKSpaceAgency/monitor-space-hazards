@@ -16,13 +16,16 @@ export default async function DashboardPage() {
   const session = await getSession();
   const messages = await getMessages() as IntlMessages;
   const allServicesItems = messages.Dashboard.services.items;
-  const keyServicesItems = pick(allServicesItems, ['track_conjunctions', 'track_reentries']);
+  const keyServicesItems = pick(allServicesItems, ['track_reentries', 'track_fragmentations', 'track_conjunctions']);
   const userKeyServicesItems = Object.keys(keyServicesItems).filter((key) => {
-    if (key === 'track_conjunctions') {
-      return !isInternationalUser(session?.user?.role);
-    }
     if (key === 'track_reentries') {
       return !isSatteliteUser(session?.user?.role);
+    }
+    if (key === 'track_fragmentations') {
+      return !isSatteliteUser(session?.user?.role) && !isInternationalUser(session?.user?.role);
+    }
+    if (key === 'track_conjunctions') {
+      return !isInternationalUser(session?.user?.role);
     }
     return true;
   });
@@ -68,14 +71,16 @@ export default async function DashboardPage() {
         <h3 className="govuk-heading-m">{t('services.all_services_title')}</h3>
         <div className="">
           {Object.keys(allServicesItems).filter((key) => {
+            if (key === 'track_reentries') {
+              return !isSatteliteUser(session?.user?.role);
+            }
             if (key === 'track_fragmentations') {
-              return false;
+              // Only hide 'fragmentations' for Satellite users and International users;
+              // everyone else should see it
+              return !isSatteliteUser(session?.user?.role) && !isInternationalUser(session?.user?.role);
             }
             if (key === 'track_conjunctions') {
               return !isInternationalUser(session?.user?.role);
-            }
-            if (key === 'track_reentries') {
-              return !isSatteliteUser(session?.user?.role);
             }
             // if (key === 'track_reentries' || key === 'track_fragmentations') {
             //   return false;

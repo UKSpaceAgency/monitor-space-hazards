@@ -1,9 +1,9 @@
 'use server';
 
-import type { TypeGetStatsEventsTypeParams } from '@/__generated__/data-contracts';
+import type { TypeGetStatsEventsTypeAggregatedParams } from '@/__generated__/data-contracts';
 import Api from '@/libs/Api';
 
-export async function getStatsConjunctionEventsType(query?: TypeGetStatsEventsTypeParams) {
-  const { data } = await Api.getStatsEventsType(query);
+export async function getStatsConjunctionEventsType(query?: TypeGetStatsEventsTypeAggregatedParams) {
+  const { data } = await Api.getStatsEventsTypeAggregated(query);
   return data;
 };

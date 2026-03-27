@@ -40,11 +40,6 @@
       "key_services_title": "Key services",
       "all_services_title": "All services",
       "items": {
-        "track_conjunctions": {
-          "title": "Track conjunction events",
-          "description": "In-space collision avoidance.",
-          "link": "/conjunctions"
-        },
         "track_reentries": {
           "title": "Track re-entry events",
           "description": "Uncontrolled re-entry early warning.",
@@ -54,6 +49,11 @@
           "title": "Track fragmentation events",
           "description": "Space debris from objects",
           "link": "/fragmentations"
+        },
+        "track_conjunctions": {
+          "title": "Track conjunction events",
+          "description": "In-space collision avoidance.",
+          "link": "/conjunctions"
         },
         "check_weather": {
           "title": "Check space weather activity",
@@ -105,7 +105,8 @@
     "view_your_account_activity": {
       "title": "View event uploads",
       "analysis_uploads": "Analysis uploads",
-      "manoeuvre_support_uploads": "Manoeuvre support uploads"
+      "manoeuvre_support_uploads": "Manoeuvre support uploads",
+      "ephemeris_uploads": "Ephemeris uploads"
     },
     "manage_an_incident": {
       "title": "Manage an incident",
@@ -305,11 +306,22 @@
       "description2": " Select delete to permanently remove the file from the service."
     }
   },
+  "Ephemeris_upload_log": {
+    "title": "Ephemeris uploads",
+    "description": "View all ephemeris files uploaded to Monitor Space Hazards for UK conjunction events.",
+    "help": {
+      "title": "Help with this table<screenReaderOnly> - Uploaded ephemeris</screenReaderOnly>",
+      "description1": "Select the file to view the ephemeris.",
+      "description2": "Select delete to permanently remove the file from the service."
+    }
+  },
   "Distribution_lists": {
     "title": "View distribution lists",
     "description": "We will send notifications according to the distribution lists outlined on this page.",
     "accordion": {
-      "receive_alerts": "Receive {item} alerts",
+      "receive_alerts_standard": "Receive Level 1 (Standard) {type} alerts",
+      "receive_alerts_priority": "Receive Level 2 (Priority) {type} alerts",
+      "receive_alerts_uk_satellites_only": "UK Satellites Re-entry alerts distribution list",
       "distribution_list": "Distribution lists for {type} events",
       "conjunctions_help": {
         "summary": "Conjunction alert criteria",
@@ -1166,6 +1178,12 @@
       "event_id": "Event ID",
       "file_uploaded": "File uploaded"
     },
+    "Ephemeris_data": {
+      "date": "Date",
+      "user_email": "User email",
+      "satellite": "Satellite",
+      "file_uploaded": "File uploaded"
+    },
     "Satellite_informations": {
       "Objects": {
         "description": "Satellites summary table",
@@ -1744,15 +1762,13 @@
       "conjunction_alerts": "Conjunction alerts",
       "self_which": "Which {type} alerts would you like to receive?",
       "their_which": "Which {type} alerts would you like the user to receive?",
-      "select_one_option": "Select one option.",
-      "no_conjunction_alerts": "No conjunction alerts",
+      "select_one_option": "Select all alerts you wish to receive. Distribution lists for Level 1 and Level 2 alerts are separate, so you will only receive alerts for the level(s) selected.",
       "receive_all_conjunction_alerts": "Level 1 (Standard) conjunction alerts",
       "recommended_for": "Recommended for National Space Operations Centre, Civil Aviation Authority, Ministry of Defence, and international partners",
       "only_priority_conjunction_alerts": "Level 2 (Priority) conjunction alerts",
       "recommended_for_all_other": "Recommended for users likely to be involved in the government response",
       "recommended_for_all_users": "Recommended for all users",
       "re_entry_alerts": "Re-entry alerts",
-      "no_re_entry_alerts": "No re-entry alerts",
       "all_re_entry_alerts": "Level 1 (Standard) re-entry alerts for {whose} areas of interest",
       "recommended_for_uk": "Recommended for National Space Operations Centre, Civil Aviation Authority, Ministry of Defence and international partners",
       "re_entry_alerts_for_uk": "Re-entry alerts for UK satellites only",
@@ -1764,9 +1780,8 @@
       "notifications_for_re_entries": "Notifications for re-entries over non UK nations are currently only distributed in the case of the re-entering object being a UK licensed satellite.",
       "fragmentation_alerts": "Fragmentation alerts",
       "how_would_you_like_fragmentation": "How would you like to receive fragmentation alerts?",
-      "only_priority_fragmentation_alerts": "Only Level 1 (Standard) fragmentation alerts",
       "receive_all_fragmentation_alerts": "Level 1 (Standard) fragmentation alerts",
-      "no_fragmentation_alerts": "Do not receive fragmentation alerts",
+      "only_priority_fragmentation": "Level 2 (Priority) fragmentation alerts",
       "sms": "SMS",
       "email": "Email",
       "help_reentry": {
@@ -1821,6 +1836,7 @@
         "executive_summary_comment": "Executive Summary",
         "immediate_response": "Guidance on response",
         "immediate_response_comment": "Guidance on response",
+        "guidance_on_response": "Guidance on response",
         "immediate_impact_comment": "Immediate response",
         "recovery_and_clean_up": "Guidance if object impacts UK interests",
         "damages_liability_comment": "Liability for damages",
@@ -1832,10 +1848,10 @@
         "short_term_impact_comment": "Short term impact",
         "long_term_impact": "Long term impact",
         "long_term_impact_comment": "Long term impact",
-        "uk_response_comment": "UK response",
+        "uk_response_comment": "Guidance if object impacts UK interests",
         "closed_comment": "Closed comment",
         "spaceflight_risk_comment": "UK and Human Spaceflight risk",
-        "orbital_analyst_comment": "Orbital analyst comment"
+        "orbital_analyst_comment": "Analysis of potential event cause"
       },
       "manoeuvrable": {
         "unknown": "Unknown",

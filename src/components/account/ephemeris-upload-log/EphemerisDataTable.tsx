@@ -4,10 +4,10 @@ import saveAs from 'file-saver';
 import { useTranslations } from 'next-intl';
 import { type SyntheticEvent, useCallback, useState } from 'react';
 
-import type { TypeAnalysisOut, TypeGetAnalysesParams } from '@/__generated__/data-contracts';
-import { deleteAnalysesAnalysisId } from '@/actions/deleteAnalysesAnalysisId';
-import { getAnalyses } from '@/actions/getAnalyses';
-import { getAnalysesAnalysisId } from '@/actions/getAnalysisId';
+import type { TypeEphemerisOut, TypeGetEphemerisParams } from '@/__generated__/data-contracts';
+import { deleteEphemeris } from '@/actions/deleteEphemeris';
+import { getEphemeris } from '@/actions/getEphemeris';
+import { getEphemerises } from '@/actions/getEphemerises';
 import InfiniteTable from '@/components/InfiniteTable';
 import { TopNotificationBanner } from '@/components/TopNotificationBanner';
 import { createJSON } from '@/libs/File';
@@ -15,14 +15,14 @@ import Button from '@/ui/button/button';
 import NotificationBanner from '@/ui/notification-banner/notification-banner';
 import { QUERY_KEYS } from '@/utils/QueryKeys';
 
-import { getAnalysisDataTableColumns } from './columns';
+import { getEphemerisDataTableColumns } from './columns';
 
-type AnalysisDataTableProps = {
-  data: TypeAnalysisOut[];
-  params: TypeGetAnalysesParams;
+type EphemerisDataTableProps = {
+  data: TypeEphemerisOut[];
+  params: TypeGetEphemerisParams;
 };
 
-const AnalysisDataTable = ({ data, params }: AnalysisDataTableProps) => {
+const EphemerisDataTable = ({ data, params }: EphemerisDataTableProps) => {
   const tCommon = useTranslations('Common');
   const queryClient = useQueryClient();
 
@@ -38,7 +38,7 @@ const AnalysisDataTable = ({ data, params }: AnalysisDataTableProps) => {
         return;
       }
 
-      const { data } = await getAnalysesAnalysisId(id);
+      const { data } = await getEphemeris(id);
 
       if (!data) {
         return;
@@ -46,13 +46,6 @@ const AnalysisDataTable = ({ data, params }: AnalysisDataTableProps) => {
 
       const blob = createJSON(data);
       saveAs(blob, `${id}.json`);
-
-      // gaEvent({
-      //   action: "download",
-      //   format: "json",
-      //   page_path: router.pathname,
-      //   table_name: "analyses"
-      // })
     },
     [],
   );
@@ -75,10 +68,10 @@ const AnalysisDataTable = ({ data, params }: AnalysisDataTableProps) => {
     }
 
     try {
-      await deleteAnalysesAnalysisId(fileToDelete);
+      await deleteEphemeris(fileToDelete);
       // We need to clear cache in InfiniteTable
       await queryClient.resetQueries({
-        queryKey: [QUERY_KEYS.Analyses],
+        queryKey: [QUERY_KEYS.Ephemerises],
       });
 
       setFileDeleted(true);
@@ -91,7 +84,7 @@ const AnalysisDataTable = ({ data, params }: AnalysisDataTableProps) => {
     setFile(null);
   };
 
-  const columns = getAnalysisDataTableColumns({
+  const columns = getEphemerisDataTableColumns({
     handleDelete,
     handleDownload,
     json: tCommon('json'),
@@ -119,17 +112,15 @@ const AnalysisDataTable = ({ data, params }: AnalysisDataTableProps) => {
           {tCommon('json_has_been_deleted')}
         </NotificationBanner>
       )}
-      <div className="govuk-!-margin-bottom-6">
-        <InfiniteTable<TypeAnalysisOut, TypeGetAnalysesParams>
-          initialData={data}
-          params={params}
-          columns={columns}
-          fetcher={getAnalyses}
-          queryKeys={[QUERY_KEYS.Analyses]}
-        />
-      </div>
+      <InfiniteTable<TypeEphemerisOut, TypeGetEphemerisParams>
+        initialData={data}
+        params={params}
+        columns={columns}
+        fetcher={getEphemerises}
+        queryKeys={[QUERY_KEYS.Ephemerises]}
+      />
     </>
   );
 };
 
-export { AnalysisDataTable };
+export { EphemerisDataTable };

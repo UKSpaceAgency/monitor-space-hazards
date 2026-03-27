@@ -1,7 +1,8 @@
 'use server';
 
-import type { TypeGetStatsEventsByOrganizationParams } from '@/__generated__/data-contracts';
+import type { TypeGetStatsEventsByOrganizationAggregatedParams } from '@/__generated__/data-contracts';
 import Api from '@/libs/Api';
+import { dayjs, FORMAT_API_DATE } from '@/libs/Dayjs';
 
 export type EventsByOrganizationSectionType = {
   events: number;
@@ -17,35 +18,26 @@ export type EventsByOrganizationType = {
   high: number;
 };
 
-export async function getStatsEventsByOrganization(query?: TypeGetStatsEventsByOrganizationParams): Promise<EventsByOrganizationType[]> {
-  const { data } = await Api.getStatsEventsByOrganization(query);
+export async function getStatsEventsByOrganization(query?: TypeGetStatsEventsByOrganizationAggregatedParams): Promise<EventsByOrganizationType[]> {
+  const params: TypeGetStatsEventsByOrganizationAggregatedParams = {};
+  if (query?.start_date) {
+    params.start_date = dayjs(query.start_date).format(FORMAT_API_DATE);
+  }
+  if (query?.end_date) {
+    params.end_date = dayjs(query.end_date).format(FORMAT_API_DATE);
+  }
+  const { data } = await Api.getStatsEventsByOrganizationAggregated(params);
 
-  const groupedData = data.reduce((acc, item) => {
-    const { name, id, events, collision_probability_range } = item;
+  if (data.length === 0) {
+    return [];
+  }
 
-    const key = id as string;
-
-    if (!acc[key]) {
-      acc[key] = { name, id: key, total_events: 0, low: 0, medium: 0, high: 0 };
-    }
-
-    switch (collision_probability_range) {
-      case '< 1e-5':
-        acc[key].low = events;
-        acc[key].total_events += events;
-        break;
-      case '1e-3 .. 1e-5':
-        acc[key].medium = events;
-        acc[key].total_events += events;
-        break;
-      case '> 1e-3':
-        acc[key].high = events;
-        acc[key].total_events += events;
-        break;
-    }
-
-    return acc;
-  }, {} as { [key: string]: EventsByOrganizationType });
-
-  return Object.values(groupedData);
+  return data.map(item => ({
+    name: item.organization_name,
+    id: item.organization_id,
+    total_events: item.total ?? 0,
+    low: item['< 1e-5'] ?? 0,
+    medium: item['1e-3 .. 1e-5'] ?? 0,
+    high: item['> 1e-3'] ?? 0,
+  }));
 };

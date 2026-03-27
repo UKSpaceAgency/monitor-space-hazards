@@ -14,6 +14,7 @@ import WarningText from '@/ui/warning-text/warning-text';
 import type { AlertSettingsSchema } from '@/validations/alertSettingsSchema';
 
 import { AlertSettingsDetails } from './AlertSettingsDetails';
+import { RegionsTable } from './RegionsTable';
 
 function Option({
   id,
@@ -155,107 +156,101 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                           </>
                         ),
                       },
-                      // {
-                      //   id: 're_entry_alerts',
-                      //   heading: t('re_entry_alerts'),
-                      //   content: (
-                      //     <>
-                      //       <Radios
-                      //         id="reEntryAlerts"
-                      //         required
-                      //         aria-label="Re-entry Alerts"
-                      //         legend={t(
-                      //           `${selfEdit ? 'self_which' : 'their_which'}`,
-                      //           { type: 're-entry' },
-                      //         )}
-                      //         hint={t('select_one_option')}
-                      //         items={[{
-                      //           id: 'no_re_entry_alerts',
-                      //           value: 'none',
-                      //           children: t('no_re_entry_alerts'),
-                      //           ...register('reEntryAlerts'),
-                      //         }, {
-                      //           id: 'all_re_entry_alerts',
-                      //           value: 'all',
-                      //           children: t('all_re_entry_alerts', { whose: selfEdit ? 'your' : 'user\'s' }),
-                      //           hint: t('recommended_for_uk'),
-                      //           ...register('reEntryAlerts'),
-                      //         }, {
-                      //           id: 're_entry_alerts_for_uk',
-                      //           value: 'uk-licensed',
-                      //           children: t('re_entry_alerts_for_uk'),
-                      //           hint: t('recommended_for_foreign'),
-                      //           ...register('reEntryAlerts'),
-                      //         }, {
-                      //           id: 'only_priority_re_entry',
-                      //           value: 'priority',
-                      //           children: t('only_priority_re_entry', { whose: selfEdit ? 'your' : 'user\'s' }),
-                      //           hint: t('recommended_for_all_other'),
-                      //           ...register('reEntryAlerts'),
-                      //         }]}
-                      //       />
-                      //       <AlertSettingsDetails type="re-entry" />
+                      {
+                        id: 're_entry_alerts',
+                        heading: t('re_entry_alerts'),
+                        content: (
+                          <>
+                            <Checkboxes
+                              id="reEntryAlerts"
+                              aria-label="Re-entry Alerts"
+                              legend={t(
+                                `${selfEdit ? 'self_which' : 'their_which'}`,
+                                { type: 're-entry' },
+                              )}
+                              hint={t('select_one_option')}
+                              items={[{
+                                id: 'all_re_entry_alerts',
+                                value: 'standard',
+                                children: t('all_re_entry_alerts', { whose: selfEdit ? 'your' : 'user\'s' }),
+                                hint: t('recommended_for_uk'),
+                                ...register('reEntryAlerts'),
+                              }, {
+                                id: 'only_priority_re_entry',
+                                value: 'priority',
+                                children: t('only_priority_re_entry', { whose: selfEdit ? 'your' : 'user\'s' }),
+                                hint: t('recommended_for_all_other'),
+                                ...register('reEntryAlerts'),
+                              }, {
+                                id: 're_entry_alerts_for_uk',
+                                value: 'uk-licensed',
+                                children: t('re_entry_alerts_for_uk'),
+                                hint: t('recommended_for_foreign'),
+                                ...register('reEntryAlerts'),
+                              }]}
+                            />
+                            <AlertSettingsDetails type="re-entry" />
 
-                      //       <RegionsTable
-                      //         name="areasOfInterest"
-                      //         legend={t(
-                      //           'select_the_areas_of_interest',
-                      //           { whose: selfEdit ? 'your' : 'user\'s' },
-                      //         )}
-                      //       />
+                            <RegionsTable
+                              name="areasOfInterest"
+                              legend={t(
+                                'select_the_areas_of_interest',
+                                { whose: selfEdit ? 'your' : 'user\'s' },
+                              )}
+                            />
 
-                      //       <p className="govuk-body">
-                      //         {t('notifications_for_re_entries')}
-                      //       </p>
+                            <p className="govuk-body">
+                              {t('notifications_for_re_entries')}
+                            </p>
 
-                      //       <Option
-                      //         id="receiveReEntry"
-                      //         name="receiveReEntry"
-                      //         hint={t('select_one_option')}
-                      //         label={t('how_would_you_like_re_entry')}
-                      //         register={register}
-                      //       />
-                      //     </>
-                      //   ),
-                      // },
-                      // {
-                      //   id: 'fragmentation_alerts',
-                      //   heading: t('fragmentation_alerts'),
-                      //   content: (
-                      //     <>
-                      //       <Radios
-                      //         id="fragmentationAlerts"
-                      //         required
-                      //         aria-label="Fragmentation Alerts"
-                      //         legend={t(
-                      //           `${selfEdit ? 'self_which' : 'their_which'}`,
-                      //           { type: 'fragmentation' },
-                      //         )}
-                      //         hint={t('select_one_option')}
-                      //         items={[{
-                      //           id: 'no_fragmentation_alerts',
-                      //           value: 'none',
-                      //           children: t('no_fragmentation_alerts'),
-                      //           ...register('fragmentationAlerts'),
-                      //         }, {
-                      //           id: 'receive_all_fragmentation_alerts',
-                      //           value: 'all',
-                      //           children: t('receive_all_fragmentation_alerts'),
-                      //           hint: t('recommended_for_all_users'),
-                      //           ...register('fragmentationAlerts'),
-                      //         }]}
-                      //       />
-                      //       <AlertSettingsDetails type="fragmentation" />
-                      //       <Option
-                      //         id="receiveFragmentation"
-                      //         name="receiveFragmentation"
-                      //         hint={t('select_one_option')}
-                      //         label={t('how_would_you_like_fragmentation')}
-                      //         register={register}
-                      //       />
-                      //     </>
-                      //   ),
-                      // },
+                            <Option
+                              id="receiveReEntry"
+                              name="receiveReEntry"
+                              hint={t('select_one_option')}
+                              label={t('how_would_you_like_re_entry')}
+                              register={register}
+                            />
+                          </>
+                        ),
+                      },
+                      {
+                        id: 'fragmentation_alerts',
+                        heading: t('fragmentation_alerts'),
+                        content: (
+                          <>
+                            <Checkboxes
+                              id="fragmentationAlerts"
+                              aria-label="Fragmentation Alerts"
+                              legend={t(
+                                `${selfEdit ? 'self_which' : 'their_which'}`,
+                                { type: 'fragmentation' },
+                              )}
+                              hint={t('select_one_option')}
+                              items={[{
+                                id: 'receive_all_fragmentation_alerts',
+                                value: 'standard',
+                                children: t('receive_all_fragmentation_alerts'),
+                                hint: t('recommended_for_all_users'),
+                                ...register('fragmentationAlerts'),
+                              }, {
+                                id: 'only_priority_fragmentation',
+                                value: 'priority',
+                                children: t('only_priority_fragmentation'),
+                                hint: t('recommended_for_all_other'),
+                                ...register('fragmentationAlerts'),
+                              }]}
+                            />
+                            <AlertSettingsDetails type="fragmentation" />
+                            <Option
+                              id="receiveFragmentation"
+                              name="receiveFragmentation"
+                              hint={t('select_one_option')}
+                              label={t('how_would_you_like_fragmentation')}
+                              register={register}
+                            />
+                          </>
+                        ),
+                      },
                     ]}
                   />
                   <div className="govuk-button-group">
