@@ -119,13 +119,15 @@ const AnalysisDataTable = ({ data, params }: AnalysisDataTableProps) => {
           {tCommon('json_has_been_deleted')}
         </NotificationBanner>
       )}
-      <InfiniteTable<TypeAnalysisOut, TypeGetAnalysesParams>
-        initialData={data}
-        params={params}
-        columns={columns}
-        fetcher={getAnalyses}
-        queryKeys={[QUERY_KEYS.Analyses]}
-      />
+      <div className="govuk-!-margin-bottom-6">
+        <InfiniteTable<TypeAnalysisOut, TypeGetAnalysesParams>
+          initialData={data}
+          params={params}
+          columns={columns}
+          fetcher={getAnalyses}
+          queryKeys={[QUERY_KEYS.Analyses]}
+        />
+      </div>
     </>
   );
 };
