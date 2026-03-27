@@ -40,11 +40,6 @@
       "key_services_title": "Key services",
       "all_services_title": "All services",
       "items": {
-        "track_conjunctions": {
-          "title": "Track conjunction events",
-          "description": "In-space collision avoidance.",
-          "link": "/conjunctions"
-        },
         "track_reentries": {
           "title": "Track re-entry events",
           "description": "Uncontrolled re-entry early warning.",
@@ -54,6 +49,11 @@
           "title": "Track fragmentation events",
           "description": "Space debris from objects",
           "link": "/fragmentations"
+        },
+        "track_conjunctions": {
+          "title": "Track conjunction events",
+          "description": "In-space collision avoidance.",
+          "link": "/conjunctions"
         },
         "check_weather": {
           "title": "Check space weather activity",
