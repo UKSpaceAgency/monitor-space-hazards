@@ -1691,7 +1691,8 @@
       "flag_date": "Date of flag",
       "orbit_type": "Orbit",
       "altitude": "Altitude (km)",
-      "longitude": "Longitude (°)"
+      "longitude": "Longitude (°)",
+      "activity_events_as_of": "Activity events as of "
     }
   },
   "Forms": {
