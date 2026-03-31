@@ -3,9 +3,9 @@
     "skip_content": "Skip to main content",
     "phase_banner": "This is a new service - your <feedback>feedback</feedback> will help us to improve it.",
     "navigation": {
+      "re-entries": "Re-entries",
       "conjunctions": "Conjunctions",
       "fragmentations": "Fragmentations",
-      "re-entries": "Re-entries",
       "activity": "Activity",
       "satellites": "Satellites",
       "account": "Account"
