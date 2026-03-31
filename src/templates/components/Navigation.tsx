@@ -14,7 +14,7 @@ export const Navigation = () => {
   const t = useTranslations('Template');
   const messages = useMessages() as IntlMessages;
   const { data: session } = useSession();
-  const keys = Object.keys(pick(messages.Template.navigation, ['re-entries', 'conjunctions', 'fragmentations', 'activity', 'satellites', 'account'])).filter((key) => {
+  const keys = Object.keys(pick(messages.Template.navigation, ['re-entries', 'fragmentations', 'conjunctions', 'activity', 'satellites', 'account'])).filter((key) => {
     if (key === 'activity') {
       return false;
     }
