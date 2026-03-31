@@ -4,7 +4,7 @@ import { HtmlMapper } from '@/components/HtmlMapper';
 import { getPage } from '@/libs/Cms';
 
 export const metadata: Metadata = {
-  title: 'Accessibility statement for NSpOC\'s Monitor Space Hazards service',
+  title: 'Accessibility statement for NSpOC Monitor Space Hazards service',
 };
 
 export default async function AccessibilityStatement() {
