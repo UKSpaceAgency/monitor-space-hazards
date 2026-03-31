@@ -4,8 +4,8 @@
     "phase_banner": "This is a new service - your <feedback>feedback</feedback> will help us to improve it.",
     "navigation": {
       "conjunctions": "Conjunctions",
-      "re-entries": "Re-entries",
       "fragmentations": "Fragmentations",
+      "re-entries": "Re-entries",
       "activity": "Activity",
       "satellites": "Satellites",
       "account": "Account"
