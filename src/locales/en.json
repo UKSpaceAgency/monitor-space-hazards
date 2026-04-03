@@ -351,7 +351,7 @@
       "search_bar": {
         "previousLabel": "Find a previous upcoming conjunction event:",
         "upcomingLabel": "Find a upcoming conjunction event:",
-        "placeholder": "Search by event or object ID"
+        "placeholder": "Search by event ID, primary object ID or primary object name"
       },
       "type": {
         "future": "Upcoming",
@@ -583,7 +583,7 @@
       "upcomingLabel": "Find a upcoming conjunction event",
       "previousLabel": "Find a previous conjunction event",
       "allLabel": "Find a conjunction event",
-      "placeholder": "Search by event or object ID"
+      "placeholder": "Search by event ID, primary object ID or primary object name"
     },
     "help1": {
       "title": "Help with this table<screenReaderOnly> - Upcoming conjunctions</screenReaderOnly>",
@@ -1129,6 +1129,16 @@
     }
   },
   "Tables": {
+    "Activity_event_summary": {
+      "common_name": "Common name",
+      "norad_id": "NORAD ID",
+      "international_designator": "International designator",
+      "operator": "Operator",
+      "reason_for_flag": "Reason for flag",
+      "flag_date": "Date of flag",
+      "latest_tle_epoch": "Latest TLE epoch",
+      "object_information": "Object information"
+    },
     "Satellites": {
       "common_name": "Common name",
       "norad_id": "NORAD ID",
