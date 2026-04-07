@@ -428,7 +428,7 @@
         "summary": "Help with interpreting manoeuvre trade space plots",
         "content": "<p>The plot displays the predicted probability of collision for various possible manoeuvres. These predictions are based on the most recent operational CDM received from Space-Track and analysis conducted by NSpOC.</p><p>Reducing the probability of collision typically requires less fuel the further away the time of closest approach is but the probability of collision often decreases over time as more observations are made and data certainty increases. The plot assists operators in determining when and if to perform a manoeuvre by highlighting significant points in time when the probability will change.</p><p>All manoeuvres (Delta V) shown are given in the in-track direction.</p><p>These predicted probabilities of collision do not take into account any secondary collisions which may occur as a result of manoeuvring.If you wish to determine secondary collision risk, you should upload a <special>Special</special> ephemeris to Space-Track for screening.</p>"
       },
-      "download": "Manoeuvre trade space data"
+      "download": "manoeuvre trade space data"
     },
     "Miss_distance": {
       "header": "The changing expected miss distance leading up to the time of closest approach (TCA). Data from Space-Track is shown.",
