@@ -178,7 +178,7 @@
   },
   "Event_notification_thresholds_settings": {
     "title": "Set your conjunction event notification thresholds",
-    "content": "<p>We will send you notifications about events which meet the thresholds you have set for each criteria.</p><p>You are responsible for the safe operation of your satellites and should choose settings which allow you to do this.</p><p>The default settings are examples of thresholds, not recommendations.</p>"
+    "content": "<p>We will send you notifications about events which meet <b>all</b> of the thresholds you have set.</p><p>You are responsible for the safe operation of your satellites and should choose settings which allow you to do this.</p>"
   },
   "Notification_settings": {
     "title": "Choose your notification settings",
@@ -428,7 +428,7 @@
         "summary": "Help with interpreting manoeuvre trade space plots",
         "content": "<p>The plot displays the predicted probability of collision for various possible manoeuvres. These predictions are based on the most recent operational CDM received from Space-Track and analysis conducted by NSpOC.</p><p>Reducing the probability of collision typically requires less fuel the further away the time of closest approach is but the probability of collision often decreases over time as more observations are made and data certainty increases. The plot assists operators in determining when and if to perform a manoeuvre by highlighting significant points in time when the probability will change.</p><p>All manoeuvres (Delta V) shown are given in the in-track direction.</p><p>These predicted probabilities of collision do not take into account any secondary collisions which may occur as a result of manoeuvring.If you wish to determine secondary collision risk, you should upload a <special>Special</special> ephemeris to Space-Track for screening.</p>"
       },
-      "download": "Manoeuvre Trade Space data"
+      "download": "Manoeuvre trade space data"
     },
     "Miss_distance": {
       "header": "The changing expected miss distance leading up to the time of closest approach (TCA). Data from Space-Track is shown.",
@@ -1143,7 +1143,7 @@
       "common_name": "Common name",
       "norad_id": "NORAD ID",
       "international_designator": "International designator",
-      "upcoming_known_conjunction_events": "Upcoming known conjunction events"
+      "upcoming_known_conjunction_events": "UK-licensed satellites"
     },
     "Incident_banners": {
       "incident_type": "Incident type",
@@ -2279,7 +2279,7 @@
     },
     "help": {
       "title": "Help with this table<screenReaderOnly> - Fragmentation events</screenReaderOnly>",
-      "content": "<p>This table shows all upcoming and previous tracked fragmentation events that have been identified by Space-Track and ingested into Monitor space hazards, including events which pose a risk to UK satellites and Human Spaceflight missions. Higher risk events contain additional analysis by UKSA's Orbital Analysts at the National Space Operations Centre.</p><list><item>Select the <bold>Event ID</bold> to view more information</item><item>Each Event ID or row represents <bold>one fragmentation event</bold></item><item>Sort the alerts according to criteria by clicking on the relevant <bold>headings</bold></item></list>"
+      "content": "<p>This table shows all upcoming and previous tracked fragmentation events that have been identified by Space-Track and ingested into Monitor Space Hazards, including events which pose a risk to UK satellites and Human Spaceflight missions. Higher risk events contain additional analysis by NSpOC Orbital Analysts.</p><list><item>Select the <bold>Event ID</bold> to view more information</item><item>Each Event ID or row represents <bold>one fragmentation event</bold></item><item>Sort the alerts according to criteria by clicking on the relevant <bold>headings</bold></item></list>"
     }
   },
   "Fragmentation": {
