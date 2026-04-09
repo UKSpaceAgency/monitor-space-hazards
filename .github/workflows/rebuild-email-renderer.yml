@@ -1,0 +1,20 @@
+name: Rebuild backend email-renderer
+
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - 'src/emails/**'
+      - 'src/locales/en.json'
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger backend email-renderer rebuild
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.INFRA_REPO_TOKEN }}
+          repository: UKSpaceAgency/sst-beta-python-backend
+          event-type: fe-email-templates-updated
