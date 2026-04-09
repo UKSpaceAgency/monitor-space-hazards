@@ -1143,7 +1143,7 @@
       "common_name": "Common name",
       "norad_id": "NORAD ID",
       "international_designator": "International designator",
-      "upcoming_known_conjunction_events": "UK-licensed satellites"
+      "upcoming_known_conjunction_events": "Upcoming known conjunction events"
     },
     "Incident_banners": {
       "incident_type": "Incident type",
