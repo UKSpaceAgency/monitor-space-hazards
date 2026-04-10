@@ -29,6 +29,8 @@ const ConjunctionAlertAccordion = ({
 }: ConjunctionAlertAccordionProps) => {
   const t = useTranslations('Conjunction_alert.accordion');
 
+  const hasImpact = event.immediate_impact_comment || event.short_term_impact_comment || event.long_term_impact_comment;
+
   return (
     <>
       <h2 data-anchor="information" className="govuk-heading-l">{t('event_details')}</h2>
@@ -60,13 +62,15 @@ const ConjunctionAlertAccordion = ({
         id="conjunction-potential-impact"
         addAnchor={false}
         initialItems={[
-          {
-            id: 'potential_impact_of_event',
-            heading: t('potential_impact_of_event'),
-            content: (
-              <ConjunctionAlertPotentialImpact immediateImpactComment={searchParams?.immediate_impact_comment ?? event.immediate_impact_comment} shortTermImpactComment={searchParams?.short_term_impact_comment ?? event.short_term_impact_comment} longTermImpactComment={searchParams?.long_term_impact_comment ?? event.long_term_impact_comment} dataPdf={t('potential_impact_of_event')} />
-            ),
-          },
+          ...(hasImpact
+            ? [{
+                id: 'potential_impact_of_event',
+                heading: t('potential_impact_of_event'),
+                content: (
+                  <ConjunctionAlertPotentialImpact immediateImpactComment={searchParams?.immediate_impact_comment ?? event.immediate_impact_comment} shortTermImpactComment={searchParams?.short_term_impact_comment ?? event.short_term_impact_comment} longTermImpactComment={searchParams?.long_term_impact_comment ?? event.long_term_impact_comment} dataPdf={t('potential_impact_of_event')} />
+                ),
+              }]
+            : []),
           {
             id: 'additional_risk',
             heading: t('additional_risk'),

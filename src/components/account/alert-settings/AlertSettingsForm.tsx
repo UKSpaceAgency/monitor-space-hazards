@@ -120,43 +120,6 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                     id="alert-settings"
                     initialItems={[
                       {
-                        id: 'conjunction_alerts',
-                        heading: t('conjunction_alerts'),
-                        content: (
-                          <>
-                            <Checkboxes
-                              aria-label="Conjunction Alerts"
-                              legend={t(
-                                `${selfEdit ? 'self_which' : 'their_which'}`,
-                                { type: 'conjunction' },
-                              )}
-                              hint={t('select_one_option')}
-                              items={[{
-                                id: 'receive_all_conjunction_alerts',
-                                value: 'standard',
-                                children: t('receive_all_conjunction_alerts'),
-                                hint: t('recommended_for'),
-                                ...register('conjunctionAlerts'),
-                              }, {
-                                id: 'only_priority_conjunction_alerts',
-                                value: 'priority',
-                                children: t('only_priority_conjunction_alerts'),
-                                hint: t('recommended_for_all_other'),
-                                ...register('conjunctionAlerts'),
-                              }]}
-                            />
-                            <AlertSettingsDetails type="conjunction" />
-                            <Option
-                              id="receiveConjunction"
-                              name="receiveConjunction"
-                              hint={t('select_one_option')}
-                              label={t('how_would_you_like_conjunction')}
-                              register={register}
-                            />
-                          </>
-                        ),
-                      },
-                      {
                         id: 're_entry_alerts',
                         heading: t('re_entry_alerts'),
                         content: (
@@ -246,6 +209,43 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                               name="receiveFragmentation"
                               hint={t('select_one_option')}
                               label={t('how_would_you_like_fragmentation')}
+                              register={register}
+                            />
+                          </>
+                        ),
+                      },
+                      {
+                        id: 'conjunction_alerts',
+                        heading: t('conjunction_alerts'),
+                        content: (
+                          <>
+                            <Checkboxes
+                              aria-label="Conjunction Alerts"
+                              legend={t(
+                                `${selfEdit ? 'self_which' : 'their_which'}`,
+                                { type: 'conjunction' },
+                              )}
+                              hint={t('select_one_option')}
+                              items={[{
+                                id: 'receive_all_conjunction_alerts',
+                                value: 'standard',
+                                children: t('receive_all_conjunction_alerts'),
+                                hint: t('recommended_for'),
+                                ...register('conjunctionAlerts'),
+                              }, {
+                                id: 'only_priority_conjunction_alerts',
+                                value: 'priority',
+                                children: t('only_priority_conjunction_alerts'),
+                                hint: t('recommended_for_all_other'),
+                                ...register('conjunctionAlerts'),
+                              }]}
+                            />
+                            <AlertSettingsDetails type="conjunction" />
+                            <Option
+                              id="receiveConjunction"
+                              name="receiveConjunction"
+                              hint={t('select_one_option')}
+                              label={t('how_would_you_like_conjunction')}
                               register={register}
                             />
                           </>
