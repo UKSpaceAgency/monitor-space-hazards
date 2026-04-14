@@ -5,7 +5,7 @@ import { useState } from 'react';
 import type { SubmitHandler, UseFormRegister } from 'react-hook-form';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import type { TypeAlertSettingsIn } from '@/__generated__/data-contracts';
+import type { TypeAlertSettingsIn, TypeUserOut } from '@/__generated__/data-contracts';
 import Accordion from '@/ui/accordion/accordion';
 import Button from '@/ui/button/button';
 import Checkboxes from '@/ui/checkboxes/checkboxes';
@@ -49,12 +49,13 @@ function Option({
 }
 
 type AlertSettingsFormProps = {
+  user?: TypeUserOut;
   defaultValues: AlertSettingsSchema;
   selfEdit?: boolean;
   onSubmit: (data: TypeAlertSettingsIn) => Promise<void>;
 };
 
-const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitAction }: AlertSettingsFormProps) => {
+const AlertSettingsForm = ({ user, defaultValues, selfEdit = true, onSubmit: onSubmitAction }: AlertSettingsFormProps) => {
   const t = useTranslations('Forms.Alert_settings');
   const tCommon = useTranslations('Common');
 
@@ -105,8 +106,8 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
           )
         : (
             <>
-              <h1 className="govuk-heading-xl">{t('title', { whose: selfEdit ? 'your' : 'user\'s' })}</h1>
-              <p className="govuk-body">{t('description')}</p>
+              <h1 className="govuk-heading-xl">{t('title', { whose: selfEdit ? 'your' : user?.first_name ? `${user.first_name}'s` : 'user\'s' })}</h1>
+              <p className="govuk-body">{t('description', { to: user?.first_name ? `${user.first_name} ${user.last_name}` : 'you' })}</p>
               {selfEdit && (
                 <WarningText>
                   {t('warning')}

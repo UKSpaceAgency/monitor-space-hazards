@@ -3,7 +3,8 @@ import { notFound } from 'next/navigation';
 
 import type { TypeAlertSettingsIn } from '@/__generated__/data-contracts';
 import { getAlertsUserUserId } from '@/actions/getAlertsUserUserId';
-import { getUsersMe } from '@/actions/getUsersMe';
+import { getSession } from '@/actions/getSession';
+import { getUsersById } from '@/actions/getUserById';
 import { patchAlertsUserUserId } from '@/actions/patchAlertsUserUserId';
 import { AlertSettingsForm } from '@/components/account/alert-settings/AlertSettingsForm';
 import { isAgencyApprover } from '@/utils/Roles';
@@ -20,10 +21,11 @@ export default async function EditUserAlertSettingsPage({
 }) {
   const { id } = await params;
 
-  const user = await getUsersMe();
+  const session = await getSession();
   const alertSettings = await getAlertsUserUserId(id);
+  const user = await getUsersById(id);
 
-  if (!isAgencyApprover(user.role)) {
+  if (!isAgencyApprover(session?.user.role)) {
     notFound();
   }
 
@@ -45,6 +47,7 @@ export default async function EditUserAlertSettingsPage({
   return (
     <div>
       <AlertSettingsForm
+        user={user}
         defaultValues={defaultValues}
         selfEdit={false}
         onSubmit={onSubmit}

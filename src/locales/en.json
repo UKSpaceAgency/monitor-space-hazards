@@ -1772,7 +1772,7 @@
     },
     "Alert_settings": {
       "title": "Edit {whose} alert settings",
-      "description": "We will send you notifications according to the settings selected on this page.",
+      "description": "We will send {to} notifications according to the settings selected on this page.",
       "warning": "Changing these settings is only recommended if advised by the National Space Operations Centre.",
       "conjunction_alerts": "Conjunction alerts",
       "self_which": "Which {type} alerts would you like to receive?",
