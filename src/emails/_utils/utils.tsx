@@ -1,5 +1,11 @@
+import type { RichTranslationValues } from 'next-intl';
+import { createTranslator } from 'next-intl';
+
 import type { TypeRisk } from '@/__generated__/data-contracts';
+import messages from '@/locales/en.json';
 import { jsonRegionsMap } from '@/utils/Regions';
+
+import { Text } from '../_components/text';
 
 export const riskColours = {
   'No': {
@@ -63,3 +69,27 @@ export const objectTypeIndex = {
   'UNKNOWN': 'Unknown Object Type',
   'R/B': 'Rocket Body',
 };
+
+export const defaultTranslationValues: RichTranslationValues = {
+  h3: chunks => <h3 className="govuk-heading-m">{chunks}</h3>,
+  p: chunks => <Text>{chunks}</Text>,
+  list: chunks => <ul className="list-disc pl-4">{chunks}</ul>,
+  item: chunks => <li className="text-sm">{chunks}</li>,
+  bold: chunks => <b>{chunks}</b>,
+  b: chunks => <b>{chunks}</b>,
+};
+
+export function createEmailTranslator<NestedKey extends Parameters<typeof createTranslator>[0]['namespace']>({ namespace }: { namespace: NestedKey }) {
+  const translator = createTranslator({
+    locale: 'en',
+    namespace,
+    messages,
+  });
+
+  const originalRich = translator.rich.bind(translator);
+  translator.rich = ((key: any, values?: RichTranslationValues) => {
+    return originalRich(key, { ...defaultTranslationValues, ...values });
+  }) as typeof translator.rich;
+
+  return translator;
+}

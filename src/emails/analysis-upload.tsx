@@ -1,14 +1,12 @@
-import { createTranslator } from 'next-intl';
-
 import type { TypeUniqueEventOut } from '@/__generated__/data-contracts';
 import { env } from '@/libs/Env';
-import messages from '@/locales/en.json';
 
 import AnalysisNotificationTable from './_components/conjunction/analysis-notification-table';
 import { Layout } from './_components/layout';
 import { Section } from './_components/section';
 import { SignIn } from './_components/sign_in';
 import { Text } from './_components/text';
+import { createEmailTranslator } from './_utils/utils';
 
 type AnalysisUploadEmailProps = {
   conjunctions: TypeUniqueEventOut[];
@@ -16,20 +14,14 @@ type AnalysisUploadEmailProps = {
 };
 
 function AnalysisUploadEmail({ conjunctions, withPlaceholders }: AnalysisUploadEmailProps) {
-  const t = createTranslator({
-    locale: 'en',
-    namespace: 'Emails',
-    messages,
-  });
+  const t = createEmailTranslator({ namespace: 'Emails' });
 
   const url = `${env.NEXTAUTH_URL}/conjunctions`;
 
   return (
     <Layout withPlaceholders={withPlaceholders} isNotification eventType="conjunction">
       <Section title={t('Analysis_upload.title')}>
-        {t.rich('Analysis_upload.content', {
-          p: chunks => <Text>{chunks}</Text>,
-        })}
+        {t.rich('Analysis_upload.content')}
         <AnalysisNotificationTable conjunctions={conjunctions} />
         <Text>{t('utc_note')}</Text>
         <SignIn link={url} />

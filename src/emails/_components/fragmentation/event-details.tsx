@@ -1,21 +1,16 @@
 import { Column, Row, Section } from '@react-email/components';
 import clsx from 'clsx';
-import { createTranslator } from 'next-intl';
 import type { ComponentProps } from 'react';
 
 import type { TypeFragmentationReportOut } from '@/__generated__/data-contracts';
-import messages from '@/locales/en.json';
+import { createEmailTranslator } from '@/emails/_utils/utils';
 
 type FragmentationEventDetailsProps = {
   report: TypeFragmentationReportOut;
 } & ComponentProps<'table'>;
 
 export const FragmentationEventDetails = ({ report, ...props }: FragmentationEventDetailsProps) => {
-  const t = createTranslator({
-    locale: 'en',
-    namespace: 'Emails.Fragmentation.Event_details',
-    messages,
-  });
+  const t = createEmailTranslator({ namespace: 'Emails.Fragmentation.Event_details' });
 
   const haveSecondaryObject = report.secondary_object_common_name && report.secondary_object_common_name !== null;
 

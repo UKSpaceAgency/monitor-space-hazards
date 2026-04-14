@@ -1,21 +1,16 @@
 import { Column, Row, Section } from '@react-email/components';
 import clsx from 'clsx';
-import { createTranslator } from 'next-intl';
 import type { ComponentProps } from 'react';
 
 import type { ScreeningResults } from '@/actions/getFragmentationEventScreeningResults';
-import messages from '@/locales/en.json';
+import { createEmailTranslator } from '@/emails/_utils/utils';
 
 type FragmentationPotentialImpactProps = {
   data: ScreeningResults[];
 } & ComponentProps<'table'>;
 
 export const FragmentationPotentialImpact = ({ data, ...props }: FragmentationPotentialImpactProps) => {
-  const t = createTranslator({
-    locale: 'en',
-    namespace: 'Emails.Fragmentation.Potential_impact',
-    messages,
-  });
+  const t = createEmailTranslator({ namespace: 'Emails.Fragmentation.Potential_impact' });
 
   return (
     <Section {...props}>

@@ -1,9 +1,7 @@
-import { createTranslator } from 'next-intl';
 import type { ComponentProps } from 'react';
 
 import type { TypeReentryEventReportOut } from '@/__generated__/data-contracts';
-import { toAffectedTerritories } from '@/emails/_utils/utils';
-import messages from '@/locales/en.json';
+import { createEmailTranslator, toAffectedTerritories } from '@/emails/_utils/utils';
 
 import { Table } from '../table';
 
@@ -12,11 +10,7 @@ type ReentryAffectedRegionsProps = {
 } & ComponentProps<'table'>;
 
 export const ReentryAffectedRegions = ({ report, ...props }: ReentryAffectedRegionsProps) => {
-  const t = createTranslator({
-    locale: 'en',
-    namespace: 'Emails.Reentry_alert.Affected_regions',
-    messages,
-  });
+  const t = createEmailTranslator({ namespace: 'Emails.Reentry_alert.Affected_regions' });
 
   const data = [
     [t('uk_mainland'), report.impact?.by_nation ? toAffectedTerritories(report.impact?.by_nation) : t('no_regions_affected')],

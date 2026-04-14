@@ -51,7 +51,7 @@ export const activitiesColumns: TranslatedColumnDef<TypeActivityEventOut>[] = [
       const operatorId = row.original.operator;
       return (
         <Link
-          href={`/operators/${operatorId}`}
+          href={`/organisations/${operatorId}`}
           className="govuk-link"
         >
           {value}

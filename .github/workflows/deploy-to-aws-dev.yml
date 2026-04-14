@@ -70,3 +70,4 @@ jobs:
           ref: main
           token: ${{ secrets.INFRA_REPO_TOKEN }}
           inputs: '{ "invoker": "frontend", "env": "dev", "image-tag":"${{ github.sha }}"}'
+

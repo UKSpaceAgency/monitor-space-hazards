@@ -1,14 +1,12 @@
-import { createTranslator } from 'next-intl';
-
 import type { TypeEventOut } from '@/__generated__/data-contracts';
 import { env } from '@/libs/Env';
-import messages from '@/locales/en.json';
 
 import ConjunctionNotificationTable from './_components/conjunction/notification-table';
 import { Layout } from './_components/layout';
 import { Section } from './_components/section';
 import { SignIn } from './_components/sign_in';
 import { Text } from './_components/text';
+import { createEmailTranslator } from './_utils/utils';
 
 type ConjunctionNotificationNewAndUpdatedEmailProps = {
   newConjunctions: TypeEventOut[];
@@ -17,20 +15,14 @@ type ConjunctionNotificationNewAndUpdatedEmailProps = {
 };
 
 function ConjunctionNotificationNewAndUpdatedEmail({ newConjunctions, updatedConjunctions, withPlaceholders }: ConjunctionNotificationNewAndUpdatedEmailProps) {
-  const t = createTranslator({
-    locale: 'en',
-    namespace: 'Emails',
-    messages,
-  });
+  const t = createEmailTranslator({ namespace: 'Emails' });
 
   const url = `${env.NEXTAUTH_URL}/conjunctions`;
 
   return (
     <Layout withPlaceholders={withPlaceholders} isNotification eventType="conjunction">
       <Section title={t('Conjunction_notification_new_and_updated.title')}>
-        {t.rich('Conjunction_notification_new_and_updated.content', {
-          p: chunks => <Text>{chunks}</Text>,
-        })}
+        {t.rich('Conjunction_notification_new_and_updated.content')}
         <ConjunctionNotificationTable conjunctions={newConjunctions} />
         <Text className="text-sm font-bold">{t('Conjunction_notification_new_and_updated.updated')}</Text>
         <ConjunctionNotificationTable conjunctions={updatedConjunctions} />

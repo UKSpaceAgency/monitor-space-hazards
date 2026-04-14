@@ -115,7 +115,7 @@
   },
   "Contact_and_organisation_information": {
     "title": "View your account details",
-    "contact_the_uksa_via": "Contact the NSpOC via",
+    "contact_the_uksa_via": "Contact NSpOC via",
     "if_your_contact_details_are_incorrect": "if your contact details are incorrect.",
     "email": "monitorspacehazards@ukspaceagency.gov.uk",
     "keys": {
@@ -178,7 +178,7 @@
   },
   "Event_notification_thresholds_settings": {
     "title": "Set your conjunction event notification thresholds",
-    "content": "<p>We will send you notifications about events which meet the thresholds you have set for each criteria.</p><p>You are responsible for the safe operation of your satellites and should choose settings which allow you to do this.</p><p>The default settings are examples of thresholds, not recommendations.</p>"
+    "content": "<p>We will send you notifications about events which meet <b>all</b> of the thresholds you have set.</p><p>You are responsible for the safe operation of your satellites and should choose settings which allow you to do this.</p>"
   },
   "Notification_settings": {
     "title": "Choose your notification settings",
@@ -330,6 +330,10 @@
       "reentry_help": {
         "summary": "Re-entry alert criteria",
         "content": "<h3>Level 1 (Standard) re-entry alert</h3><p>The criteria for producing a Level 1 (Standard) re-entry alert is as follows:</p><list><item>Less than 36 hours until re-entry, and one or more of the following:</item><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland, and/or</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories, and/or</item><item>Press interest, and/or</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Level 2 (Priority) re-entry alert</h3><p>The criteria for producing a Level 2 (Priority) re-entry alert is as follows:</p><list><item>Debris likely to survive to the ground, and one or more of the following:</item><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis, and/or</item><item>UK-licensed object, and/or</item><item>Significant press interest, and/or</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Alert distribution</h3><p>If this report is classified as a Level 1 (Standard) re-entry alert, it has been distributed only to key UK Government organisations (for example the National Space Operations Centre, Ministry of Defence and Civil Aviation Authority) and international partners.</p><p>If this report is classified as a Level 2 (Priority) re-entry alert, it has been distributed only to specific users directly involved in the Government response.</p><p>Please note: distribution lists for Level 1 and Level 2 alerts are separate. Recipients will only receive reports for the level(s) for which they are specifically included.</p>"
+      },
+      "fragmentation_help": {
+        "summary": "Fragmentation alert criteria",
+        "content": "<h3>Level 1 (Standard) fragmentation alert</h3><p>The criteria for producing a Level 1 (Standard) fragmentation alert are as follows:</p><list><item>The event involves a UK satellite, and/or</item><item>The event generates more than 50 pieces of debris and presents a high risk to UK licensed objects or human spaceflight, and/or</item><item>The event is likely to generate press interest</item></list><h3>Alert distribution</h3><p>If this report is classified as a Level 1 (Standard) fragmentation alert,  it has been distributed to key UK Government organisations (for example the National Space Operations Centre, Ministry of Defence and Civil Aviation Authority) and international partners.</p><p>In addition to the Level 1 (Standard) distribution, the following teams are notified in specific circumstances:</p><list><item>If the licensing country is the UK: Department for Science, Innovation and Technology</item><item>If there is a potential risk to the International Space Station: UK Space Agency Exploration team</item></list>"
       }
     }
   },
@@ -351,7 +355,7 @@
       "search_bar": {
         "previousLabel": "Find a previous upcoming conjunction event:",
         "upcomingLabel": "Find a upcoming conjunction event:",
-        "placeholder": "Search by event or object ID"
+        "placeholder": "Search by event ID, primary object ID or primary object name"
       },
       "type": {
         "future": "Upcoming",
@@ -428,7 +432,7 @@
         "summary": "Help with interpreting manoeuvre trade space plots",
         "content": "<p>The plot displays the predicted probability of collision for various possible manoeuvres. These predictions are based on the most recent operational CDM received from Space-Track and analysis conducted by NSpOC.</p><p>Reducing the probability of collision typically requires less fuel the further away the time of closest approach is but the probability of collision often decreases over time as more observations are made and data certainty increases. The plot assists operators in determining when and if to perform a manoeuvre by highlighting significant points in time when the probability will change.</p><p>All manoeuvres (Delta V) shown are given in the in-track direction.</p><p>These predicted probabilities of collision do not take into account any secondary collisions which may occur as a result of manoeuvring.If you wish to determine secondary collision risk, you should upload a <special>Special</special> ephemeris to Space-Track for screening.</p>"
       },
-      "download": "Manoeuvre Trade Space data"
+      "download": "manoeuvre trade space data"
     },
     "Miss_distance": {
       "header": "The changing expected miss distance leading up to the time of closest approach (TCA). Data from Space-Track is shown.",
@@ -583,7 +587,7 @@
       "upcomingLabel": "Find a upcoming conjunction event",
       "previousLabel": "Find a previous conjunction event",
       "allLabel": "Find a conjunction event",
-      "placeholder": "Search by event or object ID"
+      "placeholder": "Search by event ID, primary object ID or primary object name"
     },
     "help1": {
       "title": "Help with this table<screenReaderOnly> - Upcoming conjunctions</screenReaderOnly>",
@@ -634,7 +638,7 @@
     },
     "Further_information": {
       "title": "Further information",
-      "description": "To understand more about how this data was generated by the NSpOC, see:",
+      "description": "To understand more about how this data was generated by NSpOC, see:",
       "link1": "Conjunction event analysis information",
       "link2": "Help with the information on this page"
     },
@@ -721,7 +725,7 @@
       "content": "<p>If a collision between these objects were to occur, the resulting debris may pose additional risk to UK-licensed satellites.</p><p>The table below shows how, if this collision were to occur, the number of conjunction events (with a miss distance of 5km or less) for UK-licensed satellites would increase in the following 7 days.</p><p><bold>Only the 30 objects with the most predicted additional conjunction events in the week following a collision are shown here.</bold></p>"
     },
     "Operator_view": {
-      "content": "<p>The satellite operator of the UK-licensed object has been notified of the conjunction event via the Monitor space hazards platform. <link>Click to see the information that operators have received.</link></p>"
+      "content": "<p>The satellite operator of the UK-licensed object has been notified of the conjunction event via Monitor Space Hazards. <link>Click to see the information that operators have received.</link></p>"
     },
     "Alert_thresholds": {
       "content": "<h3>Level 1 (Standard) conjunction alert</h3><p>The criteria for producing a Level 1 (Standard) conjunction alert is as follows:</p><p>For UK-licensed objects:</p><list><item>Less than 5 days until Time of Closest Approach, and</item><item>More than 0.1% probability of collision, and</item><item>Press interest</item></list><p>For non-UK objects:</p><list><item>Less than 5 days until Time of Closest Approach, and</item><item>Classified as Low Risk or higher, and</item><item>No manoeuvre expected</item></list><p>For all objects:</p><list><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Level 2 (Priority) conjunction alert</h3><p>The criteria for producing a Level 2 (Priority) conjunction alert is as follows:</p><p>For UK-licensed objects:</p><list><item>More than 1% probability of collision, and</item><item>No manoeuvre expected</item></list><p>For non-UK objects:</p><list><item>More than 5% probability of collision, and</item><item>No manoeuvre expected, and</item><item>Significant press interest</item></list><p>For all objects:</p><list><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Alert distribution</h3><p>If this report is classified as a Level 1 (Standard) conjunction alert, it has been distributed only to key UK Government organisations (for example the National Space Operations Centre, Ministry of Defence and Civil Aviation Authority) and international partners.</p><p>If this report is classified as a Level 2 (Priority) conjunction alert, it has been distributed only to specific users directly involved in the Government response.</p><p>Please note: distribution lists for Level 1 and Level 2 alerts are separate. Recipients will only receive reports for the level(s) for which they are specifically included.</p>"
@@ -745,7 +749,7 @@
     "Further_information": {
       "methodology": {
         "title": "Conjunction analysis methodology",
-        "content": "<p>To understand more about how this data was generated by the NSpOC, see:</p><list><item><eventInformationLink>Conjunction event analysis information</eventInformationLink></item><item><helpLink>Help with the information on conjunction events</helpLink></item></list>"
+        "content": "<p>To understand more about how this data was generated by NSpOC, see:</p><list><item><eventInformationLink>Conjunction event analysis information</eventInformationLink></item><item><helpLink>Help with the information on conjunction events</helpLink></item></list>"
       }
     }
   },
@@ -895,7 +899,7 @@
       "content": "<h3>Level 1 (Standard) re-entry alert</h3><p>The criteria for producing a Level 1 (Standard) re-entry alert is as follows:</p><list><item>Less than 36 hours until re-entry, and one or more of the following:</item><item>Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland, and/or</item><item>Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories, and/or</item><item>Press interest, and/or</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Level 2 (Priority) re-entry alert</h3><p>The criteria for producing a Level 2 (Priority) re-entry alert is as follows:</p><list><item>Debris likely to survive to the ground, and one or more of the following:</item><item>More than 0.1% chance of impact in the UK (and overseas territories on case by case basis, and/or</item><item>UK-licensed object, and/or</item><item>Significant press interest, and/or</item><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Alert distribution</h3><p>If this report is classified as a Level 1 (Standard) re-entry alert, it has been distributed only to key UK Government organisations (for example the National Space Operations Centre, Ministry of Defence and Civil Aviation Authority) and international partners.</p><p>If this report is classified as a Level 2 (Priority) re-entry alert, it has been distributed only to specific users directly involved in the Government response.</p><p>Please note: distribution lists for Level 1 and Level 2 alerts are separate. Recipients will only receive reports for the level(s) for which they are specifically included.</p>"
     },
     "Further_information": {
-      "content": "To understand more about how this data was generated by the  NSpOC, see:",
+      "content": "To understand more about how this data was generated by NSpOC, see:",
       "reentry_event_analysis_information": "Re-entry event analysis information",
       "help_with_information": "Help with the information on re-entry events"
     }
@@ -1129,6 +1133,16 @@
     }
   },
   "Tables": {
+    "Activity_event_summary": {
+      "common_name": "Common name",
+      "norad_id": "NORAD ID",
+      "international_designator": "International designator",
+      "operator": "Operator",
+      "reason_for_flag": "Reason for flag",
+      "flag_date": "Date of flag",
+      "latest_tle_epoch": "Latest TLE epoch",
+      "object_information": "Object information"
+    },
     "Satellites": {
       "common_name": "Common name",
       "norad_id": "NORAD ID",
@@ -1691,7 +1705,8 @@
       "flag_date": "Date of flag",
       "orbit_type": "Orbit",
       "altitude": "Altitude (km)",
-      "longitude": "Longitude (°)"
+      "longitude": "Longitude (°)",
+      "activity_events_as_of": "Activity events as of "
     }
   },
   "Forms": {
@@ -1757,7 +1772,7 @@
     },
     "Alert_settings": {
       "title": "Edit {whose} alert settings",
-      "description": "We will send you notifications according to the settings selected on this page.",
+      "description": "We will send {to} notifications according to the settings selected on this page.",
       "warning": "Changing these settings is only recommended if advised by the National Space Operations Centre.",
       "conjunction_alerts": "Conjunction alerts",
       "self_which": "Which {type} alerts would you like to receive?",
@@ -2201,6 +2216,10 @@
       "content": "<p>The UK Space Agency's Monitor Space Hazards service has identified new conjunction events involving your satellites and crossing your thresholds. Additionally, one or more conjunction events crossing your thresholds has been updated. The links to the events and their time of closest approach are listed below.</p>",
       "updated": "Updated event(s)"
     },
+    "Manoeuvre_notification": {
+      "title": "New manoeuvre support uploaded",
+      "content": "<p>The National Space Operations Centre (NSpOC) has uploaded new manoeuvre support for the following conjunction events which meet your notification criteria. For full information on each event please visit Monitor Space Hazards via the event link.</p>"
+    },
     "Fragmentation": {
       "title": "Fragmentation Alert - Report {reportNumber}",
       "event_summary_title": "Event Summary",
@@ -2233,7 +2252,7 @@
       "Potential_impact": {
         "uk_risk": "UK and Human Spaceflight risk",
         "uk_satellites_affected": "UK Satellites affected",
-        "content": "All UK satellites were screened against the current population of objects as well as the fragments generated by the breakup model. The 'Current’ column is the number of 5 km conjunction events the object currently has per week. The 'Predicted' column is the number of additional 5 km conjunction events that would be expected in the 7-day period after the event based on the predicted orbits outputted by the breakup model.",
+        "content": "<p>All UK satellites were screened against the current object population and fragments predicted by the breakup model.</p><list><item><b>Current:</b> Number of conjunction events within 5 km per week, based on existing objects.</item><item><b>Predicted:</b> Additional conjunction events within 5 km expected in the 7 days after the event, based on predicted fragment orbits.</item></list>",
         "object": "Object",
         "norad_id": "NORAD ID",
         "estimated_mass": "Estimated Mass",
@@ -2259,7 +2278,7 @@
   "Fragmentations": {
     "title": "Track fragmentation events",
     "section_title": "All fragmentation events",
-    "description": "This table contains all tracked tragmentation events, including fragmentation events that meet the UK Space Agency's thresholds for alerting UK government. For further detail on how risk and alert thresholds are defined, see 'Help with this table' below.",
+    "description": "This table contains all tracked fragmentation events, including fragmentation events that meet the UK Space Agency's thresholds for alerting UK government. For further detail on how risk and alert thresholds are defined, see 'Help with this table' below.",
     "search_bar": {
       "upcomingLabel": "Find a upcoming fragmentation event",
       "previousLabel": "Find a previous fragmentation event",
@@ -2268,7 +2287,7 @@
     },
     "help": {
       "title": "Help with this table<screenReaderOnly> - Fragmentation events</screenReaderOnly>",
-      "content": "<p>This table shows all upcoming and previous tracked fragmentation events that have been identified by Space-Track and ingested into Monitor space hazards, including events which pose a risk to UK satellites and Human Spaceflight missions. Higher risk events contain additional analysis by UKSA's Orbital Analysts at the National Space Operations Centre.</p><list><item>Select the <bold>Event ID</bold> to view more information</item><item>Each Event ID or row represents <bold>one fragmentation event</bold></item><item>Sort the alerts according to criteria by clicking on the relevant <bold>headings</bold></item></list>"
+      "content": "<p>This table shows all upcoming and previous tracked fragmentation events that have been identified by Monitor Space Hazards, including events which pose a risk to UK satellites and Human Spaceflight missions. Higher risk events contain additional analysis by NSpOC Orbital Analysts.</p><list><item>Select the <bold>Event ID</bold> to view more information</item><item>Each Event ID or row represents <bold>one fragmentation event</bold></item><item>Sort the alerts according to criteria by clicking on the relevant <bold>headings</bold></item></list>"
     }
   },
   "Fragmentation": {
@@ -2314,10 +2333,10 @@
     },
     "Additional_risk": {
       "title": "Risk to your assets",
-      "content": "<p><b>UK satellites affected</b></p><p>All UK satellites were screened against the current population of objects as well as the fragments generated by the breakup model.</p>",
+      "content": "<p><b>UK satellites affected</b></p><p>All UK satellites were screened against the current object population and fragments predicted by the breakup model.</p>",
       "help": {
         "title": "Help with this table",
-        "content": "<p>The 'Current Tally column is the number of 5 km conjunction events the object currently has per week. The 'Fragments Tally' column is the number of <b>additional 5 km conjunction events</b> that would be expected in the 7-day period after the event based on the predicted orbits outputted by the breakup model. Also included in the table is the mass of the licensed object and the orbit information.</p>"
+        "content": "<list><item><b>Current weekly tally:</b> Number of conjunction events within 5 km per week, based on existing objects.</item><item><b>Additional projected weekly conjunctions:</b> Additional conjunction events within 5 km expected in the 7 days after the event, based on predicted fragment orbits.</item></list>"
       }
     },
     "Guidance_on_response": {

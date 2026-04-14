@@ -5,7 +5,7 @@ import { useState } from 'react';
 import type { SubmitHandler, UseFormRegister } from 'react-hook-form';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import type { TypeAlertSettingsIn } from '@/__generated__/data-contracts';
+import type { TypeAlertSettingsIn, TypeUserOut } from '@/__generated__/data-contracts';
 import Accordion from '@/ui/accordion/accordion';
 import Button from '@/ui/button/button';
 import Checkboxes from '@/ui/checkboxes/checkboxes';
@@ -49,12 +49,13 @@ function Option({
 }
 
 type AlertSettingsFormProps = {
+  user?: TypeUserOut;
   defaultValues: AlertSettingsSchema;
   selfEdit?: boolean;
   onSubmit: (data: TypeAlertSettingsIn) => Promise<void>;
 };
 
-const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitAction }: AlertSettingsFormProps) => {
+const AlertSettingsForm = ({ user, defaultValues, selfEdit = true, onSubmit: onSubmitAction }: AlertSettingsFormProps) => {
   const t = useTranslations('Forms.Alert_settings');
   const tCommon = useTranslations('Common');
 
@@ -105,8 +106,8 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
           )
         : (
             <>
-              <h1 className="govuk-heading-xl">{t('title', { whose: selfEdit ? 'your' : 'user\'s' })}</h1>
-              <p className="govuk-body">{t('description')}</p>
+              <h1 className="govuk-heading-xl">{t('title', { whose: selfEdit ? 'your' : user?.first_name ? `${user.first_name}'s` : 'user\'s' })}</h1>
+              <p className="govuk-body">{t('description', { to: user?.first_name ? `${user.first_name} ${user.last_name}` : 'you' })}</p>
               {selfEdit && (
                 <WarningText>
                   {t('warning')}
@@ -119,43 +120,6 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                   <Accordion
                     id="alert-settings"
                     initialItems={[
-                      {
-                        id: 'conjunction_alerts',
-                        heading: t('conjunction_alerts'),
-                        content: (
-                          <>
-                            <Checkboxes
-                              aria-label="Conjunction Alerts"
-                              legend={t(
-                                `${selfEdit ? 'self_which' : 'their_which'}`,
-                                { type: 'conjunction' },
-                              )}
-                              hint={t('select_one_option')}
-                              items={[{
-                                id: 'receive_all_conjunction_alerts',
-                                value: 'standard',
-                                children: t('receive_all_conjunction_alerts'),
-                                hint: t('recommended_for'),
-                                ...register('conjunctionAlerts'),
-                              }, {
-                                id: 'only_priority_conjunction_alerts',
-                                value: 'priority',
-                                children: t('only_priority_conjunction_alerts'),
-                                hint: t('recommended_for_all_other'),
-                                ...register('conjunctionAlerts'),
-                              }]}
-                            />
-                            <AlertSettingsDetails type="conjunction" />
-                            <Option
-                              id="receiveConjunction"
-                              name="receiveConjunction"
-                              hint={t('select_one_option')}
-                              label={t('how_would_you_like_conjunction')}
-                              register={register}
-                            />
-                          </>
-                        ),
-                      },
                       {
                         id: 're_entry_alerts',
                         heading: t('re_entry_alerts'),
@@ -246,6 +210,43 @@ const AlertSettingsForm = ({ defaultValues, selfEdit = true, onSubmit: onSubmitA
                               name="receiveFragmentation"
                               hint={t('select_one_option')}
                               label={t('how_would_you_like_fragmentation')}
+                              register={register}
+                            />
+                          </>
+                        ),
+                      },
+                      {
+                        id: 'conjunction_alerts',
+                        heading: t('conjunction_alerts'),
+                        content: (
+                          <>
+                            <Checkboxes
+                              aria-label="Conjunction Alerts"
+                              legend={t(
+                                `${selfEdit ? 'self_which' : 'their_which'}`,
+                                { type: 'conjunction' },
+                              )}
+                              hint={t('select_one_option')}
+                              items={[{
+                                id: 'receive_all_conjunction_alerts',
+                                value: 'standard',
+                                children: t('receive_all_conjunction_alerts'),
+                                hint: t('recommended_for'),
+                                ...register('conjunctionAlerts'),
+                              }, {
+                                id: 'only_priority_conjunction_alerts',
+                                value: 'priority',
+                                children: t('only_priority_conjunction_alerts'),
+                                hint: t('recommended_for_all_other'),
+                                ...register('conjunctionAlerts'),
+                              }]}
+                            />
+                            <AlertSettingsDetails type="conjunction" />
+                            <Option
+                              id="receiveConjunction"
+                              name="receiveConjunction"
+                              hint={t('select_one_option')}
+                              label={t('how_would_you_like_conjunction')}
                               register={register}
                             />
                           </>

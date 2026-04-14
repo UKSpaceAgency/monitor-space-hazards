@@ -17,49 +17,8 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
   return (
     <>
       <h2 className="govuk-heading-l">
-        {t('distribution_list', { type: 'conjunction' })}
-      </h2>
-
-      <Accordion
-        id="conjunction-list"
-        initialItems={[
-          {
-            id: 'all-conjunction',
-            heading: t('receive_alerts_standard', { type: 'conjunction' }),
-            content: (
-              <div className="overflow-auto">
-                <DataTable
-                  data={alerts.filter(alert => alert.conjunction_alert_settings?.chosen_options?.includes('standard'))}
-                  columns={distributionListColumns}
-                  largerText
-                />
-              </div>
-            ),
-          },
-          {
-            id: 'only-priority-conjunctions',
-            heading: t('receive_alerts_priority', { type: 'conjunction' }),
-            content: (
-              <div className="overflow-auto">
-                <DataTable
-                  data={alerts.filter(alert => alert.conjunction_alert_settings?.chosen_options?.includes('priority'))}
-                  columns={distributionListColumns}
-                  largerText
-                />
-              </div>
-            ),
-          },
-        ]}
-      />
-
-      <Details summary={t.rich('conjunctions_help.summary')}>
-        {t.rich('conjunctions_help.content')}
-      </Details>
-
-      <h2 className="govuk-heading-l">
         {t('distribution_list', { type: 're-entry' })}
       </h2>
-
       <Accordion
         id="re-entries-list"
         initialItems={[
@@ -104,9 +63,82 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
           },
         ]}
       />
-
       <Details summary={t.rich('reentry_help.summary')}>
         {t.rich('reentry_help.content')}
+      </Details>
+      <h2 className="govuk-heading-l">
+        {t('distribution_list', { type: 'fragmentation' })}
+      </h2>
+      <Accordion
+        id="fragmentation-list"
+        initialItems={[
+          {
+            id: 'all-fragmentation',
+            heading: t('receive_alerts_standard', { type: 'fragmentation' }),
+            content: (
+              <div className="overflow-auto">
+                <DataTable
+                  data={alerts.filter(alert => alert.fragmentation_alert_settings?.chosen_options?.includes('standard'))}
+                  columns={distributionListColumns}
+                  largerText
+                />
+              </div>
+            ),
+          },
+          {
+            id: 'only-priority-fragmentation',
+            heading: t('receive_alerts_priority', { type: 'fragmentation' }),
+            content: (
+              <div className="overflow-auto">
+                <DataTable
+                  data={alerts.filter(alert => alert.fragmentation_alert_settings?.chosen_options?.includes('priority'))}
+                  columns={distributionListColumns}
+                  largerText
+                />
+              </div>
+            ),
+          },
+        ]}
+      />
+      <Details summary={t.rich('fragmentation_help.summary')}>
+        {t.rich('fragmentation_help.content')}
+      </Details>
+      <h2 className="govuk-heading-l">
+        {t('distribution_list', { type: 'conjunction' })}
+      </h2>
+      <Accordion
+        id="conjunction-list"
+        initialItems={[
+          {
+            id: 'all-conjunction',
+            heading: t('receive_alerts_standard', { type: 'conjunction' }),
+            content: (
+              <div className="overflow-auto">
+                <DataTable
+                  data={alerts.filter(alert => alert.conjunction_alert_settings?.chosen_options?.includes('standard'))}
+                  columns={distributionListColumns}
+                  largerText
+                />
+              </div>
+            ),
+          },
+          {
+            id: 'only-priority-conjunctions',
+            heading: t('receive_alerts_priority', { type: 'conjunction' }),
+            content: (
+              <div className="overflow-auto">
+                <DataTable
+                  data={alerts.filter(alert => alert.conjunction_alert_settings?.chosen_options?.includes('priority'))}
+                  columns={distributionListColumns}
+                  largerText
+                />
+              </div>
+            ),
+          },
+        ]}
+      />
+      <Details summary={t.rich('conjunctions_help.summary')}>
+        {t.rich('conjunctions_help.content')}
       </Details>
     </>
   );

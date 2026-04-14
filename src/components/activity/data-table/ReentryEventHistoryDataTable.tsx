@@ -1,7 +1,7 @@
 import { getTips } from '@/actions/getTips';
 import { DataTable } from '@/components/DataTable';
 
-import { renderReentryHistoryDetailAsSubcomponent } from '../tables/ReentryEventHistoryDetailTable';
+import { renderReentryHistoryDetailAsSubcomponent } from '../tables/ActivityEventHistoryDetailTable';
 import { reentryEventHistoryColumns } from './ReentryEventHistoryDataTableColumns';
 
 type ReentryEventHistoryDataTableProps = {

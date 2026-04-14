@@ -1,6 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
+import { pick } from 'lodash';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { signOut, useSession } from 'next-auth/react';
@@ -13,7 +14,7 @@ export const Navigation = () => {
   const t = useTranslations('Template');
   const messages = useMessages() as IntlMessages;
   const { data: session } = useSession();
-  const keys = Object.keys(messages.Template.navigation).filter((key) => {
+  const keys = Object.keys(pick(messages.Template.navigation, ['re-entries', 'fragmentations', 'conjunctions', 'activity', 'satellites', 'account'])).filter((key) => {
     if (key === 'activity') {
       return false;
     }

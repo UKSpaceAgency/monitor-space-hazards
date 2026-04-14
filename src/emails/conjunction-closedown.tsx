@@ -1,14 +1,12 @@
-import { createTranslator } from 'next-intl';
-
 import type { TypeConjunctionReportOut, TypeUniqueEventOut } from '@/__generated__/data-contracts';
 import { env } from '@/libs/Env';
-import messages from '@/locales/en.json';
 
 import { ConjunctionEventDetails } from './_components/conjunction/event-details';
 import { ConjunctionEventOverview } from './_components/conjunction/event-overview';
 import { Layout } from './_components/layout';
 import { Section } from './_components/section';
 import { Subheader } from './_components/subheader';
+import { createEmailTranslator } from './_utils/utils';
 
 type ConjunctionClosedownEmailProps = {
   report: TypeConjunctionReportOut;
@@ -17,11 +15,7 @@ type ConjunctionClosedownEmailProps = {
 };
 
 function ConjunctionClosedownEmail({ report, event, withPlaceholders }: ConjunctionClosedownEmailProps) {
-  const t = createTranslator({
-    locale: 'en',
-    namespace: 'Emails',
-    messages,
-  });
+  const t = createEmailTranslator({ namespace: 'Emails' });
 
   const eventLink = `${env.NEXTAUTH_URL}/conjunctions/${report.short_id}/alert`;
 

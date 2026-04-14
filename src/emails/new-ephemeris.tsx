@@ -1,12 +1,9 @@
-import { createTranslator } from 'next-intl';
-
 import { env } from '@/libs/Env';
-import messages from '@/locales/en.json';
 
 import { Layout } from './_components/layout';
 import { Link } from './_components/link';
 import { Section } from './_components/section';
-import { Text } from './_components/text';
+import { createEmailTranslator } from './_utils/utils';
 
 type NewEphemerisEmailProps = {
   commonName: string;
@@ -15,11 +12,7 @@ type NewEphemerisEmailProps = {
 };
 
 function NewEphemerisEmail({ commonName, noradId, withPlaceholders }: NewEphemerisEmailProps) {
-  const t = createTranslator({
-    locale: 'en',
-    namespace: 'Emails',
-    messages,
-  });
+  const t = createEmailTranslator({ namespace: 'Emails' });
 
   const url = `${env.NEXTAUTH_URL}/satellites/${noradId}`;
 
@@ -29,7 +22,6 @@ function NewEphemerisEmail({ commonName, noradId, withPlaceholders }: NewEphemer
         {t.rich('Conjunction_new_ephemeris.content', {
           commonName,
           noradId,
-          p: chunks => <Text>{chunks}</Text>,
           link: chunks => <Link href={url}>{chunks}</Link>,
         })}
       </Section>

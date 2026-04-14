@@ -1,11 +1,9 @@
 import { Section } from '@react-email/components';
-import { createTranslator } from 'next-intl';
 import type { ComponentProps } from 'react';
 
 import type { TypeConjunctionReportOut, TypeRisk, TypeUniqueEventOut } from '@/__generated__/data-contracts';
-import { renderRiskTag } from '@/emails/_utils/utils';
+import { createEmailTranslator, renderRiskTag } from '@/emails/_utils/utils';
 import { dayjs, FORMAT_FULL_DATE_TIME_WITH_UTC } from '@/libs/Dayjs';
-import messages from '@/locales/en.json';
 import { roundedFixed, roundedPercent } from '@/utils/Math';
 
 import { Link } from '../link';
@@ -21,11 +19,7 @@ type ConjunctionEventSummaryProps = {
 } & ComponentProps<'table'>;
 
 export const ConjunctionEventSummary = ({ eventUrl, report, event, ...props }: ConjunctionEventSummaryProps) => {
-  const t = createTranslator({
-    locale: 'en',
-    namespace: 'Emails.Conjunction_alert.Event_summary',
-    messages,
-  });
+  const t = createEmailTranslator({ namespace: 'Emails.Conjunction_alert.Event_summary' });
 
   const data = [
     [t('report_number'), report.report_number],

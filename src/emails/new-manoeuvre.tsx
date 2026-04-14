@@ -8,20 +8,20 @@ import { SignIn } from './_components/sign_in';
 import { Text } from './_components/text';
 import { createEmailTranslator } from './_utils/utils';
 
-type ConjunctionNotificationEmailProps = {
+type NewManoeuvreEmailProps = {
   conjunctions: TypeEventOut[];
   withPlaceholders: boolean;
 };
 
-function ConjunctionNotificationEmail({ conjunctions, withPlaceholders }: ConjunctionNotificationEmailProps) {
+function NewManoeuvreEmail({ conjunctions, withPlaceholders }: NewManoeuvreEmailProps) {
   const t = createEmailTranslator({ namespace: 'Emails' });
 
   const url = `${env.NEXTAUTH_URL}/conjunctions`;
 
   return (
     <Layout withPlaceholders={withPlaceholders} isNotification eventType="conjunction">
-      <Section title={t('Conjunction_notification.title')}>
-        {t.rich('Conjunction_notification.content')}
+      <Section title={t('Manoeuvre_notification.title')}>
+        {t.rich('Manoeuvre_notification.content')}
         <ConjunctionNotificationTable conjunctions={conjunctions} />
         <Text>{t('utc_note')}</Text>
         <SignIn link={url} />
@@ -30,7 +30,7 @@ function ConjunctionNotificationEmail({ conjunctions, withPlaceholders }: Conjun
   );
 }
 
-ConjunctionNotificationEmail.PreviewProps = {
+NewManoeuvreEmail.PreviewProps = {
   conjunctions: [
     {
       short_id: '123',
@@ -42,4 +42,4 @@ ConjunctionNotificationEmail.PreviewProps = {
   ],
 };
 
-export default ConjunctionNotificationEmail;
+export default NewManoeuvreEmail;
