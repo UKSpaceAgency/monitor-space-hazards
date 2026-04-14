@@ -1,8 +1,5 @@
-import { createTranslator } from 'next-intl';
-
 import type { TypeReentryEventOut, TypeReentryEventReportOut, TypeTIPOut } from '@/__generated__/data-contracts';
 import { env } from '@/libs/Env';
-import messages from '@/locales/en.json';
 
 import { Layout } from './_components/layout';
 import { Map } from './_components/map';
@@ -15,7 +12,7 @@ import { Section } from './_components/section';
 import { SignIn } from './_components/sign_in';
 import { Subheader } from './_components/subheader';
 import { Text } from './_components/text';
-import { objectTypeIndex } from './_utils/utils';
+import { createEmailTranslator, objectTypeIndex } from './_utils/utils';
 
 type ReEntryEmailProps = {
   event: TypeReentryEventOut;
@@ -25,11 +22,7 @@ type ReEntryEmailProps = {
 };
 
 function ReEntryClosedownEmail({ event, report, tip, withPlaceholders }: ReEntryEmailProps) {
-  const t = createTranslator({
-    locale: 'en',
-    namespace: 'Emails',
-    messages,
-  });
+  const t = createEmailTranslator({ namespace: 'Emails' });
 
   const eventLink = `${env.NEXTAUTH_URL}/re-entries/${event.short_id}/alert`;
 

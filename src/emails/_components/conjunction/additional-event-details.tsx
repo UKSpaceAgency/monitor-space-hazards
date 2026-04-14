@@ -1,8 +1,7 @@
-import { createTranslator } from 'next-intl';
 import type { ComponentProps } from 'react';
 
 import type { TypeConjunctionReportOut } from '@/__generated__/data-contracts';
-import messages from '@/locales/en.json';
+import { createEmailTranslator } from '@/emails/_utils/utils';
 
 import { Table } from '../table';
 
@@ -11,11 +10,7 @@ type ConjunctionAdditionalEventDetailsProps = {
 } & ComponentProps<'table'>;
 
 export const ConjunctionAdditionalEventDetails = ({ report, ...props }: ConjunctionAdditionalEventDetailsProps) => {
-  const t = createTranslator({
-    locale: 'en',
-    namespace: 'Emails.Conjunction_alert.Additional_event_details',
-    messages,
-  });
+  const t = createEmailTranslator({ namespace: 'Emails.Conjunction_alert.Additional_event_details' });
 
   const data = [
     [t('predicted_miss_distance'), `${report.miss_distance ?? 'Unknown'} km`],

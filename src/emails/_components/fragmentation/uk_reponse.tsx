@@ -1,7 +1,6 @@
 import { Section } from '@react-email/components';
-import { createTranslator } from 'next-intl';
 
-import messages from '@/locales/en.json';
+import { createEmailTranslator } from '@/emails/_utils/utils';
 
 import { Markdown } from '../markdown';
 import { Text } from '../text';
@@ -11,11 +10,7 @@ type FragmentationUkResponseProps = {
 };
 
 const FragmentationUkResponse = ({ ukResponse }: FragmentationUkResponseProps) => {
-  const t = createTranslator({
-    locale: 'en',
-    namespace: 'Emails.Fragmentation.Uk_response',
-    messages,
-  });
+  const t = createEmailTranslator({ namespace: 'Emails.Fragmentation.Uk_response' });
 
   return (
     <Section className="!w-full">

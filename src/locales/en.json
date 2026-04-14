@@ -2216,6 +2216,10 @@
       "content": "<p>The UK Space Agency's Monitor Space Hazards service has identified new conjunction events involving your satellites and crossing your thresholds. Additionally, one or more conjunction events crossing your thresholds has been updated. The links to the events and their time of closest approach are listed below.</p>",
       "updated": "Updated event(s)"
     },
+    "Manoeuvre_notification": {
+      "title": "New manoeuvre support uploaded",
+      "content": "<p>The National Space Operations Centre (NSpOC) has uploaded new manoeuvre support for the following conjunction events which meet your notification criteria. For full information on each event please visit Monitor Space Hazards via the event link.</p>"
+    },
     "Fragmentation": {
       "title": "Fragmentation Alert - Report {reportNumber}",
       "event_summary_title": "Event Summary",

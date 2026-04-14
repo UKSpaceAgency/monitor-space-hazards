@@ -1,11 +1,10 @@
 import { Column, Row, Section } from '@react-email/components';
 import clsx from 'clsx';
 import { isNumber } from 'lodash';
-import { createTranslator } from 'next-intl';
 import type { ComponentProps } from 'react';
 
 import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
-import messages from '@/locales/en.json';
+import { createEmailTranslator } from '@/emails/_utils/utils';
 import { roundedFixed } from '@/utils/Math';
 
 type ReentryRiskProbabilitiesProps = {
@@ -13,11 +12,7 @@ type ReentryRiskProbabilitiesProps = {
 } & ComponentProps<'table'>;
 
 export const ReentryRiskProbabilities = ({ event, ...props }: ReentryRiskProbabilitiesProps) => {
-  const t = createTranslator({
-    locale: 'en',
-    namespace: 'Emails.Reentry_alert.Risk_probabilities',
-    messages,
-  });
+  const t = createEmailTranslator({ namespace: 'Emails.Reentry_alert.Risk_probabilities' });
 
   const data = [{
     type: t('debris_impact'),

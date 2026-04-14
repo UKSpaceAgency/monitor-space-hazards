@@ -1,9 +1,6 @@
-import { createTranslator } from 'next-intl';
-
 import type { TypeFragmentationEvent, TypeFragmentationReportOut } from '@/__generated__/data-contracts';
 import type { ScreeningResults } from '@/actions/getFragmentationEventScreeningResults';
 import { env } from '@/libs/Env';
-import messages from '@/locales/en.json';
 
 import { FragmentationEventDetails } from './_components/fragmentation/event-details';
 import { FragmentationEventSummary } from './_components/fragmentation/event-summary';
@@ -16,6 +13,7 @@ import { Section } from './_components/section';
 import { SignIn } from './_components/sign_in';
 import { Subheader } from './_components/subheader';
 import { Text } from './_components/text';
+import { createEmailTranslator } from './_utils/utils';
 
 type FragmentationEmailProps = {
   event: TypeFragmentationEvent;
@@ -25,11 +23,7 @@ type FragmentationEmailProps = {
 };
 
 function FragmentationEmail({ event, report, screeningResults, withPlaceholders }: FragmentationEmailProps) {
-  const t = createTranslator({
-    locale: 'en',
-    namespace: 'Emails',
-    messages,
-  });
+  const t = createEmailTranslator({ namespace: 'Emails' });
 
   const eventLink = `${env.NEXTAUTH_URL}/fragmentations/${event.short_id}`;
 

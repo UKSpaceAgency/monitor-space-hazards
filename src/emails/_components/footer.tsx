@@ -1,9 +1,8 @@
 import { Button, Img, Section as EmailSection } from '@react-email/components';
-import { createTranslator } from 'next-intl';
 import { useMemo } from 'react';
 
+import { createEmailTranslator } from '@/emails/_utils/utils';
 import { env } from '@/libs/Env';
-import messages from '@/locales/en.json';
 
 import { Link } from './link';
 import { Section } from './section';
@@ -18,11 +17,7 @@ type FooterProps = {
 };
 
 export const Footer = ({ withPlaceholders, isNotification, isShort, eventType, shortId }: FooterProps) => {
-  const t = createTranslator({
-    locale: 'en',
-    namespace: 'Emails.Footer',
-    messages,
-  });
+  const t = createEmailTranslator({ namespace: 'Emails.Footer' });
 
   const key = isShort ? 'content_short' : isNotification ? 'content_notification' : 'content';
 

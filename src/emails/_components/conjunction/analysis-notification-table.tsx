@@ -1,9 +1,7 @@
-import { createTranslator } from 'next-intl';
-
 import type { TypeUniqueEventOut } from '@/__generated__/data-contracts';
+import { createEmailTranslator } from '@/emails/_utils/utils';
 import { dayjs, FORMAT_FULL_DATE_TIME_WITH_UTC } from '@/libs/Dayjs';
 import { env } from '@/libs/Env';
-import messages from '@/locales/en.json';
 import { displayExponential } from '@/utils/Math';
 
 import { DataTable } from '../data-table';
@@ -14,11 +12,7 @@ type AnalysisNotificationTableProps = {
 };
 
 const AnalysisNotificationTable = ({ conjunctions }: AnalysisNotificationTableProps) => {
-  const t = createTranslator({
-    locale: 'en',
-    namespace: 'Emails.Analysis_notification_table',
-    messages,
-  });
+  const t = createEmailTranslator({ namespace: 'Emails.Analysis_notification_table' });
 
   const url = `${env.NEXTAUTH_URL}/conjunctions`;
 

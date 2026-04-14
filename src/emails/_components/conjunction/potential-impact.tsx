@@ -1,9 +1,8 @@
 import { Section } from '@react-email/components';
-import { createTranslator } from 'next-intl';
 import type { ComponentProps } from 'react';
 
 import type { TypeConjunctionReportOut, TypeUniqueEventOut } from '@/__generated__/data-contracts';
-import messages from '@/locales/en.json';
+import { createEmailTranslator } from '@/emails/_utils/utils';
 
 import { Table } from '../table';
 
@@ -13,11 +12,7 @@ type ConjunctionPotentialImpactProps = {
 } & ComponentProps<'table'>;
 
 export const ConjunctionPotentialImpact = ({ report, ...props }: ConjunctionPotentialImpactProps) => {
-  const t = createTranslator({
-    locale: 'en',
-    namespace: 'Emails.Conjunction_alert.Potential_impact_of_event',
-    messages,
-  });
+  const t = createEmailTranslator({ namespace: 'Emails.Conjunction_alert.Potential_impact_of_event' });
 
   const data = [
     [t('predicted_number_of_fragments'), report.predicted_fragments],

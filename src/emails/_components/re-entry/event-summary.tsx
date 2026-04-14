@@ -1,10 +1,8 @@
-import { createTranslator } from 'next-intl';
 import { type ComponentProps, Fragment } from 'react';
 
 import type { TypeReentryEventOut, TypeTIPOut } from '@/__generated__/data-contracts';
-import { objectTypeIndex } from '@/emails/_utils/utils';
+import { createEmailTranslator, objectTypeIndex } from '@/emails/_utils/utils';
 import { dayjs, FORMAT_FULL_DATE_TIME_WITH_UTC } from '@/libs/Dayjs';
-import messages from '@/locales/en.json';
 
 import { Table } from '../table';
 
@@ -15,11 +13,7 @@ type ReentryEventSummaryProps = {
 } & ComponentProps<'table'>;
 
 export const ReentryEventSummary = ({ event, tip, showDirectionOfTravel = false, ...props }: ReentryEventSummaryProps) => {
-  const t = createTranslator({
-    locale: 'en',
-    namespace: 'Emails.Reentry_alert.Event_summary',
-    messages,
-  });
+  const t = createEmailTranslator({ namespace: 'Emails.Reentry_alert.Event_summary' });
 
   const data = [
     [t('object_name'), event.object_name],

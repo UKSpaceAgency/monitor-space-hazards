@@ -1,9 +1,8 @@
 import { Section } from '@react-email/components';
-import { createTranslator } from 'next-intl';
 import type { ComponentProps } from 'react';
 
 import type { TypeConjunctionReportOut, TypeUniqueEventOut } from '@/__generated__/data-contracts';
-import messages from '@/locales/en.json';
+import { createEmailTranslator } from '@/emails/_utils/utils';
 import { getFullCountry } from '@/utils/Regions';
 
 import { Table } from '../table';
@@ -15,11 +14,7 @@ type ConjunctionEventOverviewProps = {
 } & ComponentProps<'table'>;
 
 export const ConjunctionEventOverview = ({ eventUrl, report, event, ...props }: ConjunctionEventOverviewProps) => {
-  const t = createTranslator({
-    locale: 'en',
-    namespace: 'Emails.Conjunction_alert.Objects',
-    messages,
-  });
+  const t = createEmailTranslator({ namespace: 'Emails.Conjunction_alert.Objects' });
 
   const objectData = [
     [t('object_name'), report.primary_object_common_name, report.secondary_object_common_name],

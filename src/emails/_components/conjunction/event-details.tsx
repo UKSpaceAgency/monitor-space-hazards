@@ -1,10 +1,8 @@
 import { Section } from '@react-email/components';
-import { createTranslator } from 'next-intl';
 import type { ComponentProps } from 'react';
 
 import type { TypeConjunctionReportOut, TypeRisk, TypeUniqueEventOut } from '@/__generated__/data-contracts';
-import { renderRiskTag } from '@/emails/_utils/utils';
-import messages from '@/locales/en.json';
+import { createEmailTranslator, renderRiskTag } from '@/emails/_utils/utils';
 import { roundedPercent } from '@/utils/Math';
 
 import { Link } from '../link';
@@ -18,11 +16,7 @@ type ConjunctionEventDetailsProps = {
 } & ComponentProps<'table'>;
 
 export const ConjunctionEventDetails = ({ eventUrl, report, event, ...props }: ConjunctionEventDetailsProps) => {
-  const t = createTranslator({
-    locale: 'en',
-    namespace: 'Emails.Conjunction_alert.Event_details',
-    messages,
-  });
+  const t = createEmailTranslator({ namespace: 'Emails.Conjunction_alert.Event_details' });
 
   const objectData = [
     [t('details'), t.rich('details_content', { link: chunks => <Link href={eventUrl}>{chunks}</Link> })],

@@ -1,7 +1,6 @@
 import { Section } from '@react-email/components';
-import { createTranslator } from 'next-intl';
 
-import messages from '@/locales/en.json';
+import { createEmailTranslator } from '@/emails/_utils/utils';
 
 import { Markdown } from '../markdown';
 import { Text } from '../text';
@@ -11,11 +10,7 @@ type ReentryPressAttentionProps = {
 };
 
 export const ReentryPressAttention = ({ pressAttention }: ReentryPressAttentionProps) => {
-  const t = createTranslator({
-    locale: 'en',
-    namespace: 'Emails.Reentry_alert.Press_attention',
-    messages,
-  });
+  const t = createEmailTranslator({ namespace: 'Emails.Reentry_alert.Press_attention' });
 
   return (
     <Section className="!w-full pt-4">

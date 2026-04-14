@@ -1,6 +1,4 @@
-import { createTranslator } from 'next-intl';
-
-import messages from '@/locales/en.json';
+import { createEmailTranslator } from '@/emails/_utils/utils';
 
 import { Link } from './link';
 import { Text } from './text';
@@ -10,11 +8,7 @@ type SignInProps = {
 };
 
 export const SignIn = ({ link }: SignInProps) => {
-  const t = createTranslator({
-    locale: 'en',
-    namespace: 'Emails',
-    messages,
-  });
+  const t = createEmailTranslator({ namespace: 'Emails' });
 
   return (
     <Text className="mb-0">
