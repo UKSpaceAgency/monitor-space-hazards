@@ -345,17 +345,26 @@
     }
   },
   "Satellite": {
+    "accordion": {
+      "satellite_information": "Satellite information",
+      "object_data": "Object data",
+      "ephemeris_data": "Ephemeris data",
+      "conjunction_events": "Conjunction events",
+      "all_conjunction_events": "All conjunction events"
+    },
     "Ephemeris_data": {
       "title": "Ephemeris data",
       "content": "Ephemeris files uploaded by the operator are shown here:",
       "upload_button": "Upload your ephemeris data"
     },
     "Conjunction_events": {
-      "title": "{type} conjunction events",
-      "search_bar": {
-        "previousLabel": "Find a previous upcoming conjunction event:",
-        "upcomingLabel": "Find a upcoming conjunction event:",
-        "placeholder": "Search by event ID, primary object ID or primary object name"
+      "description": "This table shows all upcoming conjunction events involving {commonName}. You can apply filters to view past events.",
+      "filters": {
+        "summary": "Apply filters to this table:",
+        "all": "All",
+        "upcoming": "Upcoming",
+        "past": "Past",
+        "select_label": "Filter by"
       },
       "type": {
         "future": "Upcoming",
@@ -1697,9 +1706,11 @@
         "past": "Past",
         "select_label": "Filter by"
       },
+      "event_information": "Event information",
+      "object_information": "Latest recorded position",
       "reason_for_flag": "Reason for flag",
       "short_id": "Event ID",
-      "common_name": "Object",
+      "common_name": "Satellite",
       "operator_name": "Operator",
       "norad_id": "NORAD ID",
       "flag_date": "Date of flag",
