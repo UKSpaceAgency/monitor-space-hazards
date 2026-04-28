@@ -57,7 +57,7 @@ function FragmentationEmail({ event, report, screeningResults, withPlaceholders 
           </>
         )}
         <Text className="text-sm mb-2 font-bold">{t('Fragmentation.Potential_impact.uk_satellites_affected')}</Text>
-        <Markdown>{t('Fragmentation.Potential_impact.content')}</Markdown>
+        {t.rich('Fragmentation.Potential_impact.content')}
         <FragmentationPotentialImpact data={screeningResults} />
       </Section>
       <Section title={t('Fragmentation.guidance_title')}>

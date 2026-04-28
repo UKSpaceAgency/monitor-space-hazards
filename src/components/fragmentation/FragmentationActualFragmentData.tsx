@@ -17,7 +17,7 @@ const ActualFragmentData = async ({ shortId, modelledFragments, knownFragments, 
 
   const gabbardData = await getFragmentationEventGabbardData(shortId);
 
-  const dates = Array.from(gabbardData.keys()).sort((a, b) => new Date(b).getTime() - new Date(a).getTime());
+  const dates = Array.from(gabbardData.keys()).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
 
   return (
     <div data-pdf={dataPdf}>

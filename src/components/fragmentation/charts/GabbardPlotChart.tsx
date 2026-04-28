@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 import type { GabbardDataResponse } from '@/actions/getFragmentationEventGabbardData';
 import { GabbardChart } from '@/components/charts/gabbard-chart/GabbardChart';
-import { dayjs, FORMAT_SHORT_DATE } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 
 const GabbardPlotChart = ({ dates, gabbardData }: { dates: string[]; gabbardData: Map<string, GabbardDataResponse> }) => {
   const t = useTranslations('Charts.Gabbard_chart');
@@ -31,7 +31,7 @@ const GabbardPlotChart = ({ dates, gabbardData }: { dates: string[]; gabbardData
         <div className="flex w-full justify-between">
           {dates.map(date => (
             <p key={date} className="text-sm text-gray-500">
-              <span>{dayjs(date).format(FORMAT_SHORT_DATE)}</span>
+              <span>{dayjs(date).format(FORMAT_DATE_TIME)}</span>
             </p>
           ))}
         </div>
