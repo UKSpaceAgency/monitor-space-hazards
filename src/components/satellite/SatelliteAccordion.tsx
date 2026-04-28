@@ -6,6 +6,7 @@ import { getSession } from '@/actions/getSession';
 import Accordion from '@/ui/accordion/accordion';
 import { isAgencyApprover, isSatteliteOperator } from '@/utils/Roles';
 
+import { SatelliteActivityEvents } from './SatelliteActivityEvents';
 import { SatelliteAdditionalInformations } from './SatelliteAdditionalInformation';
 import { SatelliteConjunctionEvents } from './SatelliteConjunctionEvents';
 import { SatelliteEphemerisData } from './SatelliteEphemerisData';
@@ -65,11 +66,24 @@ const SatelliteAccordion = async ({
       <h2 data-anchor="conjunction_events" className="govuk-heading-l">{t('conjunction_events')}</h2>
       <Accordion
         id="conjunction-events"
+        addAnchor={false}
         initialItems={[
           {
             id: 'all_conjunction_events',
             heading: t('all_conjunction_events'),
             content: <SatelliteConjunctionEvents noradId={noradId} epoch={epoch} report={report} />,
+          },
+        ]}
+      />
+      <h2 data-anchor="potential-impact" className="govuk-heading-l">{t('activity_information')}</h2>
+      <Accordion
+        id="activity-events"
+        addAnchor={false}
+        initialItems={[
+          {
+            id: 'all_activity_events',
+            heading: t('all_activity_events'),
+            content: <SatelliteActivityEvents commonName={object.common_name} noradId={noradId} />,
           },
         ]}
       />

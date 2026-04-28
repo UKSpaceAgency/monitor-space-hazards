@@ -351,7 +351,8 @@
       "ephemeris_data": "Ephemeris data",
       "conjunction_events": "Conjunction events",
       "all_conjunction_events": "All conjunction events",
-      "activity_information": "Activity information"
+      "activity_information": "Activity information",
+      "all_activity_events": "All activity events"
     },
     "Ephemeris_data": {
       "title": "Ephemeris data",
@@ -370,6 +371,12 @@
       "type": {
         "future": "Upcoming",
         "past": "Previous"
+      }
+    },
+    "Activity_events": {
+      "help": {
+        "title": "Help with this table<screenReaderOnly> - Activity events</screenReaderOnly>",
+        "content": "<p>This table shows all ongoing and closed activity flags for {commonName}.</p><p>Select the event ID to view more information</p>"
       }
     }
   },
@@ -1718,6 +1725,10 @@
       "orbit_type": "Orbit",
       "altitude": "Altitude (km)",
       "longitude": "Longitude (°)",
+      "inclination": "Inclination (°)",
+      "apogee": "Apogee (km)",
+      "perigee": "Perigee (km)",
+      "position_change": "Position after change and size of change (if applicable)",
       "activity_events_as_of": "Activity events as of "
     }
   },
