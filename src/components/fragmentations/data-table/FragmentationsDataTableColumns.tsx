@@ -46,21 +46,18 @@ export const fragmentationsColumns: TranslatedColumnDef<TypeFragmentationEvent>[
   },
   {
     id: 'secondary_object_common_name',
-    enableSorting: false,
     accessorKey: 'secondary_object_common_name',
     header: 'Fragmentations.secondary_object_common_name',
     cell: ({ getValue }) => getValue() ?? '-',
   },
   {
     id: 'known_fragments',
-    enableSorting: false,
     accessorKey: 'known_fragments',
     header: 'Fragmentations.number_of_fragments',
     cell: ({ getValue }) => getValue() ?? '-',
   },
   {
     id: 'modelled_fragments',
-    enableSorting: false,
     accessorKey: 'modelled_fragments',
     header: 'Fragmentations.modelled_fragments',
     cell: ({ getValue }) => getValue() ?? '-',
@@ -73,7 +70,6 @@ export const fragmentationsColumns: TranslatedColumnDef<TypeFragmentationEvent>[
   },
   {
     id: 'time',
-    enableSorting: false,
     accessorKey: 'event_epoch',
     header: 'Fragmentations.time',
     cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_TIME),

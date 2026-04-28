@@ -50,9 +50,15 @@ setChartDefaults({ isTimeScale: false, isLogarithmicScale: false });
 
 type GabbardChartProps = {
   data: GabbardDataResponse;
+  scaleBounds?: {
+    xMin: number;
+    xMax: number;
+    yMin: number;
+    yMax: number;
+  };
 };
 
-const GabbardChart = ({ data }: GabbardChartProps) => {
+const GabbardChart = ({ data, scaleBounds }: GabbardChartProps) => {
   const chart = useRef<ChartJS>({} as ChartJS);
   const [isMobile] = useInViewport();
   const t = useTranslations('Charts.Gabbard_chart');
@@ -228,7 +234,9 @@ const GabbardChart = ({ data }: GabbardChartProps) => {
               scales: {
                 y: {
                   type: 'linear',
-                  beginAtZero: true,
+                  min: scaleBounds?.yMin ?? 0,
+                  max: scaleBounds?.yMax,
+                  bounds: 'ticks',
                   title: {
                     display: true,
                     text: t('y_axis_title'),
@@ -244,6 +252,9 @@ const GabbardChart = ({ data }: GabbardChartProps) => {
                 },
                 x: {
                   type: 'linear',
+                  min: scaleBounds?.xMin,
+                  max: scaleBounds?.xMax,
+                  bounds: 'ticks',
                   ticks: {
                     autoSkip: true,
                     maxTicksLimit: 7,
