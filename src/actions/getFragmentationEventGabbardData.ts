@@ -28,7 +28,7 @@ export async function getFragmentationEventGabbardData(shortId: string) {
         return;
       }
 
-      gabbardData.set(report.event_epoch, {
+      gabbardData.set(report.report_time, {
         actual_gabbard_points: reportData.actual_gabbard_points?.map(point => ({
           apogee: round(point.apogee, 2),
           perigee: round(point.perigee, 2),

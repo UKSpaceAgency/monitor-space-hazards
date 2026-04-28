@@ -10,13 +10,14 @@ type SatelliteInformationProps = {
   object: TypeSatelliteOut | TypeSatelliteOut[] | null;
   dataPdf?: string;
   haveAnchor?: boolean;
+  showTitle?: boolean;
 };
 
-const SatelliteInformation = ({ object, dataPdf, haveAnchor = true }: SatelliteInformationProps) => {
+const SatelliteInformation = ({ object, dataPdf, haveAnchor = true, showTitle = true }: SatelliteInformationProps) => {
   const t = useTranslations('Tables.Satellite_informations.Informations');
   return (
     <div className="mb-12" data-pdf={dataPdf}>
-      <h2 data-anchor={haveAnchor ? 'information' : undefined} className="govuk-heading-l">{t('title')}</h2>
+      {showTitle && <h2 data-anchor={haveAnchor ? 'information' : undefined} className="govuk-heading-l">{t('title')}</h2>}
       <p className="govuk-body">{t('content')}</p>
       {object
         ? (

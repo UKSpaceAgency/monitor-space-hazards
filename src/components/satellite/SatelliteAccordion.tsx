@@ -37,13 +37,14 @@ const SatelliteAccordion = async ({
       <h2 data-anchor="information" className="govuk-heading-l">{t('satellite_information')}</h2>
       <Accordion
         id="satellite-event"
+        addAnchor={false}
         initialItems={[
           {
             id: 'object_data',
             heading: t('object_data'),
             content: (
               <>
-                <SatelliteInformation object={object} dataPdf={t('object_data')} haveAnchor={false} />
+                <SatelliteInformation object={object} dataPdf={t('object_data')} haveAnchor={false} showTitle={false} />
                 <SatelliteAdditionalInformations object={object} />
               </>
             ),
