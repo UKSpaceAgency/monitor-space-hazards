@@ -22,19 +22,22 @@ export async function getFragmentationEventGabbardData(shortId: string) {
 
   await Promise.all(
     data.map(async (report) => {
-      const response = await fetch(report.presigned_url);
+      if (!report.download_url) {
+        return;
+      }
+      const response = await fetch(report.download_url);
       const reportData: GabbardDataResponse = (await response.json())[0];
       if (!reportData) {
         return;
       }
 
-      gabbardData.set(report.event_epoch, {
-        actual_gabbard_points: reportData.actual_gabbard_points.map(point => ({
+      gabbardData.set(report.report_time, {
+        actual_gabbard_points: reportData.actual_gabbard_points?.map(point => ({
           apogee: round(point.apogee, 2),
           perigee: round(point.perigee, 2),
           period: round(point.period, 2),
         })) ?? [],
-        modelled_gabbard_points: reportData.modelled_gabbard_points.map(point => ({
+        modelled_gabbard_points: reportData.modelled_gabbard_points?.map(point => ({
           apogee: round(point.apogee, 2),
           perigee: round(point.perigee, 2),
           period: round(point.period, 2),

@@ -15,8 +15,8 @@ type ReportResponseData = {
   screening_results: ScreeningResults[];
 };
 
-export async function getFragmentationEventScreeningResults(presigned_url: string) {
-  const data = await fetch(presigned_url);
+export async function getFragmentationEventScreeningResults(download_url: string) {
+  const data = await fetch(download_url);
   const reports: ReportResponseData[] = await data.json();
   const lastReport = reports[0];
 

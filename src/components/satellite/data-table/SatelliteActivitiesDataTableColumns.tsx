@@ -2,18 +2,19 @@
 
 import Link from 'next/link';
 
-import type { TypeActivityEventOut, TypeActivityReasonForFlag } from '@/__generated__/data-contracts';
+import type { TypeActivityEvent, TypeActivityReasonForFlag } from '@/__generated__/data-contracts';
 import { dayjs, FORMAT_DATE_FULL_MONTH } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import { renderReasonForFlagTag } from '@/utils/Tags';
 
-export const activitiesColumns: TranslatedColumnDef<TypeActivityEventOut>[] = [
+export const satteliteActivityEventsColumns: TranslatedColumnDef<TypeActivityEvent>[] = [
   {
     header: 'Activities.event_information',
     columns: [
       {
         accessorKey: 'reason_for_flag',
         header: 'Activities.reason_for_flag',
+        enableSorting: false,
         cell: ({ getValue }) => {
           const value = getValue<TypeActivityReasonForFlag>();
           return renderReasonForFlagTag(value);
@@ -22,6 +23,7 @@ export const activitiesColumns: TranslatedColumnDef<TypeActivityEventOut>[] = [
       {
         accessorKey: 'short_id',
         header: 'Activities.short_id',
+        enableSorting: false,
         cell: ({ getValue }) => {
           const value = getValue<string>();
           return (
@@ -35,40 +37,9 @@ export const activitiesColumns: TranslatedColumnDef<TypeActivityEventOut>[] = [
         },
       },
       {
-        accessorKey: 'common_name',
-        header: 'Activities.common_name',
-        cell: ({ renderValue, row }) => (
-          <Link
-            href={`/satellites/${row?.original.norad_id}`}
-            className="govuk-link"
-          >
-            {renderValue<string>()}
-          </Link>
-        ),
-      },
-      {
-        accessorKey: 'operator_name',
-        header: 'Activities.operator_name',
-        cell: ({ getValue, row }) => {
-          const value = getValue<string>();
-          const operatorId = row.original.operator;
-          return (
-            <Link
-              href={`/organisations/${operatorId}`}
-              className="govuk-link"
-            >
-              {value}
-            </Link>
-          );
-        },
-      },
-      {
-        accessorKey: 'norad_id',
-        header: 'Activities.norad_id',
-      },
-      {
         accessorKey: 'flag_date',
         header: 'Activities.flag_date',
+        enableSorting: false,
         cell: ({ getValue }) => {
           const value = getValue<string>();
           return value ? dayjs(value).format(FORMAT_DATE_FULL_MONTH) : '-';
@@ -77,19 +48,27 @@ export const activitiesColumns: TranslatedColumnDef<TypeActivityEventOut>[] = [
     ],
   },
   {
-    header: 'Activities.object_information',
+    header: 'Activities.position_change',
     columns: [
       {
-        accessorKey: 'orbit_type',
-        header: 'Activities.orbit_type',
+        accessorKey: 'inclination',
+        header: 'Activities.inclination',
+        enableSorting: false,
       },
       {
-        accessorKey: 'altitude',
-        header: 'Activities.altitude',
+        accessorKey: 'apogee',
+        header: 'Activities.apogee',
+        enableSorting: false,
+      },
+      {
+        accessorKey: 'perigee',
+        header: 'Activities.perigee',
+        enableSorting: false,
       },
       {
         accessorKey: 'longitude',
         header: 'Activities.longitude',
+        enableSorting: false,
       },
     ],
   },

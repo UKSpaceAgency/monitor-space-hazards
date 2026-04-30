@@ -15,7 +15,7 @@ type FragmentationExecutiveSummaryTableProps = {
 
 const FragmentationExecutiveSummaryTable = async ({ report }: FragmentationExecutiveSummaryTableProps) => {
   const t = await getTranslations('Tables.Fragmentation_alert_executive_summary');
-  const screeningResults = await getFragmentationEventScreeningResults(report.presigned_url);
+  const screeningResults = await getFragmentationEventScreeningResults(report.download_url as unknown as string);
 
   const rows: InformationsTableRow<EventSummaryData>[] = [
     {

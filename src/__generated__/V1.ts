@@ -70,6 +70,7 @@ import {
   TypeGetConjunctionEventsCdmExternalIdParams,
   TypeGetConjunctionEventsEventIdDataSourcesParams,
   TypeGetConjunctionEventsEventIdSummaryParams,
+  TypeGetConjunctionEventsEventsForAnalysisAggregatedParams,
   TypeGetConjunctionEventsForAnalysisParams,
   TypeGetConjunctionEventsFutureEventsForAnalysisParams,
   TypeGetConjunctionEventsFutureEventsParams,
@@ -102,8 +103,10 @@ import {
   TypeGetStatsEventsTypeParams,
   TypeGetStatsFragmentationEventsByFragmentationTypeParams,
   TypeGetStatsFragmentationEventsParams,
+  TypeGetStatsMakeAnalysesDailyAggregatedParams,
   TypeGetStatsMakeEventsSatelliteAggregatedParams,
   TypeGetStatsMakeEventsTypeAggregatedParams,
+  TypeGetStatsMonthlyAnalysesAggregatedParams,
   TypeGetStatsMonthlyAnalysesParams,
   TypeGetStatsMonthlyConjunctionEventsAggregatedParams,
   TypeGetStatsMonthlyConjunctionEventsByObjectTypeAggregatedParams,
@@ -859,6 +862,22 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       secure: true,
       ...params,
     }); /**
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   *
+   * @tags conjunction-reports
+   * @name GetConjunctionReportsConjunctionReportIdDownload
+   * @summary Download a Conjunction Report as pretty-printed JSON
+   * @request GET:/v1/conjunction-reports/{conjunction_report_id}/download
+   * @secure
+   */
+  getConjunctionReportsConjunctionReportIdDownload = (conjunctionReportId: string, params: RequestParams = {}) =>
+    this.request<any, void | TypeHTTPValidationError>({
+      path: `/v1/conjunction-reports/${conjunctionReportId}/download`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
    * @description ## Description Provides a list of uploaded ephemeris files. The list can be sorted by organizations that own satellites or by satellite name. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags ephemeris
@@ -1222,6 +1241,22 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   *
+   * @tags fragmentation-reports
+   * @name GetFragmentationReportsFragmentationReportIdDownload
+   * @summary Download a Fragmentation Event Report as pretty-printed JSON
+   * @request GET:/v1/fragmentation-reports/{fragmentation_report_id}/download
+   * @secure
+   */
+  getFragmentationReportsFragmentationReportIdDownload = (fragmentationReportId: string, params: RequestParams = {}) =>
+    this.request<any, void | TypeHTTPValidationError>({
+      path: `/v1/fragmentation-reports/${fragmentationReportId}/download`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
    * @description ## Description Gets Fragmentation Event Report for a given Fragmentation Event short ID. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags fragmentation-reports
@@ -1486,6 +1521,22 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       secure: true,
       ...params,
     }); /**
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   *
+   * @tags reentry-event-reports
+   * @name GetReentryEventReportsReentryEventReportIdDownload
+   * @summary Download a Reentry Event Report as pretty-printed JSON
+   * @request GET:/v1/reentry-event-reports/{reentry_event_report_id}/download
+   * @secure
+   */
+  getReentryEventReportsReentryEventReportIdDownload = (reentryEventReportId: string, params: RequestParams = {}) =>
+    this.request<any, void | TypeHTTPValidationError>({
+      path: `/v1/reentry-event-reports/${reentryEventReportId}/download`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
    * @description ## Description Get count of Reentry Events with or without reports. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags reentry-events
@@ -1707,6 +1758,26 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
   ) =>
     this.request<TypeEventForAnalysisOut[], TypeHTTPValidationError>({
       path: `/v1/conjunction-events/future-events-for-analysis`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Returns the list of Events (based on single CDMs) that have TCA time in future and have probability of collision greater than 1e5 and they don't have an analysis yet. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   *
+   * @tags conjunction-events
+   * @name GetConjunctionEventsEventsForAnalysisAggregated
+   * @summary Get Events For Analysis Aggregated
+   * @request GET:/v1/conjunction-events/events-for-analysis-aggregated
+   * @secure
+   */
+  getConjunctionEventsEventsForAnalysisAggregated = (
+    query?: TypeGetConjunctionEventsEventsForAnalysisAggregatedParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeEventForAnalysisOut[], TypeHTTPValidationError>({
+      path: `/v1/conjunction-events/events-for-analysis-aggregated`,
       method: "GET",
       query: query,
       secure: true,
@@ -1992,7 +2063,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Returns number of Events between different types of objects, ie. between UK licensed satellites, debris or non-UK licensed satellites. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Trigger| |Regulator user|-| |Regulator admin|-|
+   * @description ## Description Rebuilds stats for events by object type. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Trigger| |Regulator user|-| |Regulator admin|-|
    *
    * @tags stats
    * @name GetStatsMakeEventsSatelliteAggregated
@@ -2012,7 +2083,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Returns number of Events between different types of objects, ie. between UK licensed satellites, debris or non-UK licensed satellites. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Trigger| |Regulator user|-| |Regulator admin|-|
+   * @description ## Description Rebuilds stats for events by type. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Trigger| |Regulator user|-| |Regulator admin|-|
    *
    * @tags stats
    * @name GetStatsMakeEventsTypeAggregated
@@ -2023,6 +2094,26 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
   getStatsMakeEventsTypeAggregated = (query?: TypeGetStatsMakeEventsTypeAggregatedParams, params: RequestParams = {}) =>
     this.request<any, void | TypeHTTPValidationError>({
       path: `/v1/stats/make-events-type-aggregated`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Rebuilds stats for daily analyses aggregation table. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Trigger| |Regulator user|-| |Regulator admin|-|
+   *
+   * @tags stats
+   * @name GetStatsMakeAnalysesDailyAggregated
+   * @summary Make Analyses Stats Daily Aggregated
+   * @request GET:/v1/stats/make-analyses-daily-aggregated
+   * @secure
+   */
+  getStatsMakeAnalysesDailyAggregated = (
+    query?: TypeGetStatsMakeAnalysesDailyAggregatedParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<any, void | TypeHTTPValidationError>({
+      path: `/v1/stats/make-analyses-daily-aggregated`,
       method: "GET",
       query: query,
       secure: true,
@@ -2248,6 +2339,26 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
   getStatsMonthlyAnalyses = (query?: TypeGetStatsMonthlyAnalysesParams, params: RequestParams = {}) =>
     this.request<TypeStatisticsMonthlyCount[], void | TypeHTTPValidationError>({
       path: `/v1/stats/monthly/analyses`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Get monthly count of Analyses in a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   *
+   * @tags stats
+   * @name GetStatsMonthlyAnalysesAggregated
+   * @summary Get monthly count of Analyses from aggregated table
+   * @request GET:/v1/stats/monthly/analyses-aggregated
+   * @secure
+   */
+  getStatsMonthlyAnalysesAggregated = (
+    query?: TypeGetStatsMonthlyAnalysesAggregatedParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeStatisticsMonthlyCount[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/monthly/analyses-aggregated`,
       method: "GET",
       query: query,
       secure: true,

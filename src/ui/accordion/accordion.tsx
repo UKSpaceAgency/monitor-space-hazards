@@ -42,6 +42,16 @@ export function Accordion({ initialItems, id, dynamic = false, addAnchor = true 
   };
 
   useEffect(() => {
+    setItems(prevItems => initialItems.map((item) => {
+      const previous = prevItems.find(prev => prev.id === item.id);
+      return {
+        ...item,
+        expanded: previous?.expanded ?? item.expanded,
+      };
+    }));
+  }, [initialItems]);
+
+  useEffect(() => {
     setItems(prevItems => prevItems.map(item => ({
       ...item,
       expanded: isAllItemsExpanded,

@@ -14,16 +14,16 @@ export const conjunctionAlertHistoryColumns: TranslatedColumnDef<TypeConjunction
     id: 'report_number',
     enableSorting: false,
     cell: ({ row }) => {
-      const { report_number, short_id, presigned_url } = row.original;
+      const { report_number, short_id, download_url } = row.original;
       const report = `Report ${report_number}`;
       const isClosed = row.original.alert_type.includes('closedown');
 
       return (
         <>
-          {presigned_url
+          {download_url
             ? (
                 <Link
-                  href={presigned_url}
+                  href={download_url}
                   className="govuk-link flex items-center gap-2"
                   target="_blank"
                   rel="noreferrer"

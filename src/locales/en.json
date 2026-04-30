@@ -345,6 +345,15 @@
     }
   },
   "Satellite": {
+    "accordion": {
+      "satellite_information": "Satellite information",
+      "object_data": "Object data",
+      "ephemeris_data": "Ephemeris data",
+      "conjunction_events": "Conjunction events",
+      "all_conjunction_events": "All conjunction events",
+      "activity_information": "Activity information",
+      "all_activity_events": "All activity events"
+    },
     "Ephemeris_data": {
       "title": "Ephemeris data",
       "content": "Ephemeris files uploaded by the operator are shown here:",
@@ -352,14 +361,28 @@
     },
     "Conjunction_events": {
       "title": "{type} conjunction events",
+      "description": "This table shows all upcoming conjunction events involving {commonName}. You can apply filters to view past events.",
       "search_bar": {
         "previousLabel": "Find a previous upcoming conjunction event:",
         "upcomingLabel": "Find a upcoming conjunction event:",
         "placeholder": "Search by event ID, primary object ID or primary object name"
       },
+      "filters": {
+        "summary": "Apply filters to this table:",
+        "all": "All",
+        "upcoming": "Upcoming",
+        "past": "Past",
+        "select_label": "Filter by"
+      },
       "type": {
         "future": "Upcoming",
         "past": "Previous"
+      }
+    },
+    "Activity_events": {
+      "help": {
+        "title": "Help with this table<screenReaderOnly> - Activity events</screenReaderOnly>",
+        "content": "<p>This table shows all ongoing and closed activity flags for {commonName}.</p><p>Select the event ID to view more information</p>"
       }
     }
   },
@@ -560,7 +583,7 @@
       "actual_fragments_perigee_label": "Actual fragment perigee",
       "modelled_fragments_apogee_label": "Modelled fragment apogee",
       "modelled_fragments_perigee_label": "Modelled fragment perigee",
-      "toggle_observation_date": "Toggle observation date:"
+      "toggle_observation_date": "Toggle observation:"
     },
     "Monthly_fragmentation_events": {
       "y_axis_title": "Number of events",
@@ -1697,15 +1720,21 @@
         "past": "Past",
         "select_label": "Filter by"
       },
+      "event_information": "Event information",
+      "object_information": "Latest recorded position",
       "reason_for_flag": "Reason for flag",
       "short_id": "Event ID",
-      "common_name": "Object",
+      "common_name": "Satellite",
       "operator_name": "Operator",
       "norad_id": "NORAD ID",
       "flag_date": "Date of flag",
       "orbit_type": "Orbit",
       "altitude": "Altitude (km)",
       "longitude": "Longitude (°)",
+      "inclination": "Inclination (°)",
+      "apogee": "Apogee (km)",
+      "perigee": "Perigee (km)",
+      "position_change": "Position after change and size of change (if applicable)",
       "activity_events_as_of": "Activity events as of "
     }
   },
