@@ -47,8 +47,8 @@ const generateFeature = (point: MapPoint, type: 'overflight' | 'fragments' | 'fl
   },
 });
 
-export async function getReentryAlertMapData(presigned_url: string) {
-  const data = await fetch(presigned_url, {
+export async function getReentryAlertMapData(download_url: string) {
+  const data = await fetch(download_url, {
     cache: 'no-store',
     next: { revalidate: 0 },
   });

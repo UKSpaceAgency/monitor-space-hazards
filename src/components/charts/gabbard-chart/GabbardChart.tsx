@@ -175,6 +175,7 @@ const GabbardChart = ({ data, scaleBounds }: GabbardChartProps) => {
             type="line"
             data={{ datasets }}
             options={{
+              animation: false,
               interaction: {
                 mode: 'nearest',
                 intersect: false,

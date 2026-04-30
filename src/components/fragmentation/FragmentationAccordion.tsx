@@ -73,7 +73,7 @@ const FragmentationAccordion = ({
             id: 'additional_risk',
             heading: t('additional_risk'),
             content: (
-              <FragmentationAdditionalRisk spaceflightComment={searchParams?.spaceflight_risk_comment ?? event.spaceflight_risk_comment} presignedUrl={report.presigned_url as string} dataPdf={t('additional_risk')} />
+              <FragmentationAdditionalRisk spaceflightComment={searchParams?.spaceflight_risk_comment ?? event.spaceflight_risk_comment} presignedUrl={report.download_url as string} dataPdf={t('additional_risk')} />
             ),
           },
         ]}

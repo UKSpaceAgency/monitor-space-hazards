@@ -18,8 +18,8 @@ export type ManoeuvrePlotPoint = {
   radial_miss_distance: number;
 };
 
-export const getManoeuvrePlot = async (presigned_url: string): Promise<ManoeuvrePlot> => {
-  const response = await fetch(presigned_url);
+export const getManoeuvrePlot = async (download_url: string): Promise<ManoeuvrePlot> => {
+  const response = await fetch(download_url);
   const data = await response.json();
 
   return data;

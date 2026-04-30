@@ -22,7 +22,10 @@ export async function getFragmentationEventGabbardData(shortId: string) {
 
   await Promise.all(
     data.map(async (report) => {
-      const response = await fetch(report.presigned_url);
+      if (!report.download_url) {
+        return;
+      }
+      const response = await fetch(report.download_url);
       const reportData: GabbardDataResponse = (await response.json())[0];
       if (!reportData) {
         return;

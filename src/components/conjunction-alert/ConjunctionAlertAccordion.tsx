@@ -74,7 +74,7 @@ const ConjunctionAlertAccordion = ({
           {
             id: 'additional_risk',
             heading: t('additional_risk'),
-            content: <ConjunctionAlertAdditionalRisk presignedUrl={report.presigned_url as string} dataPdf={t('additional_risk')} />,
+            content: <ConjunctionAlertAdditionalRisk presignedUrl={report.download_url as string} dataPdf={t('additional_risk')} />,
           },
         ]}
       />

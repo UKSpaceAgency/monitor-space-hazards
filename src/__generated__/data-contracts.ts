@@ -66,7 +66,8 @@ export interface TypeActivityEvent {
   flag_id: string;
   /** Flag Count */
   flag_count: number;
-  primary_flag: TypeActivityPrimaryFlag;
+  /** Primary Flag */
+  primary_flag: TypeActivityPrimaryFlag[];
   /**
    * Priority Flag
    * @default false
@@ -74,6 +75,13 @@ export interface TypeActivityEvent {
   priority_flag?: boolean;
   /** Flag Comment */
   flag_comment?: string | null;
+  /** Flag Status */
+  flag_status?: string | null;
+  /**
+   * Flag Ongoing
+   * @default false
+   */
+  flag_ongoing?: boolean;
   reason_for_flag?: TypeActivityReasonForFlag | null;
   /** Total Tle Count This Month */
   total_tle_count_this_month?: number | null;
@@ -186,7 +194,8 @@ export interface TypeActivityEventOut {
   flag_id: string;
   /** Flag Count */
   flag_count: number;
-  primary_flag: TypeActivityPrimaryFlag;
+  /** Primary Flag */
+  primary_flag: TypeActivityPrimaryFlag[];
   /**
    * Priority Flag
    * @default false
@@ -194,6 +203,13 @@ export interface TypeActivityEventOut {
   priority_flag?: boolean;
   /** Flag Comment */
   flag_comment?: string | null;
+  /** Flag Status */
+  flag_status?: string | null;
+  /**
+   * Flag Ongoing
+   * @default false
+   */
+  flag_ongoing?: boolean;
   reason_for_flag?: TypeActivityReasonForFlag | null;
   /** Total Tle Count This Month */
   total_tle_count_this_month?: number | null;
@@ -260,6 +276,7 @@ export type TypeActivityPrimaryFlag =
   | "TLE Date Age"
   | "Fixed SMA"
   | "SMA Delta"
+  | "SMA Delta Rate"
   | "Fixed Inc"
   | "Inc Delta"
   | "Fixed Long"
@@ -307,7 +324,8 @@ export interface TypeActivityReport {
   flag_id: string;
   /** Flag Count */
   flag_count: number;
-  primary_flag: TypeActivityPrimaryFlag;
+  /** Primary Flag */
+  primary_flag: TypeActivityPrimaryFlag[];
   /**
    * Priority Flag
    * @default false
@@ -320,6 +338,8 @@ export interface TypeActivityReport {
    * @default false
    */
   flag_ongoing?: boolean;
+  /** Flag Status */
+  flag_status?: string | null;
   reason_for_flag?: TypeActivityReasonForFlag | null;
   /** Total Tle Count This Month */
   total_tle_count_this_month?: number | null;
@@ -410,7 +430,8 @@ export interface TypeActivityReportOut {
   flag_id: string;
   /** Flag Count */
   flag_count: number;
-  primary_flag: TypeActivityPrimaryFlag;
+  /** Primary Flag */
+  primary_flag: TypeActivityPrimaryFlag[];
   /**
    * Priority Flag
    * @default false
@@ -418,8 +439,13 @@ export interface TypeActivityReportOut {
   priority_flag?: boolean;
   /** Flag Comment */
   flag_comment?: string | null;
+  /**
+   * Flag Ongoing
+   * @default false
+   */
+  flag_ongoing?: boolean;
   /** Flag Status */
-  flag_status?: boolean | null;
+  flag_status?: string | null;
   reason_for_flag?: TypeActivityReasonForFlag | null;
   /** Total Tle Count This Month */
   total_tle_count_this_month?: number | null;
@@ -1301,6 +1327,8 @@ export interface TypeConjunctionReportOut {
   deleted_by_id?: string | null;
   /** Presigned Url */
   presigned_url?: string | null;
+  /** Download Url */
+  download_url?: string | null;
   /** File Name */
   file_name: string;
 }
@@ -1995,7 +2023,11 @@ export type TypeFragmentationEventsSortBy =
   | "event_epoch"
   | "primary_object_norad_id"
   | "short_id"
-  | "primary_object_common_name";
+  | "primary_object_common_name"
+  | "risk"
+  | "secondary_object_common_name"
+  | "known_fragments"
+  | "modelled_fragments";
 
 /** FragmentationReport */
 export interface TypeFragmentationReport {
@@ -2165,6 +2197,8 @@ export interface TypeFragmentationReportOut {
   file_name: string;
   /** Presigned Url */
   presigned_url: string;
+  /** Download Url */
+  download_url?: string | null;
   /** Uploaded By Id */
   uploaded_by_id?: string | null;
   /** Deleted By Id */
@@ -2881,6 +2915,8 @@ export interface TypeReentryEventReportOut {
   deleted_by_id?: string | null;
   /** Presigned Url */
   presigned_url?: string | null;
+  /** Download Url */
+  download_url?: string | null;
 }
 
 /** ReentryEventSortBy */
@@ -3532,7 +3568,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-03-20T09:00:28.454755"
+   * @default "2026-04-28T21:05:02.280198"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3601,6 +3637,10 @@ export interface TypeUser {
   toc_accepted_at?: string | null;
   /** Account Details Confirmed At */
   account_details_confirmed_at?: string | null;
+  /** Active Session Id */
+  active_session_id?: string | null;
+  /** Active Session Iat */
+  active_session_iat?: number | null;
 }
 
 /** UserClientCredentialsOut */
@@ -4453,6 +4493,35 @@ export interface TypeGetConjunctionEventsFutureEventsForAnalysisParams {
   sort_order?: TypeSortOrder;
 }
 
+export interface TypeGetConjunctionEventsEventsForAnalysisAggregatedParams {
+  /**
+   * Threshold
+   * Collision probability threshold in decimal format. Events have to have probability of collision higher than 1e-5 (0.00001)
+   */
+  threshold: number;
+  /**
+   * Sort By
+   * Sorting column
+   * @default "tca_time"
+   */
+  sort_by?: TypeEventsForAnalysisSortBy;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
+}
+
 export interface TypeGetConjunctionEventsListParams {
   /**
    * Sort By
@@ -4647,6 +4716,11 @@ export interface TypeGetStatsMakeEventsTypeAggregatedParams {
   start_date?: string | null;
 }
 
+export interface TypeGetStatsMakeAnalysesDailyAggregatedParams {
+  /** Start Date */
+  start_date?: string | null;
+}
+
 export interface TypeGetStatsEventsTypeAggregatedParams {
   /** Start Date */
   start_date?: string | null;
@@ -4760,7 +4834,22 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2026-04-01"
+   * @default "2026-05-01"
+   */
+  end_date?: string;
+}
+
+export interface TypeGetStatsMonthlyAnalysesAggregatedParams {
+  /**
+   * Start Date
+   * @format date
+   * @default "2022-01-01"
+   */
+  start_date?: string;
+  /**
+   * End Date
+   * @format date
+   * @default "2026-05-01"
    */
   end_date?: string;
 }
@@ -4775,7 +4864,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2026-04-01"
+   * @default "2026-05-01"
    */
   end_date?: string;
 }
@@ -4790,7 +4879,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-04-01"
+   * @default "2026-05-01"
    */
   end_date?: string;
 }
@@ -4805,7 +4894,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-04-01"
+   * @default "2026-05-01"
    */
   end_date?: string;
 }
@@ -4820,7 +4909,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-04-01"
+   * @default "2026-05-01"
    */
   end_date?: string;
 }
@@ -4835,7 +4924,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-04-01"
+   * @default "2026-05-01"
    */
   end_date?: string;
 }
@@ -4850,7 +4939,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeAggregatedParam
   /**
    * End Date
    * @format date
-   * @default "2026-04-01"
+   * @default "2026-05-01"
    */
   end_date?: string;
 }
@@ -4865,7 +4954,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2026-04-01"
+   * @default "2026-05-01"
    */
   end_date?: string;
 }
