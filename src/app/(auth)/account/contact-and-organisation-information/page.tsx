@@ -35,9 +35,9 @@ export default async function ContactAndOrganisationInformation() {
     <div>
       <h1 className="govuk-heading-xl">{t('title')}</h1>
 
-      <div className="flex gap-2 govuk-body">
+      <div className="flex flex-wrap gap-2 govuk-body">
         <p>{t('contact_the_uksa_via')}</p>
-        <a className="govuk-link" href="mailto:monitorspacehazards@ukspaceagency.gov.uk">{t('email')}</a>
+        <a className="govuk-link truncate" href="mailto:monitorspacehazards@ukspaceagency.gov.uk">{t('email')}</a>
         <p>{t('if_your_contact_details_are_incorrect')}</p>
       </div>
 

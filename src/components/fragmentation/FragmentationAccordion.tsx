@@ -64,20 +64,24 @@ const FragmentationAccordion = ({
           },
         ]}
       />
-      <h2 data-anchor="potential-impact" className="govuk-heading-l">{t('potential_impact')}</h2>
-      <Accordion
-        id="fragmentation-event-details"
-        addAnchor={false}
-        initialItems={[
-          {
-            id: 'additional_risk',
-            heading: t('additional_risk'),
-            content: (
-              <FragmentationAdditionalRisk spaceflightComment={searchParams?.spaceflight_risk_comment ?? event.spaceflight_risk_comment} presignedUrl={report.download_url as string} dataPdf={t('additional_risk')} />
-            ),
-          },
-        ]}
-      />
+      {report.download_url && (
+        <>
+          <h2 data-anchor="potential-impact" className="govuk-heading-l">{t('potential_impact')}</h2>
+          <Accordion
+            id="fragmentation-event-details"
+            addAnchor={false}
+            initialItems={[
+              {
+                id: 'additional_risk',
+                heading: t('additional_risk'),
+                content: (
+                  <FragmentationAdditionalRisk spaceflightComment={searchParams?.spaceflight_risk_comment ?? event.spaceflight_risk_comment} presignedUrl={report.download_url as string} dataPdf={t('additional_risk')} />
+                ),
+              },
+            ]}
+          />
+        </>
+      )}
       <h2 data-anchor="guidance" className="govuk-heading-l">{t('guidance')}</h2>
       <Accordion
         id="fragmentation-event-details"
