@@ -360,7 +360,13 @@
       "upload_button": "Upload your ephemeris data"
     },
     "Conjunction_events": {
+      "title": "{type} conjunction events",
       "description": "This table shows all upcoming conjunction events involving {commonName}. You can apply filters to view past events.",
+      "search_bar": {
+        "previousLabel": "Find a previous upcoming conjunction event:",
+        "upcomingLabel": "Find a upcoming conjunction event:",
+        "placeholder": "Search by event ID, primary object ID or primary object name"
+      },
       "filters": {
         "summary": "Apply filters to this table:",
         "all": "All",
