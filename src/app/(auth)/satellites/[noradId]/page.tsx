@@ -49,7 +49,7 @@ export default async function Satellite(props: PageProps) {
   return (
     <div>
       <h1 className="govuk-heading-xl">{satellite.common_name}</h1>
-      <div className="grid md:grid-cols-4 gap-7">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-7">
         <ContentNavigation />
         <article className="md:col-span-3">
           <SatelliteConjunctionEvents noradId={noradId} query={upcoming_search_like} epoch="future" id="future_search_bar" ariaLabel="Upcoming Conjunction Events" />
