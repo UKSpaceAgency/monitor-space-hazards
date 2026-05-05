@@ -49,21 +49,18 @@ export default async function Satellite(props: PageProps) {
   return (
     <div>
       <h1 className="govuk-heading-xl">{satellite.common_name}</h1>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-7">
-        <ContentNavigation />
-        <article className="md:col-span-3">
-          <SatelliteConjunctionEvents noradId={noradId} query={upcoming_search_like} epoch="future" id="future_search_bar" ariaLabel="Upcoming Conjunction Events" />
-          <SatelliteEphemerisData
-            noradId={noradId}
-            ephemerises={ephemerises}
-            showButtons={isAgencyApprover(session?.user.role) || isSatteliteOperator(session?.user.role)}
-          />
-          <SatelliteInformation object={satellite} />
-          <SatelliteAdditionalInformations object={satellite} />
-          <SatelliteConjunctionEvents noradId={noradId} query={previous_search_link} epoch="past" id="past_search_bar" ariaLabel="Previous Conjunction Events" />
-          <Button as="link" href="/satellites" variant="secondary" aria-label={t('return', { to: 'all satellites' })}>{t('return', { to: 'all satellites' })}</Button>
-        </article>
-      </div>
+      <ContentNavigation />
+      <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
+      <SatelliteConjunctionEvents noradId={noradId} query={upcoming_search_like} epoch="future" id="future_search_bar" ariaLabel="Upcoming Conjunction Events" />
+      <SatelliteEphemerisData
+        noradId={noradId}
+        ephemerises={ephemerises}
+        showButtons={isAgencyApprover(session?.user.role) || isSatteliteOperator(session?.user.role)}
+      />
+      <SatelliteInformation object={satellite} />
+      <SatelliteAdditionalInformations object={satellite} />
+      <SatelliteConjunctionEvents noradId={noradId} query={previous_search_link} epoch="past" id="past_search_bar" ariaLabel="Previous Conjunction Events" />
+      <Button as="link" href="/satellites" variant="secondary" aria-label={t('return', { to: 'all satellites' })}>{t('return', { to: 'all satellites' })}</Button>
     </div>
   );
 }

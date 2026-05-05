@@ -59,31 +59,26 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
           </div>
         )}
       </div>
-
-      <div>
-        <ContentNavigation />
-        <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
-        <div>
-          {t.rich('report_info', { number: event.reentry_report_number?.toString(), time: dayjs(event.updated_at).format(FORMAT_DATE_TIME) })}
-          <Suspense fallback={<Spinner />}>
-            <ReentryAlertExecutiveSummary event={event} report={lastReport} executiveSummaryComment={searchParams?.executive_summary_comment ?? event.executive_summary_comment} isClosed={isClosed} />
-          </Suspense>
-          <Suspense fallback={<Spinner />}>
-            {lastReport?.id && (
-              <ReentryAlertMapContainer
-                tip={lastTip}
-                isClosed={isClosed}
-                reentryId={shortId}
-                reportId={lastReport.report_number.toString().padStart(3, '0')}
-                overflightTime={event.overflight_time}
-              />
-            )}
-          </Suspense>
-          <ReentryAlertNextUpdate shortId={shortId} />
-          <ReentryAlertAccordion event={event} reports={reports} lastReport={lastReport} searchParams={searchParams} />
-          {footer || <ReentryAlertButtons pdfTitle={pdfTitle} pdfSubtitle={closedComment ?? undefined} />}
-        </div>
-      </div>
+      <ContentNavigation />
+      <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
+      {t.rich('report_info', { number: event.reentry_report_number?.toString(), time: dayjs(event.updated_at).format(FORMAT_DATE_TIME) })}
+      <Suspense fallback={<Spinner />}>
+        <ReentryAlertExecutiveSummary event={event} report={lastReport} executiveSummaryComment={searchParams?.executive_summary_comment ?? event.executive_summary_comment} isClosed={isClosed} />
+      </Suspense>
+      <Suspense fallback={<Spinner />}>
+        {lastReport?.id && (
+          <ReentryAlertMapContainer
+            tip={lastTip}
+            isClosed={isClosed}
+            reentryId={shortId}
+            reportId={lastReport.report_number.toString().padStart(3, '0')}
+            overflightTime={event.overflight_time}
+          />
+        )}
+      </Suspense>
+      <ReentryAlertNextUpdate shortId={shortId} />
+      <ReentryAlertAccordion event={event} reports={reports} lastReport={lastReport} searchParams={searchParams} />
+      {footer || <ReentryAlertButtons pdfTitle={pdfTitle} pdfSubtitle={closedComment ?? undefined} />}
     </div>
   );
 };
