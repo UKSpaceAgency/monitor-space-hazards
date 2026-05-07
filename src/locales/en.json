@@ -47,7 +47,7 @@
         },
         "track_fragmentations": {
           "title": "Track fragmentation events",
-          "description": "Space debris from objects",
+          "description": "Space debris from objects.",
           "link": "/fragmentations"
         },
         "track_conjunctions": {
