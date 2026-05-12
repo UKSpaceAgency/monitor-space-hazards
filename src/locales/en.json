@@ -242,7 +242,77 @@
       "registered": "Registered",
       "edit": "Edit"
     },
-    "add_new_user": "Add new user"
+    "add_new_user": "Add new user",
+    "operator_summary": {
+      "title": "Organisation Summary",
+      "primary_country_of_operation": "Primary country of operation",
+      "primary_country_of_operation_value": "United Kingdom",
+      "uk_licensed_satellites": "Number of UK-licensed satellites",
+      "telephone_number": "Telephone number",
+      "telephone_number_value": "+44 (0)20 7946 0018",
+      "email_contacts": "Email contacts",
+      "fallback_email": "operations@example.org"
+    },
+    "accordion": {
+      "licensed_satellites": "Licensed satellites",
+      "table": {
+        "month": "Month",
+        "total_events": "Total events"
+      },
+      "months": {
+        "january_2026": "January 2026",
+        "february_2026": "February 2026",
+        "march_2026": "March 2026"
+      },
+      "chart": {
+        "aria_suffix": "by month",
+        "x_axis": "Month",
+        "y_axis": "Total events",
+        "legend_title": "Risk band",
+        "risk_labels": {
+          "low": "<1e-5",
+          "medium": "<1e-3 and >1e-5",
+          "high": ">1e-3"
+        }
+      },
+      "organisation_information": {
+        "title": "Organisation Information",
+        "organisation": "Organisation",
+        "uk_licensed_satellites": "Number of UK-licensed satellites",
+        "registered_users": "Number of registered users",
+        "active_alerts": "Active alerts"
+      },
+      "conjunction_events": {
+        "title": "Conjunction Events",
+        "description": "Monthly conjunction events involving this organisation, grouped by risk threshold."
+      },
+      "fragmentation_events": {
+        "title": "Fragmentation Events",
+        "description": "Monthly fragmentation events associated with this organisation."
+      },
+      "reentry_events": {
+        "title": "Re-entry Events",
+        "description": "Monthly re-entry events associated with this organisation."
+      },
+      "latest_reports": {
+        "title": "Latest Reports",
+        "description": "Most recently generated reports for this organisation.",
+        "period_value": "March 2026",
+        "status_value": "Published",
+        "last_updated_value": "08 Apr 2026 09:30",
+        "table": {
+          "report": "Report",
+          "period": "Period",
+          "status": "Status",
+          "last_updated": "Last updated"
+        },
+        "reports": {
+          "conjunction": "Conjunction events monthly report",
+          "fragmentation": "Fragmentation events monthly report",
+          "reentry": "Re-entry events monthly report"
+        }
+      }
+    }
   },
   "Organisation_user": {
     "title": "User account details",
