@@ -11,7 +11,7 @@ export type StatsMonthlyAnalysesType = {
 };
 
 export async function getStatsMonthlyAnalyses(query?: TypeGetStatsMonthlyOrganizationsParams): Promise<StatsMonthlyAnalysesType[]> {
-  const { data: analyses } = await Api.getStatsMonthlyAnalyses(query);
+  const { data: analyses } = await Api.getStatsMonthlyAnalysesAggregated(query);
   const { data: manoeuvrePlots } = await Api.getStatsMonthlyManoeuvrePlots(query);
 
   const data = analyses.map((analysis, index) => ({

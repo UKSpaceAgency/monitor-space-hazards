@@ -35,12 +35,9 @@ export default async function Satellite(props: PageProps) {
   return (
     <div>
       <h1 className="govuk-heading-xl">{satellite.common_name}</h1>
-      <div className="grid md:grid-cols-4 gap-7">
-        <ContentNavigation />
-        <article className="md:col-span-3">
-          <SatelliteAccordion object={satellite} noradId={noradId} epoch={epoch} report={report} />
-        </article>
-      </div>
+      <ContentNavigation />
+      <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
+      <SatelliteAccordion object={satellite} noradId={noradId} epoch={epoch} report={report} />
     </div>
   );
 }

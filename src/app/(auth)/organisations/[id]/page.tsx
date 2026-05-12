@@ -1,4 +1,7 @@
 import { getOrganisation } from '@/actions/getOrganisation';
+import { ContentNavigation } from '@/components/ContentNavigation';
+import { OperatorSummary } from '@/components/organisations/OperatorSummary';
+import { OrganisationAccordion } from '@/components/organisations/OrganisationAccordion';
 
 type PageProps = {
   params: Promise<{ id: string }>;
@@ -8,9 +11,9 @@ export async function generateMetadata({
   params,
 }: PageProps) {
   const { id } = await params;
-  const organisations = await getOrganisation(id);
+  const organisation = await getOrganisation(id);
   return {
-    title: organisations.name,
+    title: organisation.name,
   };
 }
 
@@ -18,14 +21,20 @@ export default async function OrganisationPage({
   params,
 }: PageProps) {
   const { id } = await params;
-  const organisations = await getOrganisation(id);
+  const organisation = await getOrganisation(id);
 
   return (
     <div>
       <h1 className="govuk-heading-xl">
-        {organisations.name}
+        {organisation.name}
       </h1>
-      {/* <ContentNavigation className="mb-8" /> */}
+      <div className="grid md:grid-cols-4 gap-7">
+        <ContentNavigation />
+        <article className="md:col-span-3">
+          <OperatorSummary organisation={organisation} />
+          <OrganisationAccordion organisation={organisation} />
+        </article>
+      </div>
     </div>
   );
 }

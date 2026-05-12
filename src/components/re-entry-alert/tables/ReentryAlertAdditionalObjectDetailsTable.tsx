@@ -10,9 +10,10 @@ type ObjectDetailsData = Pick<TypeReentryEventOut, 'international_designator' | 
 type ReentryAlertAdditionalObjectDetailsTableProps = {
   event: TypeReentryEventOut;
   dataPdf?: string;
+  isClosed?: boolean;
 };
 
-const ReentryAlertAdditionalObjectDetailsTable = ({ event, dataPdf }: ReentryAlertAdditionalObjectDetailsTableProps) => {
+const ReentryAlertAdditionalObjectDetailsTable = ({ event, dataPdf, isClosed }: ReentryAlertAdditionalObjectDetailsTableProps) => {
   const t = useTranslations('Tables.Reentry_alert_additional_object_details');
 
   const objectDetailsHeaders: HTMLProps<HTMLTableCellElement>[] = [{
@@ -51,32 +52,41 @@ const ReentryAlertAdditionalObjectDetailsTable = ({ event, dataPdf }: ReentryAle
     colSpan: 2,
   }];
 
-  const orbitDetailsRows: InformationsTableRow<ObjectDetailsData>[] = [
-    {
-      header: t('apogee'),
-      accessorKey: 'apogee',
-      cellProps: {
-        className: 'pl-10',
-        width: '50%',
-      },
-    },
-    {
-      header: t('perigee'),
-      accessorKey: 'perigee',
-      cellProps: {
-        className: 'pl-10',
-        width: '50%',
-      },
-    },
-    {
-      header: t('inclination'),
-      accessorKey: 'inclination',
-      cellProps: {
-        className: 'pl-10',
-        width: '50%',
-      },
-    },
-  ];
+  const orbitDetailsRows: InformationsTableRow<ObjectDetailsData>[] = isClosed
+    ? [{
+        header: t('inclination'),
+        accessorKey: 'inclination',
+        cellProps: {
+          className: 'pl-10',
+          width: '50%',
+        },
+      }]
+    : [
+        {
+          header: t('apogee'),
+          accessorKey: 'apogee',
+          cellProps: {
+            className: 'pl-10',
+            width: '50%',
+          },
+        },
+        {
+          header: t('perigee'),
+          accessorKey: 'perigee',
+          cellProps: {
+            className: 'pl-10',
+            width: '50%',
+          },
+        },
+        {
+          header: t('inclination'),
+          accessorKey: 'inclination',
+          cellProps: {
+            className: 'pl-10',
+            width: '50%',
+          },
+        },
+      ];
 
   return (
     <div data-pdf={dataPdf}>
