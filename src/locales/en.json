@@ -1568,6 +1568,7 @@
       "international_designator": "International designator",
       "norad_id": "NORAD ID",
       "object_dimensions": "Object dimensions",
+      "width": "Width",
       "height": "Height",
       "span": "Span",
       "launching_year": "Launching year",
