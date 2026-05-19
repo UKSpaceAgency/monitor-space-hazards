@@ -45,7 +45,7 @@ const ReentryAlertAccordion = ({
             id: 'additional_object_details',
             heading: t('additional_object_details'),
             content: (
-              <ReentryAlertAdditionalObjectDetailsTable event={event} dataPdf={t('additional_object_details')} isClosed={isClosed} />
+              <ReentryAlertAdditionalObjectDetailsTable event={event} report={lastReport} dataPdf={t('additional_object_details')} isClosed={isClosed} />
             ),
           },
           {
