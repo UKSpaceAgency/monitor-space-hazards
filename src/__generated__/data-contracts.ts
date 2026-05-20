@@ -3560,7 +3560,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-05-15T07:24:39.143569"
+   * @default "2026-05-20T10:07:15.167034"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3827,8 +3827,8 @@ export interface TypeGetActivityEventsParams {
    * @default "future"
    */
   epoch?: TypeEpoch;
-  /** Search Query */
-  search_query?: string | null;
+  /** Search Like */
+  search_like?: string | null;
   /**
    * Sort By
    * @default "common_name"
@@ -4137,8 +4137,8 @@ export interface TypeGetFragmentationEventsParams {
    * @default "future"
    */
   epoch?: TypeEpoch;
-  /** Search Query */
-  search_query?: string | null;
+  /** Search Like */
+  search_like?: string | null;
   /**
    * Sort By
    * @default "event_epoch"
@@ -4958,6 +4958,23 @@ export interface TypeGetStatsMonthlyConjunctionEventsAggregatedParams {
 }
 
 export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeAggregatedParams {
+  /**
+   * Start Date
+   * @format date
+   * @default "2022-01-01"
+   */
+  start_date?: string;
+  /**
+   * End Date
+   * @format date
+   * @default "2026-06-01"
+   */
+  end_date?: string;
+}
+
+export interface TypeGetStatsMonthlyConjunctionEventsByNoradIdAggregatedParams {
+  /** Norad Id */
+  norad_id: string;
   /**
    * Start Date
    * @format date

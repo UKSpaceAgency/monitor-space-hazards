@@ -112,6 +112,7 @@ import {
   TypeGetStatsMonthlyAnalysesAggregatedParams,
   TypeGetStatsMonthlyAnalysesParams,
   TypeGetStatsMonthlyConjunctionEventsAggregatedParams,
+  TypeGetStatsMonthlyConjunctionEventsByNoradIdAggregatedParams,
   TypeGetStatsMonthlyConjunctionEventsByObjectTypeAggregatedParams,
   TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams,
   TypeGetStatsMonthlyConjunctionEventsParams,
@@ -1036,7 +1037,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Fragmentation Event by short ID.. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Fragmentation Event by short ID. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags fragmentation-events
    * @name GetFragmentationEventsByNoradIdNoradId
@@ -1585,7 +1586,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Reentry Event by short ID.. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Reentry Event by short ID. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags reentry-events
    * @name GetReentryEventsByNoradIdNoradId
@@ -2482,6 +2483,26 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
   ) =>
     this.request<TypeStatisticsConjunctionEventsMonthlyCountAggregated[], void | TypeHTTPValidationError>({
       path: `/v1/stats/monthly/conjunction-events-by-object-type-aggregated`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Get monthly count of Conjunction Events with object type, within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   *
+   * @tags stats
+   * @name GetStatsMonthlyConjunctionEventsByNoradIdAggregated
+   * @summary Get monthly count of Conjunction Events with object type
+   * @request GET:/v1/stats/monthly/conjunction-events-by-norad-id-aggregated
+   * @secure
+   */
+  getStatsMonthlyConjunctionEventsByNoradIdAggregated = (
+    query?: TypeGetStatsMonthlyConjunctionEventsByNoradIdAggregatedParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeStatisticsConjunctionEventsMonthlyCountByProbabilityAggregated[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/monthly/conjunction-events-by-norad-id-aggregated`,
       method: "GET",
       query: query,
       secure: true,
