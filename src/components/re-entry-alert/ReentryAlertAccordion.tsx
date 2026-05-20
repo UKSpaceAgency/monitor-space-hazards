@@ -20,6 +20,7 @@ type ReentryAlertAccordionProps = {
   reports?: TypeReentryEventReportOut[];
   lastReport?: TypeReentryEventReportOut;
   searchParams?: TypeReentryEventPatch;
+  isClosed?: boolean;
 };
 
 const ReentryAlertAccordion = ({
@@ -27,6 +28,7 @@ const ReentryAlertAccordion = ({
   reports,
   lastReport,
   searchParams,
+  isClosed,
 }: ReentryAlertAccordionProps) => {
   const t = useTranslations('Reentry_alert.accordion');
 
@@ -43,7 +45,7 @@ const ReentryAlertAccordion = ({
             id: 'additional_object_details',
             heading: t('additional_object_details'),
             content: (
-              <ReentryAlertAdditionalObjectDetailsTable event={event} dataPdf={t('additional_object_details')} />
+              <ReentryAlertAdditionalObjectDetailsTable event={event} report={lastReport} dataPdf={t('additional_object_details')} isClosed={isClosed} />
             ),
           },
           {

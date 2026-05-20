@@ -106,11 +106,8 @@ export interface TypeActivityEvent {
   object_type?: string | null;
   /** International Designator */
   international_designator?: string | null;
-  /**
-   * Operator
-   * @format uuid
-   */
-  operator: string;
+  /** Operator */
+  operator?: string | null;
   /** Licensing Country */
   licensing_country?: string | null;
   /** Period */
@@ -234,11 +231,8 @@ export interface TypeActivityEventOut {
   object_type?: string | null;
   /** International Designator */
   international_designator?: string | null;
-  /**
-   * Operator
-   * @format uuid
-   */
-  operator: string;
+  /** Operator */
+  operator?: string | null;
   /** Licensing Country */
   licensing_country?: string | null;
   /** Period */
@@ -364,11 +358,8 @@ export interface TypeActivityReport {
   object_type?: string | null;
   /** International Designator */
   international_designator?: string | null;
-  /**
-   * Operator
-   * @format uuid
-   */
-  operator: string;
+  /** Operator */
+  operator?: string | null;
   /** Licensing Country */
   licensing_country?: string | null;
   /** Period */
@@ -470,11 +461,8 @@ export interface TypeActivityReportOut {
   object_type?: string | null;
   /** International Designator */
   international_designator?: string | null;
-  /**
-   * Operator
-   * @format uuid
-   */
-  operator: string;
+  /** Operator */
+  operator?: string | null;
   /** Licensing Country */
   licensing_country?: string | null;
   /** Period */
@@ -1657,6 +1645,8 @@ export interface TypeEventOut {
   report_number?: number | null;
   /** Collision Probability Uksa */
   collision_probability_uksa?: number | null;
+  /** Collision Probability Report */
+  collision_probability_report?: number | null;
   risk?: TypeRisk | null;
 }
 
@@ -3558,6 +3548,8 @@ export interface TypeUniqueEventOut {
   collision_probability_uksa?: number | null;
   /** Collision Probability St */
   collision_probability_st?: number | null;
+  /** Collision Probability Report */
+  collision_probability_report?: number | null;
   /** Cdm External Id */
   cdm_external_id?: string | null;
   /** Cdm Creation Date */
@@ -3568,7 +3560,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-04-28T21:05:02.280198"
+   * @default "2026-05-20T10:07:15.167034"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3835,8 +3827,8 @@ export interface TypeGetActivityEventsParams {
    * @default "future"
    */
   epoch?: TypeEpoch;
-  /** Search Query */
-  search_query?: string | null;
+  /** Search Like */
+  search_like?: string | null;
   /**
    * Sort By
    * @default "common_name"
@@ -4032,6 +4024,18 @@ export interface TypeGetConjunctionReportsConjunctionEventShortIdParams {
   shortId: string;
 }
 
+export interface TypeGetConjunctionReportsConjunctionReportIdDownloadParams {
+  /** Expires */
+  expires: number;
+  /** Token */
+  token: string;
+  /**
+   * Conjunction Report Id
+   * @format uuid
+   */
+  conjunctionReportId: string;
+}
+
 export interface TypeGetEphemerisParams {
   /**
    * Norad Id
@@ -4133,8 +4137,8 @@ export interface TypeGetFragmentationEventsParams {
    * @default "future"
    */
   epoch?: TypeEpoch;
-  /** Search Query */
-  search_query?: string | null;
+  /** Search Like */
+  search_like?: string | null;
   /**
    * Sort By
    * @default "event_epoch"
@@ -4178,6 +4182,18 @@ export interface TypeGetFragmentationReportsParams {
    * @default "asc"
    */
   sort_order?: TypeSortOrder;
+}
+
+export interface TypeGetFragmentationReportsFragmentationReportIdDownloadParams {
+  /** Expires */
+  expires: number;
+  /** Token */
+  token: string;
+  /**
+   * Fragmentation Report Id
+   * @format uuid
+   */
+  fragmentationReportId: string;
 }
 
 export interface TypeGetFragmentationReportsFragmentationEventShortIdParams {
@@ -4306,6 +4322,18 @@ export interface TypeGetReentryEventReportsReentryEventShortIdParams {
   sort_order?: TypeSortOrder;
   /** Short Id */
   shortId: string;
+}
+
+export interface TypeGetReentryEventReportsReentryEventReportIdDownloadParams {
+  /** Expires */
+  expires: number;
+  /** Token */
+  token: string;
+  /**
+   * Reentry Event Report Id
+   * @format uuid
+   */
+  reentryEventReportId: string;
 }
 
 export interface TypeGetReentryEventsStatsParams {
@@ -4834,7 +4862,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2026-05-01"
+   * @default "2026-06-01"
    */
   end_date?: string;
 }
@@ -4849,7 +4877,7 @@ export interface TypeGetStatsMonthlyAnalysesAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-05-01"
+   * @default "2026-06-01"
    */
   end_date?: string;
 }
@@ -4864,7 +4892,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2026-05-01"
+   * @default "2026-06-01"
    */
   end_date?: string;
 }
@@ -4879,7 +4907,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-05-01"
+   * @default "2026-06-01"
    */
   end_date?: string;
 }
@@ -4894,7 +4922,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-05-01"
+   * @default "2026-06-01"
    */
   end_date?: string;
 }
@@ -4909,7 +4937,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-05-01"
+   * @default "2026-06-01"
    */
   end_date?: string;
 }
@@ -4924,7 +4952,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-05-01"
+   * @default "2026-06-01"
    */
   end_date?: string;
 }
@@ -4939,7 +4967,24 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeAggregatedParam
   /**
    * End Date
    * @format date
-   * @default "2026-05-01"
+   * @default "2026-06-01"
+   */
+  end_date?: string;
+}
+
+export interface TypeGetStatsMonthlyConjunctionEventsByNoradIdAggregatedParams {
+  /** Norad Id */
+  norad_id: string;
+  /**
+   * Start Date
+   * @format date
+   * @default "2022-01-01"
+   */
+  start_date?: string;
+  /**
+   * End Date
+   * @format date
+   * @default "2026-06-01"
    */
   end_date?: string;
 }
@@ -4954,7 +4999,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2026-05-01"
+   * @default "2026-06-01"
    */
   end_date?: string;
 }

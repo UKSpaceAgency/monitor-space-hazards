@@ -47,7 +47,7 @@
         },
         "track_fragmentations": {
           "title": "Track fragmentation events",
-          "description": "Space debris from objects",
+          "description": "Space debris from objects.",
           "link": "/fragmentations"
         },
         "track_conjunctions": {
@@ -242,7 +242,77 @@
       "registered": "Registered",
       "edit": "Edit"
     },
-    "add_new_user": "Add new user"
+    "add_new_user": "Add new user",
+    "operator_summary": {
+      "title": "Organisation Summary",
+      "primary_country_of_operation": "Primary country of operation",
+      "primary_country_of_operation_value": "United Kingdom",
+      "uk_licensed_satellites": "Number of UK-licensed satellites",
+      "telephone_number": "Telephone number",
+      "telephone_number_value": "+44 (0)20 7946 0018",
+      "email_contacts": "Email contacts",
+      "fallback_email": "operations@example.org"
+    },
+    "accordion": {
+      "licensed_satellites": "Licensed satellites",
+      "table": {
+        "month": "Month",
+        "total_events": "Total events"
+      },
+      "months": {
+        "january_2026": "January 2026",
+        "february_2026": "February 2026",
+        "march_2026": "March 2026"
+      },
+      "chart": {
+        "aria_suffix": "by month",
+        "x_axis": "Month",
+        "y_axis": "Total events",
+        "legend_title": "Risk band",
+        "risk_labels": {
+          "low": "<1e-5",
+          "medium": "<1e-3 and >1e-5",
+          "high": ">1e-3"
+        }
+      },
+      "organisation_information": {
+        "title": "Organisation Information",
+        "organisation": "Organisation",
+        "uk_licensed_satellites": "Number of UK-licensed satellites",
+        "registered_users": "Number of registered users",
+        "active_alerts": "Active alerts"
+      },
+      "conjunction_events": {
+        "title": "Conjunction Events",
+        "description": "Monthly conjunction events involving this organisation, grouped by risk threshold."
+      },
+      "fragmentation_events": {
+        "title": "Fragmentation Events",
+        "description": "Monthly fragmentation events associated with this organisation."
+      },
+      "reentry_events": {
+        "title": "Re-entry Events",
+        "description": "Monthly re-entry events associated with this organisation."
+      },
+      "latest_reports": {
+        "title": "Latest Reports",
+        "description": "Most recently generated reports for this organisation.",
+        "period_value": "March 2026",
+        "status_value": "Published",
+        "last_updated_value": "08 Apr 2026 09:30",
+        "table": {
+          "report": "Report",
+          "period": "Period",
+          "status": "Status",
+          "last_updated": "Last updated"
+        },
+        "reports": {
+          "conjunction": "Conjunction events monthly report",
+          "fragmentation": "Fragmentation events monthly report",
+          "reentry": "Re-entry events monthly report"
+        }
+      }
+    }
   },
   "Organisation_user": {
     "title": "User account details",
@@ -352,7 +422,12 @@
       "conjunction_events": "Conjunction events",
       "all_conjunction_events": "All conjunction events",
       "activity_information": "Activity information",
-      "all_activity_events": "All activity events"
+      "all_activity_events": "All activity events",
+      "position_history": "Position history",
+      "reentries": "Re-entry events",
+      "all_reentries": "All re-entry events",
+      "fragmentations": "Fragmentation events",
+      "all_fragmentations": "All fragmentation events"
     },
     "Ephemeris_data": {
       "title": "Ephemeris data",
@@ -384,6 +459,9 @@
         "title": "Help with this table<screenReaderOnly> - Activity events</screenReaderOnly>",
         "content": "<p>This table shows all ongoing and closed activity flags for {commonName}.</p><p>Select the event ID to view more information</p>"
       }
+    },
+    "Position_history": {
+      "description": "<p>This section shows the position of {common_name} at every received TLE.</p><p>TLE data is pulled from SpaceTrack.org and may occasionally be inaccurate. All flagged position changes have been verified by NSpOC Orbital Analysts.</p>"
     }
   },
   "Satellite_ephemeris_upload": {
@@ -1200,7 +1278,8 @@
         "reentry_events": "re-entry events",
         "reentry_reports": "re-entry reports",
         "fragmentation_events": "fragmentation events",
-        "activities": "activities"
+        "activities": "activities",
+        "position_history": "position history"
       }
     },
     "Analysis_data": {
@@ -1489,6 +1568,7 @@
       "international_designator": "International designator",
       "norad_id": "NORAD ID",
       "object_dimensions": "Object dimensions",
+      "width": "Width",
       "height": "Height",
       "span": "Span",
       "launching_year": "Launching year",
@@ -1727,15 +1807,18 @@
       "common_name": "Satellite",
       "operator_name": "Operator",
       "norad_id": "NORAD ID",
+      "date_of_tle": "Date of TLE (UTC)",
       "flag_date": "Date of flag",
       "orbit_type": "Orbit",
       "altitude": "Altitude (km)",
       "longitude": "Longitude (°)",
       "inclination": "Inclination (°)",
+      "inclination_short": "Inc (°)",
       "apogee": "Apogee (km)",
       "perigee": "Perigee (km)",
       "position_change": "Position after change and size of change (if applicable)",
-      "activity_events_as_of": "Activity events as of "
+      "activity_events_as_of": "Activity events as of ",
+      "position_at_time": "Position at time of TLE"
     }
   },
   "Forms": {

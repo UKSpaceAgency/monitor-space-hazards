@@ -28,7 +28,7 @@ export default async function ActivitiesPage(props: PageProps) {
   const searchParams = await props.searchParams;
 
   const params: TypeGetActivityEventsParams = {
-    search_query: searchParams?.search_like,
+    search_like: searchParams?.search_like,
     limit: 50,
   };
 

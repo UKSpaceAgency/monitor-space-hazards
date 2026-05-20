@@ -38,13 +38,10 @@ export default async function ActivityPage({
       <h1 className="govuk-heading-xl">
         {t('title', { shortId })}
       </h1>
-      <div className="grid md:grid-cols-4 gap-7">
-        <ContentNavigation />
-        <div className="md:col-span-3">
-          <ActivityEventSummary event={event} />
-          <ActivityAccordion noradId={event.norad_id} />
-        </div>
-      </div>
+      <ContentNavigation />
+      <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
+      <ActivityEventSummary event={event} />
+      <ActivityAccordion noradId={event.norad_id} />
     </div>
   );
 };

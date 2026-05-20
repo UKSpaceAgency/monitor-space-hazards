@@ -78,14 +78,17 @@ import {
   TypeGetConjunctionEventsParams,
   TypeGetConjunctionEventsStatsParams,
   TypeGetConjunctionReportsConjunctionEventShortIdParams,
+  TypeGetConjunctionReportsConjunctionReportIdDownloadParams,
   TypeGetEphemerisParams,
   TypeGetExternalDataPerformanceAggregatedParams,
   TypeGetExternalDataPerformanceParams,
   TypeGetFragmentationEventsParams,
   TypeGetFragmentationReportsFragmentationEventShortIdParams,
+  TypeGetFragmentationReportsFragmentationReportIdDownloadParams,
   TypeGetFragmentationReportsParams,
   TypeGetManoeuvrePlotsByEventEventShortIdParams,
   TypeGetManoeuvrePlotsParams,
+  TypeGetReentryEventReportsReentryEventReportIdDownloadParams,
   TypeGetReentryEventReportsReentryEventShortIdParams,
   TypeGetReentryEventsParams,
   TypeGetReentryEventsStatsParams,
@@ -109,6 +112,7 @@ import {
   TypeGetStatsMonthlyAnalysesAggregatedParams,
   TypeGetStatsMonthlyAnalysesParams,
   TypeGetStatsMonthlyConjunctionEventsAggregatedParams,
+  TypeGetStatsMonthlyConjunctionEventsByNoradIdAggregatedParams,
   TypeGetStatsMonthlyConjunctionEventsByObjectTypeAggregatedParams,
   TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams,
   TypeGetStatsMonthlyConjunctionEventsParams,
@@ -862,7 +866,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       secure: true,
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|-| |International admin|-| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * No description
    *
    * @tags conjunction-reports
    * @name GetConjunctionReportsConjunctionReportIdDownload
@@ -870,10 +874,14 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @request GET:/v1/conjunction-reports/{conjunction_report_id}/download
    * @secure
    */
-  getConjunctionReportsConjunctionReportIdDownload = (conjunctionReportId: string, params: RequestParams = {}) =>
+  getConjunctionReportsConjunctionReportIdDownload = (
+    { conjunctionReportId, ...query }: TypeGetConjunctionReportsConjunctionReportIdDownloadParams,
+    params: RequestParams = {},
+  ) =>
     this.request<any, void | TypeHTTPValidationError>({
       path: `/v1/conjunction-reports/${conjunctionReportId}/download`,
       method: "GET",
+      query: query,
       secure: true,
       format: "json",
       ...params,
@@ -1029,7 +1037,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Fragmentation Event by short ID.. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Fragmentation Event by short ID. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags fragmentation-events
    * @name GetFragmentationEventsByNoradIdNoradId
@@ -1167,7 +1175,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
     data: TypeBodyPostFragmentationEventReportV1FragmentationReportsPost,
     params: RequestParams = {},
   ) =>
-    this.request<TypeFragmentationReport, void | TypeHTTPValidationError>({
+    this.request<TypeFragmentationReportOut, void | TypeHTTPValidationError>({
       path: `/v1/fragmentation-reports/`,
       method: "POST",
       body: data,
@@ -1241,7 +1249,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * No description
    *
    * @tags fragmentation-reports
    * @name GetFragmentationReportsFragmentationReportIdDownload
@@ -1249,10 +1257,14 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @request GET:/v1/fragmentation-reports/{fragmentation_report_id}/download
    * @secure
    */
-  getFragmentationReportsFragmentationReportIdDownload = (fragmentationReportId: string, params: RequestParams = {}) =>
+  getFragmentationReportsFragmentationReportIdDownload = (
+    { fragmentationReportId, ...query }: TypeGetFragmentationReportsFragmentationReportIdDownloadParams,
+    params: RequestParams = {},
+  ) =>
     this.request<any, void | TypeHTTPValidationError>({
       path: `/v1/fragmentation-reports/${fragmentationReportId}/download`,
       method: "GET",
+      query: query,
       secure: true,
       format: "json",
       ...params,
@@ -1521,7 +1533,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       secure: true,
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * No description
    *
    * @tags reentry-event-reports
    * @name GetReentryEventReportsReentryEventReportIdDownload
@@ -1529,10 +1541,14 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @request GET:/v1/reentry-event-reports/{reentry_event_report_id}/download
    * @secure
    */
-  getReentryEventReportsReentryEventReportIdDownload = (reentryEventReportId: string, params: RequestParams = {}) =>
+  getReentryEventReportsReentryEventReportIdDownload = (
+    { reentryEventReportId, ...query }: TypeGetReentryEventReportsReentryEventReportIdDownloadParams,
+    params: RequestParams = {},
+  ) =>
     this.request<any, void | TypeHTTPValidationError>({
       path: `/v1/reentry-event-reports/${reentryEventReportId}/download`,
       method: "GET",
+      query: query,
       secure: true,
       format: "json",
       ...params,
@@ -1570,7 +1586,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Gets Reentry Event by short ID.. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   * @description ## Description Gets Reentry Event by short ID. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags reentry-events
    * @name GetReentryEventsByNoradIdNoradId
@@ -2467,6 +2483,26 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
   ) =>
     this.request<TypeStatisticsConjunctionEventsMonthlyCountAggregated[], void | TypeHTTPValidationError>({
       path: `/v1/stats/monthly/conjunction-events-by-object-type-aggregated`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Get monthly count of Conjunction Events with object type, within a date range, rounded to months |User Role|Permissions| |-|-| |Satellite operator user|Public| |Satellite operator|Public| |Satellite operator admin|Public| |Government user|Public| |Government admin|Public| |International user|Public| |International admin|Public| |Agency user|Public| |Agency admin|Public| |Agency analyst|Public| |Agency approver|Public| |Agency superuser|Public| |Regulator user|Public| |Regulator admin|Public|
+   *
+   * @tags stats
+   * @name GetStatsMonthlyConjunctionEventsByNoradIdAggregated
+   * @summary Get monthly count of Conjunction Events with object type
+   * @request GET:/v1/stats/monthly/conjunction-events-by-norad-id-aggregated
+   * @secure
+   */
+  getStatsMonthlyConjunctionEventsByNoradIdAggregated = (
+    query?: TypeGetStatsMonthlyConjunctionEventsByNoradIdAggregatedParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeStatisticsConjunctionEventsMonthlyCountByProbabilityAggregated[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/monthly/conjunction-events-by-norad-id-aggregated`,
       method: "GET",
       query: query,
       secure: true,
