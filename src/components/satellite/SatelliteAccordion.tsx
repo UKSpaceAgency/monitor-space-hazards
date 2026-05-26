@@ -6,10 +6,14 @@ import { getSession } from '@/actions/getSession';
 import Accordion from '@/ui/accordion/accordion';
 import { isAgencyApprover, isSatteliteOperator } from '@/utils/Roles';
 
+import { SatelliteActivityEvents } from './SatelliteActivityEvents';
 import { SatelliteAdditionalInformations } from './SatelliteAdditionalInformation';
 import { SatelliteConjunctionEvents } from './SatelliteConjunctionEvents';
 import { SatelliteEphemerisData } from './SatelliteEphemerisData';
+import { SatelliteFragmentationsEvents } from './SatelliteFragmentationsEvents';
 import { SatelliteInformation } from './SatelliteInformation';
+import { SatellitePositionHistory } from './SatellitePositionHistory';
+import { SatelliteReentriesEvents } from './SatelliteReentriesEvents';
 
 type SatelliteAccordionProps = {
   noradId: string;
@@ -74,7 +78,7 @@ const SatelliteAccordion = async ({
           },
         ]}
       />
-      {/* <h2 data-anchor="potential-impact" className="govuk-heading-l">{t('activity_information')}</h2>
+      <h2 data-anchor="potential-impact" className="govuk-heading-l">{t('activity_information')}</h2>
       <Accordion
         id="activity-events"
         addAnchor={false}
@@ -114,7 +118,7 @@ const SatelliteAccordion = async ({
             content: <SatelliteFragmentationsEvents noradId={noradId} />,
           },
         ]}
-      /> */}
+      />
     </>
 
   );
