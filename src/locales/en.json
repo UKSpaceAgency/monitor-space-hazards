@@ -998,6 +998,7 @@
       "probability_of_ground": "Probability of debris impact in UK",
       "probability_of_human_casualty": "Probability of UK casualty risk",
       "risk": {
+        "equal": "{value}%",
         "less_than": "Less than {value}%",
         "between": "{from}% - {to}%",
         "more_than": "More than {value}%"
