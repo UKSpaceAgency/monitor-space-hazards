@@ -1258,6 +1258,8 @@ export interface TypeConjunctionReportOut {
   primary_object_mission?: string | null;
   /** Primary Object Mass */
   primary_object_mass?: number | null;
+  /** Primary Object Hbr */
+  primary_object_hbr?: number | null;
   /** Primary Object Manoeuvrable */
   primary_object_manoeuvrable?: string | null;
   /** Secondary Object Common Name */
@@ -1272,6 +1274,8 @@ export interface TypeConjunctionReportOut {
   secondary_object_mission?: string | null;
   /** Secondary Object Mass */
   secondary_object_mass?: number | null;
+  /** Secondary Object Hbr */
+  secondary_object_hbr?: number | null;
   /** Secondary Object Manoeuvrable */
   secondary_object_manoeuvrable?: string | null;
   /** Executive Summary Comment */
@@ -3560,7 +3564,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-05-20T10:07:15.167034"
+   * @default "2026-06-11T12:00:45.273978"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -4862,7 +4866,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2026-06-01"
+   * @default "2026-07-01"
    */
   end_date?: string;
 }
@@ -4877,7 +4881,7 @@ export interface TypeGetStatsMonthlyAnalysesAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-06-01"
+   * @default "2026-07-01"
    */
   end_date?: string;
 }
@@ -4892,7 +4896,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2026-06-01"
+   * @default "2026-07-01"
    */
   end_date?: string;
 }
@@ -4907,7 +4911,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-06-01"
+   * @default "2026-07-01"
    */
   end_date?: string;
 }
@@ -4922,7 +4926,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-06-01"
+   * @default "2026-07-01"
    */
   end_date?: string;
 }
@@ -4937,7 +4941,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-06-01"
+   * @default "2026-07-01"
    */
   end_date?: string;
 }
@@ -4952,7 +4956,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-06-01"
+   * @default "2026-07-01"
    */
   end_date?: string;
 }
@@ -4967,7 +4971,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeAggregatedParam
   /**
    * End Date
    * @format date
-   * @default "2026-06-01"
+   * @default "2026-07-01"
    */
   end_date?: string;
 }
@@ -4984,7 +4988,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByNoradIdAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-06-01"
+   * @default "2026-07-01"
    */
   end_date?: string;
 }
@@ -4999,7 +5003,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2026-06-01"
+   * @default "2026-07-01"
    */
   end_date?: string;
 }

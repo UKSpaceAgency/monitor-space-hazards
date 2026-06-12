@@ -1,11 +1,12 @@
 import { isNumber } from 'lodash';
 import Link from 'next/link';
 
-import type { TypeReentryEventOut, TypeRisk } from '@/__generated__/data-contracts';
+import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
 import { objectTypeIndex } from '@/emails/_utils/utils';
 import { dayjs, FORMAT_DATE_FULL_MONTH, FORMAT_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import { roundedFixed } from '@/utils/Math';
+import { getReentryFragmentsRisk } from '@/utils/ReentryRisk';
 import { renderRiskTag } from '@/utils/Tags';
 
 export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumnDef<TypeReentryEventOut>[] => [
@@ -14,15 +15,9 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     accessorKey: 'fragments_risk',
     header: 'Reentries.table.risk',
     size: 100,
-    cell: ({ getValue, row: { original: { object_name } } }) => {
-      const value = getValue<TypeRisk>();
-      let risk: TypeRisk | 'None' | 'Pending' | null | undefined = value ?? 'Pending';
-      if (!value) {
-        risk = object_name?.toLowerCase().includes('starlink') ? 'Very low' : 'Pending';
-      }
-
-      return renderRiskTag(risk);
-    },
+    cell: ({ row: { original: { fragments_probability } } }) => renderRiskTag(
+      getReentryFragmentsRisk(fragments_probability),
+    ),
   },
   {
     id: 'short_id',

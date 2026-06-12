@@ -7,6 +7,7 @@ import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
 import { roundedPercent } from '@/utils/Math';
+import { getReentryFragmentsProbability, getReentryFragmentsRisk } from '@/utils/ReentryRisk';
 import { renderRiskTag } from '@/utils/Tags';
 
 export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventReportOut>[] = [
@@ -56,15 +57,17 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
   {
     header: 'Reentry_alert_history.risk',
     enableSorting: false,
-    cell: ({ row: { original: { fragments_risk } } }) => renderRiskTag(fragments_risk ?? 'None'),
+    cell: ({ row: { original: { fragments_probability, impact } } }) => {
+      const risk = getReentryFragmentsRisk(fragments_probability, impact);
+      return renderRiskTag(risk);
+    },
   },
   {
     header: 'Reentry_alert_history.probability',
-    accessorKey: 'fragments_probability',
     enableSorting: false,
-    cell: ({ getValue }) => {
-      const value = getValue<number>();
-      return value ? roundedPercent(value, 3) : '-';
+    cell: ({ row: { original: { fragments_probability, impact } } }) => {
+      const probability = getReentryFragmentsProbability(fragments_probability, impact);
+      return probability ? roundedPercent(probability, 3) : '-';
     },
   },
   {
