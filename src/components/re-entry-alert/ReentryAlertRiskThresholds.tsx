@@ -26,9 +26,14 @@ const ReentryAlertRiskThresholds = ({ dataPdf }: ReentryAlertRiskThresholdsProps
           </TableHead>
           <TableBody>
             <TableRow>
+              <TableCell>{renderRiskTag('None')}</TableCell>
+              <TableCell>{t('risk.equal', { value: 0 })}</TableCell>
+              <TableCell>{t('risk.equal', { value: 0 })}</TableCell>
+            </TableRow>
+            <TableRow>
               <TableCell>{renderRiskTag('Very low')}</TableCell>
-              <TableCell>{t('risk.less_than', { value: 0.1 })}</TableCell>
-              <TableCell>{t('risk.less_than', { value: 0.1 })}</TableCell>
+              <TableCell>{t('risk.between', { from: 0, to: 0.1 })}</TableCell>
+              <TableCell>{t('risk.between', { from: 0, to: 0.1 })}</TableCell>
               {/* <TableCell>{t('risk.low', { value: 0.1 })}</TableCell> */}
             </TableRow>
             <TableRow>
