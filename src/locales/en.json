@@ -255,6 +255,13 @@
     },
     "accordion": {
       "licensed_satellites": "Licensed satellites",
+      "conjunction_events_heading": "Conjunction events",
+      "all_conjunction_events": "All conjunction events",
+      "conjunction_events_by_poc": "Conjunction events by probability of collision",
+      "conjunction_events_by_type": "Conjunction events by type",
+      "activity_information_heading": "Activity information",
+      "all_activity_flags": "All activity flags",
+      "activity_flags_by_reason": "Activity flags by reason for flag",
       "table": {
         "month": "Month",
         "total_events": "Total events"
@@ -452,6 +459,10 @@
       "type": {
         "future": "Upcoming",
         "past": "Previous"
+      },
+      "help": {
+        "title": "Help with this table<screenReaderOnly> - Conjunction events</screenReaderOnly>",
+        "content": "<p>This table shows all upcoming conjunction events involving {commonName}.</p><p>Select the event ID to view more information.</p><p>Each event ID or row represents <bold>one conjunction event </bold> including all related Conjunction Data Messages (CDMs) and NSpOC analysis.</p>"
       }
     },
     "Activity_events": {
@@ -1760,6 +1771,46 @@
       "country": "Country",
       "launch_site": "Launch site",
       "launch_date": "Launch date"
+    },
+    "Organisation_public_satellites": {
+      "satellite_information": "Satellite information",
+      "common_name": "Common name",
+      "norad_id": "NORAD ID",
+      "launch_date": "Launch date",
+      "latest_position": "Latest recorded position",
+      "orbit": "Orbit",
+      "altitude": "Altitude (km)",
+      "longitude": "Longitude (°)"
+    },
+    "Organisation_conjunction_poc": {
+      "satellite": "Satellite",
+      "low": "<1e-5",
+      "medium": "<1e-3 and >1e-5",
+      "high": ">1e-3",
+      "total": "Total"
+    },
+    "Organisation_conjunction_type": {
+      "satellite": "Satellite",
+      "debris": "Events with debris",
+      "another_satellite": "Events with another satellite",
+      "uk_satellites": "Events with two UK-licensed satellites",
+      "other": "Events with other objects",
+      "total": "Total"
+    },
+    "Organisation_activity_flags": {
+      "event_information": "Event information",
+      "reason_for_flag": "Reason for flag",
+      "flag_id": "Flag ID",
+      "satellite": "Satellite",
+      "flag_date": "Date of flag"
+    },
+    "Organisation_activity_by_reason": {
+      "satellite": "Satellite",
+      "manoeuvre_planned": "Manoeuvre as planned",
+      "manoeuvre_unplanned": "Manoeuvre not as planned",
+      "position_change": "Unexpected position change",
+      "missing_data": "Missing data",
+      "total": "Total"
     },
     "Organisation_users": {
       "registered_users": "Registered users",

@@ -1,5 +1,6 @@
 import { getSatellites } from '@/actions/getSatellites';
-import { OrganisationSatellitesTable } from '@/components/account/organisations/organisation/data-table/OrganisationSatellitesTable';
+
+import { OrganisationSatellitesPublicTable } from './OrganisationSatellitesPublicTable';
 
 type OrganisationSatellitesListProps = {
   organisationId?: string;
@@ -12,7 +13,7 @@ const OrganisationSatellitesList = async ({ organisationId }: OrganisationSatell
 
   const satellites = await getSatellites({ organization_id: organisationId });
 
-  return <OrganisationSatellitesTable satellites={satellites} emptyLabel="No licensed satellites available." />;
+  return <OrganisationSatellitesPublicTable satellites={satellites} />;
 };
 
 export { OrganisationSatellitesList };

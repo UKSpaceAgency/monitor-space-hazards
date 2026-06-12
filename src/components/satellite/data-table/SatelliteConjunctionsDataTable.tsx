@@ -7,7 +7,6 @@ import { useMemo, useState } from 'react';
 import type { TypeEventOut, TypeGetConjunctionEventsListParams } from '@/__generated__/data-contracts';
 import { getConjunctionEventsList } from '@/actions/getConjunctionEventsList';
 import type { ProbabilityUnitType } from '@/components/conjunctions/data-table/ConjunctionsDataTableColumns';
-import { DownloadData } from '@/components/DownloadData';
 import InfiniteTable from '@/components/InfiniteTable';
 import Radios from '@/ui/radios/radios';
 import { QUERY_KEYS } from '@/utils/QueryKeys';
@@ -80,7 +79,6 @@ const SatelliteConjunctionsDataTable = ({ params, initialData, isAnalyst, haveAc
         queryKeys={[QUERY_KEYS.Conjunctions]}
         initialSort={initialSort}
       />
-      <DownloadData type={t('Download.types.satellite_events', { epoch: params.epoch === 'future' ? 'upcoming' : 'previous' })} params={params} downloadAction={getConjunctionEventsList} ariaLabel="Satellite conjunctions" />
     </>
   );
 };

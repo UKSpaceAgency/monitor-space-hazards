@@ -4,7 +4,7 @@ import type { TypeEpoch, TypeReportFlagSettings, TypeSatelliteOut } from '@/__ge
 import { getEphemerises } from '@/actions/getEphemerises';
 import { getSession } from '@/actions/getSession';
 import Accordion from '@/ui/accordion/accordion';
-import { isAgencyApprover, isSatteliteOperator } from '@/utils/Roles';
+import { isAgencyApprover, isAgencyUser, isRegulatorUser, isSatteliteOperator } from '@/utils/Roles';
 
 import { SatelliteActivityEvents } from './SatelliteActivityEvents';
 import { SatelliteAdditionalInformations } from './SatelliteAdditionalInformation';
@@ -74,27 +74,33 @@ const SatelliteAccordion = async ({
           {
             id: 'all_conjunction_events',
             heading: t('all_conjunction_events'),
-            content: <SatelliteConjunctionEvents noradId={noradId} epoch={epoch} report={report} />,
+            content: <SatelliteConjunctionEvents commonName={object.common_name} noradId={noradId} epoch={epoch} report={report} />,
           },
         ]}
       />
-      <h2 data-anchor="potential-impact" className="govuk-heading-l">{t('activity_information')}</h2>
-      <Accordion
-        id="activity-events"
-        addAnchor={false}
-        initialItems={[
-          {
-            id: 'all_activity_events',
-            heading: t('all_activity_events'),
-            content: <SatelliteActivityEvents commonName={object.common_name} noradId={noradId} />,
-          },
-          {
-            id: 'position_history',
-            heading: t('position_history'),
-            content: <SatellitePositionHistory noradId={noradId} commonName={object.common_name} />,
-          },
-        ]}
-      />
+      {isAgencyUser(session?.user.role) || isRegulatorUser(session?.user.role)
+        ? (
+            <>
+              <h2 data-anchor="potential-impact" className="govuk-heading-l">{t('activity_information')}</h2>
+              <Accordion
+                id="activity-events"
+                addAnchor={false}
+                initialItems={[
+                  {
+                    id: 'all_activity_events',
+                    heading: t('all_activity_events'),
+                    content: <SatelliteActivityEvents commonName={object.common_name} noradId={noradId} />,
+                  },
+                  {
+                    id: 'position_history',
+                    heading: t('position_history'),
+                    content: <SatellitePositionHistory noradId={noradId} commonName={object.common_name} />,
+                  },
+                ]}
+              />
+            </>
+          )
+        : null}
       <h2 data-anchor="reentries" className="govuk-heading-l">{t('reentries')}</h2>
       <Accordion
         id="reentries"
