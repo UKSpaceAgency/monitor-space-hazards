@@ -1,3 +1,4 @@
+import { isNumber } from 'lodash';
 import { useTranslations } from 'next-intl';
 import type { HTMLProps } from 'react';
 
@@ -37,10 +38,15 @@ const ReentryAlertAdditionalObjectDetailsTable = ({ event, report, dataPdf, isCl
   }, {
     header: t('object_dimensions'),
     renderCell: ({ object_height, object_width, object_span }) => {
-      const width = report?.object_width || object_width;
-      const span = report?.object_span || object_span;
-      const height = report?.object_height || object_height;
-      return width && span && height ? `${t('height')} ${height}m x ${t('width')} ${width}m x ${t('span')} ${span}m` : '-';
+      const dimensions = [
+        { label: t('height'), value: report?.object_height ?? object_height },
+        { label: t('width'), value: report?.object_width ?? object_width },
+        { label: t('span'), value: report?.object_span ?? object_span },
+      ]
+        .filter(({ value }) => isNumber(value))
+        .map(({ label, value }) => `${label} ${value}m`);
+
+      return dimensions.length > 0 ? dimensions.join(' x ') : '-';
     },
     cellProps: {
       className: 'pl-10',
