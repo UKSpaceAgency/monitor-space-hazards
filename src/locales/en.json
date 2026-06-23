@@ -1336,7 +1336,8 @@
         "caption": "License information",
         "country": "Country",
         "launching_site": "Launching site",
-        "launch_date": "Launch date"
+        "launch_date": "Launch date",
+        "organization_id": "Operator"
       },
       "Orbital": {
         "caption": "Orbital information",
