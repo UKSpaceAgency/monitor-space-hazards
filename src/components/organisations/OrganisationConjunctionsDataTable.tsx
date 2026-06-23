@@ -91,7 +91,7 @@ const OrganisationConjunctionsDataTable = ({
           />
         </div>
       </div>
-      <div className="overflow-x-auto">
+      <div className="overflow-auto max-h-[500px]">
         <DataTable<TypeEventOut>
           data={initialData}
           columns={columns}

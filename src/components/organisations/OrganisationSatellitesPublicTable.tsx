@@ -113,7 +113,7 @@ const OrganisationSatellitesPublicTable = ({
           onChange={e => setSearch(e.target.value)}
         />
       </div>
-      <div className="overflow-x-auto">
+      <div className="overflow-auto max-h-[500px]">
         <DataTable<TypeSatelliteWithMetadataOut>
           data={filtered}
           columns={publicSatellitesColumns}

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 
 import type { TypeSatelliteOut } from '@/__generated__/data-contracts';
@@ -6,7 +7,7 @@ import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs } from '@/libs/Dayjs';
 import { getFullCountry } from '@/utils/Regions';
 
-export type LicenseSatelliteInformations = Pick<TypeSatelliteOut, 'license_country' | 'launch_site' | 'launch_date' >;
+export type LicenseSatelliteInformations = Pick<TypeSatelliteOut, 'license_country' | 'launch_site' | 'launch_date' | 'organization_id' >;
 
 type LicenseInformationsTableProps = {
   object: LicenseSatelliteInformations | LicenseSatelliteInformations[];
@@ -40,6 +41,10 @@ const LicenseInformationsTable = async ({ object, headerCellWidth }: LicenseInfo
     header: t('License.launch_date'),
     accessorKey: 'launch_date',
     renderCell: row => row.launch_date ? dayjs(row.launch_date).format('YYYY') : '-',
+  }, {
+    header: t('License.organization_id'),
+    accessorKey: 'organization_id',
+    renderCell: row => row.organization_id ? <Link className="govuk-link" href={`/organisations/${row.organization_id}`}>{row.organization_id}</Link> : '-',
   }];
 
   return <InformationsTable caption={t('License.caption')} headers={headers} rows={baseInformations} data={object} headerCellWidth={headerCellWidth} />;

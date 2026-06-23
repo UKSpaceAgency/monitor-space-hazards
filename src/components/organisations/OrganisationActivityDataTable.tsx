@@ -130,7 +130,7 @@ const OrganisationActivityDataTable = ({
           />
         </div>
       </div>
-      <div className="overflow-x-auto">
+      <div className="overflow-auto max-h-[500px]">
         <DataTable<TypeActivityEvent>
           data={filtered}
           columns={activityFlagsColumns}

@@ -48,7 +48,9 @@ const ReentryAlertRiskProbabilitiesTable = ({ event, report }: ReentryAlertExecu
                   <TableCellHeader>{t('probability_of_atmospheric_entry')}</TableCellHeader>
                   <TableCell>{roundedPercent(event.atmospheric_probability)}</TableCell>
                   <TableCell>
+                    {fragmentsRisk}
                     {renderRiskTag(event.atmospheric_risk ?? 'None')}
+                    fff
                   </TableCell>
                 </TableRow>
               )

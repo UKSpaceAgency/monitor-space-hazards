@@ -104,19 +104,6 @@ const OrganisationAccordion = async ({
                 )
               : <p className="govuk-body">No organisation data available.</p>,
           },
-          {
-            id: 'activity_flags_by_reason',
-            heading: t('activity_flags_by_reason'),
-            content: organisation.id
-              ? (
-                  <OrganisationActivitySection
-                    organisationId={organisation.id}
-                    organisationName={organisation.name}
-                    section="by_reason"
-                  />
-                )
-              : <p className="govuk-body">No organisation data available.</p>,
-          },
         ]}
       />
     </>

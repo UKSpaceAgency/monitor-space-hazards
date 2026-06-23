@@ -2938,7 +2938,7 @@ export type TypeReentryEventSortBy =
 export type TypeReentryInterest = "low" | "high";
 
 /** ReentryReportSortBy */
-export type TypeReentryReportSortBy = "created_at" | "tip_external_id" | "report_number" | "updated_at";
+export type TypeReentryReportSortBy = "created_at" | "updated_at" | "tip_external_id" | "report_number" | "decay_epoch";
 
 /** ReentrySurvivability */
 export type TypeReentrySurvivability = "Highly likely" | "Likely" | "Unlikely" | "Highly unlikely";
@@ -2978,6 +2978,69 @@ export interface TypeSatelliteObservationsData {
   observations_timespan?: number | null;
   /** Od Quality */
   od_quality?: number | null;
+}
+
+/** SatelliteOrgOut */
+export interface TypeSatelliteOrgOut {
+  /**
+   * Id
+   * @format uuid
+   */
+  id: string;
+  /** Is Monitored */
+  is_monitored: boolean;
+  /** Common Name */
+  common_name: string;
+  /** Norad Id */
+  norad_id?: string | null;
+  /** Esa Update Time */
+  esa_update_time?: string | null;
+  /** Esa Discos Id */
+  esa_discos_id?: string | null;
+  /** International Designator */
+  international_designator: string;
+  /** Object Type */
+  object_type?: string | null;
+  /** License Country */
+  license_country?: string | null;
+  /** Launch Date */
+  launch_date?: string | null;
+  /** Launch Site */
+  launch_site?: string | null;
+  /** Apogee */
+  apogee?: string | null;
+  /** Perigee */
+  perigee?: string | null;
+  /** Inclination */
+  inclination?: number | null;
+  /** Period */
+  period?: number | null;
+  /** Organization Id */
+  organization_id?: string | null;
+  /** Mass */
+  mass?: number | null;
+  /** Height */
+  height?: number | null;
+  /** Depth */
+  depth?: number | null;
+  /** Width */
+  width?: number | null;
+  /** Diameter */
+  diameter?: number | null;
+  /** Span */
+  span?: number | null;
+  /** Cross Section Min */
+  cross_section_min?: number | null;
+  /** Cross Section Avg */
+  cross_section_avg?: number | null;
+  /** Cross Section Max */
+  cross_section_max?: number | null;
+  /** Shape */
+  shape?: string | null;
+  /** Object Class */
+  object_class?: string | null;
+  /** Organization Name */
+  organization_name?: string | null;
 }
 
 /** SatelliteOrganizationOut */
@@ -3564,7 +3627,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-06-11T12:00:45.273978"
+   * @default "2026-06-23T12:42:20.484185"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -4295,6 +4358,35 @@ export interface TypePostReentryEventReportsParams {
    * @default "UKSA"
    */
   source?: TypeExternalDataProvider;
+}
+
+export interface TypeGetReentryEventReportsParams {
+  /**
+   * Show Only Active
+   * @default true
+   */
+  show_only_active?: boolean;
+  /**
+   * Sort By
+   * Sorting column
+   * @default "created_at"
+   */
+  sort_by?: TypeReentryReportSortBy;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
 }
 
 export interface TypeGetReentryEventReportsReentryEventShortIdParams {

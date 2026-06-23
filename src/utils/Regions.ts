@@ -167,9 +167,9 @@ export const Regions: {
 
 export const UK_NATION_ORDER = [
   'england_nation',
+  'northern_ireland_nation',
   'scotland_nation',
   'wales_nation',
-  'northern_ireland_nation',
 ] as const;
 
 export const sortByKeyOrder = <T>(
@@ -182,8 +182,7 @@ export const sortByKeyOrder = <T>(
     return (indexA === -1 ? order.length : indexA) - (indexB === -1 ? order.length : indexB);
   });
 
-export const sortImpactByNation = <T>(record: Record<string, T>) =>
-  sortByKeyOrder(record, UK_NATION_ORDER);
+export const sortImpactByNation = <T>(record: Record<string, T>) => sortByKeyOrder(record, UK_NATION_ORDER);
 
 export const jsonRegionsMap: Record<string, string> = {
   england_nation: 'England',
