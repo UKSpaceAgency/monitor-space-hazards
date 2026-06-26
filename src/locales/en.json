@@ -244,16 +244,17 @@
     },
     "add_new_user": "Add new user",
     "operator_summary": {
-      "title": "Organisation Summary",
+      "title": "Operator summary",
       "primary_country_of_operation": "Primary country of operation",
       "primary_country_of_operation_value": "United Kingdom",
       "uk_licensed_satellites": "Number of UK-licensed satellites",
       "telephone_number": "Telephone number",
-      "telephone_number_value": "+44 (0)20 7946 0018",
       "email_contacts": "Email contacts",
-      "fallback_email": "operations@example.org"
+      "fallback_email": "operations@example.org",
+      "no_data": "NO DATA"
     },
     "accordion": {
+      "no_organisation_data": "No organisation data available.",
       "licensed_satellites": "Licensed satellites",
       "conjunction_events_heading": "Conjunction events",
       "all_conjunction_events": "All conjunction events",
@@ -319,6 +320,13 @@
           "reentry": "Re-entry events monthly report"
         }
       }
+    },
+    "satellites_list": {
+      "empty": "No licensed satellites available."
+    },
+    "conjunction_type": {
+      "description": "Total number of conjunction events involving {organisationName}'s UK-licensed satellites and a breakdown of their type.",
+      "no_data": "NO DATA"
     }
   },
   "Organisation_user": {
@@ -1819,14 +1827,44 @@
       "latest_position": "Latest recorded position",
       "orbit": "Orbit",
       "altitude": "Altitude (km)",
-      "longitude": "Longitude (°)"
+      "longitude": "Longitude (°)",
+      "find_satellite_label": "Find a satellite:",
+      "search_placeholder": "Search by common name or NORAD ID",
+      "empty": "No satellites found.",
+      "download_type": "UK-licensed satellites",
+      "download_aria": "UK-licensed satellites"
+    },
+    "Organisation_conjunctions": {
+      "description": "This table shows all upcoming and past conjunction events involving {organisationName}'s UK-licensed satellites.",
+      "filter_time_period": "Filter by time period:",
+      "epoch_upcoming": "Upcoming",
+      "epoch_past": "Past",
+      "epoch_all": "All",
+      "display_poc": "Display probability of collision as:",
+      "scientific": "Scientific",
+      "percentage": "Percentage",
+      "empty": "No conjunction events found.",
+      "download_type": "conjunction events",
+      "download_aria": "Organisation conjunctions",
+      "help_title": "Help with this table",
+      "help_description": "This table shows all upcoming and past conjunction events involving {organisationName}'s UK-licensed satellites.",
+      "help_select_event": "Select the event ID to view more information.",
+      "help_row_meaning": "Each event ID or row represents one conjunction event including all related Conjunction Data Messages (CDMs) and NSpOC analysis."
     },
     "Organisation_conjunction_poc": {
       "satellite": "Satellite",
       "low": "<1e-5",
       "medium": "<1e-3 and >1e-5",
       "high": ">1e-3",
-      "total": "Total"
+      "total": "Total",
+      "description": "Total number of conjunction events involving {organisationName}'s UK-licensed satellites and a breakdown of their probabilities of collision (PoC).",
+      "select_satellite": "Select satellite",
+      "all_satellites": "All satellites",
+      "empty": "No data available.",
+      "download_type": "conjunction events by probability of collision",
+      "download_aria": "Conjunction events by PoC",
+      "help_title": "Help with this table",
+      "help_description": "This table shows the total number of conjunction events involving {organisationName}'s UK-licensed satellites and a breakdown of their probabilities of collision."
     },
     "Organisation_conjunction_type": {
       "satellite": "Satellite",
@@ -1841,7 +1879,23 @@
       "reason_for_flag": "Reason for flag",
       "flag_id": "Flag ID",
       "satellite": "Satellite",
-      "flag_date": "Date of flag"
+      "flag_date": "Date of flag",
+      "description": "This table shows all activity flags involving {organisationName}'s satellites. You can apply filters to view past events.",
+      "apply_filters": "Apply filters to this table:",
+      "filter_satellite": "Filter by satellite",
+      "filter_reason": "Filter by reason for flag",
+      "all_satellites": "All satellites",
+      "reason_all": "All flags",
+      "reason_position_change": "Position change",
+      "reason_manoeuvre_unplanned": "Manoeuvre (unplanned)",
+      "reason_manoeuvre_planned": "Manoeuvre (planned)",
+      "reason_missing_data": "Missing data",
+      "empty": "No activity flags found.",
+      "download_type": "activity flags",
+      "download_aria": "Organisation activity flags",
+      "help_title": "Help with this table",
+      "help_description": "This table shows all activity flags involving {organisationName}'s UK-licensed satellites.",
+      "help_select_flag": "Select the flag ID to view more information."
     },
     "Organisation_activity_by_reason": {
       "satellite": "Satellite",
@@ -1849,7 +1903,15 @@
       "manoeuvre_unplanned": "Manoeuvre not as planned",
       "position_change": "Unexpected position change",
       "missing_data": "Missing data",
-      "total": "Total"
+      "total": "Total",
+      "description": "Total number of activity flags for {organisationName}'s UK-licensed satellites and a breakdown of the reason for flag.",
+      "select_satellite": "Select satellite",
+      "all_satellites": "All satellites",
+      "empty": "No activity flags found.",
+      "download_type": "activity flags by reason",
+      "download_aria": "Activity flags by reason",
+      "help_title": "Help with this table",
+      "help_description": "This table shows the total number of activity flags for {organisationName}'s UK-licensed satellites and a breakdown of the reason for flag."
     },
     "Organisation_users": {
       "registered_users": "Registered users",
