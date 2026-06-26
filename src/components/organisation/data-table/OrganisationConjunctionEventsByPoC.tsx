@@ -1,48 +1,15 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useMemo, useState } from 'react';
 
 import type { EventsBySatelliteType } from '@/actions/getStatsEventsBySatellite';
 import { DataTable } from '@/components/DataTable';
 import { DownloadData } from '@/components/DownloadData';
-import type { TranslatedColumnDef } from '@/types';
 import Details from '@/ui/details/details';
 import Select from '@/ui/select/select';
 
-type PocRow = EventsBySatelliteType & { total: number };
-
-const pocColumns: TranslatedColumnDef<PocRow>[] = [
-  {
-    accessorKey: 'name',
-    id: 'satellite',
-    header: 'Organisation_conjunction_poc.satellite',
-    enableSorting: false,
-  },
-  {
-    accessorKey: 'low',
-    id: 'low',
-    header: 'Organisation_conjunction_poc.low',
-    enableSorting: false,
-  },
-  {
-    accessorKey: 'medium',
-    id: 'medium',
-    header: 'Organisation_conjunction_poc.medium',
-    enableSorting: false,
-  },
-  {
-    accessorKey: 'high',
-    id: 'high',
-    header: 'Organisation_conjunction_poc.high',
-    enableSorting: false,
-  },
-  {
-    accessorKey: 'total',
-    id: 'total',
-    header: 'Organisation_conjunction_poc.total',
-    enableSorting: false,
-  },
-];
+import { pocColumns, type PocRow } from './OrganisationConjunctionEventsByPoCColumns';
 
 type OrganisationConjunctionEventsByPoCProps = {
   stats: EventsBySatelliteType[];
@@ -53,7 +20,9 @@ const OrganisationConjunctionEventsByPoC = ({
   stats,
   organisationName,
 }: OrganisationConjunctionEventsByPoCProps) => {
-  const [selectedSatellite, setSelectedSatellite] = useState('All satellites');
+  const t = useTranslations('Tables.Organisation_conjunction_poc');
+  const allSatellitesLabel = t('all_satellites');
+  const [selectedSatellite, setSelectedSatellite] = useState(allSatellitesLabel);
 
   const rows: PocRow[] = useMemo(
     () =>
@@ -66,14 +35,14 @@ const OrganisationConjunctionEventsByPoC = ({
 
   const filtered = useMemo(
     () =>
-      selectedSatellite === 'All satellites'
+      selectedSatellite === allSatellitesLabel
         ? rows
         : rows.filter(r => r.name === selectedSatellite),
-    [rows, selectedSatellite],
+    [rows, selectedSatellite, allSatellitesLabel],
   );
 
   const satelliteOptions = [
-    { children: 'All satellites', value: 'All satellites' },
+    { children: allSatellitesLabel, value: allSatellitesLabel },
     ...stats.map(s => ({ children: s.name, value: s.name })),
   ];
 
@@ -82,15 +51,12 @@ const OrganisationConjunctionEventsByPoC = ({
   return (
     <div>
       <p className="govuk-!-font-weight-bold">
-        Total number of conjunction events involving
-        {' '}
-        {organisationName}
-        &apos;s UK-licensed satellites and a breakdown of their probabilities of collision (PoC).
+        {t('description', { organisationName })}
       </p>
       <Select
         name="satellite-poc"
         id="satellite-poc"
-        label="Select satellite"
+        label={t('select_satellite')}
         value={selectedSatellite}
         options={satelliteOptions}
         onChange={e => setSelectedSatellite(e.target.value)}
@@ -102,20 +68,17 @@ const OrganisationConjunctionEventsByPoC = ({
           data={filtered}
           columns={pocColumns}
           enableSorting={false}
-          emptyLabel="No data available."
+          emptyLabel={t('empty')}
         />
       </div>
       <DownloadData
-        type="conjunction events by probability of collision"
+        type={t('download_type')}
         params={{}}
         downloadAction={downloadAction}
-        ariaLabel="Conjunction events by PoC"
+        ariaLabel={t('download_aria')}
       />
-      <Details summary="Help with this table">
-        This table shows the total number of conjunction events involving
-        {' '}
-        {organisationName}
-        &apos;s UK-licensed satellites and a breakdown of their probabilities of collision.
+      <Details summary={t('help_title')}>
+        {t('help_description', { organisationName })}
       </Details>
     </div>
   );

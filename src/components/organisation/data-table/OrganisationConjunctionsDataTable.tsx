@@ -1,16 +1,17 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import type { TypeEpoch, TypeEventOut } from '@/__generated__/data-contracts';
+import { DataTable } from '@/components/DataTable';
 import { DownloadData } from '@/components/DownloadData';
 import Details from '@/ui/details/details';
 import Radios from '@/ui/radios/radios';
 import Select from '@/ui/select/select';
 
-import { DataTable } from '../DataTable';
-import { getSatteliteConjunctionColumns } from '../satellite/data-table/SatelliteConjunctionsDataTableColumns';
+import { getSatteliteConjunctionColumns } from './OrganisationConjunctionsDataTableColumns';
 
 type OrganisationConjunctionsDataTableProps = {
   initialData: TypeEventOut[];
@@ -23,6 +24,7 @@ const OrganisationConjunctionsDataTable = ({
   epoch,
   organisationName,
 }: OrganisationConjunctionsDataTableProps) => {
+  const t = useTranslations('Tables.Organisation_conjunctions');
   const [probabilityUnit, setProbabilityUnit] = useState<'scientific' | 'percentage'>('scientific');
   const { replace } = useRouter();
   const pathname = usePathname();
@@ -44,44 +46,41 @@ const OrganisationConjunctionsDataTable = ({
   return (
     <div>
       <p className="govuk-body">
-        This table shows all upcoming and past conjunction events involving
-        {' '}
-        {organisationName}
-        &apos;s UK-licensed satellites.
+        {t('description', { organisationName })}
       </p>
       <div className="flex flex-col md:flex-row gap-4 justify-between md:items-end border-b border-midGrey pb-4 mb-4">
         <Select
           name="epoch"
           id="epoch-filter"
-          label="Filter by time period:"
+          label={t('filter_time_period')}
           value={epoch ?? 'future'}
           options={[
-            { children: 'Upcoming', value: 'future' },
-            { children: 'Past', value: 'past' },
-            { children: 'All', value: 'all' },
+            { children: t('epoch_upcoming'), value: 'future' },
+            { children: t('epoch_past'), value: 'past' },
+            { children: t('epoch_all'), value: 'all' },
           ]}
           onChange={handleEpochChange}
         />
         <div className="flex items-center gap-2">
           <legend className="govuk-fieldset__legend govuk-!-font-weight-bold govuk-!-margin-0 govuk-!-margin-right-2">
-            Display probability of collision as:
+            {t('display_poc')}
           </legend>
           <Radios
             className="govuk-!-margin-0"
-            aria-label="Probability of collision display"
+            aria-label={t('display_poc')}
             inline
             small
             items={[
               {
                 id: 'org-poc-scientific',
-                children: 'Scientific',
+                children: t('scientific'),
                 value: 'scientific',
                 checked: probabilityUnit === 'scientific',
                 onChange: () => setProbabilityUnit('scientific'),
               },
               {
                 id: 'org-poc-percentage',
-                children: 'Percentage',
+                children: t('percentage'),
                 value: 'percentage',
                 checked: probabilityUnit === 'percentage',
                 onChange: () => setProbabilityUnit('percentage'),
@@ -95,24 +94,20 @@ const OrganisationConjunctionsDataTable = ({
         <DataTable<TypeEventOut>
           data={initialData}
           columns={columns}
-          emptyLabel="No conjunction events found."
+          emptyLabel={t('empty')}
           stickyHeader
         />
       </div>
-      <Details summary="Help with this table">
-        <p>
-          This table shows all upcoming and past conjunction events involving
-          {organisationName}
-          &apos;s UK-licensed satellites.
-        </p>
-        <p>Select the event ID to view more information.</p>
-        <p>Each event ID or row represents one conjunction event including all related Conjunction Data Messages (CDMs) and NSpOC analysis.</p>
+      <Details summary={t('help_title')}>
+        <p>{t('help_description', { organisationName })}</p>
+        <p>{t('help_select_event')}</p>
+        <p>{t('help_row_meaning')}</p>
       </Details>
       <DownloadData
-        type="conjunction events"
+        type={t('download_type')}
         params={{}}
         downloadAction={downloadAction}
-        ariaLabel="Organisation conjunctions"
+        ariaLabel={t('download_aria')}
       />
     </div>
   );

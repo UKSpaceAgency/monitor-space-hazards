@@ -2,7 +2,7 @@ import type { TypeEpoch } from '@/__generated__/data-contracts';
 import { getConjunctionEventsList } from '@/actions/getConjunctionEventsList';
 import { getSatellites } from '@/actions/getSatellites';
 
-import { OrganisationConjunctionsDataTable } from './OrganisationConjunctionsDataTable';
+import { OrganisationConjunctionsDataTable } from './data-table/OrganisationConjunctionsDataTable';
 
 type OrganisationConjunctionEventsProps = {
   organisationId: string;

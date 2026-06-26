@@ -24,6 +24,7 @@ const OperatorSummary = ({ organisation }: OperatorSummaryProps) => {
               className: 'md:w-1/2',
             },
             value: {
+              // TODO: TypeOrganizationOut has no country field. Static value until the backend exposes it.
               children: t('primary_country_of_operation_value'),
             },
           },
@@ -42,7 +43,8 @@ const OperatorSummary = ({ organisation }: OperatorSummaryProps) => {
               className: 'md:w-1/2',
             },
             value: {
-              children: t('telephone_number_value'),
+              // TODO: TypeOrganizationOut has no telephone field. Show NO DATA until the backend exposes it.
+              children: t('no_data'),
             },
           },
           {

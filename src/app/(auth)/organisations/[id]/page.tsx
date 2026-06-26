@@ -1,8 +1,8 @@
 import type { TypeEpoch } from '@/__generated__/data-contracts';
 import { getOrganisation } from '@/actions/getOrganisation';
 import { ContentNavigation } from '@/components/ContentNavigation';
-import { OperatorSummary } from '@/components/organisations/OperatorSummary';
-import { OrganisationAccordion } from '@/components/organisations/OrganisationAccordion';
+import { OperatorSummary } from '@/components/organisation/OperatorSummary';
+import { OrganisationAccordion } from '@/components/organisation/OrganisationAccordion';
 import Button from '@/ui/button/button';
 
 type PageProps = {

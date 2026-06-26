@@ -1,13 +1,12 @@
-'use client';
-
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
 
 import type { TypeSatelliteWithMetadataOut } from '@/__generated__/data-contracts';
-import { DataTable } from '@/components/DataTable';
-import { DownloadData } from '@/components/DownloadData';
 import { dayjs } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
+
+// Placeholder for table cells whose backing field is not yet returned by the backend.
+// Cell renderers run outside React, so they can't use the i18n hook; kept as a single constant.
+const NO_DATA = 'NO DATA';
 
 // TODO: orbit_regime, altitude (km) and longitude (°) are not available on TypeSatelliteWithMetadataOut.
 // The backend GET /v1/satellites/with-metadata endpoint needs to include TLE-derived positional
@@ -16,12 +15,12 @@ const publicSatellitesColumns: TranslatedColumnDef<TypeSatelliteWithMetadataOut>
   {
     id: 'satellite_information',
     header: 'Organisation_public_satellites.satellite_information',
-    enableSorting: false,
     columns: [
       {
         accessorKey: 'common_name',
         id: 'common_name',
         header: 'Organisation_public_satellites.common_name',
+        enableSorting: true,
         cell: ({ row }) => (
           <Link className="govuk-link" href={`/satellites/${row.original.norad_id}`}>
             {row.original.common_name}
@@ -55,80 +54,24 @@ const publicSatellitesColumns: TranslatedColumnDef<TypeSatelliteWithMetadataOut>
         accessorKey: 'object_type',
         header: 'Organisation_public_satellites.orbit',
         // TODO: Replace with orbit regime (GEO/LEO/MEO) once available from backend
-        cell: () => 'N/A',
+        cell: () => NO_DATA,
       },
       {
         id: 'altitude',
         accessorKey: 'apogee',
         header: 'Organisation_public_satellites.altitude',
         // TODO: Replace with live altitude (km) from TLE-derived position once available from backend
-        cell: ({ row }) => row.original.apogee ?? 'N/A',
+        cell: ({ row }) => row.original.apogee ?? NO_DATA,
       },
       {
         id: 'longitude',
         accessorKey: 'inclination',
         header: 'Organisation_public_satellites.longitude',
         // TODO: Replace with longitude slot once available from backend
-        cell: () => 'N/A',
+        cell: () => NO_DATA,
       },
     ],
   },
 ];
 
-type OrganisationSatellitesPublicTableProps = {
-  satellites: TypeSatelliteWithMetadataOut[];
-};
-
-const OrganisationSatellitesPublicTable = ({
-  satellites,
-}: OrganisationSatellitesPublicTableProps) => {
-  const [search, setSearch] = useState('');
-
-  const filtered = useMemo(() => {
-    if (!search.trim()) {
-      return satellites;
-    }
-    const lower = search.toLowerCase();
-    return satellites.filter(
-      s =>
-        s.common_name.toLowerCase().includes(lower)
-        || (s.norad_id && s.norad_id.toLowerCase().includes(lower)),
-    );
-  }, [satellites, search]);
-
-  const downloadAction = async () => satellites;
-
-  return (
-    <div>
-      <div className="govuk-form-group mb-4">
-        <label className="govuk-label govuk-!-font-weight-bold" htmlFor="satellite-search">
-          Find a satellite:
-        </label>
-        <input
-          className="govuk-input"
-          id="satellite-search"
-          type="search"
-          placeholder="Search by common name or NORAD ID"
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-        />
-      </div>
-      <div className="overflow-auto max-h-[500px]">
-        <DataTable<TypeSatelliteWithMetadataOut>
-          data={filtered}
-          columns={publicSatellitesColumns}
-          enableSorting={false}
-          emptyLabel="No satellites found."
-        />
-      </div>
-      <DownloadData
-        type="UK-licensed satellites"
-        params={{}}
-        downloadAction={downloadAction}
-        ariaLabel="UK-licensed satellites"
-      />
-    </div>
-  );
-};
-
-export { OrganisationSatellitesPublicTable };
+export { publicSatellitesColumns };

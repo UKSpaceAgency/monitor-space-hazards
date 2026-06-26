@@ -1,12 +1,11 @@
 import { getTranslations } from 'next-intl/server';
 
 import type { TypeEpoch, TypeOrganizationOut } from '@/__generated__/data-contracts';
-import { getStatsEventsBySatelliteForOrg } from '@/actions/getStatsEventsBySatelliteForOrg';
 import Accordion from '@/ui/accordion/accordion';
 
 import { OrganisationActivitySection } from './OrganisationActivitySection';
 import { OrganisationConjunctionEvents } from './OrganisationConjunctionEvents';
-import { OrganisationConjunctionEventsByPoC } from './OrganisationConjunctionEventsByPoC';
+import { OrganisationConjunctionEventsByPoCSection } from './OrganisationConjunctionEventsByPoCSection';
 import { OrganisationConjunctionEventsByType } from './OrganisationConjunctionEventsByType';
 import { OrganisationSatellitesList } from './OrganisationSatellitesList';
 
@@ -20,10 +19,6 @@ const OrganisationAccordion = async ({
   epoch,
 }: OrganisationAccordionProps) => {
   const t = await getTranslations('Organisation.accordion');
-
-  const pocStats = organisation.id
-    ? await getStatsEventsBySatelliteForOrg(organisation.id)
-    : [];
 
   return (
     <>
@@ -47,6 +42,7 @@ const OrganisationAccordion = async ({
       </h2>
       <Accordion
         id="conjunction-events"
+        dynamic
         addAnchor={false}
         initialItems={[
           {
@@ -60,17 +56,19 @@ const OrganisationAccordion = async ({
                     epoch={epoch}
                   />
                 )
-              : <p className="govuk-body">No organisation data available.</p>,
+              : <p className="govuk-body">{t('no_organisation_data')}</p>,
           },
           {
             id: 'conjunction_events_by_poc',
             heading: t('conjunction_events_by_poc'),
-            content: (
-              <OrganisationConjunctionEventsByPoC
-                stats={pocStats}
-                organisationName={organisation.name}
-              />
-            ),
+            content: organisation.id
+              ? (
+                  <OrganisationConjunctionEventsByPoCSection
+                    organisationId={organisation.id}
+                    organisationName={organisation.name}
+                  />
+                )
+              : <p className="govuk-body">{t('no_organisation_data')}</p>,
           },
           {
             id: 'conjunction_events_by_type',
@@ -89,6 +87,7 @@ const OrganisationAccordion = async ({
       </h2>
       <Accordion
         id="activity-events"
+        dynamic
         addAnchor={false}
         initialItems={[
           {
@@ -102,7 +101,7 @@ const OrganisationAccordion = async ({
                     section="all"
                   />
                 )
-              : <p className="govuk-body">No organisation data available.</p>,
+              : <p className="govuk-body">{t('no_organisation_data')}</p>,
           },
         ]}
       />
