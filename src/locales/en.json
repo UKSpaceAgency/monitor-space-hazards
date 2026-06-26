@@ -431,6 +431,7 @@
       "conjunction_events_by_probability_of_collision": "Conjunction events by probability of collision",
       "activity_information": "Activity information",
       "all_activity_events": "All activity events",
+      "activity_flags_by_reason": "Activity flags by reason for flag",
       "position_history": "Position history",
       "reentries": "Re-entry events",
       "all_reentries": "All re-entry events",
@@ -477,6 +478,13 @@
       "help": {
         "title": "Help with this table<screenReaderOnly> - Activity events</screenReaderOnly>",
         "content": "<p>This table shows all ongoing and closed activity flags for {commonName}.</p><p>Select the event ID to view more information</p>"
+      }
+    },
+    "Activity_flags_by_reason": {
+      "title": "Activity flags by reason for flag",
+      "details": {
+        "title": "Help with this table<screenReaderOnly>- Activity flags by reason for flag</screenReaderOnly>",
+        "content": "This table shows the number of activity flags for this satellite broken down by reason for flag and year, with the total number of flags per year."
       }
     },
     "Position_history": {
@@ -639,6 +647,18 @@
       "legend_title": "Probability of collision",
       "y_axis_title": "Number of events",
       "x_axis_title": "Date"
+    },
+    "Activity_flags_by_reason": {
+      "description": "Number of activity flags broken down by reason for flag. Use the filter to view a single year or all years.",
+      "flags": "Number of flags",
+      "year_filter": "Year",
+      "all_years": "All years",
+      "position_change": "Unexpected position change",
+      "manoeuvre_planned": "Manoeuvre as planned",
+      "manoeuvre_unplanned": "Manoeuvre not as planned",
+      "missing_data": "Missing data",
+      "y_axis_title": "Number of flags",
+      "x_axis_title": "Reason for flag"
     },
     "Organisations_and_users": {
       "data_range": "Data range",
@@ -1263,6 +1283,14 @@
       "flag_date": "Date of flag",
       "latest_tle_epoch": "Latest TLE epoch",
       "object_information": "Object information"
+    },
+    "Activity_flags_by_reason": {
+      "year": "Year",
+      "position_change": "Unexpected position change",
+      "manoeuvre_planned": "Manoeuvre as planned",
+      "manoeuvre_unplanned": "Manoeuvre not as planned",
+      "missing_data": "Missing data",
+      "total": "Total"
     },
     "Satellites": {
       "common_name": "Common name",

@@ -7,13 +7,13 @@ import Accordion from '@/ui/accordion/accordion';
 import { isAgencyApprover, isAgencyUser, isRegulatorUser, isSatteliteOperator } from '@/utils/Roles';
 
 import { SatelliteActivityEvents } from './SatelliteActivityEvents';
+import { SatelliteActivityFlagsByReason } from './SatelliteActivityFlagsByReason';
 import { SatelliteAdditionalInformations } from './SatelliteAdditionalInformation';
 import { SatelliteConjunctionEvents } from './SatelliteConjunctionEvents';
 import { SatelliteConjunctionEventsByPoC } from './SatelliteConjunctionEventsByPoC';
 import { SatelliteEphemerisData } from './SatelliteEphemerisData';
 import { SatelliteFragmentationsEvents } from './SatelliteFragmentationsEvents';
 import { SatelliteInformation } from './SatelliteInformation';
-import { SatellitePositionHistory } from './SatellitePositionHistory';
 import { SatelliteReentriesEvents } from './SatelliteReentriesEvents';
 
 type SatelliteAccordionProps = {
@@ -98,10 +98,15 @@ const SatelliteAccordion = async ({
                     content: <SatelliteActivityEvents commonName={object.common_name} noradId={noradId} />,
                   },
                   {
-                    id: 'position_history',
-                    heading: t('position_history'),
-                    content: <SatellitePositionHistory noradId={noradId} commonName={object.common_name} />,
+                    id: 'activity_flags_by_reason',
+                    heading: t('activity_flags_by_reason'),
+                    content: <SatelliteActivityFlagsByReason noradId={noradId} />,
                   },
+                  // {
+                  //   id: 'position_history',
+                  //   heading: t('position_history'),
+                  //   content: <SatellitePositionHistory noradId={noradId} commonName={object.common_name} />,
+                  // },
                 ]}
               />
             </>
