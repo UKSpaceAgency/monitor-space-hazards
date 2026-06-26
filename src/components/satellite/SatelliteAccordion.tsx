@@ -9,6 +9,7 @@ import { isAgencyApprover, isAgencyUser, isRegulatorUser, isSatteliteOperator } 
 import { SatelliteActivityEvents } from './SatelliteActivityEvents';
 import { SatelliteAdditionalInformations } from './SatelliteAdditionalInformation';
 import { SatelliteConjunctionEvents } from './SatelliteConjunctionEvents';
+import { SatelliteConjunctionEventsByPoC } from './SatelliteConjunctionEventsByPoC';
 import { SatelliteEphemerisData } from './SatelliteEphemerisData';
 import { SatelliteFragmentationsEvents } from './SatelliteFragmentationsEvents';
 import { SatelliteInformation } from './SatelliteInformation';
@@ -75,6 +76,11 @@ const SatelliteAccordion = async ({
             id: 'all_conjunction_events',
             heading: t('all_conjunction_events'),
             content: <SatelliteConjunctionEvents commonName={object.common_name} noradId={noradId} epoch={epoch} report={report} />,
+          },
+          {
+            id: 'conjunction_events_by_probability_of_collision',
+            heading: t('conjunction_events_by_probability_of_collision'),
+            content: <SatelliteConjunctionEventsByPoC noradId={noradId} />,
           },
         ]}
       />

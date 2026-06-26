@@ -428,6 +428,7 @@
       "ephemeris_data": "Ephemeris data",
       "conjunction_events": "Conjunction events",
       "all_conjunction_events": "All conjunction events",
+      "conjunction_events_by_probability_of_collision": "Conjunction events by probability of collision",
       "activity_information": "Activity information",
       "all_activity_events": "All activity events",
       "position_history": "Position history",
@@ -463,6 +464,13 @@
       "help": {
         "title": "Help with this table<screenReaderOnly> - Conjunction events</screenReaderOnly>",
         "content": "<p>This table shows all upcoming conjunction events involving {commonName}.</p><p>Select the event ID to view more information.</p><p>Each event ID or row represents <bold>one conjunction event </bold> including all related Conjunction Data Messages (CDMs) and NSpOC analysis.</p>"
+      }
+    },
+    "Conjunction_events_by_probability_of_collision": {
+      "title": "Conjunction events by probability of collision",
+      "details": {
+        "title": "Help with this table<screenReaderOnly>- Conjunction events by probability of collision</screenReaderOnly>",
+        "content": "This table shows the total number and probability of conjunction events for this satellite per month."
       }
     },
     "Activity_events": {
@@ -1324,7 +1332,8 @@
       },
       "Additional_informations": {
         "title": "Additional object data",
-        "content": "<p>ESA DISCOS provides additional object data where available. Contact ESA DISCOS if your satellite data is incorrect.</p><p>ESA DISCOS data was last updated on: {updateTime} UTC</p>"
+        "content": "<p>ESA DISCOS provides additional object data where available. Contact ESA DISCOS if your satellite data is incorrect.</p>",
+        "footer": "<p>ESA DISCOS data was last updated on: {updateTime} UTC</p>"
       },
       "Base": {
         "common_name": "Common name",
