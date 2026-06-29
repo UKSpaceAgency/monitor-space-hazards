@@ -167,9 +167,9 @@ export const Regions: {
 
 export const UK_NATION_ORDER = [
   'england_nation',
-  'northern_ireland_nation',
   'scotland_nation',
   'wales_nation',
+  'northern_ireland_nation',
 ] as const;
 
 export const sortByKeyOrder = <T>(
