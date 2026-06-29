@@ -64,7 +64,7 @@ const ReentryAlertExecutiveSummary = async ({ event, report, executiveSummaryCom
       {haveRiskProbabilities && (
         <>
           <h3 className="govuk-heading-s">{t('risk_probabilities')}</h3>
-          <ReentryAlertRiskProbabilitiesTable event={event} report={report} />
+          <ReentryAlertRiskProbabilitiesTable event={event} />
         </>
       )}
       <h3 className="govuk-heading-s">{t('event_summary')}</h3>
