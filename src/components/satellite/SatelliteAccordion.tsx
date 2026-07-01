@@ -4,10 +4,8 @@ import type { TypeEpoch, TypeReportFlagSettings, TypeSatelliteOut } from '@/__ge
 import { getEphemerises } from '@/actions/getEphemerises';
 import { getSession } from '@/actions/getSession';
 import Accordion from '@/ui/accordion/accordion';
-import { isAgencyApprover, isAgencyUser, isRegulatorUser, isSatteliteOperator } from '@/utils/Roles';
+import { isAgencyApprover, isInternationalUser, isSatteliteOperator, isSatteliteUser } from '@/utils/Roles';
 
-import { SatelliteActivityEvents } from './SatelliteActivityEvents';
-import { SatelliteActivityFlagsByReason } from './SatelliteActivityFlagsByReason';
 import { SatelliteAdditionalInformations } from './SatelliteAdditionalInformation';
 import { SatelliteConjunctionEvents } from './SatelliteConjunctionEvents';
 import { SatelliteConjunctionEventsByPoC } from './SatelliteConjunctionEventsByPoC';
@@ -84,7 +82,7 @@ const SatelliteAccordion = async ({
           },
         ]}
       />
-      {isAgencyUser(session?.user.role) || isRegulatorUser(session?.user.role)
+      {/* {isAgencyUser(session?.user.role) || isRegulatorUser(session?.user.role)
         ? (
             <>
               <h2 data-anchor="potential-impact" className="govuk-heading-l">{t('activity_information')}</h2>
@@ -111,33 +109,41 @@ const SatelliteAccordion = async ({
               />
             </>
           )
-        : null}
-      <h2 data-anchor="reentries" className="govuk-heading-l">{t('reentries')}</h2>
-      <Accordion
-        id="reentries"
-        addAnchor={false}
-        initialItems={[
-          {
-            id: 'all_reentries',
-            heading: t('all_reentries'),
-            content: <SatelliteReentriesEvents noradId={noradId} />,
-          },
-        ]}
-      />
-      <h2 data-anchor="fragmentations" className="govuk-heading-l">{t('fragmentations')}</h2>
-      <Accordion
-        id="fragmentations"
-        addAnchor={false}
-        initialItems={[
-          {
-            id: 'all_fragmentations',
-            heading: t('all_fragmentations'),
-            content: <SatelliteFragmentationsEvents noradId={noradId} />,
-          },
-        ]}
-      />
+        : null} */}
+      {!isSatteliteUser(session?.user?.role)
+      && (
+        <>
+          <h2 data-anchor="reentries" className="govuk-heading-l">{t('reentries')}</h2>
+          <Accordion
+            id="reentries"
+            addAnchor={false}
+            initialItems={[
+              {
+                id: 'all_reentries',
+                heading: t('all_reentries'),
+                content: <SatelliteReentriesEvents noradId={noradId} />,
+              },
+            ]}
+          />
+        </>
+      )}
+      {!isSatteliteUser(session?.user?.role) && !isInternationalUser(session?.user?.role) && (
+        <>
+          <h2 data-anchor="fragmentations" className="govuk-heading-l">{t('fragmentations')}</h2>
+          <Accordion
+            id="fragmentations"
+            addAnchor={false}
+            initialItems={[
+              {
+                id: 'all_fragmentations',
+                heading: t('all_fragmentations'),
+                content: <SatelliteFragmentationsEvents noradId={noradId} />,
+              },
+            ]}
+          />
+        </>
+      )}
     </>
-
   );
 };
 

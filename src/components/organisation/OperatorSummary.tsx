@@ -9,9 +9,6 @@ type OperatorSummaryProps = {
 
 const OperatorSummary = ({ organisation }: OperatorSummaryProps) => {
   const t = useTranslations('Organisation.operator_summary');
-  const emailContact = organisation.email_domain
-    ? `operations@${organisation.email_domain}`
-    : t('fallback_email');
 
   return (
     <div className="mb-10">
@@ -35,25 +32,6 @@ const OperatorSummary = ({ organisation }: OperatorSummaryProps) => {
             },
             value: {
               children: organisation.satellites_count,
-            },
-          },
-          {
-            key: {
-              children: t('telephone_number'),
-              className: 'md:w-1/2',
-            },
-            value: {
-              // TODO: TypeOrganizationOut has no telephone field. Show NO DATA until the backend exposes it.
-              children: t('no_data'),
-            },
-          },
-          {
-            key: {
-              children: t('email_contacts'),
-              className: 'md:w-1/2',
-            },
-            value: {
-              children: emailContact,
             },
           },
         ]}
