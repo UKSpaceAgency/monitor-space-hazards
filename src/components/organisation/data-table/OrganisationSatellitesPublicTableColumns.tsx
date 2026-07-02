@@ -4,10 +4,6 @@ import type { TypeSatelliteWithMetadataOut } from '@/__generated__/data-contract
 import { dayjs } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 
-// Placeholder for table cells whose backing field is not yet returned by the backend.
-// Cell renderers run outside React, so they can't use the i18n hook; kept as a single constant.
-const NO_DATA = 'NO DATA';
-
 // TODO: orbit_regime, altitude (km) and longitude (°) are not available on TypeSatelliteWithMetadataOut.
 // The backend GET /v1/satellites/with-metadata endpoint needs to include TLE-derived positional
 // fields (orbit regime, current altitude, longitude slot) to populate the "Latest recorded position" group.
@@ -31,12 +27,14 @@ const publicSatellitesColumns: TranslatedColumnDef<TypeSatelliteWithMetadataOut>
         accessorKey: 'norad_id',
         id: 'norad_id',
         header: 'Organisation_public_satellites.norad_id',
+        enableSorting: true,
         cell: ({ row }) => row.original.norad_id ?? '-',
       },
       {
         accessorKey: 'launch_date',
         id: 'launch_date',
         header: 'Organisation_public_satellites.launch_date',
+        enableSorting: false,
         cell: ({ row }) =>
           row.original.launch_date
             ? dayjs(row.original.launch_date).year()
@@ -50,25 +48,28 @@ const publicSatellitesColumns: TranslatedColumnDef<TypeSatelliteWithMetadataOut>
     enableSorting: false,
     columns: [
       {
-        id: 'orbit',
-        accessorKey: 'object_type',
-        header: 'Organisation_public_satellites.orbit',
-        // TODO: Replace with orbit regime (GEO/LEO/MEO) once available from backend
-        cell: () => NO_DATA,
-      },
-      {
-        id: 'altitude',
+        id: 'apogee',
         accessorKey: 'apogee',
-        header: 'Organisation_public_satellites.altitude',
-        // TODO: Replace with live altitude (km) from TLE-derived position once available from backend
-        cell: ({ row }) => row.original.apogee ?? NO_DATA,
+        header: 'Organisation_public_satellites.apogee',
+        enableSorting: false,
       },
       {
-        id: 'longitude',
+        id: 'perigee',
+        accessorKey: 'perigee',
+        header: 'Organisation_public_satellites.perigee',
+        enableSorting: false,
+      },
+      {
+        id: 'inclination',
         accessorKey: 'inclination',
-        header: 'Organisation_public_satellites.longitude',
-        // TODO: Replace with longitude slot once available from backend
-        cell: () => NO_DATA,
+        header: 'Organisation_public_satellites.inclination',
+        enableSorting: false,
+      },
+      {
+        id: 'period',
+        accessorKey: 'period',
+        header: 'Organisation_public_satellites.period',
+        enableSorting: false,
       },
     ],
   },

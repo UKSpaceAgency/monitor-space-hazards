@@ -102,6 +102,7 @@ import {
   TypeGetStatsEventsByOrganizationAggregatedParams,
   TypeGetStatsEventsByOrganizationParams,
   TypeGetStatsEventsBySatelliteAggregatedParams,
+  TypeGetStatsEventsBySatelliteAndTypeAggregatedParams,
   TypeGetStatsEventsBySatelliteParams,
   TypeGetStatsEventsTypeAggregatedParams,
   TypeGetStatsEventsTypeParams,
@@ -110,6 +111,7 @@ import {
   TypeGetStatsMakeAnalysesDailyAggregatedParams,
   TypeGetStatsMakeEventsSatelliteAggregatedParams,
   TypeGetStatsMakeEventsTypeAggregatedParams,
+  TypeGetStatsMakeEventsTypeSatelliteAggregatedParams,
   TypeGetStatsMonthlyAnalysesAggregatedParams,
   TypeGetStatsMonthlyAnalysesParams,
   TypeGetStatsMonthlyConjunctionEventsAggregatedParams,
@@ -157,6 +159,7 @@ import {
   TypeStatisticsConjunctionEventsMonthlyCount,
   TypeStatisticsConjunctionEventsMonthlyCountAggregated,
   TypeStatisticsConjunctionEventsMonthlyCountByProbabilityAggregated,
+  TypeStatisticsConjunctionEventsObjectTypeAggregated,
   TypeStatisticsEventsByOrganization,
   TypeStatisticsEventsBySatellite,
   TypeStatisticsEventsBySatelliteAggregated,
@@ -2134,6 +2137,26 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
+   * @description ## Description Rebuilds stats for events by type and satellite. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Trigger| |Regulator user|-| |Regulator admin|-|
+   *
+   * @tags stats
+   * @name GetStatsMakeEventsTypeSatelliteAggregated
+   * @summary Make Events Type Satellite Aggregated
+   * @request GET:/v1/stats/make-events-type-satellite-aggregated
+   * @secure
+   */
+  getStatsMakeEventsTypeSatelliteAggregated = (
+    query?: TypeGetStatsMakeEventsTypeSatelliteAggregatedParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<any, void | TypeHTTPValidationError>({
+      path: `/v1/stats/make-events-type-satellite-aggregated`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
    * @description ## Description Rebuilds stats for daily analyses aggregation table. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Trigger| |Regulator user|-| |Regulator admin|-|
    *
    * @tags stats
@@ -2256,6 +2279,26 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
   ) =>
     this.request<TypeStatisticsEventsBySatelliteAggregated[], void | TypeHTTPValidationError>({
       path: `/v1/stats/events-by-satellite-aggregated`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets number of Events groupped by satellites and type of secondary object. Superusers and Analysts can choose Organization satellites belong to. Other users can only see Events/Satellites from their organization. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   *
+   * @tags stats
+   * @name GetStatsEventsBySatelliteAndTypeAggregated
+   * @summary Get number of Events, broken down by Satellite and Event type
+   * @request GET:/v1/stats/events-by-satellite-and-type-aggregated
+   * @secure
+   */
+  getStatsEventsBySatelliteAndTypeAggregated = (
+    query?: TypeGetStatsEventsBySatelliteAndTypeAggregatedParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeStatisticsConjunctionEventsObjectTypeAggregated[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/events-by-satellite-and-type-aggregated`,
       method: "GET",
       query: query,
       secure: true,

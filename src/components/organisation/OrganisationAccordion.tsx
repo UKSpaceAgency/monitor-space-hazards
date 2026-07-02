@@ -3,17 +3,21 @@ import { getTranslations } from 'next-intl/server';
 import type { TypeEpoch, TypeOrganizationOut } from '@/__generated__/data-contracts';
 import Accordion from '@/ui/accordion/accordion';
 
+import { OrganisationConjunctionEvents } from './OrganisationConjunctionEvents';
 import { OrganisationConjunctionEventsByPoCSection } from './OrganisationConjunctionEventsByPoCSection';
+import { OrganisationConjunctionEventsByTypeSection } from './OrganisationConjunctionEventsByTypeSection';
 import { OrganisationSatellitesList } from './OrganisationSatellitesList';
 
 type OrganisationAccordionProps = {
   organisation: TypeOrganizationOut;
   epoch?: TypeEpoch;
+  searchLike?: string;
 };
 
 const OrganisationAccordion = async ({
   organisation,
-  epoch: _epoch,
+  epoch,
+  searchLike,
 }: OrganisationAccordionProps) => {
   const t = await getTranslations('Organisation.accordion');
 
@@ -29,7 +33,12 @@ const OrganisationAccordion = async ({
           {
             id: 'licensed_satellites',
             heading: t('licensed_satellites'),
-            content: <OrganisationSatellitesList organisationId={organisation.id} />,
+            content: (
+              <OrganisationSatellitesList
+                organisationId={organisation.id}
+                searchLike={searchLike}
+              />
+            ),
           },
         ]}
       />
@@ -42,19 +51,19 @@ const OrganisationAccordion = async ({
         dynamic
         addAnchor={false}
         initialItems={[
-          // {
-          //   id: 'all_conjunction_events',
-          //   heading: t('all_conjunction_events'),
-          //   content: organisation.id
-          //     ? (
-          //         <OrganisationConjunctionEvents
-          //           organisationId={organisation.id}
-          //           organisationName={organisation.name}
-          //           epoch={epoch}
-          //         />
-          //       )
-          //     : <p className="govuk-body">{t('no_organisation_data')}</p>,
-          // },
+          {
+            id: 'all_conjunction_events',
+            heading: t('all_conjunction_events'),
+            content: organisation.id
+              ? (
+                  <OrganisationConjunctionEvents
+                    organisationId={organisation.id}
+                    organisationName={organisation.name}
+                    epoch={epoch}
+                  />
+                )
+              : <p className="govuk-body">{t('no_organisation_data')}</p>,
+          },
           {
             id: 'conjunction_events_by_poc',
             heading: t('conjunction_events_by_poc'),
@@ -67,15 +76,18 @@ const OrganisationAccordion = async ({
                 )
               : <p className="govuk-body">{t('no_organisation_data')}</p>,
           },
-          // {
-          //   id: 'conjunction_events_by_type',
-          //   heading: t('conjunction_events_by_type'),
-          //   content: (
-          //     <OrganisationConjunctionEventsByType
-          //       organisationName={organisation.name}
-          //     />
-          //   ),
-          // },
+          {
+            id: 'conjunction_events_by_type',
+            heading: t('conjunction_events_by_type'),
+            content: organisation.id
+              ? (
+                  <OrganisationConjunctionEventsByTypeSection
+                    organisationId={organisation.id}
+                    organisationName={organisation.name}
+                  />
+                )
+              : <p className="govuk-body">{t('no_organisation_data')}</p>,
+          },
         ]}
       />
       {/*

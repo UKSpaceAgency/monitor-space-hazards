@@ -3279,6 +3279,31 @@ export interface TypeStatisticsConjunctionEventsMonthlyCountByProbabilityAggrega
   total: number | null;
 }
 
+/** StatisticsConjunctionEventsObjectTypeAggregated */
+export interface TypeStatisticsConjunctionEventsObjectTypeAggregated {
+  /** Norad Id */
+  norad_id: string;
+  /** Satellite Common Name */
+  satellite_common_name: string;
+  /** Events With Debris */
+  "Events with debris": number;
+  /** Events With Another Satellite */
+  "Events with another satellite": number;
+  /** Events With Two Uk-Licensed Satellites */
+  "Events with two UK-licensed satellites": number;
+  /** Events With Other Objects (Unknown/Rocket Body) */
+  "Events with other objects (unknown/rocket body)": number;
+  /** Total Number Of Events */
+  "Total number of events": number;
+  /**
+   * Organization Id
+   * @format uuid
+   */
+  organization_id: string;
+  /** Organization Name */
+  organization_name?: string | null;
+}
+
 /** StatisticsEventsByOrganization */
 export interface TypeStatisticsEventsByOrganization {
   /** Name */
@@ -3627,7 +3652,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-06-23T15:51:07.482222"
+   * @default "2026-06-29T10:03:02.302522"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -4840,6 +4865,11 @@ export interface TypeGetStatsMakeEventsTypeAggregatedParams {
   start_date?: string | null;
 }
 
+export interface TypeGetStatsMakeEventsTypeSatelliteAggregatedParams {
+  /** Start Date */
+  start_date?: string | null;
+}
+
 export interface TypeGetStatsMakeAnalysesDailyAggregatedParams {
   /** Start Date */
   start_date?: string | null;
@@ -4886,6 +4916,18 @@ export interface TypeGetStatsEventsBySatelliteParams {
 }
 
 export interface TypeGetStatsEventsBySatelliteAggregatedParams {
+  /** Start Date */
+  start_date?: string | null;
+  /** End Date */
+  end_date?: string | null;
+  /**
+   * Organization Id
+   * @default "all"
+   */
+  organization_id?: string | "all";
+}
+
+export interface TypeGetStatsEventsBySatelliteAndTypeAggregatedParams {
   /** Start Date */
   start_date?: string | null;
   /** End Date */
