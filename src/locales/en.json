@@ -446,7 +446,7 @@
       "title": "Ephemeris data",
       "content": "Ephemeris files uploaded by the operator are shown here:",
       "upload_button": "Upload your ephemeris data",
-      "no_ephemerises": "No ephemerises uploaded yet"
+      "no_ephemerises": "No ephemeris data has been found"
     },
     "Conjunction_events": {
       "title": "{type} conjunction events",
