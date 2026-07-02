@@ -323,10 +323,6 @@
     },
     "satellites_list": {
       "empty": "No licensed satellites available."
-    },
-    "conjunction_type": {
-      "description": "Total number of conjunction events involving {organisationName}'s UK-licensed satellites and a breakdown of their type.",
-      "no_data": "NO DATA"
     }
   },
   "Organisation_user": {
@@ -449,7 +445,8 @@
     "Ephemeris_data": {
       "title": "Ephemeris data",
       "content": "Ephemeris files uploaded by the operator are shown here:",
-      "upload_button": "Upload your ephemeris data"
+      "upload_button": "Upload your ephemeris data",
+      "no_ephemerises": "No ephemerises uploaded yet"
     },
     "Conjunction_events": {
       "title": "{type} conjunction events",
@@ -643,6 +640,14 @@
       "last_6_months": "Last 6 months",
       "all_organisations": "All organisations",
       "events_by_organisation_select_label": "Select an organisation"
+    },
+    "Conjunction_events_by_type": {
+      "debris": "Events with debris",
+      "another_satellite": "Events with another satellite",
+      "uk_satellites": "Events with two UK-licensed satellites",
+      "other": "Events with other objects",
+      "y_axis": "Number of events",
+      "x_axis": "Event type"
     },
     "Events_by_probability_of_collision": {
       "description": "Total number of conjunction events monitored between different probability of collision (PoC) thresholds by month.",
@@ -1828,6 +1833,11 @@
       "orbit": "Orbit",
       "altitude": "Altitude (km)",
       "longitude": "Longitude (°)",
+      "inclination": "Inclination (°)",
+      "inclination_short": "Inc (°)",
+      "apogee": "Apogee (km)",
+      "perigee": "Perigee (km)",
+      "period": "Period (h)",
       "find_satellite_label": "Find a satellite:",
       "search_placeholder": "Search by common name or NORAD ID",
       "empty": "No satellites found.",
@@ -1871,8 +1881,14 @@
       "debris": "Events with debris",
       "another_satellite": "Events with another satellite",
       "uk_satellites": "Events with two UK-licensed satellites",
-      "other": "Events with other objects",
-      "total": "Total"
+      "other": "Events with other object",
+      "total": "Total",
+      "description": "Total number of conjunction events involving {organisationName}'s UK-licensed satellites and a breakdown of their type.",
+      "empty": "No data available.",
+      "download_type": "conjunction events by type",
+      "download_aria": "Conjunction events by type",
+      "help_title": "Help with this table",
+      "help_description": "This table shows the total number of conjunction events involving {organisationName}'s UK-licensed satellites and a breakdown of the type of object involved in each event."
     },
     "Organisation_activity_flags": {
       "event_information": "Event information",
