@@ -215,6 +215,7 @@
     }
   },
   "Organisation": {
+    "return_to_all_organisations": "Return to all organisations",
     "banner": {
       "success_message": "The user has been deleted from {organisationName} organisation",
       "close_button": "Close"
