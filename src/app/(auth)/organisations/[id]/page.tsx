@@ -1,9 +1,10 @@
+import { getTranslations } from 'next-intl/server';
+
 import type { TypeEpoch } from '@/__generated__/data-contracts';
 import { getOrganisation } from '@/actions/getOrganisation';
 import { ContentNavigation } from '@/components/ContentNavigation';
 import { OperatorSummary } from '@/components/organisation/OperatorSummary';
 import { OrganisationAccordion } from '@/components/organisation/OrganisationAccordion';
-import Button from '@/ui/button/button';
 
 type PageProps = {
   params: Promise<{ id: string }>;
@@ -30,6 +31,7 @@ export default async function OrganisationPage({
   const { id } = await params;
   const { epoch, search_like: searchLike } = await searchParams || {};
   const organisation = await getOrganisation(id);
+  const _t = await getTranslations('Organisation');
 
   return (
     <div>
@@ -41,10 +43,6 @@ export default async function OrganisationPage({
       <article className="md:col-span-3">
         <OperatorSummary organisation={organisation} />
         <OrganisationAccordion organisation={organisation} epoch={epoch} searchLike={searchLike} />
-        {/* TODO: Update href once a public /organisations listing page is added */}
-        <Button as="link" href="/account/organisations" aria-label="Return to all organisations">
-          Return to all organisations
-        </Button>
       </article>
     </div>
   );

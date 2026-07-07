@@ -7,7 +7,7 @@ import type { TranslatedColumnDef } from '@/types';
 // TODO: orbit_regime, altitude (km) and longitude (°) are not available on TypeSatelliteWithMetadataOut.
 // The backend GET /v1/satellites/with-metadata endpoint needs to include TLE-derived positional
 // fields (orbit regime, current altitude, longitude slot) to populate the "Latest recorded position" group.
-const publicSatellitesColumns: TranslatedColumnDef<TypeSatelliteWithMetadataOut>[] = [
+const getPublicSatellitesColumns = (isInternational: boolean): TranslatedColumnDef<TypeSatelliteWithMetadataOut>[] => ([
   {
     id: 'satellite_information',
     header: 'Organisation_public_satellites.satellite_information',
@@ -18,9 +18,13 @@ const publicSatellitesColumns: TranslatedColumnDef<TypeSatelliteWithMetadataOut>
         header: 'Organisation_public_satellites.common_name',
         enableSorting: true,
         cell: ({ row }) => (
-          <Link className="govuk-link" href={`/satellites/${row.original.norad_id}`}>
-            {row.original.common_name}
-          </Link>
+          isInternational
+            ? row.original.common_name
+            : (
+                <Link className="govuk-link" href={`/satellites/${row.original.norad_id}`}>
+                  {row.original.common_name}
+                </Link>
+              )
         ),
       },
       {
@@ -73,6 +77,6 @@ const publicSatellitesColumns: TranslatedColumnDef<TypeSatelliteWithMetadataOut>
       },
     ],
   },
-];
+]);
 
-export { publicSatellitesColumns };
+export { getPublicSatellitesColumns };

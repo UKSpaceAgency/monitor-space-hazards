@@ -11,16 +11,18 @@ import { DownloadData } from '@/components/DownloadData';
 import InfiniteTable from '@/components/InfiniteTable';
 import { QUERY_KEYS } from '@/utils/QueryKeys';
 
-import { publicSatellitesColumns } from './OrganisationSatellitesPublicTableColumns';
+import { getPublicSatellitesColumns } from './OrganisationSatellitesPublicTableColumns';
 
 type OrganisationSatellitesPublicTableProps = {
   satellites: TypeSatelliteWithMetadataOut[];
   params: TypeGetSatellitesWithMetadataParams;
+  isInternational: boolean;
 };
 
 const OrganisationSatellitesPublicTable = ({
   satellites,
   params,
+  isInternational,
 }: OrganisationSatellitesPublicTableProps) => {
   const t = useTranslations('Tables.Organisation_public_satellites');
 
@@ -29,7 +31,7 @@ const OrganisationSatellitesPublicTable = ({
       <InfiniteTable<TypeSatelliteWithMetadataOut, TypeGetSatellitesWithMetadataParams>
         initialData={satellites}
         params={params}
-        columns={publicSatellitesColumns}
+        columns={getPublicSatellitesColumns(isInternational)}
         fetcher={getSatellites}
         queryKeys={[QUERY_KEYS.Satellites]}
         emptyLabel={t('empty')}
