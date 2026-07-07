@@ -1,5 +1,3 @@
-import { getTranslations } from 'next-intl/server';
-
 import type { TypeEpoch } from '@/__generated__/data-contracts';
 import { getOrganisation } from '@/actions/getOrganisation';
 import { ContentNavigation } from '@/components/ContentNavigation';
@@ -31,7 +29,6 @@ export default async function OrganisationPage({
   const { id } = await params;
   const { epoch, search_like: searchLike } = await searchParams || {};
   const organisation = await getOrganisation(id);
-  const _t = await getTranslations('Organisation');
 
   return (
     <div>
