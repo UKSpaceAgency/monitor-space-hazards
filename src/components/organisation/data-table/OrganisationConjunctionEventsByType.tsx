@@ -37,7 +37,7 @@ const OrganisationConjunctionEventsByType = ({
         {t('description', { organisationName })}
       </p>
       <ConjunctionEventsByTypeChart data={rows} actionButtons={actionButtons} />
-      <div className="overflow-x-auto h-[500px]">
+      <div className="overflow-x-auto max-h-[500px]">
         <DataTable<EventsByTypeRow>
           data={rows}
           columns={eventsByTypeColumns}

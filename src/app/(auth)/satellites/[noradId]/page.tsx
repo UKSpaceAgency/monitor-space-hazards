@@ -1,9 +1,11 @@
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 
 import type { TypeEpoch, TypeReportFlagSettings } from '@/__generated__/data-contracts';
 import { getSatellite } from '@/actions/getSatellite';
+import { getSession } from '@/actions/getSession';
 import { ContentNavigation } from '@/components/ContentNavigation';
 import { SatelliteAccordion } from '@/components/satellite/SatelliteAccordion';
+import { isInternationalUser } from '@/utils/Roles';
 
 type PageProps = {
   params: Promise<{ noradId: string }>;
@@ -26,8 +28,13 @@ export async function generateMetadata({
 export default async function Satellite(props: PageProps) {
   const { noradId } = await props.params;
   const { epoch, report } = await props.searchParams || {};
-  const satellite = await getSatellite(noradId);
+  const session = await getSession();
 
+  if (isInternationalUser(session?.user?.role)) {
+    return redirect('/forbidden');
+  }
+
+  const satellite = await getSatellite(noradId);
   if (!satellite.norad_id) {
     return notFound();
   }

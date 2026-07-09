@@ -63,7 +63,7 @@ const OrganisationConjunctionEventsByPoC = ({
         className="mb-4"
       />
       {/* TODO: Add chart visualisation once chart component supports this breakdown */}
-      <div className="overflow-x-auto h-[500px]">
+      <div className="overflow-x-auto max-h-[500px]">
         <DataTable<PocRow>
           data={filtered}
           columns={pocColumns}
