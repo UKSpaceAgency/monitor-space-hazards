@@ -53,10 +53,22 @@ export function ConjunctionEventsByTypeChart({
     ],
   };
 
+  const title
+    = data.length === 1
+      ? (
+          <p className="govuk-body govuk-!-text-align-centre">
+            {t('events_involving')}
+            {' '}
+            <b>{data[0]?.name}</b>
+          </p>
+        )
+      : null;
+
   return (
     <BaseBar
       yAxisTitle={t('y_axis')}
       xAxisTitle={t('x_axis')}
+      title={title}
       data={datasets}
       ariaLabel="Conjunction events by type"
       actionButtons={actionButtons}

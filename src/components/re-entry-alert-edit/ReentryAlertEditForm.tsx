@@ -19,7 +19,7 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
   const tReentryAlert = useTranslations('Reentry_alert');
   const tForm = useTranslations('Forms.Edit_alert');
   const fragmentsProbability = getReentryFragmentsProbability(event.fragments_probability);
-  const fragmentsRisk = getReentryFragmentsRisk(event.fragments_probability);
+  const fragmentsRisk = getReentryFragmentsRisk(event.fragments_probability, event.object_name);
 
   const formFields: EventAlertFormField[] = [{
     id: 'closed_comment',

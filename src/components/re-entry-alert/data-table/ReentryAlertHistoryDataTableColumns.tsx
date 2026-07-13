@@ -57,8 +57,8 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
   {
     header: 'Reentry_alert_history.risk',
     enableSorting: false,
-    cell: ({ row: { original: { fragments_probability, impact } } }) => {
-      const risk = getReentryFragmentsRisk(fragments_probability, impact);
+    cell: ({ row: { original: { fragments_probability, object_name } } }) => {
+      const risk = getReentryFragmentsRisk(fragments_probability, object_name);
       return renderRiskTag(risk);
     },
   },

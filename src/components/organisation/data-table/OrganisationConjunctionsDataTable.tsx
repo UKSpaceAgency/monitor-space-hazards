@@ -98,17 +98,17 @@ const OrganisationConjunctionsDataTable = ({
           stickyHeader
         />
       </div>
-      <Details summary={t('help_title')}>
-        <p>{t('help_description', { organisationName })}</p>
-        <p>{t('help_select_event')}</p>
-        <p>{t('help_row_meaning')}</p>
-      </Details>
       <DownloadData
         type={t('download_type')}
         params={{}}
         downloadAction={downloadAction}
         ariaLabel={t('download_aria')}
       />
+      <Details summary={t('help_title')}>
+        <p>{t('help_description', { organisationName })}</p>
+        <p>{t('help_select_event')}</p>
+        <p>{t('help_row_meaning')}</p>
+      </Details>
     </div>
   );
 };

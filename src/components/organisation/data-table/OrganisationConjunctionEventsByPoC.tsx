@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { useMemo, useState } from 'react';
 
 import type { EventsBySatelliteType } from '@/actions/getStatsEventsBySatellite';
+import { ConjunctionEventsByPoCChart } from '@/components/charts/conjunction-events-by-poc-chart/ConjunctionEventsByPoCChart';
 import { DataTable } from '@/components/DataTable';
 import { DownloadData } from '@/components/DownloadData';
 import Details from '@/ui/details/details';
@@ -46,11 +47,13 @@ const OrganisationConjunctionEventsByPoC = ({
     ...stats.map(s => ({ children: s.name, value: s.name })),
   ];
 
+  const hasData = filtered.length > 0 && filtered.some(r => r.total > 0);
+
   const downloadAction = async () => filtered;
 
   return (
     <div>
-      <p className="govuk-!-font-weight-bold">
+      <p className="govuk-!-font-weight-bold mb-6">
         {t('description', { organisationName })}
       </p>
       <Select
@@ -62,21 +65,29 @@ const OrganisationConjunctionEventsByPoC = ({
         onChange={e => setSelectedSatellite(e.target.value)}
         className="mb-4"
       />
-      {/* TODO: Add chart visualisation once chart component supports this breakdown */}
-      <div className="overflow-x-auto max-h-[500px]">
-        <DataTable<PocRow>
-          data={filtered}
-          columns={pocColumns}
-          enableSorting={false}
-          emptyLabel={t('empty')}
-        />
-      </div>
-      <DownloadData
-        type={t('download_type')}
-        params={{}}
-        downloadAction={downloadAction}
-        ariaLabel={t('download_aria')}
-      />
+      {hasData
+        ? (
+            <>
+              <ConjunctionEventsByPoCChart data={filtered} />
+              <div className="overflow-x-auto max-h-[500px]">
+                <DataTable<PocRow>
+                  data={filtered}
+                  columns={pocColumns}
+                  enableSorting={false}
+                  emptyLabel={t('empty')}
+                />
+              </div>
+              <DownloadData
+                type={t('download_type')}
+                params={{}}
+                downloadAction={downloadAction}
+                ariaLabel={t('download_aria')}
+              />
+            </>
+          )
+        : (
+            <p className="govuk-body">{t('empty')}</p>
+          )}
       <Details summary={t('help_title')}>
         {t('help_description', { organisationName })}
       </Details>

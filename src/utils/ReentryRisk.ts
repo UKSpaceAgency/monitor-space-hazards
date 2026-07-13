@@ -21,8 +21,12 @@ export function getMaxUkAndCdotsFragmentsProbability(
 
 export function getFragmentsRiskFromProbability(
   probability: number | null | undefined,
+  object_name?: string | null,
 ): TypeRisk | 'Pending' {
   if (!isNumber(probability)) {
+    if (object_name?.toLowerCase().includes('starlink')) {
+      return 'Very low';
+    }
     return 'Pending';
   }
 
@@ -60,9 +64,10 @@ export function getReentryFragmentsProbability(
 
 export function getReentryFragmentsRisk(
   fragmentsProbability?: number | null,
-  impact?: TypeReentryEventReportImpact | null,
+  object_name?: string | null,
 ): TypeRisk | 'Pending' {
   return getFragmentsRiskFromProbability(
-    getReentryFragmentsProbability(fragmentsProbability, impact),
+    fragmentsProbability,
+    object_name,
   );
 }

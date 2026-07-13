@@ -1,8 +1,12 @@
+import { notFound } from 'next/navigation';
+
 import type { TypeEpoch } from '@/__generated__/data-contracts';
 import { getOrganisation } from '@/actions/getOrganisation';
+import { getSession } from '@/actions/getSession';
 import { ContentNavigation } from '@/components/ContentNavigation';
 import { OperatorSummary } from '@/components/organisation/OperatorSummary';
 import { OrganisationAccordion } from '@/components/organisation/OrganisationAccordion';
+import { isInternationalUser } from '@/utils/Roles';
 
 type PageProps = {
   params: Promise<{ id: string }>;
@@ -28,7 +32,12 @@ export default async function OrganisationPage({
 }: PageProps) {
   const { id } = await params;
   const { epoch, search_like: searchLike } = await searchParams || {};
+  const session = await getSession();
   const organisation = await getOrganisation(id);
+
+  if (isInternationalUser(session?.user.role)) {
+    notFound();
+  }
 
   return (
     <div>

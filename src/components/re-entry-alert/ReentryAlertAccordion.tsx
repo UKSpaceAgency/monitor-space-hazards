@@ -34,7 +34,7 @@ const ReentryAlertAccordion = ({
   const t = useTranslations('Reentry_alert.accordion');
 
   const impacts = lastReport?.impact;
-  const fragmentsRisk = getReentryFragmentsRisk(event.fragments_probability, impacts);
+  const fragmentsRisk = getReentryFragmentsRisk(event.fragments_probability, event.object_name);
 
   return (
     <>
