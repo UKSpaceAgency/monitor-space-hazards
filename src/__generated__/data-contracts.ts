@@ -3652,7 +3652,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-06-29T10:03:02.302522"
+   * @default "2026-07-09T14:49:59.851153"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -4700,6 +4700,11 @@ export interface TypeGetConjunctionEventsListParams {
    */
   report?: TypeReportFlagSettings;
   /**
+   * Organization Id
+   * @default "all"
+   */
+  organization_id?: string | "all";
+  /**
    * Limit
    * @default 100
    */
@@ -5000,7 +5005,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2026-07-01"
+   * @default "2026-08-01"
    */
   end_date?: string;
 }
@@ -5015,7 +5020,7 @@ export interface TypeGetStatsMonthlyAnalysesAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-07-01"
+   * @default "2026-08-01"
    */
   end_date?: string;
 }
@@ -5030,7 +5035,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2026-07-01"
+   * @default "2026-08-01"
    */
   end_date?: string;
 }
@@ -5045,7 +5050,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-07-01"
+   * @default "2026-08-01"
    */
   end_date?: string;
 }
@@ -5060,7 +5065,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-07-01"
+   * @default "2026-08-01"
    */
   end_date?: string;
 }
@@ -5075,7 +5080,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-07-01"
+   * @default "2026-08-01"
    */
   end_date?: string;
 }
@@ -5090,7 +5095,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-07-01"
+   * @default "2026-08-01"
    */
   end_date?: string;
 }
@@ -5105,7 +5110,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeAggregatedParam
   /**
    * End Date
    * @format date
-   * @default "2026-07-01"
+   * @default "2026-08-01"
    */
   end_date?: string;
 }
@@ -5122,7 +5127,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByNoradIdAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-07-01"
+   * @default "2026-08-01"
    */
   end_date?: string;
 }
@@ -5137,7 +5142,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2026-07-01"
+   * @default "2026-08-01"
    */
   end_date?: string;
 }
