@@ -648,7 +648,16 @@
       "uk_satellites": "Events with two UK-licensed satellites",
       "other": "Events with other objects",
       "y_axis": "Number of events",
-      "x_axis": "Event type"
+      "x_axis": "Event type",
+      "events_involving": "Events involving"
+    },
+    "Conjunction_events_by_poc": {
+      "low": "<1e-5",
+      "medium": "<1e-3 and >1e-5",
+      "high": ">1e-3",
+      "y_axis": "Number of events",
+      "x_axis_poc": "Probability of collision",
+      "events_involving": "Events involving"
     },
     "Events_by_probability_of_collision": {
       "description": "Total number of conjunction events monitored between different probability of collision (PoC) thresholds by month.",
@@ -1886,6 +1895,8 @@
       "other": "Events with other object",
       "total": "Total",
       "description": "Total number of conjunction events involving {organisationName}'s UK-licensed satellites and a breakdown of their type.",
+      "select_satellite": "Select satellite",
+      "all_satellites": "All satellites",
       "empty": "No data available.",
       "download_type": "conjunction events by type",
       "download_aria": "Conjunction events by type",
