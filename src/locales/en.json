@@ -660,7 +660,8 @@
       "high": ">1e-3",
       "legend_title": "Probability of collision",
       "y_axis_title": "Number of events",
-      "x_axis_title": "Date"
+      "x_axis_title": "Date",
+      "no_data": "No data available"
     },
     "Activity_flags_by_reason": {
       "description": "Number of activity flags broken down by reason for flag. Use the filter to view a single year or all years.",
