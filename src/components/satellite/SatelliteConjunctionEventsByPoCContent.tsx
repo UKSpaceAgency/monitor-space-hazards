@@ -58,6 +58,12 @@ const SatelliteConjunctionEventsByPoCContent = ({ noradId }: SatelliteConjunctio
     );
   }
 
+  if (!data || data.reduce((acc, curr) => {
+    return acc + curr.high + curr.medium + curr.low;
+  }, 0) === 0) {
+    return <p className="govuk-body">{t('no_data')}</p>;
+  }
+
   return (
     <div>
       <p className="govuk-body">{t('description')}</p>
