@@ -53,16 +53,14 @@ const ConjunctionAlertPage = async ({ shortId, searchParams, footer }: Conjuncti
           </div>
         )}
       </div>
+      <ContentNavigation />
+      <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
       <div>
-        <ContentNavigation />
-        <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
-        <div>
-          {t.rich('report_info', { number: lastReport.report_number.toString(), time: dayjs(lastReport.report_time).format(FORMAT_DATE_TIME) })}
-          <ConjunctionAlertExecutiveSummary report={lastReport} executiveSummaryComment={searchParams?.executive_summary_comment ?? event.executive_summary_comment} manoeuvreComment={searchParams?.manoeuvre_comment ?? event.manoeuvre_comment} isClosed={isClosed} />
-          <ConjunctionAlertNextUpdate shortId={shortId} />
-          <ConjunctionAlertAccordion event={event} report={lastReport} reports={reports} searchParams={searchParams} />
-          {footer || <ConjunctionAlertPageButtons pdfTitle={pdfTitle} pdfSubtitle={closedComment ?? undefined} />}
-        </div>
+        {t.rich('report_info', { number: lastReport.report_number.toString(), time: dayjs(lastReport.report_time).format(FORMAT_DATE_TIME) })}
+        <ConjunctionAlertExecutiveSummary report={lastReport} executiveSummaryComment={searchParams?.executive_summary_comment ?? event.executive_summary_comment} manoeuvreComment={searchParams?.manoeuvre_comment ?? event.manoeuvre_comment} isClosed={isClosed} />
+        <ConjunctionAlertNextUpdate shortId={shortId} />
+        <ConjunctionAlertAccordion event={event} report={lastReport} reports={reports} searchParams={searchParams} />
+        {footer || <ConjunctionAlertPageButtons pdfTitle={pdfTitle} pdfSubtitle={closedComment ?? undefined} />}
       </div>
     </div>
   );

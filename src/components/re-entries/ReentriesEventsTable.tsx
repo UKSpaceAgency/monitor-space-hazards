@@ -44,7 +44,7 @@ const ReentriesEventsTable = async ({ initialParams }: ReentriesEventsTableProps
   };
 
   const searchBarLabel = await getSearchBarLabel(params.epoch);
-  const initialData = await getReentryEvents(initialParams);
+  const initialData = await getReentryEvents(params);
 
   return (
     <div>

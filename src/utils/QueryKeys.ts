@@ -15,6 +15,7 @@ export enum QUERY_KEYS {
   StatsFragmentationEventByType = 'stats-fragmentation-event-by-type',
   StatsEventByOrganisation = 'stats-event-by-organisation',
   StatsEventBySatellite = 'stats-event-by-satellite',
+  StatsConjunctionEventByProbabilityOfCollision = 'stats-conjunction-event-by-probability-of-collision',
   StatsNotificationsSent = 'stats-notifications-sent',
   DataPerformanceAggregated = 'data-performance-aggregated',
 }

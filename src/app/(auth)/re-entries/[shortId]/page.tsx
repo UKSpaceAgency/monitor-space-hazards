@@ -54,16 +54,13 @@ export default async function Reentry({
         {t('title', { objectName: satellite.common_name })}
         <span className="block text-lg">{dayjs(event.decay_epoch).format(FORMAT_FULL_DATE)}</span>
       </h1>
-      <div className="grid md:grid-cols-4 gap-7">
-        <ContentNavigation />
-        <div className="md:col-span-3">
-          <Suspense fallback={<Spinner />}>
-            <ReentryEventSummary event={event} shortId={shortId} object={object} />
-          </Suspense>
-          <ReentryAccordion object={object} noradId={event.norad_id} />
-          <ReentryButtons title={t('title', { objectName: satellite.common_name })} />
-        </div>
-      </div>
+      <ContentNavigation />
+      <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
+      <Suspense fallback={<Spinner />}>
+        <ReentryEventSummary event={event} shortId={shortId} object={object} />
+      </Suspense>
+      <ReentryAccordion object={object} noradId={event.norad_id} />
+      <ReentryButtons title={t('title', { objectName: satellite.common_name })} />
     </div>
   );
 }

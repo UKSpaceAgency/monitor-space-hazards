@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl';
 
 import type { TypeReentryEventOut, TypeReentryEventPatch, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
 import Accordion from '@/ui/accordion/accordion';
+import { getReentryFragmentsRisk } from '@/utils/ReentryRisk';
 
 import { ReentryFurtherInformation } from '../re-entry/ReentryFurhterInformation';
 import { ReentryAlertHistoryDataTable } from './data-table/ReentryAlertHistoryDataTable';
@@ -20,6 +21,7 @@ type ReentryAlertAccordionProps = {
   reports?: TypeReentryEventReportOut[];
   lastReport?: TypeReentryEventReportOut;
   searchParams?: TypeReentryEventPatch;
+  isClosed?: boolean;
 };
 
 const ReentryAlertAccordion = ({
@@ -27,10 +29,12 @@ const ReentryAlertAccordion = ({
   reports,
   lastReport,
   searchParams,
+  isClosed,
 }: ReentryAlertAccordionProps) => {
   const t = useTranslations('Reentry_alert.accordion');
 
   const impacts = lastReport?.impact;
+  const fragmentsRisk = getReentryFragmentsRisk(event.fragments_probability, event.object_name);
 
   return (
     <>
@@ -43,7 +47,7 @@ const ReentryAlertAccordion = ({
             id: 'additional_object_details',
             heading: t('additional_object_details'),
             content: (
-              <ReentryAlertAdditionalObjectDetailsTable event={event} dataPdf={t('additional_object_details')} />
+              <ReentryAlertAdditionalObjectDetailsTable event={event} report={lastReport} dataPdf={t('additional_object_details')} isClosed={isClosed} />
             ),
           },
           {
@@ -102,7 +106,7 @@ const ReentryAlertAccordion = ({
           {
             id: 'guidance_on_response',
             heading: t('guidance_on_response'),
-            content: <ReentryAlertGuidanceOnResponse risk={lastReport?.fragments_risk} immediateResponseComment={searchParams?.immediate_response_comment ?? event.immediate_response_comment} dataPdf={t('guidance_on_response')} />,
+            content: <ReentryAlertGuidanceOnResponse risk={fragmentsRisk} immediateResponseComment={searchParams?.immediate_response_comment ?? event.immediate_response_comment} dataPdf={t('guidance_on_response')} />,
           },
           {
             id: 'guidance_if_object_impacts_uk_interests',

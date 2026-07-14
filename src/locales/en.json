@@ -47,7 +47,7 @@
         },
         "track_fragmentations": {
           "title": "Track fragmentation events",
-          "description": "Space debris from objects",
+          "description": "Space debris from objects.",
           "link": "/fragmentations"
         },
         "track_conjunctions": {
@@ -215,6 +215,7 @@
     }
   },
   "Organisation": {
+    "return_to_all_organisations": "Return to all organisations",
     "banner": {
       "success_message": "The user has been deleted from {organisationName} organisation",
       "close_button": "Close"
@@ -242,7 +243,88 @@
       "registered": "Registered",
       "edit": "Edit"
     },
-    "add_new_user": "Add new user"
+    "add_new_user": "Add new user",
+    "operator_summary": {
+      "title": "Operator summary",
+      "primary_country_of_operation": "Primary country of operation",
+      "primary_country_of_operation_value": "United Kingdom",
+      "uk_licensed_satellites": "Number of UK-licensed satellites",
+      "telephone_number": "Telephone number",
+      "email_contacts": "Email contacts",
+      "fallback_email": "operations@example.org",
+      "no_data": "NO DATA"
+    },
+    "accordion": {
+      "no_organisation_data": "No organisation data available.",
+      "licensed_satellites": "Licensed satellites",
+      "conjunction_events_heading": "Conjunction events",
+      "all_conjunction_events": "All conjunction events",
+      "conjunction_events_by_poc": "Conjunction events by probability of collision",
+      "conjunction_events_by_type": "Conjunction events by type",
+      "activity_information_heading": "Activity information",
+      "all_activity_flags": "All activity flags",
+      "activity_flags_by_reason": "Activity flags by reason for flag",
+      "table": {
+        "month": "Month",
+        "total_events": "Total events"
+      },
+      "months": {
+        "january_2026": "January 2026",
+        "february_2026": "February 2026",
+        "march_2026": "March 2026"
+      },
+      "chart": {
+        "aria_suffix": "by month",
+        "x_axis": "Month",
+        "y_axis": "Total events",
+        "legend_title": "Risk band",
+        "risk_labels": {
+          "low": "<1e-5",
+          "medium": "<1e-3 and >1e-5",
+          "high": ">1e-3"
+        }
+      },
+      "organisation_information": {
+        "title": "Organisation Information",
+        "organisation": "Organisation",
+        "uk_licensed_satellites": "Number of UK-licensed satellites",
+        "registered_users": "Number of registered users",
+        "active_alerts": "Active alerts"
+      },
+      "conjunction_events": {
+        "title": "Conjunction Events",
+        "description": "Monthly conjunction events involving this organisation, grouped by risk threshold."
+      },
+      "fragmentation_events": {
+        "title": "Fragmentation Events",
+        "description": "Monthly fragmentation events associated with this organisation."
+      },
+      "reentry_events": {
+        "title": "Re-entry Events",
+        "description": "Monthly re-entry events associated with this organisation."
+      },
+      "latest_reports": {
+        "title": "Latest Reports",
+        "description": "Most recently generated reports for this organisation.",
+        "period_value": "March 2026",
+        "status_value": "Published",
+        "last_updated_value": "08 Apr 2026 09:30",
+        "table": {
+          "report": "Report",
+          "period": "Period",
+          "status": "Status",
+          "last_updated": "Last updated"
+        },
+        "reports": {
+          "conjunction": "Conjunction events monthly report",
+          "fragmentation": "Fragmentation events monthly report",
+          "reentry": "Re-entry events monthly report"
+        }
+      }
+    },
+    "satellites_list": {
+      "empty": "No licensed satellites available."
+    }
   },
   "Organisation_user": {
     "title": "User account details",
@@ -351,13 +433,21 @@
       "ephemeris_data": "Ephemeris data",
       "conjunction_events": "Conjunction events",
       "all_conjunction_events": "All conjunction events",
+      "conjunction_events_by_probability_of_collision": "Conjunction events by probability of collision",
       "activity_information": "Activity information",
-      "all_activity_events": "All activity events"
+      "all_activity_events": "All activity events",
+      "activity_flags_by_reason": "Activity flags by reason for flag",
+      "position_history": "Position history",
+      "reentries": "Re-entry events",
+      "all_reentries": "All re-entry events",
+      "fragmentations": "Fragmentation events",
+      "all_fragmentations": "All fragmentation events"
     },
     "Ephemeris_data": {
       "title": "Ephemeris data",
       "content": "Ephemeris files uploaded by the operator are shown here:",
-      "upload_button": "Upload your ephemeris data"
+      "upload_button": "Upload your ephemeris data",
+      "no_ephemerises": "No ephemeris data has been found"
     },
     "Conjunction_events": {
       "title": "{type} conjunction events",
@@ -377,6 +467,17 @@
       "type": {
         "future": "Upcoming",
         "past": "Previous"
+      },
+      "help": {
+        "title": "Help with this table<screenReaderOnly> - Conjunction events</screenReaderOnly>",
+        "content": "<p>This table shows all upcoming conjunction events involving {commonName}.</p><p>Select the event ID to view more information.</p><p>Each event ID or row represents <bold>one conjunction event </bold> including all related Conjunction Data Messages (CDMs) and NSpOC analysis.</p>"
+      }
+    },
+    "Conjunction_events_by_probability_of_collision": {
+      "title": "Conjunction events by probability of collision",
+      "details": {
+        "title": "Help with this table<screenReaderOnly>- Conjunction events by probability of collision</screenReaderOnly>",
+        "content": "This table shows the total number and probability of conjunction events for this satellite per month."
       }
     },
     "Activity_events": {
@@ -384,11 +485,21 @@
         "title": "Help with this table<screenReaderOnly> - Activity events</screenReaderOnly>",
         "content": "<p>This table shows all ongoing and closed activity flags for {commonName}.</p><p>Select the event ID to view more information</p>"
       }
+    },
+    "Activity_flags_by_reason": {
+      "title": "Activity flags by reason for flag",
+      "details": {
+        "title": "Help with this table<screenReaderOnly>- Activity flags by reason for flag</screenReaderOnly>",
+        "content": "This table shows the number of activity flags for this satellite broken down by reason for flag and year, with the total number of flags per year."
+      }
+    },
+    "Position_history": {
+      "description": "<p>This section shows the position of {common_name} at every received TLE.</p><p>TLE data is pulled from SpaceTrack.org and may occasionally be inaccurate. All flagged position changes have been verified by NSpOC Orbital Analysts.</p>"
     }
   },
   "Satellite_ephemeris_upload": {
     "title": "Uploading your ephemeris data",
-    "content": "<p>If you would like updated NSpOC analysis on this conjunction event using your ephemeris data, attach a file below.</p><p>If upload is successful, the file will be renamed with the timestamp of the creation date and made available from the Ephemeris table on the satellite information page.</p><p>Upload a CCSDS Orbit Ephemeris Message (OEM) file. The file must not exceed 20MB.</p>",
+    "content": "<p>Upload ephemeris data on your satellite below.</p>\n<p>Upload a CCSDS Orbit Ephemeris Message (OEM) file. The file must not exceed 20MB. Visit How to Manage Ephemeris in the Tech Docs for further information on file requirements.</p>\n<p>Visit the Terms and Conditions  for more information about the use and retention of your data.</p>",
     "help_summary": "More information about sharing your ephemerides with NSpOC",
     "help_content": "<p>Additional analysis will be provided by NSpOC orbital analysts only on conjunction events that NSpOC analysis determines breach a probability of collision ≥ 1e-5</p><p>View the <link>terms and conditions</link> for data handling information</p>",
     "Success": {
@@ -531,6 +642,23 @@
       "all_organisations": "All organisations",
       "events_by_organisation_select_label": "Select an organisation"
     },
+    "Conjunction_events_by_type": {
+      "debris": "Events with debris",
+      "another_satellite": "Events with another satellite",
+      "uk_satellites": "Events with two UK-licensed satellites",
+      "other": "Events with other objects",
+      "y_axis": "Number of events",
+      "x_axis": "Event type",
+      "events_involving": "Events involving"
+    },
+    "Conjunction_events_by_poc": {
+      "low": "<1e-5",
+      "medium": "<1e-3 and >1e-5",
+      "high": ">1e-3",
+      "y_axis": "Number of events",
+      "x_axis_poc": "Probability of collision",
+      "events_involving": "Events involving"
+    },
     "Events_by_probability_of_collision": {
       "description": "Total number of conjunction events monitored between different probability of collision (PoC) thresholds by month.",
       "data_range": "Data range",
@@ -541,7 +669,20 @@
       "high": ">1e-3",
       "legend_title": "Probability of collision",
       "y_axis_title": "Number of events",
-      "x_axis_title": "Date"
+      "x_axis_title": "Date",
+      "no_data": "No data available"
+    },
+    "Activity_flags_by_reason": {
+      "description": "Number of activity flags broken down by reason for flag. Use the filter to view a single year or all years.",
+      "flags": "Number of flags",
+      "year_filter": "Year",
+      "all_years": "All years",
+      "position_change": "Unexpected position change",
+      "manoeuvre_planned": "Manoeuvre as planned",
+      "manoeuvre_unplanned": "Manoeuvre not as planned",
+      "missing_data": "Missing data",
+      "y_axis_title": "Number of flags",
+      "x_axis_title": "Reason for flag"
     },
     "Organisations_and_users": {
       "data_range": "Data range",
@@ -745,7 +886,7 @@
       "see_press_lines": "See <link>National Space Operations Centre press lines</link>."
     },
     "Additional_risk_to_objects": {
-      "content": "<p>If a collision between these objects were to occur, the resulting debris may pose additional risk to UK-licensed satellites.</p><p>The table below shows how, if this collision were to occur, the number of conjunction events (with a miss distance of 5km or less) for UK-licensed satellites would increase in the following 7 days.</p><p><bold>Only the 30 objects with the most predicted additional conjunction events in the week following a collision are shown here.</bold></p>"
+      "content": "<p>If a collision between these objects were to occur, the resulting debris may pose additional risk to UK-licensed satellites.</p><p>The table below shows how, if this collision were to occur, the number of conjunction events (with a miss distance of 5km or less) for UK-licensed satellites would increase in the following 7 days.</p>"
     },
     "Operator_view": {
       "content": "<p>The satellite operator of the UK-licensed object has been notified of the conjunction event via Monitor Space Hazards. <link>Click to see the information that operators have received.</link></p>"
@@ -909,6 +1050,7 @@
       "probability_of_ground": "Probability of debris impact in UK",
       "probability_of_human_casualty": "Probability of UK casualty risk",
       "risk": {
+        "equal": "{value}%",
         "less_than": "Less than {value}%",
         "between": "{from}% - {to}%",
         "more_than": "More than {value}%"
@@ -1166,6 +1308,14 @@
       "latest_tle_epoch": "Latest TLE epoch",
       "object_information": "Object information"
     },
+    "Activity_flags_by_reason": {
+      "year": "Year",
+      "position_change": "Unexpected position change",
+      "manoeuvre_planned": "Manoeuvre as planned",
+      "manoeuvre_unplanned": "Manoeuvre not as planned",
+      "missing_data": "Missing data",
+      "total": "Total"
+    },
     "Satellites": {
       "common_name": "Common name",
       "norad_id": "NORAD ID",
@@ -1200,7 +1350,8 @@
         "reentry_events": "re-entry events",
         "reentry_reports": "re-entry reports",
         "fragmentation_events": "fragmentation events",
-        "activities": "activities"
+        "activities": "activities",
+        "position_history": "position history"
       }
     },
     "Analysis_data": {
@@ -1233,7 +1384,8 @@
       },
       "Additional_informations": {
         "title": "Additional object data",
-        "content": "<p>ESA DISCOS provides additional object data where available. Contact ESA DISCOS if your satellite data is incorrect.</p><p>ESA DISCOS data was last updated on: {updateTime} UTC</p>"
+        "content": "<p>ESA DISCOS provides additional object data where available. Contact ESA DISCOS if your satellite data is incorrect.</p>",
+        "footer": "<p>ESA DISCOS data was last updated on: {updateTime} UTC</p>"
       },
       "Base": {
         "common_name": "Common name",
@@ -1245,7 +1397,8 @@
         "caption": "License information",
         "country": "Country",
         "launching_site": "Launching site",
-        "launch_date": "Launch date"
+        "launch_date": "Launch date",
+        "organization_id": "Operator"
       },
       "Orbital": {
         "caption": "Orbital information",
@@ -1489,6 +1642,7 @@
       "international_designator": "International designator",
       "norad_id": "NORAD ID",
       "object_dimensions": "Object dimensions",
+      "width": "Width",
       "height": "Height",
       "span": "Span",
       "launching_year": "Launching year",
@@ -1681,6 +1835,113 @@
       "launch_site": "Launch site",
       "launch_date": "Launch date"
     },
+    "Organisation_public_satellites": {
+      "satellite_information": "Satellite information",
+      "common_name": "Common name",
+      "norad_id": "NORAD ID",
+      "launch_date": "Launch date",
+      "latest_position": "Latest recorded position",
+      "orbit": "Orbit",
+      "altitude": "Altitude (km)",
+      "longitude": "Longitude (°)",
+      "inclination": "Inclination (°)",
+      "inclination_short": "Inc (°)",
+      "apogee": "Apogee (km)",
+      "perigee": "Perigee (km)",
+      "period": "Period (h)",
+      "find_satellite_label": "Find a satellite:",
+      "search_placeholder": "Search by common name or NORAD ID",
+      "empty": "No satellites found.",
+      "download_type": "UK-licensed satellites",
+      "download_aria": "UK-licensed satellites"
+    },
+    "Organisation_conjunctions": {
+      "description": "This table shows all upcoming and past conjunction events involving {organisationName}'s UK-licensed satellites.",
+      "filter_time_period": "Filter by time period:",
+      "epoch_upcoming": "Upcoming",
+      "epoch_past": "Past",
+      "epoch_all": "All",
+      "display_poc": "Display probability of collision as:",
+      "scientific": "Scientific",
+      "percentage": "Percentage",
+      "empty": "No conjunction events found.",
+      "download_type": "conjunction events",
+      "download_aria": "Organisation conjunctions",
+      "help_title": "Help with this table",
+      "help_description": "This table shows all upcoming and past conjunction events involving {organisationName}'s UK-licensed satellites.",
+      "help_select_event": "Select the event ID to view more information.",
+      "help_row_meaning": "Each event ID or row represents one conjunction event including all related Conjunction Data Messages (CDMs) and NSpOC analysis."
+    },
+    "Organisation_conjunction_poc": {
+      "satellite": "Satellite",
+      "low": "<1e-5",
+      "medium": "<1e-3 and >1e-5",
+      "high": ">1e-3",
+      "total": "Total",
+      "description": "Total number of conjunction events involving {organisationName}'s UK-licensed satellites and a breakdown of their probabilities of collision (PoC).",
+      "select_satellite": "Select satellite",
+      "all_satellites": "All satellites",
+      "empty": "No data available.",
+      "download_type": "conjunction events by probability of collision",
+      "download_aria": "Conjunction events by PoC",
+      "help_title": "Help with this table",
+      "help_description": "This table shows the total number of conjunction events involving {organisationName}'s UK-licensed satellites and a breakdown of their probabilities of collision."
+    },
+    "Organisation_conjunction_type": {
+      "satellite": "Satellite",
+      "debris": "Events with debris",
+      "another_satellite": "Events with another satellite",
+      "uk_satellites": "Events with two UK-licensed satellites",
+      "other": "Events with other object",
+      "total": "Total",
+      "description": "Total number of conjunction events involving {organisationName}'s UK-licensed satellites and a breakdown of their type.",
+      "select_satellite": "Select satellite",
+      "all_satellites": "All satellites",
+      "empty": "No data available.",
+      "download_type": "conjunction events by type",
+      "download_aria": "Conjunction events by type",
+      "help_title": "Help with this table",
+      "help_description": "This table shows the total number of conjunction events involving {organisationName}'s UK-licensed satellites and a breakdown of the type of object involved in each event."
+    },
+    "Organisation_activity_flags": {
+      "event_information": "Event information",
+      "reason_for_flag": "Reason for flag",
+      "flag_id": "Flag ID",
+      "satellite": "Satellite",
+      "flag_date": "Date of flag",
+      "description": "This table shows all activity flags involving {organisationName}'s satellites. You can apply filters to view past events.",
+      "apply_filters": "Apply filters to this table:",
+      "filter_satellite": "Filter by satellite",
+      "filter_reason": "Filter by reason for flag",
+      "all_satellites": "All satellites",
+      "reason_all": "All flags",
+      "reason_position_change": "Position change",
+      "reason_manoeuvre_unplanned": "Manoeuvre (unplanned)",
+      "reason_manoeuvre_planned": "Manoeuvre (planned)",
+      "reason_missing_data": "Missing data",
+      "empty": "No activity flags found.",
+      "download_type": "activity flags",
+      "download_aria": "Organisation activity flags",
+      "help_title": "Help with this table",
+      "help_description": "This table shows all activity flags involving {organisationName}'s UK-licensed satellites.",
+      "help_select_flag": "Select the flag ID to view more information."
+    },
+    "Organisation_activity_by_reason": {
+      "satellite": "Satellite",
+      "manoeuvre_planned": "Manoeuvre as planned",
+      "manoeuvre_unplanned": "Manoeuvre not as planned",
+      "position_change": "Unexpected position change",
+      "missing_data": "Missing data",
+      "total": "Total",
+      "description": "Total number of activity flags for {organisationName}'s UK-licensed satellites and a breakdown of the reason for flag.",
+      "select_satellite": "Select satellite",
+      "all_satellites": "All satellites",
+      "empty": "No activity flags found.",
+      "download_type": "activity flags by reason",
+      "download_aria": "Activity flags by reason",
+      "help_title": "Help with this table",
+      "help_description": "This table shows the total number of activity flags for {organisationName}'s UK-licensed satellites and a breakdown of the reason for flag."
+    },
     "Organisation_users": {
       "registered_users": "Registered users",
       "name": "Name",
@@ -1727,15 +1988,18 @@
       "common_name": "Satellite",
       "operator_name": "Operator",
       "norad_id": "NORAD ID",
+      "date_of_tle": "Date of TLE (UTC)",
       "flag_date": "Date of flag",
       "orbit_type": "Orbit",
       "altitude": "Altitude (km)",
       "longitude": "Longitude (°)",
       "inclination": "Inclination (°)",
+      "inclination_short": "Inc (°)",
       "apogee": "Apogee (km)",
       "perigee": "Perigee (km)",
       "position_change": "Position after change and size of change (if applicable)",
-      "activity_events_as_of": "Activity events as of "
+      "activity_events_as_of": "Activity events as of ",
+      "position_at_time": "Position at time of TLE"
     }
   },
   "Forms": {

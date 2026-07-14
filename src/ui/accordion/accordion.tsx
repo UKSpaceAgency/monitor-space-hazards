@@ -135,6 +135,7 @@ export function Accordion({ initialItems, id, dynamic = false, addAnchor = true 
               id={`content-${id}`}
               className={clsx('w-[calc(100vw-30px)] md:w-full', {
                 'content-visibility-hidden': !expanded,
+                'pt-4': expanded,
               })}
             >
               {dynamic ? expanded ? <Suspense fallback={<Spinner />}>{content}</Suspense> : null : content}

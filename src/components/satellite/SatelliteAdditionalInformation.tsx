@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl';
+import { Fragment } from 'react';
 
 import type { TypeSatelliteOut } from '@/__generated__/data-contracts';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
@@ -17,10 +18,17 @@ const SatelliteAdditionalInformations = ({ object }: SatelliteAdditionalInformat
   return (
     <div className="mb-12">
       <h3 className="govuk-heading-s">{t('title')}</h3>
-      {t.rich('content', {
-        updateTime,
-      })}
+      <Fragment key="content">
+        {t.rich('content', {
+          updateTime,
+        })}
+      </Fragment>
       <AdditionalInformationsTable object={object} />
+      <Fragment key="footer">
+        {t.rich('footer', {
+          updateTime,
+        })}
+      </Fragment>
     </div>
   );
 };

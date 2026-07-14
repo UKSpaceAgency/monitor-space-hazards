@@ -1,18 +1,21 @@
+import { isNumber } from 'lodash';
 import { useTranslations } from 'next-intl';
 import type { HTMLProps } from 'react';
 
-import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
+import type { TypeReentryEventOut, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
 import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 
-type ObjectDetailsData = Pick<TypeReentryEventOut, 'international_designator' | 'norad_id' | 'object_height' | 'object_span' | 'launching_year' | 'apogee' | 'perigee' | 'inclination'>;
+type ObjectDetailsData = Pick<TypeReentryEventOut, 'international_designator' | 'norad_id' | 'object_height' | 'object_width' | 'object_span' | 'launching_year' | 'apogee' | 'perigee' | 'inclination'>;
 
 type ReentryAlertAdditionalObjectDetailsTableProps = {
   event: TypeReentryEventOut;
+  report?: TypeReentryEventReportOut;
   dataPdf?: string;
+  isClosed?: boolean;
 };
 
-const ReentryAlertAdditionalObjectDetailsTable = ({ event, dataPdf }: ReentryAlertAdditionalObjectDetailsTableProps) => {
+const ReentryAlertAdditionalObjectDetailsTable = ({ event, report, dataPdf, isClosed }: ReentryAlertAdditionalObjectDetailsTableProps) => {
   const t = useTranslations('Tables.Reentry_alert_additional_object_details');
 
   const objectDetailsHeaders: HTMLProps<HTMLTableCellElement>[] = [{
@@ -34,13 +37,17 @@ const ReentryAlertAdditionalObjectDetailsTable = ({ event, dataPdf }: ReentryAle
     },
   }, {
     header: t('object_dimensions'),
-    renderCell: ({ object_height, object_span }) => object_height && object_span ? `${t('height')} ${object_height}m x ${t('span')} ${object_span}m` : '-',
-    cellProps: {
-      className: 'pl-10',
+    renderCell: ({ object_height, object_width, object_span }) => {
+      const dimensions = [
+        { label: t('height'), value: report?.object_height ?? object_height },
+        { label: t('width'), value: report?.object_width ?? object_width },
+        { label: t('span'), value: report?.object_span ?? object_span },
+      ]
+        .filter(({ value }) => isNumber(value))
+        .map(({ label, value }) => `${label} ${value}m`);
+
+      return dimensions.length > 0 ? dimensions.join(' x ') : '-';
     },
-  }, {
-    header: t('launching_year'),
-    accessorKey: 'launching_year',
     cellProps: {
       className: 'pl-10',
     },
@@ -51,32 +58,41 @@ const ReentryAlertAdditionalObjectDetailsTable = ({ event, dataPdf }: ReentryAle
     colSpan: 2,
   }];
 
-  const orbitDetailsRows: InformationsTableRow<ObjectDetailsData>[] = [
-    {
-      header: t('apogee'),
-      accessorKey: 'apogee',
-      cellProps: {
-        className: 'pl-10',
-        width: '50%',
-      },
-    },
-    {
-      header: t('perigee'),
-      accessorKey: 'perigee',
-      cellProps: {
-        className: 'pl-10',
-        width: '50%',
-      },
-    },
-    {
-      header: t('inclination'),
-      accessorKey: 'inclination',
-      cellProps: {
-        className: 'pl-10',
-        width: '50%',
-      },
-    },
-  ];
+  const orbitDetailsRows: InformationsTableRow<ObjectDetailsData>[] = isClosed
+    ? [{
+        header: t('inclination'),
+        accessorKey: 'inclination',
+        cellProps: {
+          className: 'pl-10',
+          width: '50%',
+        },
+      }]
+    : [
+        {
+          header: t('apogee'),
+          accessorKey: 'apogee',
+          cellProps: {
+            className: 'pl-10',
+            width: '50%',
+          },
+        },
+        {
+          header: t('perigee'),
+          accessorKey: 'perigee',
+          cellProps: {
+            className: 'pl-10',
+            width: '50%',
+          },
+        },
+        {
+          header: t('inclination'),
+          accessorKey: 'inclination',
+          cellProps: {
+            className: 'pl-10',
+            width: '50%',
+          },
+        },
+      ];
 
   return (
     <div data-pdf={dataPdf}>
