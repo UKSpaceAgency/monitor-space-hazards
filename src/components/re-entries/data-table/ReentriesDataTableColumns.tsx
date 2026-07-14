@@ -11,16 +11,12 @@ import { renderRiskTag } from '@/utils/Tags';
 
 export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumnDef<TypeReentryEventOut>[] => [
   {
-    id: 'uk_reentry_probability',
-    accessorKey: 'fragments_risk',
+    id: 'fragments_probability',
+    accessorKey: 'fragments_probability',
     header: 'Reentries.table.risk',
     size: 100,
-    cell: ({ row: { original: { fragments_probability, object_name } } }) => (
-      <>
-        {renderRiskTag(
-          getReentryFragmentsRisk(fragments_probability, object_name),
-        )}
-      </>
+    cell: ({ row: { original: { fragments_probability, object_name } } }) => renderRiskTag(
+      getReentryFragmentsRisk(fragments_probability, object_name),
     ),
   },
   {
@@ -55,7 +51,8 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     size: 100,
   },
   {
-    id: 'fragments_probability',
+    id: 'probability_of_fragmentation',
+    enableSorting: false,
     accessorKey: 'fragments_probability',
     header: 'Reentries.table.probability_of_fragmentation',
     size: 70,
