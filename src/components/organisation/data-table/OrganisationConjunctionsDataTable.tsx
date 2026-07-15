@@ -1,26 +1,31 @@
 'use client';
 
+import type { ColumnSort } from '@tanstack/react-table';
 import { usePathname, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
-import type { TypeEpoch, TypeEventOut } from '@/__generated__/data-contracts';
-import { DataTable } from '@/components/DataTable';
+import type { TypeEpoch, TypeEventOut, TypeGetConjunctionEventsListParams } from '@/__generated__/data-contracts';
+import { getConjunctionEventsList } from '@/actions/getConjunctionEventsList';
 import { DownloadData } from '@/components/DownloadData';
+import InfiniteTable from '@/components/InfiniteTable';
 import Details from '@/ui/details/details';
 import Radios from '@/ui/radios/radios';
 import Select from '@/ui/select/select';
+import { QUERY_KEYS } from '@/utils/QueryKeys';
 
 import { getSatteliteConjunctionColumns } from './OrganisationConjunctionsDataTableColumns';
 
 type OrganisationConjunctionsDataTableProps = {
   initialData: TypeEventOut[];
+  params: TypeGetConjunctionEventsListParams;
   epoch?: TypeEpoch;
   organisationName: string;
 };
 
 const OrganisationConjunctionsDataTable = ({
   initialData,
+  params,
   epoch,
   organisationName,
 }: OrganisationConjunctionsDataTableProps) => {
@@ -29,10 +34,15 @@ const OrganisationConjunctionsDataTable = ({
   const { replace } = useRouter();
   const pathname = usePathname();
 
+  const initialSort: ColumnSort[] = useMemo(() => [{
+    id: params.sort_by ?? 'tca_time',
+    desc: params.sort_order === 'desc',
+  }], [params]);
+
   const handleEpochChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const params = new URLSearchParams(window.location.search);
-    params.set('epoch', e.target.value);
-    replace(`${pathname}?${params.toString()}`, { scroll: false });
+    const searchParams = new URLSearchParams(window.location.search);
+    searchParams.set('epoch', e.target.value);
+    replace(`${pathname}?${searchParams.toString()}`, { scroll: false });
   };
 
   const columns = getSatteliteConjunctionColumns({
@@ -40,8 +50,6 @@ const OrganisationConjunctionsDataTable = ({
     probabilityUnit,
     haveAccessToAlerts: true,
   });
-
-  const downloadAction = async () => initialData;
 
   return (
     <div>
@@ -91,17 +99,20 @@ const OrganisationConjunctionsDataTable = ({
         </div>
       </div>
       <div className="overflow-auto max-h-[500px]">
-        <DataTable<TypeEventOut>
-          data={initialData}
+        <InfiniteTable<TypeEventOut, TypeGetConjunctionEventsListParams>
+          initialData={initialData}
+          params={params}
           columns={columns}
+          fetcher={getConjunctionEventsList}
+          queryKeys={[QUERY_KEYS.Conjunctions, params.organization_id]}
+          initialSort={initialSort}
           emptyLabel={t('empty')}
-          stickyHeader
         />
       </div>
       <DownloadData
         type={t('download_type')}
-        params={{}}
-        downloadAction={downloadAction}
+        params={params}
+        downloadAction={getConjunctionEventsList}
         ariaLabel={t('download_aria')}
       />
       <Details summary={t('help_title')}>
