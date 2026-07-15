@@ -54,30 +54,25 @@ export default async function ConjunctionPage({
       )}
       {isSpecial && <Tag>{t('special_only')}</Tag>}
       <h1 className="govuk-heading-xl">{t('title', { id: shortId })}</h1>
-      <div className="govuk-grid-row">
-        <div className="govuk-grid-column-one-quarter">
-          <ContentNavigation />
-        </div>
-        <div className="govuk-grid-column-three-quarters">
-          {spacetrack && (
-            <ConjunctionEventSummary
-              shortId={shortId}
-              spacetrack={spacetrack}
-              uksa={uksa}
-              primaryObject={primary_object}
-              secondaryObject={secondary_object}
-              isSpecial={isSpecial}
-            />
-          )}
-          <ConjunctionAccordion
-            shortId={shortId}
-            primaryObject={primary_object}
-            secondaryObject={secondary_object}
-            isSpecial={isSpecial}
-          />
-          <ConjunctionButtons title={t('title', { id: shortId })} />
-        </div>
-      </div>
+      <ContentNavigation />
+      <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
+      {spacetrack && (
+        <ConjunctionEventSummary
+          shortId={shortId}
+          spacetrack={spacetrack}
+          uksa={uksa}
+          primaryObject={primary_object}
+          secondaryObject={secondary_object}
+          isSpecial={isSpecial}
+        />
+      )}
+      <ConjunctionAccordion
+        shortId={shortId}
+        primaryObject={primary_object}
+        secondaryObject={secondary_object}
+        isSpecial={isSpecial}
+      />
+      <ConjunctionButtons title={t('title', { id: shortId })} />
     </>
   );
 }

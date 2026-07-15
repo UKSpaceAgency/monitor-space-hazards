@@ -54,7 +54,7 @@ export default async function OrganisationPage({
       <OrganisationSummary satellites={organisation.satellites_count} users={organisation.accounts_count} />
       <Suspense fallback={<Spinner />}>
         <OrganisationSatellites organisationId={organisation.id as string} />
-        <OrganisationUsers organisationId={organisation.id as string} />
+        {session?.user.role !== 'AGENCY_ANALYST' && <OrganisationUsers organisationId={organisation.id as string} />}
       </Suspense>
       <ButtonGroup>
         <Button

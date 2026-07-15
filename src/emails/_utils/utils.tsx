@@ -3,7 +3,7 @@ import { createTranslator } from 'next-intl';
 
 import type { TypeRisk } from '@/__generated__/data-contracts';
 import messages from '@/locales/en.json';
-import { jsonRegionsMap } from '@/utils/Regions';
+import { jsonRegionsMap, sortImpactByNation } from '@/utils/Regions';
 
 import { Text } from '../_components/text';
 
@@ -55,9 +55,9 @@ export const toAffectedTerritories = (value: Record<string, Record<string, any>>
     return 'No regions affected';
   }
 
-  const regions = Object.keys(value)
-    .filter(k => value[k]?.fragments_probability > 0)
-    .map(k => jsonRegionsMap[k]);
+  const regions = sortImpactByNation(value)
+    .filter(([, data]) => data?.fragments_probability > 0)
+    .map(([key]) => jsonRegionsMap[key]);
 
   return regions.length > 0 ? regions.join(', ') : 'No regions affected';
 };

@@ -1,22 +1,17 @@
-import { notFound } from 'next/navigation';
-import { getTranslations } from 'next-intl/server';
+import { notFound, redirect } from 'next/navigation';
 
-import { getEphemerises } from '@/actions/getEphemerises';
+import type { TypeEpoch, TypeReportFlagSettings } from '@/__generated__/data-contracts';
 import { getSatellite } from '@/actions/getSatellite';
 import { getSession } from '@/actions/getSession';
 import { ContentNavigation } from '@/components/ContentNavigation';
-import { SatelliteAdditionalInformations } from '@/components/satellite/SatelliteAdditionalInformation';
-import { SatelliteConjunctionEvents } from '@/components/satellite/SatelliteConjunctionEvents';
-import { SatelliteEphemerisData } from '@/components/satellite/SatelliteEphemerisData';
-import { SatelliteInformation } from '@/components/satellite/SatelliteInformation';
-import Button from '@/ui/button/button';
-import { isAgencyApprover, isSatteliteOperator } from '@/utils/Roles';
+import { SatelliteAccordion } from '@/components/satellite/SatelliteAccordion';
+import { isInternationalUser } from '@/utils/Roles';
 
 type PageProps = {
   params: Promise<{ noradId: string }>;
   searchParams?: Promise<{
-    upcoming_search_like?: string;
-    previous_search_link?: string;
+    report?: TypeReportFlagSettings;
+    epoch?: TypeEpoch;
   }>;
 };
 
@@ -31,17 +26,15 @@ export async function generateMetadata({
 }
 
 export default async function Satellite(props: PageProps) {
-  const t = await getTranslations('Common');
+  const { noradId } = await props.params;
+  const { epoch, report } = await props.searchParams || {};
   const session = await getSession();
 
-  const { noradId } = await props.params;
-  const { upcoming_search_like, previous_search_link } = await props.searchParams || {};
-  const satellite = await getSatellite(noradId);
-  const ephemerises = await getEphemerises({
-    norad_id: noradId,
-    sort_by: 'updated_at',
-  });
+  if (isInternationalUser(session?.user?.role)) {
+    return redirect('/forbidden');
+  }
 
+  const satellite = await getSatellite(noradId);
   if (!satellite.norad_id) {
     return notFound();
   }
@@ -49,68 +42,9 @@ export default async function Satellite(props: PageProps) {
   return (
     <div>
       <h1 className="govuk-heading-xl">{satellite.common_name}</h1>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-7">
-        <ContentNavigation />
-        <article className="md:col-span-3">
-          <SatelliteConjunctionEvents noradId={noradId} query={upcoming_search_like} epoch="future" id="future_search_bar" ariaLabel="Upcoming Conjunction Events" />
-          <SatelliteEphemerisData
-            noradId={noradId}
-            ephemerises={ephemerises}
-            showButtons={isAgencyApprover(session?.user.role) || isSatteliteOperator(session?.user.role)}
-          />
-          <SatelliteInformation object={satellite} />
-          <SatelliteAdditionalInformations object={satellite} />
-          <SatelliteConjunctionEvents noradId={noradId} query={previous_search_link} epoch="past" id="past_search_bar" ariaLabel="Previous Conjunction Events" />
-          <Button as="link" href="/satellites" variant="secondary" aria-label={t('return', { to: 'all satellites' })}>{t('return', { to: 'all satellites' })}</Button>
-        </article>
-      </div>
+      <ContentNavigation />
+      <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
+      <SatelliteAccordion object={satellite} noradId={noradId} epoch={epoch} report={report} />
     </div>
   );
 }
-
-// import { notFound } from 'next/navigation';
-
-// import type { TypeEpoch, TypeReportFlagSettings } from '@/__generated__/data-contracts';
-// import { getSatellite } from '@/actions/getSatellite';
-// import { ContentNavigation } from '@/components/ContentNavigation';
-// import { SatelliteAccordion } from '@/components/satellite/SatelliteAccordion';
-
-// type PageProps = {
-//   params: Promise<{ noradId: string }>;
-//   searchParams?: Promise<{
-//     report?: TypeReportFlagSettings;
-//     epoch?: TypeEpoch;
-//   }>;
-// };
-
-// export async function generateMetadata({
-//   params,
-// }: PageProps) {
-//   const { noradId } = await params;
-//   const satellite = await getSatellite(noradId);
-//   return {
-//     title: satellite.common_name,
-//   };
-// }
-
-// export default async function Satellite(props: PageProps) {
-//   const { noradId } = await props.params;
-//   const { epoch, report } = await props.searchParams || {};
-//   const satellite = await getSatellite(noradId);
-
-//   if (!satellite.norad_id) {
-//     return notFound();
-//   }
-
-//   return (
-//     <div>
-//       <h1 className="govuk-heading-xl">{satellite.common_name}</h1>
-//       <div className="grid md:grid-cols-4 gap-7">
-//         <ContentNavigation />
-//         <article className="md:col-span-3">
-//           <SatelliteAccordion object={satellite} noradId={noradId} epoch={epoch} report={report} />
-//         </article>
-//       </div>
-//     </div>
-//   );
-// }

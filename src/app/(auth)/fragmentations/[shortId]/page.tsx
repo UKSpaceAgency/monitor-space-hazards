@@ -28,6 +28,7 @@ export default async function Fragmentation({
   const t = await getTranslations('Fragmentation');
   const session = await getSession();
   const { shortId } = await params;
+  const session = await getSession();
 
   return (
     <div>

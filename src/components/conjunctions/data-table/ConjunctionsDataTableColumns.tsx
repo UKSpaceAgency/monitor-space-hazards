@@ -122,9 +122,9 @@ export const getConjunctionEventsColumns = ({
         id: 'collision_probability_uksa',
         accessorKey: 'collision_probability_uksa',
         header: 'Conjunctions.table.poc_uksa',
-        cell: ({ getValue }) => {
-          const collision_probability = getValue<number>();
-          if (collision_probability === undefined) {
+        cell: ({ row }) => {
+          const collision_probability = row.original.collision_probability_report ?? row.original.collision_probability_uksa;
+          if (collision_probability === undefined || collision_probability === null) {
             return '-';
           }
 

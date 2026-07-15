@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 
 import { postUsersMeClientCredentials } from '@/actions/postUsersMeClientCredentials';
-import Button from '@/ui/button/button';
+import CopyToClipboardButton from '@/ui/copy-to-clipboard-button/copy-to-clipboard-button';
 import Panel from '@/ui/panel/panel';
 import WarningText from '@/ui/warning-text/warning-text';
 
@@ -24,12 +24,13 @@ export default async function Credentials() {
             <strong>{credentials.client_id}</strong>
           </p>
         </div>
-        <Button
+        <CopyToClipboardButton
           className="govuk-button--secondary"
           aria-label={t('copy_client_id_button')}
+          textToCopy={credentials.client_id}
         >
           {t('copy_client_id_button')}
-        </Button>
+        </CopyToClipboardButton>
         <div className="m-9">
           <p>
             {t('client_secret')}
@@ -39,12 +40,13 @@ export default async function Credentials() {
             </strong>
           </p>
         </div>
-        <Button
+        <CopyToClipboardButton
           className="govuk-button--secondary"
           aria-label={t('copy_client_secret_button')}
+          textToCopy={credentials.client_secret}
         >
           {t('copy_client_secret_button')}
-        </Button>
+        </CopyToClipboardButton>
       </Panel>
       <WarningText>
         {t('warning')}

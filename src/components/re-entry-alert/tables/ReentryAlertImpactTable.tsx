@@ -12,7 +12,7 @@ import Details from '@/ui/details/details';
 import Select from '@/ui/select/select';
 import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
 import { roundedPercent } from '@/utils/Math';
-import { jsonRegionsMap } from '@/utils/Regions';
+import { jsonRegionsMap, sortImpactByNation } from '@/utils/Regions';
 
 // Types
 type ReentryAlertImpactTableProps = {
@@ -61,6 +61,11 @@ const ReentryAlertImpactTable = ({ caption, impact, byRegion, isNation }: Reentr
   const [selectedOverflightIndex, setSelectedOverflightIndex] = useState<number>(ALL_OVERFLIGHTS_OPTION);
 
   // Computed values
+  const impactEntries = useMemo(
+    () => (isNation ? sortImpactByNation(impact) : Object.entries(impact)),
+    [impact, isNation],
+  );
+
   const maxOverflightCount = useMemo(() => {
     if (!impact) {
       return 0;
@@ -227,7 +232,7 @@ const ReentryAlertImpactTable = ({ caption, impact, byRegion, isNation }: Reentr
           </TableHead>
 
           <TableBody>
-            {Object.entries(impact).map(([regionKey, value]) => (
+            {impactEntries.map(([regionKey, value]) => (
               <TableRow key={regionKey}>
                 <TableCellHeader className={clsx('w-6/12')}>
                   {getRegionDisplayName(regionKey)}

@@ -165,6 +165,25 @@ export const Regions: {
   },
 };
 
+export const UK_NATION_ORDER = [
+  'england_nation',
+  'scotland_nation',
+  'wales_nation',
+  'northern_ireland_nation',
+] as const;
+
+export const sortByKeyOrder = <T>(
+  record: Record<string, T>,
+  order: readonly string[],
+): [string, T][] =>
+  Object.entries(record).sort(([a], [b]) => {
+    const indexA = order.indexOf(a);
+    const indexB = order.indexOf(b);
+    return (indexA === -1 ? order.length : indexA) - (indexB === -1 ? order.length : indexB);
+  });
+
+export const sortImpactByNation = <T>(record: Record<string, T>) => sortByKeyOrder(record, UK_NATION_ORDER);
+
 export const jsonRegionsMap: Record<string, string> = {
   england_nation: 'England',
   northern_ireland_nation: 'Northern Ireland',

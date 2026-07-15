@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import type { TypeReentryEventOut, TypeRisk } from '@/__generated__/data-contracts';
 import { FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 import { roundedPercentage } from '@/utils/Math';
+import { getReentryFragmentsProbability, getReentryFragmentsRisk } from '@/utils/ReentryRisk';
 import { getFullCountry } from '@/utils/Regions';
 import { renderRiskTag } from '@/utils/Tags';
 
@@ -17,6 +18,8 @@ type ReentryAlertEditFormProps = {
 const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
   const tReentryAlert = useTranslations('Reentry_alert');
   const tForm = useTranslations('Forms.Edit_alert');
+  const fragmentsProbability = getReentryFragmentsProbability(event.fragments_probability);
+  const fragmentsRisk = getReentryFragmentsRisk(event.fragments_probability, event.object_name);
 
   const formFields: EventAlertFormField[] = [{
     id: 'closed_comment',
@@ -38,10 +41,10 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
           commonName: event?.object_name ?? 'Unknown',
           objectType: event?.object_type,
           date: dayjs(event.decay_epoch).format(FORMAT_FULL_DATE_TIME),
-          riskLevel: event?.fragments_risk ?? 'Low',
-          riskProbability: roundedPercentage(event?.fragments_probability ?? 0),
-          fragmentsRisk: event?.fragments_risk,
-          fragmentsProbability: roundedPercentage(event?.fragments_probability ?? 0),
+          riskLevel: fragmentsRisk === 'Pending' ? 'Low' : fragmentsRisk,
+          riskProbability: roundedPercentage(fragmentsProbability ?? 0),
+          fragmentsRisk: fragmentsRisk === 'Pending' ? 'Low' : fragmentsRisk,
+          fragmentsProbability: roundedPercentage(fragmentsProbability ?? 0),
           licensingCountry: getFullCountry(event.license_country),
           tag: chunks => renderRiskTag(chunks as TypeRisk),
         })}
