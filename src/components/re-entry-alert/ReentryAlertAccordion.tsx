@@ -2,17 +2,13 @@ import { useTranslations } from 'next-intl';
 
 import type { TypeReentryEventOut, TypeReentryEventPatch, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
 import Accordion from '@/ui/accordion/accordion';
-import { getReentryFragmentsRisk } from '@/utils/ReentryRisk';
 
 import { ReentryFurtherInformation } from '../re-entry/ReentryFurhterInformation';
 import { ReentryAlertHistoryDataTable } from './data-table/ReentryAlertHistoryDataTable';
 import { ReentryAlertAlertingProcedure } from './ReentryAlertAlertingProcedure';
-import { ReentryAlertGuidanceIfObjectImpactsUkInterests } from './ReentryAlertGuidanceIfObjectImpactsUkInterests';
-import { ReentryAlertGuidanceOnResponse } from './ReentryAlertGuidanceOnResponse';
 import { ReentryAlertImpactAirspaceAndMaritime } from './ReentryAlertImpactAirspaceAndMaritime';
 import { ReentryAlertImpactNation } from './ReentryAlertImpactNation';
 import { ReentryAlertImpactOverseas } from './ReentryAlertImpactOverseas';
-import { ReentryAlertPressAttention } from './ReentryAlertPressAttention';
 import { ReentryAlertRiskThresholds } from './ReentryAlertRiskThresholds';
 import { ReentryAlertAdditionalObjectDetailsTable } from './tables/ReentryAlertAdditionalObjectDetailsTable';
 
@@ -28,13 +24,12 @@ const ReentryAlertAccordion = ({
   event,
   reports,
   lastReport,
-  searchParams,
   isClosed,
 }: ReentryAlertAccordionProps) => {
   const t = useTranslations('Reentry_alert.accordion');
 
   const impacts = lastReport?.impact;
-  const fragmentsRisk = getReentryFragmentsRisk(event.fragments_probability, event.object_name);
+  // const fragmentsRisk = getReentryFragmentsRisk(event.fragments_probability, event.object_name);
 
   return (
     <>
@@ -98,7 +93,7 @@ const ReentryAlertAccordion = ({
             : []),
         ]}
       />
-      <h2 data-anchor="guidance" className="govuk-heading-l">{t('guidance')}</h2>
+      {/* <h2 data-anchor="guidance" className="govuk-heading-l">{t('guidance')}</h2>
       <Accordion
         id="reentry-guidance"
         addAnchor={false}
@@ -124,7 +119,7 @@ const ReentryAlertAccordion = ({
             content: <ReentryAlertPressAttention pressAttentionComment={searchParams?.press_attention_comment ?? event.press_attention_comment} dataPdf={t('press_attention')} />,
           },
         ]}
-      />
+      /> */}
       <h2 data-anchor="additional-information" className="govuk-heading-l">{t('additional_information')}</h2>
       <Accordion
         id="reentry-additional-information"

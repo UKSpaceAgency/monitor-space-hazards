@@ -546,7 +546,7 @@ export interface TypeAlertSettingsOut {
 }
 
 /** AlertType */
-export type TypeAlertType = "standard" | "priority" | "uk-licensed" | "closedown" | "update";
+export type TypeAlertType = "standard" | "priority" | "uk-licensed" | "closedown" | "update" | "alert" | "warning";
 
 /** AnalysesSortBy */
 export type TypeAnalysesSortBy =
@@ -3652,7 +3652,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-07-09T14:49:59.851153"
+   * @default "2026-07-22T09:13:06.370206"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3893,6 +3893,9 @@ export interface TypeOverflightProbability {
   human_casualty_probability?: number | null;
   /** Overflight Time */
   overflight_time?: string[] | null;
+  atmospheric_risk?: TypeRisk | null;
+  fragments_risk?: TypeRisk | null;
+  human_casualty_risk?: TypeRisk | null;
 }
 
 /** _ReentryEventReportImpact */
@@ -4375,6 +4378,16 @@ export interface TypeGetManoeuvrePlotsByEventEventShortIdParams {
   sort_order?: TypeSortOrder;
   /** Event Short Id */
   eventShortId: string;
+}
+
+export interface TypeGetOrganizationsParams {
+  /**
+   * With Satellites
+   * @default false
+   */
+  with_satellites?: boolean;
+  /** Search Like */
+  search_like?: string | null;
 }
 
 export interface TypePostReentryEventReportsParams {

@@ -20,7 +20,7 @@ import type { MapTooltipInfo } from './ReentryAlertMapTooltip';
 import { ReentryAlertMapType } from './ReentryAlertMapType';
 import { type MapView, ReentryAlertMapView } from './ReentryAlertMapView';
 import { ReentryAlertOverflights } from './ReentryAlertOverflights';
-import { flightpathStyle, fragmentsCircleStyle, MapTypes, type OverflightType, regionLayer, RegionsGeoJson } from './utils';
+import { FALKLAND_ISLANDS_LABEL_SOURCE_ID, FalklandIslandsLabelGeoJson, falklandIslandsLabelLayer, flightpathStyle, fragmentsCircleStyle, hideMalvinasPlaceLabels, MapTypes, type OverflightType, regionLayer, RegionsGeoJson } from './utils';
 
 const ReentryAlertMapTooltip = dynamic(() => import('./ReentryAlertMapTooltip').then(mod => mod.ReentryAlertMapTooltip), {
   ssr: false,
@@ -75,6 +75,7 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, isClosed, tip, d
       // Mark style as loaded when style finishes loading (fires on initial load and after style changes)
       ref.on('style.load', () => {
         setIsStyleLoaded(true);
+        hideMalvinasPlaceLabels(ref.getMap());
       });
       ref.on('resize', () => {
         if (document.fullscreenElement) {
@@ -186,6 +187,14 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, isClosed, tip, d
                   />
                 </Source>
               ))}
+              {/* Replacement label — the native "Falkland Islands (Islas Malvinas)" basemap label is hidden via hideMalvinasPlaceLabels */}
+              <Source
+                id={FALKLAND_ISLANDS_LABEL_SOURCE_ID}
+                type="geojson"
+                data={FalklandIslandsLabelGeoJson}
+              >
+                <Layer {...falklandIslandsLabelLayer()} slot="top" />
+              </Source>
             </>
           )}
           {hoverInfo && (

@@ -88,6 +88,7 @@ import {
   TypeGetFragmentationReportsParams,
   TypeGetManoeuvrePlotsByEventEventShortIdParams,
   TypeGetManoeuvrePlotsParams,
+  TypeGetOrganizationsParams,
   TypeGetReentryEventReportsParams,
   TypeGetReentryEventReportsReentryEventReportIdDownloadParams,
   TypeGetReentryEventReportsReentryEventShortIdParams,
@@ -1439,10 +1440,11 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @request GET:/v1/organizations/
    * @secure
    */
-  getOrganizations = (params: RequestParams = {}) =>
-    this.request<TypeOrganizationOut[], void>({
+  getOrganizations = (query?: TypeGetOrganizationsParams, params: RequestParams = {}) =>
+    this.request<TypeOrganizationOut[], void | TypeHTTPValidationError>({
       path: `/v1/organizations/`,
       method: "GET",
+      query: query,
       secure: true,
       format: "json",
       ...params,

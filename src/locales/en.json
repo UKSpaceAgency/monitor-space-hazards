@@ -8,6 +8,7 @@
       "fragmentations": "Fragmentations",
       "activity": "Activity",
       "satellites": "Satellites",
+      "organisations": "Organisations",
       "account": "Account"
     },
     "sign_out": "Sign out"
@@ -203,12 +204,16 @@
   },
   "Organisations": {
     "title": "Organisations",
+    "search_bar": {
+      "label": "Find an organisation:",
+      "placeholder": "Search by organisation name"
+    },
     "summary": {
       "total_orgs": "Total number of organisations",
       "total_sats": "Total number of satellites"
     },
     "table": {
-      "organisation": "Organisaton",
+      "organisation": "Organisation",
       "registered_users": "Number of registered users",
       "registered_satellites": "Number of registered satellites",
       "date_added": "Date account added"
@@ -1322,6 +1327,11 @@
       "international_designator": "International designator",
       "upcoming_known_conjunction_events": "Upcoming known conjunction events"
     },
+    "Organisations": {
+      "organisation": "Organisation",
+      "registered_satellites": "Number of registered satellites",
+      "no_results": "No organisations found"
+    },
     "Incident_banners": {
       "incident_type": "Incident type",
       "time_period": "Active time period",
@@ -1351,7 +1361,8 @@
         "reentry_reports": "re-entry reports",
         "fragmentation_events": "fragmentation events",
         "activities": "activities",
-        "position_history": "position history"
+        "position_history": "position history",
+        "organisations": "Organisations"
       }
     },
     "Analysis_data": {
