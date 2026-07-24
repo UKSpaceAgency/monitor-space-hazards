@@ -15,8 +15,10 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     accessorKey: 'fragments_probability',
     header: 'Reentries.table.risk',
     size: 100,
-    cell: ({ row: { original: { fragments_probability, object_name } } }) => renderRiskTag(
-      getReentryFragmentsRisk(fragments_probability, object_name),
+    cell: ({ row: { original: { fragments_probability, fragments_risk, object_name } } }) => renderRiskTag(
+      getReentryFragmentsRisk(fragments_probability, object_name, {
+        fragmentsRisk: fragments_risk,
+      }),
     ),
   },
   {

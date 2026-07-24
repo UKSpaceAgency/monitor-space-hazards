@@ -18,7 +18,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
     cell: ({ row }) => {
       const { report_number, short_id, download_url } = row.original;
       const report = `Report ${report_number}`;
-      const isClosed = row.original.alert_type.includes('closedown');
+      const isClosed = row.original.alert_type?.includes('closedown');
 
       return (
         <>
@@ -57,8 +57,12 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
   {
     header: 'Reentry_alert_history.risk',
     enableSorting: false,
-    cell: ({ row: { original: { fragments_probability, object_name } } }) => {
-      const risk = getReentryFragmentsRisk(fragments_probability, object_name);
+    cell: ({ row: { original: { fragments_probability, fragments_risk, object_name, impact, alert_type } } }) => {
+      const risk = getReentryFragmentsRisk(fragments_probability, object_name, {
+        impact,
+        fragmentsRisk: fragments_risk,
+        alertType: alert_type,
+      });
       return renderRiskTag(risk);
     },
   },

@@ -5,9 +5,10 @@ import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
 import Details from '@/ui/details/details';
 import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
 import { roundedPercent } from '@/utils/Math';
+import { getReentryFragmentsRisk } from '@/utils/ReentryRisk';
 import { renderRiskTag } from '@/utils/Tags';
 
-type EventSummaryData = Pick<TypeReentryEventOut, 'fragments_probability' | 'fragments_risk' | 'atmospheric_probability' | 'atmospheric_risk' | 'human_casualty_probability' | 'human_casualty_risk'>;
+type EventSummaryData = Pick<TypeReentryEventOut, 'fragments_probability' | 'fragments_risk' | 'atmospheric_probability' | 'atmospheric_risk' | 'human_casualty_probability' | 'human_casualty_risk' | 'object_name'>;
 
 type ReentryAlertExecutiveSummaryTableProps = {
   event: EventSummaryData;
@@ -15,6 +16,9 @@ type ReentryAlertExecutiveSummaryTableProps = {
 
 const ReentryAlertRiskProbabilitiesTable = ({ event }: ReentryAlertExecutiveSummaryTableProps) => {
   const t = useTranslations('Tables.Reentry_alert_risk_probabilities');
+  const fragmentsRisk = getReentryFragmentsRisk(event.fragments_probability, event.object_name, {
+    fragmentsRisk: event.fragments_risk,
+  });
 
   return (
     <div>
@@ -33,7 +37,7 @@ const ReentryAlertRiskProbabilitiesTable = ({ event }: ReentryAlertExecutiveSumm
                   <TableCellHeader>{t('probability_of_fragmentation')}</TableCellHeader>
                   <TableCell>{roundedPercent(event.fragments_probability)}</TableCell>
                   <TableCell>
-                    {renderRiskTag(event.fragments_risk ?? 'None')}
+                    {renderRiskTag(fragmentsRisk)}
                   </TableCell>
                 </TableRow>
               )

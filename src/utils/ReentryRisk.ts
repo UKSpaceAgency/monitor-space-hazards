@@ -1,6 +1,10 @@
 import { isNumber } from 'lodash';
 
-import type { TypeReentryEventReportImpact, TypeRisk } from '@/__generated__/data-contracts';
+import type {
+  TypeAlertType,
+  TypeReentryEventReportImpact,
+  TypeRisk,
+} from '@/__generated__/data-contracts';
 
 export function getMaxUkAndCdotsFragmentsProbability(
   impact?: TypeReentryEventReportImpact | null,
@@ -62,12 +66,43 @@ export function getReentryFragmentsProbability(
   return isNumber(fragmentsProbability) ? fragmentsProbability : null;
 }
 
+type GetReentryFragmentsRiskOptions = {
+  impact?: TypeReentryEventReportImpact | null;
+  fragmentsRisk?: TypeRisk | null;
+  alertType?: TypeAlertType[] | null;
+};
+
+/**
+ * Resolve the risk label to display for a re-entry.
+ *
+ * Analysis can exist without an alert (below threshold → empty alert_type).
+ * In that case, show the risk label when present so the event is not stuck on Pending.
+ * Closedown is excluded from that empty-alert fallback.
+ */
 export function getReentryFragmentsRisk(
   fragmentsProbability?: number | null,
   object_name?: string | null,
+  options?: GetReentryFragmentsRiskOptions,
 ): TypeRisk | 'Pending' {
-  return getFragmentsRiskFromProbability(
-    fragmentsProbability,
-    object_name,
-  );
+  const { impact, fragmentsRisk, alertType } = options ?? {};
+  const probability = getReentryFragmentsProbability(fragmentsProbability, impact);
+  const isClosedown = Boolean(alertType?.includes('closedown'));
+  const hasNoAlertType = !alertType?.length;
+  const hasAnalysedRisk = Boolean(fragmentsRisk && fragmentsRisk !== 'Pending');
+
+  // Prefer threshold mapping when analysis produced a probability
+  if (isNumber(probability)) {
+    return getFragmentsRiskFromProbability(probability, object_name);
+  }
+
+  // Analysed but below alert threshold: empty alert_type with a risk label
+  if (!isClosedown && hasNoAlertType && hasAnalysedRisk) {
+    return fragmentsRisk as TypeRisk;
+  }
+
+  if (hasAnalysedRisk) {
+    return fragmentsRisk as TypeRisk;
+  }
+
+  return getFragmentsRiskFromProbability(probability, object_name);
 }
