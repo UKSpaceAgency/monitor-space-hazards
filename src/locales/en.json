@@ -1329,6 +1329,7 @@
     },
     "Organisations": {
       "organisation": "Organisation",
+      "created_at": "Created at",
       "registered_satellites": "Number of registered satellites",
       "no_results": "No organisations found"
     },
