@@ -27,6 +27,5 @@ export const organisationsColumns: TranslatedColumnDef<TypeOrganizationOut>[] = 
   {
     accessorKey: 'satellites_count',
     header: 'Organisations.registered_satellites',
-    size: 200,
   },
 ];
