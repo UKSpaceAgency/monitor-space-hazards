@@ -90,11 +90,6 @@ export function getReentryFragmentsRisk(
   const hasNoAlertType = !alertType?.length;
   const hasAnalysedRisk = Boolean(fragmentsRisk && fragmentsRisk !== 'Pending');
 
-  // Prefer threshold mapping when analysis produced a probability
-  if (isNumber(probability)) {
-    return getFragmentsRiskFromProbability(probability, object_name);
-  }
-
   // Analysed but below alert threshold: empty alert_type with a risk label
   if (!isClosedown && hasNoAlertType && hasAnalysedRisk) {
     return fragmentsRisk as TypeRisk;
