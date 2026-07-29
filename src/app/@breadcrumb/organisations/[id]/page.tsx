@@ -18,7 +18,7 @@ export default async function BreadcrumbOrganisationSlot({
           <BreadcrumbLink href="/">Home</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          {t('organisations')}
+          <BreadcrumbLink href="/organisations">{t('organisations')}</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbItem>
           <BreadcrumbPage>{organisation.name}</BreadcrumbPage>

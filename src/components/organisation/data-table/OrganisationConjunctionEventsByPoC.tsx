@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import type { ReactNode } from 'react';
 import { useMemo, useState } from 'react';
 
 import type { EventsBySatelliteType } from '@/actions/getStatsEventsBySatellite';
@@ -15,11 +16,13 @@ import { pocColumns, type PocRow } from './OrganisationConjunctionEventsByPoCCol
 type OrganisationConjunctionEventsByPoCProps = {
   stats: EventsBySatelliteType[];
   organisationName: string;
+  actionButtons?: ReactNode;
 };
 
 const OrganisationConjunctionEventsByPoC = ({
   stats,
   organisationName,
+  actionButtons,
 }: OrganisationConjunctionEventsByPoCProps) => {
   const t = useTranslations('Tables.Organisation_conjunction_poc');
   const allSatellitesLabel = t('all_satellites');
@@ -68,7 +71,11 @@ const OrganisationConjunctionEventsByPoC = ({
       {hasData
         ? (
             <>
-              <ConjunctionEventsByPoCChart data={filtered} />
+              <ConjunctionEventsByPoCChart
+                key={selectedSatellite}
+                data={filtered}
+                actionButtons={actionButtons}
+              />
               <div className="overflow-x-auto max-h-[500px]">
                 <DataTable<PocRow>
                   data={filtered}

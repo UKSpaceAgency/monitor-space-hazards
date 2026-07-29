@@ -18,7 +18,9 @@ const OrganisationsTable = async ({ searchLike }: OrganisationsTableProps) => {
 
   const downloadData = async () => {
     'use server';
-    const organisations = await getOrganisations({});
+    const organisations = await getOrganisations({
+      with_satellites: true,
+    });
     return organisations.map(({ id, created_at, name, satellites_count }) => ({
       id,
       created_at,

@@ -28,26 +28,34 @@ export function ConjunctionEventsByTypeChart({
   );
 
   const datasets = {
-    labels: [
-      t('debris'),
-      t('another_satellite'),
-      t('uk_satellites'),
-      t('other'),
-    ],
+    labels: [''],
     datasets: [
       {
-        data: [
-          totals.debris,
-          totals.anotherSatellite,
-          totals.ukSatellites,
-          totals.other,
-        ],
-        backgroundColor: [
-          chartPalette.nspocBlue,
-          chartPalette.nspocRed,
-          chartPalette.nspocYellow,
-          chartPalette.nspocGreen,
-        ],
+        label: t('debris'),
+        data: [totals.debris],
+        borderColor: chartPalette.nspocBlue,
+        backgroundColor: chartPalette.nspocBlue,
+        borderWidth: 0,
+      },
+      {
+        label: t('another_satellite'),
+        data: [totals.anotherSatellite],
+        borderColor: chartPalette.nspocRed,
+        backgroundColor: chartPalette.nspocRed,
+        borderWidth: 0,
+      },
+      {
+        label: t('uk_satellites'),
+        data: [totals.ukSatellites],
+        borderColor: chartPalette.nspocYellow,
+        backgroundColor: chartPalette.nspocYellow,
+        borderWidth: 0,
+      },
+      {
+        label: t('other'),
+        data: [totals.other],
+        borderColor: chartPalette.nspocGreen,
+        backgroundColor: chartPalette.nspocGreen,
         borderWidth: 0,
       },
     ],
@@ -72,6 +80,8 @@ export function ConjunctionEventsByTypeChart({
       data={datasets}
       ariaLabel="Conjunction events by type"
       actionButtons={actionButtons}
+      showLegend
+      legend={{ title: t('legend_title') }}
       stacked={false}
     />
   );
