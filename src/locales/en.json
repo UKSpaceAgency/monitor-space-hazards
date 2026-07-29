@@ -654,6 +654,7 @@
       "other": "Events with other objects",
       "y_axis": "Number of events",
       "x_axis": "Event type",
+      "legend_title": "Event type",
       "events_involving": "Events involving"
     },
     "Conjunction_events_by_poc": {
@@ -662,6 +663,7 @@
       "high": ">1e-3",
       "y_axis": "Number of events",
       "x_axis_poc": "Probability of collision",
+      "legend_title": "Probability of collision",
       "events_involving": "Events involving"
     },
     "Events_by_probability_of_collision": {
