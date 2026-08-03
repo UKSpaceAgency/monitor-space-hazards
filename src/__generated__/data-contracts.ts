@@ -1579,6 +1579,21 @@ export interface TypeEventForAnalysisOut {
   secondary_object_cross_section_max?: number | null;
 }
 
+/** EventHighestImpact */
+export interface TypeEventHighestImpact {
+  /** Region */
+  region: string;
+  /** Detailed Region */
+  detailed_region: string;
+  highest_impact_data: TypeHighestImpactData;
+  /** Highest Probability Name */
+  highest_probability_name: string;
+  /** Highest Probability Value */
+  highest_probability_value: number;
+  /** Highest Risk */
+  highest_risk: string | null;
+}
+
 /** EventLevel */
 export type TypeEventLevel = "Event" | "Alert";
 
@@ -2268,6 +2283,16 @@ export interface TypeHTTPValidationError {
   detail?: TypeValidationError[];
 }
 
+/** HighestImpactData */
+export interface TypeHighestImpactData {
+  /** Atmospheric Probability */
+  atmospheric_probability: number | null;
+  /** Fragments Probability */
+  fragments_probability: number | null;
+  /** Human Casualty Probability */
+  human_casualty_probability: number | null;
+}
+
 /** ManoeuvrePlot */
 export interface TypeManoeuvrePlot {
   /**
@@ -2773,6 +2798,7 @@ export interface TypeReentryEventOut {
   licensed_country?: string | null;
   /** Uk Reentry Probability */
   uk_reentry_probability?: string | null;
+  highest_impact?: TypeEventHighestImpact | null;
 }
 
 /** ReentryEventPatch */
@@ -2932,7 +2958,8 @@ export type TypeReentryEventSortBy =
   | "overflight_time"
   | "updated_at"
   | "tip_creation_date"
-  | "insert_epoch";
+  | "insert_epoch"
+  | "highest_impact";
 
 /** ReentryInterest */
 export type TypeReentryInterest = "low" | "high";
@@ -3652,7 +3679,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-07-22T09:13:06.370206"
+   * @default "2026-07-31T11:51:39.348726"
    */
   updated_at?: string | null;
   /** Report Number */

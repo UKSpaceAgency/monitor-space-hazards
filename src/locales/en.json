@@ -999,7 +999,7 @@
       "title": "Event summary",
       "content": "The National Space Operations Centre is monitoring the upcoming re-entry event involving {commonName} from space into Earth's atmosphere, posing a potential risk to life and property on the ground. The event is assessed as <tag>{fragmentsRisk}</tag> risk, with a {fragmentsProbability} probability of debris impacting the UK. The licensing country is {licensingCountry}. All re-entered debris should be considered as hazardous until proven otherwise.",
       "closed_report": "The National Space Operations Centre has completed monitoring of the re-entry event involving {commonName}, which occurred on {date}. The event was assessed as <tag>{fragmentsRisk}</tag> risk, with a {fragmentsProbability} probability of debris impacting the UK. The licensing country is {licensingCountry}. All re-entered debris should be considered as hazardous until proven otherwise.",
-      "risk_probabilities": "UK risk probabilities",
+      "locations_at_risk": "Locations at risk",
       "event_summary": "Event summary"
     },
     "Map": {
@@ -1575,7 +1575,7 @@
       "upcoming_reentry_events_worldwide": "Upcoming re-entry events worldwide",
       "help": {
         "title": "Help with this table<screenReaderOnly> - UK risk probabilities</screenReaderOnly>",
-        "content": "<p>This service tracks all upcoming re-entry events worldwide, including those which pose a risk to the UK. The service reports on two types of re-entry event.</p><list><item><bold>Upcoming risks to UK:</bold> all upcoming re-entry events that meet the National Space Operations Centre's thresholds for alerting UK government</item><item><bold>Upcoming re-entry events worldwide:</bold> all upcoming re-entry events worldwide, including those which have not met alerting thresholds</item></list>"
+        "content": "<p>This service tracks all upcoming re-entry events worldwide, including those which pose a risk to the UK. The service reports on two types of re-entry event.</p><list><item><bold>Upcoming re-entry events worldwide:</bold> all upcoming re-entry events worldwide, including those which have not met alerting thresholds</item></list>"
       },
       "warning": "This table focuses on risk to the UK. Select the Event ID to view additional analysis and risk information for the UK Overseas Territories and Crown Dependencies."
     },
@@ -1599,11 +1599,12 @@
         "empty_list_info": "No re-entry events have been found",
         "event_details": "Event details",
         "object_details": "Object details",
-        "risk": "Risk to UK",
+        "risk": "Highest risk",
         "event_id": "Event ID",
         "object": "Object",
         "norad_id": "NORAD ID",
-        "probability_of_fragmentation": "Debris impact in UK (%)",
+        "detailed_region": "Location at most risk",
+        "probability_of_fragmentation": "Debris impact in location (%)",
         "date": "Date",
         "time": "Time (UTC)",
         "window": "Window (mins)"
@@ -1638,16 +1639,22 @@
       "estimated_mass": "Estimated mass (kg)",
       "licensing_country": "Licensing country"
     },
-    "Reentry_alert_risk_probabilities": {
+    "Reentry_alert_locations_at_risk": {
       "probability": "Probability (%)",
       "description": "Re-entry alert risk probabilities",
       "risk": "Risk",
+      "location": "Location",
+      "risk_to_location": "Risk to location",
+      "probability_of_debris_impact": "Probability of debris impact in location (%)",
+      "probability_of_reentry": "Probability of re-entry over location (%)",
+      "probability_of_human_casualties": "Probability of human casualties (%)",
+      "time_of_overflight": "Time of overflight {number} (UTC)",
       "probability_of_atmospheric_entry": "Re-entry over UK",
       "probability_of_fragmentation": "Debris impact in UK",
       "probability_of_human_casualty": "UK casualty risk",
       "help": {
-        "title": "Help with this table<screenReaderOnly> - Risk thresholds</screenReaderOnly>",
-        "content": "<p>This table shows the risk thresholds and levels used to assess how a re-entering object could pose a risk to UK interests:</p><list><item><bold>Debris impact in UK:</bold> Chance fragments reach the ground within UK</item><item><bold>Re-entry over UK:</bold> Chance the object enters atmosphere over UK</item></list>"
+        "title": "Help with this table",
+        "content": "This table shows the locations of UK interest the UK mainland and British Overseas Territories and Crown Dependencies) which met the threshold for individual territon reporting. The data indicates how the re-entering object could pose a risk to UK interests. See the further information section for more information on each data point."
       }
     },
     "Reentry_alert_additional_object_details": {

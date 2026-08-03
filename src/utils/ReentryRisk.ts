@@ -66,9 +66,9 @@ export function getReentryFragmentsProbability(
   return isNumber(fragmentsProbability) ? fragmentsProbability : null;
 }
 
-type GetReentryFragmentsRiskOptions = {
-  impact?: TypeReentryEventReportImpact | null;
+type GetReentryFragmentsRisk = {
   fragmentsRisk?: TypeRisk | null;
+  objectName?: string | null;
   alertType?: TypeAlertType[] | null;
 };
 
@@ -79,25 +79,24 @@ type GetReentryFragmentsRiskOptions = {
  * In that case, show the risk label when present so the event is not stuck on Pending.
  * Closedown is excluded from that empty-alert fallback.
  */
-export function getReentryFragmentsRisk(
-  fragmentsProbability?: number | null,
-  object_name?: string | null,
-  options?: GetReentryFragmentsRiskOptions,
-): TypeRisk | 'Pending' {
-  const { impact, fragmentsRisk, alertType } = options ?? {};
-  const probability = getReentryFragmentsProbability(fragmentsProbability, impact);
-  const isClosedown = Boolean(alertType?.includes('closedown'));
+export function getReentryFragmentsRisk({
+  fragmentsRisk,
+  objectName,
+  alertType,
+}: GetReentryFragmentsRisk) {
   const hasNoAlertType = !alertType?.length;
-  const hasAnalysedRisk = Boolean(fragmentsRisk && fragmentsRisk !== 'Pending');
 
-  // Analysed but below alert threshold: empty alert_type with a risk label
-  if (!isClosedown && hasNoAlertType && hasAnalysedRisk) {
-    return fragmentsRisk as TypeRisk;
+  if (hasNoAlertType) {
+    if (fragmentsRisk) {
+      return fragmentsRisk;
+    } else {
+      if (objectName?.toLowerCase().includes('starlink')) {
+        return 'Very low';
+      } else {
+        return null;
+      }
+    }
+  } else {
+    return 'closedown';
   }
-
-  if (hasAnalysedRisk) {
-    return fragmentsRisk as TypeRisk;
-  }
-
-  return getFragmentsRiskFromProbability(probability, object_name);
 }
