@@ -1869,7 +1869,7 @@
       "inclination_short": "Inc (°)",
       "apogee": "Apogee (km)",
       "perigee": "Perigee (km)",
-      "period": "Period (h)",
+      "period": "Period (mins)",
       "find_satellite_label": "Find a satellite:",
       "search_placeholder": "Search by common name or NORAD ID",
       "empty": "No satellites found.",
