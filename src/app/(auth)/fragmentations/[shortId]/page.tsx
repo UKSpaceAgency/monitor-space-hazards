@@ -26,8 +26,9 @@ export default async function Fragmentation({
   params,
 }: PageProps) {
   const t = await getTranslations('Fragmentation');
-  const { shortId } = await params;
   const session = await getSession();
+  const { shortId } = await params;
+
   return (
     <div>
       {isAgencyApproverOrSuperuser(session?.user.role) && (

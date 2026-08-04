@@ -1,14 +1,15 @@
 'use client';
 
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { useMemo, useState } from 'react';
 
 import type { TypeActivityEvent } from '@/__generated__/data-contracts';
 import { DataTable } from '@/components/DataTable';
 import { DownloadData } from '@/components/DownloadData';
-import type { TranslatedColumnDef } from '@/types';
 import Details from '@/ui/details/details';
 import Select from '@/ui/select/select';
+
+import { reasonColumns } from './OrganisationActivityEventsByReasonColumns';
 
 type ReasonRow = {
   satellite: string;
@@ -19,50 +20,6 @@ type ReasonRow = {
   missingData: number;
   total: number;
 };
-
-const reasonColumns: TranslatedColumnDef<ReasonRow>[] = [
-  {
-    accessorKey: 'satellite',
-    id: 'satellite',
-    header: 'Organisation_activity_by_reason.satellite',
-    enableSorting: false,
-    cell: ({ row }) => (
-      <Link href={`/satellites/${row.original.noradId}`} className="govuk-link">
-        {row.original.satellite}
-      </Link>
-    ),
-  },
-  {
-    accessorKey: 'planned',
-    id: 'planned',
-    header: 'Organisation_activity_by_reason.manoeuvre_planned',
-    enableSorting: false,
-  },
-  {
-    accessorKey: 'unplanned',
-    id: 'unplanned',
-    header: 'Organisation_activity_by_reason.manoeuvre_unplanned',
-    enableSorting: false,
-  },
-  {
-    accessorKey: 'positionChange',
-    id: 'positionChange',
-    header: 'Organisation_activity_by_reason.position_change',
-    enableSorting: false,
-  },
-  {
-    accessorKey: 'missingData',
-    id: 'missingData',
-    header: 'Organisation_activity_by_reason.missing_data',
-    enableSorting: false,
-  },
-  {
-    accessorKey: 'total',
-    id: 'total',
-    header: 'Organisation_activity_by_reason.total',
-    enableSorting: false,
-  },
-];
 
 type OrganisationActivityEventsByReasonProps = {
   initialData: TypeActivityEvent[];
@@ -75,10 +32,12 @@ const OrganisationActivityEventsByReason = ({
   satellites,
   organisationName,
 }: OrganisationActivityEventsByReasonProps) => {
-  const [selectedSatellite, setSelectedSatellite] = useState('All satellites');
+  const t = useTranslations('Tables.Organisation_activity_by_reason');
+  const allSatellitesLabel = t('all_satellites');
+  const [selectedSatellite, setSelectedSatellite] = useState(allSatellitesLabel);
 
   const rows: ReasonRow[] = useMemo(() => {
-    const satelliteList = selectedSatellite === 'All satellites'
+    const satelliteList = selectedSatellite === allSatellitesLabel
       ? satellites
       : satellites.filter(s => s.name === selectedSatellite);
 
@@ -94,10 +53,10 @@ const OrganisationActivityEventsByReason = ({
         total: events.length,
       };
     });
-  }, [initialData, satellites, selectedSatellite]);
+  }, [initialData, satellites, selectedSatellite, allSatellitesLabel]);
 
   const satelliteOptions = [
-    { children: 'All satellites', value: 'All satellites' },
+    { children: allSatellitesLabel, value: allSatellitesLabel },
     ...satellites.map(s => ({ children: s.name, value: s.name })),
   ];
 
@@ -106,15 +65,12 @@ const OrganisationActivityEventsByReason = ({
   return (
     <div>
       <p className="govuk-!-font-weight-bold">
-        Total number of activity flags for
-        {' '}
-        {organisationName}
-        &apos;s UK-licensed satellites and a breakdown of the reason for flag.
+        {t('description', { organisationName })}
       </p>
       <Select
         name="reason-satellite"
         id="reason-satellite"
-        label="Select satellite"
+        label={t('select_satellite')}
         value={selectedSatellite}
         options={satelliteOptions}
         onChange={e => setSelectedSatellite(e.target.value)}
@@ -126,20 +82,17 @@ const OrganisationActivityEventsByReason = ({
           data={rows}
           columns={reasonColumns}
           enableSorting={false}
-          emptyLabel="No activity flags found."
+          emptyLabel={t('empty')}
         />
       </div>
       <DownloadData
-        type="activity flags by reason"
+        type={t('download_type')}
         params={{}}
         downloadAction={downloadAction}
-        ariaLabel="Activity flags by reason"
+        ariaLabel={t('download_aria')}
       />
-      <Details summary="Help with this table">
-        This table shows the total number of activity flags for
-        {' '}
-        {organisationName}
-        &apos;s UK-licensed satellites and a breakdown of the reason for flag.
+      <Details summary={t('help_title')}>
+        {t('help_description', { organisationName })}
       </Details>
     </div>
   );

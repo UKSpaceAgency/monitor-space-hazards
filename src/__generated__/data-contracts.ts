@@ -546,7 +546,7 @@ export interface TypeAlertSettingsOut {
 }
 
 /** AlertType */
-export type TypeAlertType = "standard" | "priority" | "uk-licensed" | "closedown" | "update";
+export type TypeAlertType = "standard" | "priority" | "uk-licensed" | "closedown" | "update" | "alert" | "warning";
 
 /** AnalysesSortBy */
 export type TypeAnalysesSortBy =
@@ -1579,6 +1579,21 @@ export interface TypeEventForAnalysisOut {
   secondary_object_cross_section_max?: number | null;
 }
 
+/** EventHighestImpact */
+export interface TypeEventHighestImpact {
+  /** Region */
+  region: string;
+  /** Detailed Region */
+  detailed_region: string;
+  highest_impact_data: TypeHighestImpactData;
+  /** Highest Probability Name */
+  highest_probability_name: string;
+  /** Highest Probability Value */
+  highest_probability_value: number;
+  /** Highest Risk */
+  highest_risk: string | null;
+}
+
 /** EventLevel */
 export type TypeEventLevel = "Event" | "Alert";
 
@@ -2268,6 +2283,16 @@ export interface TypeHTTPValidationError {
   detail?: TypeValidationError[];
 }
 
+/** HighestImpactData */
+export interface TypeHighestImpactData {
+  /** Atmospheric Probability */
+  atmospheric_probability: number | null;
+  /** Fragments Probability */
+  fragments_probability: number | null;
+  /** Human Casualty Probability */
+  human_casualty_probability: number | null;
+}
+
 /** ManoeuvrePlot */
 export interface TypeManoeuvrePlot {
   /**
@@ -2773,6 +2798,7 @@ export interface TypeReentryEventOut {
   licensed_country?: string | null;
   /** Uk Reentry Probability */
   uk_reentry_probability?: string | null;
+  highest_impact?: TypeEventHighestImpact | null;
 }
 
 /** ReentryEventPatch */
@@ -2932,13 +2958,14 @@ export type TypeReentryEventSortBy =
   | "overflight_time"
   | "updated_at"
   | "tip_creation_date"
-  | "insert_epoch";
+  | "insert_epoch"
+  | "highest_impact";
 
 /** ReentryInterest */
 export type TypeReentryInterest = "low" | "high";
 
 /** ReentryReportSortBy */
-export type TypeReentryReportSortBy = "created_at" | "tip_external_id" | "report_number" | "updated_at";
+export type TypeReentryReportSortBy = "created_at" | "updated_at" | "tip_external_id" | "report_number" | "decay_epoch";
 
 /** ReentrySurvivability */
 export type TypeReentrySurvivability = "Highly likely" | "Likely" | "Unlikely" | "Highly unlikely";
@@ -2978,6 +3005,69 @@ export interface TypeSatelliteObservationsData {
   observations_timespan?: number | null;
   /** Od Quality */
   od_quality?: number | null;
+}
+
+/** SatelliteOrgOut */
+export interface TypeSatelliteOrgOut {
+  /**
+   * Id
+   * @format uuid
+   */
+  id: string;
+  /** Is Monitored */
+  is_monitored: boolean;
+  /** Common Name */
+  common_name: string;
+  /** Norad Id */
+  norad_id?: string | null;
+  /** Esa Update Time */
+  esa_update_time?: string | null;
+  /** Esa Discos Id */
+  esa_discos_id?: string | null;
+  /** International Designator */
+  international_designator: string;
+  /** Object Type */
+  object_type?: string | null;
+  /** License Country */
+  license_country?: string | null;
+  /** Launch Date */
+  launch_date?: string | null;
+  /** Launch Site */
+  launch_site?: string | null;
+  /** Apogee */
+  apogee?: string | null;
+  /** Perigee */
+  perigee?: string | null;
+  /** Inclination */
+  inclination?: number | null;
+  /** Period */
+  period?: number | null;
+  /** Organization Id */
+  organization_id?: string | null;
+  /** Mass */
+  mass?: number | null;
+  /** Height */
+  height?: number | null;
+  /** Depth */
+  depth?: number | null;
+  /** Width */
+  width?: number | null;
+  /** Diameter */
+  diameter?: number | null;
+  /** Span */
+  span?: number | null;
+  /** Cross Section Min */
+  cross_section_min?: number | null;
+  /** Cross Section Avg */
+  cross_section_avg?: number | null;
+  /** Cross Section Max */
+  cross_section_max?: number | null;
+  /** Shape */
+  shape?: string | null;
+  /** Object Class */
+  object_class?: string | null;
+  /** Organization Name */
+  organization_name?: string | null;
 }
 
 /** SatelliteOrganizationOut */
@@ -3214,6 +3304,31 @@ export interface TypeStatisticsConjunctionEventsMonthlyCountByProbabilityAggrega
   "> 1e-3": number;
   /** Total */
   total: number | null;
+}
+
+/** StatisticsConjunctionEventsObjectTypeAggregated */
+export interface TypeStatisticsConjunctionEventsObjectTypeAggregated {
+  /** Norad Id */
+  norad_id: string;
+  /** Satellite Common Name */
+  satellite_common_name: string;
+  /** Events With Debris */
+  "Events with debris": number;
+  /** Events With Another Satellite */
+  "Events with another satellite": number;
+  /** Events With Two Uk-Licensed Satellites */
+  "Events with two UK-licensed satellites": number;
+  /** Events With Other Objects (Unknown/Rocket Body) */
+  "Events with other objects (unknown/rocket body)": number;
+  /** Total Number Of Events */
+  "Total number of events": number;
+  /**
+   * Organization Id
+   * @format uuid
+   */
+  organization_id: string;
+  /** Organization Name */
+  organization_name?: string | null;
 }
 
 /** StatisticsEventsByOrganization */
@@ -3564,7 +3679,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-06-11T12:00:45.273978"
+   * @default "2026-07-31T11:51:39.348726"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3805,6 +3920,9 @@ export interface TypeOverflightProbability {
   human_casualty_probability?: number | null;
   /** Overflight Time */
   overflight_time?: string[] | null;
+  atmospheric_risk?: TypeRisk | null;
+  fragments_risk?: TypeRisk | null;
+  human_casualty_risk?: TypeRisk | null;
 }
 
 /** _ReentryEventReportImpact */
@@ -4289,12 +4407,51 @@ export interface TypeGetManoeuvrePlotsByEventEventShortIdParams {
   eventShortId: string;
 }
 
+export interface TypeGetOrganizationsParams {
+  /**
+   * With Satellites
+   * @default false
+   */
+  with_satellites?: boolean;
+  /** Search Like */
+  search_like?: string | null;
+}
+
 export interface TypePostReentryEventReportsParams {
   /**
    * Source
    * @default "UKSA"
    */
   source?: TypeExternalDataProvider;
+}
+
+export interface TypeGetReentryEventReportsParams {
+  /**
+   * Show Only Active
+   * @default true
+   */
+  show_only_active?: boolean;
+  /**
+   * Sort By
+   * Sorting column
+   * @default "created_at"
+   */
+  sort_by?: TypeReentryReportSortBy;
+  /**
+   * Limit
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Offset
+   * @default 0
+   */
+  offset?: number;
+  /**
+   * Sort Order
+   * @default "asc"
+   */
+  sort_order?: TypeSortOrder;
 }
 
 export interface TypeGetReentryEventReportsReentryEventShortIdParams {
@@ -4583,6 +4740,11 @@ export interface TypeGetConjunctionEventsListParams {
    */
   report?: TypeReportFlagSettings;
   /**
+   * Organization Id
+   * @default "all"
+   */
+  organization_id?: string | "all";
+  /**
    * Limit
    * @default 100
    */
@@ -4748,6 +4910,11 @@ export interface TypeGetStatsMakeEventsTypeAggregatedParams {
   start_date?: string | null;
 }
 
+export interface TypeGetStatsMakeEventsTypeSatelliteAggregatedParams {
+  /** Start Date */
+  start_date?: string | null;
+}
+
 export interface TypeGetStatsMakeAnalysesDailyAggregatedParams {
   /** Start Date */
   start_date?: string | null;
@@ -4794,6 +4961,18 @@ export interface TypeGetStatsEventsBySatelliteParams {
 }
 
 export interface TypeGetStatsEventsBySatelliteAggregatedParams {
+  /** Start Date */
+  start_date?: string | null;
+  /** End Date */
+  end_date?: string | null;
+  /**
+   * Organization Id
+   * @default "all"
+   */
+  organization_id?: string | "all";
+}
+
+export interface TypeGetStatsEventsBySatelliteAndTypeAggregatedParams {
   /** Start Date */
   start_date?: string | null;
   /** End Date */
@@ -4866,7 +5045,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2026-07-01"
+   * @default "2026-08-01"
    */
   end_date?: string;
 }
@@ -4881,7 +5060,7 @@ export interface TypeGetStatsMonthlyAnalysesAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-07-01"
+   * @default "2026-08-01"
    */
   end_date?: string;
 }
@@ -4896,7 +5075,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2026-07-01"
+   * @default "2026-08-01"
    */
   end_date?: string;
 }
@@ -4911,7 +5090,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-07-01"
+   * @default "2026-08-01"
    */
   end_date?: string;
 }
@@ -4926,7 +5105,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-07-01"
+   * @default "2026-08-01"
    */
   end_date?: string;
 }
@@ -4941,7 +5120,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-07-01"
+   * @default "2026-08-01"
    */
   end_date?: string;
 }
@@ -4956,7 +5135,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-07-01"
+   * @default "2026-08-01"
    */
   end_date?: string;
 }
@@ -4971,7 +5150,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeAggregatedParam
   /**
    * End Date
    * @format date
-   * @default "2026-07-01"
+   * @default "2026-08-01"
    */
   end_date?: string;
 }
@@ -4988,7 +5167,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByNoradIdAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-07-01"
+   * @default "2026-08-01"
    */
   end_date?: string;
 }
@@ -5003,7 +5182,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2026-07-01"
+   * @default "2026-08-01"
    */
   end_date?: string;
 }

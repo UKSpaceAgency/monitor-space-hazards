@@ -1,29 +1,37 @@
-import type { TypeGetReentryEventsParams } from '@/__generated__/data-contracts';
+import { getTranslations } from 'next-intl/server';
+
 import { getReentryEventsByNoradId } from '@/actions/getReentryEventsByNoradId';
 import { getSession } from '@/actions/getSession';
-import { ReentriesDataTable } from '@/components/re-entries/data-table/ReentriesDataTable';
 import { isSatteliteUser } from '@/utils/Roles';
+
+import { DownloadData } from '../DownloadData';
+import { SatelliteReentriesDataTable } from './data-table/SatelliteReentriesDataTable';
 
 type SatelliteReentriesEventsProps = {
   noradId: string;
 };
 
 const SatelliteReentriesEvents = async ({ noradId }: SatelliteReentriesEventsProps) => {
+  const t = await getTranslations('Tables');
   const session = await getSession();
-  const initialData = await getReentryEventsByNoradId(noradId);
-  const params: TypeGetReentryEventsParams = {
-    search_like: noradId,
-    sort_by: 'decay_epoch',
-    sort_order: 'desc',
-    limit: 50,
+  const data = await getReentryEventsByNoradId(noradId);
+
+  const downloadData = async () => {
+    'use server';
+    return await getReentryEventsByNoradId(noradId);
   };
 
   return (
     <div className="mb-12">
-      <ReentriesDataTable
-        initialData={initialData}
-        params={params}
+      <SatelliteReentriesDataTable
+        data={data}
         haveAccessToAlerts={!isSatteliteUser(session?.user.role)}
+      />
+      <DownloadData
+        type={t('Download.types.reentry_events')}
+        params={{ norad_id: noradId }}
+        downloadAction={downloadData}
+        ariaLabel="Reentries events"
       />
     </div>
   );

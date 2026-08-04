@@ -1,36 +1,48 @@
 'use client';
 
+import type { ColumnSort } from '@tanstack/react-table';
 import { usePathname, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { useMemo, useState } from 'react';
 
-import type { TypeEpoch, TypeEventOut } from '@/__generated__/data-contracts';
+import type { TypeEpoch, TypeEventOut, TypeGetConjunctionEventsListParams } from '@/__generated__/data-contracts';
+import { getConjunctionEventsList } from '@/actions/getConjunctionEventsList';
 import { DownloadData } from '@/components/DownloadData';
+import InfiniteTable from '@/components/InfiniteTable';
 import Details from '@/ui/details/details';
 import Radios from '@/ui/radios/radios';
 import Select from '@/ui/select/select';
+import { QUERY_KEYS } from '@/utils/QueryKeys';
 
-import { DataTable } from '../DataTable';
-import { getSatteliteConjunctionColumns } from '../satellite/data-table/SatelliteConjunctionsDataTableColumns';
+import { getSatteliteConjunctionColumns } from './OrganisationConjunctionsDataTableColumns';
 
 type OrganisationConjunctionsDataTableProps = {
   initialData: TypeEventOut[];
+  params: TypeGetConjunctionEventsListParams;
   epoch?: TypeEpoch;
   organisationName: string;
 };
 
 const OrganisationConjunctionsDataTable = ({
   initialData,
+  params,
   epoch,
   organisationName,
 }: OrganisationConjunctionsDataTableProps) => {
+  const t = useTranslations('Tables.Organisation_conjunctions');
   const [probabilityUnit, setProbabilityUnit] = useState<'scientific' | 'percentage'>('scientific');
   const { replace } = useRouter();
   const pathname = usePathname();
 
+  const initialSort: ColumnSort[] = useMemo(() => [{
+    id: params.sort_by ?? 'tca_time',
+    desc: params.sort_order === 'desc',
+  }], [params]);
+
   const handleEpochChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const params = new URLSearchParams(window.location.search);
-    params.set('epoch', e.target.value);
-    replace(`${pathname}?${params.toString()}`, { scroll: false });
+    const searchParams = new URLSearchParams(window.location.search);
+    searchParams.set('epoch', e.target.value);
+    replace(`${pathname}?${searchParams.toString()}`, { scroll: false });
   };
 
   const columns = getSatteliteConjunctionColumns({
@@ -39,49 +51,44 @@ const OrganisationConjunctionsDataTable = ({
     haveAccessToAlerts: true,
   });
 
-  const downloadAction = async () => initialData;
-
   return (
     <div>
       <p className="govuk-body">
-        This table shows all upcoming and past conjunction events involving
-        {' '}
-        {organisationName}
-        &apos;s UK-licensed satellites.
+        {t('description', { organisationName })}
       </p>
       <div className="flex flex-col md:flex-row gap-4 justify-between md:items-end border-b border-midGrey pb-4 mb-4">
         <Select
           name="epoch"
           id="epoch-filter"
-          label="Filter by time period:"
+          label={t('filter_time_period')}
           value={epoch ?? 'future'}
           options={[
-            { children: 'Upcoming', value: 'future' },
-            { children: 'Past', value: 'past' },
-            { children: 'All', value: 'all' },
+            { children: t('epoch_upcoming'), value: 'future' },
+            { children: t('epoch_past'), value: 'past' },
+            { children: t('epoch_all'), value: 'all' },
           ]}
           onChange={handleEpochChange}
         />
         <div className="flex items-center gap-2">
           <legend className="govuk-fieldset__legend govuk-!-font-weight-bold govuk-!-margin-0 govuk-!-margin-right-2">
-            Display probability of collision as:
+            {t('display_poc')}
           </legend>
           <Radios
             className="govuk-!-margin-0"
-            aria-label="Probability of collision display"
+            aria-label={t('display_poc')}
             inline
             small
             items={[
               {
                 id: 'org-poc-scientific',
-                children: 'Scientific',
+                children: t('scientific'),
                 value: 'scientific',
                 checked: probabilityUnit === 'scientific',
                 onChange: () => setProbabilityUnit('scientific'),
               },
               {
                 id: 'org-poc-percentage',
-                children: 'Percentage',
+                children: t('percentage'),
                 value: 'percentage',
                 checked: probabilityUnit === 'percentage',
                 onChange: () => setProbabilityUnit('percentage'),
@@ -91,29 +98,28 @@ const OrganisationConjunctionsDataTable = ({
           />
         </div>
       </div>
-      <div className="overflow-x-auto">
-        <DataTable<TypeEventOut>
-          data={initialData}
+      <div className="overflow-auto max-h-[500px]">
+        <InfiniteTable<TypeEventOut, TypeGetConjunctionEventsListParams>
+          initialData={initialData}
+          params={params}
           columns={columns}
-          emptyLabel="No conjunction events found."
-          stickyHeader
+          fetcher={getConjunctionEventsList}
+          queryKeys={[QUERY_KEYS.Conjunctions, params.organization_id]}
+          initialSort={initialSort}
+          emptyLabel={t('empty')}
         />
       </div>
-      <Details summary="Help with this table">
-        <p>
-          This table shows all upcoming and past conjunction events involving
-          {organisationName}
-          &apos;s UK-licensed satellites.
-        </p>
-        <p>Select the event ID to view more information.</p>
-        <p>Each event ID or row represents one conjunction event including all related Conjunction Data Messages (CDMs) and NSpOC analysis.</p>
-      </Details>
       <DownloadData
-        type="conjunction events"
-        params={{}}
-        downloadAction={downloadAction}
-        ariaLabel="Organisation conjunctions"
+        type={t('download_type')}
+        params={params}
+        downloadAction={getConjunctionEventsList}
+        ariaLabel={t('download_aria')}
       />
+      <Details summary={t('help_title')}>
+        <p>{t('help_description', { organisationName })}</p>
+        <p>{t('help_select_event')}</p>
+        <p>{t('help_row_meaning')}</p>
+      </Details>
     </div>
   );
 };

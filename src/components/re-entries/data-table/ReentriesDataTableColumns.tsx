@@ -1,23 +1,24 @@
 import { isNumber } from 'lodash';
 import Link from 'next/link';
 
-import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
+import type { TypeEventHighestImpact, TypeReentryEventOut, TypeRisk } from '@/__generated__/data-contracts';
 import { objectTypeIndex } from '@/emails/_utils/utils';
 import { dayjs, FORMAT_DATE_FULL_MONTH, FORMAT_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import { roundedFixed } from '@/utils/Math';
-import { getReentryFragmentsRisk } from '@/utils/ReentryRisk';
+import { jsonRegionsMap } from '@/utils/Regions';
 import { renderRiskTag } from '@/utils/Tags';
 
 export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumnDef<TypeReentryEventOut>[] => [
   {
-    id: 'uk_reentry_probability',
-    accessorKey: 'fragments_risk',
+    id: 'highest_impact',
+    accessorKey: 'highest_impact',
     header: 'Reentries.table.risk',
     size: 100,
-    cell: ({ row: { original: { fragments_probability } } }) => renderRiskTag(
-      getReentryFragmentsRisk(fragments_probability),
-    ),
+    cell: ({ getValue }) => {
+      const highestImpact = getValue<TypeEventHighestImpact | null>();
+      return renderRiskTag(highestImpact?.highest_risk as TypeRisk);
+    },
   },
   {
     id: 'short_id',
@@ -51,12 +52,21 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     size: 100,
   },
   {
-    id: 'fragments_probability',
+    id: 'detailed_region',
+    accessorKey: 'detailed_region',
+    header: 'Reentries.table.detailed_region',
+    size: 100,
+    enableSorting: false,
+    cell: ({ row: { original: { highest_impact } } }) => jsonRegionsMap[highest_impact?.detailed_region ?? ''] ?? 'Unknown region',
+  },
+  {
+    id: 'probability_of_fragmentation',
+    enableSorting: false,
     accessorKey: 'fragments_probability',
     header: 'Reentries.table.probability_of_fragmentation',
     size: 70,
-    cell: ({ getValue }) => {
-      const value = getValue<number>();
+    cell: ({ row: { original: { highest_impact } } }) => {
+      const value = highest_impact?.highest_impact_data?.fragments_probability;
       return isNumber(value) ? `${roundedFixed(value)}` : '-';
     },
   },

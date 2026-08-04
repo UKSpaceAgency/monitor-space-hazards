@@ -1,10 +1,10 @@
 import { getTranslations } from 'next-intl/server';
 
-import type { TypeSatelliteOut } from '@/__generated__/data-contracts';
+import type { TypeSatelliteOrgOut } from '@/__generated__/data-contracts';
 import type { InformationsTableHeaderWidth, InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 
-export type AdditionalInformations = Pick<TypeSatelliteOut, 'shape' | 'mass' | 'cross_section_avg' | 'cross_section_max' | 'cross_section_min' | 'height' | 'width' | 'depth' | 'span' | 'diameter'>;
+export type AdditionalInformations = Pick<TypeSatelliteOrgOut, 'shape' | 'mass' | 'cross_section_avg' | 'cross_section_max' | 'cross_section_min' | 'height' | 'width' | 'depth' | 'span' | 'diameter'>;
 
 type AdditionalInformationsTableProps = {
   object: AdditionalInformations | AdditionalInformations[];

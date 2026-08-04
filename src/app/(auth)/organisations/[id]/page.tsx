@@ -1,14 +1,18 @@
+import { notFound } from 'next/navigation';
+
 import type { TypeEpoch } from '@/__generated__/data-contracts';
 import { getOrganisation } from '@/actions/getOrganisation';
+import { getSession } from '@/actions/getSession';
 import { ContentNavigation } from '@/components/ContentNavigation';
-import { OperatorSummary } from '@/components/organisations/OperatorSummary';
-import { OrganisationAccordion } from '@/components/organisations/OrganisationAccordion';
-import Button from '@/ui/button/button';
+import { OperatorSummary } from '@/components/organisation/OperatorSummary';
+import { OrganisationAccordion } from '@/components/organisation/OrganisationAccordion';
+import { isInternationalUser } from '@/utils/Roles';
 
 type PageProps = {
   params: Promise<{ id: string }>;
   searchParams?: Promise<{
     epoch?: TypeEpoch;
+    search_like?: string;
   }>;
 };
 
@@ -27,25 +31,25 @@ export default async function OrganisationPage({
   searchParams,
 }: PageProps) {
   const { id } = await params;
-  const { epoch } = await searchParams || {};
+  const { epoch, search_like: searchLike } = await searchParams || {};
+  const session = await getSession();
   const organisation = await getOrganisation(id);
+
+  if (isInternationalUser(session?.user.role)) {
+    notFound();
+  }
 
   return (
     <div>
       <h1 className="govuk-heading-xl">
         {organisation.name}
       </h1>
-      <div className="grid md:grid-cols-4 gap-7">
-        <ContentNavigation />
-        <article className="md:col-span-3">
-          <OperatorSummary organisation={organisation} />
-          <OrganisationAccordion organisation={organisation} epoch={epoch} />
-          {/* TODO: Update href once a public /organisations listing page is added */}
-          <Button as="link" href="/account/organisations" aria-label="Return to all organisations">
-            Return to all organisations
-          </Button>
-        </article>
-      </div>
+      <ContentNavigation />
+      <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
+      <article className="md:col-span-3">
+        <OperatorSummary organisation={organisation} />
+        <OrganisationAccordion organisation={organisation} epoch={epoch} searchLike={searchLike} />
+      </article>
     </div>
   );
 }

@@ -15,6 +15,7 @@ const SatelliteEphemerisData = ({ noradId, ephemerises, showButtons }: Satellite
   const t = useTranslations('Satellite.Ephemeris_data');
   return (
     <div className="mb-12">
+      {ephemerises.length === 0 && <p className="govuk-body">{t('no_ephemerises')}</p>}
       {showButtons && (
         <Button as="link" href={`/satellites/${noradId}/ephemeris-upload`} aria-label={t('upload_button')}>{t('upload_button')}</Button>
       )}

@@ -1,29 +1,25 @@
 import { getTranslations } from 'next-intl/server';
 
 import type { TypeEpoch, TypeOrganizationOut } from '@/__generated__/data-contracts';
-import { getStatsEventsBySatelliteForOrg } from '@/actions/getStatsEventsBySatelliteForOrg';
 import Accordion from '@/ui/accordion/accordion';
 
-import { OrganisationActivitySection } from './OrganisationActivitySection';
 import { OrganisationConjunctionEvents } from './OrganisationConjunctionEvents';
-import { OrganisationConjunctionEventsByPoC } from './OrganisationConjunctionEventsByPoC';
-import { OrganisationConjunctionEventsByType } from './OrganisationConjunctionEventsByType';
+import { OrganisationConjunctionEventsByPoCSection } from './OrganisationConjunctionEventsByPoCSection';
+import { OrganisationConjunctionEventsByTypeSection } from './OrganisationConjunctionEventsByTypeSection';
 import { OrganisationSatellitesList } from './OrganisationSatellitesList';
 
 type OrganisationAccordionProps = {
   organisation: TypeOrganizationOut;
   epoch?: TypeEpoch;
+  searchLike?: string;
 };
 
 const OrganisationAccordion = async ({
   organisation,
   epoch,
+  searchLike,
 }: OrganisationAccordionProps) => {
   const t = await getTranslations('Organisation.accordion');
-
-  const pocStats = organisation.id
-    ? await getStatsEventsBySatelliteForOrg(organisation.id)
-    : [];
 
   return (
     <>
@@ -37,7 +33,12 @@ const OrganisationAccordion = async ({
           {
             id: 'licensed_satellites',
             heading: t('licensed_satellites'),
-            content: <OrganisationSatellitesList organisationId={organisation.id} />,
+            content: (
+              <OrganisationSatellitesList
+                organisationId={organisation.id}
+                searchLike={searchLike}
+              />
+            ),
           },
         ]}
       />
@@ -47,6 +48,7 @@ const OrganisationAccordion = async ({
       </h2>
       <Accordion
         id="conjunction-events"
+        dynamic
         addAnchor={false}
         initialItems={[
           {
@@ -60,35 +62,41 @@ const OrganisationAccordion = async ({
                     epoch={epoch}
                   />
                 )
-              : <p className="govuk-body">No organisation data available.</p>,
+              : <p className="govuk-body">{t('no_organisation_data')}</p>,
           },
           {
             id: 'conjunction_events_by_poc',
             heading: t('conjunction_events_by_poc'),
-            content: (
-              <OrganisationConjunctionEventsByPoC
-                stats={pocStats}
-                organisationName={organisation.name}
-              />
-            ),
+            content: organisation.id
+              ? (
+                  <OrganisationConjunctionEventsByPoCSection
+                    organisationId={organisation.id}
+                    organisationName={organisation.name}
+                  />
+                )
+              : <p className="govuk-body">{t('no_organisation_data')}</p>,
           },
           {
             id: 'conjunction_events_by_type',
             heading: t('conjunction_events_by_type'),
-            content: (
-              <OrganisationConjunctionEventsByType
-                organisationName={organisation.name}
-              />
-            ),
+            content: organisation.id
+              ? (
+                  <OrganisationConjunctionEventsByTypeSection
+                    organisationId={organisation.id}
+                    organisationName={organisation.name}
+                  />
+                )
+              : <p className="govuk-body">{t('no_organisation_data')}</p>,
           },
         ]}
       />
-
+      {/*
       <h2 data-anchor="activity-information" className="govuk-heading-l">
         {t('activity_information_heading')}
       </h2>
       <Accordion
         id="activity-events"
+        dynamic
         addAnchor={false}
         initialItems={[
           {
@@ -102,23 +110,10 @@ const OrganisationAccordion = async ({
                     section="all"
                   />
                 )
-              : <p className="govuk-body">No organisation data available.</p>,
-          },
-          {
-            id: 'activity_flags_by_reason',
-            heading: t('activity_flags_by_reason'),
-            content: organisation.id
-              ? (
-                  <OrganisationActivitySection
-                    organisationId={organisation.id}
-                    organisationName={organisation.name}
-                    section="by_reason"
-                  />
-                )
-              : <p className="govuk-body">No organisation data available.</p>,
+              : <p className="govuk-body">{t('no_organisation_data')}</p>,
           },
         ]}
-      />
+      /> */}
     </>
   );
 };

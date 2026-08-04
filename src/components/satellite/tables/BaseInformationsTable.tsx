@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 
-import type { TypeSatelliteOut } from '@/__generated__/data-contracts';
+import type { TypeSatelliteOrgOut } from '@/__generated__/data-contracts';
 import type { InformationsTableHeaderWidth, InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 
-export type BaseSatelliteInformations = Pick<TypeSatelliteOut, 'common_name' | 'norad_id' | 'international_designator' | 'object_type'>;
+export type BaseSatelliteInformations = Pick<TypeSatelliteOrgOut, 'common_name' | 'norad_id' | 'international_designator' | 'object_type'>;
 
 type BaseInformationsTableProps = {
   object: BaseSatelliteInformations | BaseSatelliteInformations[];

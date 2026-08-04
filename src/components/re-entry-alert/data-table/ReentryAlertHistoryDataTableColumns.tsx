@@ -7,8 +7,7 @@ import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
 import { roundedPercent } from '@/utils/Math';
-import { getReentryFragmentsProbability, getReentryFragmentsRisk } from '@/utils/ReentryRisk';
-import { renderRiskTag } from '@/utils/Tags';
+import { getReentryFragmentsProbability } from '@/utils/ReentryRisk';
 
 export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventReportOut>[] = [
   {
@@ -18,7 +17,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
     cell: ({ row }) => {
       const { report_number, short_id, download_url } = row.original;
       const report = `Report ${report_number}`;
-      const isClosed = row.original.alert_type.includes('closedown');
+      const isClosed = row.original.alert_type?.includes('closedown');
 
       return (
         <>
@@ -57,9 +56,8 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
   {
     header: 'Reentry_alert_history.risk',
     enableSorting: false,
-    cell: ({ row: { original: { fragments_probability, impact } } }) => {
-      const risk = getReentryFragmentsRisk(fragments_probability, impact);
-      return renderRiskTag(risk);
+    cell: () => {
+      return null;
     },
   },
   {

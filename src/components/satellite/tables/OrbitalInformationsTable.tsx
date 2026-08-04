@@ -1,10 +1,10 @@
 import { getTranslations } from 'next-intl/server';
 
-import type { TypeSatelliteOut } from '@/__generated__/data-contracts';
+import type { TypeSatelliteOrgOut } from '@/__generated__/data-contracts';
 import type { InformationsTableHeaderWidth, InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 
-export type OrbitalSatelliteInformations = Pick<TypeSatelliteOut, 'apogee' | 'perigee' | 'inclination' | 'period'>;
+export type OrbitalSatelliteInformations = Pick<TypeSatelliteOrgOut, 'apogee' | 'perigee' | 'inclination' | 'period'>;
 
 type OrbitalInformationsTableProps = {
   object: OrbitalSatelliteInformations | OrbitalSatelliteInformations[];

@@ -1,6 +1,10 @@
 import { isNumber } from 'lodash';
 
-import type { TypeReentryEventReportImpact, TypeRisk } from '@/__generated__/data-contracts';
+import type {
+  TypeAlertType,
+  TypeReentryEventReportImpact,
+  TypeRisk,
+} from '@/__generated__/data-contracts';
 
 export function getMaxUkAndCdotsFragmentsProbability(
   impact?: TypeReentryEventReportImpact | null,
@@ -21,8 +25,12 @@ export function getMaxUkAndCdotsFragmentsProbability(
 
 export function getFragmentsRiskFromProbability(
   probability: number | null | undefined,
+  object_name?: string | null,
 ): TypeRisk | 'Pending' {
   if (!isNumber(probability)) {
+    if (object_name?.toLowerCase().includes('starlink')) {
+      return 'Very low';
+    }
     return 'Pending';
   }
 
@@ -58,11 +66,37 @@ export function getReentryFragmentsProbability(
   return isNumber(fragmentsProbability) ? fragmentsProbability : null;
 }
 
-export function getReentryFragmentsRisk(
-  fragmentsProbability?: number | null,
-  impact?: TypeReentryEventReportImpact | null,
-): TypeRisk | 'Pending' {
-  return getFragmentsRiskFromProbability(
-    getReentryFragmentsProbability(fragmentsProbability, impact),
-  );
+type GetReentryFragmentsRisk = {
+  fragmentsRisk?: TypeRisk | null;
+  objectName?: string | null;
+  alertType?: TypeAlertType[] | null;
+};
+
+/**
+ * Resolve the risk label to display for a re-entry.
+ *
+ * Analysis can exist without an alert (below threshold → empty alert_type).
+ * In that case, show the risk label when present so the event is not stuck on Pending.
+ * Closedown is excluded from that empty-alert fallback.
+ */
+export function getReentryFragmentsRisk({
+  fragmentsRisk,
+  objectName,
+  alertType,
+}: GetReentryFragmentsRisk) {
+  const hasNoAlertType = !alertType?.length;
+
+  if (hasNoAlertType) {
+    if (fragmentsRisk) {
+      return fragmentsRisk;
+    } else {
+      if (objectName?.toLowerCase().includes('starlink')) {
+        return 'Very low';
+      } else {
+        return null;
+      }
+    }
+  } else {
+    return 'closedown';
+  }
 }

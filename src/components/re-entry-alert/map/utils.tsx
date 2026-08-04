@@ -1,4 +1,4 @@
-import type { CircleLayerSpecification, FillLayerSpecification } from 'mapbox-gl';
+import type { CircleLayerSpecification, FillLayerSpecification, Map as MapboxMap, SymbolLayerSpecification } from 'mapbox-gl';
 
 import { RegionsEnum } from '@/utils/Regions';
 
@@ -17,6 +17,83 @@ export enum MapTypes {
   light = 'light',
   satellite = 'satellite',
 }
+
+export const FALKLAND_ISLANDS_LABEL_SOURCE_ID = 'falkland-islands-label';
+export const FALKLAND_ISLANDS_LABEL_LAYER_ID = 'falkland-islands-label-layer';
+
+/** Replacement label — Mapbox Standard place labels cannot be renamed via setLayoutProperty. */
+export const FalklandIslandsLabelGeoJson: GeoJSON.FeatureCollection = {
+  type: 'FeatureCollection',
+  features: [
+    {
+      type: 'Feature',
+      properties: {
+        name: 'Falkland Islands',
+      },
+      geometry: {
+        type: 'Point',
+        // Same anchor Mapbox uses for the FK country label
+        coordinates: [-59.54, -51.796],
+      },
+    },
+  ],
+};
+
+export const falklandIslandsLabelLayer = (): SymbolLayerSpecification => ({
+  id: FALKLAND_ISLANDS_LABEL_LAYER_ID,
+  type: 'symbol',
+  source: FALKLAND_ISLANDS_LABEL_SOURCE_ID,
+  // Match Mapbox Streets FK country label zoom extent (symbolrank ~4)
+  minzoom: 2,
+  maxzoom: 8,
+  layout: {
+    'text-field': ['get', 'name'],
+    'text-font': ['DIN Pro Medium', 'Arial Unicode MS Regular'],
+    'text-size': [
+      'interpolate',
+      ['cubic-bezier', 0.2, 0, 0.7, 1],
+      ['zoom'],
+      1,
+      11,
+      9,
+      17,
+    ],
+    'text-max-width': 6,
+    'text-line-height': 1.1,
+    // Without this, low-zoom collisions hide the label until you zoom in
+    'text-allow-overlap': true,
+    'text-ignore-placement': true,
+  },
+  paint: {
+    'text-color': '#1a1a1a',
+    'text-halo-color': '#ffffff',
+    'text-halo-width': 1.25,
+  },
+});
+
+/**
+ * Hide Mapbox Standard Falkland/Malvinas place labels (replacement GeoJSON label covers the name).
+ */
+export const hideMalvinasPlaceLabels = (map: MapboxMap) => {
+  let features;
+  try {
+    features = map.queryRenderedFeatures({
+      target: {
+        featuresetId: 'place-labels',
+        importId: 'basemap',
+      },
+    });
+  } catch {
+    return;
+  }
+
+  for (const feature of features) {
+    const name = feature.properties?.name; // Match Falkland too: featureset `name` may omit Malvinas while rendered `name_en` includes it
+    if (typeof name === 'string' && /Falkland|Malvinas/i.test(name)) {
+      map.setFeatureState(feature, { hide: true });
+    }
+  }
+};
 
 export const RegionsGeoJson: Partial<Record<RegionsEnum, unknown>> = {
   [RegionsEnum.ENGLAND]: EnglandGeojson,

@@ -4,15 +4,14 @@ import type { TypeEpoch, TypeReportFlagSettings, TypeSatelliteOut } from '@/__ge
 import { getEphemerises } from '@/actions/getEphemerises';
 import { getSession } from '@/actions/getSession';
 import Accordion from '@/ui/accordion/accordion';
-import { isAgencyApprover, isAgencyUser, isRegulatorUser, isSatteliteOperator } from '@/utils/Roles';
+import { isAgencyApprover, isInternationalUser, isSatteliteOperator, isSatteliteUser } from '@/utils/Roles';
 
-import { SatelliteActivityEvents } from './SatelliteActivityEvents';
 import { SatelliteAdditionalInformations } from './SatelliteAdditionalInformation';
 import { SatelliteConjunctionEvents } from './SatelliteConjunctionEvents';
+import { SatelliteConjunctionEventsByPoC } from './SatelliteConjunctionEventsByPoC';
 import { SatelliteEphemerisData } from './SatelliteEphemerisData';
 import { SatelliteFragmentationsEvents } from './SatelliteFragmentationsEvents';
 import { SatelliteInformation } from './SatelliteInformation';
-import { SatellitePositionHistory } from './SatellitePositionHistory';
 import { SatelliteReentriesEvents } from './SatelliteReentriesEvents';
 
 type SatelliteAccordionProps = {
@@ -76,9 +75,14 @@ const SatelliteAccordion = async ({
             heading: t('all_conjunction_events'),
             content: <SatelliteConjunctionEvents commonName={object.common_name} noradId={noradId} epoch={epoch} report={report} />,
           },
+          {
+            id: 'conjunction_events_by_probability_of_collision',
+            heading: t('conjunction_events_by_probability_of_collision'),
+            content: <SatelliteConjunctionEventsByPoC noradId={noradId} />,
+          },
         ]}
       />
-      {isAgencyUser(session?.user.role) || isRegulatorUser(session?.user.role)
+      {/* {isAgencyUser(session?.user.role) || isRegulatorUser(session?.user.role)
         ? (
             <>
               <h2 data-anchor="potential-impact" className="govuk-heading-l">{t('activity_information')}</h2>
@@ -92,41 +96,54 @@ const SatelliteAccordion = async ({
                     content: <SatelliteActivityEvents commonName={object.common_name} noradId={noradId} />,
                   },
                   {
-                    id: 'position_history',
-                    heading: t('position_history'),
-                    content: <SatellitePositionHistory noradId={noradId} commonName={object.common_name} />,
+                    id: 'activity_flags_by_reason',
+                    heading: t('activity_flags_by_reason'),
+                    content: <SatelliteActivityFlagsByReason noradId={noradId} />,
                   },
+                  // {
+                  //   id: 'position_history',
+                  //   heading: t('position_history'),
+                  //   content: <SatellitePositionHistory noradId={noradId} commonName={object.common_name} />,
+                  // },
                 ]}
               />
             </>
           )
-        : null}
-      <h2 data-anchor="reentries" className="govuk-heading-l">{t('reentries')}</h2>
-      <Accordion
-        id="reentries"
-        addAnchor={false}
-        initialItems={[
-          {
-            id: 'all_reentries',
-            heading: t('all_reentries'),
-            content: <SatelliteReentriesEvents noradId={noradId} />,
-          },
-        ]}
-      />
-      <h2 data-anchor="fragmentations" className="govuk-heading-l">{t('fragmentations')}</h2>
-      <Accordion
-        id="fragmentations"
-        addAnchor={false}
-        initialItems={[
-          {
-            id: 'all_fragmentations',
-            heading: t('all_fragmentations'),
-            content: <SatelliteFragmentationsEvents noradId={noradId} />,
-          },
-        ]}
-      />
+        : null} */}
+      {!isSatteliteUser(session?.user?.role)
+      && (
+        <>
+          <h2 data-anchor="reentries" className="govuk-heading-l">{t('reentries')}</h2>
+          <Accordion
+            id="reentries"
+            addAnchor={false}
+            initialItems={[
+              {
+                id: 'all_reentries',
+                heading: t('all_reentries'),
+                content: <SatelliteReentriesEvents noradId={noradId} />,
+              },
+            ]}
+          />
+        </>
+      )}
+      {!isSatteliteUser(session?.user?.role) && !isInternationalUser(session?.user?.role) && (
+        <>
+          <h2 data-anchor="fragmentations" className="govuk-heading-l">{t('fragmentations')}</h2>
+          <Accordion
+            id="fragmentations"
+            addAnchor={false}
+            initialItems={[
+              {
+                id: 'all_fragmentations',
+                heading: t('all_fragmentations'),
+                content: <SatelliteFragmentationsEvents noradId={noradId} />,
+              },
+            ]}
+          />
+        </>
+      )}
     </>
-
   );
 };
 

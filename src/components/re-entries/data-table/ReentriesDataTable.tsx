@@ -1,7 +1,6 @@
 'use client';
 
 import type { ColumnSort } from '@tanstack/react-table';
-import { camelCase } from 'lodash';
 import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
 
@@ -23,7 +22,7 @@ const ReentriesDataTable = ({ initialData, params, haveAccessToAlerts }: Reentri
   const t = useTranslations('Tables');
 
   const initialSort: ColumnSort[] = useMemo(() => [{
-    id: camelCase(params.sort_by),
+    id: params.sort_by ?? 'decay_epoch',
     desc: params.sort_order === 'desc',
   }], [params]);
 

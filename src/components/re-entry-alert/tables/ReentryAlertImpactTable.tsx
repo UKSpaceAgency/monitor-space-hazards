@@ -20,6 +20,7 @@ type ReentryAlertImpactTableProps = {
   impact: Record<string, TypeOverflightProbability>;
   byRegion: string;
   isNation?: boolean;
+  sortAlphabetically?: boolean;
 };
 
 type ProbabilityType = 'fragments_probability' | 'atmospheric_probability' | 'human_casualty_probability';
@@ -53,7 +54,7 @@ const getRegionDisplayName = (key: string): string => {
   return jsonRegionsMap[key] ?? key;
 };
 
-const ReentryAlertImpactTable = ({ caption, impact, byRegion, isNation }: ReentryAlertImpactTableProps) => {
+const ReentryAlertImpactTable = ({ caption, impact, byRegion, isNation, sortAlphabetically }: ReentryAlertImpactTableProps) => {
   const t = useTranslations('Tables.Reentry_alert_impact');
 
   // State
@@ -62,8 +63,16 @@ const ReentryAlertImpactTable = ({ caption, impact, byRegion, isNation }: Reentr
 
   // Computed values
   const impactEntries = useMemo(
-    () => (isNation ? sortImpactByNation(impact) : Object.entries(impact)),
-    [impact, isNation],
+    () => {
+      if (isNation) {
+        return sortImpactByNation(impact);
+      }
+      if (sortAlphabetically) {
+        return Object.entries(impact).sort();
+      }
+      return Object.entries(impact);
+    },
+    [impact, isNation, sortAlphabetically],
   );
 
   const maxOverflightCount = useMemo(() => {

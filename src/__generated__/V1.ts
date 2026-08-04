@@ -88,6 +88,8 @@ import {
   TypeGetFragmentationReportsParams,
   TypeGetManoeuvrePlotsByEventEventShortIdParams,
   TypeGetManoeuvrePlotsParams,
+  TypeGetOrganizationsParams,
+  TypeGetReentryEventReportsParams,
   TypeGetReentryEventReportsReentryEventReportIdDownloadParams,
   TypeGetReentryEventReportsReentryEventShortIdParams,
   TypeGetReentryEventsParams,
@@ -101,6 +103,7 @@ import {
   TypeGetStatsEventsByOrganizationAggregatedParams,
   TypeGetStatsEventsByOrganizationParams,
   TypeGetStatsEventsBySatelliteAggregatedParams,
+  TypeGetStatsEventsBySatelliteAndTypeAggregatedParams,
   TypeGetStatsEventsBySatelliteParams,
   TypeGetStatsEventsTypeAggregatedParams,
   TypeGetStatsEventsTypeParams,
@@ -109,6 +112,7 @@ import {
   TypeGetStatsMakeAnalysesDailyAggregatedParams,
   TypeGetStatsMakeEventsSatelliteAggregatedParams,
   TypeGetStatsMakeEventsTypeAggregatedParams,
+  TypeGetStatsMakeEventsTypeSatelliteAggregatedParams,
   TypeGetStatsMonthlyAnalysesAggregatedParams,
   TypeGetStatsMonthlyAnalysesParams,
   TypeGetStatsMonthlyConjunctionEventsAggregatedParams,
@@ -146,8 +150,8 @@ import {
   TypeReentryEventOut,
   TypeReentryEventPatch,
   TypeReentryEventReportOut,
+  TypeSatelliteOrgOut,
   TypeSatelliteOrganizationOut,
-  TypeSatelliteOut,
   TypeSatelliteUpdateIn,
   TypeSatelliteWithMetadataOut,
   TypeSatellitesCountByOrganizationOut,
@@ -156,6 +160,7 @@ import {
   TypeStatisticsConjunctionEventsMonthlyCount,
   TypeStatisticsConjunctionEventsMonthlyCountAggregated,
   TypeStatisticsConjunctionEventsMonthlyCountByProbabilityAggregated,
+  TypeStatisticsConjunctionEventsObjectTypeAggregated,
   TypeStatisticsEventsByOrganization,
   TypeStatisticsEventsBySatellite,
   TypeStatisticsEventsBySatelliteAggregated,
@@ -903,7 +908,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Allows operators to upload their ephemeris files. Ephemeris files have to be named in a special way according to Space-Track standards to include satellite NORAD ID, otherwise they will be rejected. They also have to be in line with the .oem file format guidelines. More information can be found at the links below: - [OEM file format definition](https://public.ccsds.org/Pubs/502x0b3e1.pdf) - [File naming convention from Space-Track Handbook for Operators (see page 23)](https://www.space-track.org/documents/Spaceflight_Safety_Handbook_for_Operators.pdf) |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|Create within Organisation| |Satellite operator admin|Create within Organisation| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create| |Regulator user|-| |Regulator admin|-|
+   * @description ## Description Allows operators to upload their ephemeris files. Please visit the [How to Manage Ephemeris page](https://mys-tech-docs.onrender.com/ways-of-working/manage-ephemeris/manage-ephemeris.html) in the Tech Docs for further information on file requirements. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|Create within Organisation| |Satellite operator admin|Create within Organisation| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create| |Regulator user|-| |Regulator admin|-|
    *
    * @tags ephemeris
    * @name PostEphemeris
@@ -1435,10 +1440,11 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @request GET:/v1/organizations/
    * @secure
    */
-  getOrganizations = (params: RequestParams = {}) =>
-    this.request<TypeOrganizationOut[], void>({
+  getOrganizations = (query?: TypeGetOrganizationsParams, params: RequestParams = {}) =>
+    this.request<TypeOrganizationOut[], void | TypeHTTPValidationError>({
       path: `/v1/organizations/`,
       method: "GET",
+      query: query,
       secure: true,
       format: "json",
       ...params,
@@ -1479,6 +1485,23 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       body: data,
       secure: true,
       type: ContentType.FormData,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets list of Reentry Event Reports |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   *
+   * @tags reentry-event-reports
+   * @name GetReentryEventReports
+   * @summary Get list of Reentry Event Reports
+   * @request GET:/v1/reentry-event-reports/
+   * @secure
+   */
+  getReentryEventReports = (query?: TypeGetReentryEventReportsParams, params: RequestParams = {}) =>
+    this.request<TypeReentryEventReportOut[], void | TypeHTTPValidationError>({
+      path: `/v1/reentry-event-reports/`,
+      method: "GET",
+      query: query,
+      secure: true,
       format: "json",
       ...params,
     }); /**
@@ -2023,7 +2046,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getSatellitesNoradId = (noradId: string, params: RequestParams = {}) =>
-    this.request<TypeSatelliteOut, void | TypeHTTPValidationError>({
+    this.request<TypeSatelliteOrgOut, void | TypeHTTPValidationError>({
       path: `/v1/satellites/${noradId}`,
       method: "GET",
       secure: true,
@@ -2110,6 +2133,26 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
   getStatsMakeEventsTypeAggregated = (query?: TypeGetStatsMakeEventsTypeAggregatedParams, params: RequestParams = {}) =>
     this.request<any, void | TypeHTTPValidationError>({
       path: `/v1/stats/make-events-type-aggregated`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Rebuilds stats for events by type and satellite. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Trigger| |Regulator user|-| |Regulator admin|-|
+   *
+   * @tags stats
+   * @name GetStatsMakeEventsTypeSatelliteAggregated
+   * @summary Make Events Type Satellite Aggregated
+   * @request GET:/v1/stats/make-events-type-satellite-aggregated
+   * @secure
+   */
+  getStatsMakeEventsTypeSatelliteAggregated = (
+    query?: TypeGetStatsMakeEventsTypeSatelliteAggregatedParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<any, void | TypeHTTPValidationError>({
+      path: `/v1/stats/make-events-type-satellite-aggregated`,
       method: "GET",
       query: query,
       secure: true,
@@ -2238,6 +2281,26 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
   ) =>
     this.request<TypeStatisticsEventsBySatelliteAggregated[], void | TypeHTTPValidationError>({
       path: `/v1/stats/events-by-satellite-aggregated`,
+      method: "GET",
+      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Gets number of Events groupped by satellites and type of secondary object. Superusers and Analysts can choose Organization satellites belong to. Other users can only see Events/Satellites from their organization. |User Role|Permissions| |-|-| |Satellite operator user|View within Organisation| |Satellite operator|View within Organisation| |Satellite operator admin|View within Organisation| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   *
+   * @tags stats
+   * @name GetStatsEventsBySatelliteAndTypeAggregated
+   * @summary Get number of Events, broken down by Satellite and Event type
+   * @request GET:/v1/stats/events-by-satellite-and-type-aggregated
+   * @secure
+   */
+  getStatsEventsBySatelliteAndTypeAggregated = (
+    query?: TypeGetStatsEventsBySatelliteAndTypeAggregatedParams,
+    params: RequestParams = {},
+  ) =>
+    this.request<TypeStatisticsConjunctionEventsObjectTypeAggregated[], void | TypeHTTPValidationError>({
+      path: `/v1/stats/events-by-satellite-and-type-aggregated`,
       method: "GET",
       query: query,
       secure: true,

@@ -8,7 +8,15 @@ const ReentryAlertMapCenterButton = () => {
   const t = useTranslations('OverflightMap');
   const { current: map } = useMap();
 
-  const onClick = () => map?.flyTo({ center: [-2, 54], zoom: 4 });
+  const onClick = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        map?.flyTo({ center: [position.coords.longitude, position.coords.latitude], zoom: 4 });
+      });
+    } else {
+      map?.flyTo({ center: [-2, 54], zoom: 4 });
+    }
+  };
 
   return (
     <div className="absolute top-auto bottom-2 right-2 z-50 flex flex-col">

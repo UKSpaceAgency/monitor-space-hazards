@@ -5,9 +5,11 @@ import type {
 } from 'chart.js';
 import {
   BarElement,
+  CategoryScale,
   Chart as ChartJS,
   defaults,
   Legend,
+  LinearScale,
   Title,
   Tooltip,
 } from 'chart.js';
@@ -24,7 +26,7 @@ import type { InferChartLegendProps } from '../legend/LegendChart';
 import { ChartLegend } from '../legend/LegendChart';
 import AnnotationPlugin from '../plugins/plugin-a11y-legend';
 
-ChartJS.register(Title, Tooltip, Legend, AnnotationPlugin, BarElement);
+ChartJS.register(Title, Tooltip, Legend, AnnotationPlugin, BarElement, CategoryScale, LinearScale);
 
 setChartDefaults({ isTimeScale: false, isLogarithmicScale: false });
 

@@ -1,11 +1,11 @@
 'use server';
 
-import type { TypeGetConjunctionEventsParams } from '@/__generated__/data-contracts';
+import type { TypeGetConjunctionEventsListParams } from '@/__generated__/data-contracts';
 import type { RequestParams } from '@/__generated__/http-client';
 import Api from '@/libs/Api';
 
 export async function getConjunctionEventsList(
-  queryParams?: TypeGetConjunctionEventsParams,
+  queryParams?: TypeGetConjunctionEventsListParams,
   params: RequestParams = {},
 ) {
   let query = queryParams;

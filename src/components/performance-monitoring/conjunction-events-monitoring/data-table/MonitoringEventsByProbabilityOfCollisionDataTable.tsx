@@ -11,11 +11,13 @@ type MonitoringEventsByProbabilityOfCollisionDataTableProps = {
 
 const MonitoringEventsByProbabilityOfCollisionDataTable = ({ data }: MonitoringEventsByProbabilityOfCollisionDataTableProps) => {
   return (
-    <DataTable
-      columns={eventsByProbabilityOfCollisionColumns}
-      data={[...data].reverse()}
-      ariaLabel="Information on Conjunction Events by probability of collision"
-    />
+    <div className="overflow-auto max-h-[500px]">
+      <DataTable
+        columns={eventsByProbabilityOfCollisionColumns}
+        data={[...data].reverse()}
+        ariaLabel="Information on Conjunction Events by probability of collision"
+      />
+    </div>
   );
 };
 
