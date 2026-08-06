@@ -1690,7 +1690,7 @@
     "Reentry_alert_history": {
       "report_number": "Report number",
       "report_time": "Time of report (UTC)",
-      "risk": "Risk",
+      "risk": "Highest risk",
       "probability": "Probability of debris impact (%)",
       "overflight": "UK overflight time(s) (UTC)"
     },
