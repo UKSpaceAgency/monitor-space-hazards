@@ -1644,6 +1644,7 @@
       "description": "Re-entry alert risk probabilities",
       "risk": "Risk",
       "location": "Location",
+      "empty": "No locations at risk have been identified.",
       "risk_to_location": "Risk to location",
       "probability_of_debris_impact": "Probability of debris impact in location (%)",
       "probability_of_reentry": "Probability of re-entry over location (%)",
