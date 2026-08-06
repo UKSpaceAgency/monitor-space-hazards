@@ -2,12 +2,13 @@
 import { Download04Icon } from 'hugeicons-react';
 import Link from 'next/link';
 
-import type { TypeReentryEventReportOut } from '@/__generated__/data-contracts';
+import type { TypeEventHighestImpact, TypeReentryEventReportOut, TypeRisk } from '@/__generated__/data-contracts';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
 import { roundedPercent } from '@/utils/Math';
 import { getReentryFragmentsProbability } from '@/utils/ReentryRisk';
+import { renderRiskTag } from '@/utils/Tags';
 
 export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventReportOut>[] = [
   {
@@ -55,9 +56,11 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
   },
   {
     header: 'Reentry_alert_history.risk',
+    accessorKey: 'highest_impact',
     enableSorting: false,
-    cell: () => {
-      return null;
+    cell: ({ getValue }) => {
+      const highestImpact = getValue<TypeEventHighestImpact | null>();
+      return renderRiskTag(highestImpact?.highest_risk as TypeRisk);
     },
   },
   {

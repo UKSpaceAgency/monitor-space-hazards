@@ -1588,8 +1588,6 @@ export interface TypeEventHighestImpact {
   highest_impact_data: TypeHighestImpactData;
   /** Highest Probability Name */
   highest_probability_name: string;
-  /** Highest Probability Value */
-  highest_probability_value: number;
   /** Highest Risk */
   highest_risk: string | null;
 }
@@ -2586,6 +2584,9 @@ export interface TypeReentryEvent {
   event_number: number;
   /** Closed Comment */
   closed_comment?: string | null;
+  /** Highest Probability */
+  highest_probability?: number | null;
+  highest_impact?: TypeEventHighestImpact | null;
   /** Atmospheric Probability */
   atmospheric_probability?: number | null;
   atmospheric_risk?: TypeRisk | null;
@@ -2740,6 +2741,9 @@ export interface TypeReentryEventOut {
   event_number: number;
   /** Closed Comment */
   closed_comment?: string | null;
+  /** Highest Probability */
+  highest_probability?: number | null;
+  highest_impact?: TypeEventHighestImpact | null;
   /** Atmospheric Probability */
   atmospheric_probability?: number | null;
   atmospheric_risk?: TypeRisk | null;
@@ -2798,7 +2802,6 @@ export interface TypeReentryEventOut {
   licensed_country?: string | null;
   /** Uk Reentry Probability */
   uk_reentry_probability?: string | null;
-  highest_impact?: TypeEventHighestImpact | null;
 }
 
 /** ReentryEventPatch */
@@ -2878,6 +2881,9 @@ export interface TypeReentryEventReportOut {
    * @format date-time
    */
   report_time: string;
+  /** Highest Probability */
+  highest_probability?: number | null;
+  highest_impact?: TypeEventHighestImpact | null;
   /** Atmospheric Probability */
   atmospheric_probability: number;
   atmospheric_risk?: TypeRisk | null;
@@ -2965,7 +2971,13 @@ export type TypeReentryEventSortBy =
 export type TypeReentryInterest = "low" | "high";
 
 /** ReentryReportSortBy */
-export type TypeReentryReportSortBy = "created_at" | "updated_at" | "tip_external_id" | "report_number" | "decay_epoch";
+export type TypeReentryReportSortBy =
+  | "created_at"
+  | "updated_at"
+  | "tip_external_id"
+  | "report_number"
+  | "decay_epoch"
+  | "highest_probability";
 
 /** ReentrySurvivability */
 export type TypeReentrySurvivability = "Highly likely" | "Likely" | "Unlikely" | "Highly unlikely";
@@ -3679,7 +3691,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-07-31T11:51:39.348726"
+   * @default "2026-08-05T14:42:20.374172"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -5045,7 +5057,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2026-08-01"
+   * @default "2026-09-01"
    */
   end_date?: string;
 }
@@ -5060,7 +5072,7 @@ export interface TypeGetStatsMonthlyAnalysesAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-08-01"
+   * @default "2026-09-01"
    */
   end_date?: string;
 }
@@ -5075,7 +5087,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2026-08-01"
+   * @default "2026-09-01"
    */
   end_date?: string;
 }
@@ -5090,7 +5102,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-08-01"
+   * @default "2026-09-01"
    */
   end_date?: string;
 }
@@ -5105,7 +5117,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-08-01"
+   * @default "2026-09-01"
    */
   end_date?: string;
 }
@@ -5120,7 +5132,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-08-01"
+   * @default "2026-09-01"
    */
   end_date?: string;
 }
@@ -5135,7 +5147,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-08-01"
+   * @default "2026-09-01"
    */
   end_date?: string;
 }
@@ -5150,7 +5162,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeAggregatedParam
   /**
    * End Date
    * @format date
-   * @default "2026-08-01"
+   * @default "2026-09-01"
    */
   end_date?: string;
 }
@@ -5167,7 +5179,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByNoradIdAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-08-01"
+   * @default "2026-09-01"
    */
   end_date?: string;
 }
@@ -5182,7 +5194,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2026-08-01"
+   * @default "2026-09-01"
    */
   end_date?: string;
 }

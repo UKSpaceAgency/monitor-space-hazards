@@ -6,7 +6,6 @@ import { type ReactNode, Suspense } from 'react';
 import type { TypeReentryEventPatch } from '@/__generated__/data-contracts';
 import { getReentryEvent } from '@/actions/getReentryEvent';
 import { getReentryReports } from '@/actions/getReentryReports';
-import { getTips } from '@/actions/getTips';
 import { FORMAT_DATE_TIME, FORMAT_FULL_DATE } from '@/libs/Dayjs';
 import Spinner from '@/ui/spinner/spinner';
 import Tag from '@/ui/tag/tag';
@@ -28,11 +27,9 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
   const t = await getTranslations('Reentry_alert');
   const event = await getReentryEvent(shortId);
   const reports = await getReentryReports({ shortId });
-  const tips = await getTips(event.norad_id);
   const title = t('title', { objectName: event.object_name ?? 'Unknown object' });
 
   const lastReport = reports[reports.length - 1];
-  const lastTip = tips[0];
   const isClosed = lastReport?.alert_type.includes('closedown');
   const closedComment = searchParams?.closed_comment ?? event.closed_comment;
 
@@ -68,11 +65,10 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
       <Suspense fallback={<Spinner />}>
         {lastReport?.id && (
           <ReentryAlertMapContainer
-            tip={lastTip}
-            isClosed={isClosed}
             reentryId={shortId}
             reportId={lastReport.report_number.toString().padStart(3, '0')}
             overflightTime={event.overflight_time}
+            locationWithHighestRisk={`${event.highest_impact?.detailed_region}`}
           />
         )}
       </Suspense>
