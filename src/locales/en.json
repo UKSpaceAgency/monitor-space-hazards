@@ -946,8 +946,8 @@
   },
   "Reentries": {
     "title": "Track re-entry events",
-    "section_title": "All re-entry events",
-    "description": "<p>This table contains all tracked re-entry events, including re-entry events that meet the UK Space Agency's thresholds for alerting UK government. For further detail on how risk and alert thresholds are defined, see 'Help with this table' below.</p>",
+    "upcoming_reentry_alerts": "Upcoming re-entry alerts",
+    "all_reentry_events": "All re-entry events worldwild",
     "content": "<p>This table contains all tracked re-entry events, including re-entry events that meet the National Space Operations Centre's thresholds for alerting UK government. For further detail on how risk and alert thresholds are defined, see 'Help with this table' below.</p>"
   },
   "Reentry": {
