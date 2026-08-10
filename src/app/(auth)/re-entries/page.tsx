@@ -28,6 +28,7 @@ export default async function ReentryPage(props: PageProps) {
       <ReentriesAlertsTable />
       <h2 className="govuk-heading-m">{t('section_title')}</h2>
       <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
+      {t.rich('description')}
       <ReentriesEventsTable initialParams={searchParams} />
     </div>
   );

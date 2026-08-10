@@ -947,6 +947,7 @@
   "Reentries": {
     "title": "Track re-entry events",
     "section_title": "All re-entry events",
+    "description": "<p>This table contains all tracked re-entry events, including re-entry events that meet the UK Space Agency's thresholds for alerting UK government. For further detail on how risk and alert thresholds are defined, see 'Help with this table' below.</p>",
     "content": "<p>This table contains all tracked re-entry events, including re-entry events that meet the National Space Operations Centre's thresholds for alerting UK government. For further detail on how risk and alert thresholds are defined, see 'Help with this table' below.</p>"
   },
   "Reentry": {
@@ -1053,7 +1054,7 @@
     "Risk_thresholds": {
       "content": "Risk thresholds are calculated based on the probability of the debris from the re-entry of the object impacting the UK.",
       "risk_level": "Risk level",
-      "probability_of_atmospheric": "Probability of re-entry over UK",
+      "probability_of_atmospheric": "Probability of re-entry over region",
       "probability_of_ground": "Probability of debris impact in UK",
       "probability_of_human_casualty": "Probability of UK casualty risk",
       "risk": {
@@ -1571,11 +1572,11 @@
       "overflight": "Time of Closest Approach (UTC)"
     },
     "Reentries_summary": {
-      "upcoming_reentry_alerts": "Upcoming risks to UK",
+      "upcoming_reentry_alerts": "Upcoming re-entry alerts",
       "upcoming_reentry_events_worldwide": "Upcoming re-entry events worldwide",
       "help": {
         "title": "Help with this table<screenReaderOnly> - UK risk probabilities</screenReaderOnly>",
-        "content": "<p>This service tracks all upcoming re-entry events worldwide, including those which pose a risk to the UK. The service reports on two types of re-entry event.</p><list><item><bold>Upcoming re-entry events worldwide:</bold> all upcoming re-entry events worldwide, including those which have not met alerting thresholds</item></list>"
+        "content": "<p>This service tracks all upcoming re-entry events worldwide, including those which pose a risk to the UK. The service reports on two types of re-entry event.</p><list><item><bold>Upcoming re-entry alerts:</bold> all upcoming re-entry events which meet the UK Space Agency's thresholds for alerting UK government</item><item><bold>Upcoming re-entry events worldwide:</bold> all upcoming re-entry events worldwide, including those which have not met alerting thresholds</item></list>"
       },
       "warning": "This table focuses on risk to the UK. Select the Event ID to view additional analysis and risk information for the UK Overseas Territories and Crown Dependencies."
     },
@@ -1679,7 +1680,7 @@
       "extra_information": "UK Airspace comprises of London Flight Information Region, Scottish Flight Information Region and Shanwick Oceanic Flight Information Region.",
       "see_further_information": "<p>See <link>Further information</link> for more detail on methodology used in this report.</p>",
       "probability_of_atmospheric_entry": "Probability of re-entry over region (%)",
-      "probability_of_atmospheric_entry_nation": "Probability of re-entry over UK (%)",
+      "probability_of_atmospheric_entry_nation": "Probability of re-entry over region (%)",
       "probability_of_fragmentation": "Probability of debris impact (%)",
       "probability_of_human_casualty": "Probability of UK casualty risk (%)",
       "choose_overflight": "Choose overflight",
@@ -1692,8 +1693,8 @@
       "report_number": "Report number",
       "report_time": "Time of report (UTC)",
       "risk": "Highest risk",
-      "probability": "Probability of debris impact (%)",
-      "overflight": "UK overflight time(s) (UTC)"
+      "reentry_time": "Re-entry time (UTC)",
+      "uncertainty_window": "Uncertainty window (mins)"
     },
     "Fragmentation_alert_executive_summary": {
       "event_epoch": "Estimated event time (UTC)",

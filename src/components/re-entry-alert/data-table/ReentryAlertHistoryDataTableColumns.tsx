@@ -6,8 +6,6 @@ import type { TypeEventHighestImpact, TypeReentryEventReportOut, TypeRisk } from
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
-import { roundedPercent } from '@/utils/Math';
-import { getReentryFragmentsProbability } from '@/utils/ReentryRisk';
 import { renderRiskTag } from '@/utils/Tags';
 
 export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventReportOut>[] = [
@@ -64,20 +62,17 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
     },
   },
   {
-    header: 'Reentry_alert_history.probability',
+    header: 'Reentry_alert_history.reentry_time',
     enableSorting: false,
-    cell: ({ row: { original: { fragments_probability, impact } } }) => {
-      const probability = getReentryFragmentsProbability(fragments_probability, impact);
-      return probability ? roundedPercent(probability, 3) : '-';
-    },
+    accessorKey: 'reentry_time',
+    size: 70,
+    cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_DATE_TIME),
   },
   {
-    header: 'Reentry_alert_history.overflight',
-    accessorKey: 'overflight_time',
+    header: 'Reentry_alert_history.uncertainty_window',
     enableSorting: false,
-    cell: ({ getValue }) => {
-      const value = getValue<string>();
-      return value[0] ? dayjs(value[0]).format(FORMAT_DATE_TIME) : '-';
-    },
+    accessorKey: 'uncertainty_window',
+    size: 70,
+    cell: ({ getValue }) => `+/- ${getValue<number>()}`,
   },
 ];
