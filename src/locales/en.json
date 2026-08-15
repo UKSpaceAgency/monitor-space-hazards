@@ -1065,7 +1065,7 @@
       },
       "details": {
         "title": "Help with this table<screenReaderOnly> - Risk thresholds</screenReaderOnly>",
-        "content": "<p>This table shows the risk thresholds and levels used to assess how a re-entering object could pose a risk to UK interests:</p><list><item><bold>Debris impact in region:</bold> probability that fragments reach the ground within each region</item><item><bold>Re-entry over region:</bold> probability the object enters atmosphere over each region</item></list><item><bold>Human casualties in region:</bold> probability that debris impact will result in human injury in each region.</item></list>"
+        "content": "<p>This table shows the risk thresholds and levels used to assess how a re-entering object could pose a risk to UK interests:</p><list><item><bold>Debris impact in region:</bold> probability that fragments reach the ground within each region</item><item><bold>Re-entry over region:</bold> probability the object enters atmosphere over each region</item><item><bold>Human casualties in region:</bold> probability that debris impact will result in human injury in each region.</item></list>"
       }
     },
     "Alerting_procedure": {
