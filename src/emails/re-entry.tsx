@@ -86,13 +86,19 @@ ReEntryEmail.PreviewProps = {
     executive_summary_comment: 'Executive summary',
   },
   report: {
+    fragments_probability: 0.6,
+    atmospheric_probability: 0.85,
+    overflight_time: ['2024-01-20T09:30:00Z', '2024-01-20T10:30:00Z'],
     impact: {
       by_nation: {
         england_nation: { fragments_probability: 0.6, overflight_time: ['2024-01-20T09:30:00Z'] },
         scotland_nation: { fragments_probability: 0.3, overflight_time: ['2024-01-20T09:45:00Z'] },
         wales_nation: { fragments_probability: 0.2, overflight_time: ['2024-01-20T10:00:00Z'] },
       },
-      overseas_territories_and_crown_dependencies: {},
+      overseas_territories_and_crown_dependencies: {
+        gibraltar: { fragments_probability: 0.05, overflight_time: ['2024-01-20T08:30:00Z'] },
+        bermuda: { fragments_probability: 0.02, overflight_time: ['2024-01-20T09:00:00Z'] },
+      },
       maritime_and_airspace: {
         south_georgia_and_the_south_sandwich_islands: { fragments_probability: 0.8, overflight_time: ['2024-01-20T09:20:00Z'] },
         turks_and_caicos_islands: { fragments_probability: 0.6, overflight_time: ['2024-01-20T09:25:00Z'] },

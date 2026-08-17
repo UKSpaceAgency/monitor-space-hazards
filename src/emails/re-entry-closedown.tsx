@@ -76,6 +76,8 @@ ReEntryClosedownEmail.PreviewProps = {
     direction: 'ascending',
   },
   report: {
+    fragments_probability: 0.6,
+    overflight_time: ['2024-01-20T09:30:00Z', '2024-01-20T10:30:00Z'],
     impact: {
       by_nation: {
         england_nation: { probability: 0.6, overflight_time: ['2024-01-20T09:30:00Z'] },

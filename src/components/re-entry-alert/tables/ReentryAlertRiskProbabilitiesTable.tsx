@@ -21,6 +21,7 @@ import {
   TableRow,
 } from '@/ui/table/Table';
 import { roundedPercent } from '@/utils/Math';
+import { hasLocationAtRiskProbability } from '@/utils/ReentryRisk';
 import { jsonRegionsMap } from '@/utils/Regions';
 import { renderRiskTag } from '@/utils/Tags';
 
@@ -93,36 +94,52 @@ const ReentryAlertRiskProbabilitiesTable = ({
   const t = useTranslations('Tables.Reentry_alert_locations_at_risk');
 
   const locationsAtRisk = useMemo(() => {
-    if (!report.impact) {
-      return [];
+    const locations: LocationAtRisk[] = [];
+
+    // The probability/risk fields outside of the impact array refer to the United Kingdom
+    if (
+      hasLocationAtRiskProbability(
+        report.fragments_probability,
+        report.atmospheric_probability,
+        report.human_casualty_probability,
+      )
+    ) {
+      locations.push({
+        region: 'united_kingdom',
+        location: 'United Kingdom',
+        fragments_probability: report.fragments_probability,
+        fragments_risk: report.fragments_risk,
+        atmospheric_probability: report.atmospheric_probability,
+        atmospheric_risk: report.atmospheric_risk,
+        human_casualty_probability: report.human_casualty_probability,
+        human_casualty_risk: report.human_casualty_risk,
+        overflight_time: report.overflight_time,
+      });
     }
 
-    return (
-      Object.entries(report.impact) as [
-        string,
-        Record<string, TypeOverflightProbability>,
-      ][]
-    ).flatMap(([region, regionData]) =>
-      Object.entries(regionData)
-        .filter(([, data]) => {
-          const probabilities = [
-            data.fragments_probability,
-            data.atmospheric_probability,
-            data.human_casualty_probability,
-          ];
-          return probabilities.some(
-            probability => isNumber(probability) && probability > 0.0001,
-          );
-        })
-        .map(
-          ([location, data]): LocationAtRisk => ({
-            region,
-            location,
-            ...data,
-          }),
-        ),
-    );
-  }, [report.impact]);
+    const overseasTerritories = report.impact?.overseas_territories_and_crown_dependencies;
+
+    if (overseasTerritories) {
+      locations.push(
+        ...Object.entries(overseasTerritories)
+          .filter(([, data]) =>
+            hasLocationAtRiskProbability(
+              data.fragments_probability,
+              data.atmospheric_probability,
+              data.human_casualty_probability,
+            ))
+          .map(
+            ([location, data]): LocationAtRisk => ({
+              region: 'overseas_territories_and_crown_dependencies',
+              location,
+              ...data,
+            }),
+          ),
+      );
+    }
+
+    return locations;
+  }, [report]);
 
   const maxOverflightCount = useMemo(() => {
     return locationsAtRisk.reduce((maxCount, location) => {

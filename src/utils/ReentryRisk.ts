@@ -6,6 +6,18 @@ import type {
   TypeRisk,
 } from '@/__generated__/data-contracts';
 
+// Locations at Risk includes a location when any of its probabilities exceeds
+// this threshold (values are fractions, so 0.0001 is displayed as 0.01%)
+export const LOCATIONS_AT_RISK_PROBABILITY_THRESHOLD = 0.0001;
+
+export function hasLocationAtRiskProbability(
+  ...probabilities: Array<number | null | undefined>
+): boolean {
+  return probabilities.some(
+    probability => isNumber(probability) && probability > LOCATIONS_AT_RISK_PROBABILITY_THRESHOLD,
+  );
+}
+
 export function getMaxUkAndCdotsFragmentsProbability(
   impact?: TypeReentryEventReportImpact | null,
 ): number | null {

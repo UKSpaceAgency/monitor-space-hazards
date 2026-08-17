@@ -2393,6 +2393,7 @@
       },
       "Affected_regions": {
         "uk_mainland": "UK Mainland",
+        "united_kingdom": "United Kingdom",
         "maritime_and_airspace": "Airspace and Maritime",
         "overseas_territories_and_crown_dependencies": "UK CDOTs",
         "no_regions_affected": "No Regions Affected"
