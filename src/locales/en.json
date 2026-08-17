@@ -1656,7 +1656,7 @@
       "probability_of_human_casualty": "UK casualty risk",
       "help": {
         "title": "Help with this table",
-        "content": "This table shows the locations of UK interest the UK mainland and British Overseas Territories and Crown Dependencies) which met the threshold for individual territon reporting. The data indicates how the re-entering object could pose a risk to UK interests. See the further information section for more information on each data point."
+        "content": "This table shows the locations of UK interest (the UK mainland and British Overseas Territories and Crown Dependencies) which met the threshold for individual territory reporting. The data indicates how the re-entering object could pose a risk to UK interests. See the further information section for more information on each data point."
       }
     },
     "Reentry_alert_additional_object_details": {
