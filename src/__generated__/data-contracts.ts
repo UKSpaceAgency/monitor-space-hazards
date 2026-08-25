@@ -1582,14 +1582,12 @@ export interface TypeEventForAnalysisOut {
 /** EventHighestImpact */
 export interface TypeEventHighestImpact {
   /** Region */
-  region: string;
-  /** Detailed Region */
-  detailed_region: string;
-  highest_impact_data: TypeHighestImpactData;
+  region?: string | null;
+  highest_impact_data?: TypeHighestImpactData | null;
   /** Highest Probability Name */
-  highest_probability_name: string;
+  highest_probability_name?: string | null;
   /** Highest Risk */
-  highest_risk: string | null;
+  highest_risk?: string | null;
 }
 
 /** EventLevel */
@@ -2284,11 +2282,11 @@ export interface TypeHTTPValidationError {
 /** HighestImpactData */
 export interface TypeHighestImpactData {
   /** Atmospheric Probability */
-  atmospheric_probability: number | null;
+  atmospheric_probability?: number | null;
   /** Fragments Probability */
-  fragments_probability: number | null;
+  fragments_probability?: number | null;
   /** Human Casualty Probability */
-  human_casualty_probability: number | null;
+  human_casualty_probability?: number | null;
 }
 
 /** ManoeuvrePlot */
@@ -2445,6 +2443,21 @@ export interface TypeNotificationSettings {
 
 /** NotificationType */
 export type TypeNotificationType = "EMAIL" | "SMS";
+
+/** OrbitType */
+export type TypeOrbitType =
+  | "Geostationary orbit (GEO)"
+  | "Geostationary orbit (GSO)"
+  | "Medium Earth orbit (MEO)"
+  | "Low Earth orbit (LEO)"
+  | "Sun-synchronous orbit (SSO)"
+  | "Polar orbit (PO)"
+  | "Highly eccentric orbit (HEO)"
+  | "Transfer orbits and geostationary transfer orbit (GTO)"
+  | "Near Earth Object (NEO)"
+  | "Lagrange points (L-points)"
+  | "Heliocentric orbit"
+  | "Lunar";
 
 /** OrganizationOut */
 export interface TypeOrganizationOut {
@@ -3038,6 +3051,8 @@ export interface TypeSatelliteOrgOut {
   esa_discos_id?: string | null;
   /** International Designator */
   international_designator: string;
+  /** Orbit Type */
+  orbit_type?: string | null;
   /** Object Type */
   object_type?: string | null;
   /** License Country */
@@ -3120,6 +3135,8 @@ export interface TypeSatelliteOut {
   esa_discos_id?: string | null;
   /** International Designator */
   international_designator: string;
+  /** Orbit Type */
+  orbit_type?: string | null;
   /** Object Type */
   object_type?: string | null;
   /** License Country */
@@ -3171,6 +3188,7 @@ export interface TypeSatelliteUpdateIn {
   id: string;
   /** Organization Id */
   organization_id?: string | null;
+  orbit_type?: TypeOrbitType | null;
 }
 
 /** SatelliteWithMetadataOut */
@@ -3192,6 +3210,8 @@ export interface TypeSatelliteWithMetadataOut {
   esa_discos_id?: string | null;
   /** International Designator */
   international_designator: string;
+  /** Orbit Type */
+  orbit_type?: string | null;
   /** Object Type */
   object_type?: string | null;
   /** License Country */
@@ -3691,7 +3711,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-08-05T14:42:20.374172"
+   * @default "2026-08-24T10:56:05.043642"
    */
   updated_at?: string | null;
   /** Report Number */

@@ -12,10 +12,10 @@ export const Map = ({ src, showLegend = true, ...props }: MapProps) => {
       <Img src={src} alt="map" width="690" height="345" className="block outline-none border-none" />
       {showLegend && (
         <Row cellSpacing={8}>
-          <Column className="w-1/5 text-2xs font-bold">
-            Map Legend:
+          <Column className="w-1/6 text-2xs font-bold align-top">
+            Map Legend
           </Column>
-          <Column>
+          <Column className="w-1/4 align-top">
             <table cellPadding="0" cellSpacing="8" align="center" style={{ width: '100%' }}>
               <tr>
                 <td width="20" valign="middle">
@@ -46,12 +46,12 @@ export const Map = ({ src, showLegend = true, ...props }: MapProps) => {
                   </table>
                 </td>
                 <td className="text-2xs">
-                  Object flightpath
+                  Flight Path
                 </td>
               </tr>
             </table>
           </Column>
-          <Column>
+          <Column className="align-top">
             <table cellPadding="0" cellSpacing="8" align="center" style={{ width: '100%' }}>
               <tr>
                 <td width="20" valign="middle">
@@ -82,7 +82,7 @@ export const Map = ({ src, showLegend = true, ...props }: MapProps) => {
                   </table>
                 </td>
                 <td className="text-2xs">
-                  Potential debris field
+                  Potential Debris Field (where one or more debris fragments could fall)
                 </td>
               </tr>
             </table>

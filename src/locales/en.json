@@ -2374,7 +2374,49 @@
       "regions_at_risk_title": "Regions at Risk",
       "additional_information_title": "Additional Information",
       "event_details_title": "Event Details",
+      "banner": "Uncontrolled Re-Entry Warning - Level {level}",
+      "handling_advice_title": "Handling Advice",
+      "other_regions_at_risk_title": "Other Regions At Risk",
       "utc_note": "* Coordinated Universal Time (UTC) is 1 hour behind British Summer Time (BST) and the same as Greenwich Mean Time (GMT).",
+      "Assessment": {
+        "title": "Assessment",
+        "placeholder": "An analyst assessment for this report is not yet available."
+      },
+      "Location_risk": {
+        "title": "Risk to {location}",
+        "risk": "Risk",
+        "probability_of_debris_impact": "Probability of Debris Impact",
+        "probability_of_reentry": "Probability of Re-Entry",
+        "probability_of_human_casualties": "Probability of Human Casualties",
+        "overflight_times": "Overflight Times",
+        "no_overflights": "No overflights",
+        "empty_title": "Regions At Risk",
+        "empty": "No region currently reaches the level required for individual or detailed territory reporting."
+      },
+      "Other_regions_at_risk": {
+        "description": "The risk to the below locations is non-zero, but does not reach the level required to necessitate individual or detailed territory reporting.",
+        "location": "Location",
+        "probability_of_reentry": "Probability of re-entry",
+        "probability_of_debris_impact": "Probability of debris impact",
+        "uk_mainland": "UK mainland",
+        "maritime_and_airspace": "Airspace and Maritime",
+        "overseas_territories_and_crown_dependencies": "UK CDOTs",
+        "empty": "No regions at risk unless shown above."
+      },
+      "Understanding_this_report": {
+        "title": "Understanding This Report",
+        "risk_calculations_title": "Risk Calculations and Percentages",
+        "risk_calculations_content": "<p>Percentages (for UK, Crown Dependencies, UK Overseas Territories, UK NAVAREA and UK FIRs) refer to the percentage probability of the object re-entering, or depositing debris, over or in the named area. Sign in to <link>Monitor Space Hazards</link> to view analysis and additional information.</p>",
+        "overflights_title": "Overflights and debris fields",
+        "overflights_content": "<p>Overflight times indicate the approximate time the re-entering object's orbital path passes over, or in close proximity to, the location above. They are the approximate time(s) at which the above location could be potentially at risk from the re-entry.</p><p>Debris fields show the area where one or more debris fragments could fall based on enhanced UKSA modelling.</p>",
+        "analyst_report_title": "Level {level} Analyst Report",
+        "analyst_report_content_level_1": "<p>This report is a Level 1 Alert (also known as an Analyst Report). It is intended primarily for space operations centres and data partners. Events that reach a threshold to be notified to response partners across UK Government are handled separately. This report should not be forwarded without permission.</p>",
+        "analyst_report_content_level_2": "<p>This report is a Level 2 Alert. Wording for Level 2 reports is still to be confirmed.</p>"
+      },
+      "Analysis_process": {
+        "content": "Analysis process used for generating this report: <process></process>",
+        "placeholder": "Standard / UKSA Enhanced"
+      },
       "Risk_probabilities": {
         "probability": "Probability",
         "risk": "Risk",
@@ -2389,7 +2431,16 @@
         "re_entry_time": "Re-entry time window ",
         "uk_overflight_time": "UK overflight time(s)",
         "no_overflights": "No overflights",
-        "direction_of_travel": "Direction of travel"
+        "direction_of_travel": "Direction of travel",
+        "predicted_re_entry_time": "Predicted Re-Entry Time",
+        "uncertainty_window": "Uncertainty Window",
+        "object": "Object",
+        "norad_id": "NORAD ID",
+        "height": "Height",
+        "width": "Width",
+        "licensing_country": "Licencing Country",
+        "expected_survivability": "Expected Survivability to Ground",
+        "report_number": "Report Number"
       },
       "Affected_regions": {
         "uk_mainland": "UK Mainland",
@@ -2421,7 +2472,7 @@
         }
       },
       "Handling_space_debris": {
-        "title": "Handling Space Debris",
+        "title": "Hazardous Materials",
         "content": "<p>Space debris can be hazardous and may contain materials that pose a serious risk to health. All re-entred debris should be considered as hazardous until proven otherwise. This most well-known hazardous substances found in rockets and satellites include <hydrozineLink>Hydrazine</hydrozineLink> and <keroseneLink>Kerosene</keroseneLink>.</p><p>If space debris survives to the ground, it should be considered hazardous until proven otherwise. Debris must not be disposed of or given to the public. Standard hazardous materials (hazmat) response procedures, such as testing by the fire service, should be followed.</p>"
       },
       "Public_guidance_on_space_debris": {
@@ -2589,7 +2640,9 @@
       "title": "Support and Assistance",
       "content": "<p>For urgent enquiries about this event, email <nspocemail>NSPOCincidents@ukspaceagency.gov.uk</nspocemail>.</p><p><contact>Additional contact details</contact> are available via Monitor Space Hazards (for registered users).</p><p>We welcome your feedback and ideas to improve future reports. If you're not signed up to <link>Monitor Space Hazards</link> and would like access to the service, please contact us.</p><p>Monitor Space Hazards is a service provided by the UK Space Agency via the National Space Operations Centre.</p>",
       "content_notification": "<p>For assistance in managing an incident, or for more information, please contact our Operations, Analysis and Response Team:</p><button>Operations Support</button><p>Or email us: <nspocemail>NSPOCincidents@ukspaceagency.gov.uk</nspocemail> and <orbitalemail>OrbitalAnalysts@ukspaceagency.gov.uk</orbitalemail>.</p><p><contact>Additional contact details</contact> are available via <contact>Monitor Space Hazards</contact>. Monitor Space Hazards is a service provided by the UK Space Agency via the National Space Operations Centre.</p>",
-      "content_short": "<p>Please direct any questions about this event to <nspocemail>nspoc@ukspaceagency.gov.uk</nspocemail></p><p>Monitor Space Hazards is a service provided by the UK Space Agency through the National Space Operations Centre.</p>"
+      "content_short": "<p>Please direct any questions about this event to <nspocemail>nspoc@ukspaceagency.gov.uk</nspocemail></p><p>Monitor Space Hazards is a service provided by the UK Space Agency through the National Space Operations Centre.</p>",
+      "content_reentry": "<p>For urgent enquiries about this event, email <nspocemail>NSPOCincidents@ukspaceagency.gov.uk</nspocemail>.</p><p>We welcome your feedback and ideas to improve future reports. If you're not signed up to <link>Monitor Space Hazards - GOV.UK</link> and would like access to the service, please contact us.</p><p>Sign in to view analysis and additional information: <link>Monitor Space Hazards - GOV.UK</link></p>",
+      "service_note": "Monitor Space Hazards is a service provided by the UK Space Agency via the National Space Operations Centre."
     }
   },
   "Fragmentations": {
