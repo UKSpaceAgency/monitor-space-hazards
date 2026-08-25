@@ -136,7 +136,7 @@ export function getReentryFragmentsRisk({
   fragmentsRisk,
   objectName,
 }: GetReentryFragmentsRisk): TypeRisk {
-  if (fragmentsRisk === null) {
+  if (fragmentsRisk) {
     if (objectName?.toLowerCase().includes('starlink')) {
       return 'Very low';
     } else {
