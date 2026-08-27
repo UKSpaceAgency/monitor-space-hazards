@@ -8,7 +8,7 @@ import { signOut, useSession } from 'next-auth/react';
 import { useMessages, useTranslations } from 'next-intl';
 import { useState } from 'react';
 
-import { isAgencyUser, isInternationalUser, isSatteliteUser } from '@/utils/Roles';
+import { isInternationalUser, isSatteliteUser } from '@/utils/Roles';
 
 export const Navigation = () => {
   const t = useTranslations('Template');
@@ -16,7 +16,7 @@ export const Navigation = () => {
   const { data: session } = useSession();
   const keys = Object.keys(pick(messages.Template.navigation, ['re-entries', 'fragmentations', 'conjunctions', 'activity', 'satellites', 'organisations', 'account'])).filter((key) => {
     if (key === 'activity') {
-      return isAgencyUser(session?.user?.role);
+      return false;
     }
     if (key === 're-entries') {
       return !isSatteliteUser(session?.user?.role);
