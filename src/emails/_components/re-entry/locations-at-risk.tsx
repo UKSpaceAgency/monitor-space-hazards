@@ -11,10 +11,10 @@ type ReentryLocationsAtRiskProps = {
 };
 
 /**
- * Each block needs its own rendered map. The sending service substitutes these
- * tokens in the same order the blocks are rendered here.
+ * Each block needs its own rendered map. The token carries the location key so the
+ * sending service never has to reproduce the order the blocks are rendered in.
  */
-const mapToken = (index: number) => `{{LOCATION_MAP_${index + 1}.src}}`;
+const mapToken = (key: string) => `{{LOCATION_MAP_${key}.src}}`;
 
 export const ReentryLocationsAtRisk = ({ report }: ReentryLocationsAtRiskProps) => {
   const t = createEmailTranslator({ namespace: 'Emails.Reentry_alert.Location_risk' });
@@ -31,8 +31,8 @@ export const ReentryLocationsAtRisk = ({ report }: ReentryLocationsAtRiskProps) 
 
   return (
     <>
-      {locations.map((location, index) => (
-        <LocationRisk key={location.key} location={location} mapSrc={mapToken(index)} />
+      {locations.map(location => (
+        <LocationRisk key={location.key} location={location} mapSrc={mapToken(location.key)} />
       ))}
     </>
   );
