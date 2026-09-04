@@ -171,6 +171,7 @@ export const Regions: {
 };
 
 export const UK_NATION_ORDER = [
+  'united_kingdom',
   'england_nation',
   'scotland_nation',
   'wales_nation',
@@ -201,6 +202,7 @@ export const sortImpactByAirspaceAndMaritime = <T>(record: Record<string, T>) =>
   sortByKeyOrder(record, UK_AIRSPACE_AND_MARITIME_ORDER);
 
 export const jsonRegionsMap: Record<string, string> = {
+  united_kingdom: 'United Kingdom (total)',
   england_nation: 'England',
   northern_ireland_nation: 'Northern Ireland',
   scotland_nation: 'Scotland',

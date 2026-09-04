@@ -7,6 +7,7 @@ import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
 import { getReentryFragmentsRisk } from '@/utils/ReentryRisk';
+import { renderRiskTag } from '@/utils/Tags';
 
 export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventReportOut>[] = [
   {
@@ -62,7 +63,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
         fragmentsRisk: highestImpact?.highest_risk,
         objectName: object_name,
       });
-      return risk;
+      return renderRiskTag(risk);
     },
   },
   {

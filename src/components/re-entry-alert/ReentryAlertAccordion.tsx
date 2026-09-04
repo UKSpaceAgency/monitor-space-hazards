@@ -33,7 +33,6 @@ const ReentryAlertAccordion = ({
   const t = useTranslations('Reentry_alert.accordion');
 
   const impacts = lastReport?.impact;
-  // const fragmentsRisk = getReentryFragmentsRisk(event.fragments_probability, event.object_name);
 
   return (
     <>
@@ -66,7 +65,7 @@ const ReentryAlertAccordion = ({
                 id: 'potential_impact_uk_nation',
                 heading: t('potential_impact_uk_nation'),
                 content: (
-                  <ReentryAlertImpactNation impact={impacts.by_nation} dataPdf={t('potential_impact_uk_nation')} />
+                  <ReentryAlertImpactNation report={lastReport} impact={impacts.by_nation} dataPdf={t('potential_impact_uk_nation')} />
                 ),
               }]
             : []),
