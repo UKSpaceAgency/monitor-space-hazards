@@ -136,12 +136,13 @@ export function getReentryFragmentsRisk({
   fragmentsRisk,
   objectName,
 }: GetReentryFragmentsRisk): TypeRisk {
-  if (fragmentsRisk === null || fragmentsRisk === undefined) {
+  if (fragmentsRisk) {
+    return (fragmentsRisk ?? 'None') as TypeRisk;
+  } else {
     if (objectName?.toLowerCase().includes('starlink')) {
       return 'Very low';
     } else {
       return 'Pending';
     }
   }
-  return (fragmentsRisk ?? 'None') as TypeRisk;
 }
