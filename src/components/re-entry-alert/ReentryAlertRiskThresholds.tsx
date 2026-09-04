@@ -13,7 +13,7 @@ const ReentryAlertRiskThresholds = ({ dataPdf }: ReentryAlertRiskThresholdsProps
 
   return (
     <div data-pdf={dataPdf}>
-      <p className="govuk-body">{t('content')}</p>
+      {t.rich('content')}
       <div className="overflow-x-auto">
         <Table className="text-sm md:text-base">
           <TableHead>
