@@ -62,7 +62,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     header: 'Reentries.table.detailed_region',
     size: 100,
     enableSorting: false,
-    cell: ({ row: { original: { highest_impact } } }) => highest_impact?.region ? jsonRegionsMap[highest_impact.region] ?? highest_impact?.region : 'None',
+    cell: ({ row: { original: { highest_impact } } }) => highest_impact?.region ? jsonRegionsMap[highest_impact.region] ?? highest_impact?.region : 'Unknown',
   },
   {
     id: 'probability_of_fragmentation',
