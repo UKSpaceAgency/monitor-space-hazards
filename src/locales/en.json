@@ -1054,10 +1054,12 @@
     "Risk_thresholds": {
       "content": "<p>All re-entry events are assigned a risk classification.</p><p>For routine events that do not receive UKSA analysis (such as re-entry events involving Starlink objects), a Very Low classification is automatically assigned. Starlink objects are designed for demise so are very unlikely to reach the ground, but they may be visible while passing through the atmosphere, so Very Low is assigned rather than None.</p><p>For re-entry events that do receive additional UKSA analysis, the risk classification is based on probabilities estimated by UKSA, as follows: UKSA estimates probability of debris impact and probability of re-entry for each location of UK interest (UK mainland and individual Overseas Territories and Crown Dependencies). Each location’s risk level is based on the highest of these probabilities.</p>\n",
       "risk_level": "Risk level",
+      "probability_of_debris": "Probability of debris impact in, or atmospheric re-entry over, region (%)",
       "probability_of_atmospheric": "Probability of re-entry over region",
       "probability_of_ground": "Probability of debris impact in UK",
       "probability_of_human_casualty": "Probability of UK casualty risk",
       "risk": {
+        "not_completed": "Analysis not yet completed",
         "equal": "{value}%",
         "less_than": "Less than {value}%",
         "between": "{from}% - {to}%",
