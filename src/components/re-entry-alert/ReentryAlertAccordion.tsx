@@ -6,6 +6,7 @@ import Accordion from '@/ui/accordion/accordion';
 import { ReentryFurtherInformation } from '../re-entry/ReentryFurhterInformation';
 import { ReentryAlertHistoryDataTable } from './data-table/ReentryAlertHistoryDataTable';
 import { ReentryAlertAlertingProcedure } from './ReentryAlertAlertingProcedure';
+import { ReentryAlertEventView } from './ReentryAlertEventView';
 import { ReentryAlertGuidanceIfObjectImpactsUkInterests } from './ReentryAlertGuidanceIfObjectImpactsUkInterests';
 import { ReentryAlertGuidanceOnResponse } from './ReentryAlertGuidanceOnResponse';
 import { ReentryAlertImpactAirspaceAndMaritime } from './ReentryAlertImpactAirspaceAndMaritime';
@@ -52,6 +53,11 @@ const ReentryAlertAccordion = ({
             id: 'alert_history',
             heading: t('alert_history'),
             content: <ReentryAlertHistoryDataTable shortId={event.short_id} reports={reports} dataPdf={t('alert_history')} />,
+          },
+          {
+            id: 'event_view',
+            heading: t('event_view'),
+            content: <ReentryAlertEventView shortId={event.short_id} />,
           },
         ]}
       />
