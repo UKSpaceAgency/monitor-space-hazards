@@ -32,6 +32,7 @@ const ReentryAlertImpactNation = ({ report, impact, dataPdf }: ReentryAlertImpac
 
   return (
     <div data-pdf={dataPdf}>
+      {nationImpact.toString()}
       <ReentryAlertImpactTable impact={nationImpact} byRegion="UK nation" isNation />
       {t.rich('see_further_information', { link: chunks => <a href="#further_information" className="govuk-link">{chunks}</a> })}
     </div>
