@@ -6,8 +6,8 @@ import type {
 } from '@/__generated__/data-contracts';
 
 // Locations at Risk includes a location when any of its probabilities exceeds
-// this threshold (values are fractions, so 0.0001 is displayed as 0.01%)
-export const LOCATIONS_AT_RISK_PROBABILITY_THRESHOLD = 0.0001;
+// this threshold (values are fractions, so 0.001 is displayed as 0.1%)
+export const LOCATIONS_AT_RISK_PROBABILITY_THRESHOLD = 0.001;
 
 // A location gets its own "Risk to <location>" block in the re-entry email once
 // its debris impact probability reaches 0.1%. Anything non-zero below that is

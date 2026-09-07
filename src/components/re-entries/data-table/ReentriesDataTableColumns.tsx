@@ -62,7 +62,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     header: 'Reentries.table.detailed_region',
     size: 100,
     enableSorting: false,
-    cell: ({ row: { original: { highest_impact } } }) => highest_impact?.region ? jsonRegionsMap[highest_impact.region] ?? highest_impact?.region : 'Unknown',
+    cell: ({ row: { original: { highest_impact } } }) => highest_impact?.region ? jsonRegionsMap[highest_impact.region] ?? highest_impact?.region : 'None',
   },
   {
     id: 'probability_of_fragmentation',
@@ -72,7 +72,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     size: 70,
     cell: ({ row: { original: { highest_impact } } }) => {
       const value = highest_impact?.highest_impact_data?.fragments_probability;
-      return isNumber(value) ? `${roundedFixed(value)}` : '-';
+      return isNumber(value) ? `${roundedFixed(value)}` : 'None';
     },
   },
   {
