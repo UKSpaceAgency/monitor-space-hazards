@@ -30,7 +30,8 @@ const ReentryAlertImpactNation = ({ report, impact, dataPdf }: ReentryAlertImpac
     return result;
   }, [report, impact]);
 
-  console.warn(nationImpact);
+  // eslint-disable-next-line no-console
+  console.log(nationImpact);
 
   return (
     <div data-pdf={dataPdf}>
