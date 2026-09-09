@@ -1,5 +1,5 @@
 import { Body, Container, Head, Html, Tailwind } from '@react-email/components';
-import type { ComponentProps } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 
 import { Footer } from './footer';
 import { Header } from './header';
@@ -7,14 +7,18 @@ import { Header } from './header';
 export type LayoutProps = {
   title?: string;
   subtitle?: string;
+  banner?: string;
+  official?: boolean;
   withPlaceholders: boolean;
   isNotification?: boolean;
   isShort?: boolean;
+  isReentryWarning?: boolean;
   eventType?: 'conjunction' | 're-entry' | 'fragmentation';
   shortId?: string;
+  afterFooter?: ReactNode;
 } & ComponentProps<'div'>;
 
-export function Layout({ title, subtitle, withPlaceholders, children, isNotification, isShort, eventType, shortId }: LayoutProps) {
+export function Layout({ title, subtitle, banner, official, withPlaceholders, children, isNotification, isShort, isReentryWarning, eventType, shortId, afterFooter }: LayoutProps) {
   return (
     <Tailwind config={{
       theme: {
@@ -87,10 +91,13 @@ export function Layout({ title, subtitle, withPlaceholders, children, isNotifica
             <Header
               title={title}
               subtitle={subtitle}
+              banner={banner}
+              official={official}
               withPlaceholders={withPlaceholders}
             />
             {children}
-            <Footer withPlaceholders={withPlaceholders} isNotification={isNotification} isShort={isShort} eventType={eventType} shortId={shortId} />
+            <Footer withPlaceholders={withPlaceholders} isNotification={isNotification} isShort={isShort} isReentryWarning={isReentryWarning} eventType={eventType} shortId={shortId} />
+            {afterFooter}
           </Container>
         </Body>
       </Html>

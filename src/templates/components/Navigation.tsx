@@ -33,9 +33,6 @@ export const Navigation = () => {
     if (key === 'organisations') {
       return !isInternationalUser(session?.user?.role);
     }
-    // if (key === 're-entries' || key === 'fragmentations' || key === 'activity') {
-    //   return false;
-    // }
     return true;
   }) as Array<keyof typeof messages['Template']['navigation']>;
   // const keys = Object.keys(messages.Template.navigation) as Array<keyof typeof messages['Template']['navigation']>;

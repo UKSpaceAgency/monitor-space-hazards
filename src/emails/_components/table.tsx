@@ -38,7 +38,7 @@ export const Table = ({ data, forceAlignLeft, ...props }: TableProps) => {
                 className={clsx('p-2 text-sm w-1/3', {
                   'w-2/3': !isFirstColumn && cellsLength === 2,
                   'font-bold': isFirstColumn,
-                  'text-center': !isFirstColumn,
+                  'text-center': !isFirstColumn && !forceAlignLeft,
                   'text-left': isFirstColumn || forceAlignLeft,
                 })}
                 style={{ ...riskStyle }}

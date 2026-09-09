@@ -13,46 +13,39 @@ const ReentryAlertRiskThresholds = ({ dataPdf }: ReentryAlertRiskThresholdsProps
 
   return (
     <div data-pdf={dataPdf}>
-      <p className="govuk-body">{t('content')}</p>
+      {t.rich('content')}
       <div className="overflow-x-auto">
         <Table className="text-sm md:text-base">
           <TableHead>
             <TableRow>
-              <TableCellHeader className="md:w-28">{t('risk_level')}</TableCellHeader>
-              <TableCellHeader>{t('probability_of_ground')}</TableCellHeader>
-              <TableCellHeader>{t('probability_of_atmospheric')}</TableCellHeader>
-              {/* <TableCellHeader>{t('probability_of_human_casualty')}</TableCellHeader> */}
+              <TableCellHeader className="md:w-1/3">{t('risk_level')}</TableCellHeader>
+              <TableCellHeader>{t('probability_of_debris')}</TableCellHeader>
             </TableRow>
           </TableHead>
           <TableBody>
             <TableRow>
+              <TableCell>{renderRiskTag('Pending')}</TableCell>
+              <TableCell>{t('risk.not_completed')}</TableCell>
+            </TableRow>
+            <TableRow>
               <TableCell>{renderRiskTag('None')}</TableCell>
-              <TableCell>{t('risk.equal', { value: 0 })}</TableCell>
               <TableCell>{t('risk.equal', { value: 0 })}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>{renderRiskTag('Very low')}</TableCell>
               <TableCell>{t('risk.between', { from: 0, to: 0.1 })}</TableCell>
-              <TableCell>{t('risk.between', { from: 0, to: 0.1 })}</TableCell>
-              {/* <TableCell>{t('risk.low', { value: 0.1 })}</TableCell> */}
             </TableRow>
             <TableRow>
               <TableCell>{renderRiskTag('Low')}</TableCell>
               <TableCell>{t('risk.between', { from: 0.1, to: 1 })}</TableCell>
-              <TableCell>{t('risk.between', { from: 0.1, to: 1 })}</TableCell>
-              {/* <TableCell>{t('risk.low', { value: 0.1 })}</TableCell> */}
             </TableRow>
             <TableRow>
               <TableCell>{renderRiskTag('Medium')}</TableCell>
               <TableCell>{t('risk.between', { from: 1, to: 5 })}</TableCell>
-              <TableCell>{t('risk.between', { from: 1, to: 5 })}</TableCell>
-              {/* <TableCell>{t('risk.medium', { from: 0.1, to: 1 })}</TableCell> */}
             </TableRow>
             <TableRow>
               <TableCell>{renderRiskTag('High')}</TableCell>
               <TableCell>{t('risk.more_than', { value: 5 })}</TableCell>
-              <TableCell>{t('risk.more_than', { value: 5 })}</TableCell>
-              {/* <TableCell>{t('risk.high', { value: 1 })}</TableCell> */}
             </TableRow>
           </TableBody>
         </Table>

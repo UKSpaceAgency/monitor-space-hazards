@@ -6,6 +6,7 @@ import Accordion from '@/ui/accordion/accordion';
 import { ReentryFurtherInformation } from '../re-entry/ReentryFurhterInformation';
 import { ReentryAlertHistoryDataTable } from './data-table/ReentryAlertHistoryDataTable';
 import { ReentryAlertAlertingProcedure } from './ReentryAlertAlertingProcedure';
+import { ReentryAlertEventView } from './ReentryAlertEventView';
 import { ReentryAlertGuidanceIfObjectImpactsUkInterests } from './ReentryAlertGuidanceIfObjectImpactsUkInterests';
 import { ReentryAlertGuidanceOnResponse } from './ReentryAlertGuidanceOnResponse';
 import { ReentryAlertImpactAirspaceAndMaritime } from './ReentryAlertImpactAirspaceAndMaritime';
@@ -33,7 +34,6 @@ const ReentryAlertAccordion = ({
   const t = useTranslations('Reentry_alert.accordion');
 
   const impacts = lastReport?.impact;
-  // const fragmentsRisk = getReentryFragmentsRisk(event.fragments_probability, event.object_name);
 
   return (
     <>
@@ -54,6 +54,11 @@ const ReentryAlertAccordion = ({
             heading: t('alert_history'),
             content: <ReentryAlertHistoryDataTable shortId={event.short_id} reports={reports} dataPdf={t('alert_history')} />,
           },
+          {
+            id: 'event_view',
+            heading: t('event_view'),
+            content: <ReentryAlertEventView shortId={event.short_id} />,
+          },
         ]}
       />
       <h2 data-anchor="potential-impact" className="govuk-heading-l">{t('potential_impact')}</h2>
@@ -66,7 +71,7 @@ const ReentryAlertAccordion = ({
                 id: 'potential_impact_uk_nation',
                 heading: t('potential_impact_uk_nation'),
                 content: (
-                  <ReentryAlertImpactNation impact={impacts.by_nation} dataPdf={t('potential_impact_uk_nation')} />
+                  <ReentryAlertImpactNation report={lastReport} impact={impacts.by_nation} dataPdf={t('potential_impact_uk_nation')} />
                 ),
               }]
             : []),

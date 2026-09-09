@@ -68,7 +68,7 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
             reentryId={shortId}
             reportId={lastReport.report_number.toString().padStart(3, '0')}
             overflightTime={event.overflight_time}
-            locationWithHighestRisk={`${event.highest_impact?.detailed_region}`}
+            locationWithHighestRisk={`${event.highest_impact?.region}`}
           />
         )}
       </Suspense>

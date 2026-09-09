@@ -89,6 +89,7 @@ export const getFullCountry = (key: string | null | undefined) => {
 
 export enum RegionsEnum {
   ANYWHERE = 'ANYWHERE',
+  UNITED_KINGDOM = 'UNITED_KINGDOM',
   ENGLAND = 'ENGLAND',
   NORTHERN_IRELAND = 'NORTHERN_IRELAND',
   SCOTLAND = 'SCOTLAND',
@@ -114,6 +115,10 @@ export const Regions: {
   [RegionsEnum.ANYWHERE]: {
     id: RegionsEnum.ANYWHERE,
     name: 'Anywhere in the United Kingdom',
+  },
+  [RegionsEnum.UNITED_KINGDOM]: {
+    id: RegionsEnum.UNITED_KINGDOM,
+    name: 'United Kingdom',
   },
   [RegionsEnum.ENGLAND]: {
     id: RegionsEnum.ENGLAND,
@@ -166,10 +171,19 @@ export const Regions: {
 };
 
 export const UK_NATION_ORDER = [
+  'united_kingdom',
   'england_nation',
   'scotland_nation',
   'wales_nation',
   'northern_ireland_nation',
+] as const;
+
+export const UK_AIRSPACE_AND_MARITIME_ORDER = [
+  'shanwick_airspace',
+  'shanwick_oceanic_fir',
+  'london_fir',
+  'scotland_fir',
+  'uk_navarea',
 ] as const;
 
 export const sortByKeyOrder = <T>(
@@ -184,7 +198,11 @@ export const sortByKeyOrder = <T>(
 
 export const sortImpactByNation = <T>(record: Record<string, T>) => sortByKeyOrder(record, UK_NATION_ORDER);
 
+export const sortImpactByAirspaceAndMaritime = <T>(record: Record<string, T>) =>
+  sortByKeyOrder(record, UK_AIRSPACE_AND_MARITIME_ORDER);
+
 export const jsonRegionsMap: Record<string, string> = {
+  united_kingdom: 'United Kingdom (total)',
   england_nation: 'England',
   northern_ireland_nation: 'Northern Ireland',
   scotland_nation: 'Scotland',

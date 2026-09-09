@@ -6,6 +6,7 @@ import { objectTypeIndex } from '@/emails/_utils/utils';
 import { dayjs, FORMAT_DATE_FULL_MONTH, FORMAT_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import { roundedFixed } from '@/utils/Math';
+import { getReentryFragmentsRisk } from '@/utils/ReentryRisk';
 import { jsonRegionsMap } from '@/utils/Regions';
 import { renderRiskTag } from '@/utils/Tags';
 
@@ -15,9 +16,13 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     accessorKey: 'highest_impact',
     header: 'Reentries.table.risk',
     size: 100,
-    cell: ({ getValue }) => {
+    cell: ({ getValue, row: { original: { object_name } } }) => {
       const highestImpact = getValue<TypeEventHighestImpact | null>();
-      return renderRiskTag(highestImpact?.highest_risk as TypeRisk);
+      const risk = getReentryFragmentsRisk({
+        fragmentsRisk: highestImpact?.highest_risk,
+        objectName: object_name,
+      });
+      return renderRiskTag(risk as TypeRisk);
     },
   },
   {
@@ -52,12 +57,12 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     size: 100,
   },
   {
-    id: 'detailed_region',
-    accessorKey: 'detailed_region',
+    id: 'region',
+    accessorKey: 'region',
     header: 'Reentries.table.detailed_region',
     size: 100,
     enableSorting: false,
-    cell: ({ row: { original: { highest_impact } } }) => jsonRegionsMap[highest_impact?.detailed_region ?? ''] ?? 'Unknown region',
+    cell: ({ row: { original: { highest_impact } } }) => highest_impact?.region ? jsonRegionsMap[highest_impact.region] ?? highest_impact?.region : 'None',
   },
   {
     id: 'probability_of_fragmentation',
@@ -67,7 +72,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     size: 70,
     cell: ({ row: { original: { highest_impact } } }) => {
       const value = highest_impact?.highest_impact_data?.fragments_probability;
-      return isNumber(value) ? `${roundedFixed(value)}` : '-';
+      return isNumber(value) ? `${roundedFixed(value)}` : 'None';
     },
   },
   {

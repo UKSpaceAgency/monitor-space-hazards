@@ -1,14 +1,56 @@
 import { isNumber } from 'lodash';
 
 import type {
-  TypeAlertType,
   TypeReentryEventReportImpact,
   TypeRisk,
 } from '@/__generated__/data-contracts';
 
 // Locations at Risk includes a location when any of its probabilities exceeds
-// this threshold (values are fractions, so 0.0001 is displayed as 0.01%)
-export const LOCATIONS_AT_RISK_PROBABILITY_THRESHOLD = 0.0001;
+// this threshold (values are fractions, so 0.001 is displayed as 0.1%)
+export const LOCATIONS_AT_RISK_PROBABILITY_THRESHOLD = 0.001;
+
+// A location gets its own "Risk to <location>" block in the re-entry email once
+// its debris impact probability reaches 0.1%. Anything non-zero below that is
+// summarised under "Other Regions At Risk" instead.
+export const REPORTABLE_LOCATION_PROBABILITY_THRESHOLD = 0.001;
+
+export function isReportableLocation(fragmentsProbability: number | null | undefined): boolean {
+  return isNumber(fragmentsProbability) && fragmentsProbability >= REPORTABLE_LOCATION_PROBABILITY_THRESHOLD;
+}
+
+export function isOtherRegionAtRisk(fragmentsProbability: number | null | undefined): boolean {
+  return isNumber(fragmentsProbability)
+    && fragmentsProbability > 0
+    && fragmentsProbability < REPORTABLE_LOCATION_PROBABILITY_THRESHOLD;
+}
+
+/**
+ * Risk banding for a debris impact probability expressed as a fraction:
+ * Very low < 0.1%, Low 0.1%-1%, Medium 1%-5%, High > 5%.
+ */
+export function getRiskLevelFromFraction(probability: number | null | undefined): TypeRisk | null {
+  if (!isNumber(probability)) {
+    return null;
+  }
+
+  if (probability === 0) {
+    return 'None';
+  }
+
+  if (probability < 0.001) {
+    return 'Very low';
+  }
+
+  if (probability <= 0.01) {
+    return 'Low';
+  }
+
+  if (probability <= 0.05) {
+    return 'Medium';
+  }
+
+  return 'High';
+}
 
 export function hasLocationAtRiskProbability(
   ...probabilities: Array<number | null | undefined>
@@ -79,9 +121,8 @@ export function getReentryFragmentsProbability(
 }
 
 type GetReentryFragmentsRisk = {
-  fragmentsRisk?: TypeRisk | null;
+  fragmentsRisk?: string | null;
   objectName?: string | null;
-  alertType?: TypeAlertType[] | null;
 };
 
 /**
@@ -94,21 +135,14 @@ type GetReentryFragmentsRisk = {
 export function getReentryFragmentsRisk({
   fragmentsRisk,
   objectName,
-  alertType,
-}: GetReentryFragmentsRisk) {
-  const hasNoAlertType = !alertType?.length;
-
-  if (hasNoAlertType) {
-    if (fragmentsRisk) {
-      return fragmentsRisk;
-    } else {
-      if (objectName?.toLowerCase().includes('starlink')) {
-        return 'Very low';
-      } else {
-        return null;
-      }
-    }
+}: GetReentryFragmentsRisk): TypeRisk {
+  if (fragmentsRisk) {
+    return (fragmentsRisk ?? 'None') as TypeRisk;
   } else {
-    return 'closedown';
+    if (objectName?.toLowerCase().includes('starlink')) {
+      return 'Very low';
+    } else {
+      return 'Pending';
+    }
   }
 }
