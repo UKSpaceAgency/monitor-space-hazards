@@ -2380,6 +2380,7 @@
       "event_summary_title": "Event Summary",
       "regions_at_risk_title": "Regions at Risk",
       "additional_information_title": "Additional Information",
+      "object_information_title": "Object Information",
       "event_details_title": "Event Details",
       "banner": "Uncontrolled Re-Entry Warning - Level {level}",
       "handling_advice_title": "Handling Advice",
@@ -2387,7 +2388,14 @@
       "utc_note": "* Coordinated Universal Time (UTC) is 1 hour behind British Summer Time (BST) and the same as Greenwich Mean Time (GMT).",
       "Assessment": {
         "title": "Assessment",
-        "placeholder": "An analyst assessment for this report is not yet available."
+        "placeholder": "An analyst assessment for this report is not yet available.",
+        "re_entry_location": "Re-Entry Location",
+        "time": "Time",
+        "uncertainty_window": "Uncertainty Window",
+        "minute": "minute",
+        "minutes": "minutes",
+        "potential_debris_field": "Potential Debris Field",
+        "flight_path": "Flight Path"
       },
       "Location_risk": {
         "title": "Risk to {location}",
@@ -2419,6 +2427,15 @@
         "analyst_report_title": "Level {level} Analyst Report",
         "analyst_report_content_level_1": "<p>This report is a Level 1 Alert (also known as an Analyst Report). It is intended primarily for space operations centres and data partners. Events that reach a threshold to be notified to response partners across UK Government are handled separately. This report should not be forwarded without permission.</p>",
         "analyst_report_content_level_2": "<p>This report is a Level 2 Alert. Wording for Level 2 reports is still to be confirmed.</p>"
+      },
+      "Understanding_this_report_closed": {
+        "title": "Understanding This Report",
+        "overflights_title": "Overflights and debris fields",
+        "overflights_content": "<p>Overflight times indicate the approximate time the re-entering object's orbital path passes over, or in close proximity to, the location above. They are the approximate time(s) at which the above location could be potentially at risk from the re-entry.</p><p>Debris fields show the area where one or more debris fragments could fall based on enhanced UKSA modelling.</p>",
+        "alert_title": "Level {level} Alert",
+        "alert_content_level_1": "<p>This report is a Level 1 Alert. It is intended primarily for space operations centres and data partners. Events that reach a threshold to be notified to response partners across UK Government are handled separately. This report should not be forwarded without permission.</p>",
+        "alert_content_level_2": "<p>This report is a Level 2 Alert. It is intended for response partners across UK Government, and is issued when an event reaches the threshold for wider notification. This report should not be forwarded without permission.</p>",
+        "more_information": "<p>More information about this report can be found at <link>Monitor Space Hazards - GOV.UK</link></p>"
       },
       "Analysis_process": {
         "content": "Analysis process used for generating this report: <process></process>",

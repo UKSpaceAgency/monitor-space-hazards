@@ -72,7 +72,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     size: 70,
     cell: ({ row: { original: { highest_impact } } }) => {
       const value = highest_impact?.highest_impact_data?.fragments_probability;
-      return isNumber(value) ? `${roundedFixed(value)}` : 'None';
+      return `${roundedFixed(isNumber(value) ? value : 0)}`;
     },
   },
   {
