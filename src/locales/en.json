@@ -2381,9 +2381,10 @@
       "regions_at_risk_title": "Regions at Risk",
       "additional_information_title": "Additional Information",
       "object_information_title": "Object Information",
+      "additional_object_information_title": "Additional Object Information",
       "event_details_title": "Event Details",
       "banner": "Uncontrolled Re-Entry Warning - Level {level}",
-      "handling_advice_title": "Handling Advice",
+      "guidance_on_response_title": "Guidance on Response",
       "other_regions_at_risk_title": "Other Regions At Risk",
       "utc_note": "* Coordinated Universal Time (UTC) is 1 hour behind British Summer Time (BST) and the same as Greenwich Mean Time (GMT).",
       "Assessment": {
@@ -2400,13 +2401,15 @@
       "Location_risk": {
         "title": "Risk to {location}",
         "risk": "Risk",
-        "probability_of_debris_impact": "Probability of Debris Impact",
-        "probability_of_reentry": "Probability of Re-Entry",
-        "probability_of_human_casualties": "Probability of Human Casualties",
-        "overflight_times": "Overflight Times",
+        "probability_of_debris_impact": "Probability of Debris Impact in {location}",
+        "probability_of_reentry": "Probability of Re-Entry over {location}",
+        "probability_of_human_casualties": "Probability of Human Casualties in {location}",
+        "overflight_times": "{location} Overflight Times",
         "no_overflights": "No overflights",
-        "empty_title": "Regions At Risk",
-        "empty": "No region currently reaches the level required for individual or detailed territory reporting."
+        "below_threshold": "Risk to UK interests does not meet the threshold for individual territory reporting.",
+        "predicted_re_entry_time": "Predicted Re-Entry Time",
+        "uncertainty_window": "Uncertainty Window",
+        "minutes": "minutes"
       },
       "Other_regions_at_risk": {
         "description": "The risk to the below locations is non-zero, but does not reach the level required to necessitate individual or detailed territory reporting.",
@@ -2418,15 +2421,26 @@
         "overseas_territories_and_crown_dependencies": "UK CDOTs",
         "empty": "No regions at risk unless shown above."
       },
+      "Potential_impact": {
+        "by_nation_title": "Potential impact by UK nation",
+        "by_airspace_and_maritime_title": "Potential impact by Airspace and Maritime",
+        "by_overseas_territories_title": "Potential impact by Overseas Territories and Crown Dependencies",
+        "by_overseas_territories_description": "This section includes locations where risk is non-zero, but is below the level required to necessitate individual or detailed territory reporting.",
+        "location": "Location",
+        "probability_of_debris_impact": "Probability of debris impact in",
+        "probability_of_reentry": "Probability of re-entry over",
+        "empty": "No Overseas Territories or Crown Dependencies are currently at risk."
+      },
       "Understanding_this_report": {
         "title": "Understanding This Report",
         "risk_calculations_title": "Risk Calculations and Percentages",
-        "risk_calculations_content": "<p>Percentages (for UK, Crown Dependencies, UK Overseas Territories, UK NAVAREA and UK FIRs) refer to the percentage probability of the object re-entering, or depositing debris, over or in the named area. Sign in to <link>Monitor Space Hazards</link> to view analysis and additional information.</p>",
+        "risk_calculations_content": "<p>Percentages (for UK, Crown Dependencies, UK Overseas Territories, UK NAVAREA and UK FIRs) refer to the percentage probability of the object re-entering, or depositing debris, over or in the named area.</p>",
         "overflights_title": "Overflights and debris fields",
         "overflights_content": "<p>Overflight times indicate the approximate time the re-entering object's orbital path passes over, or in close proximity to, the location above. They are the approximate time(s) at which the above location could be potentially at risk from the re-entry.</p><p>Debris fields show the area where one or more debris fragments could fall based on enhanced UKSA modelling.</p>",
-        "analyst_report_title": "Level {level} Analyst Report",
-        "analyst_report_content_level_1": "<p>This report is a Level 1 Alert (also known as an Analyst Report). It is intended primarily for space operations centres and data partners. Events that reach a threshold to be notified to response partners across UK Government are handled separately. This report should not be forwarded without permission.</p>",
-        "analyst_report_content_level_2": "<p>This report is a Level 2 Alert. Wording for Level 2 reports is still to be confirmed.</p>"
+        "alert_title_level_1": "Level 1 Alert",
+        "alert_content_level_1": "<p>This report is a Level 1 Alert. It is intended primarily for space operations centres and data partners. Events that reach a threshold to be notified to response partners across UK Government are handled separately. This report should not be forwarded without permission.</p>",
+        "warning_title_level_2": "Level 2 Warning",
+        "warning_content_level_2": "<p>This report is a Level 2 Warning. This report should not be forwarded without permission.</p>"
       },
       "Understanding_this_report_closed": {
         "title": "Understanding This Report",
@@ -2495,8 +2509,11 @@
           "high": "<p>This event is assessed as <tag>High</tag> risk.</p><p>This means there is a significantly higher-than-usual chance it could negatively affect UK interests. However, it is still more likely than not to pass without incident.</p><p>Stakeholders are responsible for deciding their own response to this report. In most cases, stakeholders should ensure internal awareness, review response plans and stay engaged with the National Space Operations Centre for updates.</p>"
         }
       },
+      "Damages_and_liability": {
+        "title": "Damages and Liability"
+      },
       "Handling_space_debris": {
-        "title": "Hazardous Materials",
+        "title": "Handling Space Debris",
         "content": "<p>Space debris can be hazardous and may contain materials that pose a serious risk to health. All re-entred debris should be considered as hazardous until proven otherwise. This most well-known hazardous substances found in rockets and satellites include <hydrozineLink>Hydrazine</hydrozineLink> and <keroseneLink>Kerosene</keroseneLink>.</p><p>If space debris survives to the ground, it should be considered hazardous until proven otherwise. Debris must not be disposed of or given to the public. Standard hazardous materials (hazmat) response procedures, such as testing by the fire service, should be followed.</p>"
       },
       "Public_guidance_on_space_debris": {
@@ -2504,8 +2521,7 @@
         "content": "<p>Space debris can be hazardous and may contain materials that pose a serious risk to health. If you come across an object that you believe to be space debris, follow these steps:</p><ul><li>Do not touch the object</li><li>Note the location of the object</li><li>If possible, take a photograph of the object without touching it</li><li>Do not stay close to the object</li><li>Notify the authorities by calling 111 (or the relevant number outside the UK)</li><li>Space debris remains the property of the spacecraft owner.</li><li>If you have already handled an object you believe to be space debris, place it in a safe location where others will not touch it and inform the authorities immediately.</li></ul>"
       },
       "Press_attention": {
-        "title": "Press Attention",
-        "empty": "We are not currently aware of substantive press interest in this event."
+        "title": "Press Attention"
       }
     },
     "Conjunction_alert": {

@@ -8,7 +8,6 @@ export type LayoutProps = {
   title?: string;
   subtitle?: string;
   banner?: string;
-  official?: boolean;
   withPlaceholders: boolean;
   isNotification?: boolean;
   isShort?: boolean;
@@ -18,7 +17,7 @@ export type LayoutProps = {
   afterFooter?: ReactNode;
 } & ComponentProps<'div'>;
 
-export function Layout({ title, subtitle, banner, official, withPlaceholders, children, isNotification, isShort, isReentryWarning, eventType, shortId, afterFooter }: LayoutProps) {
+export function Layout({ title, subtitle, banner, withPlaceholders, children, isNotification, isShort, isReentryWarning, eventType, shortId, afterFooter }: LayoutProps) {
   return (
     <Tailwind config={{
       theme: {
@@ -92,7 +91,6 @@ export function Layout({ title, subtitle, banner, official, withPlaceholders, ch
               title={title}
               subtitle={subtitle}
               banner={banner}
-              official={official}
               withPlaceholders={withPlaceholders}
             />
             {children}

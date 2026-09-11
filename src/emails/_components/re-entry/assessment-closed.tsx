@@ -6,7 +6,6 @@ import { createEmailTranslator } from '@/emails/_utils/utils';
 import { dayjs, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 
 import { Map } from '../map';
-import { Markdown } from '../markdown';
 import { Section } from '../section';
 import { Table } from '../table';
 import { Text } from '../text';
@@ -14,22 +13,18 @@ import { Text } from '../text';
 type ReentryAssessmentClosedProps = {
   event: TypeReentryEventOut;
   report: TypeReentryEventReportOut;
-  /** Free text analyst assessment (executive_summary_level_1 / executive_summary_level_2). */
-  assessment?: string | null;
-  /** Human readable re-entry location, e.g. "Atlantic Ocean". */
-  reentryLocation?: string | null;
 };
 
 const UNKNOWN = 'Unknown';
 
-export const ReentryAssessmentClosed = ({ event, report, assessment, reentryLocation }: ReentryAssessmentClosedProps) => {
+export const ReentryAssessmentClosed = ({ event, report }: ReentryAssessmentClosedProps) => {
   const t = createEmailTranslator({ namespace: 'Emails.Reentry_alert.Assessment' });
 
   const decayEpoch = report.decay_epoch ?? event.decay_epoch;
   const uncertaintyWindow = report.uncertainty_window ?? event.uncertainty_window;
 
   const data = [
-    [t('re_entry_location'), reentryLocation ?? UNKNOWN],
+    [t('re_entry_location'), event.closed_comment ?? ''],
     [t('time'), decayEpoch ? dayjs.utc(decayEpoch).format(FORMAT_FULL_DATE_TIME) : UNKNOWN],
     [
       t('uncertainty_window'),
@@ -42,11 +37,7 @@ export const ReentryAssessmentClosed = ({ event, report, assessment, reentryLoca
   return (
     <Section title={t('title')}>
       <EmailSection className="!w-full pb-4">
-        {assessment
-          ? <Markdown markdownCustomStyles={{ p: { fontSize: '14px', lineHeight: '20px', marginTop: '0', marginBottom: '16px', fontStyle: 'italic' } }}>{assessment}</Markdown>
-          // The analyst assessment is not yet exposed by the API, so the copy
-          // below stands in until the field is available.
-          : <Text className="italic">{t('placeholder')}</Text>}
+        <Text className="italic">{event.executive_summary_comment}</Text>
         <Table data={data} forceAlignLeft />
       </EmailSection>
       <EmailSection className="!w-full pb-4">

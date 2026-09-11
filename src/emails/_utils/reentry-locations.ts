@@ -4,7 +4,7 @@ import type {
   TypeOverflightProbability,
   TypeReentryEventReportOut,
 } from '@/__generated__/data-contracts';
-import { isOtherRegionAtRisk, isReportableLocation } from '@/utils/ReentryRisk';
+import { hasLocationAtRiskProbability, isOtherRegionAtRisk } from '@/utils/ReentryRisk';
 import {
   jsonRegionsMap,
   sortImpactByAirspaceAndMaritime,
@@ -23,6 +23,22 @@ export type ReentryLocation = TypeOverflightProbability & {
   name: string;
   group: ReentryLocationGroup;
 };
+
+/**
+ * A location supplied by the sending service for its own "Risk to <location>"
+ * block. `map_src` is the URL of the pre-rendered map image for that location.
+ */
+export type ReentryLocationAtRisk = TypeOverflightProbability & {
+  /** Impact key, e.g. `united_kingdom`, `falkland_islands`. */
+  key: string;
+  /** Display name. Falls back to the known region name for `key`. */
+  name?: string | null;
+  map_src: string;
+};
+
+/** The UK total is titled plainly, unlike the "(total)" label used in the nation table. */
+export const getLocationName = (key: string, name?: string | null): string =>
+  name || (key === UNITED_KINGDOM_KEY ? 'United Kingdom' : jsonRegionsMap[key] ?? key);
 
 const toLocations = (
   impact: Record<string, TypeOverflightProbability> | undefined | null,
@@ -52,23 +68,19 @@ const toUnitedKingdomLocation = (report: TypeReentryEventReportOut): ReentryLoca
   overflight_time: report.overflight_time,
 });
 
-const allLocations = (report: TypeReentryEventReportOut): ReentryLocation[] => [
-  toUnitedKingdomLocation(report),
-  ...toLocations(report.impact?.by_nation, 'uk_mainland'),
-  ...toLocations(report.impact?.maritime_and_airspace, 'maritime_and_airspace'),
-  ...toLocations(
-    report.impact?.overseas_territories_and_crown_dependencies,
-    'overseas_territories_and_crown_dependencies',
-  ),
-];
+const highestProbability = (location: TypeOverflightProbability): number =>
+  Math.max(
+    ...[location.fragments_probability, location.atmospheric_probability, location.human_casualty_probability]
+      .map(probability => (isNumber(probability) ? probability : 0)),
+  );
 
 /**
- * Highest debris impact probability first. Equal probabilities fall back to
- * alphabetical order, except the United Kingdom which leads its tie group.
+ * Highest of the three probabilities first. Ties fall back to alphabetical
+ * order, except the United Kingdom which leads its tie group.
  */
-const byProbabilityThenName = (a: ReentryLocation, b: ReentryLocation): number => {
-  const probabilityA = isNumber(a.fragments_probability) ? a.fragments_probability : 0;
-  const probabilityB = isNumber(b.fragments_probability) ? b.fragments_probability : 0;
+const byHighestProbabilityThenName = (a: ReentryLocationAtRisk, b: ReentryLocationAtRisk): number => {
+  const probabilityA = highestProbability(a);
+  const probabilityB = highestProbability(b);
 
   if (probabilityA !== probabilityB) {
     return probabilityB - probabilityA;
@@ -82,16 +94,103 @@ const byProbabilityThenName = (a: ReentryLocation, b: ReentryLocation): number =
     return 1;
   }
 
-  return a.name.localeCompare(b.name);
+  return getLocationName(a.key, a.name).localeCompare(getLocationName(b.key, b.name));
 };
 
 /**
- * Locations that warrant their own detailed block, ordered for display.
+ * Locations that get their own "Risk to <location>" block: any of the three
+ * probabilities must exceed 0.1% (the UK included, it is not shown by default).
  */
-export const getReportableLocations = (report: TypeReentryEventReportOut): ReentryLocation[] =>
-  allLocations(report)
-    .filter(location => isReportableLocation(location.fragments_probability))
-    .sort(byProbabilityThenName);
+export const getLocationsAtRisk = (locations: ReentryLocationAtRisk[]): ReentryLocationAtRisk[] =>
+  locations
+    .filter(location =>
+      hasLocationAtRiskProbability(
+        location.fragments_probability,
+        location.atmospheric_probability,
+        location.human_casualty_probability,
+      ),
+    )
+    .sort(byHighestProbabilityThenName);
+
+const isPositive = (value: number | null | undefined) => isNumber(value) && value > 0;
+
+/** Every UK nation is always listed, whether or not the report carries data for it. */
+const POTENTIAL_IMPACT_NATION_KEYS = [
+  'england_nation',
+  'scotland_nation',
+  'wales_nation',
+  'northern_ireland_nation',
+] as const;
+
+/**
+ * Every airspace/maritime region is always listed. Shanwick can arrive under
+ * either key depending on the report, so both are checked.
+ */
+const POTENTIAL_IMPACT_AIRSPACE_AND_MARITIME_KEYS: readonly (readonly string[])[] = [
+  ['uk_navarea'],
+  ['london_fir'],
+  ['scotland_fir'],
+  ['shanwick_oceanic_fir', 'shanwick_airspace'],
+];
+
+const toFixedLocations = (
+  impact: Record<string, TypeOverflightProbability> | undefined | null,
+  keys: readonly (readonly string[])[],
+  group: ReentryLocationGroup,
+): ReentryLocation[] =>
+  keys.map((aliases) => {
+    const key = aliases.find(alias => impact?.[alias]) ?? aliases[0]!;
+    return {
+      ...(impact?.[key] ?? {}),
+      key,
+      name: jsonRegionsMap[key] ?? key,
+      group,
+    };
+  });
+
+/**
+ * "Potential impact by UK nation": the UK total followed by all four nations,
+ * always shown regardless of probability.
+ */
+export const getPotentialImpactByNation = (report: TypeReentryEventReportOut): ReentryLocation[] => [
+  {
+    ...toUnitedKingdomLocation(report),
+    name: jsonRegionsMap[UNITED_KINGDOM_KEY] ?? 'United Kingdom (total)',
+  },
+  ...toFixedLocations(
+    report.impact?.by_nation,
+    POTENTIAL_IMPACT_NATION_KEYS.map(key => [key]),
+    'uk_mainland',
+  ),
+];
+
+/**
+ * "Potential impact by Airspace and Maritime": all four regions, always shown
+ * regardless of probability.
+ */
+export const getPotentialImpactByAirspaceAndMaritime = (
+  report: TypeReentryEventReportOut,
+): ReentryLocation[] =>
+  toFixedLocations(
+    report.impact?.maritime_and_airspace,
+    POTENTIAL_IMPACT_AIRSPACE_AND_MARITIME_KEYS,
+    'maritime_and_airspace',
+  );
+
+/**
+ * "Potential impact by Overseas Territories and Crown Dependencies": any
+ * territory with a non-zero debris or re-entry probability, alphabetically.
+ * Territories that already have their own detailed block are still included.
+ */
+export const getPotentialImpactByOverseasTerritories = (
+  report: TypeReentryEventReportOut,
+): ReentryLocation[] =>
+  toLocations(
+    report.impact?.overseas_territories_and_crown_dependencies,
+    'overseas_territories_and_crown_dependencies',
+  )
+    .filter(location => isPositive(location.fragments_probability) || isPositive(location.atmospheric_probability))
+    .sort((a, b) => a.name.localeCompare(b.name));
 
 /**
  * Locations with a non-zero but below-threshold risk, grouped and ordered the

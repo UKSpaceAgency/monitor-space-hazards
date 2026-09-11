@@ -6,36 +6,34 @@ import { ReentryObjectInformation } from './_components/re-entry/object-informat
 import { ReentryUnderstandingThisReportClosed } from './_components/re-entry/understanding-this-report-closed';
 import { Section } from './_components/section';
 import { Subheader } from './_components/subheader';
-import { createEmailTranslator } from './_utils/utils';
+import { createEmailTranslator, objectTypeIndex } from './_utils/utils';
 
 type ReEntryEmailProps = {
   event: TypeReentryEventOut;
   report: TypeReentryEventReportOut;
   withPlaceholders: boolean;
-  /**
-   * Level 1 goes to space operations centres and data partners, Level 2 to the
-   * wider response community. Drives the wording of "Understanding This Report".
-   */
   level?: 1 | 2;
-  /** Free text analyst assessment (executive_summary_level_1 / executive_summary_level_2). */
-  assessment?: string | null;
-  /** Human readable re-entry location, e.g. "Atlantic Ocean". */
-  reentryLocation?: string | null;
 };
 
-function ReEntryClosedownEmail({ event, report, withPlaceholders, level = 1, assessment, reentryLocation }: ReEntryEmailProps) {
+function ReEntryClosedownEmail({ event, report, withPlaceholders, level = 1 }: ReEntryEmailProps) {
   const t = createEmailTranslator({ namespace: 'Emails' });
+
+  const objectName = report.object_name ?? event.object_name ?? '';
+  const objectType = report.object_type ?? event.object_type;
+  const objectTypeLabel = objectType
+    ? objectTypeIndex[objectType as keyof typeof objectTypeIndex] ?? objectType
+    : '';
 
   return (
     <Layout
       eventType="re-entry"
       shortId={event.short_id}
-      title={`${event.object_name}`}
+      title={`${objectTypeLabel} ${objectName}`.trim()}
       withPlaceholders={withPlaceholders}
       isReentryWarning
     >
       <Subheader comment={event.closed_comment} />
-      <ReentryAssessmentClosed event={event} report={report} assessment={assessment} reentryLocation={reentryLocation} />
+      <ReentryAssessmentClosed event={event} report={report} />
       <Section title={t('Reentry_alert.object_information_title')}>
         <ReentryObjectInformation event={event} report={report} />
       </Section>

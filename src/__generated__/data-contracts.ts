@@ -106,8 +106,6 @@ export interface TypeActivityEvent {
   object_type?: string | null;
   /** International Designator */
   international_designator?: string | null;
-  /** Operator */
-  operator?: string | null;
   /** Licensing Country */
   licensing_country?: string | null;
   /** Period */
@@ -231,8 +229,6 @@ export interface TypeActivityEventOut {
   object_type?: string | null;
   /** International Designator */
   international_designator?: string | null;
-  /** Operator */
-  operator?: string | null;
   /** Licensing Country */
   licensing_country?: string | null;
   /** Period */
@@ -358,8 +354,6 @@ export interface TypeActivityReport {
   object_type?: string | null;
   /** International Designator */
   international_designator?: string | null;
-  /** Operator */
-  operator?: string | null;
   /** Licensing Country */
   licensing_country?: string | null;
   /** Period */
@@ -461,8 +455,6 @@ export interface TypeActivityReportOut {
   object_type?: string | null;
   /** International Designator */
   international_designator?: string | null;
-  /** Operator */
-  operator?: string | null;
   /** Licensing Country */
   licensing_country?: string | null;
   /** Period */
@@ -2626,6 +2618,8 @@ export interface TypeReentryEvent {
   damages_liability_comment?: string | null;
   /** Press Attention Comment */
   press_attention_comment?: string | null;
+  /** Group Overrides */
+  group_overrides?: Record<string, Record<string, string>> | null;
   /** Object Name */
   object_name?: string | null;
   /** Object Type */
@@ -2833,6 +2827,20 @@ export interface TypeReentryEventPatch {
   closed_comment?: string | null;
 }
 
+/** ReentryEventReportMapDataOut */
+export interface TypeReentryEventReportMapDataOut {
+  /**
+   * Map Points
+   * @default []
+   */
+  map_points?: object[];
+  /**
+   * Overflight Time
+   * @default []
+   */
+  overflight_time?: string[];
+}
+
 /** ReentryEventReportOut */
 export interface TypeReentryEventReportOut {
   /**
@@ -2952,8 +2960,6 @@ export interface TypeReentryEventReportOut {
   uploaded_by_id?: string | null;
   /** Deleted By Id */
   deleted_by_id?: string | null;
-  /** Presigned Url */
-  presigned_url?: string | null;
   /** Download Url */
   download_url?: string | null;
 }
@@ -3711,7 +3717,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-08-24T10:56:05.043642"
+   * @default "2026-09-11T00:17:04.721104"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3767,6 +3773,11 @@ export interface TypeUser {
   organization_id: string;
   /** Organization Name */
   organization_name: string;
+  /**
+   * Group Keys
+   * @default []
+   */
+  group_keys?: string[];
   notification_settings?: TypeNotificationSettings | null;
   /** Notification Thresholds */
   notification_thresholds?: TypeThreshold[] | null;
@@ -3792,6 +3803,15 @@ export interface TypeUserClientCredentialsOut {
   client_id: string;
   /** Client Secret */
   client_secret: string;
+}
+
+/** UserGroupsIn */
+export interface TypeUserGroupsIn {
+  /**
+   * Group Keys
+   * @default []
+   */
+  group_keys?: ("nspoc_level_1" | "nspoc_level_2")[];
 }
 
 /** UserIdOut */
@@ -4517,18 +4537,6 @@ export interface TypeGetReentryEventReportsReentryEventShortIdParams {
   shortId: string;
 }
 
-export interface TypeGetReentryEventReportsReentryEventReportIdDownloadParams {
-  /** Expires */
-  expires: number;
-  /** Token */
-  token: string;
-  /**
-   * Reentry Event Report Id
-   * @format uuid
-   */
-  reentryEventReportId: string;
-}
-
 export interface TypeGetReentryEventsStatsParams {
   /**
    * Epoch
@@ -5077,7 +5085,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2026-09-01"
+   * @default "2026-10-01"
    */
   end_date?: string;
 }
@@ -5092,7 +5100,7 @@ export interface TypeGetStatsMonthlyAnalysesAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-09-01"
+   * @default "2026-10-01"
    */
   end_date?: string;
 }
@@ -5107,7 +5115,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2026-09-01"
+   * @default "2026-10-01"
    */
   end_date?: string;
 }
@@ -5122,7 +5130,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-09-01"
+   * @default "2026-10-01"
    */
   end_date?: string;
 }
@@ -5137,7 +5145,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-09-01"
+   * @default "2026-10-01"
    */
   end_date?: string;
 }
@@ -5152,7 +5160,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-09-01"
+   * @default "2026-10-01"
    */
   end_date?: string;
 }
@@ -5167,7 +5175,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-09-01"
+   * @default "2026-10-01"
    */
   end_date?: string;
 }
@@ -5182,7 +5190,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeAggregatedParam
   /**
    * End Date
    * @format date
-   * @default "2026-09-01"
+   * @default "2026-10-01"
    */
   end_date?: string;
 }
@@ -5199,7 +5207,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByNoradIdAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-09-01"
+   * @default "2026-10-01"
    */
   end_date?: string;
 }
@@ -5214,7 +5222,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2026-09-01"
+   * @default "2026-10-01"
    */
   end_date?: string;
 }

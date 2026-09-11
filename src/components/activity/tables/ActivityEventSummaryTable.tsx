@@ -6,7 +6,7 @@ import type { TypeActivityEvent } from '@/__generated__/data-contracts';
 import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 
-type EventSummaryData = Pick<TypeActivityEvent, 'common_name' | 'norad_id' | 'international_designator' | 'operator' | 'reason_for_flag' | 'flag_date' | 'latest_tle_epoch'>;
+type EventSummaryData = Pick<TypeActivityEvent, 'common_name' | 'norad_id' | 'international_designator' | 'reason_for_flag' | 'flag_date' | 'latest_tle_epoch'>;
 
 type ActivityEventSummaryTableProps = {
   event: TypeActivityEvent;
@@ -27,10 +27,12 @@ const ActivityEventSummaryTable = ({ event }: ActivityEventSummaryTableProps) =>
   }, {
     header: t('international_designator'),
     accessorKey: 'international_designator',
-  }, {
-    header: t('operator'),
-    accessorKey: 'operator',
   }];
+
+  // {
+  //   header: t('operator'),
+  //   accessorKey: 'operator_name',
+  // }];
 
   return <InformationsTable headers={objectInformationHeaders} rows={objectInformationRows} data={event} />;
 };

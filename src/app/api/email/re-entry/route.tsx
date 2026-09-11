@@ -6,7 +6,14 @@ export async function POST(
   request: Request,
 ) {
   try {
-    const { event, report, tip, level, assessment, analysis_process: analysisProcess } = await request.json();
+    const {
+      event,
+      report,
+      tip,
+      level,
+      analysis_process: analysisProcess,
+      locations_at_risk: locationsAtRisk,
+    } = await request.json();
 
     if (!event || !report || !tip) {
       return Response.json({ error: 'Invalid request' }, { status: 400, statusText: 'Invalid request' });
@@ -18,8 +25,8 @@ export async function POST(
         report={report}
         tip={tip}
         level={level === 2 ? 2 : 1}
-        assessment={assessment}
         analysisProcess={analysisProcess}
+        locationsAtRisk={Array.isArray(locationsAtRisk) ? locationsAtRisk : []}
         withPlaceholders
       />,
     );

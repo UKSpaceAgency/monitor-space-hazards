@@ -2,22 +2,22 @@ import { Column, Row, Section as EmailSection } from '@react-email/components';
 import { isNumber } from 'lodash';
 import { Fragment } from 'react';
 
-import type { ReentryLocation } from '@/emails/_utils/reentry-locations';
+import type { ReentryLocationAtRisk } from '@/emails/_utils/reentry-locations';
+import { getLocationName } from '@/emails/_utils/reentry-locations';
 import { createEmailTranslator, riskColours } from '@/emails/_utils/utils';
 import { dayjs, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
-import { roundedPercent } from '@/utils/Math';
+import { roundedPercentage } from '@/utils/Math';
 import { getRiskLevelFromFraction } from '@/utils/ReentryRisk';
 
 import { Map } from '../map';
 import { Section } from '../section';
 
 type LocationRiskProps = {
-  location: ReentryLocation;
-  mapSrc: string;
+  location: ReentryLocationAtRisk;
 };
 
 const formatProbability = (value: number | null | undefined) =>
-  isNumber(value) ? roundedPercent(value) : '-';
+  isNumber(value) ? roundedPercentage(value) : '-';
 
 const LabelledRow = ({ label, children }: { label: string; children: React.ReactNode }) => (
   <Row className="!w-full">
@@ -26,15 +26,16 @@ const LabelledRow = ({ label, children }: { label: string; children: React.React
   </Row>
 );
 
-export const LocationRisk = ({ location, mapSrc }: LocationRiskProps) => {
+export const LocationRisk = ({ location }: LocationRiskProps) => {
   const t = createEmailTranslator({ namespace: 'Emails.Reentry_alert.Location_risk' });
 
+  const name = getLocationName(location.key, location.name);
   const risk = location.fragments_risk ?? getRiskLevelFromFraction(location.fragments_probability);
   const riskStyle = risk ? riskColours[risk] : undefined;
   const overflightTimes = location.overflight_time ?? [];
 
   return (
-    <Section title={t('title', { location: location.name })}>
+    <Section title={t('title', { location: name })}>
       <EmailSection className="!w-full">
         <Row className="!w-full">
           <Column className="w-1/3 p-2 text-sm font-bold align-top">{t('risk')}</Column>
@@ -45,16 +46,16 @@ export const LocationRisk = ({ location, mapSrc }: LocationRiskProps) => {
             {risk ?? '-'}
           </Column>
         </Row>
-        <LabelledRow label={t('probability_of_debris_impact')}>
+        <LabelledRow label={t('probability_of_debris_impact', { location: name })}>
           {formatProbability(location.fragments_probability)}
         </LabelledRow>
-        <LabelledRow label={t('probability_of_reentry')}>
+        <LabelledRow label={t('probability_of_reentry', { location: name })}>
           {formatProbability(location.atmospheric_probability)}
         </LabelledRow>
-        <LabelledRow label={t('probability_of_human_casualties')}>
+        <LabelledRow label={t('probability_of_human_casualties', { location: name })}>
           {formatProbability(location.human_casualty_probability)}
         </LabelledRow>
-        <LabelledRow label={t('overflight_times')}>
+        <LabelledRow label={t('overflight_times', { location: name })}>
           {overflightTimes.length > 0
             ? overflightTimes.map((time, index) => (
                 // eslint-disable-next-line react/no-array-index-key
@@ -66,7 +67,7 @@ export const LocationRisk = ({ location, mapSrc }: LocationRiskProps) => {
             : t('no_overflights')}
         </LabelledRow>
       </EmailSection>
-      <Map src={mapSrc} showLegend={false} className="pt-4" />
+      <Map src={location.map_src} showLegend={false} className="pt-4" />
     </Section>
   );
 };

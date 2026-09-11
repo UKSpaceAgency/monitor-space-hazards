@@ -10,12 +10,9 @@ type HeaderProps = {
   withPlaceholders: boolean;
 };
 
-export const Header = ({ title, subtitle, banner, official, withPlaceholders }: HeaderProps) => {
+export const Header = ({ title, subtitle, banner, withPlaceholders }: HeaderProps) => {
   return (
     <Section className="!w-full">
-      {official && (
-        <Text className="text-xs text-center text-[#6f777b] m-0 pb-2">OFFICIAL</Text>
-      )}
       <Section className="pb-4 !w-full">
         <Img
           src={withPlaceholders ? '{{NSPOC_LOGO.src}}' : 'https://www.dev.monitor-space-hazards.service.gov.uk/nspoclogo2.png'}

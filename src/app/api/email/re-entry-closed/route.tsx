@@ -6,7 +6,7 @@ export async function POST(
   request: Request,
 ) {
   try {
-    const { event, report, tip, level, assessment, reentry_location: reentryLocation } = await request.json();
+    const { event, report, tip, level } = await request.json();
 
     if (!event || !report || !tip) {
       return Response.json({ error: 'Invalid request' }, { status: 400, statusText: 'Invalid request' });
@@ -17,8 +17,6 @@ export async function POST(
         event={event}
         report={report}
         level={level === 2 ? 2 : 1}
-        assessment={assessment}
-        reentryLocation={reentryLocation}
         withPlaceholders
       />,
     );

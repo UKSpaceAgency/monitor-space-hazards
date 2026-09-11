@@ -1,38 +1,55 @@
-import type { TypeReentryEventReportOut } from '@/__generated__/data-contracts';
-import { getReportableLocations } from '@/emails/_utils/reentry-locations';
+import { isNumber } from 'lodash';
+
+import type { TypeReentryEventOut, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
+import type { ReentryLocationAtRisk } from '@/emails/_utils/reentry-locations';
+import { getLocationsAtRisk } from '@/emails/_utils/reentry-locations';
 import { createEmailTranslator } from '@/emails/_utils/utils';
+import { dayjs, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 
 import { Section } from '../section';
-import { Text } from '../text';
+import { Table } from '../table';
 import { LocationRisk } from './location-risk';
 
 type ReentryLocationsAtRiskProps = {
+  locations: ReentryLocationAtRisk[];
+  event: TypeReentryEventOut;
   report: TypeReentryEventReportOut;
 };
 
-/**
- * Each block needs its own rendered map. The token carries the location key so the
- * sending service never has to reproduce the order the blocks are rendered in.
- */
-const mapToken = (key: string) => `{{LOCATION_MAP_${key}.src}}`;
+const UNKNOWN = 'Unknown';
 
-export const ReentryLocationsAtRisk = ({ report }: ReentryLocationsAtRiskProps) => {
+export const ReentryLocationsAtRisk = ({ locations, event, report }: ReentryLocationsAtRiskProps) => {
   const t = createEmailTranslator({ namespace: 'Emails.Reentry_alert.Location_risk' });
 
-  const locations = getReportableLocations(report);
+  const locationsAtRisk = getLocationsAtRisk(locations);
 
-  if (locations.length === 0) {
+  if (locationsAtRisk.length === 0) {
+    const decayEpoch = report.decay_epoch ?? event.decay_epoch;
+    const uncertaintyWindow = report.uncertainty_window ?? event.uncertainty_window;
+
     return (
-      <Section title={t('empty_title')}>
-        <Text className="mb-0">{t('empty')}</Text>
+      <Section title={t('below_threshold')}>
+        <Table
+          forceAlignLeft
+          data={[
+            [
+              t('predicted_re_entry_time'),
+              decayEpoch ? dayjs.utc(decayEpoch).format(FORMAT_FULL_DATE_TIME) : UNKNOWN,
+            ],
+            [
+              t('uncertainty_window'),
+              isNumber(uncertaintyWindow) ? `+/- ${uncertaintyWindow} ${t('minutes')}` : UNKNOWN,
+            ],
+          ]}
+        />
       </Section>
     );
   }
 
   return (
     <>
-      {locations.map(location => (
-        <LocationRisk key={location.key} location={location} mapSrc={mapToken(location.key)} />
+      {locationsAtRisk.map(location => (
+        <LocationRisk key={location.key} location={location} />
       ))}
     </>
   );

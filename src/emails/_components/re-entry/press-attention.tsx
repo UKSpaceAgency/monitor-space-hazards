@@ -12,16 +12,14 @@ type ReentryPressAttentionProps = {
 export const ReentryPressAttention = ({ pressAttention }: ReentryPressAttentionProps) => {
   const t = createEmailTranslator({ namespace: 'Emails.Reentry_alert.Press_attention' });
 
+  if (!pressAttention) {
+    return null;
+  }
+
   return (
     <Section className="!w-full pt-4">
       <Text className="text-sm m-0 font-bold">{t('title')}</Text>
-      {pressAttention
-        ? (
-            <Markdown>
-              {pressAttention}
-            </Markdown>
-          )
-        : <Text>{t('empty')}</Text>}
+      <Markdown>{pressAttention}</Markdown>
     </Section>
   );
 };
