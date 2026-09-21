@@ -1081,7 +1081,7 @@
       "help_with_information": "Help with the information on re-entry events"
     },
     "Event_view": {
-      "content": "<p>This alert page adds NSpOC'sanalysis of objects at risk. Visit the re-entry <link>event page</link> for the basic data generated from TIP messages.</p>"
+      "content": "<p>This alert page adds NSpOC's analysis of objects at risk. Visit the re-entry <link>event page</link> for the basic data generated from TIP messages.</p>"
     }
   },
   "Reentry_alert_edit": {
