@@ -1,6 +1,4 @@
 'use client';
-import { Download04Icon } from 'hugeicons-react';
-import Link from 'next/link';
 
 import type { TypeEventHighestImpact, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
@@ -9,33 +7,28 @@ import Tag from '@/ui/tag/tag';
 import { getReentryFragmentsRisk } from '@/utils/ReentryRisk';
 import { renderRiskTag } from '@/utils/Tags';
 
+import { ReentryReportDownloadButton } from './ReentryReportDownloadButton';
+
 export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventReportOut>[] = [
   {
     header: 'Reentry_alert_history.report_number',
     id: 'report_number',
     enableSorting: false,
     cell: ({ row }) => {
-      const { report_number, short_id, download_url } = row.original;
+      const { id, report_number, short_id, download_url, file_name } = row.original;
       const report = `Report ${report_number}`;
       const isClosed = row.original.alert_type?.includes('closedown');
 
       return (
         <>
-          {download_url
+          {download_url && id
             ? (
-                <Link
-                  href={download_url}
-                  className="govuk-link flex items-center gap-2"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Download04Icon />
-                  <span>
-                    {short_id}
-                    <br />
-                    {report}
-                  </span>
-                </Link>
+                <ReentryReportDownloadButton
+                  id={id}
+                  fileName={file_name ?? `${short_id}-report-${report_number}.json`}
+                  shortId={short_id}
+                  report={report}
+                />
               )
             : report}
           {`\n`}

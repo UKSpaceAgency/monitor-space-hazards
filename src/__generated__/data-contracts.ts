@@ -245,6 +245,11 @@ export interface TypeActivityEventOut {
   inclination?: number | null;
   /** Operator Name */
   operator_name: string;
+  /**
+   * Operator Id
+   * @format uuid
+   */
+  operator_id: string;
 }
 
 /** ActivityEventsSortBy */
@@ -1329,14 +1334,6 @@ export interface TypeContactAnalystIn {
 
 /** DataSource */
 export type TypeDataSource = "Space-Track CDM" | "UKSA Analysis";
-
-/** DataSourcesOut */
-export interface TypeDataSourcesOut {
-  /** Space Track Cdm */
-  space_track_cdm: TypeEventDataSource[];
-  /** Uksa Analysis */
-  uksa_analysis: TypeEventDataSource[];
-}
 
 /** EphemerisOut */
 export interface TypeEphemerisOut {
@@ -3717,7 +3714,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-09-11T00:17:04.721104"
+   * @default "2026-09-18T12:51:26.286036"
    */
   updated_at?: string | null;
   /** Report Number */

@@ -44,9 +44,9 @@ import {
   TypeConjunctionEventCount,
   TypeConjunctionReportOut,
   TypeContactAnalystIn,
-  TypeDataSourcesOut,
   TypeEphemerisOut,
   TypeEventCDMOut,
+  TypeEventDataSource,
   TypeEventForAnalysisOut,
   TypeEventOut,
   TypeEventSatellitesOut,
@@ -271,7 +271,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getActivityEventsLatest = (params: RequestParams = {}) =>
-    this.request<TypeActivityEvent, void>({
+    this.request<TypeActivityEvent | null, void>({
       path: `/v1/activity-events/latest`,
       method: "GET",
       secure: true,
@@ -379,7 +379,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getActivityEventsShortId = (shortId: string, params: RequestParams = {}) =>
-    this.request<TypeActivityEvent, void | TypeHTTPValidationError>({
+    this.request<TypeActivityEvent | null, void | TypeHTTPValidationError>({
       path: `/v1/activity-events/${shortId}`,
       method: "GET",
       secure: true,
@@ -715,7 +715,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getCdmsLatest = (params: RequestParams = {}) =>
-    this.request<TypeCDMOut, void>({
+    this.request<TypeCDMOut | null, void>({
       path: `/v1/cdms/latest`,
       method: "GET",
       secure: true,
@@ -850,7 +850,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getConjunctionReportsConjunctionReportId = (conjunctionReportId: string, params: RequestParams = {}) =>
-    this.request<TypeConjunctionReportOut, void | TypeHTTPValidationError>({
+    this.request<TypeConjunctionReportOut | null, void | TypeHTTPValidationError>({
       path: `/v1/conjunction-reports/${conjunctionReportId}`,
       method: "GET",
       secure: true,
@@ -1036,7 +1036,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getFragmentationEventsLatest = (params: RequestParams = {}) =>
-    this.request<TypeFragmentationEvent, void>({
+    this.request<TypeFragmentationEvent | null, void>({
       path: `/v1/fragmentation-events/latest`,
       method: "GET",
       secure: true,
@@ -1351,7 +1351,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   postManoeuvrePlots = (data: TypeBodyUploadManoeuvrePlotFileV1ManoeuvrePlotsPost, params: RequestParams = {}) =>
-    this.request<TypeManoeuvrePlot, void | TypeHTTPValidationError>({
+    this.request<TypeManoeuvrePlot | null, void | TypeHTTPValidationError>({
       path: `/v1/manoeuvre_plots/`,
       method: "POST",
       body: data,
@@ -1535,7 +1535,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getReentryEventReportsReentryEventReportId = (reentryEventReportId: string, params: RequestParams = {}) =>
-    this.request<TypeReentryEventReportOut, void | TypeHTTPValidationError>({
+    this.request<TypeReentryEventReportOut | null, void | TypeHTTPValidationError>({
       path: `/v1/reentry-event-reports/${reentryEventReportId}`,
       method: "GET",
       secure: true,
@@ -1615,7 +1615,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getReentryEventsLatest = (params: RequestParams = {}) =>
-    this.request<TypeReentryEvent, void>({
+    this.request<TypeReentryEvent | null, void>({
       path: `/v1/reentry-events/latest`,
       method: "GET",
       secure: true,
@@ -1647,7 +1647,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getReentryEventsShortId = (shortId: string, params: RequestParams = {}) =>
-    this.request<TypeReentryEventOut, void | TypeHTTPValidationError>({
+    this.request<TypeReentryEventOut | null, void | TypeHTTPValidationError>({
       path: `/v1/reentry-events/${shortId}`,
       method: "GET",
       secure: true,
@@ -1902,7 +1902,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
     { eventId, ...query }: TypeGetConjunctionEventsEventIdDataSourcesParams,
     params: RequestParams = {},
   ) =>
-    this.request<TypeDataSourcesOut, TypeHTTPValidationError>({
+    this.request<Record<string, TypeEventDataSource[]>, TypeHTTPValidationError>({
       path: `/v1/conjunction-events/${eventId}/data-sources`,
       method: "GET",
       query: query,
@@ -1959,7 +1959,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
     data: TypeUniqueEventUpdateTextFieldsIn,
     params: RequestParams = {},
   ) =>
-    this.request<TypeUniqueEventOut, TypeHTTPValidationError>({
+    this.request<TypeUniqueEventOut | null, TypeHTTPValidationError>({
       path: `/v1/conjunction-events/unique-event/${shortId}`,
       method: "PATCH",
       body: data,
@@ -2786,7 +2786,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
     query?: TypePostTipsParams,
     params: RequestParams = {},
   ) =>
-    this.request<TypeTIPOut, void | TypeHTTPValidationError>({
+    this.request<TypeTIPOut | null, void | TypeHTTPValidationError>({
       path: `/v1/tips/`,
       method: "POST",
       query: query,

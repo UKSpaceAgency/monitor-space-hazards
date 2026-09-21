@@ -1,6 +1,7 @@
 'use client';
 
-import type { TypeDataSourcesOut, TypeEventSummaryOut } from '@/__generated__/data-contracts';
+import type { TypeEventSummaryOut } from '@/__generated__/data-contracts';
+import type { TypeDataSourcesOut } from '@/actions/getConjunctionEventsEventIdDataSources';
 import { DataTable } from '@/components/DataTable';
 import { useSorting } from '@/hooks/useSorting';
 
