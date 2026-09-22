@@ -8,6 +8,7 @@ import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import type { MapRef } from 'react-map-gl';
 import Map, { Layer, Source } from 'react-map-gl';
 
+import type { TypeTIPOut } from '@/__generated__/data-contracts';
 import { env } from '@/libs/Env';
 import Details from '@/ui/details/details';
 import { RegionsEnum } from '@/utils/Regions';
@@ -25,6 +26,13 @@ const ReentryAlertMapTooltip = dynamic(() => import('./ReentryAlertMapTooltip').
   ssr: false,
 });
 
+const initialViewState = {
+  bounds: [
+    [-8.649357, 49.863518], // Southwest corner of UK
+    [1.76896, 60.860699], // Northeast corner of UK (including Shetland)
+  ],
+} as const;
+
 const MapStyles = {
   [MapTypes.streets]: 'mapbox://styles/monitorspacehazards/cm9tmme2t01a101r3057u9pmy',
   [MapTypes.light]: 'mapbox://styles/monitorspacehazards/cmewwcttq016301sd0br6d1nf',
@@ -37,14 +45,11 @@ type ReentryAlertMapProps = {
   overflightTime: string[];
   detailsTitle?: string;
   detailsContent?: ReactNode;
-  center?: {
-    latitude: number;
-    longitude: number;
-    zoom?: number;
-  };
+  isClosed?: boolean;
+  tip?: TypeTIPOut;
 };
 
-const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, detailsContent, center }: ReentryAlertMapProps) => {
+const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, detailsContent, isClosed, tip }: ReentryAlertMapProps) => {
   const t = useTranslations('OverflightMap.overflights');
   const mapRef = useRef<MapRef | null>(null);
   const [mapType, setMapType] = useState<MapTypes>(MapTypes.streets);
@@ -106,7 +111,13 @@ const ReentryAlertMap = ({ reentryId, reportId, overflightTime, detailsTitle, de
             name: mapView,
           }}
           preserveDrawingBuffer
-          initialViewState={center}
+          initialViewState={isClosed && tip
+            ? {
+                latitude: tip.latitude,
+                longitude: tip.longitude,
+                zoom: 3,
+              }
+            : initialViewState as any}
           interactiveLayerIds={['land', ...flightpaths.reduce<string[]>((acc, curr) => {
             return [...acc, `FLIGHTPATH-${curr}`, `FRAGMENT-${curr}`];
           }, [])]}
