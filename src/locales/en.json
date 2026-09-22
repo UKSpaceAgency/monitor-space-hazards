@@ -2425,7 +2425,7 @@
         "by_nation_title": "Potential impact by UK nation",
         "by_airspace_and_maritime_title": "Potential impact by Airspace and Maritime",
         "by_overseas_territories_title": "Potential impact by Overseas Territories and Crown Dependencies",
-        "by_overseas_territories_description": "This section includes locations where risk is non-zero, but is below the level required to necessitate individual or detailed territory reporting.",
+        "by_overseas_territories_description": "This section includes Overseas Territories and Crown Dependencies where any risk probability exceeds 0.1%.",
         "location": "Location",
         "probability_of_debris_impact": "Probability of debris impact in",
         "probability_of_reentry": "Probability of re-entry over",
