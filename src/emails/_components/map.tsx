@@ -87,7 +87,7 @@ export const Map = ({ src, showLegend = true, width = 580, ...props }: MapProps)
           <Column className="align-top" style={{ verticalAlign: 'top', textAlign: 'left' }}>
             <LegendItem
               color="#C00000"
-              label="Potential Debris Field (where one or more debris fragments could fall)"
+              label="Potential Debris Field"
             />
           </Column>
         </Row>
