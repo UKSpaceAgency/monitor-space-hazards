@@ -4,88 +4,91 @@ import type { ComponentProps } from 'react';
 type MapProps = {
   src: string;
   showLegend?: boolean;
-} & ComponentProps<'table'>;
+  width?: number | string;
+} & Omit<ComponentProps<'table'>, 'width'>;
 
-export const Map = ({ src, showLegend = true, ...props }: MapProps) => {
+type LegendItemProps = {
+  color: string;
+  label: string;
+};
+
+const LegendItem = ({ color, label }: LegendItemProps) => (
+  <table
+    cellPadding={0}
+    cellSpacing={0}
+    role="presentation"
+    style={{ borderCollapse: 'collapse', borderSpacing: 0 }}
+  >
+    <tr>
+      <td
+        width={16}
+        height={16}
+        valign="top"
+        style={{
+          backgroundColor: color,
+          width: 16,
+          height: 16,
+          borderRadius: 8,
+          fontSize: 0,
+          lineHeight: 0,
+          padding: 0,
+        }}
+      >
+        &nbsp;
+      </td>
+      <td
+        valign="top"
+        className="text-2xs"
+        style={{ paddingLeft: 8, paddingTop: 1 }}
+      >
+        {label}
+      </td>
+    </tr>
+  </table>
+);
+
+export const Map = ({ src, showLegend = true, width = 580, ...props }: MapProps) => {
+  const imgWidth = typeof width === 'string' ? Number.parseInt(width, 10) || 580 : width;
+  // Maps are authored at a 2:1 aspect ratio (e.g. 690×345).
+  const imgHeight = Math.round(imgWidth / 2);
+
   return (
-    <Section {...props}>
-      <Img src={src} alt="map" width="690" height="345" className="block outline-none border-none" />
+    <Section {...props} width={imgWidth}>
+      <Img
+        src={src}
+        alt="Map"
+        width={imgWidth}
+        height={imgHeight}
+        style={{
+          display: 'block',
+          border: 0,
+          outline: 'none',
+          textDecoration: 'none',
+          maxWidth: '100%',
+          height: 'auto',
+        }}
+      />
       {showLegend && (
-        <Row cellSpacing={8}>
-          <Column className="w-1/6 text-2xs font-bold align-top">
+        <Row cellSpacing={8} className="pt-2">
+          <Column
+            width={88}
+            className="text-2xs font-bold align-top"
+            style={{ width: 88, verticalAlign: 'top', textAlign: 'left' }}
+          >
             Map Legend
           </Column>
-          <Column className="w-1/4 align-top">
-            <table cellPadding="0" cellSpacing="8" align="center" style={{ width: '100%' }}>
-              <tr>
-                <td width="20" valign="middle">
-                  <table
-                    width="16"
-                    style={{
-                      borderCollapse: 'collapse',
-                      borderSpacing: 0,
-                    }}
-                  >
-                    <tr>
-                      <td
-                        width="16"
-                        height="16"
-                        style={{
-                          backgroundColor: '#007CC8',
-                          borderRadius: '8px', // or '0' for square
-                          lineHeight: '16px',
-                          width: '16px',
-                          height: '16px',
-                          padding: 0,
-                          textAlign: 'center',
-                        }}
-                      >
-      &nbsp;
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-                <td className="text-2xs">
-                  Flight Path
-                </td>
-              </tr>
-            </table>
+          <Column
+            width={120}
+            className="align-top"
+            style={{ width: 120, verticalAlign: 'top', textAlign: 'left' }}
+          >
+            <LegendItem color="#007CC8" label="Flight Path" />
           </Column>
-          <Column className="align-top">
-            <table cellPadding="0" cellSpacing="8" align="center" style={{ width: '100%' }}>
-              <tr>
-                <td width="20" valign="middle">
-                  <table
-                    width="16"
-                    style={{
-                      borderCollapse: 'collapse',
-                      borderSpacing: 0,
-                    }}
-                  >
-                    <tr>
-                      <td
-                        width="16"
-                        height="16"
-                        style={{
-                          backgroundColor: '#C00000',
-                          borderRadius: '8px', // or '0' for square
-                          lineHeight: '16px',
-                          width: '16px',
-                          height: '16px',
-                          padding: 0,
-                          textAlign: 'center',
-                        }}
-                      >
-      &nbsp;
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-                <td className="text-2xs">
-                  Potential Debris Field (where one or more debris fragments could fall)
-                </td>
-              </tr>
-            </table>
+          <Column className="align-top" style={{ verticalAlign: 'top', textAlign: 'left' }}>
+            <LegendItem
+              color="#C00000"
+              label="Potential Debris Field (where one or more debris fragments could fall)"
+            />
           </Column>
         </Row>
       )}

@@ -67,7 +67,7 @@ export const LocationRisk = ({ location }: LocationRiskProps) => {
             : t('no_overflights')}
         </LabelledRow>
       </EmailSection>
-      <Map src={location.map_src} showLegend={false} className="pt-4" />
+      <Map src={location.map_src} className="pt-4" />
     </Section>
   );
 };

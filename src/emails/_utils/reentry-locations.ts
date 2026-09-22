@@ -112,8 +112,6 @@ export const getLocationsAtRisk = (locations: ReentryLocationAtRisk[]): ReentryL
     )
     .sort(byHighestProbabilityThenName);
 
-const isPositive = (value: number | null | undefined) => isNumber(value) && value > 0;
-
 /** Every UK nation is always listed, whether or not the report carries data for it. */
 const POTENTIAL_IMPACT_NATION_KEYS = [
   'england_nation',
@@ -178,9 +176,10 @@ export const getPotentialImpactByAirspaceAndMaritime = (
   );
 
 /**
- * "Potential impact by Overseas Territories and Crown Dependencies": any
- * territory with a non-zero debris or re-entry probability, alphabetically.
- * Territories that already have their own detailed block are still included.
+ * "Potential impact by Overseas Territories and Crown Dependencies": territories
+ * that meet the same >0.1% Locations at Risk threshold as the website,
+ * alphabetically. Territories that already have their own detailed block are
+ * still included.
  */
 export const getPotentialImpactByOverseasTerritories = (
   report: TypeReentryEventReportOut,
@@ -189,7 +188,13 @@ export const getPotentialImpactByOverseasTerritories = (
     report.impact?.overseas_territories_and_crown_dependencies,
     'overseas_territories_and_crown_dependencies',
   )
-    .filter(location => isPositive(location.fragments_probability) || isPositive(location.atmospheric_probability))
+    .filter(location =>
+      hasLocationAtRiskProbability(
+        location.fragments_probability,
+        location.atmospheric_probability,
+        location.human_casualty_probability,
+      ),
+    )
     .sort((a, b) => a.name.localeCompare(b.name));
 
 /**
