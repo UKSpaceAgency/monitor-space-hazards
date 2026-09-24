@@ -21,7 +21,7 @@ import {
   TableRow,
 } from '@/ui/table/Table';
 import { roundedPercent } from '@/utils/Math';
-import { hasLocationAtRiskProbability } from '@/utils/ReentryRisk';
+import { hasLocationAtRiskProbability, hasPositiveProbability } from '@/utils/ReentryRisk';
 import { jsonRegionsMap } from '@/utils/Regions';
 import { renderRiskTag } from '@/utils/Tags';
 
@@ -96,9 +96,9 @@ const ReentryAlertRiskProbabilitiesTable = ({
   const locationsAtRisk = useMemo(() => {
     const locations: LocationAtRisk[] = [];
 
-    // The probability/risk fields outside of the impact array refer to the United Kingdom
+    // UK-wide figures outside the impact array; include when any probability > 0%
     if (
-      hasLocationAtRiskProbability(
+      hasPositiveProbability(
         report.fragments_probability,
         report.atmospheric_probability,
         report.human_casualty_probability,

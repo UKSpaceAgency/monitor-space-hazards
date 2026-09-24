@@ -23,7 +23,7 @@ type ReEntryEmailProps = {
   analysisProcess: string;
   /**
    * Candidate locations for their own "Risk to <location>" block, each with the
-   * URL of its rendered map. The email applies the >0.1% threshold and ordering.
+   * URL of its rendered map. The email applies UK >0% / OST >0.1% thresholds and ordering.
    */
   locationsAtRisk?: ReentryLocationAtRisk[];
   /**

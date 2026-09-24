@@ -4,7 +4,7 @@ import type {
   TypeOverflightProbability,
   TypeReentryEventReportOut,
 } from '@/__generated__/data-contracts';
-import { hasLocationAtRiskProbability, isOtherRegionAtRisk } from '@/utils/ReentryRisk';
+import { hasLocationAtRiskProbability, hasPositiveProbability, isOtherRegionAtRisk } from '@/utils/ReentryRisk';
 import {
   jsonRegionsMap,
   sortImpactByAirspaceAndMaritime,
@@ -98,18 +98,22 @@ const byHighestProbabilityThenName = (a: ReentryLocationAtRisk, b: ReentryLocati
 };
 
 /**
- * Locations that get their own "Risk to <location>" block: any of the three
- * probabilities must exceed 0.1% (the UK included, it is not shown by default).
+ * Locations that get their own "Risk to <location>" block.
+ * UK: any probability > 0%. OST (and other non-UK keys): any probability > 0.1%.
  */
 export const getLocationsAtRisk = (locations: ReentryLocationAtRisk[]): ReentryLocationAtRisk[] =>
   locations
-    .filter(location =>
-      hasLocationAtRiskProbability(
+    .filter((location) => {
+      const probabilities = [
         location.fragments_probability,
         location.atmospheric_probability,
         location.human_casualty_probability,
-      ),
-    )
+      ] as const;
+
+      return location.key === UNITED_KINGDOM_KEY
+        ? hasPositiveProbability(...probabilities)
+        : hasLocationAtRiskProbability(...probabilities);
+    })
     .sort(byHighestProbabilityThenName);
 
 /** Every UK nation is always listed, whether or not the report carries data for it. */

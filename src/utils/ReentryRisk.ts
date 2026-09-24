@@ -5,8 +5,9 @@ import type {
   TypeRisk,
 } from '@/__generated__/data-contracts';
 
-// Locations at Risk includes a location when any of its probabilities exceeds
-// this threshold (values are fractions, so 0.001 is displayed as 0.1%)
+// Locations at Risk includes an OST when any of its probabilities exceeds
+// this threshold (values are fractions, so 0.001 is displayed as 0.1%).
+// The UK uses a separate >0 rule — see hasPositiveProbability.
 export const LOCATIONS_AT_RISK_PROBABILITY_THRESHOLD = 0.001;
 
 // A location gets its own "Risk to <location>" block in the re-entry email once
@@ -57,6 +58,15 @@ export function hasLocationAtRiskProbability(
 ): boolean {
   return probabilities.some(
     probability => isNumber(probability) && probability > LOCATIONS_AT_RISK_PROBABILITY_THRESHOLD,
+  );
+}
+
+/** True when any probability is strictly greater than 0 (used for UK in Locations at Risk). */
+export function hasPositiveProbability(
+  ...probabilities: Array<number | null | undefined>
+): boolean {
+  return probabilities.some(
+    probability => isNumber(probability) && probability > 0,
   );
 }
 

@@ -2,7 +2,7 @@ import type { ComponentProps } from 'react';
 
 import type { TypeReentryEventReportOut } from '@/__generated__/data-contracts';
 import { createEmailTranslator, toAffectedTerritories } from '@/emails/_utils/utils';
-import { hasLocationAtRiskProbability } from '@/utils/ReentryRisk';
+import { hasPositiveProbability } from '@/utils/ReentryRisk';
 
 import { Table } from '../table';
 
@@ -13,8 +13,8 @@ type ReentryAffectedRegionsProps = {
 export const ReentryAffectedRegions = ({ report, ...props }: ReentryAffectedRegionsProps) => {
   const t = createEmailTranslator({ namespace: 'Emails.Reentry_alert.Affected_regions' });
 
-  // The probability fields outside of the impact array refer to the United Kingdom
-  const ukAtRisk = hasLocationAtRiskProbability(
+  // UK-wide figures outside the impact array; include when any probability > 0%
+  const ukAtRisk = hasPositiveProbability(
     report.fragments_probability,
     report.atmospheric_probability,
     report.human_casualty_probability,
