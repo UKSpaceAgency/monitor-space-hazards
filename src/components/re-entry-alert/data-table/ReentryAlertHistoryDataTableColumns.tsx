@@ -39,7 +39,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
   },
   {
     header: 'Reentry_alert_history.report_time',
-    accessorKey: 'report_time',
+    accessorKey: 'decay_epoch',
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();
@@ -64,7 +64,10 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
     enableSorting: false,
     accessorKey: 'reentry_time',
     size: 70,
-    cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_DATE_TIME),
+    cell: ({ getValue }) => {
+      const value = getValue<string>();
+      return value ? dayjs(value).format(FORMAT_DATE_TIME) : '-';
+    },
   },
   {
     header: 'Reentry_alert_history.uncertainty_window',

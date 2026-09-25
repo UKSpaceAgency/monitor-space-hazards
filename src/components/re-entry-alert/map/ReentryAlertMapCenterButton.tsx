@@ -1,5 +1,4 @@
 import { IoLocateOutline } from 'react-icons/io5';
-import { LiaGlobeEuropeSolid } from 'react-icons/lia';
 import { useMap } from 'react-map-gl';
 
 import Button from '@/ui/button/button';
@@ -38,7 +37,7 @@ const ReentryAlertMapCenterButton = () => {
         −
       </Button>
       {navigator.geolocation && <Button className="mb-0 bg-white" onClick={handleLocationCenter} variant="secondary" aria-label="Centre on your location" title="Centre on your location"><IoLocateOutline /></Button>}
-      <Button className="mb-0 bg-white" onClick={handleUkCenter} variant="secondary" aria-label="Recentre on UK" title="Recentre on UK"><LiaGlobeEuropeSolid /></Button>
+      <Button className="mb-0 bg-white" onClick={handleUkCenter} variant="secondary" aria-label="Recentre on UK" title="Recentre on UK"><img src="/uk-map-icon.svg" alt="UK map" /></Button>
     </div>
   );
 };
