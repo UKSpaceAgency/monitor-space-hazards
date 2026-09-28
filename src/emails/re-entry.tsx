@@ -1,4 +1,5 @@
 import type { TypeReentryEventOut, TypeReentryEventReportOut, TypeTIPOut } from '@/__generated__/data-contracts';
+import { getReentryFragmentsRisk } from '@/utils/ReentryRisk';
 
 import { Layout } from './_components/layout';
 import { ReentryAnalysisProcess } from './_components/re-entry/analysis-process';
@@ -44,6 +45,11 @@ function ReEntryEmail({ event, report, withPlaceholders, analysisProcess, locati
     ? objectTypeIndex[objectType as keyof typeof objectTypeIndex] ?? objectType
     : '';
 
+  const risk = getReentryFragmentsRisk({
+    fragmentsRisk: event.highest_impact?.highest_risk,
+    objectName,
+  });
+
   return (
     <Layout
       eventType="re-entry"
@@ -53,7 +59,7 @@ function ReEntryEmail({ event, report, withPlaceholders, analysisProcess, locati
       isReentryWarning
       afterFooter={<ReentryAnalysisProcess analysisProcess={analysisProcess} />}
     >
-      <Subheader risk={report.fragments_risk ?? event.fragments_risk} />
+      <Subheader risk={risk} />
       {event.executive_summary_comment && <ReentryAssessment executiveSummary={event.executive_summary_comment} />}
       <ReentryLocationsAtRisk locations={locationsAtRisk} event={event} report={report} />
       <Section title={t('Reentry_alert.additional_object_information_title')}>
@@ -117,27 +123,64 @@ ReEntryEmail.PreviewProps = {
     },
   ],
   event: {
-    object_name: 'CZ-2A',
-    object_type: 'ROCKET BODY',
-    estimated_mass: 2000,
-    decay_epoch: '2026-01-08T00:34:00Z',
-    uncertainty_window: 1440,
-    overflight_time: ['2026-01-07T03:54:00Z', '2026-01-07T17:26:00Z'],
-    atmospheric_risk: 'None',
-    atmospheric_probability: 0.00014,
-    fragments_risk: 'None',
-    fragments_probability: 0.00017,
-    licensed_country: 'US',
-    short_id: '1234567890',
-    norad_id: '43657',
-    object_height: 11.3,
-    object_width: 2.2,
+    id: 'a805c31f-b879-4141-8250-60dcc0ca4ed7',
+    created_at: '2025-11-19T16:22:25.009782',
+    updated_at: '2026-09-28T09:51:19.713061',
+    short_id: 'RE25-0753',
+    norad_id: '44759',
+    time_window_start: '2025-11-20T10:02:00',
+    time_window_end: '2025-11-21T00:02:00',
+    decay_epoch: '2025-11-20T17:02:00',
+    uncertainty_window: 420,
+    tip_external_id: '56708',
+    insert_epoch: null,
+    tip_creation_date: null,
+    reentry_report_number: 34,
+    year: 2025,
+    event_number: 753,
+    closed_comment: '',
+    highest_probability: 0.002,
+    highest_impact: {
+      region: 'anguilla',
+      highest_impact_data: {
+        atmospheric_probability: 0.002,
+        fragments_probability: 0.002,
+        human_casualty_probability: 0,
+      },
+      highest_probability_name: 'atmospheric_probability',
+      highest_risk: 'Low',
+    },
+    atmospheric_probability: 0,
+    atmospheric_risk: 'Low',
+    fragments_probability: 0,
+    fragments_risk: 'Low',
+    fragments_number: null,
+    human_casualty_probability: null,
+    human_casualty_risk: null,
+    overflight_time: [],
     survivability: 'Likely',
-    survivability_comment:
-      'The high-density components of rocket bodies can result in an increased chance of survival upon re-entry.',
-    executive_summary_comment: 'ipseum',
-    damages_liability_comment: 'The United States is liable for any damages and associated costs of the response and recovery efforts caused by the re-entry under the terms of the 1972 Space Liability Convention.',
-    press_attention_comment: 'There has been limited press attention on this event so far.',
+    survivability_comment: 'Given the use of components that are prone to surviving re-entry (e.g. reaction wheels)',
+    executive_summary_comment: 'TEST SO',
+    immediate_response_comment: 'TEST SO',
+    uk_response_comment: 'TEST SO',
+    damages_liability_comment: 'TEST SO',
+    press_attention_comment: 'TEST SO',
+    object_name: 'STARLINK-1054',
+    object_type: 'PAYLOAD',
+    estimated_mass: 260,
+    license_country: 'US',
+    international_designator: '2019-074AY',
+    object_height: 0.1,
+    object_width: 3.7,
+    object_span: 8.86,
+    launching_year: 2019,
+    apogee: 197,
+    perigee: 195,
+    inclination: 53.03,
+    approved_by_id: null,
+    approved_at: null,
+    licensed_country: null,
+    uk_reentry_probability: 'Low',
   },
   report: {
     report_number: 1,

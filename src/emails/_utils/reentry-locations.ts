@@ -33,7 +33,7 @@ export type ReentryLocationAtRisk = TypeOverflightProbability & {
   key: string;
   /** Display name. Falls back to the known region name for `key`. */
   name?: string | null;
-  map_src: string;
+  map_src?: string;
 };
 
 /** The UK total is titled plainly, unlike the "(total)" label used in the nation table. */
