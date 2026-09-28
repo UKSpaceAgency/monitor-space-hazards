@@ -39,7 +39,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
   },
   {
     header: 'Reentry_alert_history.report_time',
-    accessorKey: 'decay_epoch',
+    accessorKey: 'report_time',
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();
@@ -62,7 +62,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
   {
     header: 'Reentry_alert_history.reentry_time',
     enableSorting: false,
-    accessorKey: 'reentry_time',
+    accessorKey: 'decay_epoch',
     size: 70,
     cell: ({ getValue }) => {
       const value = getValue<string>();

@@ -44,9 +44,9 @@ import {
   TypeConjunctionEventCount,
   TypeConjunctionReportOut,
   TypeContactAnalystIn,
+  TypeDataSourcesOut,
   TypeEphemerisOut,
   TypeEventCDMOut,
-  TypeEventDataSource,
   TypeEventForAnalysisOut,
   TypeEventOut,
   TypeEventSatellitesOut,
@@ -1902,7 +1902,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
     { eventId, ...query }: TypeGetConjunctionEventsEventIdDataSourcesParams,
     params: RequestParams = {},
   ) =>
-    this.request<Record<string, TypeEventDataSource[]>, TypeHTTPValidationError>({
+    this.request<TypeDataSourcesOut, TypeHTTPValidationError>({
       path: `/v1/conjunction-events/${eventId}/data-sources`,
       method: "GET",
       query: query,

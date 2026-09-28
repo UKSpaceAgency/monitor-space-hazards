@@ -1335,6 +1335,14 @@ export interface TypeContactAnalystIn {
 /** DataSource */
 export type TypeDataSource = "Space-Track CDM" | "UKSA Analysis";
 
+/** DataSourcesOut */
+export interface TypeDataSourcesOut {
+  /** Space Track Cdm */
+  space_track_cdm: TypeEventDataSource[];
+  /** Uksa Analysis */
+  uksa_analysis: TypeEventDataSource[];
+}
+
 /** EphemerisOut */
 export interface TypeEphemerisOut {
   /**
@@ -3714,7 +3722,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-09-18T12:51:26.286036"
+   * @default "2026-09-28T00:04:26.332488"
    */
   updated_at?: string | null;
   /** Report Number */
