@@ -10,7 +10,7 @@ export const createCSV = (data: Record<string, any>): Blob => {
 };
 
 export const createJSON = (data: Record<string, any>): Blob => {
-  const blob = new Blob([JSON.stringify(data)], {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {
     type: 'text/json; charset=utf-8 ',
   });
   return blob;
