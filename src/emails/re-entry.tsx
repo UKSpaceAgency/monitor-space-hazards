@@ -1,7 +1,10 @@
+import { Section as EmailSection } from '@react-email/components';
+
 import type { TypeReentryEventOut, TypeReentryEventReportOut, TypeTIPOut } from '@/__generated__/data-contracts';
 import { getReentryFragmentsRisk } from '@/utils/ReentryRisk';
 
 import { Layout } from './_components/layout';
+import { Map } from './_components/map';
 import { ReentryAnalysisProcess } from './_components/re-entry/analysis-process';
 import { ReentryAssessment } from './_components/re-entry/assessment';
 import { ReentryDamagesAndLiability } from './_components/re-entry/damages-and-liability';
@@ -62,6 +65,9 @@ function ReEntryEmail({ event, report, withPlaceholders, analysisProcess, locati
       <Subheader risk={risk} />
       {event.executive_summary_comment && <ReentryAssessment executiveSummary={event.executive_summary_comment} />}
       <ReentryLocationsAtRisk locations={locationsAtRisk} event={event} report={report} />
+      <EmailSection className="!w-full pb-8">
+        <Map src="{{WORLD_MAP.src}}" />
+      </EmailSection>
       <Section title={t('Reentry_alert.additional_object_information_title')}>
         <ReentryObjectInformation event={event} report={report} withSurvivabilityAndReportNumber />
       </Section>
