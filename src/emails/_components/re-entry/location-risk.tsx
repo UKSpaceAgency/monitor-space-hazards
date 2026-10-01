@@ -1,13 +1,12 @@
 import { Column, Row, Section as EmailSection } from '@react-email/components';
-import { isNumber } from 'lodash';
 import { Fragment } from 'react';
 
 import type { ReentryLocationAtRisk } from '@/emails/_utils/reentry-locations';
 import { getLocationName } from '@/emails/_utils/reentry-locations';
 import { createEmailTranslator, riskColours } from '@/emails/_utils/utils';
 import { dayjs, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
-import { roundedPercentage } from '@/utils/Math';
-import { getRiskLevelFromFraction } from '@/utils/ReentryRisk';
+import { roundedPercent } from '@/utils/Math';
+import { getLocationRisk } from '@/utils/ReentryRisk';
 
 import { Map } from '../map';
 import { Section } from '../section';
@@ -17,7 +16,7 @@ type LocationRiskProps = {
 };
 
 const formatProbability = (value: number | null | undefined) =>
-  isNumber(value) ? roundedPercentage(value) : '-';
+  value ? roundedPercent(value) : '-';
 
 const LabelledRow = ({ label, children }: { label: string; children: React.ReactNode }) => (
   <Row className="!w-full">
@@ -30,7 +29,7 @@ export const LocationRisk = ({ location }: LocationRiskProps) => {
   const t = createEmailTranslator({ namespace: 'Emails.Reentry_alert.Location_risk' });
 
   const name = getLocationName(location.key, location.name);
-  const risk = location.fragments_risk ?? getRiskLevelFromFraction(location.fragments_probability);
+  const risk = getLocationRisk(location);
   const riskStyle = risk ? riskColours[risk] : undefined;
   const overflightTimes = location.overflight_time ?? [];
 
@@ -46,16 +45,16 @@ export const LocationRisk = ({ location }: LocationRiskProps) => {
             {risk ?? '-'}
           </Column>
         </Row>
-        <LabelledRow label={t('probability_of_debris_impact', { location: name })}>
+        <LabelledRow label={t('probability_of_debris_impact')}>
           {formatProbability(location.fragments_probability)}
         </LabelledRow>
-        <LabelledRow label={t('probability_of_reentry', { location: name })}>
+        <LabelledRow label={t('probability_of_reentry')}>
           {formatProbability(location.atmospheric_probability)}
         </LabelledRow>
-        <LabelledRow label={t('probability_of_human_casualties', { location: name })}>
+        <LabelledRow label={t('probability_of_human_casualties')}>
           {formatProbability(location.human_casualty_probability)}
         </LabelledRow>
-        <LabelledRow label={t('overflight_times', { location: name })}>
+        <LabelledRow label={t('overflight_times')}>
           {overflightTimes.length > 0
             ? overflightTimes.map((time, index) => (
                 // eslint-disable-next-line react/no-array-index-key

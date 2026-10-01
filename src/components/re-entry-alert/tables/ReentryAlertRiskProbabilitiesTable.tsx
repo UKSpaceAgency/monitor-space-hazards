@@ -8,7 +8,6 @@ import type {
   TypeOverflightProbability,
   TypeReentryEventOut,
   TypeReentryEventReportOut,
-  TypeRisk,
 } from '@/__generated__/data-contracts';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import Details from '@/ui/details/details';
@@ -21,7 +20,7 @@ import {
   TableRow,
 } from '@/ui/table/Table';
 import { roundedPercent } from '@/utils/Math';
-import { hasLocationAtRiskProbability, hasPositiveProbability } from '@/utils/ReentryRisk';
+import { getLocationRisk, hasLocationAtRiskProbability, hasPositiveProbability } from '@/utils/ReentryRisk';
 import { jsonRegionsMap } from '@/utils/Regions';
 import { renderRiskTag } from '@/utils/Tags';
 
@@ -46,15 +45,6 @@ type LocationAtRisk = TypeOverflightProbability & {
   location: string;
 };
 
-const RISK_SEVERITY: Record<string, number> = {
-  'None': 0,
-  'Pending': 0,
-  'Very low': 1,
-  'Low': 2,
-  'Medium': 3,
-  'High': 4,
-};
-
 const formatProbability = (value: number | null | undefined): string => {
   return isNumber(value) ? roundedPercent(value) : '-';
 };
@@ -70,22 +60,6 @@ const formatOverflightTime = (
 
 const getLocationDisplayName = (key: string): string => {
   return jsonRegionsMap[key] ?? key;
-};
-
-const getLocationRisk = (data: TypeOverflightProbability): TypeRisk | null => {
-  const risks = [
-    data.fragments_risk,
-    data.atmospheric_risk,
-    data.human_casualty_risk,
-  ].filter((risk): risk is TypeRisk => Boolean(risk));
-
-  if (risks.length === 0) {
-    return null;
-  }
-
-  return risks.reduce((highest, risk) =>
-    (RISK_SEVERITY[risk] ?? 0) > (RISK_SEVERITY[highest] ?? 0) ? risk : highest,
-  );
 };
 
 const ReentryAlertRiskProbabilitiesTable = ({

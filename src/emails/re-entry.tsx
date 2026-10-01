@@ -26,8 +26,9 @@ type ReEntryEmailProps = {
   withPlaceholders: boolean;
   analysisProcess: string;
   /**
-   * Candidate locations for their own "Risk to <location>" block, each with the
-   * URL of its rendered map. The email applies UK >0% / OST >0.1% thresholds and ordering.
+   * Map images (and optional display names) for the "Risk to <location>"
+   * blocks. Which locations appear, and their data, is derived from the
+   * report with the same logic as the website.
    */
   locationsAtRisk?: ReentryLocationAtRisk[];
   /**
@@ -64,7 +65,7 @@ function ReEntryEmail({ event, report, withPlaceholders, analysisProcess, locati
     >
       <Subheader risk={risk} />
       {event.executive_summary_comment && <ReentryAssessment executiveSummary={event.executive_summary_comment} />}
-      <ReentryLocationsAtRisk locations={locationsAtRisk} event={event} report={report} />
+      <ReentryLocationsAtRisk locations={locationsAtRisk} report={report} />
       <EmailSection className="!w-full pb-8">
         <Map src="{{WORLD_MAP.src}}" />
       </EmailSection>
@@ -96,7 +97,7 @@ ReEntryEmail.PreviewProps = {
     {
       key: 'united_kingdom',
       fragments_probability: 0.0029,
-      fragments_risk: 'Low',
+      fragments_risk: 'No',
       atmospheric_probability: 0.0035,
       human_casualty_probability: null,
       overflight_time: ['2026-01-07T03:54:00Z', '2026-01-07T17:26:00Z'],
@@ -154,12 +155,12 @@ ReEntryEmail.PreviewProps = {
         human_casualty_probability: 0,
       },
       highest_probability_name: 'atmospheric_probability',
-      highest_risk: 'Low',
+      highest_risk: 'No',
     },
     atmospheric_probability: 0,
-    atmospheric_risk: 'Low',
+    atmospheric_risk: 'No',
     fragments_probability: 0,
-    fragments_risk: 'Low',
+    fragments_risk: 'No',
     fragments_number: null,
     human_casualty_probability: null,
     human_casualty_risk: null,

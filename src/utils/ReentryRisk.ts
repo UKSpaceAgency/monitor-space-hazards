@@ -1,6 +1,7 @@
 import { isNumber } from 'lodash';
 
 import type {
+  TypeOverflightProbability,
   TypeReentryEventReportImpact,
   TypeRisk,
 } from '@/__generated__/data-contracts';
@@ -9,49 +10,6 @@ import type {
 // this threshold (values are fractions, so 0.001 is displayed as 0.1%).
 // The UK uses a separate >0 rule — see hasPositiveProbability.
 export const LOCATIONS_AT_RISK_PROBABILITY_THRESHOLD = 0.001;
-
-// A location gets its own "Risk to <location>" block in the re-entry email once
-// its debris impact probability reaches 0.1%. Anything non-zero below that is
-// summarised under "Other Regions At Risk" instead.
-export const REPORTABLE_LOCATION_PROBABILITY_THRESHOLD = 0.001;
-
-export function isReportableLocation(fragmentsProbability: number | null | undefined): boolean {
-  return isNumber(fragmentsProbability) && fragmentsProbability >= REPORTABLE_LOCATION_PROBABILITY_THRESHOLD;
-}
-
-export function isOtherRegionAtRisk(fragmentsProbability: number | null | undefined): boolean {
-  return isNumber(fragmentsProbability)
-    && fragmentsProbability > 0
-    && fragmentsProbability < REPORTABLE_LOCATION_PROBABILITY_THRESHOLD;
-}
-
-/**
- * Risk banding for a debris impact probability expressed as a fraction:
- * Very low < 0.1%, Low 0.1%-1%, Medium 1%-5%, High > 5%.
- */
-export function getRiskLevelFromFraction(probability: number | null | undefined): TypeRisk | null {
-  if (!isNumber(probability)) {
-    return null;
-  }
-
-  if (probability === 0) {
-    return 'None';
-  }
-
-  if (probability < 0.001) {
-    return 'Very low';
-  }
-
-  if (probability <= 0.01) {
-    return 'Low';
-  }
-
-  if (probability <= 0.05) {
-    return 'Medium';
-  }
-
-  return 'High';
-}
 
 export function hasLocationAtRiskProbability(
   ...probabilities: Array<number | null | undefined>
@@ -67,6 +25,37 @@ export function hasPositiveProbability(
 ): boolean {
   return probabilities.some(
     probability => isNumber(probability) && probability > 0,
+  );
+}
+
+const RISK_SEVERITY: Record<string, number> = {
+  'None': 0,
+  'Pending': 0,
+  'Very low': 1,
+  'Low': 2,
+  'Medium': 3,
+  'High': 4,
+};
+
+/**
+ * The risk label shown for a location in Locations at Risk: the highest
+ * severity of its three risk labels. Null when none are set.
+ */
+export function getLocationRisk(
+  location: Pick<TypeOverflightProbability, 'fragments_risk' | 'atmospheric_risk' | 'human_casualty_risk'>,
+): TypeRisk | null {
+  const risks = [
+    location.fragments_risk,
+    location.atmospheric_risk,
+    location.human_casualty_risk,
+  ].filter((risk): risk is TypeRisk => Boolean(risk));
+
+  if (risks.length === 0) {
+    return null;
+  }
+
+  return risks.reduce((highest, risk) =>
+    (RISK_SEVERITY[risk] ?? 0) > (RISK_SEVERITY[highest] ?? 0) ? risk : highest,
   );
 }
 

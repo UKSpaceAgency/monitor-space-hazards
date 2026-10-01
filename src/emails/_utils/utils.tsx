@@ -3,42 +3,42 @@ import { createTranslator } from 'next-intl';
 
 import type { TypeRisk } from '@/__generated__/data-contracts';
 import messages from '@/locales/en.json';
-import { jsonRegionsMap, sortImpactByNation } from '@/utils/Regions';
 
 import { Text } from '../_components/text';
 
+// Matches the GOV.UK tag colours used on the website (see riskClasses in src/utils/Tags.tsx)
 export const riskColours = {
   'No': {
-    background: '#cce2d8',
-    text: '#005a30',
+    background: '#cecece',
+    text: '#0b0c0c',
   },
   'None': {
-    background: '#cce2d8',
-    text: '#005a30',
+    background: '#cecece',
+    text: '#0b0c0c',
   },
   'Pending': {
-    background: '#cce2d8',
-    text: '#005a30',
+    background: '#d2e2f1',
+    text: '#0f385c',
   },
   'Very low': {
-    background: '#cce2d8',
-    text: '#005a30',
+    background: '#cecece',
+    text: '#0b0c0c',
   },
   'Low': {
-    background: '#cce2d8',
-    text: '#005a30',
+    background: '#cfe4dc',
+    text: '#083d29',
   },
   'Medium': {
-    background: '#fcf7de',
-    text: '#595000',
+    background: '#ffee80',
+    text: '#7a3c1c',
   },
   'High': {
-    background: '#f4ccc6',
-    text: '#2a0a06',
+    background: '#f4d7d7',
+    text: '#651b1b',
   },
   'Very high': {
-    background: '#f4ccc6',
-    text: '#2a0a06',
+    background: '#f4d7d7',
+    text: '#651b1b',
   },
 };
 
@@ -49,18 +49,6 @@ export const renderRiskTag = (risk: TypeRisk | null | undefined) => risk
       </span>
     )
   : '-';
-
-export const toAffectedTerritories = (value: Record<string, Record<string, any>> | undefined): string => {
-  if (!value || !Object.keys(value).length) {
-    return 'No regions affected';
-  }
-
-  const regions = sortImpactByNation(value)
-    .filter(([, data]) => data?.fragments_probability > 0)
-    .map(([key]) => jsonRegionsMap[key]);
-
-  return regions.length > 0 ? regions.join(', ') : 'No regions affected';
-};
 
 export const objectTypeIndex = {
   'PAYLOAD': 'Satellite',
