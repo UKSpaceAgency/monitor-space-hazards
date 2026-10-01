@@ -42,6 +42,19 @@ export const getSatteliteConjunctionColumns = ({
         },
       },
       {
+        id: 'primary_object_common_name',
+        accessorKey: 'primary_object_common_name',
+        header: 'Conjunctions.table.primary_object',
+        cell: ({ row, getValue }) => (
+          <Link
+            href={`/satellites/${row?.original.primary_object_norad_id}`}
+            className="govuk-link"
+          >
+            {getValue<string>()}
+          </Link>
+        ),
+      },
+      {
         id: 'secondary_object_common_name',
         accessorKey: 'secondary_object_common_name',
         header: 'Conjunctions.table.secondary_object',

@@ -59,8 +59,8 @@ export const AppConfig = {
           target: '_blank',
         },
         {
-          children: 'How to manage ephemeris',
-          href: 'https://mys-tech-docs.onrender.com/ways-of-working/manage-ephemeris/manage-ephemeris.html',
+          children: 'Technical documentation',
+          href: 'https://mys-tech-docs.onrender.com',
           target: '_blank',
         },
         {

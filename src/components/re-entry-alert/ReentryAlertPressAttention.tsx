@@ -1,17 +1,14 @@
-import { useTranslations } from 'next-intl';
-
 import { Markdown } from '../Markdown';
 
 type ReentryAlertPressAttentionProps = {
-  pressAttentionComment?: string | null;
+  comment: string;
   dataPdf?: string;
 };
 
-const ReentryAlertPressAttention = ({ pressAttentionComment, dataPdf }: ReentryAlertPressAttentionProps) => {
-  const t = useTranslations('Reentry_alert.Press_attention');
+const ReentryAlertPressAttention = ({ comment, dataPdf }: ReentryAlertPressAttentionProps) => {
   return (
     <div data-pdf={dataPdf}>
-      {pressAttentionComment ? <Markdown>{pressAttentionComment}</Markdown> : <p className="govuk-body">{t('empty')}</p>}
+      <Markdown>{comment}</Markdown>
     </div>
   );
 };

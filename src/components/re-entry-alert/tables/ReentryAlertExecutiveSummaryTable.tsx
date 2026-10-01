@@ -26,11 +26,13 @@ const ReentryAlertExecutiveSummaryTable = ({ event, report }: ReentryAlertExecut
     header: t('time_window_world'),
     accessorKey: 'decay_epoch',
     renderCell: ({ decay_epoch, uncertainty_window }) => `${dayjs(decay_epoch).format(FORMAT_FULL_DATE_TIME)} +/- ${uncertainty_window} minute(s)`,
-  }, {
-    header: t('overflight_time'),
-    accessorKey: 'overflight_time',
-    renderCell: ({ overflight_time }) => overflight_time.length > 0 ? overflight_time.map(time => <span key={time} className="block">{dayjs(time).format(FORMAT_FULL_DATE_TIME)}</span>) : '-',
-  }, {
+  },
+  // }, {
+  //   header: t('overflight_time'),
+  //   accessorKey: 'overflight_time',
+  //   renderCell: ({ overflight_time }) => overflight_time.length > 0 ? overflight_time.map(time => <span key={time} className="block">{dayjs(time).format(FORMAT_FULL_DATE_TIME)}</span>) : '-',
+  // }, {
+  {
     header: t('survivability_comment'),
     accessorKey: 'survivability_comment',
     renderCell: ({ survivability, survivability_comment }) => `${survivability ? `${survivability}. ` : ''}${survivability_comment}`,

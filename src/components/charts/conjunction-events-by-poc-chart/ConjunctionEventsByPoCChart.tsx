@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl';
+import type { ReactNode } from 'react';
 
 import type { EventsBySatelliteType } from '@/actions/getStatsEventsBySatellite';
 
@@ -6,10 +7,12 @@ import { chartPalette } from '../base/theme';
 import BaseBar from '../base-bar/BaseBar';
 
 export type ConjunctionEventsByPoCChartProps = {
+  actionButtons?: ReactNode;
   data: EventsBySatelliteType[];
 };
 
 export function ConjunctionEventsByPoCChart({
+  actionButtons,
   data,
 }: ConjunctionEventsByPoCChartProps) {
   const t = useTranslations('Charts.Conjunction_events_by_poc');
@@ -24,11 +27,27 @@ export function ConjunctionEventsByPoCChart({
   );
 
   const datasets = {
-    labels: [t('low'), t('medium'), t('high')],
+    labels: [''],
     datasets: [
       {
-        data: [totals.low, totals.medium, totals.high],
-        backgroundColor: [chartPalette.nspocBlue, chartPalette.nspocRed, chartPalette.nspocYellow],
+        label: t('low'),
+        data: [totals.low],
+        borderColor: chartPalette.nspocBlue,
+        backgroundColor: chartPalette.nspocBlue,
+        borderWidth: 0,
+      },
+      {
+        label: t('medium'),
+        data: [totals.medium],
+        borderColor: chartPalette.nspocRed,
+        backgroundColor: chartPalette.nspocRed,
+        borderWidth: 0,
+      },
+      {
+        label: t('high'),
+        data: [totals.high],
+        borderColor: chartPalette.nspocYellow,
+        backgroundColor: chartPalette.nspocYellow,
         borderWidth: 0,
       },
     ],
@@ -52,6 +71,9 @@ export function ConjunctionEventsByPoCChart({
       title={title}
       data={datasets}
       ariaLabel="Conjunction events by probability of collision"
+      actionButtons={actionButtons}
+      showLegend
+      legend={{ title: t('legend_title') }}
       stacked={false}
     />
   );

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
-import { getOrganizations } from '@/actions/getOrganisations';
+import { getOrganisations } from '@/actions/getOrganisations';
 import { getSession } from '@/actions/getSession';
 import { getUsersMe } from '@/actions/getUsersMe';
 import { AddNewUserForm } from '@/components/account/add-new-user/AddNewUserForm';
@@ -21,7 +21,7 @@ export default async function AddNewUserPage(props: {
 
   const session = await getSession();
   const { organization_id } = await getUsersMe();
-  const organizations = await getOrganizations();
+  const organizations = await getOrganisations({});
   const searchParams = await props.searchParams;
 
   const defaultValues = {

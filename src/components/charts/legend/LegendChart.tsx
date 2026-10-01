@@ -30,7 +30,11 @@ export const ChartLegend = ({
 
   useEffect(() => {
     setLegendStatus(Array(items.length).fill(true));
-  }, [items]);
+    items.forEach((_, index) => {
+      chartRef.current?.setDatasetVisibility(index, true);
+    });
+    chartRef.current?.update();
+  }, [items, chartRef]);
 
   const handleLegendClick = useCallback(({ target }: ChangeEvent<HTMLInputElement>) => {
     const index = Number.parseInt(target.value);

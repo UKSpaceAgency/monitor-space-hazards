@@ -1,6 +1,7 @@
 export enum QUERY_KEYS {
   Conjunctions = 'conjunctions',
   Satellites = 'satellites',
+  Organisations = 'organisations',
   Analyses = 'analyses',
   Ephemerises = 'ephemerises',
   Activities = 'activities',

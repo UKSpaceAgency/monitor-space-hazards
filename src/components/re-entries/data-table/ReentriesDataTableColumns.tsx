@@ -1,23 +1,29 @@
 import { isNumber } from 'lodash';
 import Link from 'next/link';
 
-import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
+import type { TypeEventHighestImpact, TypeReentryEventOut, TypeRisk } from '@/__generated__/data-contracts';
 import { objectTypeIndex } from '@/emails/_utils/utils';
 import { dayjs, FORMAT_DATE_FULL_MONTH, FORMAT_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import { roundedFixed } from '@/utils/Math';
 import { getReentryFragmentsRisk } from '@/utils/ReentryRisk';
+import { jsonRegionsMap } from '@/utils/Regions';
 import { renderRiskTag } from '@/utils/Tags';
 
 export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumnDef<TypeReentryEventOut>[] => [
   {
-    id: 'fragments_probability',
-    accessorKey: 'fragments_probability',
+    id: 'highest_impact',
+    accessorKey: 'highest_impact',
     header: 'Reentries.table.risk',
     size: 100,
-    cell: ({ row: { original: { fragments_probability, object_name } } }) => renderRiskTag(
-      getReentryFragmentsRisk(fragments_probability, object_name),
-    ),
+    cell: ({ getValue, row: { original: { object_name } } }) => {
+      const highestImpact = getValue<TypeEventHighestImpact | null>();
+      const risk = getReentryFragmentsRisk({
+        fragmentsRisk: highestImpact?.highest_risk,
+        objectName: object_name,
+      });
+      return renderRiskTag(risk as TypeRisk);
+    },
   },
   {
     id: 'short_id',
@@ -51,14 +57,22 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
     size: 100,
   },
   {
+    id: 'region',
+    accessorKey: 'region',
+    header: 'Reentries.table.detailed_region',
+    size: 100,
+    enableSorting: false,
+    cell: ({ row: { original: { highest_impact } } }) => highest_impact?.region ? jsonRegionsMap[highest_impact.region] ?? highest_impact?.region : 'None',
+  },
+  {
     id: 'probability_of_fragmentation',
     enableSorting: false,
     accessorKey: 'fragments_probability',
     header: 'Reentries.table.probability_of_fragmentation',
     size: 70,
-    cell: ({ getValue }) => {
-      const value = getValue<number>();
-      return isNumber(value) ? `${roundedFixed(value)}` : '-';
+    cell: ({ row: { original: { highest_impact } } }) => {
+      const value = highest_impact?.highest_impact_data?.fragments_probability;
+      return `${roundedFixed(isNumber(value) ? value : 0)}`;
     },
   },
   {

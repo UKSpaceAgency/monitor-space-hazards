@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
-import { getOrganizations } from '@/actions/getOrganisations';
+import { getOrganisations } from '@/actions/getOrganisations';
 import { auth } from '@/auth';
 import { OrganisationsSummary } from '@/components/account/organisations/OrganisationsSummary';
 import { OrganisationsTable } from '@/components/account/organisations/OrganisationsTable';
@@ -20,7 +20,7 @@ export default async function OrganisationsPage() {
     return notFound();
   }
 
-  const organisations = await getOrganizations();
+  const organisations = await getOrganisations({});
 
   return (
     <div>

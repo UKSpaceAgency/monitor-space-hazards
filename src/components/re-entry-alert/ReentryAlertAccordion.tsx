@@ -2,16 +2,16 @@ import { useTranslations } from 'next-intl';
 
 import type { TypeReentryEventOut, TypeReentryEventPatch, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
 import Accordion from '@/ui/accordion/accordion';
-import { getReentryFragmentsRisk } from '@/utils/ReentryRisk';
 
 import { ReentryFurtherInformation } from '../re-entry/ReentryFurhterInformation';
 import { ReentryAlertHistoryDataTable } from './data-table/ReentryAlertHistoryDataTable';
 import { ReentryAlertAlertingProcedure } from './ReentryAlertAlertingProcedure';
+import { ReentryAlertEventView } from './ReentryAlertEventView';
 import { ReentryAlertGuidanceIfObjectImpactsUkInterests } from './ReentryAlertGuidanceIfObjectImpactsUkInterests';
-import { ReentryAlertGuidanceOnResponse } from './ReentryAlertGuidanceOnResponse';
 import { ReentryAlertImpactAirspaceAndMaritime } from './ReentryAlertImpactAirspaceAndMaritime';
 import { ReentryAlertImpactNation } from './ReentryAlertImpactNation';
 import { ReentryAlertImpactOverseas } from './ReentryAlertImpactOverseas';
+import { ReentryAlertLiabilityForDamages } from './ReentryAlertLiabilityForDamages';
 import { ReentryAlertPressAttention } from './ReentryAlertPressAttention';
 import { ReentryAlertRiskThresholds } from './ReentryAlertRiskThresholds';
 import { ReentryAlertAdditionalObjectDetailsTable } from './tables/ReentryAlertAdditionalObjectDetailsTable';
@@ -34,7 +34,9 @@ const ReentryAlertAccordion = ({
   const t = useTranslations('Reentry_alert.accordion');
 
   const impacts = lastReport?.impact;
-  const fragmentsRisk = getReentryFragmentsRisk(event.fragments_probability, event.object_name);
+
+  const damages_liability_comment = searchParams?.damages_liability_comment || event.damages_liability_comment;
+  const press_attention_comment = searchParams?.press_attention_comment || event.press_attention_comment;
 
   return (
     <>
@@ -55,6 +57,11 @@ const ReentryAlertAccordion = ({
             heading: t('alert_history'),
             content: <ReentryAlertHistoryDataTable shortId={event.short_id} reports={reports} dataPdf={t('alert_history')} />,
           },
+          {
+            id: 'event_view',
+            heading: t('event_view'),
+            content: <ReentryAlertEventView shortId={event.short_id} />,
+          },
         ]}
       />
       <h2 data-anchor="potential-impact" className="govuk-heading-l">{t('potential_impact')}</h2>
@@ -67,7 +74,7 @@ const ReentryAlertAccordion = ({
                 id: 'potential_impact_uk_nation',
                 heading: t('potential_impact_uk_nation'),
                 content: (
-                  <ReentryAlertImpactNation impact={impacts.by_nation} dataPdf={t('potential_impact_uk_nation')} />
+                  <ReentryAlertImpactNation report={lastReport} impact={impacts.by_nation} dataPdf={t('potential_impact_uk_nation')} />
                 ),
               }]
             : []),
@@ -103,26 +110,31 @@ const ReentryAlertAccordion = ({
         id="reentry-guidance"
         addAnchor={false}
         initialItems={[
-          {
-            id: 'guidance_on_response',
-            heading: t('guidance_on_response'),
-            content: <ReentryAlertGuidanceOnResponse risk={fragmentsRisk} immediateResponseComment={searchParams?.immediate_response_comment ?? event.immediate_response_comment} dataPdf={t('guidance_on_response')} />,
-          },
+          // {
+          //   id: 'guidance_on_response',
+          //   heading: t('guidance_on_response'),
+          //   content: <ReentryAlertGuidanceOnResponse risk={event.fragments_risk} immediateResponseComment={searchParams?.immediate_response_comment ?? event.immediate_response_comment} dataPdf={t('guidance_on_response')} />,
+          // },
+          //
+          ...(damages_liability_comment
+            ? [{
+                id: 'liability_for_damages',
+                heading: t('liability_for_damages'),
+                content: <ReentryAlertLiabilityForDamages comment={damages_liability_comment} dataPdf={t('liability_for_damages')} />,
+              }]
+            : []),
           {
             id: 'guidance_if_object_impacts_uk_interests',
             heading: t('guidance_if_object_impacts_uk_interests'),
             content: <ReentryAlertGuidanceIfObjectImpactsUkInterests ukResponseComment={searchParams?.uk_response_comment ?? event.uk_response_comment} dataPdf={t('guidance_if_object_impacts_uk_interests')} />,
           },
-          // {
-          //   id: 'liability_for_damages',
-          //   heading: t('liability_for_damages'),
-          //   content: <ReentryAlertLiabilityForDamages licenseCountry={event.licenseCountry} damagesLiabilityComment={searchParams?.damages_liability_comment ?? event.damagesLiabilityComment} dataPdf={t('liability_for_damages')} />,
-          // },
-          {
-            id: 'press_attention',
-            heading: t('press_attention'),
-            content: <ReentryAlertPressAttention pressAttentionComment={searchParams?.press_attention_comment ?? event.press_attention_comment} dataPdf={t('press_attention')} />,
-          },
+          ...(press_attention_comment
+            ? [{
+                id: 'press_attention',
+                heading: t('press_attention'),
+                content: <ReentryAlertPressAttention comment={press_attention_comment} dataPdf={t('press_attention')} />,
+              }]
+            : []),
         ]}
       />
       <h2 data-anchor="additional-information" className="govuk-heading-l">{t('additional_information')}</h2>

@@ -14,16 +14,17 @@ type ReentryAlertMapContainerProps = {
 
 const ReentryAlertMapContainer = async ({ reentryId, reportId, overflightTime, isClosed, tip }: ReentryAlertMapContainerProps) => {
   const t = await getTranslations('Reentry_alert.Map');
+
   return (
     <div>
       <ReentryAlertMap
         reentryId={reentryId}
         reportId={reportId}
         overflightTime={overflightTime}
-        isClosed={isClosed}
         tip={tip}
         detailsTitle={t('details.title')}
         detailsContent={t.rich('details.content')}
+        isClosed={isClosed}
       />
       {t.rich('see_further_information', { link: chunks => <a href="#further_information" className="govuk-link">{chunks}</a> })}
     </div>

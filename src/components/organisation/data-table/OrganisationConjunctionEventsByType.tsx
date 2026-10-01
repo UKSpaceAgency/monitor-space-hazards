@@ -67,7 +67,11 @@ const OrganisationConjunctionEventsByType = ({
       {hasData
         ? (
             <>
-              <ConjunctionEventsByTypeChart data={filtered} actionButtons={actionButtons} />
+              <ConjunctionEventsByTypeChart
+                key={selectedSatellite}
+                data={filtered}
+                actionButtons={actionButtons}
+              />
               <div className="overflow-x-auto max-h-[500px]">
                 <DataTable<EventsByTypeRow>
                   data={filtered}

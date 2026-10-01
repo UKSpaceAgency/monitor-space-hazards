@@ -19,6 +19,8 @@ type SubheaderProps = {
 export const Subheader = ({ risk, comment }: SubheaderProps) => {
   const style = risk ? riskColours[risk] : styles.closedown;
 
+  const riskTitle = risk ? risk === 'None' ? 'No risk' : `${risk} risk` : 'Closed';
+
   return (
     <Section className="py-6 !w-full">
       <Section
@@ -29,7 +31,7 @@ export const Subheader = ({ risk, comment }: SubheaderProps) => {
           className="text-sm m-0"
           style={{ color: style.text }}
         >
-          {risk ? `${risk} Risk` : 'Closed'}
+          {riskTitle}
           {comment && (
             <>
               {' '}

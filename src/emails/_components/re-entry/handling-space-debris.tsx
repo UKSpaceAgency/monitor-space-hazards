@@ -9,13 +9,15 @@ import { Text } from '../text';
 
 type ReentryHandlingSpaceDebrisProps = {
   event: TypeReentryEventOut;
+  /** Adds top spacing when rendered below another block in the same section. */
+  withTopSpacing?: boolean;
 };
 
-export const ReentryHandlingSpaceDebris = ({ event }: ReentryHandlingSpaceDebrisProps) => {
+export const ReentryHandlingSpaceDebris = ({ event, withTopSpacing = false }: ReentryHandlingSpaceDebrisProps) => {
   const t = createEmailTranslator({ namespace: 'Emails.Reentry_alert' });
   return (
-    <Section>
-      <Section className="pt-4">
+    <Section className="!w-full">
+      <Section className={withTopSpacing ? 'pt-4' : undefined}>
         <Text className="text-sm m-0 font-bold">{t('Handling_space_debris.title')}</Text>
         {t.rich('Handling_space_debris.content', {
           hydrozineLink: chunks => <Link href="https://www.gov.uk/government/publications/hydrazine-properties-and-incident-management">{chunks}</Link>,

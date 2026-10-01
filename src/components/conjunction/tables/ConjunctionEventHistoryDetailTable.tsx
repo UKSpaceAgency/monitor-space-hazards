@@ -1,14 +1,15 @@
 'use client';
 import { useTranslations } from 'next-intl';
 
-import type { TypeDataSourcesOut, TypeEventSummaryOut } from '@/__generated__/data-contracts';
+import type { TypeEventSummaryOut } from '@/__generated__/data-contracts';
+import type { TypeDataSourcesOut } from '@/actions/getConjunctionEventsEventIdDataSources';
 import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 
 type ConjunctionEventHistoryDetailInformations = Pick<
   TypeEventSummaryOut & TypeDataSourcesOut,
-'primary_object_cdm_type' | 'primary_object_ephemeris_name' | 'update_time' | 'space_track_cdm' | 'primary_object_uncertainties' | 'secondary_object_cdm_type' | 'secondary_object_uncertainties'
+  'primary_object_cdm_type' | 'primary_object_ephemeris_name' | 'update_time' | 'space_track_cdm' | 'primary_object_uncertainties' | 'secondary_object_cdm_type' | 'secondary_object_uncertainties'
 >;
 
 type ConjunctionEventHistoryDetailTableProps = {

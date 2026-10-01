@@ -49,17 +49,18 @@ export const activitiesColumns: TranslatedColumnDef<TypeActivityEventOut>[] = [
       {
         accessorKey: 'operator_name',
         header: 'Activities.operator_name',
-        cell: ({ getValue, row }) => {
+        cell: ({ getValue }) => {
           const value = getValue<string>();
-          const operatorId = row.original.operator;
-          return (
-            <Link
-              href={`/organisations/${operatorId}`}
-              className="govuk-link"
-            >
-              {value}
-            </Link>
-          );
+          // const operatorId = row.original.operator_name;
+          return value;
+          // return (
+          //   <Link
+          //     href={`/organisations/${operatorId}`}
+          //     className="govuk-link"
+          //   >
+          //     {value}
+          //   </Link>
+          // );
         },
       },
       {

@@ -88,8 +88,8 @@ import {
   TypeGetFragmentationReportsParams,
   TypeGetManoeuvrePlotsByEventEventShortIdParams,
   TypeGetManoeuvrePlotsParams,
+  TypeGetOrganizationsParams,
   TypeGetReentryEventReportsParams,
-  TypeGetReentryEventReportsReentryEventReportIdDownloadParams,
   TypeGetReentryEventReportsReentryEventShortIdParams,
   TypeGetReentryEventsParams,
   TypeGetReentryEventsStatsParams,
@@ -148,6 +148,7 @@ import {
   TypeReentryEventCount,
   TypeReentryEventOut,
   TypeReentryEventPatch,
+  TypeReentryEventReportMapDataOut,
   TypeReentryEventReportOut,
   TypeSatelliteOrgOut,
   TypeSatelliteOrganizationOut,
@@ -184,6 +185,7 @@ import {
   TypeUniqueEventUpdateTextFieldsIn,
   TypeUser,
   TypeUserClientCredentialsOut,
+  TypeUserGroupsIn,
   TypeUserIdOut,
   TypeUserIn,
   TypeUserOut,
@@ -269,7 +271,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getActivityEventsLatest = (params: RequestParams = {}) =>
-    this.request<TypeActivityEvent, void>({
+    this.request<TypeActivityEvent | null, void>({
       path: `/v1/activity-events/latest`,
       method: "GET",
       secure: true,
@@ -377,7 +379,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getActivityEventsShortId = (shortId: string, params: RequestParams = {}) =>
-    this.request<TypeActivityEvent, void | TypeHTTPValidationError>({
+    this.request<TypeActivityEvent | null, void | TypeHTTPValidationError>({
       path: `/v1/activity-events/${shortId}`,
       method: "GET",
       secure: true,
@@ -713,7 +715,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getCdmsLatest = (params: RequestParams = {}) =>
-    this.request<TypeCDMOut, void>({
+    this.request<TypeCDMOut | null, void>({
       path: `/v1/cdms/latest`,
       method: "GET",
       secure: true,
@@ -848,7 +850,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getConjunctionReportsConjunctionReportId = (conjunctionReportId: string, params: RequestParams = {}) =>
-    this.request<TypeConjunctionReportOut, void | TypeHTTPValidationError>({
+    this.request<TypeConjunctionReportOut | null, void | TypeHTTPValidationError>({
       path: `/v1/conjunction-reports/${conjunctionReportId}`,
       method: "GET",
       secure: true,
@@ -1034,7 +1036,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getFragmentationEventsLatest = (params: RequestParams = {}) =>
-    this.request<TypeFragmentationEvent, void>({
+    this.request<TypeFragmentationEvent | null, void>({
       path: `/v1/fragmentation-events/latest`,
       method: "GET",
       secure: true,
@@ -1349,7 +1351,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   postManoeuvrePlots = (data: TypeBodyUploadManoeuvrePlotFileV1ManoeuvrePlotsPost, params: RequestParams = {}) =>
-    this.request<TypeManoeuvrePlot, void | TypeHTTPValidationError>({
+    this.request<TypeManoeuvrePlot | null, void | TypeHTTPValidationError>({
       path: `/v1/manoeuvre_plots/`,
       method: "POST",
       body: data,
@@ -1439,10 +1441,11 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @request GET:/v1/organizations/
    * @secure
    */
-  getOrganizations = (params: RequestParams = {}) =>
-    this.request<TypeOrganizationOut[], void>({
+  getOrganizations = (query?: TypeGetOrganizationsParams, params: RequestParams = {}) =>
+    this.request<TypeOrganizationOut[], void | TypeHTTPValidationError>({
       path: `/v1/organizations/`,
       method: "GET",
+      query: query,
       secure: true,
       format: "json",
       ...params,
@@ -1532,7 +1535,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getReentryEventReportsReentryEventReportId = (reentryEventReportId: string, params: RequestParams = {}) =>
-    this.request<TypeReentryEventReportOut, void | TypeHTTPValidationError>({
+    this.request<TypeReentryEventReportOut | null, void | TypeHTTPValidationError>({
       path: `/v1/reentry-event-reports/${reentryEventReportId}`,
       method: "GET",
       secure: true,
@@ -1554,7 +1557,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       secure: true,
       ...params,
     }); /**
-   * No description
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
    *
    * @tags reentry-event-reports
    * @name GetReentryEventReportsReentryEventReportIdDownload
@@ -1562,14 +1565,26 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @request GET:/v1/reentry-event-reports/{reentry_event_report_id}/download
    * @secure
    */
-  getReentryEventReportsReentryEventReportIdDownload = (
-    { reentryEventReportId, ...query }: TypeGetReentryEventReportsReentryEventReportIdDownloadParams,
-    params: RequestParams = {},
-  ) =>
+  getReentryEventReportsReentryEventReportIdDownload = (reentryEventReportId: string, params: RequestParams = {}) =>
     this.request<any, void | TypeHTTPValidationError>({
       path: `/v1/reentry-event-reports/${reentryEventReportId}/download`,
       method: "GET",
-      query: query,
+      secure: true,
+      format: "json",
+      ...params,
+    }); /**
+   * @description ## Description Returns only the geometry the re-entry maps need. `map_points` is present in the stored report file but never reaches the database, so it cannot be served from the report row. Comment fields are deliberately absent: this must not become a second way to read them. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|View| |Government admin|View| |International user|View| |International admin|View| |Agency user|View| |Agency admin|View| |Agency analyst|View| |Agency approver|View| |Agency superuser|View| |Regulator user|View| |Regulator admin|View|
+   *
+   * @tags reentry-event-reports
+   * @name GetReentryEventReportsReentryEventReportIdMapData
+   * @summary Geospatial data for a Reentry Event Report's maps
+   * @request GET:/v1/reentry-event-reports/{reentry_event_report_id}/map-data
+   * @secure
+   */
+  getReentryEventReportsReentryEventReportIdMapData = (reentryEventReportId: string, params: RequestParams = {}) =>
+    this.request<TypeReentryEventReportMapDataOut, void | TypeHTTPValidationError>({
+      path: `/v1/reentry-event-reports/${reentryEventReportId}/map-data`,
+      method: "GET",
       secure: true,
       format: "json",
       ...params,
@@ -1600,7 +1615,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getReentryEventsLatest = (params: RequestParams = {}) =>
-    this.request<TypeReentryEvent, void>({
+    this.request<TypeReentryEvent | null, void>({
       path: `/v1/reentry-events/latest`,
       method: "GET",
       secure: true,
@@ -1632,7 +1647,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getReentryEventsShortId = (shortId: string, params: RequestParams = {}) =>
-    this.request<TypeReentryEventOut, void | TypeHTTPValidationError>({
+    this.request<TypeReentryEventOut | null, void | TypeHTTPValidationError>({
       path: `/v1/reentry-events/${shortId}`,
       method: "GET",
       secure: true,
@@ -1944,7 +1959,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
     data: TypeUniqueEventUpdateTextFieldsIn,
     params: RequestParams = {},
   ) =>
-    this.request<TypeUniqueEventOut, TypeHTTPValidationError>({
+    this.request<TypeUniqueEventOut | null, TypeHTTPValidationError>({
       path: `/v1/conjunction-events/unique-event/${shortId}`,
       method: "PATCH",
       body: data,
@@ -2771,7 +2786,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
     query?: TypePostTipsParams,
     params: RequestParams = {},
   ) =>
-    this.request<TypeTIPOut, void | TypeHTTPValidationError>({
+    this.request<TypeTIPOut | null, void | TypeHTTPValidationError>({
       path: `/v1/tips/`,
       method: "POST",
       query: query,
@@ -3010,6 +3025,24 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       path: `/v1/users/${userId}`,
       method: "DELETE",
       secure: true,
+      ...params,
+    }); /**
+   * @description ## Description Replaces the User's group memberships. Groups are clearances, so this is superuser-only. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Update| |Regulator user|-| |Regulator admin|-|
+   *
+   * @tags users
+   * @name PutUsersUserIdGroups
+   * @summary Replace a single User's group memberships
+   * @request PUT:/v1/users/{user_id}/groups
+   * @secure
+   */
+  putUsersUserIdGroups = (userId: string, data: TypeUserGroupsIn, params: RequestParams = {}) =>
+    this.request<TypeUser, TypeHTTPValidationError>({
+      path: `/v1/users/${userId}/groups`,
+      method: "PUT",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
       ...params,
     });
 }

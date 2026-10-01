@@ -40,11 +40,12 @@ export default async function Reentry({
   const event = await getReentryEvent(shortId);
   const satellite = await getSatellite(event.norad_id);
   const reports = await getReentryReports({ shortId });
+  const haveReports = reports.length > 0;
   const object = satellite?.norad_id ? satellite : null;
 
   return (
     <div>
-      {reports.length > 0 && (!isSatteliteUser(session?.user.role)) && (
+      {haveReports && (!isSatteliteUser(session?.user.role)) && (
         <NotificationBanner heading={t.rich('notification_banner', {
           preview: chunks => <Link className="govuk-link" href={`/re-entries/${shortId}/alert`}>{chunks}</Link>,
         })}

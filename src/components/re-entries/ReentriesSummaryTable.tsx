@@ -3,7 +3,6 @@ import { getTranslations } from 'next-intl/server';
 import type { TypeReentryEventCount } from '@/__generated__/data-contracts';
 import { getReentryEventsStats } from '@/actions/getReentryEventsStats';
 import Details from '@/ui/details/details';
-import WarningText from '@/ui/warning-text/warning-text';
 
 import type { InformationsTableRow } from '../InformationsTable';
 import { InformationsTable } from '../InformationsTable';
@@ -29,9 +28,6 @@ const ReentriesSummaryTable = async () => {
       <Details summary={t.rich('help.title')}>
         {t.rich('help.content')}
       </Details>
-      <WarningText>
-        {t.rich('warning')}
-      </WarningText>
     </div>
   );
 };

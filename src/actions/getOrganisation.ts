@@ -1,10 +1,12 @@
 import { notFound } from 'next/navigation';
 
-import { getOrganizations } from './getOrganisations';
+import type { TypeOrganizationOut } from '@/__generated__/data-contracts';
 
-export async function getOrganisation(id: string) {
-  const organisations = await getOrganizations();
-  const organisation = organisations.find(organisation => organisation.id === id);
+import { getOrganisations } from './getOrganisations';
+
+export async function getOrganisation(id: string): Promise<TypeOrganizationOut> {
+  const organisations = await getOrganisations({});
+  const organisation = organisations.find(org => org.id === id);
   if (!organisation) {
     notFound();
   }

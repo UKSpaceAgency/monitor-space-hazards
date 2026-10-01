@@ -1,70 +1,192 @@
+'use client';
+
 import { isNumber } from 'lodash';
 import { useTranslations } from 'next-intl';
+import { useMemo } from 'react';
 
-import type { TypeReentryEventOut } from '@/__generated__/data-contracts';
+import type {
+  TypeOverflightProbability,
+  TypeReentryEventOut,
+  TypeReentryEventReportOut,
+} from '@/__generated__/data-contracts';
+import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import Details from '@/ui/details/details';
-import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableCellHeader,
+  TableHead,
+  TableRow,
+} from '@/ui/table/Table';
 import { roundedPercent } from '@/utils/Math';
+import { getLocationRisk, hasLocationAtRiskProbability, hasPositiveProbability } from '@/utils/ReentryRisk';
+import { jsonRegionsMap } from '@/utils/Regions';
 import { renderRiskTag } from '@/utils/Tags';
 
-type EventSummaryData = Pick<TypeReentryEventOut, 'fragments_probability' | 'fragments_risk' | 'atmospheric_probability' | 'atmospheric_risk' | 'human_casualty_probability' | 'human_casualty_risk'>;
+type EventSummaryData = Pick<
+  TypeReentryEventOut,
+  | 'fragments_probability'
+  | 'fragments_risk'
+  | 'atmospheric_probability'
+  | 'atmospheric_risk'
+  | 'human_casualty_probability'
+  | 'human_casualty_risk'
+  | 'object_name'
+>;
 
 type ReentryAlertExecutiveSummaryTableProps = {
   event: EventSummaryData;
+  report: TypeReentryEventReportOut;
 };
 
-const ReentryAlertRiskProbabilitiesTable = ({ event }: ReentryAlertExecutiveSummaryTableProps) => {
-  const t = useTranslations('Tables.Reentry_alert_risk_probabilities');
+type LocationAtRisk = TypeOverflightProbability & {
+  region: string;
+  location: string;
+};
+
+const formatProbability = (value: number | null | undefined): string => {
+  return isNumber(value) ? roundedPercent(value) : '-';
+};
+
+const formatOverflightTime = (
+  overflightTime: string[] | null | undefined,
+  index: number,
+): string => {
+  return overflightTime?.[index]
+    ? dayjs(overflightTime[index]).format(FORMAT_DATE_TIME)
+    : '-';
+};
+
+const getLocationDisplayName = (key: string): string => {
+  return jsonRegionsMap[key] ?? key;
+};
+
+const ReentryAlertRiskProbabilitiesTable = ({
+  report,
+}: ReentryAlertExecutiveSummaryTableProps) => {
+  const t = useTranslations('Tables.Reentry_alert_locations_at_risk');
+
+  const locationsAtRisk = useMemo(() => {
+    const locations: LocationAtRisk[] = [];
+
+    // UK-wide figures outside the impact array; include when any probability > 0%
+    if (
+      hasPositiveProbability(
+        report.fragments_probability,
+        report.atmospheric_probability,
+        report.human_casualty_probability,
+      )
+    ) {
+      locations.push({
+        region: 'united_kingdom',
+        location: 'United Kingdom',
+        fragments_probability: report.fragments_probability,
+        fragments_risk: report.fragments_risk,
+        atmospheric_probability: report.atmospheric_probability,
+        atmospheric_risk: report.atmospheric_risk,
+        human_casualty_probability: report.human_casualty_probability,
+        human_casualty_risk: report.human_casualty_risk,
+        overflight_time: report.overflight_time,
+      });
+    }
+
+    const overseasTerritories = report.impact?.overseas_territories_and_crown_dependencies;
+
+    if (overseasTerritories) {
+      locations.push(
+        ...Object.entries(overseasTerritories)
+          .filter(([, data]) =>
+            hasLocationAtRiskProbability(
+              data.fragments_probability,
+              data.atmospheric_probability,
+              data.human_casualty_probability,
+            ))
+          .map(
+            ([location, data]): LocationAtRisk => ({
+              region: 'overseas_territories_and_crown_dependencies',
+              location,
+              ...data,
+            }),
+          ),
+      );
+    }
+
+    return locations;
+  }, [report]);
+
+  const maxOverflightCount = useMemo(() => {
+    return locationsAtRisk.reduce((maxCount, location) => {
+      return Math.max(maxCount, location.overflight_time?.length ?? 0);
+    }, 0);
+  }, [locationsAtRisk]);
 
   return (
     <div>
-      <Table className="text-base">
-        <TableHead>
-          <TableRow>
-            <TableCellHeader><div className="hidden">{t('description')}</div></TableCellHeader>
-            <TableCellHeader>{t('probability')}</TableCellHeader>
-            <TableCellHeader>{t('risk')}</TableCellHeader>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {isNumber(event.fragments_probability)
-            ? (
-                <TableRow>
-                  <TableCellHeader>{t('probability_of_fragmentation')}</TableCellHeader>
-                  <TableCell>{roundedPercent(event.fragments_probability)}</TableCell>
-                  <TableCell>
-                    {renderRiskTag(event.fragments_risk ?? 'None')}
-                  </TableCell>
-                </TableRow>
-              )
-            : null}
-          {isNumber(event.atmospheric_probability)
-            ? (
-                <TableRow>
-                  <TableCellHeader>{t('probability_of_atmospheric_entry')}</TableCellHeader>
-                  <TableCell>{roundedPercent(event.atmospheric_probability)}</TableCell>
-                  <TableCell>
-                    {renderRiskTag(event.atmospheric_risk ?? 'None')}
-                  </TableCell>
-                </TableRow>
-              )
-            : null}
-          {/* {isNumber(event.human_casualty_probability)
-            ? (
-                <TableRow>
-                  <TableCellHeader>{t('probability_of_human_casualty')}</TableCellHeader>
-                  <TableCell>{roundedPercent(event.human_casualty_probability)}</TableCell>
-                  <TableCell>
-                    {renderRiskTag(event.human_casualty_risk)}
-                  </TableCell>
-                </TableRow>
-              )
-            : null} */}
-        </TableBody>
-      </Table>
-      <Details summary={t.rich('help.title')}>
-        {t.rich('help.content')}
-      </Details>
+      {locationsAtRisk.length === 0
+        ? (
+            <p className="govuk-body">{t('empty')}</p>
+          )
+        : (
+            <div className="w-full overflow-x-auto">
+              <Table className="text-base">
+                <TableHead>
+                  <TableRow>
+                    <TableCellHeader>{t('location')}</TableCellHeader>
+                    <TableCellHeader>{t('risk_to_location')}</TableCellHeader>
+                    <TableCellHeader>
+                      {t('probability_of_debris_impact')}
+                    </TableCellHeader>
+                    <TableCellHeader>{t('probability_of_reentry')}</TableCellHeader>
+                    <TableCellHeader>
+                      {t('probability_of_human_casualties')}
+                    </TableCellHeader>
+                    {Array.from({ length: maxOverflightCount }, (_, index) => (
+                      <TableCellHeader key={`overflight-header-${index}`}>
+                        {t('time_of_overflight', { number: index + 1 })}
+                      </TableCellHeader>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {locationsAtRisk.map(locationAtRisk => (
+                    <TableRow
+                      key={`${locationAtRisk.region}-${locationAtRisk.location}`}
+                    >
+                      <TableCellHeader>
+                        {getLocationDisplayName(locationAtRisk.location)}
+                      </TableCellHeader>
+                      <TableCell>
+                        {renderRiskTag(getLocationRisk(locationAtRisk))}
+                      </TableCell>
+                      <TableCell>
+                        {formatProbability(locationAtRisk.fragments_probability)}
+                      </TableCell>
+                      <TableCell>
+                        {formatProbability(locationAtRisk.atmospheric_probability)}
+                      </TableCell>
+                      <TableCell>
+                        {formatProbability(
+                          locationAtRisk.human_casualty_probability,
+                        )}
+                      </TableCell>
+                      {Array.from({ length: maxOverflightCount }, (_, index) => (
+                        <TableCell
+                          key={`${locationAtRisk.location}-overflight-${index}`}
+                        >
+                          {formatOverflightTime(
+                            locationAtRisk.overflight_time,
+                            index,
+                          )}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          )}
+      <Details summary={t.rich('help.title')}>{t.rich('help.content')}</Details>
     </div>
   );
 };

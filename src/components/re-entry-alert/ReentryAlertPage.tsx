@@ -68,11 +68,11 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
       <Suspense fallback={<Spinner />}>
         {lastReport?.id && (
           <ReentryAlertMapContainer
-            tip={lastTip}
-            isClosed={isClosed}
             reentryId={shortId}
             reportId={lastReport.report_number.toString().padStart(3, '0')}
             overflightTime={event.overflight_time}
+            tip={lastTip}
+            isClosed={isClosed}
           />
         )}
       </Suspense>

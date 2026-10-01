@@ -1,14 +1,13 @@
 'use client';
-import { Download04Icon } from 'hugeicons-react';
-import Link from 'next/link';
 
-import type { TypeReentryEventReportOut } from '@/__generated__/data-contracts';
+import type { TypeEventHighestImpact, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
-import { roundedPercent } from '@/utils/Math';
-import { getReentryFragmentsProbability, getReentryFragmentsRisk } from '@/utils/ReentryRisk';
+import { getReentryFragmentsRisk } from '@/utils/ReentryRisk';
 import { renderRiskTag } from '@/utils/Tags';
+
+import { ReentryReportDownloadButton } from './ReentryReportDownloadButton';
 
 export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventReportOut>[] = [
   {
@@ -16,27 +15,20 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
     id: 'report_number',
     enableSorting: false,
     cell: ({ row }) => {
-      const { report_number, short_id, download_url } = row.original;
+      const { id, report_number, short_id, download_url, file_name } = row.original;
       const report = `Report ${report_number}`;
-      const isClosed = row.original.alert_type.includes('closedown');
+      const isClosed = row.original.alert_type?.includes('closedown');
 
       return (
         <>
-          {download_url
+          {download_url && id
             ? (
-                <Link
-                  href={download_url}
-                  className="govuk-link flex items-center gap-2"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Download04Icon />
-                  <span>
-                    {short_id}
-                    <br />
-                    {report}
-                  </span>
-                </Link>
+                <ReentryReportDownloadButton
+                  id={id}
+                  fileName={file_name ?? `${short_id}-report-${report_number}.json`}
+                  shortId={short_id}
+                  report={report}
+                />
               )
             : report}
           {`\n`}
@@ -56,27 +48,32 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
   },
   {
     header: 'Reentry_alert_history.risk',
+    accessorKey: 'highest_impact',
     enableSorting: false,
-    cell: ({ row: { original: { fragments_probability, object_name } } }) => {
-      const risk = getReentryFragmentsRisk(fragments_probability, object_name);
+    cell: ({ getValue, row: { original: { object_name } } }) => {
+      const highestImpact = getValue<TypeEventHighestImpact | null>();
+      const risk = getReentryFragmentsRisk({
+        fragmentsRisk: highestImpact?.highest_risk,
+        objectName: object_name,
+      });
       return renderRiskTag(risk);
     },
   },
   {
-    header: 'Reentry_alert_history.probability',
+    header: 'Reentry_alert_history.reentry_time',
     enableSorting: false,
-    cell: ({ row: { original: { fragments_probability, impact } } }) => {
-      const probability = getReentryFragmentsProbability(fragments_probability, impact);
-      return probability ? roundedPercent(probability, 3) : '-';
+    accessorKey: 'decay_epoch',
+    size: 70,
+    cell: ({ getValue }) => {
+      const value = getValue<string>();
+      return value ? dayjs(value).format(FORMAT_DATE_TIME) : '-';
     },
   },
   {
-    header: 'Reentry_alert_history.overflight',
-    accessorKey: 'overflight_time',
+    header: 'Reentry_alert_history.uncertainty_window',
     enableSorting: false,
-    cell: ({ getValue }) => {
-      const value = getValue<string>();
-      return value[0] ? dayjs(value[0]).format(FORMAT_DATE_TIME) : '-';
-    },
+    accessorKey: 'uncertainty_window',
+    size: 70,
+    cell: ({ getValue }) => `+/- ${getValue<number>()}`,
   },
 ];

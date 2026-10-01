@@ -30,7 +30,7 @@ const SearchBar = ({ label, placeholder, id, paramName, ariaLabel }: SearchBarPr
     } else {
       params.delete(param);
     }
-    replace(`${pathname}?${params.toString()}#${id}`);
+    replace(`${pathname}?${params.toString()}`);
     e.preventDefault();
   };
 

@@ -11,6 +11,9 @@ export async function getReentryEvent(short_id: string) {
     const { data } = await Api.getReentryEventsShortId(short_id, {
       next: { tags: [REVALIDATION_TAGS.GET_REENTRY_EVENT] },
     });
+    if (!data) {
+      throw new Error('No report data returned');
+    }
     return data;
   } catch {
     notFound();

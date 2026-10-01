@@ -12,14 +12,15 @@ type FooterProps = {
   withPlaceholders: boolean;
   isNotification?: boolean;
   isShort?: boolean;
+  isReentryWarning?: boolean;
   eventType?: 'conjunction' | 're-entry' | 'fragmentation';
   shortId?: string;
 };
 
-export const Footer = ({ withPlaceholders, isNotification, isShort, eventType, shortId }: FooterProps) => {
+export const Footer = ({ withPlaceholders, isNotification, isShort, isReentryWarning, eventType, shortId }: FooterProps) => {
   const t = createEmailTranslator({ namespace: 'Emails.Footer' });
 
-  const key = isShort ? 'content_short' : isNotification ? 'content_notification' : 'content';
+  const key = isReentryWarning ? 'content_reentry' : isShort ? 'content_short' : isNotification ? 'content_notification' : 'content';
 
   const contactLink = useMemo(() => {
     switch (eventType) {
@@ -55,6 +56,7 @@ export const Footer = ({ withPlaceholders, isNotification, isShort, eventType, s
           className="w-[113px] h-[31px]"
         />
       </EmailSection>
+      {isReentryWarning && <Text className="text-sm mt-0">{t('service_note')}</Text>}
       <Link href="mailto:monitorspacehazards@ukspaceagency.gov.uk?subject=Unsubscribe" className="text-sm">Unsubscribe</Link>
     </Section>
   );
