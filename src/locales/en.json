@@ -2401,31 +2401,17 @@
       "Location_risk": {
         "title": "Risk to {location}",
         "risk": "Risk",
-        "probability_of_debris_impact": "Probability of Debris Impact in {location}",
-        "probability_of_reentry": "Probability of Re-Entry over {location}",
-        "probability_of_human_casualties": "Probability of Human Casualties in {location}",
-        "overflight_times": "{location} Overflight Times",
-        "no_overflights": "No overflights",
-        "below_threshold": "Risk to UK interests does not meet the threshold for individual territory reporting.",
-        "predicted_re_entry_time": "Predicted Re-Entry Time",
-        "uncertainty_window": "Uncertainty Window",
-        "minutes": "minutes"
-      },
-      "Other_regions_at_risk": {
-        "description": "The risk to the below locations is non-zero, but does not reach the level required to necessitate individual or detailed territory reporting.",
-        "location": "Location",
-        "probability_of_reentry": "Probability of re-entry",
-        "probability_of_debris_impact": "Probability of debris impact",
-        "uk_mainland": "UK mainland",
-        "maritime_and_airspace": "Airspace and Maritime",
-        "overseas_territories_and_crown_dependencies": "UK CDOTs",
-        "empty": "No regions at risk unless shown above."
+        "probability_of_debris_impact": "Probability of Debris Impact",
+        "probability_of_reentry": "Probability of Re-Entry",
+        "probability_of_human_casualties": "Probability of Human Casualties",
+        "overflight_times": "Overflight Times",
+        "no_overflights": "No overflights"
       },
       "Potential_impact": {
         "by_nation_title": "Potential impact by UK nation",
         "by_airspace_and_maritime_title": "Potential impact by Airspace and Maritime",
         "by_overseas_territories_title": "Potential impact by Overseas Territories and Crown Dependencies",
-        "by_overseas_territories_description": "This section includes Overseas Territories and Crown Dependencies where any risk probability exceeds 0.1%.",
+        "by_overseas_territories_description": "This section includes only the Overseas Territories or Crown Dependencies where the probability of debris impact or atmospheric re-entry is greater than 0.",
         "location": "Location",
         "probability_of_debris_impact": "Probability of debris impact in",
         "probability_of_reentry": "Probability of re-entry over",
@@ -2479,13 +2465,6 @@
         "licensing_country": "Licencing Country",
         "expected_survivability": "Expected Survivability to Ground",
         "report_number": "Report Number"
-      },
-      "Affected_regions": {
-        "uk_mainland": "UK Mainland",
-        "united_kingdom": "United Kingdom",
-        "maritime_and_airspace": "Airspace and Maritime",
-        "overseas_territories_and_crown_dependencies": "UK CDOTs",
-        "no_regions_affected": "No Regions Affected"
       },
       "Event_details": {
         "re_entry_time": "Re-entry time window",
