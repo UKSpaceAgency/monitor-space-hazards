@@ -8,6 +8,7 @@ import { Map } from './_components/map';
 import { ReentryAnalysisProcess } from './_components/re-entry/analysis-process';
 import { ReentryAssessment } from './_components/re-entry/assessment';
 import { ReentryDamagesAndLiability } from './_components/re-entry/damages-and-liability';
+import { ReentryEventSummary } from './_components/re-entry/event-summary';
 import { ReentryHandlingSpaceDebris } from './_components/re-entry/handling-space-debris';
 import { ReentryLocationsAtRisk } from './_components/re-entry/locations-at-risk';
 import { ReentryObjectInformation } from './_components/re-entry/object-information';
@@ -40,7 +41,7 @@ type ReEntryEmailProps = {
 
 const NO_LOCATIONS: ReentryLocationAtRisk[] = [];
 
-function ReEntryEmail({ event, report, withPlaceholders, analysisProcess, locationsAtRisk = NO_LOCATIONS, level = 1 }: ReEntryEmailProps) {
+function ReEntryEmail({ event, report, tip, withPlaceholders, analysisProcess, locationsAtRisk = NO_LOCATIONS, level = 1 }: ReEntryEmailProps) {
   const t = createEmailTranslator({ namespace: 'Emails' });
 
   const objectName = report.object_name ?? event.object_name ?? '';
@@ -67,6 +68,7 @@ function ReEntryEmail({ event, report, withPlaceholders, analysisProcess, locati
       {event.executive_summary_comment && <ReentryAssessment executiveSummary={event.executive_summary_comment} />}
       <ReentryLocationsAtRisk locations={locationsAtRisk} report={report} />
       <EmailSection className="!w-full pb-8">
+        <ReentryEventSummary event={event} tip={tip} className="pb-6" />
         <Map src="{{WORLD_MAP.src}}" />
       </EmailSection>
       <Section title={t('Reentry_alert.additional_object_information_title')}>
