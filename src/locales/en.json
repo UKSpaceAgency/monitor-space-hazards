@@ -2437,10 +2437,6 @@
         "alert_content_level_2": "<p>This report is a Level 2 Alert. It is intended for response partners across UK Government, and is issued when an event reaches the threshold for wider notification. This report should not be forwarded without permission.</p>",
         "more_information": "<p>More information about this report can be found at <link>Monitor Space Hazards - GOV.UK</link></p>"
       },
-      "Analysis_process": {
-        "content": "Analysis process used for generating this report: <process></process>",
-        "placeholder": "Standard / UKSA Enhanced"
-      },
       "Risk_probabilities": {
         "probability": "Probability",
         "risk": "Risk",

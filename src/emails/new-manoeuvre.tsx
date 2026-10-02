@@ -19,7 +19,7 @@ function NewManoeuvreEmail({ conjunctions, withPlaceholders }: NewManoeuvreEmail
   const url = `${env.NEXTAUTH_URL}/conjunctions`;
 
   return (
-    <Layout withPlaceholders={withPlaceholders} isNotification eventType="conjunction">
+    <Layout withPlaceholders={withPlaceholders} eventType="conjunction">
       <Section title={t('Manoeuvre_notification.title')}>
         {t.rich('Manoeuvre_notification.content')}
         <ConjunctionNotificationTable conjunctions={conjunctions} />

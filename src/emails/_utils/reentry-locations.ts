@@ -135,7 +135,12 @@ export const getPotentialImpactByNation = (report: TypeReentryEventReportOut): R
     name: jsonRegionsMap[key] ?? key,
     group: 'uk_mainland' as const,
   })),
-];
+].filter(location =>
+  hasPositiveProbability(
+    location.fragments_probability,
+    location.atmospheric_probability,
+    location.human_casualty_probability,
+  ));
 
 /**
  * "Potential impact by Airspace and Maritime": the regions carried in the
@@ -147,11 +152,17 @@ export const getPotentialImpactByAirspaceAndMaritime = (
   toLocations(
     report.impact?.maritime_and_airspace,
     'maritime_and_airspace',
-  );
+  ).filter(location =>
+    hasPositiveProbability(
+      location.fragments_probability,
+      location.atmospheric_probability,
+      location.human_casualty_probability,
+    ));
 
 /**
  * "Potential impact by Overseas Territories and Crown Dependencies": every
- * territory carried in the report, sorted alphabetically — same as the website.
+ * territory with any probability > 0%, sorted alphabetically. The stricter
+ * > 0.1% threshold only applies to the "Risk to <location>" blocks, not here.
  */
 export const getPotentialImpactByOverseasTerritories = (
   report: TypeReentryEventReportOut,
@@ -159,4 +170,11 @@ export const getPotentialImpactByOverseasTerritories = (
   toLocations(
     report.impact?.overseas_territories_and_crown_dependencies,
     'overseas_territories_and_crown_dependencies',
-  ).sort((a, b) => a.key.localeCompare(b.key));
+  )
+    .filter(location =>
+      hasPositiveProbability(
+        location.fragments_probability,
+        location.atmospheric_probability,
+        location.human_casualty_probability,
+      ))
+    .sort((a, b) => a.key.localeCompare(b.key));

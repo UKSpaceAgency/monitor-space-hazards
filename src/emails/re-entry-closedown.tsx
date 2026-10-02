@@ -37,7 +37,7 @@ function ReEntryClosedownEmail({ event, report, withPlaceholders, level = 1 }: R
       <Section title={t('Reentry_alert.object_information_title')}>
         <ReentryObjectInformation event={event} report={report} />
       </Section>
-      <ReentryUnderstandingThisReportClosed level={level} />
+      <ReentryUnderstandingThisReportClosed level={level} shortId={event.short_id} />
     </Layout>
   );
 }

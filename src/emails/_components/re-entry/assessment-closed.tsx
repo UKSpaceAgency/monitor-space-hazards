@@ -4,7 +4,9 @@ import { isNumber } from 'lodash';
 import type { TypeReentryEventOut, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
 import { createEmailTranslator } from '@/emails/_utils/utils';
 import { dayjs, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
+import { env } from '@/libs/Env';
 
+import { Link } from '../link';
 import { Map } from '../map';
 import { Section } from '../section';
 import { Table } from '../table';
@@ -38,15 +40,20 @@ export const ReentryAssessmentClosed = ({ event, report }: ReentryAssessmentClos
     <Section title={t('title')}>
       <EmailSection className="!w-full pb-4">
         <Text className="italic">{event.executive_summary_comment}</Text>
+        <Text>
+          Sign in to view analysis and additional information:
+          {' '}
+          <Link href={`${env.NEXTAUTH_URL}/re-entries/${event.short_id}/alert`}>Monitor Space Hazards - GOV.UK</Link>
+        </Text>
         <Table data={data} forceAlignLeft />
       </EmailSection>
       <EmailSection className="!w-full pb-4">
         <Text className="italic mb-2">{t('potential_debris_field')}</Text>
-        <Map src="{{DEBRIS_FIELD_MAP.src}}" width="580" showLegend={false} />
+        <Map src="{{DEBRIS_FIELD_MAP.src}}" width="600" showLegend={false} />
       </EmailSection>
       <EmailSection className="!w-full">
         <Text className="italic mb-2">{t('flight_path')}</Text>
-        <Map src="{{FLIGHT_PATH_MAP.src}}" width="580" />
+        <Map src="{{FLIGHT_PATH_MAP.src}}" width="600" />
       </EmailSection>
     </Section>
   );

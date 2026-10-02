@@ -5,7 +5,6 @@ import { getReentryFragmentsRisk } from '@/utils/ReentryRisk';
 
 import { Layout } from './_components/layout';
 import { Map } from './_components/map';
-import { ReentryAnalysisProcess } from './_components/re-entry/analysis-process';
 import { ReentryAssessment } from './_components/re-entry/assessment';
 import { ReentryDamagesAndLiability } from './_components/re-entry/damages-and-liability';
 import { ReentryEventSummary } from './_components/re-entry/event-summary';
@@ -25,7 +24,6 @@ type ReEntryEmailProps = {
   report: TypeReentryEventReportOut;
   tip: TypeTIPOut;
   withPlaceholders: boolean;
-  analysisProcess: string;
   /**
    * Map images (and optional display names) for the "Risk to <location>"
    * blocks. Which locations appear, and their data, is derived from the
@@ -41,7 +39,7 @@ type ReEntryEmailProps = {
 
 const NO_LOCATIONS: ReentryLocationAtRisk[] = [];
 
-function ReEntryEmail({ event, report, tip, withPlaceholders, analysisProcess, locationsAtRisk = NO_LOCATIONS, level = 1 }: ReEntryEmailProps) {
+function ReEntryEmail({ event, report, tip, withPlaceholders, locationsAtRisk = NO_LOCATIONS, level = 1 }: ReEntryEmailProps) {
   const t = createEmailTranslator({ namespace: 'Emails' });
 
   const objectName = report.object_name ?? event.object_name ?? '';
@@ -62,10 +60,9 @@ function ReEntryEmail({ event, report, tip, withPlaceholders, analysisProcess, l
       title={`${objectTypeLabel} ${objectName}`.trim()}
       withPlaceholders={withPlaceholders}
       isReentryWarning
-      afterFooter={<ReentryAnalysisProcess analysisProcess={analysisProcess} />}
     >
       <Subheader risk={risk} />
-      {event.executive_summary_comment && <ReentryAssessment executiveSummary={event.executive_summary_comment} />}
+      {event.executive_summary_comment && <ReentryAssessment executiveSummary={event.executive_summary_comment} shortId={event.short_id} />}
       <ReentryLocationsAtRisk locations={locationsAtRisk} report={report} />
       <EmailSection className="!w-full pb-8">
         <ReentryEventSummary event={event} tip={tip} className="pb-6" />
@@ -91,7 +88,6 @@ ReEntryEmail.PreviewProps = {
   pageUrl: 'https://www.dev.monitor-space-hazards.service.gov.uk',
   level: 1,
   assessment: null,
-  analysisProcess: null,
   tip: {
     direction: 'ascending',
   },
@@ -214,8 +210,8 @@ ReEntryEmail.PreviewProps = {
       by_nation: {
         england_nation: { fragments_probability: 0.00029, atmospheric_probability: 0.0003, overflight_time: ['2026-01-07T03:54:00Z'] },
         scotland_nation: { fragments_probability: 0.00001, atmospheric_probability: 0.00001, overflight_time: ['2026-01-07T03:54:00Z'] },
-        wales_nation: { fragments_probability: 0.00001, atmospheric_probability: 0.00001, overflight_time: ['2026-01-07T03:54:00Z'] },
-        northern_ireland_nation: { fragments_probability: 0.00004, atmospheric_probability: 0.00006, overflight_time: ['2026-01-07T03:54:00Z'] },
+        wales_nation: { fragments_probability: 0, atmospheric_probability: 0, overflight_time: ['2026-01-07T03:54:00Z'] },
+        northern_ireland_nation: { fragments_probability: 0, atmospheric_probability: 0, overflight_time: ['2026-01-07T03:54:00Z'] },
       },
       maritime_and_airspace: {
         uk_navarea: { fragments_probability: 0.00029, atmospheric_probability: 0.0003, overflight_time: ['2026-01-07T03:54:00Z'] },

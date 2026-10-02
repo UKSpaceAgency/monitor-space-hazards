@@ -9,9 +9,10 @@ import { Text } from '../text';
 
 type ReentryUnderstandingThisReportClosedProps = {
   level: 1 | 2;
+  shortId: string;
 };
 
-export const ReentryUnderstandingThisReportClosed = ({ level }: ReentryUnderstandingThisReportClosedProps) => {
+export const ReentryUnderstandingThisReportClosed = ({ level, shortId }: ReentryUnderstandingThisReportClosedProps) => {
   const t = createEmailTranslator({ namespace: 'Emails.Reentry_alert.Understanding_this_report_closed' });
 
   return (
@@ -24,7 +25,7 @@ export const ReentryUnderstandingThisReportClosed = ({ level }: ReentryUnderstan
         <Text className="text-sm m-0 font-bold">{t('alert_title', { level })}</Text>
         {t.rich(level === 2 ? 'alert_content_level_2' : 'alert_content_level_1')}
         {t.rich('more_information', {
-          link: chunks => <Link href={env.NEXTAUTH_URL}>{chunks}</Link>,
+          link: chunks => <Link href={`${env.NEXTAUTH_URL}/re-entries/${shortId}/alert`}>{chunks}</Link>,
         })}
       </EmailSection>
     </Section>

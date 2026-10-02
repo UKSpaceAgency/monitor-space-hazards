@@ -20,8 +20,8 @@ const formatProbability = (value: number | null | undefined) =>
 
 const LabelledRow = ({ label, children }: { label: string; children: React.ReactNode }) => (
   <Row className="!w-full">
-    <Column className="w-1/3 p-2 text-sm font-bold align-top">{label}</Column>
-    <Column className="w-2/3 p-2 text-sm align-top">{children}</Column>
+    <Column className="w-1/2 p-2 pl-0 text-sm font-bold align-top">{label}</Column>
+    <Column className="w-1/2 p-2 text-sm align-top">{children}</Column>
   </Row>
 );
 
@@ -37,9 +37,9 @@ export const LocationRisk = ({ location }: LocationRiskProps) => {
     <Section title={t('title', { location: name })}>
       <EmailSection className="!w-full">
         <Row className="!w-full">
-          <Column className="w-1/3 p-2 text-sm font-bold align-top">{t('risk')}</Column>
+          <Column className="w-1/2 p-2 pl-0 text-sm font-bold align-top">{t('risk')}</Column>
           <Column
-            className="w-2/3 p-2 text-sm text-center"
+            className="w-1/2 p-2 text-sm text-center"
             style={riskStyle && { backgroundColor: riskStyle.background, color: riskStyle.text }}
           >
             {risk ?? '-'}

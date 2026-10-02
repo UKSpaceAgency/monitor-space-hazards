@@ -37,13 +37,24 @@ export const Footer = ({ withPlaceholders, isNotification, isShort, isReentryWar
     return contactLink + (shortId ? `?id=${shortId}` : '');
   }, [contactLink, shortId]);
 
+  const eventLink = useMemo(() => {
+    switch (eventType) {
+      case 're-entry':
+        return `${env.NEXTAUTH_URL}/re-entries/${shortId}`;
+      case 'fragmentation':
+        return `${env.NEXTAUTH_URL}/conjunctions/${shortId}`;
+      default:
+        return `${env.NEXTAUTH_URL}`;
+    }
+  }, [eventType, shortId]);
+
   return (
     <Section title={t('title')} className="pb-0">
       {t.rich(key, {
         p: chunks => <Text className="text-sm mt-0">{chunks}</Text>,
         nspocemail: chunks => <Link href="mailto:NSPOCincidents@ukspaceagency.gov.uk">{chunks}</Link>,
         orbitalemail: chunks => <Link href="mailto:OrbitalAnalysts@ukspaceagency.gov.uk">{chunks}</Link>,
-        link: chunks => <Link href={env.NEXTAUTH_URL}>{chunks}</Link>,
+        link: chunks => <Link href={eventLink}>{chunks}</Link>,
         contact: chunks => <Link href={`${env.NEXTAUTH_URL}/contact`}>{chunks}</Link>,
         button: chunks => <Text className="text-sm mt-0"><Button className="bg-[#006ebb] p-2 text-white rounded" href={contactLinkWithShortId}>{chunks}</Button></Text>,
       })}
