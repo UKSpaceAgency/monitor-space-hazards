@@ -51,9 +51,6 @@ export const LocationRisk = ({ location }: LocationRiskProps) => {
         <LabelledRow label={t('probability_of_reentry')}>
           {formatProbability(location.atmospheric_probability)}
         </LabelledRow>
-        <LabelledRow label={t('probability_of_human_casualties')}>
-          {formatProbability(location.human_casualty_probability)}
-        </LabelledRow>
         <LabelledRow label={t('overflight_times')}>
           {overflightTimes.length > 0
             ? overflightTimes.map((time, index) => (

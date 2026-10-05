@@ -216,7 +216,7 @@ ReEntryEmail.PreviewProps = {
       maritime_and_airspace: {
         uk_navarea: { fragments_probability: 0.00029, atmospheric_probability: 0.0003, overflight_time: ['2026-01-07T03:54:00Z'] },
         london_fir: { fragments_probability: 0.00001, atmospheric_probability: 0.00001, overflight_time: ['2026-01-07T03:54:00Z'] },
-        scotland_fir: { fragments_probability: 0.01535, atmospheric_probability: 0.00107, overflight_time: ['2026-01-07T03:54:00Z'] },
+        scotland_fir: { fragments_probability: null, atmospheric_probability: null, overflight_time: ['2026-01-07T03:54:00Z'] },
         shanwick_airspace: { fragments_probability: 0.0014, atmospheric_probability: 0.00295, overflight_time: ['2026-01-07T03:54:00Z'] },
       },
       overseas_territories_and_crown_dependencies: {

@@ -40,7 +40,7 @@ export const Footer = ({ withPlaceholders, isNotification, isShort, isReentryWar
   const eventLink = useMemo(() => {
     switch (eventType) {
       case 're-entry':
-        return `${env.NEXTAUTH_URL}/re-entries/${shortId}`;
+        return `${env.NEXTAUTH_URL}/re-entries/${shortId}/alert`;
       case 'fragmentation':
         return `${env.NEXTAUTH_URL}/conjunctions/${shortId}`;
       default:
