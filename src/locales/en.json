@@ -1481,7 +1481,7 @@
         "probability_of_collision": "Probability of collision",
         "poc_space_track": "Space-Track",
         "poc_uksa": "NSpOC",
-        "total_miss_distance": "Total Miss Distance (m)",
+        "total_miss_distance": "Total miss distance (m)",
         "tca_time": "Time of closest approach (TCA)",
         "date": "Date",
         "time": "Time (UTC)",
@@ -1576,7 +1576,7 @@
       "report_time": "Time of update (UTC)",
       "risk": "Risk level",
       "probability": "Probability of collision (%)",
-      "overflight": "Time of Closest Approach (UTC)"
+      "overflight": "Time of closest approach (UTC)"
     },
     "Reentries_summary": {
       "upcoming_reentry_alerts": "Upcoming re-entry alerts",
