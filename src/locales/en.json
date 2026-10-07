@@ -456,11 +456,11 @@
     },
     "Conjunction_events": {
       "title": "{type} conjunction events",
-      "description": "This table shows all upcoming conjunction events involving {commonName}. You can apply filters to view past events.",
+      "description": "This table shows all upcoming conjunction events involving {commonName}. Apply filters to view past events.",
       "search_bar": {
         "previousLabel": "Find a previous upcoming conjunction event:",
         "upcomingLabel": "Find a upcoming conjunction event:",
-        "placeholder": "Search by event ID, primary object ID or primary object name"
+        "placeholder": "Search by event ID, primary object name or primary object NORAD ID"
       },
       "filters": {
         "summary": "Apply filters to this table:",
@@ -753,12 +753,12 @@
   "Conjunctions": {
     "title": "Track conjunction events (Monitor your satellites)",
     "section_title": "All conjunction events",
-    "description": "This table shows upcoming conjunction events involving UK-licensed satellites by default. You can apply filters to view past events.",
+    "description": "This table shows upcoming conjunction events.  Apply filters to view past events.",
     "search_bar": {
       "upcomingLabel": "Find a upcoming conjunction event",
       "previousLabel": "Find a previous conjunction event",
       "allLabel": "Find a conjunction event",
-      "placeholder": "Search by event ID, primary object ID or primary object name"
+      "placeholder": "Search by event ID, primary object name or primary object NORAD ID"
     },
     "help1": {
       "title": "Help with this table<screenReaderOnly> - Upcoming conjunctions</screenReaderOnly>",
@@ -766,7 +766,7 @@
     },
     "help2": {
       "title": "Help with this table<screenReaderOnly> - Conjunction events</screenReaderOnly>",
-      "content": "<p>This table shows upcoming conjunction events involving UK-licensed satellites by default. You can apply filters to view past events.</p><p>Select the <bold>event ID</bold> to view more information</p><p>Each event ID or row represents <bold>one conjunction event </bold> including all related Conjunction Data Messages (CDMs) and NSpOC analysis.</p>"
+      "content": "<p>This table shows upcoming conjunction events involving UK-licensed satellites by default. Apply filters to view past events.</p><p>Select the <bold>event ID</bold> to view more information</p><p>Each event ID or row represents <bold>one conjunction event </bold> including all related Conjunction Data Messages (CDMs) and NSpOC analysis.</p>"
     }
   },
   "Conjunction": {
@@ -794,7 +794,7 @@
         "title": "Additional object data",
         "content": "<p>ESA DISCOS provides additional object data where available. Contact ESA DISCOS if your satellite data is incorrect.</p><p>ESA DISCOS data was last updated on: {updateTime} UTC</p>"
       },
-      "title": "Object Data",
+      "title": "Object data",
       "primary_object": "Primary object",
       "secondary_object": "Secondary object",
       "space_track": "Space-Track is the main source of object data. Contact Space-Track if your satellite data is incorrect."
@@ -896,7 +896,7 @@
       "content": "<p>If a collision between these objects were to occur, the resulting debris may pose additional risk to UK-licensed satellites.</p><p>The table below shows how, if this collision were to occur, the number of conjunction events (with a miss distance of 5km or less) for UK-licensed satellites would increase in the following 7 days.</p>"
     },
     "Operator_view": {
-      "content": "<p>This alert page adds NSpOC's analysis of the objects at risk. Visit the <link>conjunction event page</link> for the basic data generated from Conjunction Data Messages (CDMs).</p>"
+      "content": "<p>This alert page adds NSpOC's analysis of the objects at risk. Visit the <link>conjunction event page</link> for the basic data generated from conjunction data messages (CDMs).</p>"
     },
     "Alert_thresholds": {
       "content": "<h3>Level 1 (Standard) conjunction alert</h3><p>The criteria for producing a Level 1 (Standard) conjunction alert is as follows:</p><p>For UK-licensed objects:</p><list><item>Less than 5 days until Time of Closest Approach, and</item><item>More than 0.1% probability of collision, and</item><item>Press interest</item></list><p>For non-UK objects:</p><list><item>Less than 5 days until Time of Closest Approach, and</item><item>Classified as Low Risk or higher, and</item><item>No manoeuvre expected</item></list><p>For all objects:</p><list><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Level 2 (Priority) conjunction alert</h3><p>The criteria for producing a Level 2 (Priority) conjunction alert is as follows:</p><p>For UK-licensed objects:</p><list><item>More than 1% probability of collision, and</item><item>No manoeuvre expected</item></list><p>For non-UK objects:</p><list><item>More than 5% probability of collision, and</item><item>No manoeuvre expected, and</item><item>Significant press interest</item></list><p>For all objects:</p><list><item>Nominated for escalation by the National Space Operations Centre</item></list><h3>Alert distribution</h3><p>If this report is classified as a Level 1 (Standard) conjunction alert, it has been distributed only to key UK Government organisations (for example the National Space Operations Centre, Ministry of Defence and Civil Aviation Authority) and international partners.</p><p>If this report is classified as a Level 2 (Priority) conjunction alert, it has been distributed only to specific users directly involved in the Government response.</p><p>Please note: distribution lists for Level 1 and Level 2 alerts are separate. Recipients will only receive reports for the level(s) for which they are specifically included.</p>"
@@ -947,7 +947,7 @@
   "Reentries": {
     "title": "Track re-entry events",
     "upcoming_reentry_alerts": "Upcoming re-entry alerts",
-    "all_reentry_events": "All re-entry events worldwide",
+    "all_reentry_events": "All re-entry events ",
     "content": "<p>This table contains all tracked re-entry events, including re-entry events that meet the National Space Operations Centre's thresholds for alerting UK government. For further detail on how risk and alert thresholds are defined, see 'Help with this table' below.</p>"
   },
   "Reentry": {
@@ -1037,11 +1037,11 @@
     },
     "Guidance_if_object_impacts_uk_interests": {
       "handling_space_debris": {
-        "title": "Handling Space Debris",
+        "title": "Handling space debris",
         "content": "<p>If space debris survives to the ground, it should be considered hazardous until proven otherwise. Debris must not be disposed of or given to the public. Standard hazardous materials (hazmat) response procedures, such as testing by the fire service, should be followed. Existing local plans for a Chemical, Biological, Radiological and Nuclear (CBRN) incident or a plane crash should also be implemented.</p><p>The most well-known hazardous substances found in rockets and satellites include:</p><list><item><hydrazine>Hydrazine</hydrazine></item><item><kerosene>Kerosene</kerosene></item></list><p>The National Space Operations Centre must be informed immediately of any space debris sightings via:</p><list><item><email>NSpOCIncidents@ukspaceagency.gov.uk</email></item><item><email>Resilience@ukspaceagency.gov.uk</email></item><item><email>OrbitalAnalysts@ukspaceagency.gov.uk</email></item></list>"
       },
       "public_guidance_on_space_debris": {
-        "title": "Public Guidance on Space Debris",
+        "title": "Public guidance on space debris",
         "content": "<p>Space debris can be hazardous and may contain materials that pose a serious risk to health. If you come across an object that you believe to be space debris, follow these steps:</p><list><item>Do not touch the object</item><item>Note the location of the object</item><item>If possible, take a photograph of the object without touching it</item><item>Do not stay close to the object</item><item>Notify the authorities by calling 111 (or the relevant number outside the UK)</item></list><p>Space debris remains the property of the spacecraft owner.</p><p>If you have already handled an object you believe to be space debris, place it in a safe location where others will not touch it and inform the authorities immediately.</p>"
       }
     },
@@ -1470,22 +1470,22 @@
       },
       "upcoming_conjunction": "Upcoming conjunction {item}",
       "display_probability": "Display probability of collision as:",
-      "conjunctions_events_as_of": "Conjunction events as of ",
+      "conjunctions_events_as_of": "Last updated ",
       "table": {
-        "event_information": "Event information",
-        "risk": "Risk",
+        "event_information": "Event ",
+        "risk": "Risk level",
         "event_id": "Event ID",
         "objects": "Objects",
-        "primary_object": "Primary",
-        "secondary_object": "Secondary",
+        "primary_object": "Primary object",
+        "secondary_object": "Secondary object",
         "probability_of_collision": "Probability of collision",
-        "poc_space_track": "Space-Track CDM",
+        "poc_space_track": "Space-Track",
         "poc_uksa": "NSpOC",
         "total_miss_distance": "Total Miss Distance (m)",
         "tca_time": "Time of closest approach (TCA)",
-        "date": "TCA Date",
-        "time": "TCA Time (UTC)",
-        "empty_list_info": "No conjunction events have been found"
+        "date": "Date",
+        "time": "Time (UTC)",
+        "empty_list_info": "There are no upcoming conjunction alerts."
       }
     },
     "Conjunction": {
@@ -1502,7 +1502,7 @@
       "summary_list": {
         "description": "Conjunction events summary table",
         "special": "Special",
-        "space_track_cdm": "Space-Track CDM",
+        "space_track_cdm": "Space-Track",
         "uksa_analysis": "NSpOC Analysis",
         "cdm_id": "CDM ID",
         "probability_of_collision": "Probability of collision",
@@ -1544,9 +1544,9 @@
       }
     },
     "Conjunction_alert_executive_summary": {
-      "risk": "Risk to the UK",
-      "tca": "Time of Closest Approach (UTC)",
-      "poc": "Probability of Collision (%)",
+      "risk": "Risk level  ",
+      "tca": "Time of closest approach (UTC)",
+      "poc": "Probability of collision (%)",
       "manoeuvre_expected": "Manoeuvre expected?",
       "primary_object": "Primary object",
       "secondary_object": "Secondary object",
@@ -1574,15 +1574,15 @@
     "Conjunction_alert_history": {
       "report_number": "Report number",
       "report_time": "Time of update (UTC)",
-      "risk": "Risk",
+      "risk": "Risk level",
       "probability": "Probability of collision (%)",
       "overflight": "Time of Closest Approach (UTC)"
     },
     "Reentries_summary": {
       "upcoming_reentry_alerts": "Upcoming re-entry alerts",
-      "upcoming_reentry_events_worldwide": "Upcoming re-entry events worldwide",
+      "upcoming_reentry_events_worldwide": "Upcoming re-entry events ",
       "help": {
-        "title": "Help with this table<screenReaderOnly> - UK risk probabilities</screenReaderOnly>",
+        "title": "Help with this table",
         "content": "<p>This service tracks all upcoming re-entry events worldwide, including those which pose a risk to UK interests. The service reports on two types of re-entry event.</p><list><item><bold>Upcoming re-entry alerts:</bold> all upcoming re-entry events which meet the UK Space Agency's thresholds for alerting UK government</item><item><bold>Upcoming re-entry events worldwide:</bold> all upcoming re-entry events worldwide, including those which have not met alerting thresholds</item></list>"
       },
       "warning": "This table focuses on risk to the UK. Select the Event ID to view additional analysis and risk information for the UK Overseas Territories and Crown Dependencies."
@@ -1592,7 +1592,7 @@
         "allLabel": "Find a re-entry event",
         "upcomingLabel": "Find a upcoming re-entry event",
         "previousLabel": "Find a previous re-entry event",
-        "placeholder": "Search by event ID, object ID or object name"
+        "placeholder": "Search by event ID, object name or NORAD ID"
       },
       "filters": {
         "summary": "Apply filters to this table:",
@@ -1604,20 +1604,20 @@
         "select_label": "Filter by"
       },
       "table": {
-        "empty_list_info": "No re-entry events have been found",
+        "empty_list_info": "There are no upcoming re-entry alerts.",
         "event_details": "Event details",
         "object_details": "Object details",
-        "risk": "Highest risk",
+        "risk": "Risk level (UK interests)",
         "event_id": "Event ID",
         "object": "Object",
         "norad_id": "NORAD ID",
         "detailed_region": "Location at most risk",
-        "probability_of_fragmentation": "Debris impact in location (%)",
+        "probability_of_fragmentation": "Chance of debris landing (%)",
         "date": "Date",
         "time": "Time (UTC)",
         "window": "Window (mins)"
       },
-      "reentries_events_as_of": "Re-entry events as of "
+      "reentries_events_as_of": "Last updated "
     },
     "Reentry_event_summary": {
       "tip_id": "TIP ID",
@@ -1638,7 +1638,7 @@
       "uncertainty_window": "Uncertainty window for predicted re-entry time (mins)"
     },
     "Reentry_alert_executive_summary": {
-      "uk_reentry_probability": "Risk to the UK (see Risk thresholds)",
+      "uk_reentry_probability": "Risk level (UK interests)",
       "probability": "Probability of re-entry over the UK (%)",
       "time_window_world": "Re-entry time window (UTC)",
       "overflight_time": "UK overflight time(s) (UTC)",
@@ -1654,7 +1654,7 @@
       "location": "Location",
       "empty": "Risk to UK interests does not meet the threshold for individual territory reporting.",
       "risk_to_location": "Risk to location",
-      "probability_of_debris_impact": "Probability of debris impact in location (%)",
+      "probability_of_debris_impact": "Chance of debris landing in location (%)",
       "probability_of_reentry": "Probability of re-entry over location (%)",
       "probability_of_human_casualties": "Probability of human casualties (%)",
       "time_of_overflight": "Time of overflight {number} (UTC)",
@@ -1699,7 +1699,7 @@
     "Reentry_alert_history": {
       "report_number": "Report number",
       "report_time": "Time of report (UTC)",
-      "risk": "Highest risk",
+      "risk": "Risk level (UK interests)",
       "reentry_time": "Re-entry time (UTC)",
       "uncertainty_window": "Uncertainty window (mins)"
     },
@@ -1707,7 +1707,7 @@
       "event_epoch": "Estimated event time (UTC)",
       "known_fragments": "Number of known fragments",
       "modelled_fragments": "Modelled number of fragments",
-      "risk": "Risk",
+      "risk": "Risk level",
       "affected_regime": "Affected regime",
       "uk_satellites_affected": "UK satellites with increased risk of conjunction",
       "potential_cause": "Potential cause of fragmentation"
@@ -1939,7 +1939,7 @@
       "flag_id": "Flag ID",
       "satellite": "Satellite",
       "flag_date": "Date of flag",
-      "description": "This table shows all activity flags involving {organisationName}'s satellites. You can apply filters to view past events.",
+      "description": "This table shows all activity flags involving {organisationName}'s satellites. Apply filters to view past events.",
       "apply_filters": "Apply filters to this table:",
       "filter_satellite": "Filter by satellite",
       "filter_reason": "Filter by reason for flag",
@@ -1982,8 +1982,8 @@
       "edit": "Edit"
     },
     "Fragmentations": {
-      "empty_list_info": "No fragmentation events have been found",
-      "fragmentations_events_as_of": "Upcoming and previous known fragmentation events as of ",
+      "empty_list_info": "There are no fragmentation alerts.",
+      "fragmentations_events_as_of": "Last updated ",
       "event_details": "Event details",
       "risk": "Risk",
       "object_details": "Object details",
@@ -1992,13 +1992,13 @@
       "time": "Time",
       "short_id": "Event ID",
       "affected_regime": "Affected regime",
-      "known_fragments": "Number of known fragments",
+      "known_fragments": "Known fragments",
       "object_type": "Object type",
       "licensing_country": "Licensing country",
       "primary_object_common_name": "Primary object",
       "secondary_object_common_name": "Secondary object",
-      "number_of_fragments": "Number of known fragments",
-      "modelled_fragments": "Modelled number of fragments",
+      "number_of_fragments": "Known fragments",
+      "modelled_fragments": "Modelled fragments",
       "fragmentation_risk": "Fragmentation risk"
     },
     "Activities": {
@@ -2028,7 +2028,7 @@
       "apogee": "Apogee (km)",
       "perigee": "Perigee (km)",
       "position_change": "Position after change and size of change (if applicable)",
-      "activity_events_as_of": "Activity events as of ",
+      "activity_events_as_of": "Last updated ",
       "position_at_time": "Position at time of TLE"
     }
   },
@@ -2188,7 +2188,7 @@
         "long_term_impact_comment": "Long term impact",
         "uk_response_comment": "Guidance if object impacts UK interests",
         "closed_comment": "Closed comment",
-        "spaceflight_risk_comment": "UK and Human Spaceflight risk",
+        "spaceflight_risk_comment": "UK and human spaceflight risk",
         "orbital_analyst_comment": "Analysis of potential event cause"
       },
       "manoeuvrable": {
@@ -2458,7 +2458,7 @@
         "norad_id": "NORAD ID",
         "height": "Height",
         "width": "Width",
-        "licensing_country": "Licencing Country",
+        "licensing_country": "Licensing Country",
         "expected_survivability": "Expected Survivability to Ground",
         "report_number": "Report Number"
       },
@@ -2521,7 +2521,7 @@
         "licensing_country": "Licensing Country"
       },
       "Event_summary": {
-        "risk": "Risk",
+        "risk": "Risk level",
         "predicted_time_of_closest_approach": "Time of Closest Approach",
         "probability_of_collision": "Probability of Collision",
         "manoeuvre_expected": "Manoeuvre Expected?",
@@ -2633,7 +2633,7 @@
         "licensing_country": "Licensing Country"
       },
       "Potential_impact": {
-        "uk_risk": "UK and Human Spaceflight risk",
+        "uk_risk": "UK and human spaceflight risk",
         "uk_satellites_affected": "UK Satellites affected",
         "content": "<p>All UK satellites were screened against the current object population and fragments predicted by the breakup model.</p><list><item><b>Current:</b> Number of conjunction events within 5 km per week, based on existing objects.</item><item><b>Predicted:</b> Additional conjunction events within 5 km expected in the 7 days after the event, based on predicted fragment orbits.</item></list>",
         "object": "Object",
@@ -2663,12 +2663,12 @@
   "Fragmentations": {
     "title": "Track fragmentation events",
     "section_title": "All fragmentation events",
-    "description": "This table contains all tracked fragmentation events, including fragmentation events that meet the UK Space Agency's thresholds for alerting UK government. For further detail on how risk and alert thresholds are defined, see 'Help with this table' below.",
+    "description": "This table shows tracked fragmentation events.",
     "search_bar": {
       "upcomingLabel": "Find a upcoming fragmentation event",
       "previousLabel": "Find a previous fragmentation event",
       "allLabel": "Find a fragmentation event",
-      "placeholder": "Search by event or object ID"
+      "placeholder": "Search by event ID, primary object name or primary object NORAD ID"
     },
     "help": {
       "title": "Help with this table<screenReaderOnly> - Fragmentation events</screenReaderOnly>",
@@ -2686,7 +2686,7 @@
       "guidance": "Guidance",
       "additional_information": "Additional information",
       "fragmentation_history": "Fragmentation event history",
-      "additional_risk": "UK and Human Spaceflight risk",
+      "additional_risk": "UK and human spaceflight risk",
       "guidance_on_response": "Guidance on response",
       "press_attention": "Press attention",
       "analysis_of_potential_event_cause": "Analysis of potential event cause",
