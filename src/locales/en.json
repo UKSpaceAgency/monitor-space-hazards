@@ -2415,7 +2415,7 @@
         "location": "Location",
         "probability_of_debris_impact": "Probability of debris impact in",
         "probability_of_reentry": "Probability of re-entry over",
-        "empty": "No Overseas Territories or Crown Dependencies are currently at risk."
+        "empty": "No {locations} are currently at risk."
       },
       "Understanding_this_report": {
         "title": "Understanding This Report",
@@ -2489,7 +2489,7 @@
       },
       "Handling_space_debris": {
         "title": "Handling Space Debris",
-        "content": "<p>Space debris can be hazardous and may contain materials that pose a serious risk to health. All re-entred debris should be considered as hazardous until proven otherwise. This most well-known hazardous substances found in rockets and satellites include <hydrozineLink>Hydrazine</hydrozineLink> and <keroseneLink>Kerosene</keroseneLink>.</p><p>If space debris survives to the ground, it should be considered hazardous until proven otherwise. Debris must not be disposed of or given to the public. Standard hazardous materials (hazmat) response procedures, such as testing by the fire service, should be followed.</p>"
+        "content": "<p>If space debris survives to the ground, it should be considered hazardous until proven otherwise. Debris must not be disposed of or given to the public. Standard hazardous materials (hazmat) response procedures, such as testing by the fire service, should be followed. Existing local plans for a Chemical, Biological, Radiological and Nuclear (CBRN) incident or a plane crash should also be implemented.</p><p>The most well-known hazardous substances found in rockets and satellites include:</p><list><item><hydrazine>Hydrazine</hydrazine></item><item><kerosene>Kerosene</kerosene></item></list><p>The National Space Operations Centre must be informed immediately of any space debris sightings via:</p><list><item><email>NSpOCIncidents@ukspaceagency.gov.uk</email></item><item><email>Resilience@ukspaceagency.gov.uk</email></item><item><email>OrbitalAnalysts@ukspaceagency.gov.uk</email></item></list>"
       },
       "Public_guidance_on_space_debris": {
         "title": "Public Guidance on Space Debris",
