@@ -761,11 +761,11 @@
       "placeholder": "Search by event ID, primary object name or primary object NORAD ID"
     },
     "help1": {
-      "title": "Help with this table<screenReaderOnly> - Upcoming conjunctions</screenReaderOnly>",
+      "title": "Help with these tables",
       "content": "<p>This service tracks conjunction events for UK-licensed objects.</p><list><item><bold>Conjunction alerts:</bold>  conjunction events that meet the National Space Operations Centre's thresholds for alerting UK government</item><item><bold>All conjunction events:</bold> all conjunction events, including those which have not met alerting thresholds, either for a specific operator or all UK-licensed satellites</item></list>"
     },
     "help2": {
-      "title": "Help with this table<screenReaderOnly> - Conjunction events</screenReaderOnly>",
+      "title": "Help with these tables",
       "content": "<p>This table shows upcoming conjunction events involving UK-licensed satellites by default. Apply filters to view past events.</p><p>Select the <bold>event ID</bold> to view more information</p><p>Each event ID or row represents <bold>one conjunction event </bold> including all related Conjunction Data Messages (CDMs) and NSpOC analysis.</p>"
     }
   },
@@ -1485,7 +1485,7 @@
         "tca_time": "Time of closest approach (TCA)",
         "date": "Date",
         "time": "Time (UTC)",
-        "empty_list_info": "There are no upcoming conjunction alerts."
+        "empty_list_info": "No events found. Check search terms and filters."
       }
     },
     "Conjunction": {
@@ -1582,7 +1582,7 @@
       "upcoming_reentry_alerts": "Upcoming re-entry alerts",
       "upcoming_reentry_events_worldwide": "Upcoming re-entry events ",
       "help": {
-        "title": "Help with this table",
+        "title": "Help with these tables",
         "content": "<p>This service tracks all upcoming re-entry events worldwide, including those which pose a risk to UK interests. The service reports on two types of re-entry event.</p><list><item><bold>Upcoming re-entry alerts:</bold> all upcoming re-entry events which meet the UK Space Agency's thresholds for alerting UK government</item><item><bold>Upcoming re-entry events worldwide:</bold> all upcoming re-entry events worldwide, including those which have not met alerting thresholds</item></list>"
       },
       "warning": "This table focuses on risk to the UK. Select the Event ID to view additional analysis and risk information for the UK Overseas Territories and Crown Dependencies."
@@ -1604,7 +1604,7 @@
         "select_label": "Filter by"
       },
       "table": {
-        "empty_list_info": "There are no upcoming re-entry alerts.",
+        "empty_list_info": "No events found. Check search terms and filters.",
         "event_details": "Event details",
         "object_details": "Object details",
         "risk": "Risk level (UK interests)",
@@ -1982,7 +1982,7 @@
       "edit": "Edit"
     },
     "Fragmentations": {
-      "empty_list_info": "There are no fragmentation alerts.",
+      "empty_list_info": "No events found. Check search terms and filters.",
       "fragmentations_events_as_of": "Last updated ",
       "event_details": "Event details",
       "risk": "Risk",
