@@ -761,12 +761,12 @@
       "placeholder": "Search by event ID, primary object name or primary object NORAD ID"
     },
     "help1": {
-      "title": "Help with this table<screenReaderOnly> - Upcoming conjunctions</screenReaderOnly>",
+      "title": "Help with these tables",
       "content": "<p>This service tracks conjunction events for UK-licensed objects.</p><list><item><bold>Conjunction alerts:</bold>  conjunction events that meet the National Space Operations Centre's thresholds for alerting UK government</item><item><bold>All conjunction events:</bold> all conjunction events, including those which have not met alerting thresholds, either for a specific operator or all UK-licensed satellites</item></list>"
     },
     "help2": {
-      "title": "Help with this table<screenReaderOnly> - Conjunction events</screenReaderOnly>",
-      "content": "<p>This table shows upcoming conjunction events involving UK-licensed satellites by default. Apply filters to view past events.</p><p>Select the <bold>event ID</bold> to view more information</p><p>Each event ID or row represents <bold>one conjunction event </bold> including all related Conjunction Data Messages (CDMs) and NSpOC analysis.</p>"
+      "title": "Help with these tables",
+      "content": "<p>A conjunction is a close approach between a UK-licensed satellite and another object in orbit. This page lists conjunctions involving UK-licensed satellites.</p>\n<p><bold>Conjunction alerts</bold> are events that meet NSpOC's threshold for alerting UK government.</p>\n<p><bold>All conjunction events</bold> include every conjunction involving UK-licensed satellites, including those below the alert threshold. The table shows upcoming events by default. Use the filters to see past events.</p>\n<p><bold>Risk level</bold> is assigned by UKSA orbital analysts to all alerts, based on risk to UK satellites. See the alert pages for more detail on how UKSA analysts assess risk.</p>\n<p><bold>Event ID</bold> is unique to each conjunction. It's generated from the two objects and the time of closest approach, so it doesn't follow a sequence.</p>\n<p><bold>Primary object</bold> is the UK-licensed satellite. <bold>Secondary object</bold> is the object it's predicted to pass close to.</p>\n<p><bold>Probability of collision</bold> has two estimates. The Space-Track estimate comes from the US Space Force's conjunction data message (CDM), the standard warning operators receive. The UK estimate is UKSA’s own analysis. Use the toggle to show probabilities as percentages or in scientific notation. For example, 1.2e-2 is 1.2%.</p>\n<p><bold>Miss distance</bold> is the predicted distance between the two objects at their closest approach.</p>\n<p><bold>Time of closest approach (TCA)</bold> is when the two objects are predicted to be nearest each other.</p>\n<p>By default, the table shows upcoming events. Filter to see past or all events, or to see alerts only. Select a column heading to sort the table. Search by event ID, object name or NORAD ID. Select an event ID to see more information about the event.</p>\n"
     }
   },
   "Conjunction": {
@@ -1481,11 +1481,11 @@
         "probability_of_collision": "Probability of collision",
         "poc_space_track": "Space-Track",
         "poc_uksa": "NSpOC",
-        "total_miss_distance": "Total Miss Distance (m)",
+        "total_miss_distance": "Total miss distance (m)",
         "tca_time": "Time of closest approach (TCA)",
         "date": "Date",
         "time": "Time (UTC)",
-        "empty_list_info": "There are no upcoming conjunction alerts."
+        "empty_list_info": "No events found. Check search terms and filters."
       }
     },
     "Conjunction": {
@@ -1576,14 +1576,14 @@
       "report_time": "Time of update (UTC)",
       "risk": "Risk level",
       "probability": "Probability of collision (%)",
-      "overflight": "Time of Closest Approach (UTC)"
+      "overflight": "Time of closest approach (UTC)"
     },
     "Reentries_summary": {
       "upcoming_reentry_alerts": "Upcoming re-entry alerts",
       "upcoming_reentry_events_worldwide": "Upcoming re-entry events ",
       "help": {
-        "title": "Help with this table",
-        "content": "<p>This service tracks all upcoming re-entry events worldwide, including those which pose a risk to UK interests. The service reports on two types of re-entry event.</p><list><item><bold>Upcoming re-entry alerts:</bold> all upcoming re-entry events which meet the UK Space Agency's thresholds for alerting UK government</item><item><bold>Upcoming re-entry events worldwide:</bold> all upcoming re-entry events worldwide, including those which have not met alerting thresholds</item></list>"
+        "title": "Help with these tables",
+        "content": "<p>A re-entry is when an object in orbit, such as a satellite or rocket body, falls back into Earth's atmosphere. Most objects burn up, but some debris can reach the ground. This page lists every predicted re-entry worldwide.</p>\n<p><bold>Re-entry alerts</bold> are events that meet NSpOC's threshold for alerting UK government.</p>\n<p><bold>All re-entry events</bold> include every predicted re-entry, including those below the alert threshold. The table shows upcoming events by default. Use the filters to see past events.</p>\n<p><bold>Risk level (UK interests)</bold> is assigned by UKSA orbital analysts, based on risk to locations of UK interest (UK mainland and individual Overseas Territories and Crown Dependencies). See the alert pages for more detail on how UKSA analysts assess risk.  Pending means UKSA has not assessed the risk yet. </p>\n<p><bold>NORAD ID</bold> is the catalogue number the US Space Force gives each tracked object.</p>\n<p><bold>Location at most risk</bold> is the location of UK interest with the highest probability of debris landing in, or the object re-entering over, the location. A dash means that these probabilities are 0 for all locations of UK interest. </p>\n<p><bold>Chance of debris landing</bold> is the probability that debris lands in that location.</p>\n<p><bold>Predicted re-entry</bold> shows when the object is expected to re-enter. The window is the period either side of that time when re-entry could happen.</p>\n<p>By default, the table shows upcoming events. Filter to see past or all events, or to see alerts only. Select a column heading to sort the table. Search by event ID, object name or NORAD ID. Select an event ID to see more information about the event.</p>"
       },
       "warning": "This table focuses on risk to the UK. Select the Event ID to view additional analysis and risk information for the UK Overseas Territories and Crown Dependencies."
     },
@@ -1604,7 +1604,7 @@
         "select_label": "Filter by"
       },
       "table": {
-        "empty_list_info": "There are no upcoming re-entry alerts.",
+        "empty_list_info": "No events found. Check search terms and filters.",
         "event_details": "Event details",
         "object_details": "Object details",
         "risk": "Risk level (UK interests)",
@@ -1982,7 +1982,7 @@
       "edit": "Edit"
     },
     "Fragmentations": {
-      "empty_list_info": "There are no fragmentation alerts.",
+      "empty_list_info": "No events found. Check search terms and filters.",
       "fragmentations_events_as_of": "Last updated ",
       "event_details": "Event details",
       "risk": "Risk",
@@ -2672,7 +2672,7 @@
     },
     "help": {
       "title": "Help with this table<screenReaderOnly> - Fragmentation events</screenReaderOnly>",
-      "content": "<p>This table shows all upcoming and previous tracked fragmentation events that have been identified by Monitor Space Hazards, including events which pose a risk to UK satellites and Human Spaceflight missions. Higher risk events contain additional analysis by NSpOC Orbital Analysts.</p><list><item>Select the <bold>Event ID</bold> to view more information</item><item>Each Event ID or row represents <bold>one fragmentation event</bold></item><item>Sort the alerts according to criteria by clicking on the relevant <bold>headings</bold></item></list>"
+      "content": "<p>A fragmentation is when a satellite or other object breaks up in orbit and creates debris. Fragmentations can only be detected after they happen, so this page lists past events, newest first.</p>\n<p><bold>Fragmentation alerts</bold> are events that meet NSpOC's threshold for alerting UK government.</p>\n<p><bold>All fragmentation events</bold> include every fragmentation Monitor Space Hazards has tracked, including those below the alert threshold.</p>\n<p><bold>Risk level</bold> is assigned by UKSA orbital analysts to all alerts, based on risk to UK satellites and human spaceflight missions. See the alert pages for more detail on how UKSA analysts assess risk.</p>\n<p><bold>Primary object</bold> is the object that broke up. <bold>Secondary object</bold> (if applicable) is the object it collided with. A dash means there was no collision.</p>\n<p><bold>Known fragments</bold> is the number of pieces tracked so far. <bold>Modelled fragments</bold> is the number UKSA modelling predicts, including pieces too small to track. Unknown means the count isn't available yet.</p>\n<p><bold>Fragmentation time</bold> is when the break-up is estimated to have happened.</p>\n<p>Select an event ID to see details. Select a column heading to sort the table. Search by event ID, object name or NORAD ID.</p>"
     }
   },
   "Fragmentation": {
