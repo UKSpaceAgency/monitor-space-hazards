@@ -751,7 +751,7 @@
     }
   },
   "Conjunctions": {
-    "title": "Track conjunction events (Monitor your satellites)",
+    "title": "Track conjunction events",
     "section_title": "All conjunction events",
     "description": "This table shows upcoming conjunction events.  Apply filters to view past events.",
     "search_bar": {
