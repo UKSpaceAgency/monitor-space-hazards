@@ -138,9 +138,6 @@ const ReentryAlertRiskProbabilitiesTable = ({
                       {t('probability_of_debris_impact')}
                     </TableCellHeader>
                     <TableCellHeader>{t('probability_of_reentry')}</TableCellHeader>
-                    <TableCellHeader>
-                      {t('probability_of_human_casualties')}
-                    </TableCellHeader>
                     {Array.from({ length: maxOverflightCount }, (_, index) => (
                       <TableCellHeader key={`overflight-header-${index}`}>
                         {t('time_of_overflight', { number: index + 1 })}
@@ -164,11 +161,6 @@ const ReentryAlertRiskProbabilitiesTable = ({
                       </TableCell>
                       <TableCell>
                         {formatProbability(locationAtRisk.atmospheric_probability)}
-                      </TableCell>
-                      <TableCell>
-                        {formatProbability(
-                          locationAtRisk.human_casualty_probability,
-                        )}
                       </TableCell>
                       {Array.from({ length: maxOverflightCount }, (_, index) => (
                         <TableCell
