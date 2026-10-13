@@ -3,8 +3,9 @@
 import type { TypeActivityReportOut } from '@/__generated__/data-contracts';
 import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
+import { formatNumber } from '@/utils/Math';
 
-const renderNumericCell = (value?: number | null) => (value ?? '-');
+const renderNumericCell = (value?: number | null) => (value != null ? formatNumber(value) : '-');
 
 export const satellitePositionHistoryColumns: TranslatedColumnDef<TypeActivityReportOut>[] = [
   {

@@ -47,9 +47,10 @@ export const roundedPercentage = (value: number, decimalPlaces: number = 3) => {
   return `${round(value * 100, decimalPlaces)}%`;
 };
 
-export const formatNumber = (value: number | null | undefined) => {
-  if (value === null || value === undefined) {
+export const formatNumber = (value: number | string | null | undefined) => {
+  if (value === null || value === undefined || value === '') {
     return '-';
   }
-  return value.toLocaleString('en-GB');
+  const num = typeof value === 'string' ? Number(value) : value;
+  return Number.isFinite(num) ? num.toLocaleString('en-GB') : String(value);
 };

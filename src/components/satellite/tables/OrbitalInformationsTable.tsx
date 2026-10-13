@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import type { TypeSatelliteOrgOut } from '@/__generated__/data-contracts';
 import type { InformationsTableHeaderWidth, InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
+import { formatNumber } from '@/utils/Math';
 
 export type OrbitalSatelliteInformations = Pick<TypeSatelliteOrgOut, 'apogee' | 'perigee' | 'inclination' | 'period'>;
 
@@ -30,9 +31,11 @@ const OrbitalInformationsTable = async ({ object, headerCellWidth }: OrbitalInfo
   const baseInformations: InformationsTableRow<OrbitalSatelliteInformations>[] = [{
     header: t('Orbital.apogee'),
     accessorKey: 'apogee',
+    renderCell: row => formatNumber(row.apogee),
   }, {
     header: t('Orbital.perigee'),
     accessorKey: 'perigee',
+    renderCell: row => formatNumber(row.perigee),
   }, {
     header: t('Orbital.inclination'),
     accessorKey: 'inclination',

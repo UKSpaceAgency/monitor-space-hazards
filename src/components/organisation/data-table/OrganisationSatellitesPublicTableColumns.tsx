@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { TypeSatelliteWithMetadataOut } from '@/__generated__/data-contracts';
 import { dayjs } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
+import { formatNumber } from '@/utils/Math';
 
 // TODO: orbit_regime, altitude (km) and longitude (°) are not available on TypeSatelliteWithMetadataOut.
 // The backend GET /v1/satellites/with-metadata endpoint needs to include TLE-derived positional
@@ -56,12 +57,14 @@ const getPublicSatellitesColumns = (isInternational: boolean): TranslatedColumnD
         accessorKey: 'apogee',
         header: 'Organisation_public_satellites.apogee',
         enableSorting: false,
+        cell: ({ getValue }) => formatNumber(getValue<string | null>()),
       },
       {
         id: 'perigee',
         accessorKey: 'perigee',
         header: 'Organisation_public_satellites.perigee',
         enableSorting: false,
+        cell: ({ getValue }) => formatNumber(getValue<string | null>()),
       },
       {
         id: 'inclination',
