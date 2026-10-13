@@ -97,7 +97,7 @@ export interface TypeActivityEvent {
    * @format date-time
    */
   report_time: string;
-  orbit_type: TypeAffectedRegime;
+  orbit_type?: TypeAffectedRegime | null;
   /** Common Name */
   common_name: string;
   /** Norad Id */
@@ -115,9 +115,9 @@ export interface TypeActivityEvent {
   /** Perigee */
   perigee?: number | null;
   /** Altitude */
-  altitude: number;
+  altitude?: number | null;
   /** Longitude */
-  longitude: number;
+  longitude?: number | null;
   /** Inclination */
   inclination?: number | null;
 }
@@ -220,7 +220,7 @@ export interface TypeActivityEventOut {
    * @format date-time
    */
   report_time: string;
-  orbit_type: TypeAffectedRegime;
+  orbit_type?: TypeAffectedRegime | null;
   /** Common Name */
   common_name: string;
   /** Norad Id */
@@ -238,9 +238,9 @@ export interface TypeActivityEventOut {
   /** Perigee */
   perigee?: number | null;
   /** Altitude */
-  altitude: number;
+  altitude?: number | null;
   /** Longitude */
-  longitude: number;
+  longitude?: number | null;
   /** Inclination */
   inclination?: number | null;
   /** Operator Name */
@@ -350,7 +350,7 @@ export interface TypeActivityReport {
    * @format date-time
    */
   report_time: string;
-  orbit_type: TypeAffectedRegime;
+  orbit_type?: TypeAffectedRegime | null;
   /** Common Name */
   common_name: string;
   /** Norad Id */
@@ -368,9 +368,9 @@ export interface TypeActivityReport {
   /** Perigee */
   perigee?: number | null;
   /** Altitude */
-  altitude: number;
+  altitude?: number | null;
   /** Longitude */
-  longitude: number;
+  longitude?: number | null;
   /** Inclination */
   inclination?: number | null;
   /** Uploaded By Id */
@@ -451,7 +451,7 @@ export interface TypeActivityReportOut {
    * @format date-time
    */
   report_time: string;
-  orbit_type: TypeAffectedRegime;
+  orbit_type?: TypeAffectedRegime | null;
   /** Common Name */
   common_name: string;
   /** Norad Id */
@@ -469,9 +469,9 @@ export interface TypeActivityReportOut {
   /** Perigee */
   perigee?: number | null;
   /** Altitude */
-  altitude: number;
+  altitude?: number | null;
   /** Longitude */
-  longitude: number;
+  longitude?: number | null;
   /** Inclination */
   inclination?: number | null;
 }
@@ -543,7 +543,16 @@ export interface TypeAlertSettingsOut {
 }
 
 /** AlertType */
-export type TypeAlertType = "standard" | "priority" | "uk-licensed" | "closedown" | "update" | "alert" | "warning";
+export type TypeAlertType =
+  | "standard"
+  | "priority"
+  | "uk-licensed"
+  | "closedown"
+  | "closedown_known"
+  | "closedown_unknown"
+  | "update"
+  | "alert"
+  | "warning";
 
 /** AnalysesSortBy */
 export type TypeAnalysesSortBy =
@@ -2506,6 +2515,21 @@ export interface TypeOrganizationWithCountOfEventsByProbabilityAggregated {
   total: number | null;
 }
 
+/** OverflightProbability */
+export interface TypeOverflightProbability {
+  /** Atmospheric Probability */
+  atmospheric_probability?: number | null;
+  /** Fragments Probability */
+  fragments_probability?: number | null;
+  /** Human Casualty Probability */
+  human_casualty_probability?: number | null;
+  /** Overflight Time */
+  overflight_time?: string[] | null;
+  atmospheric_risk?: TypeRisk | null;
+  fragments_risk?: TypeRisk | null;
+  human_casualty_risk?: TypeRisk | null;
+}
+
 /** PositionUncertainty */
 export interface TypePositionUncertainty {
   /** Radial Position Uncertainty */
@@ -2624,7 +2648,7 @@ export interface TypeReentryEvent {
   /** Press Attention Comment */
   press_attention_comment?: string | null;
   /** Group Overrides */
-  group_overrides?: Record<string, Record<string, string>> | null;
+  group_overrides?: Record<string, Record<string, string | null>> | null;
   /** Object Name */
   object_name?: string | null;
   /** Object Type */
@@ -3722,7 +3746,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-09-28T00:04:26.332488"
+   * @default "2026-10-13T10:01:23.868624"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3965,21 +3989,6 @@ export interface TypeAdditionalAnalysis {
    * @format date-time
    */
   update_time: string;
-}
-
-/** _OverflightProbability */
-export interface TypeOverflightProbability {
-  /** Atmospheric Probability */
-  atmospheric_probability?: number | null;
-  /** Fragments Probability */
-  fragments_probability?: number | null;
-  /** Human Casualty Probability */
-  human_casualty_probability?: number | null;
-  /** Overflight Time */
-  overflight_time?: string[] | null;
-  atmospheric_risk?: TypeRisk | null;
-  fragments_risk?: TypeRisk | null;
-  human_casualty_risk?: TypeRisk | null;
 }
 
 /** _ReentryEventReportImpact */
@@ -5090,7 +5099,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2026-10-01"
+   * @default "2026-11-01"
    */
   end_date?: string;
 }
@@ -5105,7 +5114,7 @@ export interface TypeGetStatsMonthlyAnalysesAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-10-01"
+   * @default "2026-11-01"
    */
   end_date?: string;
 }
@@ -5120,7 +5129,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2026-10-01"
+   * @default "2026-11-01"
    */
   end_date?: string;
 }
@@ -5135,7 +5144,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-10-01"
+   * @default "2026-11-01"
    */
   end_date?: string;
 }
@@ -5150,7 +5159,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-10-01"
+   * @default "2026-11-01"
    */
   end_date?: string;
 }
@@ -5165,7 +5174,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-10-01"
+   * @default "2026-11-01"
    */
   end_date?: string;
 }
@@ -5180,7 +5189,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-10-01"
+   * @default "2026-11-01"
    */
   end_date?: string;
 }
@@ -5195,7 +5204,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeAggregatedParam
   /**
    * End Date
    * @format date
-   * @default "2026-10-01"
+   * @default "2026-11-01"
    */
   end_date?: string;
 }
@@ -5212,7 +5221,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByNoradIdAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-10-01"
+   * @default "2026-11-01"
    */
   end_date?: string;
 }
@@ -5227,7 +5236,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2026-10-01"
+   * @default "2026-11-01"
    */
   end_date?: string;
 }
