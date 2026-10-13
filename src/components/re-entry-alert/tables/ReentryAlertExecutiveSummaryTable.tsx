@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl';
 import type { TypeReentryEventOut, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
 import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
-import { dayjs, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_FULL_DATE_TIME_NO_UTC } from '@/libs/Dayjs';
 import { getFullCountry } from '@/utils/Regions';
 
 type EventSummaryData = Pick<TypeReentryEventOut, 'time_window_start' | 'time_window_end' | 'decay_epoch' | 'uncertainty_window' | 'overflight_time' | 'survivability' | 'survivability_comment' | 'object_name' | 'estimated_mass' | 'license_country'>;
@@ -25,7 +25,7 @@ const ReentryAlertExecutiveSummaryTable = ({ event, report }: ReentryAlertExecut
   const rows: InformationsTableRow<EventSummaryData>[] = [{
     header: t('time_window_world'),
     accessorKey: 'decay_epoch',
-    renderCell: ({ decay_epoch, uncertainty_window }) => `${dayjs(decay_epoch).format(FORMAT_FULL_DATE_TIME)} +/- ${uncertainty_window} minute(s)`,
+    renderCell: ({ decay_epoch, uncertainty_window }) => `${dayjs(decay_epoch).format(FORMAT_FULL_DATE_TIME_NO_UTC)} +/- ${uncertainty_window} minute(s)`,
   },
   // }, {
   //   header: t('overflight_time'),
