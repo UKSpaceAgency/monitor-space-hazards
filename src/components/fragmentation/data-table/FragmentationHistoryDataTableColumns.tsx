@@ -3,7 +3,7 @@ import { Download04Icon } from 'hugeicons-react';
 import Link from 'next/link';
 
 import type { TypeFragmentationReportOut } from '@/__generated__/data-contracts';
-import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME_FULL_MONTH } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
 
@@ -48,7 +48,7 @@ export const fragmentationHistoryColumns: TranslatedColumnDef<TypeFragmentationR
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();
-      return dayjs(value).format(FORMAT_DATE_TIME);
+      return dayjs(value).format(FORMAT_DATE_TIME_FULL_MONTH);
     },
   },
   {
@@ -57,7 +57,7 @@ export const fragmentationHistoryColumns: TranslatedColumnDef<TypeFragmentationR
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();
-      return dayjs(value).format(FORMAT_DATE_TIME);
+      return dayjs(value).format(FORMAT_DATE_TIME_FULL_MONTH);
     },
   },
 ];

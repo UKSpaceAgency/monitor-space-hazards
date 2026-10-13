@@ -1,3 +1,5 @@
+import { getTranslations } from 'next-intl/server';
+
 import type { TypeGetReentryEventsParams } from '@/__generated__/data-contracts';
 import { getReentryEvents } from '@/actions/getReentryEvents';
 import { getSession } from '@/actions/getSession';
@@ -10,11 +12,12 @@ const params: TypeGetReentryEventsParams = {
 };
 
 const ReentriesAlertsTable = async () => {
+  const t = await getTranslations('Reentries');
   const data = await getReentryEvents(params);
   const session = await getSession();
 
   if (!data.length) {
-    return null;
+    return <p className="govuk-body">{t('no_upcoming_alerts')}</p>;
   }
 
   return (

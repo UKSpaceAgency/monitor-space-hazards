@@ -1,7 +1,7 @@
 'use client';
 
 import type { TypeEventHighestImpact, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
-import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME_FULL_MONTH } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
 import { getReentryFragmentsRisk } from '@/utils/ReentryRisk';
@@ -43,7 +43,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();
-      return dayjs(value).format(FORMAT_DATE_TIME);
+      return dayjs(value).format(FORMAT_DATE_TIME_FULL_MONTH);
     },
   },
   {
@@ -66,7 +66,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
     size: 70,
     cell: ({ getValue }) => {
       const value = getValue<string>();
-      return value ? dayjs(value).format(FORMAT_DATE_TIME) : '-';
+      return value ? dayjs(value).format(FORMAT_DATE_TIME_FULL_MONTH) : '-';
     },
   },
   {

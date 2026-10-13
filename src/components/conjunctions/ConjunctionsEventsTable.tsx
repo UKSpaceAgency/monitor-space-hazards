@@ -4,7 +4,7 @@ import { getCdmsLatest } from '@/actions/getCdmsLatest';
 import { getConjunctionEventsList } from '@/actions/getConjunctionEventsList';
 import { getSession } from '@/actions/getSession';
 import type { ConjunctionsPageSearchParams } from '@/app/(auth)/conjunctions/page';
-import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME_FULL_MONTH } from '@/libs/Dayjs';
 import { isAnalysist, isGovUser, isSatteliteUser } from '@/utils/Roles';
 
 import { DownloadData } from '../DownloadData';
@@ -39,7 +39,7 @@ const ConjunctionsEventsTable = async ({ params }: ConjunctionsEventsTableProps)
       {latestCdms && (
         <div className="govuk-inset-text">
           {t('Conjunctions.conjunctions_events_as_of')}
-          {dayjs(latestCdms.data.updated_at).format(FORMAT_DATE_TIME)}
+          {dayjs(latestCdms.data.updated_at).format(FORMAT_DATE_TIME_FULL_MONTH)}
         </div>
       )}
     </>

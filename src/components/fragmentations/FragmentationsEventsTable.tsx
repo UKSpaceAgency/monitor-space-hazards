@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { getCdmsLatest } from '@/actions/getCdmsLatest';
 import { getFragmentationEventsList } from '@/actions/getFragmentationEventsList';
 import type { FragmentationsPageSearchParams } from '@/app/(auth)/fragmentations/page';
-import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME_FULL_MONTH } from '@/libs/Dayjs';
 
 import { DownloadData } from '../DownloadData';
 import { FragmentationsDataTable } from './data-table/FragmentationsDataTable';
@@ -33,7 +33,7 @@ const FragmentationsEventsTable = async ({ params }: FragmentationsEventsTablePr
       {latestCdms && (
         <div className="govuk-inset-text">
           {t('Fragmentations.fragmentations_events_as_of')}
-          {dayjs(latestCdms.data.updated_at).format(FORMAT_DATE_TIME)}
+          {dayjs(latestCdms.data.updated_at).format(FORMAT_DATE_TIME_FULL_MONTH)}
         </div>
       )}
     </>

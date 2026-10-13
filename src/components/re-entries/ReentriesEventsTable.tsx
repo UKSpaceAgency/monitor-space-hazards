@@ -5,7 +5,7 @@ import type { TypeEpoch, TypeGetReentryEventsParams } from '@/__generated__/data
 import { getCdmsLatest } from '@/actions/getCdmsLatest';
 import { getReentryEvents } from '@/actions/getReentryEvents';
 import { getSession } from '@/actions/getSession';
-import { FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { FORMAT_DATE_TIME_FULL_MONTH } from '@/libs/Dayjs';
 import { isSatteliteUser } from '@/utils/Roles';
 
 import { SearchBar } from '../SearchBar';
@@ -54,7 +54,7 @@ const ReentriesEventsTable = async ({ initialParams }: ReentriesEventsTableProps
       {latestCdms?.data && (
         <div className="govuk-inset-text">
           {t('reentries_events_as_of')}
-          {dayjs(latestCdms.data.updated_at).format(FORMAT_DATE_TIME)}
+          {dayjs(latestCdms.data.updated_at).format(FORMAT_DATE_TIME_FULL_MONTH)}
         </div>
       )}
     </div>

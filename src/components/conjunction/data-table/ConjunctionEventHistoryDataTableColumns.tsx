@@ -1,5 +1,5 @@
 import type { TypeEventSummaryOut } from '@/__generated__/data-contracts';
-import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME_FULL_MONTH } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import ExpandedButton from '@/ui/button/expanded-button';
 import Tag from '@/ui/tag/tag';
@@ -41,7 +41,7 @@ export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummar
     cell: ({ getValue }) => {
       const value = getValue<string>();
       return (
-        <div>{dayjs(value).format(FORMAT_DATE_TIME)}</div>
+        <div>{dayjs(value).format(FORMAT_DATE_TIME_FULL_MONTH)}</div>
       );
     },
   },
@@ -76,7 +76,7 @@ export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummar
     cell: ({ getValue }) => {
       const value = getValue<string>();
 
-      return dayjs(value).format(FORMAT_DATE_TIME);
+      return dayjs(value).format(FORMAT_DATE_TIME_FULL_MONTH);
     },
   },
 ];

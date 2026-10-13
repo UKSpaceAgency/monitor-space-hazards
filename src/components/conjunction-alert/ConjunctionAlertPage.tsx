@@ -5,7 +5,7 @@ import type { ReactNode } from 'react';
 import type { TypeUniqueEventUpdateTextFieldsIn } from '@/__generated__/data-contracts';
 import { getConjunctionReports } from '@/actions/getConjunctionReports';
 import getConjunctionUniqueEvent from '@/actions/getConjunctionUniqueEvent';
-import { dayjs, FORMAT_DATE_TIME, FORMAT_FULL_DATE } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME_FULL_MONTH, FORMAT_FULL_DATE } from '@/libs/Dayjs';
 import Tag from '@/ui/tag/tag';
 
 import { ContentNavigation } from '../ContentNavigation';
@@ -56,7 +56,7 @@ const ConjunctionAlertPage = async ({ shortId, searchParams, footer }: Conjuncti
       <ContentNavigation />
       <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
       <div>
-        {t.rich('report_info', { number: lastReport.report_number.toString(), time: dayjs(lastReport.report_time).format(FORMAT_DATE_TIME) })}
+        {t.rich('report_info', { number: lastReport.report_number.toString(), time: dayjs(lastReport.report_time).format(FORMAT_DATE_TIME_FULL_MONTH) })}
         <ConjunctionAlertExecutiveSummary report={lastReport} executiveSummaryComment={searchParams?.executive_summary_comment ?? event.executive_summary_comment} manoeuvreComment={searchParams?.manoeuvre_comment ?? event.manoeuvre_comment} isClosed={isClosed} />
         <ConjunctionAlertNextUpdate shortId={shortId} />
         <ConjunctionAlertAccordion event={event} report={lastReport} reports={reports} searchParams={searchParams} />

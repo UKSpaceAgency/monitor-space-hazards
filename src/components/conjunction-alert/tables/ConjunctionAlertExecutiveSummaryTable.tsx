@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import type { TypeConjunctionReportOut } from '@/__generated__/data-contracts';
 import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
-import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME_FULL_MONTH } from '@/libs/Dayjs';
 import Tag from '@/ui/tag/tag';
 import { roundedPercent } from '@/utils/Math';
 import { getFullCountry } from '@/utils/Regions';
@@ -39,7 +39,7 @@ const ConjunctionAlertExecutiveSummaryTable = ({ report, manoeuvreComment }: Con
     },
   }, {
     header: t('tca'),
-    renderCell: ({ tca_time }) => tca_time ? dayjs(tca_time).format(FORMAT_DATE_TIME) : 'Unknown',
+    renderCell: ({ tca_time }) => tca_time ? dayjs(tca_time).format(FORMAT_DATE_TIME_FULL_MONTH) : 'Unknown',
   }, {
     header: t('poc'),
     accessorKey: 'collision_probability',

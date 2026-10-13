@@ -62,9 +62,6 @@ export default async function ConjunctionsPage(props: PageProps) {
       <Suspense key={`summary-table-${params.search_like}`} fallback={<Spinner />}>
         <ConjunctionsSummaryTable />
       </Suspense>
-      <Details summary={t.rich('help1.title')}>
-        {t.rich('help1.content')}
-      </Details>
       <ConjunctionsAlertsTable />
       <h2 className="govuk-heading-m">{t('section_title')}</h2>
       <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
@@ -74,8 +71,8 @@ export default async function ConjunctionsPage(props: PageProps) {
       <Suspense key={`events-table-${params.search_like}`} fallback={<Spinner />}>
         <ConjunctionsEventsTable params={params} />
       </Suspense>
-      <Details summary={t.rich('help2.title')}>
-        {t.rich('help2.content')}
+      <Details summary={t.rich('help.title')}>
+        {t.rich('help.content')}
       </Details>
     </div>
   );

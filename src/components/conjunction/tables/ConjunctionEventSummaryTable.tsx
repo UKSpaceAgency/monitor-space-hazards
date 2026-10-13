@@ -4,7 +4,7 @@ import type { HTMLProps } from 'react';
 import type { TypeEventSummaryOut } from '@/__generated__/data-contracts';
 import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
-import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME_FULL_MONTH } from '@/libs/Dayjs';
 import Tag from '@/ui/tag/tag';
 import { displayExponential, getAbsoluteValue, rounded } from '@/utils/Math';
 
@@ -48,7 +48,7 @@ const ConjunctionEventSummaryTableInformationsTable = ({ data }: ConjunctionEven
     accessorKey: 'collision_probability_method',
   }, {
     header: t('summary_list.time_of_closest_approach'),
-    renderCell: row => dayjs(row.tca_time).format(FORMAT_DATE_TIME),
+    renderCell: row => dayjs(row.tca_time).format(FORMAT_DATE_TIME_FULL_MONTH),
     accessorKey: 'tca_time',
   }, {
     header: t('summary_list.total_miss_distance'),
@@ -67,7 +67,7 @@ const ConjunctionEventSummaryTableInformationsTable = ({ data }: ConjunctionEven
     accessorKey: 'crosstrack_miss_distance',
   }, {
     header: t('summary_list.time_of_update'),
-    renderCell: row => dayjs(row.update_time).format(FORMAT_DATE_TIME),
+    renderCell: row => dayjs(row.update_time).format(FORMAT_DATE_TIME_FULL_MONTH),
     accessorKey: 'update_time',
   }, {
     header: t('summary_list.primary_object_size'),

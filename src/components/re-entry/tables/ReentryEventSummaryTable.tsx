@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl';
 import type { TypeTIPOut } from '@/__generated__/data-contracts';
 import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
-import { dayjs, FORMAT_DATE_TIME, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME_FULL_MONTH, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 
 type EventSummaryData = Pick<TypeTIPOut, 'external_id' | 'decay_epoch' | 'uncertainty_window' | 'direction' | 'latitude' | 'longitude' | 'inclination' | 'interest' | 'updated_at' | 'source'>;
 
@@ -55,7 +55,7 @@ const ReentryEventSummaryTable = ({ tip }: ReentryEventSummaryTableProps) => {
   }, {
     header: t('time_of_update'),
     accessorKey: 'updated_at',
-    renderCell: row => dayjs(row.updated_at).format(FORMAT_DATE_TIME),
+    renderCell: row => dayjs(row.updated_at).format(FORMAT_DATE_TIME_FULL_MONTH),
   }];
 
   return <InformationsTable rows={rows} data={tip} />;

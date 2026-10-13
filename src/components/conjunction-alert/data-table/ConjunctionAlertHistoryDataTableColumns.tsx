@@ -3,7 +3,7 @@ import { Download04Icon } from 'hugeicons-react';
 import Link from 'next/link';
 
 import type { TypeConjunctionReportOut } from '@/__generated__/data-contracts';
-import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME_FULL_MONTH } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
 import { roundedPercent } from '@/utils/Math';
@@ -49,7 +49,7 @@ export const conjunctionAlertHistoryColumns: TranslatedColumnDef<TypeConjunction
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();
-      return dayjs(value).format(FORMAT_DATE_TIME);
+      return dayjs(value).format(FORMAT_DATE_TIME_FULL_MONTH);
     },
   },
   {
@@ -90,7 +90,7 @@ export const conjunctionAlertHistoryColumns: TranslatedColumnDef<TypeConjunction
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();
-      return value ? dayjs(value).format(FORMAT_DATE_TIME) : 'Unknown';
+      return value ? dayjs(value).format(FORMAT_DATE_TIME_FULL_MONTH) : 'Unknown';
     },
   },
 ];

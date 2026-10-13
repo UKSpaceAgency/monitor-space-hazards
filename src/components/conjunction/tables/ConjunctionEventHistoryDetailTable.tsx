@@ -5,7 +5,7 @@ import type { TypeEventSummaryOut } from '@/__generated__/data-contracts';
 import type { TypeDataSourcesOut } from '@/actions/getConjunctionEventsEventIdDataSources';
 import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
-import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME_FULL_MONTH } from '@/libs/Dayjs';
 
 type ConjunctionEventHistoryDetailInformations = Pick<
   TypeEventSummaryOut & TypeDataSourcesOut,
@@ -29,7 +29,7 @@ const ConjunctionEventHistoryDetailTable = ({ object }: ConjunctionEventHistoryD
     accessorKey: 'primary_object_ephemeris_name',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.data_received')}</div>,
-    renderCell: row => dayjs(row.update_time).format(FORMAT_DATE_TIME),
+    renderCell: row => dayjs(row.update_time).format(FORMAT_DATE_TIME_FULL_MONTH),
     accessorKey: 'update_time',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.number_of_observations')}</div>,
@@ -56,7 +56,7 @@ const ConjunctionEventHistoryDetailTable = ({ object }: ConjunctionEventHistoryD
     accessorKey: 'secondary_object_cdm_type',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.data_received')}</div>,
-    renderCell: row => dayjs(row.update_time).format(FORMAT_DATE_TIME),
+    renderCell: row => dayjs(row.update_time).format(FORMAT_DATE_TIME_FULL_MONTH),
     accessorKey: 'update_time',
   }, {
     header: <div className="font-normal">{t('event_history.sub_table.number_of_observations')}</div>,
