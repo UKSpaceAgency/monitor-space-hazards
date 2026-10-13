@@ -3,7 +3,7 @@ import { dayjs, FORMAT_DATE_TIME_FULL_MONTH } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import ExpandedButton from '@/ui/button/expanded-button';
 import Tag from '@/ui/tag/tag';
-import { displayExponential, getAbsoluteValue } from '@/utils/Math';
+import { displayExponential, formatNumber, getAbsoluteValue } from '@/utils/Math';
 
 export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummaryOut>[] = [
   {
@@ -66,7 +66,7 @@ export const conjunctionEventHistoryColumns: TranslatedColumnDef<TypeEventSummar
     cell: ({ getValue }) => {
       const value = getValue<number>();
 
-      return getAbsoluteValue(value);
+      return formatNumber(getAbsoluteValue(value));
     },
   },
   {

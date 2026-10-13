@@ -22,6 +22,7 @@ import { Fragment, useMemo } from 'react';
 
 import type { TranslatedColumnDef } from '@/types';
 import { Table, TableBody, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
+import { formatNumber } from '@/utils/Math';
 
 export type DataTableProps<T extends RowData> = {
   data: T[];
@@ -65,6 +66,12 @@ const DataTable = <T extends RowData>({ data, columns, stickyHeader, largerText,
   const table = useReactTable({
     data,
     columns: translatedColumns,
+    defaultColumn: {
+      cell: ({ getValue }) => {
+        const value = getValue();
+        return typeof value === 'number' && Math.abs(value) >= 1000 ? formatNumber(value) : value as ReactNode;
+      },
+    },
     state: {
       sorting,
     },

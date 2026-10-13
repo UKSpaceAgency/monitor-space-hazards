@@ -4,6 +4,7 @@ import type { TypeFragmentationEvent } from '@/__generated__/data-contracts';
 import { dayjs, FORMAT_DATE_FULL_MONTH, FORMAT_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
+import { formatNumber } from '@/utils/Math';
 
 export const fragmentationsColumns: TranslatedColumnDef<TypeFragmentationEvent>[] = [
   {
@@ -72,13 +73,19 @@ export const fragmentationsColumns: TranslatedColumnDef<TypeFragmentationEvent>[
         id: 'known_fragments',
         accessorKey: 'known_fragments',
         header: 'Fragmentations.number_of_fragments',
-        cell: ({ getValue }) => getValue() ?? '-',
+        cell: ({ getValue }) => {
+          const value = getValue<number | null>();
+          return value != null ? formatNumber(value) : '-';
+        },
       },
       {
         id: 'modelled_fragments',
         accessorKey: 'modelled_fragments',
         header: 'Fragmentations.modelled_fragments',
-        cell: ({ getValue }) => getValue() ?? '-',
+        cell: ({ getValue }) => {
+          const value = getValue<number | null>();
+          return value != null ? formatNumber(value) : '-';
+        },
       },
     ],
   },

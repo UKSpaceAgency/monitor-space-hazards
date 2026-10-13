@@ -6,7 +6,7 @@ import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
 import { dayjs, FORMAT_DATE_TIME_FULL_MONTH } from '@/libs/Dayjs';
 import Tag from '@/ui/tag/tag';
-import { displayExponential, getAbsoluteValue, rounded } from '@/utils/Math';
+import { displayExponential, formatNumber, getAbsoluteValue, rounded } from '@/utils/Math';
 
 type ConjunctionEventSummaryTableInformations = Pick<
   TypeEventSummaryOut,
@@ -55,15 +55,15 @@ const ConjunctionEventSummaryTableInformationsTable = ({ data }: ConjunctionEven
     accessorKey: 'miss_distance',
   }, {
     header: t('summary_list.radial_miss_distance'),
-    renderCell: row => getAbsoluteValue(row.radial_miss_distance),
+    renderCell: row => formatNumber(getAbsoluteValue(row.radial_miss_distance)),
     accessorKey: 'radial_miss_distance',
   }, {
     header: t('summary_list.in_track_miss_distance'),
-    renderCell: row => getAbsoluteValue(row.intrack_miss_distance),
+    renderCell: row => formatNumber(getAbsoluteValue(row.intrack_miss_distance)),
     accessorKey: 'intrack_miss_distance',
   }, {
     header: t('summary_list.cross_track_miss_distance'),
-    renderCell: row => getAbsoluteValue(row.crosstrack_miss_distance),
+    renderCell: row => formatNumber(getAbsoluteValue(row.crosstrack_miss_distance)),
     accessorKey: 'crosstrack_miss_distance',
   }, {
     header: t('summary_list.time_of_update'),

@@ -5,7 +5,7 @@ import type { TypeEventHighestImpact, TypeReentryEventOut, TypeRisk } from '@/__
 import { objectTypeIndex } from '@/emails/_utils/utils';
 import { dayjs, FORMAT_DATE_FULL_MONTH, FORMAT_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
-import { roundedFixed } from '@/utils/Math';
+import { formatNumber, roundedFixed } from '@/utils/Math';
 import { getReentryFragmentsRisk } from '@/utils/ReentryRisk';
 import { jsonRegionsMap } from '@/utils/Regions';
 import { renderRiskTag } from '@/utils/Tags';
@@ -122,7 +122,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
         accessorKey: 'uncertainty_window',
         header: 'Reentries.table.window',
         size: 70,
-        cell: ({ getValue }) => `+/- ${getValue<number>()}`,
+        cell: ({ getValue }) => `+/- ${formatNumber(getValue<number>())}`,
       },
     ],
   },

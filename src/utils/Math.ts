@@ -46,3 +46,10 @@ export const displayExponential = (num: number | undefined | null, fractionDigit
 export const roundedPercentage = (value: number, decimalPlaces: number = 3) => {
   return `${round(value * 100, decimalPlaces)}%`;
 };
+
+export const formatNumber = (value: number | null | undefined) => {
+  if (value === null || value === undefined) {
+    return '-';
+  }
+  return value.toLocaleString('en-GB');
+};

@@ -4,6 +4,7 @@ import type { TypeEventHighestImpact, TypeReentryEventReportOut } from '@/__gene
 import { dayjs, FORMAT_DATE_TIME_FULL_MONTH } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
+import { formatNumber } from '@/utils/Math';
 import { getReentryFragmentsRisk } from '@/utils/ReentryRisk';
 import { renderRiskTag } from '@/utils/Tags';
 
@@ -74,6 +75,6 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
     enableSorting: false,
     accessorKey: 'uncertainty_window',
     size: 70,
-    cell: ({ getValue }) => `+/- ${getValue<number>()}`,
+    cell: ({ getValue }) => `+/- ${formatNumber(getValue<number>())}`,
   },
 ];
