@@ -2679,7 +2679,7 @@
       "placeholder": "Search by event ID, primary object name or primary object NORAD ID"
     },
     "help": {
-      "title": "Help with this table<screenReaderOnly> - Fragmentation events</screenReaderOnly>",
+      "title": "Help with this table ",
       "content": "<p>A fragmentation is when a satellite or other object breaks up in orbit and creates debris. Fragmentations can only be detected after they happen, so this page lists past events, newest first.</p>\n<p><bold>Fragmentation alerts</bold> are events that meet NSpOC's threshold for alerting UK government.</p>\n<p><bold>All fragmentation events</bold> include every fragmentation Monitor Space Hazards has tracked, including those below the alert threshold.</p>\n<p><bold>Risk level</bold> is assigned by UKSA orbital analysts to all alerts, based on risk to UK satellites and human spaceflight missions. See the alert pages for more detail on how UKSA analysts assess risk.</p>\n<p><bold>Primary object</bold> is the object that broke up. <bold>Secondary object</bold> (if applicable) is the object it collided with. A dash means there was no collision.</p>\n<p><bold>Known fragments</bold> is the number of pieces tracked so far. <bold>Modelled fragments</bold> is the number UKSA modelling predicts, including pieces too small to track. Unknown means the count isn't available yet.</p>\n<p><bold>Fragmentation time</bold> is when the break-up is estimated to have happened.</p>\n<p>Select an event ID to see details. Select a column heading to sort the table. Search by event ID, object name or NORAD ID.</p>"
     }
   },
