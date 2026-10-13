@@ -4,6 +4,7 @@ import type { TypeEventHighestImpact, TypeReentryEventReportOut } from '@/__gene
 import { dayjs, FORMAT_DATE_TIME_FULL_MONTH } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
+import { isClosedownAlertType } from '@/utils/AlertType';
 import { formatNumber } from '@/utils/Math';
 import { getReentryFragmentsRisk } from '@/utils/ReentryRisk';
 import { renderRiskTag } from '@/utils/Tags';
@@ -18,7 +19,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
     cell: ({ row }) => {
       const { id, report_number, short_id, download_url, file_name } = row.original;
       const report = `Report ${report_number}`;
-      const isClosed = row.original.alert_type?.some(type => type.startsWith('closedown'));
+      const isClosed = isClosedownAlertType(row.original.alert_type);
 
       return (
         <>

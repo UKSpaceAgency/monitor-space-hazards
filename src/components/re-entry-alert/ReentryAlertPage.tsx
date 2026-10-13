@@ -10,6 +10,7 @@ import { getTips } from '@/actions/getTips';
 import { FORMAT_DATE_TIME_FULL_MONTH, FORMAT_FULL_DATE } from '@/libs/Dayjs';
 import Spinner from '@/ui/spinner/spinner';
 import Tag from '@/ui/tag/tag';
+import { isClosedownAlertType } from '@/utils/AlertType';
 
 import { ContentNavigation } from '../ContentNavigation';
 import { ReentryAlertMapContainer } from './map/ReentryAlertMapContainer';
@@ -33,7 +34,7 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
 
   const lastReport = reports[reports.length - 1];
   const lastTip = tips[0];
-  const isClosed = lastReport?.alert_type.some(type => type.startsWith('closedown'));
+  const isClosed = isClosedownAlertType(lastReport?.alert_type);
   const closedComment = searchParams?.closed_comment ?? event.closed_comment;
 
   const pdfTitle = t(isClosed ? 'pdf_title_closed' : 'pdf_title', { objectName: event.object_name ?? 'Unknown object', reportNumber: event.reentry_report_number?.toString() });
