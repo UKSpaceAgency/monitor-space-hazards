@@ -24,6 +24,9 @@ function ReEntryClosedownEmail({ event, report, withPlaceholders, level = 1 }: R
     ? objectTypeIndex[objectType as keyof typeof objectTypeIndex] ?? objectType
     : '';
 
+  const isClosedownKnown = report.alert_type?.includes('closedown_known');
+  const isClosedownConfirmed = isClosedownKnown || report.alert_type?.includes('closedown_unknown');
+
   return (
     <Layout
       eventType="re-entry"
@@ -32,7 +35,11 @@ function ReEntryClosedownEmail({ event, report, withPlaceholders, level = 1 }: R
       withPlaceholders={withPlaceholders}
       isReentryWarning
     >
-      <Subheader comment={event.closed_comment} />
+      <Subheader
+        comment={event.closed_comment}
+        title={isClosedownConfirmed ? 'Re-entry confirmed:' : undefined}
+        tone={isClosedownKnown ? 'confirmed' : 'closedown'}
+      />
       <ReentryAssessmentClosed event={event} report={report} />
       <Section title={t('Reentry_alert.object_information_title')}>
         <ReentryObjectInformation event={event} report={report} />
@@ -70,6 +77,7 @@ ReEntryClosedownEmail.PreviewProps = {
     direction: 'ascending',
   },
   report: {
+    alert_type: ['closedown_known'],
     norad_id: '43657',
     decay_epoch: '2026-01-08T00:34:00Z',
     uncertainty_window: 1,
