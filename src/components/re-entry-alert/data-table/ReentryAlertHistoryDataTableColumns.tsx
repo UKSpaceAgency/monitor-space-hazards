@@ -18,7 +18,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
     cell: ({ row }) => {
       const { id, report_number, short_id, download_url, file_name } = row.original;
       const report = `Report ${report_number}`;
-      const isClosed = row.original.alert_type?.includes('closedown');
+      const isClosed = row.original.alert_type?.some(type => type.startsWith('closedown'));
 
       return (
         <>

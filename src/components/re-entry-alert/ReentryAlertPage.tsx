@@ -33,7 +33,7 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
 
   const lastReport = reports[reports.length - 1];
   const lastTip = tips[0];
-  const isClosed = lastReport?.alert_type.includes('closedown');
+  const isClosed = lastReport?.alert_type.some(type => type.startsWith('closedown'));
   const closedComment = searchParams?.closed_comment ?? event.closed_comment;
 
   const pdfTitle = t(isClosed ? 'pdf_title_closed' : 'pdf_title', { objectName: event.object_name ?? 'Unknown object', reportNumber: event.reentry_report_number?.toString() });
