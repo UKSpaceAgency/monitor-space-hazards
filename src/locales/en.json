@@ -764,7 +764,7 @@
       "title": "Help with these tables",
       "content": "<p>This service tracks conjunction events for UK-licensed objects.</p><list><item><bold>Conjunction alerts:</bold>  conjunction events that meet the National Space Operations Centre's thresholds for alerting UK government</item><item><bold>All conjunction events:</bold> all conjunction events, including those which have not met alerting thresholds, either for a specific operator or all UK-licensed satellites</item></list>"
     },
-    "help2": {
+    "help": {
       "title": "Help with these tables",
       "content": "<p>A conjunction is a close approach between a UK-licensed satellite and another object in orbit. This page lists conjunctions involving UK-licensed satellites.</p>\n<p><bold>Conjunction alerts</bold> are events that meet NSpOC's threshold for alerting UK government.</p>\n<p><bold>All conjunction events</bold> include every conjunction involving UK-licensed satellites, including those below the alert threshold. The table shows upcoming events by default. Use the filters to see past events.</p>\n<p><bold>Risk level</bold> is assigned by UKSA orbital analysts to all alerts, based on risk to UK satellites. See the alert pages for more detail on how UKSA analysts assess risk.</p>\n<p><bold>Event ID</bold> is unique to each conjunction. It's generated from the two objects and the time of closest approach, so it doesn't follow a sequence.</p>\n<p><bold>Primary object</bold> is the UK-licensed satellite. <bold>Secondary object</bold> is the object it's predicted to pass close to.</p>\n<p><bold>Probability of collision</bold> has two estimates. The Space-Track estimate comes from the US Space Force's conjunction data message (CDM), the standard warning operators receive. The UK estimate is UKSA’s own analysis. Use the toggle to show probabilities as percentages or in scientific notation. For example, 1.2e-2 is 1.2%.</p>\n<p><bold>Miss distance</bold> is the predicted distance between the two objects at their closest approach.</p>\n<p><bold>Time of closest approach (TCA)</bold> is when the two objects are predicted to be nearest each other.</p>\n<p>By default, the table shows upcoming events. Filter to see past or all events, or to see alerts only. Select a column heading to sort the table. Search by event ID, object name or NORAD ID. Select an event ID to see more information about the event.</p>\n"
     }
@@ -947,7 +947,9 @@
   "Reentries": {
     "title": "Track re-entry events",
     "upcoming_reentry_alerts": "Upcoming re-entry alerts",
+    "no_upcoming_alerts": "There are no upcoming re-entry alerts.",
     "all_reentry_events": "All re-entry events ",
+    "description": "This table shows upcoming re-entry events worldwide. Apply filters to view past events.",
     "content": "<p>This table contains all tracked re-entry events, including re-entry events that meet the National Space Operations Centre's thresholds for alerting UK government. For further detail on how risk and alert thresholds are defined, see 'Help with this table' below.</p>"
   },
   "Reentry": {
@@ -1607,6 +1609,9 @@
         "empty_list_info": "No events found. Check search terms and filters.",
         "event_details": "Event details",
         "object_details": "Object details",
+        "event": "Event",
+        "uk_interest_risk": "UK interest risk",
+        "predicted_reentry": "Predicted re-entry",
         "risk": "Risk level (UK interests)",
         "event_id": "Event ID",
         "object": "Object",
@@ -1985,6 +1990,9 @@
       "empty_list_info": "No events found. Check search terms and filters.",
       "fragmentations_events_as_of": "Last updated ",
       "event_details": "Event details",
+      "event": "Event",
+      "fragments": "Fragments",
+      "fragmentation_time": "Fragmentation time",
       "risk": "Risk",
       "object_details": "Object details",
       "object": "Object",
