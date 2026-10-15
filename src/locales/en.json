@@ -2780,10 +2780,10 @@
   },
   "Fragmentation_alert_send": {
     "title": "Send alert/warning to additional recipients",
-    "content": "<p>This page shows the current distribution status of the alert.</p>\n<p>You can send the alert to additional distribution lists or individual recipients.</p>",
+    "content": "<p>This page shows the current distribution status.</p>\n<p>You can send the event to additional distribution lists or individual recipients.</p>",
     "alert_criteria_help": {
-      "title": "Distribution lists and fragmentation alert criteria",
-      "content": "<h3>Level 1 (Alert) fragmentation alert</h3><p>The criteria for producing a Level 1 (Alert) fragmentation are as follows:</p><list><item>The event involves a UK satellite, and/or</item><item>The event generates more than 50 pieces of debris and presents a high risk to UK licensed objects or human spaceflight, and/or</item><item>The event is likely to generate press interest</item></list><h3>Distribution</h3><p>If this report is classified as a Level 1 (Alert) fragmentation alert, it has been distributed only to key UK Government organisations (for example the National Space Operations Centre, Ministry of Defence and Civil Aviation Authority) and international partners.</p><p>In addition to the Level 1 (Alert) distribution, the following teams are notified in specific circumstances:</p><list><item>If the licensing country is the UK: Department for Science, Innovation and Technology</item><item>If there is a potential risk to the International Space Station: UK Space Agency Exploration team</item></list>"
+      "title": "Distribution lists and fragmentation criteria",
+      "content": "<h3>Level 1 (Alert) fragmentation</h3><p>The criteria for producing a Level 1 (Alert) fragmentation are as follows:</p><list><item>The event involves a UK satellite, and/or</item><item>The event generates more than 50 pieces of debris and presents a high risk to UK licensed objects or human spaceflight, and/or</item><item>The event is likely to generate press interest</item></list><h3>Distribution</h3><p>If this report is classified as a Level 1 (Alert) fragmentation, it has been distributed only to key UK Government organisations (for example the National Space Operations Centre, Ministry of Defence and Civil Aviation Authority) and international partners.</p><p>In addition to the Level 1 (Alert) distribution, the following teams are notified in specific circumstances:</p><list><item>If the licensing country is the UK: Department for Science, Innovation and Technology</item><item>If there is a potential risk to the International Space Station: UK Space Agency Exploration team</item></list>"
     }
   }
 }
