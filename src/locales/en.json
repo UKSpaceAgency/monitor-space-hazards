@@ -2230,7 +2230,7 @@
         "using_distribution_lists": "Using distribution lists",
         "status": "Status",
         "all_alerts": "Level 1 (Alert) {type} distribution list",
-        "alert_for_uk": "UK-licensed satellites {type} communications distribution list",
+        "alert_for_uk": "UK-licensed satellites {type} distribution list",
         "priority_alert": "Level 2 (Warning) {type} distribution list",
         "using_individual_emails": "Using individual emails",
         "individually_selected_recipients": "Individually selected recipients",
