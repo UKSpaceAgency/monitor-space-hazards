@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { getFragmentationEventGabbardData } from '@/actions/getFragmentationEventGabbardData';
 import { Details } from '@/ui/details/details';
+import { formatNumber } from '@/utils/Math';
 
 import { GabbardPlotChart } from './charts/GabbardPlotChart';
 
@@ -21,7 +22,7 @@ const ActualFragmentData = async ({ shortId, modelledFragments, knownFragments, 
 
   return (
     <div data-pdf={dataPdf}>
-      {t.rich('content', { knownFragments, modelledFragments })}
+      {t.rich('content', { knownFragments: formatNumber(knownFragments), modelledFragments: formatNumber(modelledFragments) })}
       <div className="bg-lightGrey p-8 mb-4">
         <GabbardPlotChart dates={dates} gabbardData={gabbardData} />
         <Details

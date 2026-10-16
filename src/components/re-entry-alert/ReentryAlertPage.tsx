@@ -7,9 +7,10 @@ import type { TypeReentryEventPatch } from '@/__generated__/data-contracts';
 import { getReentryEvent } from '@/actions/getReentryEvent';
 import { getReentryReports } from '@/actions/getReentryReports';
 import { getTips } from '@/actions/getTips';
-import { FORMAT_DATE_TIME, FORMAT_FULL_DATE } from '@/libs/Dayjs';
+import { FORMAT_DATE_TIME_FULL_MONTH, FORMAT_FULL_DATE } from '@/libs/Dayjs';
 import Spinner from '@/ui/spinner/spinner';
 import Tag from '@/ui/tag/tag';
+import { isClosedownAlertType } from '@/utils/AlertType';
 
 import { ContentNavigation } from '../ContentNavigation';
 import { ReentryAlertMapContainer } from './map/ReentryAlertMapContainer';
@@ -33,7 +34,7 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
 
   const lastReport = reports[reports.length - 1];
   const lastTip = tips[0];
-  const isClosed = lastReport?.alert_type.includes('closedown');
+  const isClosed = isClosedownAlertType(lastReport?.alert_type);
   const closedComment = searchParams?.closed_comment ?? event.closed_comment;
 
   const pdfTitle = t(isClosed ? 'pdf_title_closed' : 'pdf_title', { objectName: event.object_name ?? 'Unknown object', reportNumber: event.reentry_report_number?.toString() });
@@ -61,7 +62,7 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
       </div>
       <ContentNavigation />
       <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
-      {t.rich('report_info', { number: event.reentry_report_number?.toString(), time: dayjs(event.updated_at).format(FORMAT_DATE_TIME) })}
+      {t.rich('report_info', { number: event.reentry_report_number?.toString(), time: dayjs(event.updated_at).format(FORMAT_DATE_TIME_FULL_MONTH) })}
       <Suspense fallback={<Spinner />}>
         <ReentryAlertExecutiveSummary event={event} report={lastReport} executiveSummaryComment={searchParams?.executive_summary_comment ?? event.executive_summary_comment} isClosed={isClosed} />
       </Suspense>

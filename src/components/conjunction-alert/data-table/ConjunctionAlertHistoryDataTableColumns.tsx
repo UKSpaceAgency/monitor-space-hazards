@@ -3,9 +3,10 @@ import { Download04Icon } from 'hugeicons-react';
 import Link from 'next/link';
 
 import type { TypeConjunctionReportOut } from '@/__generated__/data-contracts';
-import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME_FULL_MONTH } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
+import { isClosedownAlertType } from '@/utils/AlertType';
 import { roundedPercent } from '@/utils/Math';
 
 export const conjunctionAlertHistoryColumns: TranslatedColumnDef<TypeConjunctionReportOut>[] = [
@@ -16,7 +17,7 @@ export const conjunctionAlertHistoryColumns: TranslatedColumnDef<TypeConjunction
     cell: ({ row }) => {
       const { report_number, short_id, download_url } = row.original;
       const report = `Report ${report_number}`;
-      const isClosed = row.original.alert_type.includes('closedown');
+      const isClosed = isClosedownAlertType(row.original.alert_type);
 
       return (
         <>
@@ -49,7 +50,7 @@ export const conjunctionAlertHistoryColumns: TranslatedColumnDef<TypeConjunction
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();
-      return dayjs(value).format(FORMAT_DATE_TIME);
+      return dayjs(value).format(FORMAT_DATE_TIME_FULL_MONTH);
     },
   },
   {
@@ -90,7 +91,7 @@ export const conjunctionAlertHistoryColumns: TranslatedColumnDef<TypeConjunction
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();
-      return value ? dayjs(value).format(FORMAT_DATE_TIME) : 'Unknown';
+      return value ? dayjs(value).format(FORMAT_DATE_TIME_FULL_MONTH) : 'Unknown';
     },
   },
 ];

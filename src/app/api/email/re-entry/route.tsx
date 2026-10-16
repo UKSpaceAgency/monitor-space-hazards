@@ -11,7 +11,6 @@ export async function POST(
       report,
       tip,
       level,
-      analysis_process: analysisProcess,
       locations_at_risk: locationsAtRisk,
     } = await request.json();
 
@@ -25,7 +24,6 @@ export async function POST(
         report={report}
         tip={tip}
         level={level === 2 ? 2 : 1}
-        analysisProcess={analysisProcess}
         locationsAtRisk={Array.isArray(locationsAtRisk) ? locationsAtRisk : []}
         withPlaceholders
       />,

@@ -3,9 +3,10 @@ import { Download04Icon } from 'hugeicons-react';
 import Link from 'next/link';
 
 import type { TypeFragmentationReportOut } from '@/__generated__/data-contracts';
-import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME_FULL_MONTH } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
+import { isClosedownAlertType } from '@/utils/AlertType';
 
 export const fragmentationHistoryColumns: TranslatedColumnDef<TypeFragmentationReportOut>[] = [
   {
@@ -15,7 +16,7 @@ export const fragmentationHistoryColumns: TranslatedColumnDef<TypeFragmentationR
     cell: ({ row }) => {
       const { report_number, short_id, download_url } = row.original;
       const report = `Report ${report_number}`;
-      const isClosed = row.original.alert_type.includes('closedown');
+      const isClosed = isClosedownAlertType(row.original.alert_type);
 
       return (
         <>
@@ -48,7 +49,7 @@ export const fragmentationHistoryColumns: TranslatedColumnDef<TypeFragmentationR
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();
-      return dayjs(value).format(FORMAT_DATE_TIME);
+      return dayjs(value).format(FORMAT_DATE_TIME_FULL_MONTH);
     },
   },
   {
@@ -57,7 +58,7 @@ export const fragmentationHistoryColumns: TranslatedColumnDef<TypeFragmentationR
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();
-      return dayjs(value).format(FORMAT_DATE_TIME);
+      return dayjs(value).format(FORMAT_DATE_TIME_FULL_MONTH);
     },
   },
 ];

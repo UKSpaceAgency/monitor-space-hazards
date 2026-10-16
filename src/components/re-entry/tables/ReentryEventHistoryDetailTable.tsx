@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import type { TypeTIPOut } from '@/__generated__/data-contracts';
 import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
-import { dayjs, FORMAT_DATE_TIME, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME_FULL_MONTH, FORMAT_FULL_DATE_TIME_NO_UTC } from '@/libs/Dayjs';
 
 type EventSummaryData = Pick<TypeTIPOut, 'external_id' | 'decay_epoch' | 'uncertainty_window' | 'direction' | 'latitude' | 'longitude' | 'inclination' | 'interest' | 'updated_at'>;
 
@@ -23,7 +23,7 @@ const ReentryEventHistoryDetailTable = ({ row }: ReentryEventHistoryDetailTableP
   }, {
     header: t('predicted_reentry_time'),
     accessorKey: 'decay_epoch',
-    renderCell: row => dayjs(row.decay_epoch).format(FORMAT_FULL_DATE_TIME),
+    renderCell: row => dayjs(row.decay_epoch).format(FORMAT_FULL_DATE_TIME_NO_UTC),
   }, {
     header: t('uncertainty_window'),
     accessorKey: 'uncertainty_window',
@@ -47,7 +47,7 @@ const ReentryEventHistoryDetailTable = ({ row }: ReentryEventHistoryDetailTableP
   }, {
     header: t('time_of_update'),
     accessorKey: 'updated_at',
-    renderCell: row => dayjs(row.updated_at).format(FORMAT_DATE_TIME),
+    renderCell: row => dayjs(row.updated_at).format(FORMAT_DATE_TIME_FULL_MONTH),
   }];
 
   return <InformationsTable reducedFont rows={rows} data={row.original} dataPdfIgnore />;

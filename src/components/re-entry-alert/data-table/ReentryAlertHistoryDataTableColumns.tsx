@@ -1,9 +1,11 @@
 'use client';
 
 import type { TypeEventHighestImpact, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
-import { dayjs, FORMAT_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME_FULL_MONTH } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
+import { isClosedownAlertType } from '@/utils/AlertType';
+import { formatNumber } from '@/utils/Math';
 import { getReentryFragmentsRisk } from '@/utils/ReentryRisk';
 import { renderRiskTag } from '@/utils/Tags';
 
@@ -17,7 +19,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
     cell: ({ row }) => {
       const { id, report_number, short_id, download_url, file_name } = row.original;
       const report = `Report ${report_number}`;
-      const isClosed = row.original.alert_type?.includes('closedown');
+      const isClosed = isClosedownAlertType(row.original.alert_type);
 
       return (
         <>
@@ -43,7 +45,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
     enableSorting: false,
     cell: ({ getValue }) => {
       const value = getValue<string>();
-      return dayjs(value).format(FORMAT_DATE_TIME);
+      return dayjs(value).format(FORMAT_DATE_TIME_FULL_MONTH);
     },
   },
   {
@@ -66,7 +68,7 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
     size: 70,
     cell: ({ getValue }) => {
       const value = getValue<string>();
-      return value ? dayjs(value).format(FORMAT_DATE_TIME) : '-';
+      return value ? dayjs(value).format(FORMAT_DATE_TIME_FULL_MONTH) : '-';
     },
   },
   {
@@ -74,6 +76,6 @@ export const reentryAlertHistoryColumns: TranslatedColumnDef<TypeReentryEventRep
     enableSorting: false,
     accessorKey: 'uncertainty_window',
     size: 70,
-    cell: ({ getValue }) => `+/- ${getValue<number>()}`,
+    cell: ({ getValue }) => `+/- ${formatNumber(getValue<number>())}`,
   },
 ];

@@ -4,7 +4,7 @@ import type { TypeFragmentationReportOut, TypeRisk } from '@/__generated__/data-
 import { getFragmentationEventScreeningResults } from '@/actions/getFragmentationEventScreeningResults';
 import type { InformationsTableRow } from '@/components/InformationsTable';
 import { InformationsTable } from '@/components/InformationsTable';
-import { dayjs, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_FULL_DATE_TIME_NO_UTC } from '@/libs/Dayjs';
 import { renderRiskTag } from '@/utils/Tags';
 
 type EventSummaryData = Pick<TypeFragmentationReportOut, 'primary_object_common_name' | 'event_epoch' | 'primary_object_inclination' | 'known_fragments' | 'modelled_fragments' | 'risk' | 'affected_regime' | 'primary_object_type' | 'primary_object_licensing_country' | 'fragmentation_type'>;
@@ -26,7 +26,7 @@ const FragmentationExecutiveSummaryTable = async ({ report }: FragmentationExecu
     {
       header: t('event_epoch'),
       accessorKey: 'event_epoch',
-      renderCell: ({ event_epoch }) => `${dayjs(event_epoch).format(FORMAT_FULL_DATE_TIME)}`,
+      renderCell: ({ event_epoch }) => `${dayjs(event_epoch).format(FORMAT_FULL_DATE_TIME_NO_UTC)}`,
     },
     {
       header: t('known_fragments'),

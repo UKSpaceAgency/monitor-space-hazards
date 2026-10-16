@@ -5,6 +5,7 @@ import { getTranslations } from 'next-intl/server';
 import { getFragmentationAlertLatest } from '@/actions/getFragmentationAlertLatest';
 import { getSession } from '@/actions/getSession';
 import { EventAlertSend } from '@/components/event-alert-send/EventAlertSend';
+import { isPriorityAlertType, isStandardAlertType } from '@/utils/AlertType';
 import { isAgencyApproverOrSuperuser } from '@/utils/Roles';
 
 type PageProps = {
@@ -37,8 +38,8 @@ export default async function FragmentationAlertSend({
   });
 
   const defaultValues = {
-    isStandard: alert.alert_type.includes('standard'),
-    isPriority: alert.alert_type.includes('priority'),
+    isStandard: isStandardAlertType(alert.alert_type),
+    isPriority: isPriorityAlertType(alert.alert_type),
     additionalRecipients: alert.additional_recipients?.join('; ') || '',
   };
 

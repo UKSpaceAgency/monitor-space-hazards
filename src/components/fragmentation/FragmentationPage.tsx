@@ -5,7 +5,7 @@ import type { ReactNode } from 'react';
 import type { TypeFragmentationEventPatch } from '@/__generated__/data-contracts';
 import { getFragmentationEvent } from '@/actions/getFragmentationEvent';
 import { getFragmentationReportsLatest } from '@/actions/getFragmentationReportsLatest';
-import { dayjs, FORMAT_DATE_TIME, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
+import { dayjs, FORMAT_DATE_TIME_FULL_MONTH, FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
 
 import { ContentNavigation } from '../ContentNavigation';
 import { FragmentationAccordion } from './FragmentationAccordion';
@@ -34,7 +34,7 @@ const FragmentationPage = async ({ shortId, searchParams, footer }: Fragmentatio
         <span className="block text-lg">{dayjs(event.event_epoch).format(FORMAT_FULL_DATE_TIME)}</span>
       </h1>
       <ContentNavigation className="mb-8" />
-      {t.rich('report_info', { number: event.report_number?.toString(), time: dayjs(event.created_at).format(FORMAT_DATE_TIME) })}
+      {t.rich('report_info', { number: event.report_number?.toString(), time: dayjs(event.created_at).format(FORMAT_DATE_TIME_FULL_MONTH) })}
       <FragmentationExecutiveSummary event={event} report={report} execSummaryComment={searchParams?.executive_summary_comment ?? event.executive_summary_comment} />
       <FragmentationNextUpdate shortId={shortId} />
       <FragmentationAccordion event={event} report={report} searchParams={searchParams} />

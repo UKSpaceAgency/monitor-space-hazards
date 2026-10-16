@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import type { HTMLProps, ReactNode } from 'react';
 
 import { Table, TableBody, TableCaption, TableCell, TableCellHeader, TableHead, TableRow } from '@/ui/table/Table';
+import { formatNumber } from '@/utils/Math';
 
 export type InformationsTableHeaderWidth = 'xs' | 'sm' | 'md';
 
@@ -38,11 +39,16 @@ const InformationsTable = <T extends object>({ rows, data, headers, caption, hea
     accessorKey?: keyof T;
     renderCell?: (row: T) => ReactNode;
     reducedFont?: true;
-  }) => (
-    <TableCell key={key} className={`${reducedFont ? 'text-base' : ''}`}>
-      {renderCell ? renderCell(data) : accessorKey ? data[accessorKey] as ReactNode || '-' : '-'}
-    </TableCell>
-  );
+  }) => {
+    const value = accessorKey ? data[accessorKey] : undefined;
+    const isYear = typeof accessorKey === 'string' && accessorKey.toLowerCase().includes('year');
+
+    return (
+      <TableCell key={key} className={`${reducedFont ? 'text-base' : ''}`}>
+        {renderCell ? renderCell(data) : typeof value === 'number' && Math.abs(value) >= 1000 && !isYear ? formatNumber(value) : value as ReactNode || '-'}
+      </TableCell>
+    );
+  };
 
   return (
     <div className="overflow-auto" data-pdf-ignore={dataPdfIgnore} data-pdf={dataPdf}>

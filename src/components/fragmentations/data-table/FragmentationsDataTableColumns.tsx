@@ -4,74 +4,108 @@ import type { TypeFragmentationEvent } from '@/__generated__/data-contracts';
 import { dayjs, FORMAT_DATE_FULL_MONTH, FORMAT_TIME } from '@/libs/Dayjs';
 import type { TranslatedColumnDef } from '@/types';
 import Tag from '@/ui/tag/tag';
+import { formatNumber } from '@/utils/Math';
 
 export const fragmentationsColumns: TranslatedColumnDef<TypeFragmentationEvent>[] = [
   {
-    id: 'risk',
+    id: 'event',
+    header: 'Fragmentations.event',
     enableSorting: false,
-    accessorKey: 'risk',
-    header: 'Fragmentations.risk',
-    cell: ({ getValue }) => {
-      const classes = {
-        Low: 'govuk-tag--green',
-        Medium: 'govuk-tag--yellow',
-        High: 'govuk-tag--red',
-      };
-      const value = getValue<keyof typeof classes>();
-      return value
-        ? (
-            <Tag className={classes[value]}>{value}</Tag>
-          )
-        : '';
-    },
+    columns: [
+      {
+        id: 'risk',
+        accessorKey: 'risk',
+        header: 'Fragmentations.risk',
+        cell: ({ getValue }) => {
+          const classes = {
+            Low: 'govuk-tag--green',
+            Medium: 'govuk-tag--yellow',
+            High: 'govuk-tag--red',
+          };
+          const value = getValue<keyof typeof classes>();
+          return value
+            ? (
+                <Tag className={classes[value]}>{value}</Tag>
+              )
+            : '';
+        },
+      },
+      {
+        id: 'short_id',
+        accessorKey: 'short_id',
+        header: 'Fragmentations.short_id',
+        cell: ({ getValue }) => {
+          const value = getValue<string>();
+          return (
+            <Link href={`/fragmentations/${value}`} className="govuk-link">
+              <strong>{value}</strong>
+            </Link>
+          );
+        },
+      },
+    ],
   },
   {
-    id: 'short_id',
-    accessorKey: 'short_id',
-    header: 'Fragmentations.short_id',
-    cell: ({ getValue }) => {
-      const value = getValue<string>();
-      return (
-        <Link href={`/fragmentations/${value}`} className="govuk-link">
-          <strong>{value}</strong>
-        </Link>
-      );
-    },
+    id: 'object',
+    header: 'Fragmentations.object',
+    enableSorting: false,
+    columns: [
+      {
+        id: 'primary_object_common_name',
+        accessorKey: 'primary_object_common_name',
+        header: 'Fragmentations.primary_object_common_name',
+        cell: ({ getValue }) => getValue() ?? '-',
+      },
+      {
+        id: 'secondary_object_common_name',
+        accessorKey: 'secondary_object_common_name',
+        header: 'Fragmentations.secondary_object_common_name',
+        cell: ({ getValue }) => getValue() ?? '-',
+      },
+    ],
   },
   {
-    id: 'primary_object_common_name',
-    accessorKey: 'primary_object_common_name',
-    header: 'Fragmentations.primary_object_common_name',
-    cell: ({ getValue }) => getValue() ?? '-',
+    id: 'fragments',
+    header: 'Fragmentations.fragments',
+    enableSorting: false,
+    columns: [
+      {
+        id: 'known_fragments',
+        accessorKey: 'known_fragments',
+        header: 'Fragmentations.number_of_fragments',
+        cell: ({ getValue }) => {
+          const value = getValue<number | null>();
+          return value != null ? formatNumber(value) : '-';
+        },
+      },
+      {
+        id: 'modelled_fragments',
+        accessorKey: 'modelled_fragments',
+        header: 'Fragmentations.modelled_fragments',
+        cell: ({ getValue }) => {
+          const value = getValue<number | null>();
+          return value != null ? formatNumber(value) : '-';
+        },
+      },
+    ],
   },
   {
-    id: 'secondary_object_common_name',
-    accessorKey: 'secondary_object_common_name',
-    header: 'Fragmentations.secondary_object_common_name',
-    cell: ({ getValue }) => getValue() ?? '-',
-  },
-  {
-    id: 'known_fragments',
-    accessorKey: 'known_fragments',
-    header: 'Fragmentations.number_of_fragments',
-    cell: ({ getValue }) => getValue() ?? '-',
-  },
-  {
-    id: 'modelled_fragments',
-    accessorKey: 'modelled_fragments',
-    header: 'Fragmentations.modelled_fragments',
-    cell: ({ getValue }) => getValue() ?? '-',
-  },
-  {
-    id: 'event_epoch',
-    accessorKey: 'event_epoch',
-    header: 'Fragmentations.date',
-    cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_DATE_FULL_MONTH),
-  },
-  {
-    id: 'time',
-    accessorKey: 'event_epoch',
-    header: 'Fragmentations.time',
-    cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_TIME),
+    id: 'fragmentation_time',
+    header: 'Fragmentations.fragmentation_time',
+    enableSorting: false,
+    columns: [
+      {
+        id: 'event_epoch',
+        accessorKey: 'event_epoch',
+        header: 'Fragmentations.date',
+        cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_DATE_FULL_MONTH),
+      },
+      {
+        id: 'time',
+        accessorKey: 'event_epoch',
+        header: 'Fragmentations.time',
+        cell: ({ getValue }) => dayjs(getValue<string>()).format(FORMAT_TIME),
+      },
+    ],
   },
 ];

@@ -20,8 +20,27 @@ export const ReentryHandlingSpaceDebris = ({ event, withTopSpacing = false }: Re
       <Section className={withTopSpacing ? 'pt-4' : undefined}>
         <Text className="text-sm m-0 font-bold">{t('Handling_space_debris.title')}</Text>
         {t.rich('Handling_space_debris.content', {
-          hydrozineLink: chunks => <Link href="https://www.gov.uk/government/publications/hydrazine-properties-and-incident-management">{chunks}</Link>,
-          keroseneLink: chunks => <Link href="https://www.gov.uk/government/publications/kerosene-properties-incident-management-and-toxicology">{chunks}</Link>,
+          hydrazine: chunks => (
+            <Link
+              href="https://www.gov.uk/government/publications/hydrazine-properties-and-incident-management"
+            >
+              {chunks}
+            </Link>
+          ),
+          kerosene: chunks => (
+            <Link
+              href="https://www.gov.uk/government/publications/kerosene-properties-incident-management-and-toxicology"
+            >
+              {chunks}
+            </Link>
+          ),
+          email: chunks => (
+            <Link
+              href={`mailto:${chunks}`}
+            >
+              {chunks}
+            </Link>
+          ),
         })}
       </Section>
       <Section className="pt-4">

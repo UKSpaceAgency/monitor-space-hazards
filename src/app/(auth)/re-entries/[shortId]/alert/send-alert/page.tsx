@@ -6,6 +6,7 @@ import { getReentryAlertLatest } from '@/actions/getReentryAlertLatest';
 import { getReentryEvent } from '@/actions/getReentryEvent';
 import { getSession } from '@/actions/getSession';
 import { EventAlertSend } from '@/components/event-alert-send/EventAlertSend';
+import { isPriorityAlertType, isStandardAlertType, isUkLicensedAlertType } from '@/utils/AlertType';
 import { isAgencyApproverOrSuperuser } from '@/utils/Roles';
 
 type PageProps = {
@@ -42,9 +43,9 @@ export default async function ReentryAlertSend({
   });
 
   const defaultValues = {
-    isStandard: alert.alert_type.includes('standard'),
-    isPriority: alert.alert_type.includes('priority'),
-    isUkSatellitesOnly: alert.alert_type.includes('uk-licensed'),
+    isStandard: isStandardAlertType(alert.alert_type),
+    isPriority: isPriorityAlertType(alert.alert_type),
+    isUkSatellitesOnly: isUkLicensedAlertType(alert.alert_type),
     additionalRecipients: alert.additional_recipients?.join('; ') || '',
   };
 

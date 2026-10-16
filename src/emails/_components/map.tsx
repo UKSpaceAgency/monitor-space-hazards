@@ -47,8 +47,8 @@ const LegendItem = ({ color, label }: LegendItemProps) => (
   </table>
 );
 
-export const Map = ({ src, showLegend = true, width = 580, ...props }: MapProps) => {
-  const imgWidth = typeof width === 'string' ? Number.parseInt(width, 10) || 580 : width;
+export const Map = ({ src, showLegend = true, width = 600, ...props }: MapProps) => {
+  const imgWidth = typeof width === 'string' ? Number.parseInt(width, 10) || 600 : width;
   // Maps are authored at a 2:1 aspect ratio (e.g. 690×345).
   const imgHeight = Math.round(imgWidth / 2);
 

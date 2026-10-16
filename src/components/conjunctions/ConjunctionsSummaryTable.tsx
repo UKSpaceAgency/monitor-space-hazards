@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 
 import type { TypeConjunctionEventCount } from '@/__generated__/data-contracts';
 import { getConjunctionEventsStats } from '@/actions/getConjunctionEventsStats';
+import { formatNumber } from '@/utils/Math';
 
 import type { InformationsTableRow } from '../InformationsTable';
 import { InformationsTable } from '../InformationsTable';
@@ -15,11 +16,11 @@ export const ConjunctionsSummaryTable = async () => {
 
   const baseInformations: InformationsTableRow<ConjunctionsSummaryTableInformations>[] = [{
     header: t('upcoming_conjunction', { item: 'alerts' }),
-    renderCell: row => <div className="govuk-!-text-align-right">{row.conjunction_event_alert_count}</div>,
+    renderCell: row => <div className="govuk-!-text-align-right">{formatNumber(row.conjunction_event_alert_count)}</div>,
     accessorKey: 'conjunction_event_alert_count',
   }, {
     header: t('upcoming_conjunction', { item: 'events' }),
-    renderCell: row => <div className="govuk-!-text-align-right">{row.conjunction_event_normal_count}</div>,
+    renderCell: row => <div className="govuk-!-text-align-right">{formatNumber(row.conjunction_event_normal_count)}</div>,
     accessorKey: 'conjunction_event_normal_count',
   }];
 
