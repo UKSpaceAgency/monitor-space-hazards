@@ -39,7 +39,16 @@ const NAV_ROW = 'Service navigation';
 
 // eslint-disable-next-line no-control-regex
 const stripAnsi = (text: string) => text.replace(/\u001B\[[0-9;]*m/g, '');
-const firstLine = (text?: string) => text && stripAnsi(text).split('\n').find(l => l.trim())?.trim();
+/** First line of an error, plus what the page actually showed when Playwright reports it. */
+function summariseError(text?: string): string | undefined {
+  if (!text) {
+    return undefined;
+  }
+  const lines = stripAnsi(text).split('\n').map(l => l.trim()).filter(Boolean);
+  const received = lines.find(l => /^Received(?: string)?:/.test(l));
+
+  return [lines[0], received].filter(Boolean).join(' — ');
+}
 const escapeHtml = (text: string) => text.replace(/[&<>"']/g, c => `&#${c.charCodeAt(0)};`);
 const escapeMd = (text: string) => text.replace(/\|/g, '\\|').replace(/\n/g, ' ');
 const spaced = (key: string) => key.replace(/([a-z])([A-Z])/g, '$1 $2');
@@ -90,7 +99,7 @@ export default class MatrixReporter implements Reporter {
         title: [path.basename(file), ...titles].join(' › '),
         status: statusOf(test),
         duration: test.results.reduce((sum, r) => sum + r.duration, 0),
-        error: firstLine(last?.error?.message),
+        error: summariseError(last?.error?.message),
         reason,
       };
 
