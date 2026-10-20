@@ -4,7 +4,6 @@ import { getTranslations } from 'next-intl/server';
 import type { TypeGetActivityEventsParams } from '@/__generated__/data-contracts';
 import { getActivityEvents } from '@/actions/getActivityEvents';
 import { getCdmsLatest } from '@/actions/getCdmsLatest';
-import { getConjunctionEventsList } from '@/actions/getConjunctionEventsList';
 import { FORMAT_DATE_TIME } from '@/libs/Dayjs';
 
 import { DownloadData } from '../DownloadData';
@@ -22,7 +21,7 @@ const ActivitiesEventsTable = async ({ params }: ActivitiesEventsTableProps) => 
 
   const downloadData = async () => {
     'use server';
-    return await getConjunctionEventsList();
+    return await getActivityEvents({});
   };
 
   return (
