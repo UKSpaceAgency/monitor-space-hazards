@@ -62,7 +62,13 @@ function ReEntryEmail({ event, report, tip, withPlaceholders, locationsAtRisk = 
       isReentryWarning
     >
       <Subheader risk={risk} />
-      {event.executive_summary_comment && <ReentryAssessment executiveSummary={event.executive_summary_comment} shortId={event.short_id} />}
+      {event.executive_summary_comment && (
+        <ReentryAssessment
+          executiveSummary={event.executive_summary_comment}
+          shortId={event.short_id}
+          showNoLocationsMessage={locationsAtRisk.length === 0}
+        />
+      )}
       <ReentryLocationsAtRisk locations={locationsAtRisk} report={report} />
       <EmailSection className="!w-full pb-8">
         <ReentryEventSummary event={event} tip={tip} className="pb-6" />
