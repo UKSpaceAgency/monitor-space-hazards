@@ -7,15 +7,15 @@ const receiveDefault = z.array(z.enum([
 
 export const alertSettingsSchema = z.object({
   conjunctionAlerts: z.array(z.enum([
-    'priority',
+    'warning',
     'uk-licensed',
-    'standard',
+    'alert',
   ])),
   receiveConjunction: receiveDefault,
   reEntryAlerts: z.array(z.enum([
-    'priority',
+    'warning',
     'uk-licensed',
-    'standard',
+    'alert',
   ])),
   receiveReEntry: receiveDefault,
   areasOfInterest: z.array(z.enum([
@@ -31,8 +31,8 @@ export const alertSettingsSchema = z.object({
     'REST_OF_THE_WORLD',
   ])),
   fragmentationAlerts: z.array(z.enum([
-    'priority',
-    'standard',
+    'warning',
+    'alert',
   ])),
   receiveFragmentation: receiveDefault,
 });

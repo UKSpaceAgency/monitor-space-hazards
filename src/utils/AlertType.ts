@@ -2,8 +2,8 @@ import type { TypeAlertType } from '@/__generated__/data-contracts';
 
 /**
  * alert_type enums are transitioning on the backend:
- * - 'alert' (level 1) is superseded by 'standard'
- * - 'warning' (level 2) is superseded by 'priority'
+ * - 'standard' (level 1) is superseded by 'alert'
+ * - 'priority' (level 2) is superseded by 'warning'
  * - 'closedown' becomes 'closedown_known' / 'closedown_unknown' (re-entries only)
  *
  * These helpers accept both legacy and new values so categorisation

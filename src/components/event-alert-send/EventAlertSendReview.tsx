@@ -30,10 +30,10 @@ const EventAlertSendReview = ({ type, shortId, data, action }: EventAlertSendRev
     setLoading(true);
 
     const alertType = [
-      data.isStandard === 'true' ? 'standard' : null,
+      data.isStandard === 'true' ? 'alert' : null,
       data.isUkSatellitesOnly === 'true' ? 'uk-licensed' : null,
-      data.isPriority === 'true' ? 'priority' : null,
-    ].filter(Boolean) as ('standard' | 'priority' | 'uk-licensed' | 'closedown')[];
+      data.isPriority === 'true' ? 'warning' : null,
+    ].filter(Boolean) as ('alert' | 'warning' | 'uk-licensed' | 'closedown')[];
 
     action(shortId, {
       alert_type: alertType,

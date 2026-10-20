@@ -20,7 +20,7 @@ export interface TypeActivityAlertSettings {
    * Chosen Options
    * @default []
    */
-  chosen_options?: ("standard" | "priority")[];
+  chosen_options?: ("alert" | "warning")[];
   /**
    * Notification Types
    * @uniqueItems true
@@ -1166,7 +1166,7 @@ export interface TypeConjunctionAlertSettings {
    * Chosen Options
    * @default []
    */
-  chosen_options?: ("standard" | "priority" | "uk-licensed")[];
+  chosen_options?: ("alert" | "warning" | "uk-licensed")[];
   /**
    * Notification Types
    * @uniqueItems true
@@ -1882,7 +1882,7 @@ export interface TypeFragmentationAlertSettings {
    * Chosen Options
    * @default []
    */
-  chosen_options?: ("standard" | "priority")[];
+  chosen_options?: ("alert" | "warning")[];
   /**
    * Notification Types
    * @uniqueItems true
@@ -2551,7 +2551,7 @@ export interface TypeReentryAlertSettings {
    * Chosen Options
    * @default []
    */
-  chosen_options?: ("standard" | "priority" | "uk-licensed")[];
+  chosen_options?: ("alert" | "warning" | "uk-licensed")[];
   /**
    * Areas Of Interest
    * @uniqueItems true

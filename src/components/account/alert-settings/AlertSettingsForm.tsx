@@ -135,13 +135,13 @@ const AlertSettingsForm = ({ user, defaultValues, selfEdit = true, onSubmit: onS
                               hint={t('select_one_option')}
                               items={[{
                                 id: 'all_re_entry_alerts',
-                                value: 'standard',
+                                value: 'alert',
                                 children: t('all_re_entry_alerts', { whose: selfEdit ? 'your' : 'user\'s' }),
                                 hint: t('recommended_for_uk'),
                                 ...register('reEntryAlerts'),
                               }, {
                                 id: 'only_priority_re_entry',
-                                value: 'priority',
+                                value: 'warning',
                                 children: t('only_priority_re_entry', { whose: selfEdit ? 'your' : 'user\'s' }),
                                 hint: t('recommended_for_all_other'),
                                 ...register('reEntryAlerts'),
@@ -192,13 +192,13 @@ const AlertSettingsForm = ({ user, defaultValues, selfEdit = true, onSubmit: onS
                               hint={t('select_one_option')}
                               items={[{
                                 id: 'receive_all_fragmentation_alerts',
-                                value: 'standard',
+                                value: 'alert',
                                 children: t('receive_all_fragmentation_alerts'),
                                 hint: t('recommended_for_all_users'),
                                 ...register('fragmentationAlerts'),
                               }, {
                                 id: 'only_priority_fragmentation',
-                                value: 'priority',
+                                value: 'warning',
                                 children: t('only_priority_fragmentation'),
                                 hint: t('recommended_for_all_other'),
                                 ...register('fragmentationAlerts'),
@@ -229,13 +229,13 @@ const AlertSettingsForm = ({ user, defaultValues, selfEdit = true, onSubmit: onS
                               hint={t('select_one_option')}
                               items={[{
                                 id: 'receive_all_conjunction_alerts',
-                                value: 'standard',
+                                value: 'alert',
                                 children: t('receive_all_conjunction_alerts'),
                                 hint: t('recommended_for'),
                                 ...register('conjunctionAlerts'),
                               }, {
                                 id: 'only_priority_conjunction_alerts',
-                                value: 'priority',
+                                value: 'warning',
                                 children: t('only_priority_conjunction_alerts'),
                                 hint: t('recommended_for_all_other'),
                                 ...register('conjunctionAlerts'),
