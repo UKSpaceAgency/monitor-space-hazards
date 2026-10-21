@@ -2398,6 +2398,7 @@
       "Assessment": {
         "title": "Assessment",
         "placeholder": "An analyst assessment for this report is not yet available.",
+        "no_individual_locations": "Risk to UK interests does not meet the threshold for individual territory reporting",
         "re_entry_location": "Re-Entry Location",
         "time": "Time",
         "uncertainty_window": "Uncertainty Window",

@@ -62,7 +62,13 @@ function ReEntryEmail({ event, report, tip, withPlaceholders, locationsAtRisk = 
       isReentryWarning
     >
       <Subheader risk={risk} />
-      {event.executive_summary_comment && <ReentryAssessment executiveSummary={event.executive_summary_comment} shortId={event.short_id} />}
+      {event.executive_summary_comment && (
+        <ReentryAssessment
+          executiveSummary={event.executive_summary_comment}
+          shortId={event.short_id}
+          showNoLocationsMessage={locationsAtRisk.length === 0}
+        />
+      )}
       <ReentryLocationsAtRisk locations={locationsAtRisk} report={report} />
       <EmailSection className="!w-full pb-8">
         <ReentryEventSummary event={event} tip={tip} className="pb-6" />
@@ -71,8 +77,8 @@ function ReEntryEmail({ event, report, tip, withPlaceholders, locationsAtRisk = 
       <Section title={t('Reentry_alert.additional_object_information_title')}>
         <ReentryObjectInformation event={event} report={report} withSurvivabilityAndReportNumber />
       </Section>
-      <ReentryPotentialImpact report={report} group="overseas_territories_and_crown_dependencies" />
       <ReentryPotentialImpact report={report} group="uk_mainland" />
+      <ReentryPotentialImpact report={report} group="overseas_territories_and_crown_dependencies" />
       <ReentryPotentialImpact report={report} group="maritime_and_airspace" />
       <Section title={t('Reentry_alert.guidance_on_response_title')}>
         <ReentryDamagesAndLiability damagesLiabilityComment={event.damages_liability_comment} />
