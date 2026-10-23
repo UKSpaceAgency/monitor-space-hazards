@@ -20,6 +20,26 @@ export interface TypeActivityAlertSettings {
    * Chosen Options
    * @default []
    */
+  chosen_options?: ("alert" | "warning")[];
+  /**
+   * Notification Types
+   * @uniqueItems true
+   * @default []
+   */
+  notification_types?: TypeNotificationType[];
+}
+
+/** ActivityAlertSettingsOut */
+export interface TypeActivityAlertSettingsOut {
+  /**
+   * Alert Type
+   * @default "activity"
+   */
+  alert_type?: "activity";
+  /**
+   * Chosen Options
+   * @default []
+   */
   chosen_options?: ("standard" | "priority")[];
   /**
    * Notification Types
@@ -502,8 +522,12 @@ export interface TypeAlertDryRunOut {
   additional_emails: string[];
 }
 
-/** AlertSettingsDistributionList */
-export interface TypeAlertSettingsDistributionList {
+/** AlertSettingsDistributionListOut */
+export interface TypeAlertSettingsDistributionListOut {
+  conjunction_alert_settings?: TypeConjunctionAlertSettingsOut | null;
+  reentry_alert_settings?: TypeReentryAlertSettingsOut | null;
+  fragmentation_alert_settings?: TypeFragmentationAlertSettingsOut | null;
+  activity_alert_settings?: TypeActivityAlertSettingsOut | null;
   /**
    * User Id
    * @format uuid
@@ -519,10 +543,6 @@ export interface TypeAlertSettingsDistributionList {
   email: string;
   /** Organization Name */
   organization_name: string;
-  conjunction_alert_settings: TypeConjunctionAlertSettings | null;
-  reentry_alert_settings: TypeReentryAlertSettings | null;
-  fragmentation_alert_settings: TypeFragmentationAlertSettings | null;
-  activity_alert_settings?: TypeActivityAlertSettings | null;
 }
 
 /** AlertSettingsIn */
@@ -536,16 +556,14 @@ export interface TypeAlertSettingsIn {
 
 /** AlertSettingsOut */
 export interface TypeAlertSettingsOut {
-  conjunction_alert_settings?: TypeConjunctionAlertSettings | null;
-  reentry_alert_settings?: TypeReentryAlertSettings | null;
-  fragmentation_alert_settings?: TypeFragmentationAlertSettings | null;
-  activity_alert_settings?: TypeActivityAlertSettings | null;
+  conjunction_alert_settings?: TypeConjunctionAlertSettingsOut | null;
+  reentry_alert_settings?: TypeReentryAlertSettingsOut | null;
+  fragmentation_alert_settings?: TypeFragmentationAlertSettingsOut | null;
+  activity_alert_settings?: TypeActivityAlertSettingsOut | null;
 }
 
 /** AlertType */
 export type TypeAlertType =
-  | "standard"
-  | "priority"
   | "uk-licensed"
   | "closedown"
   | "closedown_known"
@@ -1157,6 +1175,26 @@ export type TypeCDMType =
 
 /** ConjunctionAlertSettings */
 export interface TypeConjunctionAlertSettings {
+  /**
+   * Alert Type
+   * @default "conjunction"
+   */
+  alert_type?: "conjunction";
+  /**
+   * Chosen Options
+   * @default []
+   */
+  chosen_options?: ("alert" | "warning" | "uk-licensed")[];
+  /**
+   * Notification Types
+   * @uniqueItems true
+   * @default []
+   */
+  notification_types?: TypeNotificationType[];
+}
+
+/** ConjunctionAlertSettingsOut */
+export interface TypeConjunctionAlertSettingsOut {
   /**
    * Alert Type
    * @default "conjunction"
@@ -1882,6 +1920,26 @@ export interface TypeFragmentationAlertSettings {
    * Chosen Options
    * @default []
    */
+  chosen_options?: ("alert" | "warning")[];
+  /**
+   * Notification Types
+   * @uniqueItems true
+   * @default []
+   */
+  notification_types?: TypeNotificationType[];
+}
+
+/** FragmentationAlertSettingsOut */
+export interface TypeFragmentationAlertSettingsOut {
+  /**
+   * Alert Type
+   * @default "fragmentation"
+   */
+  alert_type?: "fragmentation";
+  /**
+   * Chosen Options
+   * @default []
+   */
   chosen_options?: ("standard" | "priority")[];
   /**
    * Notification Types
@@ -2542,6 +2600,32 @@ export interface TypePositionUncertainty {
 
 /** ReentryAlertSettings */
 export interface TypeReentryAlertSettings {
+  /**
+   * Alert Type
+   * @default "reentry"
+   */
+  alert_type?: "reentry";
+  /**
+   * Chosen Options
+   * @default []
+   */
+  chosen_options?: ("alert" | "warning" | "uk-licensed")[];
+  /**
+   * Areas Of Interest
+   * @uniqueItems true
+   * @default []
+   */
+  areas_of_interest?: TypeAreaOfInterest[];
+  /**
+   * Notification Types
+   * @uniqueItems true
+   * @default []
+   */
+  notification_types?: TypeNotificationType[];
+}
+
+/** ReentryAlertSettingsOut */
+export interface TypeReentryAlertSettingsOut {
   /**
    * Alert Type
    * @default "reentry"
@@ -3746,7 +3830,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-10-13T10:01:23.868624"
+   * @default "2026-10-21T11:25:16.056711"
    */
   updated_at?: string | null;
   /** Report Number */

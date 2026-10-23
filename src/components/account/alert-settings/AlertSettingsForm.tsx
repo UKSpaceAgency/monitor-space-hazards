@@ -11,6 +11,7 @@ import Button from '@/ui/button/button';
 import Checkboxes from '@/ui/checkboxes/checkboxes';
 import Panel from '@/ui/panel/panel';
 import WarningText from '@/ui/warning-text/warning-text';
+import { toAlertSettingsChosenOptions } from '@/utils/AlertType';
 import type { AlertSettingsSchema } from '@/validations/alertSettingsSchema';
 
 import { AlertSettingsDetails } from './AlertSettingsDetails';
@@ -70,16 +71,16 @@ const AlertSettingsForm = ({ user, defaultValues, selfEdit = true, onSubmit: onS
   const onSubmit: SubmitHandler<AlertSettingsSchema> = async (data) => {
     const payload: TypeAlertSettingsIn = {
       conjunction_alert_settings: {
-        chosen_options: data.conjunctionAlerts,
+        chosen_options: toAlertSettingsChosenOptions(data.conjunctionAlerts),
         notification_types: data.receiveConjunction,
       },
       reentry_alert_settings: {
-        chosen_options: data.reEntryAlerts,
+        chosen_options: toAlertSettingsChosenOptions(data.reEntryAlerts),
         notification_types: data.receiveReEntry,
         areas_of_interest: data.areasOfInterest,
       },
       fragmentation_alert_settings: {
-        chosen_options: data.fragmentationAlerts,
+        chosen_options: toAlertSettingsChosenOptions(data.fragmentationAlerts),
         notification_types: data.receiveFragmentation,
       },
     };

@@ -17,7 +17,7 @@ import {
   TypeActivityReport,
   TypeActivityReportOut,
   TypeAlertDryRunOut,
-  TypeAlertSettingsDistributionList,
+  TypeAlertSettingsDistributionListOut,
   TypeAlertSettingsIn,
   TypeAlertSettingsOut,
   TypeAnalysis,
@@ -204,7 +204,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getAlerts = (params: RequestParams = {}) =>
-    this.request<TypeAlertSettingsDistributionList[], any>({
+    this.request<TypeAlertSettingsDistributionListOut[], any>({
       path: `/v1/alerts/`,
       method: "GET",
       secure: true,

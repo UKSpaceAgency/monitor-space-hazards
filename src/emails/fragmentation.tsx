@@ -89,7 +89,7 @@ FragmentationEmail.PreviewProps = {
     affected_regime: 'GEO',
     conjunction_event_id: 'string',
     alert_type: [
-      'standard',
+      'alert',
     ],
     executive_summary_comment: 'string',
     closed_comment: 'string',
