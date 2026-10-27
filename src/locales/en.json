@@ -1555,6 +1555,7 @@
       "licensing_country": "Licensing country",
       "object_type": "Object type",
       "mass": "Mass (kg)",
+      "object_dimensions": "Object dimensions",
       "manoeuvrable": "Manoeuvrable?",
       "norad_id": "NORAD ID",
       "object_mission": "Object mission"
