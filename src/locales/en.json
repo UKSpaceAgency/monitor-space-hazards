@@ -1005,7 +1005,9 @@
       "content": "The National Space Operations Centre is monitoring the upcoming re-entry event involving {commonName} from space into Earth's atmosphere, posing a potential risk to life and property on the ground. The event is assessed as <tag>{fragmentsRisk}</tag> risk, with a {fragmentsProbability} probability of debris impacting the UK. The licensing country is {licensingCountry}. All re-entered debris should be considered as hazardous until proven otherwise.",
       "closed_report": "The National Space Operations Centre has completed monitoring of the re-entry event involving {commonName}, which occurred on {date}. The event was assessed as <tag>{fragmentsRisk}</tag> risk, with a {fragmentsProbability} probability of debris impacting the UK. The licensing country is {licensingCountry}. All re-entered debris should be considered as hazardous until proven otherwise.",
       "locations_at_risk": "Locations at risk",
-      "event_summary": "Event summary"
+      "event_summary": "Event summary",
+      "level_1_label": "Executive Summary (Level 1 only)",
+      "level_2_label": "Executive Summary (Level 2 only)"
     },
     "Map": {
       "details": {
@@ -1088,7 +1090,7 @@
   },
   "Reentry_alert_edit": {
     "title": "Re-entry alert for {objectName}",
-    "content": "<p>If edits or additions are needed to the automatically generated report, these can be made through free text inputs in the boxes below. Once published, these edits will automatically be added to the relevant event page, and users on the appropriate distribution lists will be notified of the update.</p><p>The below boxes can only process <bold>plain text</bold>. Do not include images or text formatting.</p>",
+    "content": "<p>If edits are needed to the automatically generated report, these can be made through free text inputs in the boxes below. Edits made here will replace the corresponding JSON fields and will be visible on the event page. Users on the appropriate distribution lists will be notified of the update.</p><p>The below boxes can only process <bold>plain text</bold>. Do not include images or text formatting.</p>",
     "review_description": "Free text edits to re-entry event {shortId}",
     "preview": {
       "title": "Preview your edits before publishing",
@@ -2181,12 +2183,14 @@
       "type": {
         "exec_summary": "Executive Summary",
         "executive_summary_comment": "Executive Summary",
+        "executive_summary_comment_level_1": "Executive Summary (Level 1 only)",
+        "executive_summary_comment_level_2": "Executive Summary (Level 2 only)",
         "immediate_response": "Guidance on response",
         "immediate_response_comment": "Guidance on response",
         "guidance_on_response": "Guidance on response",
         "immediate_impact_comment": "Immediate response",
         "recovery_and_clean_up": "Guidance if object impacts UK interests",
-        "damages_liability_comment": "Liability for damages",
+        "damages_liability_comment": "Damages and liability",
         "press_attention": "Press attention",
         "press_attention_comment": "Press attention",
         "immediate_impact": "Immediate impact",
@@ -2208,13 +2212,18 @@
         "hint": "This text will appear next to 'Manoeuvre expected?' "
       },
       "add_to": "Add to `{name}`",
+      "edit": "Edit `{name}`",
       "hint": "This text will appear below the paragraphs which read:",
       "hint_replace": "Editing this will replace the following text:",
       "hint_empty": "No text",
+      "hint_replace_closed_comment": "This text will replace any text submitted via the JSON's 'closed_comment' field. It will appear alongside the 'Closed' flag.",
+      "hint_replace_json_field": "This text will replace any text submitted via the JSON's '{field}' field.",
+      "hint_replace_json_field_level": "This text will replace any text submitted via the JSON's '{field}' field. It will only be visible to users with Level {level} permissions.",
+      "hint_add_uk_response": "This text will appear below the standardised text in the 'Guidance if object impacts UK interests' section. It will replace any text submitted via the JSON's 'uk_response_comment' field.",
       "press_attention_hint": "<p>Include details of any press attention related to this event. Leave blank if there has been no press attention.</p>",
       "closed_comment_hint": "This text will appear alongside the 'Closed' label in emails.",
-      "clear": "Clear `{name}` text box",
-      "review": "Review edit",
+      "clear": "Clear `{name}` text",
+      "review": "Review edits",
       "change": "Change",
       "review_hint": "Check your changes in the table above. Check for any spelling or grammatical errors. You can review how the changes will look in the report by selecting `See final preview` - this will not publish your changes. See final preview",
       "preview": "See final preview",

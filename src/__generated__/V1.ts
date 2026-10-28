@@ -142,7 +142,6 @@ import {
   TypePostConjunctionReportsParams,
   TypePostReentryEventReportsParams,
   TypePostTipsParams,
-  TypeReentryEvent,
   TypeReentryEventAlertIn,
   TypeReentryEventAlertOut,
   TypeReentryEventCount,
@@ -150,6 +149,7 @@ import {
   TypeReentryEventPatch,
   TypeReentryEventReportMapDataOut,
   TypeReentryEventReportOut,
+  TypeReentryEventWithLevelsOut,
   TypeSatelliteOrgOut,
   TypeSatelliteOrganizationOut,
   TypeSatelliteUpdateIn,
@@ -1615,7 +1615,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getReentryEventsLatest = (params: RequestParams = {}) =>
-    this.request<TypeReentryEvent | null, void>({
+    this.request<TypeReentryEventWithLevelsOut | null, void>({
       path: `/v1/reentry-events/latest`,
       method: "GET",
       secure: true,
@@ -1631,7 +1631,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getReentryEventsByNoradIdNoradId = (noradId: string, params: RequestParams = {}) =>
-    this.request<TypeReentryEvent, void | TypeHTTPValidationError>({
+    this.request<TypeReentryEventWithLevelsOut, void | TypeHTTPValidationError>({
       path: `/v1/reentry-events/by-norad-id/${noradId}`,
       method: "GET",
       secure: true,
@@ -1647,7 +1647,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   getReentryEventsShortId = (shortId: string, params: RequestParams = {}) =>
-    this.request<TypeReentryEventOut | null, void | TypeHTTPValidationError>({
+    this.request<TypeReentryEventWithLevelsOut | null, void | TypeHTTPValidationError>({
       path: `/v1/reentry-events/${shortId}`,
       method: "GET",
       secure: true,
@@ -1663,7 +1663,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
    * @secure
    */
   patchReentryEventsShortId = (shortId: string, data: TypeReentryEventPatch, params: RequestParams = {}) =>
-    this.request<TypeReentryEventOut, void | TypeHTTPValidationError>({
+    this.request<TypeReentryEventWithLevelsOut, void | TypeHTTPValidationError>({
       path: `/v1/reentry-events/${shortId}`,
       method: "PATCH",
       body: data,
