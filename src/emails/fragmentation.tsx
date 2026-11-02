@@ -43,7 +43,7 @@ function FragmentationEmail({ event, report, screeningResults, withPlaceholders 
       <Section title={t('Fragmentation.event_details_title')} className="!w-full">
         {event.executive_summary_comment && (
           <>
-            <Text className="text-sm mb-2 font-bold">{t('Fragmentation.Event_details.event_information')}</Text>
+            <Text className="text-sm mt-0 mb-4 font-bold">{t('Fragmentation.Event_details.event_information')}</Text>
             <Markdown>{event.executive_summary_comment}</Markdown>
           </>
         )}
@@ -52,11 +52,11 @@ function FragmentationEmail({ event, report, screeningResults, withPlaceholders 
       <Section title={t('Fragmentation.Potential_impact_title')} className="!w-full">
         {event.spaceflight_risk_comment && (
           <>
-            <Text className="text-sm mb-2 font-bold">{t('Fragmentation.Potential_impact.uk_risk')}</Text>
+            <Text className="text-sm mt-0 mb-4 font-bold">{t('Fragmentation.Potential_impact.uk_risk')}</Text>
             <Markdown>{event.spaceflight_risk_comment}</Markdown>
           </>
         )}
-        <Text className="text-sm mb-2 font-bold">{t('Fragmentation.Potential_impact.uk_satellites_affected')}</Text>
+        <Text className="text-sm mt-0 mb-4 font-bold">{t('Fragmentation.Potential_impact.uk_satellites_affected')}</Text>
         {t.rich('Fragmentation.Potential_impact.content')}
         <FragmentationPotentialImpact data={screeningResults} />
       </Section>
