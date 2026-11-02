@@ -2408,7 +2408,6 @@
       "Assessment": {
         "title": "Assessment",
         "placeholder": "An analyst assessment for this report is not yet available.",
-        "no_individual_locations": "Risk to UK interests does not meet the threshold for individual territory reporting",
         "re_entry_location": "Re-Entry Location",
         "time": "Time",
         "uncertainty_window": "Uncertainty Window",
@@ -2424,7 +2423,8 @@
         "probability_of_reentry": "Probability of Re-Entry",
         "probability_of_human_casualties": "Probability of Human Casualties",
         "overflight_times": "Overflight Times",
-        "no_overflights": "No overflights"
+        "no_overflights": "No overflights",
+        "no_individual_locations": "Risk to UK interests does not meet the threshold for individual territory reporting"
       },
       "Potential_impact": {
         "by_nation_title": "Potential impact by UK nation",
