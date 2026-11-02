@@ -11,6 +11,7 @@ import type { ReactNode } from 'react';
 import type { TypeBannerMessagesBroadcastedOut } from '@/__generated__/data-contracts';
 import { getIncidentBanners } from '@/actions/getIncidentBanners';
 import { getSession } from '@/actions/getSession';
+import { AuthSessionGuard } from '@/components/AuthSessionGuard';
 import { BaseTemplate } from '@/templates/BaseTemplate';
 import { AppConfig } from '@/utils/AppConfig';
 
@@ -44,7 +45,8 @@ export default async function RootLayout({
       <body className="govuk-template__body" suppressHydrationWarning>
         {process.env.NEXT_PUBLIC_PUBLIC_GA && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_PUBLIC_GA} />}
         <NextIntlClientProvider messages={pick(messages, ['Tables', 'Template', 'Forms', 'Common', 'OverflightMap', 'Charts'])}>
-          <SessionProvider>
+          <SessionProvider refetchInterval={5 * 60} refetchOnWindowFocus>
+            <AuthSessionGuard />
             <BaseTemplate showNavigation={!!session} breadcrumb={breadcrumb} incidentBanners={incidentBanners}>
               {children}
             </BaseTemplate>

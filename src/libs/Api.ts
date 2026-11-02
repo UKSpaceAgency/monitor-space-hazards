@@ -12,7 +12,7 @@ export const initialiseApi = (token?: string) => {
         accessToken = token;
       } else {
         const session = await auth();
-        if (session?.access_token) {
+        if (session?.access_token && !session.error) {
           accessToken = session.access_token;
         }
       }
