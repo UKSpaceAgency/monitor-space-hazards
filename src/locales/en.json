@@ -2437,7 +2437,7 @@
         "empty": "No {locations} are currently at risk."
       },
       "Understanding_this_report": {
-        "title": "Understanding This Report",
+        "title": "Understanding this Report",
         "risk_calculations_title": "Risk Calculations and Percentages",
         "risk_calculations_content": "<p>Percentages (for UK, Crown Dependencies, UK Overseas Territories, UK NAVAREA and UK FIRs) refer to the percentage probability of the object re-entering, or depositing debris, over or in the named area.</p>",
         "overflights_title": "Overflights and debris fields",
@@ -2448,12 +2448,13 @@
         "warning_content_level_2": "<p>This report is a Level 2 Warning. This report should not be forwarded without permission.</p>"
       },
       "Understanding_this_report_closed": {
-        "title": "Understanding This Report",
+        "title": "Understanding this Report",
         "overflights_title": "Overflights and debris fields",
         "overflights_content": "<p>Overflight times indicate the approximate time the re-entering object's orbital path passes over, or in close proximity to, the location above. They are the approximate time(s) at which the above location could be potentially at risk from the re-entry.</p><p>Debris fields show the area where one or more debris fragments could fall based on enhanced UKSA modelling.</p>",
-        "alert_title": "Level {level} Alert",
+        "alert_title_level_1": "Level 1 Alert",
         "alert_content_level_1": "<p>This report is a Level 1 Alert. It is intended primarily for space operations centres and data partners. Events that reach a threshold to be notified to response partners across UK Government are handled separately. This report should not be forwarded without permission.</p>",
-        "alert_content_level_2": "<p>This report is a Level 2 Alert. It is intended for response partners across UK Government, and is issued when an event reaches the threshold for wider notification. This report should not be forwarded without permission.</p>",
+        "warning_title_level_2": "Level 2 Warning",
+        "warning_content_level_2": "<p>This report is a Level 2 Warning. This report should not be forwarded without permission.</p>",
         "more_information": "<p>More information about this report can be found at <link>Monitor Space Hazards - GOV.UK</link></p>"
       },
       "Risk_probabilities": {
