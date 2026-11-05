@@ -67,6 +67,10 @@ const ConjunctionAlertExecutiveSummaryTable = ({ report, manoeuvreComment }: Con
     cellProps: { className: 'pl-10' },
     accessorKey: 'primary_object_mass',
   }, {
+    header: t('object_dimensions'),
+    cellProps: { className: 'pl-10' },
+    accessorKey: 'primary_object_hbr',
+  }, {
     header: t('manoeuvrable'),
     cellProps: { className: 'pl-10' },
     accessorKey: 'primary_object_manoeuvrable',
@@ -97,6 +101,10 @@ const ConjunctionAlertExecutiveSummaryTable = ({ report, manoeuvreComment }: Con
     header: t('mass'),
     cellProps: { className: 'pl-10' },
     accessorKey: 'secondary_object_mass',
+  }, {
+    header: t('object_dimensions'),
+    cellProps: { className: 'pl-10' },
+    accessorKey: 'secondary_object_hbr',
   }, {
     header: t('manoeuvrable'),
     cellProps: { className: 'pl-10' },

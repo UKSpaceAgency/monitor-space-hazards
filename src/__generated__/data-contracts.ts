@@ -20,6 +20,26 @@ export interface TypeActivityAlertSettings {
    * Chosen Options
    * @default []
    */
+  chosen_options?: ("alert" | "warning")[];
+  /**
+   * Notification Types
+   * @uniqueItems true
+   * @default []
+   */
+  notification_types?: TypeNotificationType[];
+}
+
+/** ActivityAlertSettingsOut */
+export interface TypeActivityAlertSettingsOut {
+  /**
+   * Alert Type
+   * @default "activity"
+   */
+  alert_type?: "activity";
+  /**
+   * Chosen Options
+   * @default []
+   */
   chosen_options?: ("standard" | "priority")[];
   /**
    * Notification Types
@@ -502,8 +522,12 @@ export interface TypeAlertDryRunOut {
   additional_emails: string[];
 }
 
-/** AlertSettingsDistributionList */
-export interface TypeAlertSettingsDistributionList {
+/** AlertSettingsDistributionListOut */
+export interface TypeAlertSettingsDistributionListOut {
+  conjunction_alert_settings?: TypeConjunctionAlertSettingsOut | null;
+  reentry_alert_settings?: TypeReentryAlertSettingsOut | null;
+  fragmentation_alert_settings?: TypeFragmentationAlertSettingsOut | null;
+  activity_alert_settings?: TypeActivityAlertSettingsOut | null;
   /**
    * User Id
    * @format uuid
@@ -519,10 +543,6 @@ export interface TypeAlertSettingsDistributionList {
   email: string;
   /** Organization Name */
   organization_name: string;
-  conjunction_alert_settings: TypeConjunctionAlertSettings | null;
-  reentry_alert_settings: TypeReentryAlertSettings | null;
-  fragmentation_alert_settings: TypeFragmentationAlertSettings | null;
-  activity_alert_settings?: TypeActivityAlertSettings | null;
 }
 
 /** AlertSettingsIn */
@@ -536,16 +556,14 @@ export interface TypeAlertSettingsIn {
 
 /** AlertSettingsOut */
 export interface TypeAlertSettingsOut {
-  conjunction_alert_settings?: TypeConjunctionAlertSettings | null;
-  reentry_alert_settings?: TypeReentryAlertSettings | null;
-  fragmentation_alert_settings?: TypeFragmentationAlertSettings | null;
-  activity_alert_settings?: TypeActivityAlertSettings | null;
+  conjunction_alert_settings?: TypeConjunctionAlertSettingsOut | null;
+  reentry_alert_settings?: TypeReentryAlertSettingsOut | null;
+  fragmentation_alert_settings?: TypeFragmentationAlertSettingsOut | null;
+  activity_alert_settings?: TypeActivityAlertSettingsOut | null;
 }
 
 /** AlertType */
 export type TypeAlertType =
-  | "standard"
-  | "priority"
   | "uk-licensed"
   | "closedown"
   | "closedown_known"
@@ -1157,6 +1175,26 @@ export type TypeCDMType =
 
 /** ConjunctionAlertSettings */
 export interface TypeConjunctionAlertSettings {
+  /**
+   * Alert Type
+   * @default "conjunction"
+   */
+  alert_type?: "conjunction";
+  /**
+   * Chosen Options
+   * @default []
+   */
+  chosen_options?: ("alert" | "warning" | "uk-licensed")[];
+  /**
+   * Notification Types
+   * @uniqueItems true
+   * @default []
+   */
+  notification_types?: TypeNotificationType[];
+}
+
+/** ConjunctionAlertSettingsOut */
+export interface TypeConjunctionAlertSettingsOut {
   /**
    * Alert Type
    * @default "conjunction"
@@ -1882,6 +1920,26 @@ export interface TypeFragmentationAlertSettings {
    * Chosen Options
    * @default []
    */
+  chosen_options?: ("alert" | "warning")[];
+  /**
+   * Notification Types
+   * @uniqueItems true
+   * @default []
+   */
+  notification_types?: TypeNotificationType[];
+}
+
+/** FragmentationAlertSettingsOut */
+export interface TypeFragmentationAlertSettingsOut {
+  /**
+   * Alert Type
+   * @default "fragmentation"
+   */
+  alert_type?: "fragmentation";
+  /**
+   * Chosen Options
+   * @default []
+   */
   chosen_options?: ("standard" | "priority")[];
   /**
    * Notification Types
@@ -2295,6 +2353,26 @@ export interface TypeHighestImpactData {
   human_casualty_probability?: number | null;
 }
 
+/** LevelledComment */
+export interface TypeLevelledComment {
+  /**  Default */
+  _default?: string | null;
+  /** Level 1 */
+  level_1?: string | null;
+  /** Level 2 */
+  level_2?: string | null;
+}
+
+/** LevelledCommentOut */
+export interface TypeLevelledCommentOut {
+  /**  Default */
+  _default: string | null;
+  /** Level 1 */
+  level_1: string | null;
+  /** Level 2 */
+  level_2: string | null;
+}
+
 /** ManoeuvrePlot */
 export interface TypeManoeuvrePlot {
   /**
@@ -2551,6 +2629,32 @@ export interface TypeReentryAlertSettings {
    * Chosen Options
    * @default []
    */
+  chosen_options?: ("alert" | "warning" | "uk-licensed")[];
+  /**
+   * Areas Of Interest
+   * @uniqueItems true
+   * @default []
+   */
+  areas_of_interest?: TypeAreaOfInterest[];
+  /**
+   * Notification Types
+   * @uniqueItems true
+   * @default []
+   */
+  notification_types?: TypeNotificationType[];
+}
+
+/** ReentryAlertSettingsOut */
+export interface TypeReentryAlertSettingsOut {
+  /**
+   * Alert Type
+   * @default "reentry"
+   */
+  alert_type?: "reentry";
+  /**
+   * Chosen Options
+   * @default []
+   */
   chosen_options?: ("standard" | "priority" | "uk-licensed")[];
   /**
    * Areas Of Interest
@@ -2568,116 +2672,6 @@ export interface TypeReentryAlertSettings {
 
 /** ReentryDirection */
 export type TypeReentryDirection = "ascending" | "descending";
-
-/** ReentryEvent */
-export interface TypeReentryEvent {
-  /**
-   * Id
-   * @format uuid
-   */
-  id?: string;
-  /**
-   * Created At
-   * @format date-time
-   */
-  created_at?: string;
-  /**
-   * Updated At
-   * @format date-time
-   */
-  updated_at?: string;
-  /** Short Id */
-  short_id: string;
-  /** Norad Id */
-  norad_id: string;
-  /**
-   * Time Window Start
-   * @format date-time
-   */
-  time_window_start: string;
-  /**
-   * Time Window End
-   * @format date-time
-   */
-  time_window_end: string;
-  /** Decay Epoch */
-  decay_epoch?: string | null;
-  /** Uncertainty Window */
-  uncertainty_window?: number | null;
-  /** Tip External Id */
-  tip_external_id: string;
-  /** Insert Epoch */
-  insert_epoch?: string | null;
-  /** Tip Creation Date */
-  tip_creation_date?: string | null;
-  /** Reentry Report Number */
-  reentry_report_number?: number | null;
-  /** Year */
-  year: number;
-  /** Event Number */
-  event_number: number;
-  /** Closed Comment */
-  closed_comment?: string | null;
-  /** Highest Probability */
-  highest_probability?: number | null;
-  highest_impact?: TypeEventHighestImpact | null;
-  /** Atmospheric Probability */
-  atmospheric_probability?: number | null;
-  atmospheric_risk?: TypeRisk | null;
-  /** Fragments Probability */
-  fragments_probability?: number | null;
-  fragments_risk?: TypeRisk | null;
-  /** Fragments Number */
-  fragments_number?: number | null;
-  /** Human Casualty Probability */
-  human_casualty_probability?: number | null;
-  human_casualty_risk?: TypeRisk | null;
-  /** Overflight Time */
-  overflight_time: string[];
-  survivability?: TypeReentrySurvivability | null;
-  /** Survivability Comment */
-  survivability_comment?: string | null;
-  /** Executive Summary Comment */
-  executive_summary_comment?: string | null;
-  /** Immediate Response Comment */
-  immediate_response_comment?: string | null;
-  /** Uk Response Comment */
-  uk_response_comment?: string | null;
-  /** Damages Liability Comment */
-  damages_liability_comment?: string | null;
-  /** Press Attention Comment */
-  press_attention_comment?: string | null;
-  /** Group Overrides */
-  group_overrides?: Record<string, Record<string, string | null>> | null;
-  /** Object Name */
-  object_name?: string | null;
-  /** Object Type */
-  object_type?: string | null;
-  /** Estimated Mass */
-  estimated_mass?: number | null;
-  /** License Country */
-  license_country?: string | null;
-  /** International Designator */
-  international_designator?: string | null;
-  /** Object Height */
-  object_height?: number | null;
-  /** Object Width */
-  object_width?: number | null;
-  /** Object Span */
-  object_span?: number | null;
-  /** Launching Year */
-  launching_year?: number | null;
-  /** Apogee */
-  apogee?: number | null;
-  /** Perigee */
-  perigee?: number | null;
-  /** Inclination */
-  inclination?: number | null;
-  /** Approved By Id */
-  approved_by_id?: string | null;
-  /** Approved At */
-  approved_at?: string | null;
-}
 
 /** ReentryEventAlertIn */
 export interface TypeReentryEventAlertIn {
@@ -2843,17 +2837,21 @@ export interface TypeReentryEventOut {
 /** ReentryEventPatch */
 export interface TypeReentryEventPatch {
   /** Executive Summary Comment */
-  executive_summary_comment?: string | null;
+  executive_summary_comment?: string | null | TypeLevelledComment;
   /** Immediate Response Comment */
-  immediate_response_comment?: string | null;
+  immediate_response_comment?: string | null | TypeLevelledComment;
   /** Uk Response Comment */
-  uk_response_comment?: string | null;
+  uk_response_comment?: string | null | TypeLevelledComment;
   /** Damages Liability Comment */
-  damages_liability_comment?: string | null;
+  damages_liability_comment?: string | null | TypeLevelledComment;
   /** Press Attention Comment */
-  press_attention_comment?: string | null;
+  press_attention_comment?: string | null | TypeLevelledComment;
+  /** Survivability Comment */
+  survivability_comment?: string | null | TypeLevelledComment;
   /** Closed Comment */
-  closed_comment?: string | null;
+  closed_comment?: string | null | TypeLevelledComment;
+  /** Group Overrides */
+  group_overrides?: Record<string, Record<string, string>> | null;
 }
 
 /** ReentryEventReportMapDataOut */
@@ -3013,7 +3011,127 @@ export type TypeReentryEventSortBy =
   | "updated_at"
   | "tip_creation_date"
   | "insert_epoch"
-  | "highest_impact";
+  | "highest_impact"
+  | "highest_impact_fragments_probability";
+
+/** ReentryEventWithLevelsOut */
+export interface TypeReentryEventWithLevelsOut {
+  /**
+   * Id
+   * @format uuid
+   */
+  id?: string;
+  /**
+   * Created At
+   * @format date-time
+   */
+  created_at?: string;
+  /**
+   * Updated At
+   * @format date-time
+   */
+  updated_at?: string;
+  /** Short Id */
+  short_id: string;
+  /** Norad Id */
+  norad_id: string;
+  /**
+   * Time Window Start
+   * @format date-time
+   */
+  time_window_start: string;
+  /**
+   * Time Window End
+   * @format date-time
+   */
+  time_window_end: string;
+  /** Decay Epoch */
+  decay_epoch?: string | null;
+  /** Uncertainty Window */
+  uncertainty_window?: number | null;
+  /** Tip External Id */
+  tip_external_id: string;
+  /** Insert Epoch */
+  insert_epoch?: string | null;
+  /** Tip Creation Date */
+  tip_creation_date?: string | null;
+  /** Reentry Report Number */
+  reentry_report_number?: number | null;
+  /** Year */
+  year: number;
+  /** Event Number */
+  event_number: number;
+  /** Closed Comment */
+  closed_comment?: string | null;
+  /** Highest Probability */
+  highest_probability?: number | null;
+  highest_impact?: TypeEventHighestImpact | null;
+  /** Atmospheric Probability */
+  atmospheric_probability?: number | null;
+  atmospheric_risk?: TypeRisk | null;
+  /** Fragments Probability */
+  fragments_probability?: number | null;
+  fragments_risk?: TypeRisk | null;
+  /** Fragments Number */
+  fragments_number?: number | null;
+  /** Human Casualty Probability */
+  human_casualty_probability?: number | null;
+  human_casualty_risk?: TypeRisk | null;
+  /** Overflight Time */
+  overflight_time: string[];
+  survivability?: TypeReentrySurvivability | null;
+  /** Survivability Comment */
+  survivability_comment?: string | null;
+  /** Executive Summary Comment */
+  executive_summary_comment?: string | null;
+  /** Immediate Response Comment */
+  immediate_response_comment?: string | null;
+  /** Uk Response Comment */
+  uk_response_comment?: string | null;
+  /** Damages Liability Comment */
+  damages_liability_comment?: string | null;
+  /** Press Attention Comment */
+  press_attention_comment?: string | null;
+  /** Object Name */
+  object_name?: string | null;
+  /** Object Type */
+  object_type?: string | null;
+  /** Estimated Mass */
+  estimated_mass?: number | null;
+  /** License Country */
+  license_country?: string | null;
+  /** International Designator */
+  international_designator?: string | null;
+  /** Object Height */
+  object_height?: number | null;
+  /** Object Width */
+  object_width?: number | null;
+  /** Object Span */
+  object_span?: number | null;
+  /** Launching Year */
+  launching_year?: number | null;
+  /** Apogee */
+  apogee?: number | null;
+  /** Perigee */
+  perigee?: number | null;
+  /** Inclination */
+  inclination?: number | null;
+  /** Approved By Id */
+  approved_by_id?: string | null;
+  /** Approved At */
+  approved_at?: string | null;
+  /** Licensed Country */
+  licensed_country?: string | null;
+  /** Uk Reentry Probability */
+  uk_reentry_probability?: string | null;
+  closed_comment_levels: TypeLevelledCommentOut;
+  damages_liability_comment_levels: TypeLevelledCommentOut;
+  executive_summary_comment_levels: TypeLevelledCommentOut;
+  immediate_response_comment_levels: TypeLevelledCommentOut;
+  press_attention_comment_levels: TypeLevelledCommentOut;
+  survivability_comment_levels: TypeLevelledCommentOut;
+  uk_response_comment_levels: TypeLevelledCommentOut;
+}
 
 /** ReentryInterest */
 export type TypeReentryInterest = "low" | "high";
@@ -3746,7 +3864,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-10-13T10:01:23.868624"
+   * @default "2026-10-28T14:10:55.873114"
    */
   updated_at?: string | null;
   /** Report Number */

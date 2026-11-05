@@ -18,12 +18,12 @@ export const ReentryUnderstandingThisReportClosed = ({ level, shortId }: Reentry
   return (
     <Section title={t('title')}>
       <EmailSection>
-        <Text className="text-sm m-0 font-bold">{t('overflights_title')}</Text>
+        <Text className="text-sm mt-0 mb-4 font-bold">{t('overflights_title')}</Text>
         {t.rich('overflights_content')}
       </EmailSection>
       <EmailSection className="pt-4">
-        <Text className="text-sm m-0 font-bold">{t('alert_title', { level })}</Text>
-        {t.rich(level === 2 ? 'alert_content_level_2' : 'alert_content_level_1')}
+        <Text className="text-sm mt-0 mb-4 font-bold">{t(level === 2 ? 'warning_title_level_2' : 'alert_title_level_1')}</Text>
+        {t.rich(level === 2 ? 'warning_content_level_2' : 'alert_content_level_1')}
         {t.rich('more_information', {
           link: chunks => <Link href={`${env.NEXTAUTH_URL}/re-entries/${shortId}/alert`}>{chunks}</Link>,
         })}

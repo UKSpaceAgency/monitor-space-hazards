@@ -70,7 +70,7 @@ ConjunctionEmail.PreviewProps = {
     report_number: 1,
     report_time: '2024-01-20T08:00:00Z',
     risk: 'Low',
-    alert_type: ['priority', 'uk-licensed'],
+    alert_type: ['warning', 'uk-licensed'],
     tca_time: '2024-01-20T10:30:00Z',
     collision_probability: 0.85,
     manoeuvre_expected: 'Likely',

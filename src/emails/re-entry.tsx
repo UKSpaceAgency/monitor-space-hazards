@@ -66,7 +66,6 @@ function ReEntryEmail({ event, report, tip, withPlaceholders, locationsAtRisk = 
         <ReentryAssessment
           executiveSummary={event.executive_summary_comment}
           shortId={event.short_id}
-          showNoLocationsMessage={locationsAtRisk.length === 0}
         />
       )}
       <ReentryLocationsAtRisk locations={locationsAtRisk} report={report} />

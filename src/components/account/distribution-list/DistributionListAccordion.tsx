@@ -1,14 +1,13 @@
 import { useTranslations } from 'next-intl';
 
-import type { TypeAlertSettingsDistributionList } from '@/__generated__/data-contracts';
-import { DataTable } from '@/components/DataTable';
+import type { TypeAlertSettingsDistributionListOut } from '@/__generated__/data-contracts';
 import Accordion from '@/ui/accordion/accordion';
 import Details from '@/ui/details/details';
 
-import { distributionListColumns } from './columns';
+import { DistributionListTable } from './DistributionListTable';
 
 type DistributionListAccordionsProps = {
-  alerts: TypeAlertSettingsDistributionList[];
+  alerts: TypeAlertSettingsDistributionListOut[];
 };
 
 const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps) => {
@@ -25,41 +24,17 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
           {
             id: 'all-re-entries',
             heading: t('receive_alerts_standard', { type: 're-entry' }),
-            content: (
-              <div className="overflow-auto">
-                <DataTable
-                  data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_options?.includes('standard'))}
-                  columns={distributionListColumns}
-                  largerText
-                />
-              </div>
-            ),
+            content: <DistributionListTable data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_options?.includes('standard'))} />,
           },
           {
             id: 'only-priority-re-entries',
             heading: t('receive_alerts_priority', { type: 're-entry' }),
-            content: (
-              <div className="overflow-auto">
-                <DataTable
-                  data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_options?.includes('priority'))}
-                  columns={distributionListColumns}
-                  largerText
-                />
-              </div>
-            ),
+            content: <DistributionListTable data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_options?.includes('priority'))} />,
           },
           {
             id: 'only-uk-re-entries',
             heading: t('receive_alerts_uk_satellites_only'),
-            content: (
-              <div className="overflow-auto">
-                <DataTable
-                  data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_options?.includes('uk-licensed'))}
-                  columns={distributionListColumns}
-                  largerText
-                />
-              </div>
-            ),
+            content: <DistributionListTable data={alerts.filter(alert => alert.reentry_alert_settings?.chosen_options?.includes('uk-licensed'))} />,
           },
         ]}
       />
@@ -75,28 +50,12 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
           {
             id: 'all-fragmentation',
             heading: t('receive_alerts_standard', { type: 'fragmentation' }),
-            content: (
-              <div className="overflow-auto">
-                <DataTable
-                  data={alerts.filter(alert => alert.fragmentation_alert_settings?.chosen_options?.includes('standard'))}
-                  columns={distributionListColumns}
-                  largerText
-                />
-              </div>
-            ),
+            content: <DistributionListTable data={alerts.filter(alert => alert.fragmentation_alert_settings?.chosen_options?.includes('standard'))} />,
           },
           {
             id: 'only-priority-fragmentation',
             heading: t('receive_alerts_priority', { type: 'fragmentation' }),
-            content: (
-              <div className="overflow-auto">
-                <DataTable
-                  data={alerts.filter(alert => alert.fragmentation_alert_settings?.chosen_options?.includes('priority'))}
-                  columns={distributionListColumns}
-                  largerText
-                />
-              </div>
-            ),
+            content: <DistributionListTable data={alerts.filter(alert => alert.fragmentation_alert_settings?.chosen_options?.includes('priority'))} />,
           },
         ]}
       />
@@ -112,28 +71,12 @@ const DistributionListAccordions = ({ alerts }: DistributionListAccordionsProps)
           {
             id: 'all-conjunction',
             heading: t('receive_alerts_standard', { type: 'conjunction' }),
-            content: (
-              <div className="overflow-auto">
-                <DataTable
-                  data={alerts.filter(alert => alert.conjunction_alert_settings?.chosen_options?.includes('standard'))}
-                  columns={distributionListColumns}
-                  largerText
-                />
-              </div>
-            ),
+            content: <DistributionListTable data={alerts.filter(alert => alert.conjunction_alert_settings?.chosen_options?.includes('standard'))} />,
           },
           {
             id: 'only-priority-conjunctions',
             heading: t('receive_alerts_priority', { type: 'conjunction' }),
-            content: (
-              <div className="overflow-auto">
-                <DataTable
-                  data={alerts.filter(alert => alert.conjunction_alert_settings?.chosen_options?.includes('priority'))}
-                  columns={distributionListColumns}
-                  largerText
-                />
-              </div>
-            ),
+            content: <DistributionListTable data={alerts.filter(alert => alert.conjunction_alert_settings?.chosen_options?.includes('priority'))} />,
           },
         ]}
       />

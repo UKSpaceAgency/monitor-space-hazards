@@ -32,7 +32,7 @@ export const ReentryEventInformationClosed = ({ event }: ReentryEventInformation
 
   return (
     <Section>
-      <Text className="text-sm m-0 font-bold">{t('title')}</Text>
+      <Text className="text-sm mt-0 mb-4 font-bold">{t('title')}</Text>
       {t.rich('content_closed', contentVariables)}
       {event?.executive_summary_comment
       && (

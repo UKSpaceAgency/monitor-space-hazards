@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect } from 'react';
@@ -81,7 +82,11 @@ const EventAlertSendForm = ({ type, defaultValues }: EventAlertSendFormProps) =>
     <form onSubmit={handleSubmit(onSubmit)}>
       <h3 className="govuk-heading-m">{t('Change_distribution.title')}</h3>
       <hr className="govuk-section-break govuk-section-break--m govuk-section-break--visible" />
-      <p className="govuk-body">{t('Change_distribution.hint')}</p>
+      <p className="govuk-body">
+        {t.rich('Change_distribution.hint', {
+          link: chunks => <Link className="govuk-link" href="/account/distribution-list">{chunks}</Link>,
+        })}
+      </p>
       <Checkbox {...register('isStandard')}>{t('Distribution_status.all_alerts', { type })}</Checkbox>
       {type !== 'fragmentation' && <Checkbox {...register('isPriority')}>{t('Distribution_status.priority_alert', { type })}</Checkbox>}
       {type === 're-entry' && (

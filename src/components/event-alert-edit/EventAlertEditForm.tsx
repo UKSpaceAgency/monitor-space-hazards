@@ -17,6 +17,8 @@ type BaseFormField = {
   defaultValue?: string | null;
   ariaLabel?: string;
   help?: ReactNode;
+  /** Defaults to `add_to`. Use `edit` when the field replaces JSON text rather than appending. */
+  labelMode?: 'add_to' | 'edit';
 };
 
 type TextFormField = {
@@ -84,7 +86,9 @@ const EventAlertEditForm = ({ fields }: EventAlertEditFormProps) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       {fields.map(props => (
         <div key={props.id}>
-          <label className="govuk-heading-l" htmlFor={props.id}>{t('add_to', { name: props.name })}</label>
+          <label className="govuk-heading-l" htmlFor={props.id}>
+            {t(props.labelMode === 'edit' ? 'edit' : 'add_to', { name: props.name })}
+          </label>
           {props.help && (
             <Hint>
               {props.help}

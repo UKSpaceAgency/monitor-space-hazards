@@ -17,7 +17,7 @@ export const ConjunctionRecommendedActions = ({ report, event, ...props }: Conju
 
   return (
     <Section {...props}>
-      <Text className="m-0 font-bold">{t('title')}</Text>
+      <Text className="mt-0 mb-4 font-bold">{t('title')}</Text>
       {t.rich('content')}
       {event.uk_response_comment && <Markdown>{event.uk_response_comment}</Markdown>}
     </Section>

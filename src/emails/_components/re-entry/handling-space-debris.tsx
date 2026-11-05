@@ -18,7 +18,7 @@ export const ReentryHandlingSpaceDebris = ({ event, withTopSpacing = false }: Re
   return (
     <Section className="!w-full">
       <Section className={withTopSpacing ? 'pt-4' : undefined}>
-        <Text className="text-sm m-0 font-bold">{t('Handling_space_debris.title')}</Text>
+        <Text className="text-sm mt-0 mb-4 font-bold">{t('Handling_space_debris.title')}</Text>
         {t.rich('Handling_space_debris.content', {
           hydrazine: chunks => (
             <Link
@@ -44,7 +44,7 @@ export const ReentryHandlingSpaceDebris = ({ event, withTopSpacing = false }: Re
         })}
       </Section>
       <Section className="pt-4">
-        <Text className="text-sm m-0 font-bold">{t('Public_guidance_on_space_debris.title')}</Text>
+        <Text className="text-sm mt-0 mb-4 font-bold">{t('Public_guidance_on_space_debris.title')}</Text>
         {t.rich('Public_guidance_on_space_debris.content', {
           ul: chunks => <ul className="list-disc pl-4">{chunks}</ul>,
           li: chunks => <li className="text-sm">{chunks}</li>,

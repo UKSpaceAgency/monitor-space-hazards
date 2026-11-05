@@ -8,6 +8,8 @@ import fetchUser from '@/auth/getUser';
 import { initialiseApi } from '@/libs/Api';
 import { env } from '@/libs/Env';
 
+const REFRESH_ACCESS_TOKEN_ERROR = 'RefreshAccessTokenError' as const;
+
 declare module 'next-auth' {
   /**
    * Returned by `useSession`, `auth`, contains information about the active session.
@@ -20,6 +22,7 @@ declare module 'next-auth' {
       setup_completed: boolean;
     } & DefaultSession['user'];
     access_token: string | null;
+    error?: typeof REFRESH_ACCESS_TOKEN_ERROR;
   }
 
   // eslint-disable-next-line ts/consistent-type-definitions
@@ -39,7 +42,12 @@ declare module 'next-auth/jwt' {
     access_token: string;
     expires_at: number;
     refresh_token?: string;
+    error?: typeof REFRESH_ACCESS_TOKEN_ERROR;
   }
+}
+
+function isAuthenticated(auth: { error?: string } | null): boolean {
+  return !!auth && auth.error !== REFRESH_ACCESS_TOKEN_ERROR;
 }
 
 async function refreshAccessToken(token: JWT) {
@@ -70,17 +78,19 @@ async function refreshAccessToken(token: JWT) {
       refresh_token?: string;
     };
 
-    token.access_token = newTokens.access_token;
-    token.expires_at = Math.floor(
-      Date.now() / 1000 + newTokens.expires_in,
-    );
-
-    return token;
+    return {
+      ...token,
+      access_token: newTokens.access_token,
+      expires_at: Math.floor(Date.now() / 1000 + newTokens.expires_in),
+      // Fall back to the old refresh token when the provider does not rotate it
+      refresh_token: newTokens.refresh_token ?? token.refresh_token,
+      error: undefined,
+    };
   } catch (error) {
     console.error('Error refreshing access_token', error);
     return {
       ...token,
-      error: 'RefreshAccessTokenError',
+      error: REFRESH_ACCESS_TOKEN_ERROR,
     };
   }
 }
@@ -88,7 +98,7 @@ async function refreshAccessToken(token: JWT) {
 export const { handlers, signIn, signOut, auth, unstable_update: update } = NextAuth({
   events: {
     signOut: async (message) => {
-      if ('token' in message && message.token?.access_token) {
+      if ('token' in message && message.token?.access_token && !message.token.error) {
         const apiClient = initialiseApi(message.token.access_token);
         await apiClient.getUsersMeLogout();
       }
@@ -115,7 +125,9 @@ export const { handlers, signIn, signOut, auth, unstable_update: update } = Next
   },
   callbacks: {
     authorized: async ({ request, auth }) => {
-      if (auth && !auth.user.setup_completed && !request.nextUrl.pathname.includes('account')) {
+      const authenticated = isAuthenticated(auth);
+
+      if (authenticated && auth && !auth.user.setup_completed && !request.nextUrl.pathname.includes('account')) {
         return Response.redirect(new URL('/account/setup', request.nextUrl.origin));
       }
 
@@ -129,16 +141,17 @@ export const { handlers, signIn, signOut, auth, unstable_update: update } = Next
         return true;
       }
 
-      if (request.nextUrl.pathname === '/' && auth) {
+      if (request.nextUrl.pathname === '/' && authenticated) {
         const callbackUrl = request.nextUrl.searchParams.get('callbackUrl') ?? '/home';
         return Response.redirect(new URL(callbackUrl, request.nextUrl.origin));
       }
-      return !!auth;
+      return authenticated;
     },
     async jwt({ token, account, trigger }) {
       if (trigger === 'signIn' || trigger === 'update') {
         const updatedToken = {
           ...token,
+          error: undefined,
         };
         if (account) {
           updatedToken.access_token = account.access_token;
@@ -162,7 +175,10 @@ export const { handlers, signIn, signOut, auth, unstable_update: update } = Next
         return token;
       } else {
         if (!token.refresh_token) {
-          throw new TypeError('No refresh token found');
+          return {
+            ...token,
+            error: REFRESH_ACCESS_TOKEN_ERROR,
+          };
         }
         return await refreshAccessToken(token);
       }
@@ -178,7 +194,8 @@ export const { handlers, signIn, signOut, auth, unstable_update: update } = Next
         role: token.role,
         setup_completed: token.setup_completed,
       };
-      session.access_token = token.access_token;
+      session.error = token.error;
+      session.access_token = token.error ? null : token.access_token;
       return session;
     },
     async redirect(params: { url: string; baseUrl: string }) {

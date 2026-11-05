@@ -1,103 +1,82 @@
-import dayjs from 'dayjs';
 import { useTranslations } from 'next-intl';
 
-import type { TypeReentryEventOut, TypeRisk } from '@/__generated__/data-contracts';
-import { FORMAT_FULL_DATE_TIME } from '@/libs/Dayjs';
-import { roundedPercentage } from '@/utils/Math';
-import { getReentryFragmentsProbability, getReentryFragmentsRisk } from '@/utils/ReentryRisk';
-import { getFullCountry } from '@/utils/Regions';
-import { renderRiskTag } from '@/utils/Tags';
+import type { TypeReentryEventWithLevelsOut } from '@/__generated__/data-contracts';
+import { getCommentLevel, getCommentString } from '@/utils/reentryEditForm';
 
 import type { EventAlertFormField } from '../event-alert-edit/EventAlertEditForm';
 import { EventAlertEditForm } from '../event-alert-edit/EventAlertEditForm';
 
 type ReentryAlertEditFormProps = {
-  event: TypeReentryEventOut;
+  event: TypeReentryEventWithLevelsOut;
 };
 
 const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
-  const tReentryAlert = useTranslations('Reentry_alert');
   const tForm = useTranslations('Forms.Edit_alert');
-  const fragmentsProbability = getReentryFragmentsProbability(event.fragments_probability);
-  const fragmentsRisk = getReentryFragmentsRisk({
-    fragmentsRisk: event.fragments_risk,
-    objectName: event.object_name,
-  });
+
+  const executiveSummaryLevels = event.executive_summary_comment_levels;
 
   const formFields: EventAlertFormField[] = [{
     id: 'closed_comment',
-    ariaLabel: 'Closed comment',
+    ariaLabel: tForm('type.closed_comment'),
     name: tForm('type.closed_comment'),
-    defaultValue: event.closed_comment ?? '',
+    defaultValue: getCommentString(event.closed_comment) ?? '',
     type: 'text',
-    help: tForm.rich('closed_comment_hint'),
+    labelMode: 'edit',
+    help: tForm('hint_replace_closed_comment'),
   }, {
     id: 'executive_summary_comment',
-    ariaLabel: 'Exec summary',
+    ariaLabel: tForm('type.executive_summary_comment'),
     name: tForm('type.executive_summary_comment'),
-    defaultValue: event.executive_summary_comment,
+    defaultValue: getCommentString(executiveSummaryLevels) ?? getCommentString(event.executive_summary_comment) ?? '',
     type: 'text',
-    help: (
-      <div>
-        <p className="govuk-body">{tForm('hint')}</p>
-        {tReentryAlert.rich('Executive_summary.content', {
-          commonName: event?.object_name ?? 'Unknown',
-          objectType: event?.object_type,
-          date: dayjs(event.decay_epoch).format(FORMAT_FULL_DATE_TIME),
-          riskLevel: fragmentsRisk === 'Pending' ? 'Low' : fragmentsRisk,
-          riskProbability: roundedPercentage(fragmentsProbability ?? 0),
-          fragmentsRisk: fragmentsRisk === 'Pending' ? 'Low' : fragmentsRisk,
-          fragmentsProbability: roundedPercentage(fragmentsProbability ?? 0),
-          licensingCountry: getFullCountry(event.license_country),
-          tag: chunks => renderRiskTag(chunks as TypeRisk),
-        })}
-      </div>
-    ),
+    labelMode: 'edit',
+    help: tForm('hint_replace_json_field', { field: 'executive_summary_comment' }),
   }, {
-    id: 'immediate_response_comment',
-    ariaLabel: 'Immediate response',
-    name: tForm('type.guidance_on_response'),
-    defaultValue: event.immediate_response_comment,
+    id: 'executive_summary_comment_level_1',
+    ariaLabel: tForm('type.executive_summary_comment_level_1'),
+    name: tForm('type.executive_summary_comment_level_1'),
+    defaultValue: getCommentLevel(executiveSummaryLevels, 'level_1'),
     type: 'text',
-    help: (
-      <div>
-        <p className="govuk-body">{tForm('hint')}</p>
-        {tReentryAlert.rich(`Guidance_on_response.risk.${event?.atmospheric_risk?.replace(' ', '_')?.toLowerCase() as 'low' | 'medium' | 'high' ?? 'low'}`, { tag: chunks => renderRiskTag(chunks as TypeRisk) })}
-      </div>
-    ),
+    labelMode: 'edit',
+    help: tForm('hint_replace_json_field_level', {
+      field: 'executive_summary_comment',
+      level: 1,
+    }),
+  }, {
+    id: 'executive_summary_comment_level_2',
+    ariaLabel: tForm('type.executive_summary_comment_level_2'),
+    name: tForm('type.executive_summary_comment_level_2'),
+    defaultValue: getCommentLevel(executiveSummaryLevels, 'level_2'),
+    type: 'text',
+    labelMode: 'edit',
+    help: tForm('hint_replace_json_field_level', {
+      field: 'executive_summary_comment',
+      level: 2,
+    }),
+  }, {
+    id: 'damages_liability_comment',
+    ariaLabel: tForm('type.damages_liability_comment'),
+    name: tForm('type.damages_liability_comment'),
+    defaultValue: getCommentString(event.damages_liability_comment) ?? '',
+    type: 'text',
+    labelMode: 'edit',
+    help: tForm('hint_replace_json_field', { field: 'damages_liability_comment' }),
   }, {
     id: 'uk_response_comment',
     ariaLabel: tForm('type.uk_response_comment'),
     name: tForm('type.uk_response_comment'),
-    defaultValue: event.uk_response_comment,
+    defaultValue: getCommentString(event.uk_response_comment) ?? '',
     type: 'text',
-    help: (
-      <div>
-        <p className="govuk-body">{tForm('hint')}</p>
-        {tReentryAlert.rich('Guidance_if_object_impacts_uk_interests.public_guidance_on_space_debris.content')}
-      </div>
-    ),
-  },
-  // {
-  //   id: 'damages_liability_comment',
-  //   ariaLabel: tForm('type.damages_liability_comment'),
-  //   name: tForm('type.damages_liability_comment'),
-  //   defaultValue: event.damages_liability_comment,
-  //   type: 'text',
-  //   help: (
-  //     <div>
-  //       <p className="govuk-body">{tForm('hint')}</p>
-  //       {tReentryAlert.rich('Liability_for_damages.content', { license_country: getFullCountry(event.license_country) })}
-  //     </div>
-  //   ),
-  // },
-  {
+    labelMode: 'add_to',
+    help: tForm('hint_add_uk_response'),
+  }, {
     id: 'press_attention_comment',
     ariaLabel: tForm('type.press_attention_comment'),
     name: tForm('type.press_attention_comment'),
-    defaultValue: event.press_attention_comment,
+    defaultValue: getCommentString(event.press_attention_comment) ?? '',
     type: 'text',
-    help: tForm.rich('press_attention_hint'),
+    labelMode: 'edit',
+    help: tForm('hint_replace_json_field', { field: 'press_attention_comment' }),
   }];
 
   return (

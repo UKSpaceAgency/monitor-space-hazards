@@ -1,7 +1,8 @@
 import { useTranslations } from 'next-intl';
 
-import type { TypeReentryEventOut, TypeReentryEventPatch, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
+import type { TypeReentryEventOut, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
 import Accordion from '@/ui/accordion/accordion';
+import { getCommentString, type ReentryAlertEditFormValues } from '@/utils/reentryEditForm';
 
 import { ReentryFurtherInformation } from '../re-entry/ReentryFurhterInformation';
 import { ReentryAlertHistoryDataTable } from './data-table/ReentryAlertHistoryDataTable';
@@ -20,7 +21,7 @@ type ReentryAlertAccordionProps = {
   event: TypeReentryEventOut;
   reports?: TypeReentryEventReportOut[];
   lastReport?: TypeReentryEventReportOut;
-  searchParams?: TypeReentryEventPatch;
+  searchParams?: ReentryAlertEditFormValues;
   isClosed?: boolean;
 };
 
@@ -35,8 +36,9 @@ const ReentryAlertAccordion = ({
 
   const impacts = lastReport?.impact;
 
-  const damages_liability_comment = searchParams?.damages_liability_comment || event.damages_liability_comment;
-  const press_attention_comment = searchParams?.press_attention_comment || event.press_attention_comment;
+  const damages_liability_comment = getCommentString(searchParams?.damages_liability_comment || event.damages_liability_comment);
+  const press_attention_comment = getCommentString(searchParams?.press_attention_comment || event.press_attention_comment);
+  const uk_response_comment = getCommentString(searchParams?.uk_response_comment ?? event.uk_response_comment);
 
   return (
     <>
@@ -126,7 +128,7 @@ const ReentryAlertAccordion = ({
           {
             id: 'guidance_if_object_impacts_uk_interests',
             heading: t('guidance_if_object_impacts_uk_interests'),
-            content: <ReentryAlertGuidanceIfObjectImpactsUkInterests ukResponseComment={searchParams?.uk_response_comment ?? event.uk_response_comment} dataPdf={t('guidance_if_object_impacts_uk_interests')} />,
+            content: <ReentryAlertGuidanceIfObjectImpactsUkInterests ukResponseComment={uk_response_comment} dataPdf={t('guidance_if_object_impacts_uk_interests')} />,
           },
           ...(press_attention_comment
             ? [{
