@@ -3864,7 +3864,7 @@ export interface TypeUniqueEventOut {
 export interface TypeUniqueEventUpdateTextFieldsIn {
   /**
    * Updated At
-   * @default "2026-10-28T14:10:55.873114"
+   * @default "2026-11-04T15:53:49.826530"
    */
   updated_at?: string | null;
   /** Report Number */
@@ -3920,11 +3920,6 @@ export interface TypeUser {
   organization_id: string;
   /** Organization Name */
   organization_name: string;
-  /**
-   * Group Keys
-   * @default []
-   */
-  group_keys?: string[];
   notification_settings?: TypeNotificationSettings | null;
   /** Notification Thresholds */
   notification_thresholds?: TypeThreshold[] | null;
@@ -3950,15 +3945,6 @@ export interface TypeUserClientCredentialsOut {
   client_id: string;
   /** Client Secret */
   client_secret: string;
-}
-
-/** UserGroupsIn */
-export interface TypeUserGroupsIn {
-  /**
-   * Group Keys
-   * @default []
-   */
-  group_keys?: ("nspoc_level_1" | "nspoc_level_2")[];
 }
 
 /** UserIdOut */
@@ -5217,7 +5203,7 @@ export interface TypeGetStatsMonthlyAnalysesParams {
   /**
    * End Date
    * @format date
-   * @default "2026-11-01"
+   * @default "2026-12-01"
    */
   end_date?: string;
 }
@@ -5232,7 +5218,7 @@ export interface TypeGetStatsMonthlyAnalysesAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-11-01"
+   * @default "2026-12-01"
    */
   end_date?: string;
 }
@@ -5247,7 +5233,7 @@ export interface TypeGetStatsMonthlyUsersParams {
   /**
    * End Date
    * @format date
-   * @default "2026-11-01"
+   * @default "2026-12-01"
    */
   end_date?: string;
 }
@@ -5262,7 +5248,7 @@ export interface TypeGetStatsMonthlyOrganizationsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-11-01"
+   * @default "2026-12-01"
    */
   end_date?: string;
 }
@@ -5277,7 +5263,7 @@ export interface TypeGetStatsMonthlyManoeuvrePlotsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-11-01"
+   * @default "2026-12-01"
    */
   end_date?: string;
 }
@@ -5292,7 +5278,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsParams {
   /**
    * End Date
    * @format date
-   * @default "2026-11-01"
+   * @default "2026-12-01"
    */
   end_date?: string;
 }
@@ -5307,7 +5293,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-11-01"
+   * @default "2026-12-01"
    */
   end_date?: string;
 }
@@ -5322,7 +5308,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeAggregatedParam
   /**
    * End Date
    * @format date
-   * @default "2026-11-01"
+   * @default "2026-12-01"
    */
   end_date?: string;
 }
@@ -5339,7 +5325,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByNoradIdAggregatedParams {
   /**
    * End Date
    * @format date
-   * @default "2026-11-01"
+   * @default "2026-12-01"
    */
   end_date?: string;
 }
@@ -5354,7 +5340,7 @@ export interface TypeGetStatsMonthlyConjunctionEventsByObjectTypeParams {
   /**
    * End Date
    * @format date
-   * @default "2026-11-01"
+   * @default "2026-12-01"
    */
   end_date?: string;
 }

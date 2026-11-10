@@ -84,8 +84,7 @@ export const reentriesColumns = (haveAccessToAlerts?: boolean): TranslatedColumn
         cell: ({ row: { original: { highest_impact } } }) => highest_impact?.region ? jsonRegionsMap[highest_impact.region] ?? highest_impact?.region : 'None',
       },
       {
-        id: 'probability_of_fragmentation',
-        enableSorting: false,
+        id: 'highest_impact_fragments_probability',
         accessorKey: 'fragments_probability',
         header: 'Reentries.table.probability_of_fragmentation',
         size: 70,

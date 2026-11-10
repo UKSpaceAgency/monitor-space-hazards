@@ -185,7 +185,6 @@ import {
   TypeUniqueEventUpdateTextFieldsIn,
   TypeUser,
   TypeUserClientCredentialsOut,
-  TypeUserGroupsIn,
   TypeUserIdOut,
   TypeUserIn,
   TypeUserOut,
@@ -211,7 +210,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|Update| |Agency superuser|Update| |Regulator user|-| |Regulator admin|-|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Update| |Agency approver|Update| |Agency superuser|Update| |Regulator user|-| |Regulator admin|-|
    *
    * @tags alerts
    * @name PatchAlertsUserUserId
@@ -1654,7 +1653,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description ## Description Updates Reentry Event data by Reentry Event short ID ie. RE25-0031 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|Update| |Agency analyst|Update| |Agency approver|Update| |Agency superuser|Update| |Regulator user|-| |Regulator admin|Update|
+   * @description ## Description Updates Reentry Event data by Reentry Event short ID ie. RE25-0031 |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Update| |Agency approver|Update| |Agency superuser|Update| |Regulator user|-| |Regulator admin|-|
    *
    * @tags reentry-events
    * @name PatchReentryEventsShortId
@@ -2861,7 +2860,7 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       format: "json",
       ...params,
     }); /**
-   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|Create| |Government admin|Create| |International user|Create| |International admin|Create| |Agency user|Create| |Agency admin|Create| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create| |Regulator user|Create| |Regulator admin|Create|
+   * @description |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|Create| |Agency approver|Create| |Agency superuser|Create| |Regulator user|-| |Regulator admin|-|
    *
    * @tags users
    * @name PostUsersMeAlertSettings
@@ -3025,24 +3024,6 @@ export class MshService<SecurityDataType = unknown> extends HttpClient<SecurityD
       path: `/v1/users/${userId}`,
       method: "DELETE",
       secure: true,
-      ...params,
-    }); /**
-   * @description ## Description Replaces the User's group memberships. Groups are clearances, so this is superuser-only. |User Role|Permissions| |-|-| |Satellite operator user|-| |Satellite operator|-| |Satellite operator admin|-| |Government user|-| |Government admin|-| |International user|-| |International admin|-| |Agency user|-| |Agency admin|-| |Agency analyst|-| |Agency approver|-| |Agency superuser|Update| |Regulator user|-| |Regulator admin|-|
-   *
-   * @tags users
-   * @name PutUsersUserIdGroups
-   * @summary Replace a single User's group memberships
-   * @request PUT:/v1/users/{user_id}/groups
-   * @secure
-   */
-  putUsersUserIdGroups = (userId: string, data: TypeUserGroupsIn, params: RequestParams = {}) =>
-    this.request<TypeUser, TypeHTTPValidationError>({
-      path: `/v1/users/${userId}/groups`,
-      method: "PUT",
-      body: data,
-      secure: true,
-      type: ContentType.Json,
-      format: "json",
       ...params,
     });
 }
