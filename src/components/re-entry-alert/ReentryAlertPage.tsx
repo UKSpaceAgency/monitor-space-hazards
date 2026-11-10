@@ -37,15 +37,16 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
   const isClosed = isClosedownAlertType(lastReport?.alert_type);
   const closedComment = getCommentString(searchParams?.closed_comment ?? event.closed_comment);
 
-  // Preview overlays (searchParams) take precedence; otherwise use resolved default.
-  const executiveSummaryComment = getCommentString(
-    searchParams?.executive_summary_comment
-    ?? event.executive_summary_comment_levels
-    ?? event.executive_summary_comment,
-  );
-
-  // Preview-only: show Level 1 / Level 2 overrides with labels describing the comment type.
+  // Preview-only: show default + Level 1 / Level 2 overrides with labels.
+  // Everywhere else (alert page, email) uses the shared executive_summary_comment.
   const isPreview = Boolean(searchParams);
+  const executiveSummaryComment = isPreview
+    ? getCommentString(
+        searchParams?.executive_summary_comment
+        ?? event.executive_summary_comment_levels
+        ?? event.executive_summary_comment,
+      )
+    : event.executive_summary_comment;
   const previewLevel1 = isPreview
     ? (searchParams?.executive_summary_comment_level_1?.trim()
       || event.executive_summary_comment_levels?.level_1
