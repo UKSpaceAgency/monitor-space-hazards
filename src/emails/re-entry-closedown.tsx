@@ -1,4 +1,6 @@
 import type { TypeReentryEventOut, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
+import type { ReentryEmailDistributionLevel } from '@/utils/reentryEditForm';
+import { resolveEmailExecutiveSummaryComment } from '@/utils/reentryEditForm';
 
 import { Layout } from './_components/layout';
 import { ReentryAssessmentClosed } from './_components/re-entry/assessment-closed';
@@ -12,10 +14,11 @@ type ReEntryEmailProps = {
   event: TypeReentryEventOut;
   report: TypeReentryEventReportOut;
   withPlaceholders: boolean;
-  level?: 1 | 2;
+  /** Level 1 / 2 distribution, or null for additional recipients (_default only). */
+  level?: ReentryEmailDistributionLevel;
 };
 
-function ReEntryClosedownEmail({ event, report, withPlaceholders, level = 1 }: ReEntryEmailProps) {
+function ReEntryClosedownEmail({ event, report, withPlaceholders, level = null }: ReEntryEmailProps) {
   const t = createEmailTranslator({ namespace: 'Emails' });
 
   const objectName = report.object_name ?? event.object_name ?? '';
@@ -26,6 +29,7 @@ function ReEntryClosedownEmail({ event, report, withPlaceholders, level = 1 }: R
 
   const isClosedownKnown = report.alert_type?.includes('closedown_known');
   const isClosedownConfirmed = isClosedownKnown || report.alert_type?.includes('closedown_unknown');
+  const executiveSummaryComment = resolveEmailExecutiveSummaryComment(event, level);
 
   return (
     <Layout
@@ -40,11 +44,15 @@ function ReEntryClosedownEmail({ event, report, withPlaceholders, level = 1 }: R
         title={isClosedownConfirmed ? 'Re-entry confirmed:' : undefined}
         tone={isClosedownKnown ? 'confirmed' : 'closedown'}
       />
-      <ReentryAssessmentClosed event={event} report={report} />
+      <ReentryAssessmentClosed
+        event={event}
+        report={report}
+        executiveSummaryComment={executiveSummaryComment}
+      />
       <Section title={t('Reentry_alert.object_information_title')}>
         <ReentryObjectInformation event={event} report={report} />
       </Section>
-      <ReentryUnderstandingThisReportClosed level={level} shortId={event.short_id} />
+      <ReentryUnderstandingThisReportClosed level={level ?? 1} shortId={event.short_id} />
     </Layout>
   );
 }
