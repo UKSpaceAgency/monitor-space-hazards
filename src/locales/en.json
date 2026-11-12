@@ -1006,6 +1006,7 @@
       "closed_report": "The National Space Operations Centre has completed monitoring of the re-entry event involving {commonName}, which occurred on {date}. The event was assessed as <tag>{fragmentsRisk}</tag> risk, with a {fragmentsProbability} probability of debris impacting the UK. The licensing country is {licensingCountry}. All re-entered debris should be considered as hazardous until proven otherwise.",
       "locations_at_risk": "Locations at risk",
       "event_summary": "Event summary",
+      "default_label": "Executive Summary (default)",
       "level_1_label": "Executive Summary (Level 1 only)",
       "level_2_label": "Executive Summary (Level 2 only)"
     },
@@ -2182,7 +2183,7 @@
     "Edit_alert": {
       "type": {
         "exec_summary": "Executive Summary",
-        "executive_summary_comment": "Executive Summary",
+        "executive_summary_comment": "Executive Summary (default)",
         "executive_summary_comment_level_1": "Executive Summary (Level 1 only)",
         "executive_summary_comment_level_2": "Executive Summary (Level 2 only)",
         "immediate_response": "Guidance on response",
@@ -2219,6 +2220,9 @@
       "hint_replace_closed_comment": "This text will replace any text submitted via the JSON's 'closed_comment' field. It will appear alongside the 'Closed' flag.",
       "hint_replace_json_field": "This text will replace any text submitted via the JSON's '{field}' field.",
       "hint_replace_json_field_level": "This text will replace any text submitted via the JSON's '{field}' field. It will only be visible to users with Level {level} permissions.",
+      "hint_executive_summary_default": "This text will replace any text submitted via the JSON's \"executive_summary_comment_default\" field. It will be visible to all users not on either distribution list, and to Level 1 or Level 2 users if the \"executive_summary_comment_level_1\" or \"executive_summary_comment_level_2\" fields are not filled.",
+      "hint_executive_summary_level_1": "This text will replace any text submitted via the JSON's \"executive_summary_comment_level_1\" field. It will only be visible to users on the Level 1 distribution list. If left unfilled these users will see 'Executive summary' (default) instead.",
+      "hint_executive_summary_level_2": "This text will replace any text submitted via the JSON's \"executive_summary_comment_level_2\" field. It will only be visible to users on the Level 2 distribution list. If left unfilled these users will see 'Executive summary' (default) instead.",
       "hint_add_uk_response": "This text will appear below the standardised text in the 'Guidance if object impacts UK interests' section. It will replace any text submitted via the JSON's 'uk_response_comment' field.",
       "press_attention_hint": "<p>Include details of any press attention related to this event. Leave blank if there has been no press attention.</p>",
       "closed_comment_hint": "This text will appear alongside the 'Closed' label in emails.",
