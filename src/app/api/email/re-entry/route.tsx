@@ -1,6 +1,7 @@
 import { render } from '@react-email/render';
 
 import ReEntryEmail from '@/emails/re-entry';
+import { parseReentryEmailDistributionLevel } from '@/utils/reentryEditForm';
 
 export async function POST(
   request: Request,
@@ -23,7 +24,7 @@ export async function POST(
         event={event}
         report={report}
         tip={tip}
-        level={level === 2 ? 2 : 1}
+        level={parseReentryEmailDistributionLevel(level)}
         locationsAtRisk={Array.isArray(locationsAtRisk) ? locationsAtRisk : []}
         withPlaceholders
       />,

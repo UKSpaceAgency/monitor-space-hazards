@@ -1,6 +1,8 @@
 import { Section as EmailSection } from '@react-email/components';
 
 import type { TypeReentryEventOut, TypeReentryEventReportOut, TypeTIPOut } from '@/__generated__/data-contracts';
+import type { ReentryEmailDistributionLevel } from '@/utils/reentryEditForm';
+import { resolveEmailExecutiveSummaryComment } from '@/utils/reentryEditForm';
 import { getReentryFragmentsRisk } from '@/utils/ReentryRisk';
 
 import { Layout } from './_components/layout';
@@ -31,15 +33,15 @@ type ReEntryEmailProps = {
    */
   locationsAtRisk?: ReentryLocationAtRisk[];
   /**
-   * Level 1 goes to space operations centres and data partners, Level 2 to the
-   * wider response community. The two differ only in recipients and wording.
+   * Level 1 / Level 2 distribution lists, or null for additional recipients
+   * (level-neutral: executive summary uses _default only).
    */
-  level?: 1 | 2;
+  level?: ReentryEmailDistributionLevel;
 };
 
 const NO_LOCATIONS: ReentryLocationAtRisk[] = [];
 
-function ReEntryEmail({ event, report, tip, withPlaceholders, locationsAtRisk = NO_LOCATIONS, level = 1 }: ReEntryEmailProps) {
+function ReEntryEmail({ event, report, tip, withPlaceholders, locationsAtRisk = NO_LOCATIONS, level = null }: ReEntryEmailProps) {
   const t = createEmailTranslator({ namespace: 'Emails' });
 
   const objectName = report.object_name ?? event.object_name ?? '';
@@ -52,6 +54,7 @@ function ReEntryEmail({ event, report, tip, withPlaceholders, locationsAtRisk = 
     fragmentsRisk: event.highest_impact?.highest_risk,
     objectName,
   });
+  const executiveSummaryComment = resolveEmailExecutiveSummaryComment(event, level);
 
   return (
     <Layout
@@ -62,9 +65,9 @@ function ReEntryEmail({ event, report, tip, withPlaceholders, locationsAtRisk = 
       isReentryWarning
     >
       <Subheader risk={risk} />
-      {event.executive_summary_comment && (
+      {executiveSummaryComment && (
         <ReentryAssessment
-          executiveSummary={event.executive_summary_comment}
+          executiveSummary={executiveSummaryComment}
           shortId={event.short_id}
         />
       )}
@@ -84,7 +87,7 @@ function ReEntryEmail({ event, report, tip, withPlaceholders, locationsAtRisk = 
         <ReentryHandlingSpaceDebris event={event} withTopSpacing={Boolean(event.damages_liability_comment)} />
         <ReentryPressAttention pressAttention={event.press_attention_comment} />
       </Section>
-      <ReentryUnderstandingThisReport level={level} />
+      <ReentryUnderstandingThisReport level={level ?? 1} />
     </Layout>
   );
 }

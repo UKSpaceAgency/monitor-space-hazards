@@ -1,6 +1,7 @@
 import { render } from '@react-email/render';
 
 import ReEntryClosedownEmail from '@/emails/re-entry-closedown';
+import { parseReentryEmailDistributionLevel } from '@/utils/reentryEditForm';
 
 export async function POST(
   request: Request,
@@ -16,7 +17,7 @@ export async function POST(
       <ReEntryClosedownEmail
         event={event}
         report={report}
-        level={level === 2 ? 2 : 1}
+        level={parseReentryEmailDistributionLevel(level)}
         withPlaceholders
       />,
     );

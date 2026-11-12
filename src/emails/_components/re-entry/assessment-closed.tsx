@@ -15,11 +15,12 @@ import { Text } from '../text';
 type ReentryAssessmentClosedProps = {
   event: TypeReentryEventOut;
   report: TypeReentryEventReportOut;
+  executiveSummaryComment?: string | null;
 };
 
 const UNKNOWN = 'Unknown';
 
-export const ReentryAssessmentClosed = ({ event, report }: ReentryAssessmentClosedProps) => {
+export const ReentryAssessmentClosed = ({ event, report, executiveSummaryComment }: ReentryAssessmentClosedProps) => {
   const t = createEmailTranslator({ namespace: 'Emails.Reentry_alert.Assessment' });
 
   const decayEpoch = report.decay_epoch ?? event.decay_epoch;
@@ -39,7 +40,9 @@ export const ReentryAssessmentClosed = ({ event, report }: ReentryAssessmentClos
   return (
     <Section title={t('title')}>
       <EmailSection className="!w-full pb-4">
-        <Text className="italic">{event.executive_summary_comment}</Text>
+        {executiveSummaryComment && (
+          <Text className="italic">{executiveSummaryComment}</Text>
+        )}
         <Text>
           Sign in to view analysis and additional information:
           {' '}
