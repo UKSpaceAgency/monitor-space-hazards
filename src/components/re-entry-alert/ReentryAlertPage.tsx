@@ -91,6 +91,7 @@ const ReentryAlertPage = async ({ shortId, searchParams, footer }: ReentryAlertP
           executiveSummaryComment={executiveSummaryComment}
           executiveSummaryCommentLevel1={previewLevel1}
           executiveSummaryCommentLevel2={previewLevel2}
+          isPreview={isPreview}
           isClosed={isClosed}
         />
       </Suspense>

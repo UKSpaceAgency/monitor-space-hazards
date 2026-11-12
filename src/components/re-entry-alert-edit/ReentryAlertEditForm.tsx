@@ -30,7 +30,7 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     defaultValue: getCommentString(executiveSummaryLevels) ?? getCommentString(event.executive_summary_comment) ?? '',
     type: 'text',
     labelMode: 'edit',
-    help: tForm('hint_replace_json_field', { field: 'executive_summary_comment' }),
+    help: tForm('hint_executive_summary_default'),
   }, {
     id: 'executive_summary_comment_level_1',
     ariaLabel: tForm('type.executive_summary_comment_level_1'),
@@ -38,10 +38,7 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     defaultValue: getCommentLevel(executiveSummaryLevels, 'level_1'),
     type: 'text',
     labelMode: 'edit',
-    help: tForm('hint_replace_json_field_level', {
-      field: 'executive_summary_comment',
-      level: 1,
-    }),
+    help: tForm('hint_executive_summary_level_1'),
   }, {
     id: 'executive_summary_comment_level_2',
     ariaLabel: tForm('type.executive_summary_comment_level_2'),
@@ -49,10 +46,7 @@ const ReentryAlertEditForm = ({ event }: ReentryAlertEditFormProps) => {
     defaultValue: getCommentLevel(executiveSummaryLevels, 'level_2'),
     type: 'text',
     labelMode: 'edit',
-    help: tForm('hint_replace_json_field_level', {
-      field: 'executive_summary_comment',
-      level: 2,
-    }),
+    help: tForm('hint_executive_summary_level_2'),
   }, {
     id: 'damages_liability_comment',
     ariaLabel: tForm('type.damages_liability_comment'),

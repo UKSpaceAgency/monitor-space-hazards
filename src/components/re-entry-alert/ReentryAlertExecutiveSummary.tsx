@@ -16,6 +16,8 @@ type ReentryAlertExecutiveSummaryProps = {
   executiveSummaryCommentLevel1?: string | null;
   /** Preview-only: Level 2 override shown with an explicit label. */
   executiveSummaryCommentLevel2?: string | null;
+  /** Preview-only: label the default / L1 / L2 executive summary blocks. */
+  isPreview?: boolean;
   isClosed?: boolean;
 };
 
@@ -25,6 +27,7 @@ const ReentryAlertExecutiveSummary = async ({
   executiveSummaryComment,
   executiveSummaryCommentLevel1,
   executiveSummaryCommentLevel2,
+  isPreview = false,
 }: ReentryAlertExecutiveSummaryProps) => {
   const t = await getTranslations('Reentry_alert.Executive_summary');
 
@@ -35,9 +38,20 @@ const ReentryAlertExecutiveSummary = async ({
     <div data-pdf={t('title')}>
       <h2 data-anchor="event-summary" className="govuk-heading-l">{t('title')}</h2>
       {executiveSummaryComment && (
-        <Markdown>
-          {executiveSummaryComment}
-        </Markdown>
+        isPreview
+          ? (
+              <div>
+                <h3 className="govuk-heading-s">{t('default_label')}</h3>
+                <Markdown>
+                  {executiveSummaryComment}
+                </Markdown>
+              </div>
+            )
+          : (
+              <Markdown>
+                {executiveSummaryComment}
+              </Markdown>
+            )
       )}
       {executiveSummaryCommentLevel1 && (
         <div className="mt-4">
