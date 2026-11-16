@@ -34,13 +34,6 @@ export const ReentryHandlingSpaceDebris = ({ event, withTopSpacing = false }: Re
               {chunks}
             </Link>
           ),
-          email: chunks => (
-            <Link
-              href={`mailto:${chunks}`}
-            >
-              {chunks}
-            </Link>
-          ),
         })}
       </Section>
       <Section className="pt-4">
