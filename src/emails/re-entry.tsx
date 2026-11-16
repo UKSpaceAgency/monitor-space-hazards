@@ -15,9 +15,11 @@ import { ReentryLocationsAtRisk } from './_components/re-entry/locations-at-risk
 import { ReentryObjectInformation } from './_components/re-entry/object-information';
 import { ReentryPotentialImpact } from './_components/re-entry/potential-impact';
 import { ReentryPressAttention } from './_components/re-entry/press-attention';
+import { ReentryRegionsAtRisk } from './_components/re-entry/regions-at-risk';
 import { ReentryUnderstandingThisReport } from './_components/re-entry/understanding-this-report';
 import { Section } from './_components/section';
 import { Subheader } from './_components/subheader';
+import { Text } from './_components/text';
 import type { ReentryLocationAtRisk } from './_utils/reentry-locations';
 import { createEmailTranslator, objectTypeIndex } from './_utils/utils';
 
@@ -65,20 +67,22 @@ function ReEntryEmail({ event, report, tip, withPlaceholders, locationsAtRisk = 
       isReentryWarning
     >
       <Subheader risk={risk} />
-      {executiveSummaryComment && (
-        <ReentryAssessment
-          executiveSummary={executiveSummaryComment}
-          shortId={event.short_id}
-        />
-      )}
-      <ReentryLocationsAtRisk locations={locationsAtRisk} report={report} />
+      <ReentryAssessment
+        executiveSummary={executiveSummaryComment}
+        shortId={event.short_id}
+        noLocations={locationsAtRisk.length === 0}
+      />
+      {locationsAtRisk.length > 0 && <ReentryLocationsAtRisk locations={locationsAtRisk} report={report} />}
       <EmailSection className="!w-full pb-8">
         <ReentryEventSummary event={event} tip={tip} className="pb-6" />
         <Map src="{{WORLD_MAP.src}}" />
+        <Text className="text-sm mt-4 mb-2 font-bold">{t('Reentry_alert.reentry_window_worldwide_title')}</Text>
+        <Text className="italic mb-0">{t('Reentry_alert.reentry_window_worldwide_content')}</Text>
       </EmailSection>
       <Section title={t('Reentry_alert.additional_object_information_title')}>
         <ReentryObjectInformation event={event} report={report} withSurvivabilityAndReportNumber />
       </Section>
+      <ReentryRegionsAtRisk report={report} />
       <ReentryPotentialImpact report={report} group="uk_mainland" />
       <ReentryPotentialImpact report={report} group="overseas_territories_and_crown_dependencies" />
       <ReentryPotentialImpact report={report} group="maritime_and_airspace" />
