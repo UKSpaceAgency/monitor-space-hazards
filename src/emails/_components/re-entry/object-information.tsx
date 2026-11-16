@@ -31,7 +31,6 @@ export const ReentryObjectInformation = ({
   const survivabilityComment = report.survivability_comment ?? event.survivability_comment;
 
   const data = [
-    [t('norad_id'), report.norad_id ?? event.norad_id ?? UNKNOWN],
     [t('estimated_mass'), withUnit(report.estimated_mass ?? event.estimated_mass, 'kg')],
     [t('height'), withUnit(report.object_height ?? event.object_height, 'm')],
     [t('width'), withUnit(report.object_width ?? event.object_width, 'm')],
@@ -39,6 +38,7 @@ export const ReentryObjectInformation = ({
       t('licensing_country'),
       getFullCountry(report.licensing_country ?? event.license_country ?? event.licensed_country),
     ],
+    [t('norad_id'), report.norad_id ?? event.norad_id ?? UNKNOWN],
     ...(withSurvivabilityAndReportNumber
       ? [
           [
