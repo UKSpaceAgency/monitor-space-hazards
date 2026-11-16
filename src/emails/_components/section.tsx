@@ -9,12 +9,12 @@ type SectionProps = {
 
 export const Section = ({ children, className, style, title }: SectionProps) => {
   return (
-    <EmailSection className={`${className} pb-8`} style={style}>
+    <EmailSection className={`${className} pb-6`} style={style}>
       <Heading className="text-base m-0">
         {title}
       </Heading>
       <Separator />
-      <EmailSection className="!w-full">
+      <EmailSection className="!w-full mt-2">
         {children}
       </EmailSection>
     </EmailSection>

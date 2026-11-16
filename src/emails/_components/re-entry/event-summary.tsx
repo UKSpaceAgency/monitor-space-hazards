@@ -1,4 +1,4 @@
-import { type ComponentProps, Fragment } from 'react';
+import type { ComponentProps } from 'react';
 
 import type { TypeReentryEventOut, TypeTIPOut } from '@/__generated__/data-contracts';
 import { createEmailTranslator } from '@/emails/_utils/utils';
@@ -18,19 +18,6 @@ export const ReentryEventSummary = ({ event, tip, showDirectionOfTravel = false,
   const data = [
     [t('re_entry_time'), `${dayjs(event.decay_epoch).format(FORMAT_FULL_DATE_TIME_WITH_UTC)} +/- ${event.uncertainty_window} minute(s)`],
     ...(showDirectionOfTravel ? [[t('direction_of_travel'), tip.direction === 'ascending' ? 'North' : 'South']] : []),
-    [
-      t('uk_overflight_time'),
-      event.overflight_time.length > 0
-        ? event.overflight_time
-            .map((time, idx) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <Fragment key={idx}>
-                {dayjs(time).format(FORMAT_FULL_DATE_TIME_WITH_UTC)}
-                {idx !== event.overflight_time.length - 1 && <br />}
-              </Fragment>
-            ))
-        : t('no_overflights'),
-    ],
   ];
 
   return <Table data={data} {...props} />;
