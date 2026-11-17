@@ -74,8 +74,8 @@ function ReEntryEmail({ event, report, tip, withPlaceholders, locationsAtRisk = 
       />
       {locationsAtRisk.length > 0 && <ReentryLocationsAtRisk locations={locationsAtRisk} report={report} />}
       <EmailSection className="!w-full pb-8">
-        <ReentryEventSummary event={event} tip={tip} className="pb-6" />
-        <Map src="{{WORLD_MAP.src}}" />
+        <Map src="{{WORLD_MAP.src}}" className="pb-6" />
+        <ReentryEventSummary event={event} tip={tip} />
         <Text className="text-sm mt-4 mb-2 font-bold">{t('Reentry_alert.reentry_window_worldwide_title')}</Text>
         <Text className="italic mb-0">{t('Reentry_alert.reentry_window_worldwide_content')}</Text>
       </EmailSection>
