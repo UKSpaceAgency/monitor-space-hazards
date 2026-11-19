@@ -80,7 +80,7 @@ function ReEntryEmail({ event, report, tip, withPlaceholders, locationsAtRisk = 
         <Text className="italic mb-0">{t('Reentry_alert.reentry_window_worldwide_content')}</Text>
       </EmailSection>
       <Section title={t('Reentry_alert.additional_object_information_title')}>
-        <ReentryObjectInformation event={event} report={report} withSurvivabilityAndReportNumber />
+        <ReentryObjectInformation event={event} report={report} withSurvivability />
       </Section>
       <ReentryRegionsAtRisk report={report} />
       <ReentryPotentialImpact report={report} group="uk_mainland" />
