@@ -10,8 +10,8 @@ import { Table } from '../table';
 type ReentryObjectInformationProps = {
   event: TypeReentryEventOut;
   report: TypeReentryEventReportOut;
-  /** Appends expected survivability and report number (used by the alert email). */
-  withSurvivabilityAndReportNumber?: boolean;
+  /** Appends expected survivability (used by the alert email). */
+  withSurvivability?: boolean;
 } & ComponentProps<'table'>;
 
 const UNKNOWN = 'Unknown';
@@ -22,7 +22,7 @@ const withUnit = (value: number | null | undefined, unit: string) =>
 export const ReentryObjectInformation = ({
   event,
   report,
-  withSurvivabilityAndReportNumber = false,
+  withSurvivability = false,
   ...props
 }: ReentryObjectInformationProps) => {
   const t = createEmailTranslator({ namespace: 'Emails.Reentry_alert.Event_summary' });
@@ -39,13 +39,12 @@ export const ReentryObjectInformation = ({
       getFullCountry(report.licensing_country ?? event.license_country ?? event.licensed_country),
     ],
     [t('norad_id'), report.norad_id ?? event.norad_id ?? UNKNOWN],
-    ...(withSurvivabilityAndReportNumber
+    ...(withSurvivability
       ? [
           [
             t('expected_survivability'),
             [survivability ? `${survivability}.` : null, survivabilityComment].filter(Boolean).join(' ') || UNKNOWN,
           ],
-          [t('report_number'), report.report_number ?? UNKNOWN],
         ]
       : []),
   ];
