@@ -45,8 +45,8 @@ export const ReentryRegionsAtRisk = ({ report }: ReentryRegionsAtRiskProps) => {
 
   const data = [
     [t('uk_mainland'), ukMainland || t('no_regions_affected')],
-    [t('maritime_and_airspace'), maritimeAndAirspace || t('no_regions_affected')],
     [t('overseas_territories_and_crown_dependencies'), overseasTerritories || t('no_regions_affected')],
+    [t('maritime_and_airspace'), maritimeAndAirspace || t('no_regions_affected')],
   ];
 
   return (

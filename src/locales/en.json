@@ -2412,10 +2412,10 @@
       "reentry_window_worldwide_content": "Overflight times indicate the approximate time the re-entering object's orbital path passes over, or in close proximity to, the UK, UK NAVAREA and UK Flight Information Regions. They are the approximate time(s) at which UK interests could be potentially at risk from the re-entry.",
       "utc_note": "* Coordinated Universal Time (UTC) is 1 hour behind British Summer Time (BST) and the same as Greenwich Mean Time (GMT).",
       "Regions_at_risk": {
-        "title": "Regions At Risk (Re-Entry Over)",
-        "uk_mainland": "UK Mainland",
-        "maritime_and_airspace": "Airspace And Maritime",
-        "overseas_territories_and_crown_dependencies": "UK CDOTS",
+        "title": "Regions at Risk (Re-entry Over)",
+        "uk_mainland": "UK nation",
+        "maritime_and_airspace": "Airspace and Maritime",
+        "overseas_territories_and_crown_dependencies": "Overseas Territories and Crown Dependencies",
         "no_regions_affected": "No Regions Affected"
       },
       "Assessment": {
