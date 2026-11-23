@@ -51,7 +51,7 @@ export const ReentryRegionsAtRisk = ({ report }: ReentryRegionsAtRiskProps) => {
 
   return (
     <Section title={t('title')}>
-      <Table data={data} forceAlignLeft />
+      <Table data={data} striped />
     </Section>
   );
 };

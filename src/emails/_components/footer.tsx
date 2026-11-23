@@ -62,9 +62,9 @@ export const Footer = ({ withPlaceholders, isNotification, isShort, isReentryWar
         <Img
           src={withPlaceholders ? '{{UKSA_LOGO.src}}' : 'https://www.dev.monitor-space-hazards.service.gov.uk/uksa.png'}
           alt="UK Space Agency Logo"
-          width="113"
-          height="31"
-          className="w-[113px] h-[31px]"
+          width="200"
+          height="56"
+          className="w-[200px] h-[56px]"
         />
       </EmailSection>
       {isReentryWarning && <Text className="text-sm mt-0">{t('service_note')}</Text>}

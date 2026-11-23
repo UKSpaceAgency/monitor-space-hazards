@@ -7,10 +7,10 @@ import { riskColours } from '../_utils/utils';
 
 type TableProps = {
   data: ReactNode[][];
-  forceAlignLeft?: boolean;
+  striped?: boolean;
 } & ComponentProps<'table'>;
 
-export const Table = ({ data, forceAlignLeft, ...props }: TableProps) => {
+export const Table = ({ data, striped, ...props }: TableProps) => {
   const cellsLength = data[0]?.length ?? 2;
   return (
     <Section className="!w-full" {...props}>
@@ -18,7 +18,7 @@ export const Table = ({ data, forceAlignLeft, ...props }: TableProps) => {
         <Row
           key={index}
           className={clsx('!w-full', {
-            'bg-[#f0f0f0]': index % 2 === 0,
+            'bg-[#f2f2f2]': striped && index % 2 === 0,
           })}
         >
           {row.map((cell, index) => {
@@ -35,11 +35,11 @@ export const Table = ({ data, forceAlignLeft, ...props }: TableProps) => {
             return (
               <Column
                 key={index}
-                className={clsx('p-2 text-sm w-1/3', {
+                className={clsx('px-2 py-1 text-sm w-1/3', {
                   'w-2/3': !isFirstColumn && cellsLength === 2,
                   'font-bold': isFirstColumn,
-                  'text-center': !isFirstColumn && !forceAlignLeft,
-                  'text-left': isFirstColumn || forceAlignLeft,
+                  'text-center': isRisk,
+                  'text-left': !isRisk,
                 })}
                 style={{ ...riskStyle }}
               >

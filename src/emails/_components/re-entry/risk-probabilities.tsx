@@ -1,5 +1,4 @@
 import { Column, Row, Section } from '@react-email/components';
-import clsx from 'clsx';
 import { isNumber } from 'lodash';
 import type { ComponentProps } from 'react';
 
@@ -34,25 +33,23 @@ export const ReentryRiskProbabilities = ({ event, ...props }: ReentryRiskProbabi
       <Row
         className="text-sm !w-full"
       >
-        <Column className="w-1/2 p-2">&nbsp;</Column>
-        <Column className="font-bold text-center w-1/2 p-2">{t('probability')}</Column>
-        {/* <Column className="w-1/3 font-bold text-center p-2">
+        <Column className="w-1/2 px-2 py-1">&nbsp;</Column>
+        <Column className="font-bold w-1/2 px-2 py-1">{t('probability')}</Column>
+        {/* <Column className="w-1/3 font-bold px-2 py-1">
             {t('risk')}
           </Column> */}
       </Row>
-      {data.map(({ type, probability }, index) => {
+      {data.map(({ type, probability }) => {
         return (
           <Row
             key={type}
-            className={clsx('text-sm !w-full', {
-              'bg-[#f0f0f0]': index % 2 === 0,
-            })}
+            className="text-sm !w-full"
           >
-            <Column className="font-bold w-1/2 p-2">{type}</Column>
-            <Column className="w-1/2 text-center p-2">
+            <Column className="font-bold w-1/2 px-2 py-1">{type}</Column>
+            <Column className="w-1/2 px-2 py-1">
               {isNumber(probability) ? `${roundedFixed(probability)}%` : 'Unknown'}
             </Column>
-            {/* <Column style={{ backgroundColor: riskStyle.background, color: riskStyle.text }} className="w-1/3 text-center p-2">{risk}</Column> */}
+            {/* <Column style={{ backgroundColor: riskStyle.background, color: riskStyle.text }} className="w-1/3 px-2 py-1">{risk}</Column> */}
           </Row>
         );
       })}

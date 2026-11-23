@@ -1,5 +1,4 @@
 import { Column, Row, Section } from '@react-email/components';
-import clsx from 'clsx';
 import type { ComponentProps } from 'react';
 
 import type { ScreeningResults } from '@/actions/getFragmentationEventScreeningResults';
@@ -17,29 +16,27 @@ export const FragmentationPotentialImpact = ({ data, ...props }: FragmentationPo
       <Row
         className="text-sm !w-full"
       >
-        <Column className="w-1/5 p-2 text-center font-bold">{t('object')}</Column>
-        <Column className="w-1/5 p-2 text-center font-bold">{t('norad_id')}</Column>
-        <Column className="w-1/5 p-2 text-center font-bold">{t('estimated_mass')}</Column>
-        <Column className="w-1/5 p-2 text-center font-bold">{t('current')}</Column>
-        <Column className="w-1/5 p-2 text-center font-bold">{t('predicted')}</Column>
+        <Column className="w-1/5 px-2 py-1 font-bold">{t('object')}</Column>
+        <Column className="w-1/5 px-2 py-1 font-bold">{t('norad_id')}</Column>
+        <Column className="w-1/5 px-2 py-1 font-bold">{t('estimated_mass')}</Column>
+        <Column className="w-1/5 px-2 py-1 font-bold">{t('current')}</Column>
+        <Column className="w-1/5 px-2 py-1 font-bold">{t('predicted')}</Column>
       </Row>
-      {data.map(({ object_name, norad_id, mass, current_tally, fragments_tally }, index) => {
+      {data.map(({ object_name, norad_id, mass, current_tally, fragments_tally }) => {
         return (
           <Row
             key={norad_id}
-            className={clsx('text-sm !w-full', {
-              'bg-[#f0f0f0]': index % 2 === 0,
-            })}
+            className="text-sm !w-full"
           >
-            <Column className="w-1/5 p-2 text-center">{object_name}</Column>
-            <Column className="w-1/5 p-2 text-center">{norad_id}</Column>
-            <Column className="w-1/5 p-2 text-center">
+            <Column className="w-1/5 px-2 py-1">{object_name}</Column>
+            <Column className="w-1/5 px-2 py-1">{norad_id}</Column>
+            <Column className="w-1/5 px-2 py-1">
               {mass
                 ? `${mass} kg`
                 : 'Unknown'}
             </Column>
-            <Column className="w-1/5 p-2 text-center">{current_tally}</Column>
-            <Column className="w-1/5 p-2 text-center">{fragments_tally}</Column>
+            <Column className="w-1/5 px-2 py-1">{current_tally}</Column>
+            <Column className="w-1/5 px-2 py-1">{fragments_tally}</Column>
           </Row>
         );
       })}

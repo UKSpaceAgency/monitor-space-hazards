@@ -48,7 +48,7 @@ export const ReentryAssessmentClosed = ({ event, report, executiveSummaryComment
           {' '}
           <Link href={`${env.NEXTAUTH_URL}/re-entries/${event.short_id}/alert`}>Monitor Space Hazards - GOV.UK</Link>
         </Text>
-        <Table data={data} forceAlignLeft />
+        <Table data={data} />
       </EmailSection>
       <EmailSection className="!w-full pb-4">
         <Text className="italic mb-2">{t('potential_debris_field')}</Text>

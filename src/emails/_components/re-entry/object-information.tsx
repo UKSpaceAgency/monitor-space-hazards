@@ -49,5 +49,5 @@ export const ReentryObjectInformation = ({
       : []),
   ];
 
-  return <Table data={data} forceAlignLeft {...props} />;
+  return <Table data={data} {...props} />;
 };

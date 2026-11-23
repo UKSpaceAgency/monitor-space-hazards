@@ -1,6 +1,5 @@
 /* eslint-disable react/no-array-index-key */
 import { Column, Row, Section } from '@react-email/components';
-import clsx from 'clsx';
 import type { ComponentProps, ReactNode } from 'react';
 
 type DataTableProps = {
@@ -15,23 +14,18 @@ export const DataTable = ({ headers, data, ...props }: DataTableProps) => {
     <Section {...props}>
       <Row>
         {headers.map((header, index) => (
-          <Column key={index} className={clsx('p-2 text-sm text-center font-bold')} width={`${100 / length}%`}>
+          <Column key={index} className="px-2 py-1 text-sm text-left font-bold" width={`${100 / length}%`}>
             {header}
           </Column>
         ))}
       </Row>
       {data.map((row, index) => (
-        <Row
-          key={index}
-          className={clsx({
-            'bg-[#f0f0f0]': index % 2 === 0,
-          })}
-        >
+        <Row key={index}>
           {row.map((cell, index) => {
             return (
               <Column
                 key={index}
-                className={clsx('p-2 text-sm text-center')}
+                className="px-2 py-1 text-sm text-left"
                 width={`${100 / length}%`}
               >
                 {cell ?? '-'}

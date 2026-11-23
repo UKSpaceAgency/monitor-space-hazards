@@ -59,5 +59,5 @@ export const ReentryEventSummaryTable = ({ event, report, ...props }: ReentryEve
     [t('report_number'), report.report_number],
   ];
 
-  return <Table data={data} forceAlignLeft {...props} />;
+  return <Table data={data} {...props} />;
 };
