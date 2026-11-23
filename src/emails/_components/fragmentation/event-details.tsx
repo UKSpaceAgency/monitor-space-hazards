@@ -1,5 +1,4 @@
 import { Column, Row, Section } from '@react-email/components';
-import clsx from 'clsx';
 import type { ComponentProps } from 'react';
 
 import type { TypeFragmentationReportOut } from '@/__generated__/data-contracts';
@@ -32,24 +31,22 @@ export const FragmentationEventDetails = ({ report, ...props }: FragmentationEve
       <Row
         className="text-sm !w-full"
       >
-        <Column className={`${columnsWidth} p-2 font-bold`}>{t('object_and_orbit_details')}</Column>
-        <Column className={`font-bold text-center ${columnsWidth} p-2`}>{t('primary')}</Column>
-        {haveSecondaryObject && <Column className={`font-bold text-center ${columnsWidth} p-2`}>{t('secondary')}</Column>}
+        <Column className={`${columnsWidth} px-2 py-1 font-bold`}>{t('object_and_orbit_details')}</Column>
+        <Column className={`font-bold ${columnsWidth} px-2 py-1`}>{t('primary')}</Column>
+        {haveSecondaryObject && <Column className={`font-bold ${columnsWidth} px-2 py-1`}>{t('secondary')}</Column>}
       </Row>
-      {data.map(([header, primary, secondary], index) => {
+      {data.map(([header, primary, secondary]) => {
         return (
           <Row
             key={header}
-            className={clsx('text-sm !w-full', {
-              'bg-[#f0f0f0]': index % 2 === 0,
-            })}
+            className="text-sm !w-full"
           >
-            <Column className={`font-bold ${columnsWidth} p-2`}>{header}</Column>
-            <Column className={`${columnsWidth} text-center p-2`}>
+            <Column className={`font-bold ${columnsWidth} px-2 py-1`}>{header}</Column>
+            <Column className={`${columnsWidth} px-2 py-1`}>
               {primary}
             </Column>
             {haveSecondaryObject && (
-              <Column className={`${columnsWidth} text-center p-2`}>
+              <Column className={`${columnsWidth} px-2 py-1`}>
                 {secondary}
               </Column>
             )}

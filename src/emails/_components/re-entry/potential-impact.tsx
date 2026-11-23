@@ -70,22 +70,22 @@ export const ReentryPotentialImpact = ({ report, group }: ReentryPotentialImpact
       {descriptionKey && <Text>{t(descriptionKey)}</Text>}
       <EmailSection className="!w-full">
         <Row className="!w-full">
-          <Column className="w-1/2 p-2 text-sm font-bold align-top">{t('location')}</Column>
-          <Column className="w-1/4 p-2 text-sm font-bold align-top">{t('probability_of_debris_impact')}</Column>
-          <Column className="w-1/4 p-2 text-sm font-bold align-top">{t('probability_of_reentry')}</Column>
+          <Column className="w-1/2 px-2 py-1 text-sm font-bold align-top">{t('location')}</Column>
+          <Column className="w-1/4 px-2 py-1 text-sm font-bold align-top">{t('probability_of_debris_impact')}</Column>
+          <Column className="w-1/4 px-2 py-1 text-sm font-bold align-top">{t('probability_of_reentry')}</Column>
         </Row>
         {locations.length === 0
-          ? <Text className="m-0 p-2">{t('empty', { locations: emptyLocations })}</Text>
+          ? <Text className="m-0 px-2 py-1">{t('empty', { locations: emptyLocations })}</Text>
           : locations.map((location, index) => (
               <Row
                 key={location.key}
-                className={clsx('!w-full', { 'bg-[#f0f0f0]': index % 2 === 0 })}
+                className={clsx('!w-full', { 'bg-[#f2f2f2]': index % 2 === 0 })}
               >
-                <Column className="w-1/2 p-2 text-sm font-bold align-top">{location.name}</Column>
-                <Column className="w-1/4 p-2 text-sm align-top">
+                <Column className="w-1/2 px-2 py-1 text-sm font-bold align-top">{location.name}</Column>
+                <Column className="w-1/4 px-2 py-1 text-sm align-top">
                   {formatProbability(location.fragments_probability)}
                 </Column>
-                <Column className="w-1/4 p-2 text-sm align-top">
+                <Column className="w-1/4 px-2 py-1 text-sm align-top">
                   {formatProbability(location.atmospheric_probability)}
                 </Column>
               </Row>

@@ -16,9 +16,9 @@ export const Header = ({ title, subtitle, banner, withPlaceholders }: HeaderProp
       <Section className="pb-4 !w-full">
         <Img
           src={withPlaceholders ? '{{NSPOC_LOGO.src}}' : 'https://www.dev.monitor-space-hazards.service.gov.uk/nspoclogo2.png'}
-          width="107"
-          height="50"
-          className="w-[107px] h-[50px]"
+          width="200"
+          height="93"
+          className="w-[200px] h-[93px]"
         />
       </Section>
       {banner && (
