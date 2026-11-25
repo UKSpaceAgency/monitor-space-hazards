@@ -1,5 +1,6 @@
 // @vitest-environment node
 import { render } from '@react-email/render';
+import { describe, expect, it, vi } from 'vitest';
 
 import ReEntryEmail from './re-entry';
 import ReEntryClosedownEmail from './re-entry-closedown';
