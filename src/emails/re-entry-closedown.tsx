@@ -13,13 +13,12 @@ type ReEntryEmailProps = {
   event: TypeReentryEventOut;
   report: TypeReentryEventReportOut;
   withPlaceholders: boolean;
-  /** Level 1 / 2 distribution, or null for additional recipients. */
   level?: ReentryEmailDistributionLevel;
   /** The executive summary, already resolved by the backend for this recipient's level. */
   assessment?: string | null;
 };
 
-function ReEntryClosedownEmail({ event, report, withPlaceholders, level = null, assessment = null }: ReEntryEmailProps) {
+function ReEntryClosedownEmail({ event, report, withPlaceholders, level = 1, assessment = null }: ReEntryEmailProps) {
   const t = createEmailTranslator({ namespace: 'Emails' });
 
   const objectName = report.object_name ?? event.object_name ?? '';
@@ -52,7 +51,7 @@ function ReEntryClosedownEmail({ event, report, withPlaceholders, level = null, 
       <Section title={t('Reentry_alert.object_information_title')}>
         <ReentryObjectInformation event={event} report={report} />
       </Section>
-      <ReentryUnderstandingThisReportClosed level={level ?? 1} shortId={event.short_id} />
+      <ReentryUnderstandingThisReportClosed level={level} shortId={event.short_id} />
     </Layout>
   );
 }
@@ -60,7 +59,7 @@ function ReEntryClosedownEmail({ event, report, withPlaceholders, level = null, 
 ReEntryClosedownEmail.PreviewProps = {
   pageUrl: 'https://www.dev.monitor-space-hazards.service.gov.uk',
   level: 1,
-  assessment: 'FREE TEXT JSON field "executive_summary_level_1"',
+  assessment: 'Level 1 executive summary',
   reentryLocation: 'Atlantic Ocean',
   event: {
     closed_comment: 'Closed comment',
