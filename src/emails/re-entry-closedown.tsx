@@ -1,6 +1,5 @@
 import type { TypeReentryEventOut, TypeReentryEventReportOut } from '@/__generated__/data-contracts';
 import type { ReentryEmailDistributionLevel } from '@/utils/reentryEditForm';
-import { resolveEmailExecutiveSummaryComment } from '@/utils/reentryEditForm';
 
 import { Layout } from './_components/layout';
 import { ReentryAssessmentClosed } from './_components/re-entry/assessment-closed';
@@ -14,11 +13,13 @@ type ReEntryEmailProps = {
   event: TypeReentryEventOut;
   report: TypeReentryEventReportOut;
   withPlaceholders: boolean;
-  /** Level 1 / 2 distribution, or null for additional recipients (_default only). */
+  /** Level 1 / 2 distribution, or null for additional recipients. */
   level?: ReentryEmailDistributionLevel;
+  /** The executive summary, already resolved by the backend for this recipient's level. */
+  assessment?: string | null;
 };
 
-function ReEntryClosedownEmail({ event, report, withPlaceholders, level = null }: ReEntryEmailProps) {
+function ReEntryClosedownEmail({ event, report, withPlaceholders, level = null, assessment = null }: ReEntryEmailProps) {
   const t = createEmailTranslator({ namespace: 'Emails' });
 
   const objectName = report.object_name ?? event.object_name ?? '';
@@ -29,7 +30,6 @@ function ReEntryClosedownEmail({ event, report, withPlaceholders, level = null }
 
   const isClosedownKnown = report.alert_type?.includes('closedown_known');
   const isClosedownConfirmed = isClosedownKnown || report.alert_type?.includes('closedown_unknown');
-  const executiveSummaryComment = resolveEmailExecutiveSummaryComment(event, level);
 
   return (
     <Layout
@@ -47,7 +47,7 @@ function ReEntryClosedownEmail({ event, report, withPlaceholders, level = null }
       <ReentryAssessmentClosed
         event={event}
         report={report}
-        executiveSummaryComment={executiveSummaryComment}
+        executiveSummaryComment={assessment}
       />
       <Section title={t('Reentry_alert.object_information_title')}>
         <ReentryObjectInformation event={event} report={report} />
