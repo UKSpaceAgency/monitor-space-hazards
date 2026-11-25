@@ -99,7 +99,7 @@ export const getCommentLevel = (
   return '';
 };
 
-/** Email distribution level: the backend sends 1 for the Level 1 list and for additional recipients, 2 for the Level 2 list. */
+/** Email distribution level: the backend sends 2 to the Level 2 list and 1 to every other recipient. */
 export type ReentryEmailDistributionLevel = 1 | 2;
 
 export const parseReentryEmailDistributionLevel = (
