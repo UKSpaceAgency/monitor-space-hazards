@@ -99,9 +99,18 @@ export const getCommentLevel = (
   return '';
 };
 
-/** Email distribution level: the backend sends 2 to the Level 2 list and 1 to every other recipient. */
-export type ReentryEmailDistributionLevel = 1 | 2;
+/** Email distribution level: 1 / 2 lists, or null for additional (level-neutral) recipients. */
+export type ReentryEmailDistributionLevel = 1 | 2 | null;
 
+/** Parse BE email `level` payload into 1 / 2 / null (additional recipients). */
 export const parseReentryEmailDistributionLevel = (
   level: unknown,
-): ReentryEmailDistributionLevel => (level === 2 || level === '2' ? 2 : 1);
+): ReentryEmailDistributionLevel => {
+  if (level === 2 || level === '2') {
+    return 2;
+  }
+  if (level === 1 || level === '1') {
+    return 1;
+  }
+  return null;
+};

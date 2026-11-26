@@ -33,14 +33,17 @@ type ReEntryEmailProps = {
    * report with the same logic as the website.
    */
   locationsAtRisk?: ReentryLocationAtRisk[];
+  /**
+   * Level 1 / Level 2 distribution lists, or null for additional recipients
+   * (level-neutral: executive summary uses _default only).
+   */
   level?: ReentryEmailDistributionLevel;
-  /** The executive summary, already resolved by the backend for this recipient's level. */
   assessment?: string | null;
 };
 
 const NO_LOCATIONS: ReentryLocationAtRisk[] = [];
 
-function ReEntryEmail({ event, report, tip, withPlaceholders, locationsAtRisk = NO_LOCATIONS, level = 1, assessment = null }: ReEntryEmailProps) {
+function ReEntryEmail({ event, report, tip, withPlaceholders, locationsAtRisk = NO_LOCATIONS, level = null, assessment = null }: ReEntryEmailProps) {
   const t = createEmailTranslator({ namespace: 'Emails' });
 
   const objectName = report.object_name ?? event.object_name ?? '';
@@ -87,7 +90,7 @@ function ReEntryEmail({ event, report, tip, withPlaceholders, locationsAtRisk = 
         <ReentryHandlingSpaceDebris event={event} withTopSpacing={Boolean(event.damages_liability_comment)} />
         <ReentryPressAttention pressAttention={event.press_attention_comment} />
       </Section>
-      <ReentryUnderstandingThisReport level={level} />
+      <ReentryUnderstandingThisReport level={level ?? 1} />
     </Layout>
   );
 }
@@ -95,7 +98,7 @@ function ReEntryEmail({ event, report, tip, withPlaceholders, locationsAtRisk = 
 ReEntryEmail.PreviewProps = {
   pageUrl: 'https://www.dev.monitor-space-hazards.service.gov.uk',
   level: 1,
-  assessment: 'Level 1 executive summary',
+  assessment: null,
   tip: {
     direction: 'ascending',
   },
