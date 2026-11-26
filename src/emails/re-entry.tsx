@@ -2,7 +2,6 @@ import { Section as EmailSection } from '@react-email/components';
 
 import type { TypeReentryEventOut, TypeReentryEventReportOut, TypeTIPOut } from '@/__generated__/data-contracts';
 import type { ReentryEmailDistributionLevel } from '@/utils/reentryEditForm';
-import { resolveEmailExecutiveSummaryComment } from '@/utils/reentryEditForm';
 import { getReentryFragmentsRisk } from '@/utils/ReentryRisk';
 
 import { Layout } from './_components/layout';
@@ -39,11 +38,12 @@ type ReEntryEmailProps = {
    * (level-neutral: executive summary uses _default only).
    */
   level?: ReentryEmailDistributionLevel;
+  assessment?: string | null;
 };
 
 const NO_LOCATIONS: ReentryLocationAtRisk[] = [];
 
-function ReEntryEmail({ event, report, tip, withPlaceholders, locationsAtRisk = NO_LOCATIONS, level = null }: ReEntryEmailProps) {
+function ReEntryEmail({ event, report, tip, withPlaceholders, locationsAtRisk = NO_LOCATIONS, level = null, assessment = null }: ReEntryEmailProps) {
   const t = createEmailTranslator({ namespace: 'Emails' });
 
   const objectName = report.object_name ?? event.object_name ?? '';
@@ -56,7 +56,6 @@ function ReEntryEmail({ event, report, tip, withPlaceholders, locationsAtRisk = 
     fragmentsRisk: event.highest_impact?.highest_risk,
     objectName,
   });
-  const executiveSummaryComment = resolveEmailExecutiveSummaryComment(event, level);
 
   return (
     <Layout
@@ -68,7 +67,7 @@ function ReEntryEmail({ event, report, tip, withPlaceholders, locationsAtRisk = 
     >
       <Subheader risk={risk} />
       <ReentryAssessment
-        executiveSummary={executiveSummaryComment}
+        executiveSummary={assessment}
         shortId={event.short_id}
         noLocations={locationsAtRisk.length === 0}
       />

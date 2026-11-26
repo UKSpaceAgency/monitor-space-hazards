@@ -102,43 +102,6 @@ export const getCommentLevel = (
 /** Email distribution level: 1 / 2 lists, or null for additional (level-neutral) recipients. */
 export type ReentryEmailDistributionLevel = 1 | 2 | null;
 
-type ExecutiveSummaryEmailSource = {
-  executive_summary_comment?: string | null | TypeLevelledComment;
-  executive_summary_comment_levels?: TypeLevelledCommentOut | TypeLevelledComment | null;
-};
-
-/**
- * Resolve executive summary text for a re-entry email.
- *
- * - Level 1 → level_1, else _default
- * - Level 2 → level_2, else _default
- * - Additional recipients (null) → _default only
- * - Hide when nothing remains (returns null)
- */
-export const resolveEmailExecutiveSummaryComment = (
-  event: ExecutiveSummaryEmailSource,
-  level: ReentryEmailDistributionLevel = null,
-): string | null => {
-  const levels = event.executive_summary_comment_levels
-    ?? (typeof event.executive_summary_comment === 'object' && event.executive_summary_comment !== null
-      ? event.executive_summary_comment
-      : null);
-
-  const defaultText = emptyToNull(
-    levels?._default
-    ?? (typeof event.executive_summary_comment === 'string' ? event.executive_summary_comment : null),
-  );
-
-  if (level === 1) {
-    return emptyToNull(levels?.level_1) ?? defaultText;
-  }
-  if (level === 2) {
-    return emptyToNull(levels?.level_2) ?? defaultText;
-  }
-
-  return defaultText;
-};
-
 /** Parse BE email `level` payload into 1 / 2 / null (additional recipients). */
 export const parseReentryEmailDistributionLevel = (
   level: unknown,
