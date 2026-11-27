@@ -12,6 +12,8 @@ type ReentryObjectInformationProps = {
   report: TypeReentryEventReportOut;
   /** Appends expected survivability (used by the alert email). */
   withSurvivability?: boolean;
+  /** Appends the full physical characteristics used by the alert email. */
+  withFullDetails?: boolean;
 } & ComponentProps<'table'>;
 
 const UNKNOWN = 'Unknown';
@@ -23,12 +25,18 @@ export const ReentryObjectInformation = ({
   event,
   report,
   withSurvivability = false,
+  withFullDetails = false,
   ...props
 }: ReentryObjectInformationProps) => {
   const t = createEmailTranslator({ namespace: 'Emails.Reentry_alert.Event_summary' });
 
   const survivability = report.survivability ?? event.survivability;
   const survivabilityComment = report.survivability_comment ?? event.survivability_comment;
+
+  const span = report.object_span ?? event.object_span;
+  const inclination = report.inclination ?? event.inclination;
+  const apogee = report.apogee ?? event.apogee;
+  const perigee = report.perigee ?? event.perigee;
 
   const data = [
     [t('estimated_mass'), withUnit(report.estimated_mass ?? event.estimated_mass, 'kg')],
@@ -45,6 +53,14 @@ export const ReentryObjectInformation = ({
             t('expected_survivability'),
             [survivability ? `${survivability}.` : null, survivabilityComment].filter(Boolean).join(' ') || UNKNOWN,
           ],
+        ]
+      : []),
+    ...(withFullDetails
+      ? [
+          [t('span'), span ? withUnit(span, 'm') : UNKNOWN],
+          [t('inclination'), withUnit(inclination, '°')],
+          [t('apogee'), withUnit(apogee, 'km')],
+          [t('perigee'), withUnit(perigee, 'km')],
         ]
       : []),
   ];

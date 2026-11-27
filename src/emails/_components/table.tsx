@@ -38,6 +38,7 @@ export const Table = ({ data, striped, ...props }: TableProps) => {
                 className={clsx('px-2 py-1 text-sm w-1/3', {
                   'w-2/3': !isFirstColumn && cellsLength === 2,
                   'font-bold': isFirstColumn,
+                  'align-top': !isFirstColumn,
                   'text-center': isRisk,
                   'text-left': !isRisk,
                 })}

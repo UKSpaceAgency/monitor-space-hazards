@@ -19,7 +19,6 @@ import { ReentryRegionsAtRisk } from './_components/re-entry/regions-at-risk';
 import { ReentryUnderstandingThisReport } from './_components/re-entry/understanding-this-report';
 import { Section } from './_components/section';
 import { Subheader } from './_components/subheader';
-import { Text } from './_components/text';
 import type { ReentryLocationAtRisk } from './_utils/reentry-locations';
 import { createEmailTranslator, objectTypeIndex } from './_utils/utils';
 
@@ -69,18 +68,23 @@ function ReEntryEmail({ event, report, tip, withPlaceholders, locationsAtRisk = 
       <Subheader risk={risk} />
       <ReentryAssessment
         executiveSummary={executiveSummaryComment}
+        reportNumber={report.report_number ?? event.reentry_report_number ?? 1}
         shortId={event.short_id}
         noLocations={locationsAtRisk.length === 0}
+        noImpact={report.impact?.by_nation == null && report.impact?.maritime_and_airspace == null && report.impact?.overseas_territories_and_crown_dependencies == null}
       />
       {locationsAtRisk.length > 0 && <ReentryLocationsAtRisk locations={locationsAtRisk} report={report} />}
       <EmailSection className="!w-full pb-8">
-        <Map src="{{WORLD_MAP.src}}" className="pb-6" />
-        <ReentryEventSummary event={event} tip={tip} />
-        <Text className="text-sm mt-4 mb-2 font-bold">{t('Reentry_alert.reentry_window_worldwide_title')}</Text>
-        <Text className="italic mb-0">{t('Reentry_alert.reentry_window_worldwide_content')}</Text>
+        <Map src="{{WORLD_MAP.src}}" showLegend className="pb-6" />
+        <ReentryEventSummary
+          event={event}
+          tip={tip}
+          decayEpoch={report.decay_epoch ?? event.decay_epoch}
+          uncertaintyWindow={report.uncertainty_window ?? event.uncertainty_window}
+        />
       </EmailSection>
       <Section title={t('Reentry_alert.additional_object_information_title')}>
-        <ReentryObjectInformation event={event} report={report} withSurvivability />
+        <ReentryObjectInformation event={event} report={report} withFullDetails withSurvivability />
       </Section>
       <ReentryRegionsAtRisk report={report} />
       <ReentryPotentialImpact report={report} group="uk_mainland" />

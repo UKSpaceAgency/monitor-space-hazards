@@ -75,7 +75,7 @@ export const ReentryPotentialImpact = ({ report, group }: ReentryPotentialImpact
           <Column className="w-1/4 px-2 py-1 text-sm font-bold align-top">{t('probability_of_reentry')}</Column>
         </Row>
         {locations.length === 0
-          ? <Text className="m-0 px-2 py-1">{t('empty', { locations: emptyLocations })}</Text>
+          ? <Text className="m-0 px-2 py-1 text-sm">{t('empty', { locations: emptyLocations })}</Text>
           : locations.map((location, index) => (
               <Row
                 key={location.key}

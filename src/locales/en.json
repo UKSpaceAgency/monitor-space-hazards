@@ -979,6 +979,9 @@
     "pdf_title": "Re-entry alert for {objectName} - Report {reportNumber}",
     "pdf_title_closed": "Re-entry alert for {objectName} - Report {reportNumber} (Closed)",
     "report_info": "<p><bold>Report {number}</bold> updated on {time} UTC</p>",
+    "report_snapshot_banner": "You are viewing report {number} as it was uploaded. Changes made later using ‘edit this report’ are not shown. <current>View the current alert</current>.",
+    "download_report_pdf": "Download as PDF",
+    "download_report_pdf_label": "Download {shortId} Report {number} as PDF",
     "accordion": {
       "event_details": "Event details",
       "additional_object_details": "Additional object and orbit details",
@@ -2408,8 +2411,6 @@
       "banner": "Uncontrolled Re-Entry Warning - Level {level}",
       "guidance_on_response_title": "Guidance on Response",
       "other_regions_at_risk_title": "Other Regions At Risk",
-      "reentry_window_worldwide_title": "Re-entry window worldwide",
-      "reentry_window_worldwide_content": "Overflight times indicate the approximate time the re-entering object's orbital path passes over, or in close proximity to, the UK, UK NAVAREA and UK Flight Information Regions. They are the approximate time(s) at which UK interests could be potentially at risk from the re-entry.",
       "utc_note": "* Coordinated Universal Time (UTC) is 1 hour behind British Summer Time (BST) and the same as Greenwich Mean Time (GMT).",
       "Regions_at_risk": {
         "title": "Regions at Risk (Re-entry Over)",
@@ -2438,7 +2439,8 @@
         "number_of_overflights": "Number of overflights",
         "overflight_times": "Overflight Times",
         "no_overflights": "No overflights",
-        "no_individual_locations": "Risk to UK interests does not meet the threshold for individual territory reporting"
+        "no_individual_locations": "Risk to UK interests does not meet the threshold for individual territory reporting",
+        "no_impact": "No impact identified"
       },
       "Potential_impact": {
         "by_nation_title": "Potential impact by UK nation",
@@ -2494,6 +2496,10 @@
         "width": "Width",
         "licensing_country": "Licensing Country",
         "expected_survivability": "Expected Survivability to Ground",
+        "span": "Span",
+        "inclination": "Inclination",
+        "apogee": "Apogee",
+        "perigee": "Perigee",
         "report_number": "Report Number"
       },
       "Event_details": {

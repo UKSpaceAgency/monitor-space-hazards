@@ -50,7 +50,7 @@ function ReEntryClosedownEmail({ event, report, withPlaceholders, level = null }
         executiveSummaryComment={executiveSummaryComment}
       />
       <Section title={t('Reentry_alert.object_information_title')}>
-        <ReentryObjectInformation event={event} report={report} />
+        <ReentryObjectInformation event={event} report={report} withFullDetails />
       </Section>
       <ReentryUnderstandingThisReportClosed level={level ?? 1} shortId={event.short_id} />
     </Layout>

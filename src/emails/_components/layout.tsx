@@ -86,7 +86,7 @@ export function Layout({ title, subtitle, banner, withPlaceholders, children, is
           <meta name="supported-color-schemes" content="light" />
         </Head>
         <Body className="bg-white font-sans p-2">
-          <Container>
+          <Container className="!w-full">
             <Header
               title={title}
               subtitle={subtitle}
