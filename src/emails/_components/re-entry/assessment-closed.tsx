@@ -52,11 +52,11 @@ export const ReentryAssessmentClosed = ({ event, report, executiveSummaryComment
       </EmailSection>
       <EmailSection className="!w-full pb-4">
         <Text className="italic mb-2">{t('potential_debris_field')}</Text>
-        <Map src="{{DEBRIS_FIELD_MAP.src}}" width="600" />
+        <Map src="{{DEBRIS_FIELD_MAP.src}}" width="600" showLegend={false} />
       </EmailSection>
       <EmailSection className="!w-full">
         <Text className="italic mb-2">{t('flight_path')}</Text>
-        <Map src="{{FLIGHT_PATH_MAP.src}}" width="600" showLegend={false} />
+        <Map src="{{FLIGHT_PATH_MAP.src}}" width="600" />
       </EmailSection>
     </Section>
   );
