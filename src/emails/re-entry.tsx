@@ -67,9 +67,8 @@ function ReEntryEmail({ event, report, tip, withPlaceholders, locationsAtRisk = 
     >
       <Subheader risk={risk} />
       <ReentryAssessment
-        executiveSummary={executiveSummaryComment}
-        reportNumber={report.report_number ?? event.reentry_report_number ?? 1}
         shortId={event.short_id}
+        executiveSummary={executiveSummaryComment}
         noLocations={locationsAtRisk.length === 0}
         noImpact={report.impact?.by_nation == null && report.impact?.maritime_and_airspace == null && report.impact?.overseas_territories_and_crown_dependencies == null}
       />
